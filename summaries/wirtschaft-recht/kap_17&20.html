@@ -6,7 +6,6 @@
     <title>W&R Prüfung 09.04.2026 — Zusammenfassung</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap");
-
       :root {
         --bg: #0d0f14;
         --surface: #161920;
@@ -19,14 +18,13 @@
         --text: #e8eaf0;
         --muted: #8891a8;
         --success: #34d399;
+        --must: #ff6b6b;
       }
-
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
       body {
         background: var(--bg);
         color: var(--text);
@@ -34,19 +32,17 @@
         font-size: 15px;
         line-height: 1.7;
       }
-
-      /* NAV */
       nav {
         position: sticky;
         top: 0;
         z-index: 100;
-        background: rgba(13, 15, 20, 0.95);
-        backdrop-filter: blur(12px);
+        background: rgba(13, 15, 20, 0.96);
+        backdrop-filter: blur(14px);
         border-bottom: 1px solid var(--border);
         display: flex;
         align-items: center;
         gap: 4px;
-        padding: 0 24px;
+        padding: 0 18px;
         height: 56px;
         overflow-x: auto;
         scrollbar-width: none;
@@ -54,71 +50,530 @@
       nav::-webkit-scrollbar {
         display: none;
       }
-
       .nav-logo {
         font-family: "DM Serif Display", serif;
-        font-size: 18px;
+        font-size: 17px;
         color: var(--accent);
-        margin-right: 16px;
+        margin-right: 10px;
         white-space: nowrap;
         flex-shrink: 0;
       }
-
-      .tab-btn {
+      .tb {
         background: none;
         border: none;
         color: var(--muted);
         font-family: "DM Sans", sans-serif;
         font-size: 13px;
         font-weight: 500;
-        padding: 6px 14px;
+        padding: 6px 11px;
         border-radius: 6px;
         cursor: pointer;
         white-space: nowrap;
         transition: all 0.2s;
         flex-shrink: 0;
       }
-      .tab-btn:hover {
+      .tb:hover {
         color: var(--text);
         background: var(--surface2);
       }
-      .tab-btn.active {
+      .tb.active {
         color: #fff;
         background: var(--accent);
       }
-
-      /* PAGE */
       .page {
         display: none;
-        padding: 32px 24px;
-        max-width: 900px;
+        padding: 26px 20px;
+        max-width: 880px;
         margin: 0 auto;
       }
       .page.active {
         display: block;
-        animation: fadeIn 0.3s ease;
+        animation: fi 0.25s ease;
       }
-      @keyframes fadeIn {
+      @keyframes fi {
         from {
           opacity: 0;
-          transform: translateY(8px);
+          transform: translateY(6px);
         }
         to {
           opacity: 1;
           transform: translateY(0);
         }
       }
-
-      /* HERO */
+      .legend {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 11px 16px;
+        margin-bottom: 22px;
+        font-size: 12px;
+      }
+      .li2 {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .ld {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+      .ld-m {
+        background: var(--must);
+      }
+      .ld-r {
+        background: var(--accent3);
+      }
+      .ld-c {
+        background: var(--muted);
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 4px;
+        letter-spacing: 0.4px;
+        white-space: nowrap;
+      }
+      .bm {
+        background: rgba(255, 107, 107, 0.18);
+        color: var(--must);
+      }
+      .br {
+        background: rgba(78, 205, 196, 0.15);
+        color: var(--accent3);
+      }
+      .bc {
+        background: rgba(136, 145, 168, 0.15);
+        color: var(--muted);
+      }
+      .st {
+        font-family: "DM Serif Display", serif;
+        font-size: 25px;
+        margin-bottom: 4px;
+      }
+      .ss {
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+      .dv {
+        height: 1px;
+        background: var(--border);
+        margin: 22px 0;
+      }
+      h2.sub {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 20px 0 11px;
+      }
+      .block {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 17px 21px;
+        margin-bottom: 13px;
+      }
+      .bt {
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 9px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+      .tw {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      th {
+        background: var(--surface2);
+        color: var(--muted);
+        font-weight: 600;
+        text-align: left;
+        padding: 8px 12px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      td {
+        padding: 8px 12px;
+        border-top: 1px solid var(--border);
+        vertical-align: top;
+      }
+      tr.mr td:first-child {
+        border-left: 3px solid var(--must);
+      }
+      tr.rr td:first-child {
+        border-left: 3px solid var(--accent3);
+      }
+      tr.cr {
+        opacity: 0.72;
+      }
+      tr:hover td {
+        background: rgba(255, 255, 255, 0.02);
+      }
+      ul.cl {
+        list-style: none;
+        padding: 0;
+      }
+      ul.cl li {
+        padding: 4px 0 4px 16px;
+        position: relative;
+        font-size: 14px;
+      }
+      ul.cl li::before {
+        content: "›";
+        position: absolute;
+        left: 0;
+        color: var(--muted);
+      }
+      ul.cl li.m::before {
+        color: var(--must);
+        content: "★";
+      }
+      ul.cl li.r::before {
+        color: var(--accent3);
+        content: "◆";
+      }
+      .mb {
+        border-left: 3px solid var(--must);
+        padding: 9px 13px;
+        background: rgba(255, 107, 107, 0.07);
+        border-radius: 0 8px 8px 0;
+        margin: 9px 0;
+        font-size: 13px;
+      }
+      .ib {
+        border-left: 3px solid var(--accent3);
+        padding: 9px 13px;
+        background: rgba(78, 205, 196, 0.07);
+        border-radius: 0 8px 8px 0;
+        margin: 9px 0;
+        font-size: 13px;
+      }
+      .cb {
+        border-left: 3px solid var(--muted);
+        padding: 9px 13px;
+        background: rgba(136, 145, 168, 0.07);
+        border-radius: 0 8px 8px 0;
+        margin: 9px 0;
+        font-size: 13px;
+        opacity: 0.85;
+      }
+      .wb {
+        border-left: 3px solid var(--accent2);
+        padding: 9px 13px;
+        background: rgba(245, 166, 35, 0.07);
+        border-radius: 0 8px 8px 0;
+        margin: 9px 0;
+        font-size: 13px;
+      }
+      .acc-item {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        margin-bottom: 9px;
+        overflow: hidden;
+      }
+      .acc-head {
+        background: var(--surface);
+        padding: 12px 16px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 500;
+        font-size: 14px;
+        user-select: none;
+        transition: background 0.15s;
+      }
+      .acc-head:hover {
+        background: var(--surface2);
+      }
+      .acc-head .ch {
+        color: var(--muted);
+        transition: transform 0.2s;
+        font-size: 12px;
+      }
+      .acc-item.open .ch {
+        transform: rotate(180deg);
+      }
+      .acc-body {
+        display: none;
+        padding: 14px 16px;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+      }
+      .acc-item.open .acc-body {
+        display: block;
+      }
+      code {
+        font-family: monospace;
+        background: var(--surface2);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 12px;
+        color: var(--accent2);
+      }
+      .cg {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 11px;
+        margin-bottom: 14px;
+      }
+      .cc {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 15px;
+      }
+      .cc h3 {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 9px;
+        padding-bottom: 7px;
+        border-bottom: 1px solid var(--border);
+      }
+      .flow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        margin: 13px 0;
+      }
+      .fi {
+        flex: 1;
+        min-width: 100px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        padding: 10px 13px;
+        position: relative;
+      }
+      .fi:first-child {
+        border-radius: 10px 0 0 10px;
+      }
+      .fi:last-child {
+        border-radius: 0 10px 10px 0;
+      }
+      .fi:not(:last-child)::after {
+        content: "→";
+        position: absolute;
+        right: -10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+        font-size: 14px;
+        z-index: 1;
+      }
+      .fl {
+        font-size: 10px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+        margin-bottom: 3px;
+      }
+      .fv {
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .v {
+        display: inline-flex;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 20px;
+      }
+      .vy {
+        background: rgba(52, 211, 153, 0.15);
+        color: var(--success);
+      }
+      .vn {
+        background: rgba(230, 63, 63, 0.15);
+        color: var(--accent);
+      }
+      .vm {
+        background: rgba(245, 166, 35, 0.15);
+        color: var(--accent2);
+      }
+      .qcard {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 19px;
+        margin-bottom: 12px;
+      }
+      .qq {
+        font-weight: 600;
+        margin-bottom: 12px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .qt {
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 9px;
+      }
+      .qopts {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .qo {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 9px 13px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.15s;
+        text-align: left;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+      }
+      .qo:hover:not(:disabled) {
+        border-color: var(--accent3);
+        color: var(--accent3);
+      }
+      .qo.correct {
+        border-color: var(--success);
+        background: rgba(52, 211, 153, 0.1);
+        color: var(--success);
+      }
+      .qo.wrong {
+        border-color: var(--accent);
+        background: rgba(230, 63, 63, 0.08);
+        color: var(--accent);
+      }
+      .qfb {
+        margin-top: 9px;
+        font-size: 13px;
+        padding: 9px 13px;
+        border-radius: 8px;
+        display: none;
+        line-height: 1.6;
+      }
+      .qfb.show {
+        display: block;
+      }
+      .qok {
+        background: rgba(52, 211, 153, 0.08);
+        color: var(--success);
+        border: 1px solid rgba(52, 211, 153, 0.25);
+      }
+      .qerr {
+        background: rgba(230, 63, 63, 0.08);
+        color: #ff9a9a;
+        border: 1px solid rgba(230, 63, 63, 0.25);
+      }
+      .case-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 19px;
+        margin-bottom: 13px;
+      }
+      .case-sc {
+        font-size: 14px;
+        background: var(--surface2);
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 13px;
+        line-height: 1.6;
+        border-left: 3px solid var(--accent2);
+      }
+      .case-q {
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 11px;
+      }
+      .rev-btn {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-family: "DM Sans", sans-serif;
+        font-size: 13px;
+        padding: 7px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .rev-btn:hover {
+        border-color: var(--accent3);
+        color: var(--accent3);
+      }
+      .case-ans {
+        display: none;
+        margin-top: 12px;
+        font-size: 13px;
+        padding: 12px;
+        background: rgba(52, 211, 153, 0.07);
+        border: 1px solid rgba(52, 211, 153, 0.2);
+        border-radius: 8px;
+        line-height: 1.7;
+      }
+      .case-ans.show {
+        display: block;
+      }
+      .pg {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 11px;
+        margin-bottom: 17px;
+      }
+      .pill {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px;
+      }
+      .pill .pn {
+        font-family: "DM Serif Display", serif;
+        font-size: 27px;
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 5px;
+      }
+      .pill h4 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 3px;
+      }
+      .pill p {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      #sd {
+        text-align: center;
+        padding: 16px;
+        background: var(--surface2);
+        border-radius: 12px;
+        margin-top: 16px;
+        font-size: 16px;
+        font-weight: 600;
+        display: none;
+      }
       .hero {
         text-align: center;
-        padding: 48px 0 40px;
+        padding: 32px 0 26px;
       }
       .hero h1 {
         font-family: "DM Serif Display", serif;
-        font-size: 42px;
+        font-size: 36px;
         line-height: 1.1;
-        margin-bottom: 12px;
+        margin-bottom: 9px;
       }
       .hero h1 em {
         color: var(--accent);
@@ -126,24 +581,24 @@
       }
       .hero p {
         color: var(--muted);
-        font-size: 15px;
+        font-size: 14px;
       }
-      .exam-badge {
+      .eb {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 7px;
         background: var(--surface2);
         border: 1px solid var(--accent);
         border-radius: 100px;
-        padding: 6px 16px;
-        font-size: 13px;
+        padding: 5px 13px;
+        font-size: 12px;
         font-weight: 500;
         color: var(--accent);
-        margin-bottom: 20px;
+        margin-bottom: 16px;
       }
-      .exam-badge span {
-        width: 7px;
-        height: 7px;
+      .eb span {
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
         background: var(--accent);
         animation: pulse 1.5s infinite;
@@ -157,885 +612,500 @@
           opacity: 0.3;
         }
       }
-
       .card-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 14px;
-        margin-top: 32px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 11px;
+        margin-top: 24px;
       }
-      .nav-card {
+      .nc {
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 12px;
-        padding: 20px;
+        padding: 16px;
         cursor: pointer;
-        transition: all 0.25s;
+        transition: all 0.2s;
         text-align: left;
       }
-      .nav-card:hover {
+      .nc:hover {
         border-color: var(--accent);
         transform: translateY(-2px);
         background: var(--surface2);
       }
-      .nav-card .card-icon {
-        font-size: 24px;
-        margin-bottom: 10px;
+      .nc .ci {
+        font-size: 20px;
+        margin-bottom: 7px;
       }
-      .nav-card h3 {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 4px;
-      }
-      .nav-card p {
-        font-size: 12px;
-        color: var(--muted);
-      }
-
-      /* SECTION TITLE */
-      .section-title {
-        font-family: "DM Serif Display", serif;
-        font-size: 28px;
-        color: var(--text);
-        margin-bottom: 6px;
-      }
-      .section-sub {
-        color: var(--muted);
+      .nc h3 {
         font-size: 13px;
-        margin-bottom: 28px;
-      }
-      .divider {
-        height: 1px;
-        background: var(--border);
-        margin: 28px 0;
-      }
-
-      /* BLOCKS */
-      .block {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 20px 24px;
-        margin-bottom: 16px;
-      }
-      .block-title {
         font-weight: 600;
-        font-size: 15px;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        margin-bottom: 3px;
       }
-      .tag {
+      .nc p {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .ab {
         display: inline-block;
         font-size: 11px;
-        font-weight: 600;
+        font-weight: 700;
         padding: 2px 8px;
         border-radius: 4px;
-        letter-spacing: 0.5px;
+        margin-bottom: 2px;
       }
-      .tag-red {
-        background: rgba(230, 63, 63, 0.15);
-        color: var(--accent);
+      .abm {
+        background: rgba(255, 107, 107, 0.18);
+        color: var(--must);
       }
-      .tag-orange {
-        background: rgba(245, 166, 35, 0.15);
-        color: var(--accent2);
-      }
-      .tag-teal {
-        background: rgba(78, 205, 196, 0.15);
+      .abr {
+        background: rgba(78, 205, 196, 0.13);
         color: var(--accent3);
       }
-      .tag-purple {
-        background: rgba(167, 139, 250, 0.15);
-        color: var(--accent4);
-      }
-      .tag-green {
-        background: rgba(52, 211, 153, 0.15);
-        color: var(--success);
-      }
-
-      .art-chip {
-        display: inline-flex;
-        align-items: center;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 2px 9px;
-        font-size: 11px;
-        font-weight: 600;
-        color: var(--accent2);
-        margin-left: 6px;
-        font-family: monospace;
-      }
-
-      ul.clean {
-        list-style: none;
-        padding: 0;
-      }
-      ul.clean li {
-        padding: 4px 0 4px 16px;
-        position: relative;
-        color: var(--text);
-        font-size: 14px;
-      }
-      ul.clean li::before {
-        content: "›";
-        position: absolute;
-        left: 0;
+      .abc {
+        background: rgba(136, 145, 168, 0.12);
         color: var(--muted);
-      }
-
-      /* 4-COLUMN GRID */
-      .four-col {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-      }
-      @media (min-width: 640px) {
-        .four-col {
-          grid-template-columns: repeat(4, 1fr);
-        }
-      }
-
-      .pill-card {
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 16px;
-      }
-      .pill-card .num {
-        font-family: "DM Serif Display", serif;
-        font-size: 32px;
-        color: var(--accent);
-        line-height: 1;
-        margin-bottom: 6px;
-      }
-      .pill-card h4 {
-        font-size: 13px;
-        font-weight: 600;
-        margin-bottom: 6px;
-      }
-      .pill-card p {
-        font-size: 12px;
-        color: var(--muted);
-      }
-
-      /* FLOW */
-      .flow {
-        display: flex;
-        align-items: stretch;
-        gap: 0;
-        flex-wrap: wrap;
-        margin: 16px 0;
-      }
-      .flow-item {
-        flex: 1;
-        min-width: 140px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        padding: 14px 16px;
-        position: relative;
-      }
-      .flow-item:first-child {
-        border-radius: 10px 0 0 10px;
-      }
-      .flow-item:last-child {
-        border-radius: 0 10px 10px 0;
-      }
-      .flow-item:not(:last-child)::after {
-        content: "→";
-        position: absolute;
-        right: -10px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--muted);
-        font-size: 16px;
-        z-index: 1;
-      }
-      .flow-item .label {
-        font-size: 10px;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        margin-bottom: 4px;
-      }
-      .flow-item .value {
-        font-size: 13px;
-        font-weight: 500;
-      }
-
-      /* TABLE */
-      .table-wrap {
-        overflow-x: auto;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 13px;
-      }
-      th {
-        background: var(--surface2);
-        color: var(--muted);
-        font-weight: 600;
-        text-align: left;
-        padding: 10px 14px;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-      td {
-        padding: 10px 14px;
-        border-top: 1px solid var(--border);
-        vertical-align: top;
-      }
-      tr:hover td {
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      /* ACCORDION */
-      .accordion-item {
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        margin-bottom: 10px;
-        overflow: hidden;
-      }
-      .accordion-head {
-        background: var(--surface);
-        padding: 14px 18px;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: 500;
-        font-size: 14px;
-        user-select: none;
-        transition: background 0.2s;
-      }
-      .accordion-head:hover {
-        background: var(--surface2);
-      }
-      .accordion-head .chevron {
-        color: var(--muted);
-        transition: transform 0.25s;
-        font-size: 13px;
-      }
-      .accordion-item.open .chevron {
-        transform: rotate(180deg);
-      }
-      .accordion-body {
-        display: none;
-        padding: 16px 18px;
-        background: var(--surface);
-        border-top: 1px solid var(--border);
-        font-size: 14px;
-      }
-      .accordion-item.open .accordion-body {
-        display: block;
-      }
-
-      /* VERDICT */
-      .verdict {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        font-size: 12px;
-        font-weight: 600;
-        padding: 3px 10px;
-        border-radius: 20px;
-      }
-      .v-yes {
-        background: rgba(52, 211, 153, 0.15);
-        color: var(--success);
-      }
-      .v-no {
-        background: rgba(230, 63, 63, 0.15);
-        color: var(--accent);
-      }
-      .v-cond {
-        background: rgba(245, 166, 35, 0.15);
-        color: var(--accent2);
-      }
-
-      /* QUIZ */
-      .quiz-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 22px;
-        margin-bottom: 14px;
-      }
-      .quiz-q {
-        font-weight: 600;
-        margin-bottom: 14px;
-        font-size: 14px;
-      }
-      .quiz-options {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .quiz-opt {
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 10px 14px;
-        cursor: pointer;
-        font-size: 13px;
-        transition: all 0.15s;
-        text-align: left;
-        color: var(--text);
-        font-family: "DM Sans", sans-serif;
-      }
-      .quiz-opt:hover:not(:disabled) {
-        border-color: var(--accent3);
-        color: var(--accent3);
-      }
-      .quiz-opt.correct {
-        border-color: var(--success);
-        background: rgba(52, 211, 153, 0.1);
-        color: var(--success);
-      }
-      .quiz-opt.wrong {
-        border-color: var(--accent);
-        background: rgba(230, 63, 63, 0.1);
-        color: var(--accent);
-      }
-      .quiz-feedback {
-        margin-top: 10px;
-        font-size: 13px;
-        padding: 10px 14px;
-        border-radius: 8px;
-        display: none;
-      }
-      .quiz-feedback.show {
-        display: block;
-      }
-      .qf-ok {
-        background: rgba(52, 211, 153, 0.1);
-        color: var(--success);
-        border: 1px solid rgba(52, 211, 153, 0.3);
-      }
-      .qf-err {
-        background: rgba(230, 63, 63, 0.1);
-        color: var(--accent);
-        border: 1px solid rgba(230, 63, 63, 0.3);
-      }
-
-      /* TIMELINE */
-      .timeline {
-        position: relative;
-        padding-left: 28px;
-      }
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 9px;
-        top: 8px;
-        bottom: 8px;
-        width: 2px;
-        background: var(--border);
-      }
-      .tl-item {
-        position: relative;
-        margin-bottom: 18px;
-      }
-      .tl-dot {
-        position: absolute;
-        left: -24px;
-        top: 4px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: var(--accent);
-        border: 2px solid var(--bg);
-      }
-      .tl-title {
-        font-weight: 600;
-        font-size: 14px;
-      }
-      .tl-body {
-        font-size: 13px;
-        color: var(--muted);
-        margin-top: 4px;
-      }
-
-      /* Comparison */
-      .compare-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 12px;
-      }
-      @media (max-width: 600px) {
-        .compare-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      .compare-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 18px;
-      }
-      .compare-card h3 {
-        font-size: 14px;
-        font-weight: 700;
-        margin-bottom: 10px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--border);
-      }
-
-      code {
-        font-family: monospace;
-        background: var(--surface2);
-        padding: 1px 6px;
-        border-radius: 4px;
-        font-size: 12px;
-        color: var(--accent2);
-      }
-
-      .highlight {
-        border-left: 3px solid var(--accent);
-        padding-left: 12px;
-        background: rgba(230, 63, 63, 0.05);
-        border-radius: 0 6px 6px 0;
-        padding: 10px 12px;
-        margin: 10px 0;
-        font-size: 13px;
-      }
-      .info-box {
-        border-left: 3px solid var(--accent3);
-        padding: 10px 12px;
-        background: rgba(78, 205, 196, 0.05);
-        border-radius: 0 6px 6px 0;
-        margin: 10px 0;
-        font-size: 13px;
-      }
-      .warn-box {
-        border-left: 3px solid var(--accent2);
-        padding: 10px 12px;
-        background: rgba(245, 166, 35, 0.05);
-        border-radius: 0 6px 6px 0;
-        margin: 10px 0;
-        font-size: 13px;
-      }
-
-      strong {
-        color: var(--text);
-      }
-      .muted {
-        color: var(--muted);
-      }
-
-      /* Score */
-      #score-display {
-        text-align: center;
-        padding: 20px;
-        background: var(--surface2);
-        border-radius: 12px;
-        margin-top: 20px;
-        font-size: 18px;
-        font-weight: 600;
-        display: none;
       }
     </style>
   </head>
   <body>
     <nav>
       <div class="nav-logo">W&R ✦</div>
-      <button class="tab-btn active" onclick="switchPage('home')">🏠 Start</button>
-      <button class="tab-btn" onclick="switchPage('kap17a')">§17 Vertragsabschluss</button>
-      <button class="tab-btn" onclick="switchPage('kap17b')">§17 Mängel</button>
-      <button class="tab-btn" onclick="switchPage('kap17c')">§17 Erfüllung & Verletzung</button>
-      <button class="tab-btn" onclick="switchPage('kap20a')">§20 Arbeitsvertrag</button>
-      <button class="tab-btn" onclick="switchPage('kap20b')">§20 Pflichten</button>
-      <button class="tab-btn" onclick="switchPage('kap20c')">§20 Beendigung</button>
-      <button class="tab-btn" onclick="switchPage('quiz')">🎯 Quiz</button>
-      <button class="tab-btn" onclick="switchPage('artikel')">📋 Artikel</button>
+      <button class="tb active" onclick="gp('home', this)">🏠 Start</button>
+      <button class="tb" onclick="gp('kap17a', this)">§17 Abschluss</button>
+      <button class="tb" onclick="gp('kap17b', this)">§17 Mängel</button>
+      <button class="tb" onclick="gp('kap17c', this)">§17 Erfüllung</button>
+      <button class="tb" onclick="gp('kap20a', this)">§20 Basics</button>
+      <button class="tb" onclick="gp('kap20b', this)">§20 Pflichten</button>
+      <button class="tb" onclick="gp('kap20c', this)">§20 Beendigung</button>
+      <button class="tb" onclick="gp('uebungen', this)">✏️ Übungen</button>
+      <button class="tb" onclick="gp('quiz', this)">🎯 Quiz</button>
+      <button class="tb" onclick="gp('artikel', this)">📋 Artikel</button>
     </nav>
 
     <!-- HOME -->
     <div class="page active" id="home">
       <div class="hero">
-        <div class="exam-badge"><span></span> Prüfung 09. April 2026 — BMS Winterthur</div>
+        <div class="eb"><span></span> Prüfung 09. April 2026 — BMS Winterthur</div>
         <h1>Wirtschaft &amp; <em>Recht</em></h1>
-        <p>Kapitel 17 (Lernziele 4–6) + Kapitel 20 vollständig</p>
+        <p>Kapitel 17 (Lernziele 4–6) · Kapitel 20 vollständig</p>
       </div>
-
+      <div class="legend">
+        <div class="li2">
+          <div class="ld ld-m"></div>
+          <strong>★ AUSWENDIG</strong> — Konzept/Logik im Kopf haben, um Fälle zu lösen
+        </div>
+        <div class="li2">
+          <div class="ld ld-r"></div>
+          <strong>◆ NACHSCHLAGEN</strong> — Detail im Gesetz nachschauen reicht
+        </div>
+        <div class="li2">
+          <div class="ld ld-c"></div>
+          <strong>KONTEXT</strong> — Gut für Verständnis, aber kein Prüfungsfokus
+        </div>
+      </div>
       <div class="card-grid">
-        <div class="nav-card" onclick="switchPage('kap17a')">
-          <div class="card-icon">📝</div>
-          <h3>Vertragsabschluss</h3>
-          <p>4 Voraussetzungen, Antrag & Annahme, Formvorschriften</p>
+        <div class="nc" onclick="gp('kap17a', null)">
+          <div class="ci">📝</div>
+          <h3>17 Vertragsabschluss</h3>
+          <p>4 Voraussetzungen, Angebot & Annahme</p>
         </div>
-        <div class="nav-card" onclick="switchPage('kap17b')">
-          <div class="card-icon">⚠️</div>
-          <h3>Vertragsmängel</h3>
-          <p>Übervorteilung, Täuschung, Drohung, Irrtum</p>
+        <div class="nc" onclick="gp('kap17b', null)">
+          <div class="ci">⚠️</div>
+          <h3>17 Vertragsmängel</h3>
+          <p>Willensmängel, anfechtbar vs. nichtig</p>
         </div>
-        <div class="nav-card" onclick="switchPage('kap17c')">
-          <div class="card-icon">⚖️</div>
-          <h3>Erfüllung & Verletzung</h3>
-          <p>Modalitäten, Verzug, Nachfrist, Wahlrechte</p>
+        <div class="nc" onclick="gp('kap17c', null)">
+          <div class="ci">⚖️</div>
+          <h3>17 Erfüllung</h3>
+          <p>Modalitäten, Verzug, Nachfrist</p>
         </div>
-        <div class="nav-card" onclick="switchPage('kap20a')">
-          <div class="card-icon">💼</div>
-          <h3>Arbeitsvertrag Basics</h3>
-          <p>Vertragstypen, Rechtsquellen, GAV/NAV</p>
+        <div class="nc" onclick="gp('kap20a', null)">
+          <div class="ci">💼</div>
+          <h3>20 Basics</h3>
+          <p>Vertragstypen, Rechtsquellen</p>
         </div>
-        <div class="nav-card" onclick="switchPage('kap20b')">
-          <div class="card-icon">👥</div>
-          <h3>Rechte & Pflichten</h3>
-          <p>AN-Pflichten, AG-Pflichten, Lohn, Überstunden</p>
+        <div class="nc" onclick="gp('kap20b', null)">
+          <div class="ci">👥</div>
+          <h3>20 Pflichten</h3>
+          <p>AN/AG-Pflichten, Lohn, Überstunden</p>
         </div>
-        <div class="nav-card" onclick="switchPage('kap20c')">
-          <div class="card-icon">🚪</div>
-          <h3>Beendigung</h3>
-          <p>Kündigung, Sperrzeiten, fristlos, Konkurrenzverbot</p>
+        <div class="nc" onclick="gp('kap20c', null)">
+          <div class="ci">🚪</div>
+          <h3>20 Beendigung</h3>
+          <p>Kündigung, Sperrzeiten, fristlos</p>
         </div>
-        <div class="nav-card" onclick="switchPage('quiz')">
-          <div class="card-icon">🎯</div>
+        <div class="nc" onclick="gp('uebungen', null)">
+          <div class="ci">✏️</div>
+          <h3>Fallübungen</h3>
+          <p>10 Fälle mit Musterantworten</p>
+        </div>
+        <div class="nc" onclick="gp('quiz', null)">
+          <div class="ci">🎯</div>
           <h3>Quiz</h3>
-          <p>Teste dein Wissen mit Prüfungsfragen</p>
+          <p>14 Fragen mit Feedback</p>
         </div>
-        <div class="nav-card" onclick="switchPage('artikel')">
-          <div class="card-icon">📋</div>
+        <div class="nc" onclick="gp('artikel', null)">
+          <div class="ci">📋</div>
           <h3>Artikel-Übersicht</h3>
-          <p>Alle relevanten OR-Artikel auf einen Blick</p>
+          <p>Alle OR-Artikel priorisiert</p>
         </div>
       </div>
-
-      <div class="divider"></div>
-      <div class="warn-box">
-        <strong>⚠️ Hilfsmittel-Regeln:</strong> Gesetzestexte erlaubt · Keine Notizen, nur Leuchtstift-Markierungen ·
-        Post-Its nur mit Artikelnummern (z.B. "Art. 323") · Keine Wörter auf Post-Its
+      <div class="wb" style="margin-top: 20px">
+        <strong>Hilfsmittel:</strong> Gesetzestexte erlaubt · Leuchtstift ok · Post-Its nur mit Artikelnummern (z.B.
+        "Art. 107") · Keine Wörter auf Post-Its
       </div>
     </div>
 
-    <!-- KAP 17a: VERTRAGSABSCHLUSS -->
+    <!-- KAP 17a -->
     <div class="page" id="kap17a">
-      <h1 class="section-title">Kapitel 17 — Vertragsabschluss</h1>
-      <p class="section-sub">Die vier Voraussetzungen der Vertragsentstehung</p>
+      <h1 class="st">§17 — Vertragsabschluss</h1>
+      <p class="ss">Die vier Voraussetzungen der Vertragsentstehung</p>
+      <div class="legend">
+        <div class="li2">
+          <div class="ld ld-m"></div>
+          ★ AUSWENDIG
+        </div>
+        <div class="li2">
+          <div class="ld ld-r"></div>
+          ◆ NACHSCHLAGEN
+        </div>
+        <div class="li2">
+          <div class="ld ld-c"></div>
+          KONTEXT
+        </div>
+      </div>
 
-      <div class="four-col">
-        <div class="pill-card">
-          <div class="num">1</div>
+      <div class="pg">
+        <div class="pill">
+          <div class="pn">1</div>
           <h4>Handlungsfähigkeit</h4>
           <p>Art. 12–19 ZGB</p>
         </div>
-        <div class="pill-card">
-          <div class="num">2</div>
+        <div class="pill">
+          <div class="pn">2</div>
           <h4>Einigung</h4>
           <p>Art. 1–9 OR</p>
         </div>
-        <div class="pill-card">
-          <div class="num">3</div>
+        <div class="pill">
+          <div class="pn">3</div>
           <h4>Formvorschriften</h4>
           <p>Art. 11 OR</p>
         </div>
-        <div class="pill-card">
-          <div class="num">4</div>
+        <div class="pill">
+          <div class="pn">4</div>
           <h4>Inhaltsvorschriften</h4>
           <p>Art. 19–20 OR</p>
         </div>
       </div>
 
-      <div class="divider"></div>
-
       <div class="block">
-        <div class="block-title">
-          <span class="tag tag-red">1</span> Handlungsfähigkeit <span class="art-chip">Art. 12–19 ZGB</span>
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Was macht einen Vertrag nichtig vs. anfechtbar?</div>
+        <div class="mb">
+          <strong>Nichtig</strong> = Voraussetzungen 3 oder 4 verletzt → Vertrag hat nie existiert<br /><strong
+            >Anfechtbar</strong
+          >
+          = Willensmangel (→ Kap. 17b) → 1 Jahr Frist zum Anfechten<br /><strong>Gültig</strong> = alle 4
+          Voraussetzungen ok + kein Willensmangel
         </div>
-        <ul class="clean">
-          <li>
-            <strong>Voll handlungsunfähig</strong> (Art. 18 ZGB): Kinder unter 18 ohne Zustimmung, Entmündigte → kein
-            gültiger Vertrag
-          </li>
-          <li>
-            <strong>Beschränkt handlungsfähig</strong> (Art. 19 ZGB): Minderjährige/Entmündigte <em>mit</em> Zustimmung
-            gesetzl. Vertreter → gültiger Vertrag
-          </li>
-          <li>
-            <strong>Ausnahmen ohne Zustimmung</strong>: unentgeltlicher Erwerb, lediglich vorteilhafte Geschäfte,
-            Taschengeldgeschäfte
-          </li>
-        </ul>
       </div>
 
       <div class="block">
-        <div class="block-title">
-          <span class="tag tag-orange">2</span> Einigung über den Vertragsinhalt
-          <span class="art-chip">Art. 1–9 OR</span>
+        <div class="bt">
+          <span class="badge bm">★ AUSWENDIG</span> Verbindliche vs. unverbindliche Anträge (Art. 7 OR)
         </div>
-        <div class="flow">
-          <div class="flow-item">
-            <div class="label">Schritt 1</div>
-            <div class="value">Antrag (Offerte)</div>
-          </div>
-          <div class="flow-item">
-            <div class="label">Schritt 2</div>
-            <div class="value">Annahme (fristgerecht)</div>
-          </div>
-          <div class="flow-item">
-            <div class="label">Ergebnis</div>
-            <div class="value">✓ Vertrag</div>
-          </div>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>Antrag</th>
+                <th>Verbindlich?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="mr">
+                <td>Persönlich adressiertes Schreiben</td>
+                <td><span class="v vy">✓ JA</span></td>
+              </tr>
+              <tr class="mr">
+                <td>Schaufensterauslage mit Preis</td>
+                <td><span class="v vy">✓ JA</span></td>
+              </tr>
+              <tr class="mr">
+                <td>Preislisten / Kataloge / Inserate / Prospekte</td>
+                <td><span class="v vn">✗ NEIN</span></td>
+              </tr>
+              <tr class="rr">
+                <td>Persönl. Schreiben mit "solange Vorrat"</td>
+                <td><span class="v vy">✓ JA</span> (bedingt)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <ul class="clean">
-          <li>
-            <strong>Verbindliche Anträge</strong>: persönlich adressierte Schreiben, Schaufensterauslagen mit Preis
-          </li>
-          <li><strong>Unverbindlich</strong> (Art. 7 Abs. 2 OR): Preislisten, Kataloge, Inserate, Prospekte</li>
-          <li><strong>Befristetes Angebot</strong>: Bindung bis Fristablauf (Art. 3 OR)</li>
-          <li><strong>Unbefristet unter Anwesenden</strong>: nur während Gespräch (Art. 4 OR)</li>
-          <li><strong>Unbefristet unter Abwesenden</strong> (Brief/E-Mail): ca. 4–7 Tage, bis 1 Woche (Art. 5 OR)</li>
-        </ul>
-        <div class="info-box">Abgeändertes Angebot = neuer Antrag → Original erlischt (Art. 6 OR)</div>
       </div>
 
       <div class="block">
-        <div class="block-title">
-          <span class="tag tag-teal">3</span> Formvorschriften <span class="art-chip">Art. 11 OR</span>
-        </div>
-        <div class="table-wrap">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Formvorschriften</div>
+        <div class="tw">
           <table>
             <thead>
               <tr>
                 <th>Form</th>
-                <th>Beschreibung</th>
                 <th>Beispiele</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr class="mr">
                 <td><strong>Formfrei</strong></td>
-                <td>Grundsatz: beliebige Form</td>
-                <td>Mietvertrag, Kaufvertrag</td>
+                <td>Mietvertrag, Kaufvertrag (Grundsatz!)</td>
               </tr>
-              <tr>
+              <tr class="mr">
                 <td><strong>Einfache Schriftlichkeit</strong></td>
-                <td>Schriftlich + Unterschrift</td>
                 <td>Schenkungsversprechen, Bürgschaft</td>
               </tr>
-              <tr>
+              <tr class="mr">
                 <td><strong>Qualifizierte Schriftlichkeit</strong></td>
-                <td>Schriftlich + Mindestangaben</td>
-                <td>Lehrvertrag, eigenhändiges Testament</td>
+                <td>Lehrvertrag (+ Mindestangaben)</td>
               </tr>
-              <tr>
-                <td><strong>Öffentliche Beurkundung</strong></td>
-                <td>Mit Notar</td>
+              <tr class="mr">
+                <td><strong>Öffentliche Beurkundung (Notar)</strong></td>
                 <td>Grundstückkauf, Ehe-/Erbvertrag</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="highlight">Form nicht eingehalten → Vertrag ist <strong>nichtig!</strong></div>
+        <div class="mb">Form nicht eingehalten → Vertrag ist <strong>nichtig!</strong></div>
       </div>
 
       <div class="block">
-        <div class="block-title">
-          <span class="tag tag-purple">4</span> Inhaltsvorschriften <span class="art-chip">Art. 19–20 OR</span>
-        </div>
-        <p class="muted" style="margin-bottom: 10px">
-          Grundsatz: Inhaltsfreiheit. Ausnahmen → Vertrag ist <strong>nichtig</strong>:
-        </p>
-        <ul class="clean">
-          <li>
-            🚫 <strong>Unmögliche Inhalte</strong>: Leistung war schon bei Vertragsabschluss unmöglich (z.B. verbranntes
-            Gemälde)
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Unzulässige Inhalte → nichtig (Art. 20 OR)</div>
+        <ul class="cl">
+          <li class="m">🚫 <strong>Unmöglich</strong>: Gegenstand existiert nicht mehr (verbranntes Gemälde)</li>
+          <li class="m">🚫 <strong>Widerrechtlich</strong>: gesetzlich verboten (Drogenverkauf)</li>
+          <li class="m">
+            🚫 <strong>Unsittlich</strong>: gegen Anstandsgefühl (Schweigegeldzahlung; "nie mehr für Automobilhersteller
+            arbeiten" = zu weit)
           </li>
-          <li>🚫 <strong>Widerrechtliche Inhalte</strong>: gesetzlich verboten (z.B. Drogenverkauf)</li>
-          <li>🚫 <strong>Unsittliche Inhalte</strong>: gegen das Anstandsgefühl (z.B. Schweigegeldzahlung)</li>
         </ul>
-        <div class="info-box">
-          Teilweise unzulässig → nur unzulässiger Teil nichtig, Rest bleibt gültig (Art. 20 Abs. 2 OR)
+        <div class="cb">
+          Teilweise unzulässig → nur der unzulässige Teil nichtig, Rest bleibt gültig (Art. 20 Abs. 2 OR).
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="bt"><span class="badge br">◆ NACHSCHLAGEN</span> Bindungsdauer von Angeboten</div>
+        <div class="cb">
+          Befristet → bis Fristablauf (Art. 3) · Unter Anwesenden → während Gespräch (Art. 4) · Brief/E-Mail → ca. 4–7
+          Tage (Art. 5). Abgeändertes Angebot = neuer Antrag.
         </div>
       </div>
     </div>
 
-    <!-- KAP 17b: MÄNGEL -->
+    <!-- KAP 17b -->
     <div class="page" id="kap17b">
-      <h1 class="section-title">Kapitel 17 — Vertragsmängel</h1>
-      <p class="section-sub">Gültig / Anfechtbar / Nichtig — und die vier Willensmängel</p>
-
-      <div class="compare-grid" style="margin-bottom: 20px">
-        <div class="compare-card">
-          <h3 style="color: var(--success)">✓ Gültiger Vertrag</h3>
-          <p style="font-size: 13px; color: var(--muted)">
-            Alle 4 Voraussetzungen erfüllt, keine Anfechtungsgründe → zweiseitig verbindlich
-          </p>
+      <h1 class="st">§17 — Vertragsmängel</h1>
+      <p class="ss">Die 4 Willensmängel — alle führen zu anfechtbarem Vertrag (1 Jahr Frist)</p>
+      <div class="legend">
+        <div class="li2">
+          <div class="ld ld-m"></div>
+          ★ AUSWENDIG
         </div>
-        <div class="compare-card">
-          <h3 style="color: var(--accent2)">⚠ Anfechtbarer Vertrag</h3>
-          <p style="font-size: 13px; color: var(--muted)">
-            Leidet an einem Willensmangel → einseitig unverbindlich. Frist: 1 Jahr!
-          </p>
+        <div class="li2">
+          <div class="ld ld-r"></div>
+          ◆ NACHSCHLAGEN
         </div>
-        <div class="compare-card">
-          <h3 style="color: var(--accent)">✗ Nichtiger Vertrag</h3>
-          <p style="font-size: 13px; color: var(--muted)">
-            Voraussetzungen NICHT erfüllt → hat nie existiert. Ggf. ungerechtfertigte Bereicherung
-          </p>
+        <div class="li2">
+          <div class="ld ld-c"></div>
+          KONTEXT
         </div>
       </div>
 
-      <div class="divider"></div>
-      <h2 style="font-size: 18px; margin-bottom: 16px; font-weight: 600">
-        Die 4 Willensmängel (→ anfechtbar, 1 Jahr Frist)
-      </h2>
+      <div class="mb">
+        <strong>★ Das musst du können:</strong> Sachverhalt lesen → sofort sagen welcher der 4 Mängel vorliegt. Dafür
+        musst du die Merkmale kennen, nicht die Artikelnummern.
+      </div>
 
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="toggleAccordion(this)">
-          <span>🔴 Übervorteilung <span class="art-chip">Art. 21 OR</span></span>
-          <span class="chevron">▼</span>
+      <div class="acc-item">
+        <div class="acc-head" onclick="ac(this)">
+          <span>1. Übervorteilung <code>Art. 21 OR</code> <span class="badge bm">★ AUSWENDIG</span></span
+          ><span class="ch">▼</span>
         </div>
-        <div class="accordion-body">
-          <p><strong>Was?</strong> Eine Partei wird offensichtlich benachteiligt.</p>
-          <br />
-          <p><strong>3 Voraussetzungen:</strong></p>
-          <ul class="clean">
-            <li>Offensichtliches Missverhältnis zwischen Leistung und Gegenleistung</li>
-            <li>Partei war in Notlage, unerfahren oder leichtsinnig</li>
-            <li>Andere Partei hat diese Situation ausgenutzt (Ausbeutung)</li>
+        <div class="acc-body">
+          <p><strong>Alle 3 Voraussetzungen müssen zusammen vorliegen:</strong></p>
+          <ul class="cl">
+            <li class="m">Offensichtliches Missverhältnis zwischen Leistung und Gegenleistung</li>
+            <li class="m">Partei war in <em>Notlage</em>, unerfahren oder leichtsinnig</li>
+            <li class="m">Andere Partei hat diese Schwäche <em>ausgenutzt</em> (Ausbeutung)</li>
           </ul>
-          <br />
-          <div class="highlight">Frist: <strong>1 Jahr</strong> ab Vertragsabschluss</div>
-          <div class="info-box">
-            📍 Beispiel Prüfung: Theresa zahlt CHF 350 statt 70 im Hotel wegen Schneechaos → Übervorteilung, Art. 21 OR
+          <div class="ib">
+            📍 Theresa zahlt CHF 350 statt 70 wegen Schneechaos → Notlage + Ausbeutung → Art. 21 OR ✓
           </div>
+          <div class="cb">Frist: 1 Jahr ab Vertragsabschluss — im Gesetz nachschauen.</div>
         </div>
       </div>
 
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="toggleAccordion(this)">
-          <span>🔴 Absichtliche Täuschung <span class="art-chip">Art. 28 OR</span></span>
-          <span class="chevron">▼</span>
+      <div class="acc-item">
+        <div class="acc-head" onclick="ac(this)">
+          <span>2. Absichtliche Täuschung <code>Art. 28 OR</code> <span class="badge bm">★ AUSWENDIG</span></span
+          ><span class="ch">▼</span>
         </div>
-        <div class="accordion-body">
-          <p><strong>Was?</strong> Eine Partei wurde absichtlich getäuscht und dadurch zum Abschluss verleitet.</p>
-          <br />
-          <div class="highlight">Frist: <strong>1 Jahr</strong> ab Entdeckung der Täuschung (Art. 31 OR)</div>
-          <div class="info-box">
-            📍 Beispiel Prüfung: Remo kauft Auto mit manipuliertem Km-Stand (60'000 statt 260'000) → Absichtliche
-            Täuschung, Art. 28 OR
-          </div>
+        <div class="acc-body">
+          <ul class="cl">
+            <li class="m">Eine Partei wurde <em>absichtlich</em> getäuscht und dadurch zum Abschluss verleitet</li>
+          </ul>
+          <div class="ib">📍 Remo kauft Auto mit absichtlich manipuliertem Km-Stand → Art. 28 OR ✓</div>
+          <div class="cb">Frist: 1 Jahr ab Entdeckung der Täuschung.</div>
         </div>
       </div>
 
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="toggleAccordion(this)">
-          <span>🔴 Furchterregung / Drohung <span class="art-chip">Art. 29–30 OR</span></span>
-          <span class="chevron">▼</span>
+      <div class="acc-item">
+        <div class="acc-head" onclick="ac(this)">
+          <span>3. Furchterregung / Drohung <code>Art. 29–30 OR</code> <span class="badge bm">★ AUSWENDIG</span></span
+          ><span class="ch">▼</span>
         </div>
-        <div class="accordion-body">
-          <p>
-            <strong>Was?</strong> Jemand schliesst Vertrag ab, weil er begründete Furcht um Leib, Leben, Ehre oder
-            Vermögen (eigen oder nahestehend) hat.
-          </p>
-          <br />
-          <div class="highlight">Frist: <strong>1 Jahr</strong> ab Beseitigung der Furcht (Art. 31 OR)</div>
-          <div class="info-box">
-            📍 Beispiel Prüfung: Chef droht Remo mit Kündigung wenn er nicht Mietvertrag unterschreibt → Drohung, Art.
-            29/30 OR → NEIN, muss nicht unterschreiben
+        <div class="acc-body">
+          <ul class="cl">
+            <li class="m">
+              Abschluss nur wegen begründeter Furcht um Leib, Leben, Ehre oder Vermögen (eigene oder nahestehende
+              Person)
+            </li>
+          </ul>
+          <div class="ib">
+            📍 Chef droht Remo mit Kündigung wenn er Mietvertrag nicht unterschreibt → Remo muss NICHT unterschreiben!
+            Art. 29/30 OR
           </div>
+          <div class="cb">Frist: 1 Jahr ab Beseitigung der Furcht.</div>
         </div>
       </div>
 
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="toggleAccordion(this)">
-          <span>🔴 Wesentlicher Irrtum <span class="art-chip">Art. 23–24 OR</span></span>
-          <span class="chevron">▼</span>
+      <div class="acc-item">
+        <div class="acc-head" onclick="ac(this)">
+          <span>4. Wesentlicher Irrtum <code>Art. 23–24 OR</code> <span class="badge bm">★ AUSWENDIG</span></span
+          ><span class="ch">▼</span>
         </div>
-        <div class="accordion-body">
-          <p><strong>Was?</strong> Irrtum in einem für den Abschluss massgebenden Punkt.</p>
-          <br />
-          <div class="table-wrap">
+        <div class="acc-body">
+          <div class="mb">★ Kernaufgabe: wesentlich vs. unwesentlich (Motivirrtum) unterscheiden!</div>
+          <div class="tw">
             <table>
               <thead>
                 <tr>
-                  <th>Irrtum</th>
-                  <th>Artikel</th>
+                  <th>Typ</th>
                   <th>Betrifft</th>
                   <th>Wesentlich?</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><strong>Erklärungsirrtum</strong></td>
-                  <td>Art. 24 Abs. 1 Ziff. 1–3</td>
-                  <td>Vertragsart, Sache/Person, Leistungsumfang</td>
-                  <td><span class="verdict v-yes">✓ JA</span></td>
+                <tr class="mr">
+                  <td><strong>Erklärungsirrtum</strong><br /><small>Art. 24 Abs. 1 Ziff. 1–3</small></td>
+                  <td>Vertragsart, falsche Sache/Person, falscher Umfang</td>
+                  <td><span class="v vy">✓ JA</span></td>
                 </tr>
-                <tr>
-                  <td><strong>Grundlagenirrtum</strong></td>
-                  <td>Art. 24 Abs. 1 Ziff. 4</td>
+                <tr class="mr">
+                  <td><strong>Grundlagenirrtum</strong><br /><small>Art. 24 Abs. 1 Ziff. 4</small></td>
                   <td>Notwendige Grundlage des Vertrags</td>
-                  <td><span class="verdict v-yes">✓ JA</span></td>
+                  <td><span class="v vy">✓ JA</span></td>
                 </tr>
-                <tr>
-                  <td><strong>Motivirrtum</strong></td>
-                  <td>Art. 24 Abs. 2</td>
-                  <td>Blosser Beweggrund</td>
-                  <td><span class="verdict v-no">✗ NEIN</span></td>
+                <tr class="mr">
+                  <td><strong>Motivirrtum</strong><br /><small>Art. 24 Abs. 2</small></td>
+                  <td>Blosser innerer Beweggrund / Erwartung</td>
+                  <td><span class="v vn">✗ NEIN</span></td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <br />
-          <div class="highlight">Frist: <strong>1 Jahr</strong> ab Feststellung des Irrtums (Art. 31 OR)</div>
-          <div class="info-box">
-            📍 Preisschild-Verwechslung → Erklärungsirrtum (wesentlich) ✓<br />
-            📍 Linda: Farbe gefällt nicht → Motivirrtum (unwesentlich) ✗<br />
-            📍 Theresa: Bauland nicht bebaubar, wollte bauen → Grundlagenirrtum (wesentlich) ✓<br />
-            📍 Dieter: falsche Wohnung (Attika vs. Parterre) → Erklärungsirrtum/Grundlagenirrtum (wesentlich) ✓
+          <div class="ib">
+            📍 Preisschild-Verwechslung → Erklärungsirrtum ✓ (falsche Sache)<br />
+            📍 Linda: Kleidfarbe gefällt Kollegin nicht → Motivirrtum ✗ (blosser Beweggrund)<br />
+            📍 Dieter mietet falsche Wohnung (Attika statt Parterre) → Erklärungsirrtum ✓<br />
+            📍 Theresa: Bauland nicht bebaubar, wollte bauen → Grundlagenirrtum ✓
           </div>
+          <div class="cb">Frist: 1 Jahr ab Feststellung des Irrtums.</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="bt">
+          <span class="badge bm">★ AUSWENDIG</span> Schnellreferenz: Welcher Mangel bei welcher Situation?
+        </div>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>Situation</th>
+                <th>Mangel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="mr">
+                <td>Jemand nutzt deine Notlage aus → du zahlst zu viel</td>
+                <td>Übervorteilung (Art. 21)</td>
+              </tr>
+              <tr class="mr">
+                <td>Jemand lügt dich absichtlich an</td>
+                <td>Absichtliche Täuschung (Art. 28)</td>
+              </tr>
+              <tr class="mr">
+                <td>Jemand droht dir</td>
+                <td>Furchterregung (Art. 29/30)</td>
+              </tr>
+              <tr class="mr">
+                <td>Du irrst dich über Vertragsart / Sache / Umfang</td>
+                <td>Wesentlicher Irrtum (Art. 23/24)</td>
+              </tr>
+              <tr class="mr">
+                <td>Du irrst dich nur in deinen Hoffnungen / Motiven</td>
+                <td>Motivirrtum → kein Anfechtungsgrund!</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
 
-    <!-- KAP 17c: ERFÜLLUNG & VERLETZUNG -->
+    <!-- KAP 17c -->
     <div class="page" id="kap17c">
-      <h1 class="section-title">Kapitel 17 — Erfüllung & Verletzung</h1>
-      <p class="section-sub">Erfüllungsmodalitäten (WER, WAS, WO, WANN) + Vertragsverletzungen</p>
-
-      <h2 style="font-size: 17px; font-weight: 600; margin-bottom: 14px">17.2 Erfüllungsmodalitäten</h2>
-
-      <div class="block">
-        <div class="block-title">👤 WER — Person <span class="art-chip">Art. 68 OR</span></div>
-        <ul class="clean">
-          <li>Grundsatz: Schuldner kann durch Dritte erfüllen lassen</li>
-          <li>
-            Ausnahme: persönliche Erfüllung nötig wenn Natur des Vertrags es verlangt (z.B. Konzert eines bestimmten
-            Pianisten, Arztbesuch)
-          </li>
-        </ul>
+      <h1 class="st">§17 — Erfüllung &amp; Verletzung</h1>
+      <p class="ss">Erfüllungsmodalitäten · Vertragsverletzungen · Verzug · Nachfrist</p>
+      <div class="legend">
+        <div class="li2">
+          <div class="ld ld-m"></div>
+          ★ AUSWENDIG
+        </div>
+        <div class="li2">
+          <div class="ld ld-r"></div>
+          ◆ NACHSCHLAGEN
+        </div>
+        <div class="li2">
+          <div class="ld ld-c"></div>
+          KONTEXT
+        </div>
       </div>
 
+      <h2 class="sub">17.2 Erfüllungsmodalitäten</h2>
+
       <div class="block">
-        <div class="block-title">📦 WAS — Inhalt: Gattungs- vs. Speziesware</div>
-        <div class="table-wrap">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Gattungsware vs. Speziesware</div>
+        <div class="tw">
           <table>
             <thead>
               <tr>
                 <th>Typ</th>
-                <th>Beschreibung</th>
+                <th>Was?</th>
                 <th>Beispiel</th>
-                <th>Auswahl</th>
+                <th>Erfüllungsort</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr class="mr">
                 <td><strong>Gattungsware</strong></td>
-                <td>Austauschbare Ware, nur der Art nach bestimmt</td>
-                <td>200 beliebige Küken, Kilo Äpfel</td>
-                <td>Schuldner wählt (Art. 71 OR)</td>
+                <td>Austauschbar, nur der Art nach bestimmt</td>
+                <td>200 beliebige Küken, 1 kg Äpfel</td>
+                <td>Wohnsitz Schuldner</td>
               </tr>
-              <tr>
+              <tr class="mr">
                 <td><strong>Speziesware</strong></td>
-                <td>Genau bestimmte, unverwechselbare Sache</td>
-                <td>Bestimmtes Auto mit Kennzeichen, bestimmtes Gemälde</td>
-                <td>Keine Auswahl nötig</td>
+                <td>Konkret bestimmtes, unverwechselbares Ding</td>
+                <td>Das Auto ZH-123, dieses Gemälde</td>
+                <td>Wo Sache sich befindet</td>
               </tr>
             </tbody>
           </table>
@@ -1043,68 +1113,59 @@
       </div>
 
       <div class="block">
-        <div class="block-title">📍 WO — Erfüllungsort <span class="art-chip">Art. 74 OR</span></div>
-        <ul class="clean">
-          <li>
-            <strong>Speziesware</strong> (Art. 74 Abs. 2 Ziff. 1): wo Sache sich bei Vertragsabschluss befand →
-            <em>Holschuld</em>
-          </li>
-          <li>
-            <strong>Geldschulden</strong> (Art. 74 Abs. 2 Ziff. 2): am Wohnsitz des Gläubigers → <em>Bringschuld</em>
-          </li>
-          <li>
-            <strong>Andere Leistungen</strong> (Art. 74 Abs. 2 Ziff. 3): am Wohnsitz des Schuldners → <em>Holschuld</em>
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Erfüllungsort — Grundlogik (Art. 74 OR)</div>
+        <ul class="cl">
+          <li class="m"><strong>Geldschulden</strong> → Wohnsitz des <em>Gläubigers</em> (Bringschuld)</li>
+          <li class="m"><strong>Speziesware</strong> → wo Sache bei Vertragsabschluss war (Holschuld)</li>
+          <li class="m">
+            <strong>Gattungsware / andere Leistungen</strong> → Wohnsitz des <em>Schuldners</em> (Holschuld)
           </li>
         </ul>
-        <div class="info-box">
-          📍 Malermeister schuldet Geld aus Tapezierarbeit → Bringschuld → Erfüllungsort: Zürich (Wohnsitz Gläubiger,
-          Art. 74 Abs. 2 Ziff. 2)<br />
-          📍 Gebrauchtwagen steht in Rickenbach → Erfüllungsort: Rickenbach (Art. 74 Abs. 2 Ziff. 1)<br />
-          📍 200 Küken = Gattungsware → Erfüllungsort: Elsau (Wohnsitz Schuldner, Art. 74 Abs. 2 Ziff. 3)
+        <div class="ib">
+          📍 Du schuldest Malermeister CHF 1500 → Geldschuld → Erfüllungsort: <strong>Zürich</strong> (dein Wohnsitz =
+          Gläubiger)<br />
+          📍 Auto steht in Rickenbach → Speziesware → <strong>Rickenbach</strong><br />
+          📍 200 Küken = Gattungsware → Wohnsitz Schuldner Kohler → <strong>Elsau</strong>
         </div>
       </div>
 
       <div class="block">
-        <div class="block-title">⏰ WANN — Erfüllungszeit <span class="art-chip">Art. 75 OR</span></div>
-        <ul class="clean">
-          <li>Wenn nichts vereinbart: Leistung sofort fällig (Art. 75 OR)</li>
-          <li>Vereinbarter/gesetzlicher Termin = <strong>Verfalltag</strong></li>
-        </ul>
+        <div class="bt"><span class="badge br">◆ NACHSCHLAGEN</span> Erfüllungszeit &amp; Person</div>
+        <div class="cb">
+          Keine Vereinbarung → sofort fällig (Art. 75 OR). Vereinbarter Termin = Verfalltag.<br />Persönliche Erfüllung
+          nur wenn Natur des Vertrags es verlangt (Art. 68 OR) — z.B. Konzert, Arztoperation.
+        </div>
       </div>
 
-      <div class="divider"></div>
-      <h2 style="font-size: 17px; font-weight: 600; margin-bottom: 14px">17.3 Vertragsverletzungen</h2>
+      <div class="dv"></div>
+      <h2 class="sub">17.3 Vertragsverletzungen</h2>
 
       <div class="block">
-        <div class="block-title">Die 3 Vertragsverletzungen</div>
-        <div class="table-wrap">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Die 3 Vertragsverletzungen unterscheiden</div>
+        <div class="tw">
           <table>
             <thead>
               <tr>
                 <th>Verletzung</th>
-                <th>Beschreibung</th>
+                <th>Was passiert?</th>
                 <th>Beispiel</th>
-                <th>Artikel</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr class="mr">
                 <td><strong>Schuldnerverzug</strong></td>
-                <td>Leistung wird nicht rechtzeitig erbracht</td>
-                <td>Reinigungsfirma putzt Wohnung nicht bis Mitte Juni</td>
-                <td><code>Art. 102 OR</code></td>
+                <td>Leistung nicht rechtzeitig erbracht</td>
+                <td>Reinigungsfirma putzt nicht bis Mitte Juni</td>
               </tr>
-              <tr>
+              <tr class="mr">
+                <td><strong>Schlechterfüllung</strong></td>
+                <td>Leistung mangelhaft / unvollständig</td>
+                <td>Bad vergessen; Monteur repariert schlecht → Wasserschaden</td>
+              </tr>
+              <tr class="mr">
                 <td><strong>Unmöglichkeit</strong></td>
-                <td>Leistung wird nach Vertragsabschluss unmöglich</td>
+                <td>Leistung wird nach Abschluss unmöglich</td>
                 <td>Verkauftes Gemälde verbrennt vor Lieferung</td>
-                <td><code>Art. 119 OR</code></td>
-              </tr>
-              <tr>
-                <td><strong>Schlechterfüllung</strong> (pos. Vertragsverletzung)</td>
-                <td>Leistung wird unvollständig/mangelhaft erbracht</td>
-                <td>Reinigung: Bad wurde vergessen; Monteur repariert schlecht</td>
-                <td><code>Art. 97 OR</code></td>
               </tr>
             </tbody>
           </table>
@@ -1112,31 +1173,31 @@
       </div>
 
       <div class="block">
-        <div class="block-title">⏰ Verzug: Mahngeschäft / Verfalltagsgeschäft / Fixgeschäft</div>
-        <div class="table-wrap">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Mahngeschäft · Verfalltagsgeschäft · Fixgeschäft</div>
+        <div class="tw">
           <table>
             <thead>
               <tr>
                 <th>Typ</th>
                 <th>Verzug entsteht durch</th>
-                <th>Beispiel</th>
+                <th>Nachfrist nötig?</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr class="mr">
                 <td><strong>Mahngeschäft</strong></td>
-                <td>Mahnung durch Gläubiger (Art. 102 Abs. 1 OR)</td>
-                <td>Kein Termin vereinbart → erst nach Mahnung in Verzug</td>
+                <td>Mahnung durch Gläubiger (kein Termin vereinbart)</td>
+                <td>Ja</td>
               </tr>
-              <tr>
+              <tr class="mr">
                 <td><strong>Verfalltagsgeschäft</strong></td>
-                <td>Automatisch bei Fälligkeit (Art. 102 Abs. 2 OR)</td>
-                <td>Lieferdatum 15. März vereinbart → am 16. März in Verzug</td>
+                <td>Automatisch bei vereinbartem Termin</td>
+                <td>Ja</td>
               </tr>
-              <tr>
+              <tr class="mr">
                 <td><strong>Fixgeschäft</strong></td>
-                <td>Termin ist Vertragsbestandteil; Verspätung = Nichterfüllung</td>
-                <td>Hochzeitstorte für 14. Febr. → zu spät = Vertrag hinfällig</td>
+                <td>Termin ist Vertragsinhalt; zu spät = Nichterfüllung</td>
+                <td>Nein — direkt Nichterfüllung!</td>
               </tr>
             </tbody>
           </table>
@@ -1144,784 +1205,774 @@
       </div>
 
       <div class="block">
-        <div class="block-title">📋 Folgen des Verzugs</div>
-        <div class="table-wrap">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Nachfrist &amp; Wahlrechte (Art. 107 OR)</div>
+        <div class="flow">
+          <div class="fi">
+            <div class="fl">1</div>
+            <div class="fv">Schuldner in Verzug</div>
+          </div>
+          <div class="fi">
+            <div class="fl">2</div>
+            <div class="fv">Nachfrist setzen</div>
+          </div>
+          <div class="fi">
+            <div class="fl">3</div>
+            <div class="fv">Nachfrist läuft ab</div>
+          </div>
+          <div class="fi">
+            <div class="fl">4</div>
+            <div class="fv">Wahlrecht!</div>
+          </div>
+        </div>
+        <ul class="cl">
+          <li class="m">① Auf Erfüllung bestehen + Schadenersatz wegen Verspätung</li>
+          <li class="m">② Auf Erfüllung verzichten + Schadenersatz (positives Interesse)</li>
+          <li class="m">③ Vom Vertrag zurücktreten + negatives Interesse</li>
+        </ul>
+        <div class="ib">
+          📍 TV CHF 500 teurer woanders → Nachfrist → Option ②: TV woanders kaufen, CHF 500 Mehrkostendifferenz als
+          SE<br />📍 TV CHF 200 günstiger woanders → Rücktritt, CHF 200 Vorteil musst du nicht abgeben
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Haftungsvoraussetzungen (Art. 97 OR) — alle 4!</div>
+        <ul class="cl">
+          <li class="m">① Schaden beim Gläubiger</li>
+          <li class="m">② Vertragsverletzung</li>
+          <li class="m">③ Kausalzusammenhang</li>
+          <li class="m">④ Verschulden (wird vermutet — Schuldner muss sich entlasten)</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="bt"><span class="badge br">◆ NACHSCHLAGEN</span> Folgen des Verzugs</div>
+        <div class="cb">
+          Haftung für Zufall (Art. 103 Abs. 1) · Schadenersatz bei Verschulden · Verzugszins 5% p.a. (Art. 104) —
+          Details im Gesetz.
+        </div>
+      </div>
+    </div>
+
+    <!-- KAP 20a -->
+    <div class="page" id="kap20a">
+      <h1 class="st">§20 — Arbeitsvertrag Basics</h1>
+      <p class="ss">Vertragstypen · Rechtsquellen · GAV vs. NAV</p>
+      <div class="legend">
+        <div class="li2">
+          <div class="ld ld-m"></div>
+          ★ AUSWENDIG
+        </div>
+        <div class="li2">
+          <div class="ld ld-r"></div>
+          ◆ NACHSCHLAGEN
+        </div>
+        <div class="li2">
+          <div class="ld ld-c"></div>
+          KONTEXT
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Die 3 Vertragstypen unterscheiden</div>
+        <div class="mb">Klassischer Prüfungspunkt: Sachverhalt lesen → welcher Vertragstyp?</div>
+        <div class="tw">
           <table>
             <thead>
               <tr>
-                <th>Folge</th>
-                <th>Beschreibung</th>
-                <th>Artikel</th>
+                <th>Typ</th>
+                <th>Schuldet</th>
+                <th>Verhältnis</th>
+                <th>Beispiele</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><strong>Haftung für Zufall</strong></td>
-                <td>Schuldner haftet auch für zufälligen Untergang (z.B. gestohlenes Auto in Garage)</td>
-                <td><code>Art. 103 Abs. 1 OR</code></td>
+              <tr class="mr">
+                <td><strong>Arbeitsvertrag</strong><br /><small>Art. 319 OR</small></td>
+                <td>Tätigkeit (Dauer)</td>
+                <td>Unterordnung, weisungsgebunden</td>
+                <td>Chauffeurin, Reinigung (regelmässig), Fussballtrainerin, DJ auf Zeit</td>
               </tr>
-              <tr>
-                <td><strong>Schadenersatz</strong></td>
-                <td>Haftung für Schäden durch Verspätung (wenn verschuldet)</td>
-                <td><code>Art. 103 OR</code></td>
+              <tr class="mr">
+                <td><strong>Werkvertrag</strong><br /><small>Art. 363 OR</small></td>
+                <td>Konkretes Ergebnis/Werk</td>
+                <td>Selbstständig</td>
+                <td>Porträt malen, Kostüm nähen, Fotos an Party machen</td>
               </tr>
-              <tr>
-                <td><strong>Verzugszinsen</strong></td>
-                <td>5% p.a. auf Geldschulden</td>
-                <td><code>Art. 104 OR</code></td>
+              <tr class="mr">
+                <td><strong>Auftrag</strong><br /><small>Art. 394 OR</small></td>
+                <td>Sorgfältige Tätigkeit (kein Ergebnis)</td>
+                <td>Selbstständig, Fachmann</td>
+                <td>Treuhänder, Arzt, Anwalt, Hausverkauf via Makler</td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
-
-      <div class="block">
-        <div class="block-title">⏳ Nachfrist & Wahlrechte <span class="art-chip">Art. 107–109 OR</span></div>
-        <ul class="clean">
-          <li>
-            <strong>Nachfrist</strong> (Art. 107 OR): Gläubiger setzt angemessene Frist. Nötig bei Mahngeschäft und
-            Verfalltagsgeschäft (nicht bei Fixgeschäft!)
-          </li>
-        </ul>
-        <div class="flow">
-          <div class="flow-item">
-            <div class="label">Schritt 1</div>
-            <div class="value">Schuldner in Verzug</div>
-          </div>
-          <div class="flow-item">
-            <div class="label">Schritt 2</div>
-            <div class="value">Gläubiger setzt Nachfrist</div>
-          </div>
-          <div class="flow-item">
-            <div class="label">Schritt 3</div>
-            <div class="value">Nachfrist abgelaufen</div>
-          </div>
-        </div>
-        <p style="margin: 10px 0 6px; font-weight: 600; font-size: 13px">
-          Wahlrechte des Gläubigers (Art. 107 Abs. 2 OR):
-        </p>
-        <ul class="clean">
-          <li>① Auf Erfüllung + Schadenersatz wegen Verspätung bestehen</li>
-          <li>② Auf Erfüllung verzichten + Ersatz des positiven Interesses verlangen</li>
-          <li>③ Vom Vertrag zurücktreten + Ersatz des negativen Interesses verlangen</li>
-        </ul>
-        <div class="info-box">
-          📍 TV-Beispiel: Nachfrist setzen, dann Fernseher teurer kaufen → Mehrkostendifferenz als Schadenersatz
-          verlangen (Option ②)
+        <div class="mb">
+          Trick: Werkvertrag = du willst ein fertiges Ding. Auftrag = du willst fachkundige Bemühung (kein Erfolg
+          garantiert). Arbeitsvertrag = regelmässige Tätigkeit in Unterordnung.
         </div>
       </div>
 
       <div class="block">
-        <div class="block-title">🔧 Haftungsvoraussetzungen (Art. 97 OR)</div>
-        <ul class="clean">
-          <li>① <strong>Schaden</strong> beim Gläubiger</li>
-          <li>② <strong>Vertragsverletzung</strong> (Nicht-/Schlechterfüllung)</li>
-          <li>③ <strong>Kausalzusammenhang</strong> zwischen Verletzung und Schaden</li>
-          <li>④ <strong>Verschulden</strong> (wird vermutet — Schuldner muss sich exkulpieren)</li>
-        </ul>
+        <div class="bt"><span class="badge br">◆ NACHSCHLAGEN</span> Rechtsquellen-Hierarchie</div>
+        <div class="cb">
+          <strong>Rang (zwingend → dispositiv, nur zugunsten AN abweichen):</strong><br />
+          Zwingend (ArG/OR) → GAV → NAV → Einzelarbeitsvertrag → Weisungen AG<br /><br />
+          <strong>GAV</strong>: Gewerkschaft ↔ Arbeitgeberverband. Branchen: Bau, Gastro, Detailhandel.<br />
+          <strong>NAV</strong>: staatlich erlassen, wo kein GAV (Landwirtschaft, Haushalte).
+        </div>
       </div>
     </div>
 
-    <!-- KAP 20a: ARBEITSVERTRAG BASICS -->
-    <div class="page" id="kap20a">
-      <h1 class="section-title">Kapitel 20 — Arbeitsvertrag Basics</h1>
-      <p class="section-sub">Vertragstypen, Rechtsquellen, GAV/NAV</p>
-
-      <h2 style="font-size: 17px; font-weight: 600; margin-bottom: 14px">
-        20.1 Die drei Vertragstypen auf Arbeitsleistung
-      </h2>
-
-      <div class="compare-grid">
-        <div class="compare-card">
-          <h3 style="color: var(--accent)">Arbeitsvertrag <code style="font-size: 10px">Art. 319 OR</code></h3>
-          <ul class="clean">
-            <li>Arbeitnehmer arbeitet <strong>auf Dauer</strong></li>
-            <li>Weisungsgebunden (Unterordnung)</li>
-            <li>Lohn als Gegenleistung</li>
-            <li>Beispiele: Chauffeurin, Reinigungskraft, DJ, Trainer (auf Zeit)</li>
-          </ul>
-        </div>
-        <div class="compare-card">
-          <h3 style="color: var(--accent3)">Werkvertrag <code style="font-size: 10px">Art. 363 OR</code></h3>
-          <ul class="clean">
-            <li>Schuldet ein bestimmtes <strong>Werk / Ergebnis</strong></li>
-            <li>Selbstständig</li>
-            <li>Werklohn nach Abnahme</li>
-            <li>Beispiele: Porträt malen, Kostüm nähen, Fotos machen</li>
-          </ul>
-        </div>
-        <div class="compare-card">
-          <h3 style="color: var(--accent2)">Auftrag <code style="font-size: 10px">Art. 394 OR</code></h3>
-          <ul class="clean">
-            <li>Schuldet <strong>sorgfältige Tätigkeit</strong> (kein Ergebnis)</li>
-            <li>Selbstständig</li>
-            <li>Honorar</li>
-            <li>Beispiele: Treuhänder, Arzt, Anwalt, Notar</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-      <h2 style="font-size: 17px; font-weight: 600; margin-bottom: 14px">20.2 Rechtsquellen des Arbeitsrechts</h2>
-
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-dot" style="background: var(--accent)"></div>
-          <div class="tl-title">Zwingend: Arbeitsgesetz (ArG)</div>
-          <div class="tl-body">
-            Arbeitnehmerschutz: Arbeitszeit, Ruhezeit, Nachtarbeit, Jugendliche, Schwangere. Öffentlichrechtlich.
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot" style="background: var(--accent2)"></div>
-          <div class="tl-title">Zwingend: Obligationenrecht (OR)</div>
-          <div class="tl-body">Grundlagen: Abschluss, Pflichten, Kündigung, Lohn. Art. 319–362 OR.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot" style="background: var(--accent3)"></div>
-          <div class="tl-title">Sondergesetze</div>
-          <div class="tl-body">Gleichstellungsgesetz (Lohngleichheit), Datenschutzgesetz, BVG (Pensionskasse).</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot" style="background: var(--accent4)"></div>
-          <div class="tl-title">GAV — Gesamtarbeitsvertrag</div>
-          <div class="tl-body">
-            Zwischen Arbeitgeberverband & Gewerkschaft. Verbindlich für alle Mitglieder beider Verbände. Branchen: Bau,
-            Gastro, Detailhandel. Allgemeinverbindlich erklärt → gilt für alle.
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot" style="background: var(--success)"></div>
-          <div class="tl-title">NAV — Normalarbeitsvertrag</div>
-          <div class="tl-body">
-            Staatlich erlassen. Gilt, wo keine individuelle Regelung. Abweichungen möglich (zugunsten AN). Branchen ohne
-            GAV: Landwirtschaft, Privathaushalte.
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot" style="background: var(--muted)"></div>
-          <div class="tl-title">Einzelarbeitsvertrag (EAV)</div>
-          <div class="tl-body">Individuell zwischen AN und AG. Lohn, Funktion, Arbeitszeit, Ferienanspruch etc.</div>
-        </div>
-      </div>
-
-      <div class="warn-box" style="margin-top: 20px">
-        <strong>Rangordnung:</strong> Zwingend > GAV > NAV > Einzelarbeitsvertrag > Weisungen. Nur zugunsten des
-        Arbeitnehmers abweichen!
-      </div>
-    </div>
-
-    <!-- KAP 20b: PFLICHTEN -->
+    <!-- KAP 20b -->
     <div class="page" id="kap20b">
-      <h1 class="section-title">Kapitel 20 — Rechte &amp; Pflichten</h1>
-      <p class="section-sub">AN-Pflichten, AG-Pflichten, Lohnfortzahlung, Überstunden</p>
+      <h1 class="st">§20 — Rechte &amp; Pflichten</h1>
+      <p class="ss">AN-Pflichten · AG-Pflichten · Lohnfortzahlung · Überstunden</p>
+      <div class="legend">
+        <div class="li2">
+          <div class="ld ld-m"></div>
+          ★ AUSWENDIG
+        </div>
+        <div class="li2">
+          <div class="ld ld-r"></div>
+          ◆ NACHSCHLAGEN
+        </div>
+        <div class="li2">
+          <div class="ld ld-c"></div>
+          KONTEXT
+        </div>
+      </div>
 
-      <h2 style="font-size: 17px; font-weight: 600; margin-bottom: 14px">Pflichten des Arbeitnehmers</h2>
-
+      <h2 class="sub">Pflichten des Arbeitnehmers</h2>
       <div class="block">
-        <div class="block-title">Hauptpflicht: Arbeitspflicht</div>
-        <ul class="clean">
-          <li>Persönliche Leistungserbringung, pünktlich, vollständig</li>
-        </ul>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="toggleAccordion(this)">
-          <span>Sorgfaltspflicht <span class="art-chip">Art. 321a Abs. 2 OR</span></span>
-          <span class="chevron">▼</span>
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Die 4 AN-Nebenpflichten — erkennen und zuordnen</div>
+        <div class="mb">
+          Prüfung: Sachverhalt → welche Pflicht verletzt? Das musst du können, Artikelnummern stehen im Gesetz.
         </div>
-        <div class="accordion-body">
-          <p>Arbeitsgeräte sorgfältig behandeln. Bei Schaden: Haftung des AN (Art. 321e OR).</p>
-          <div class="info-box">📍 Philipp schmeisst Laptop → Sorgfaltspflichtverletzung → Schadenersatz!</div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="toggleAccordion(this)">
-          <span>Geheimhaltungspflicht <span class="art-chip">Art. 321a Abs. 4 OR</span></span>
-          <span class="chevron">▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>Betriebsgeheimnisse wahren, auch nach Beendigung des Arbeitsverhältnisses.</p>
-          <div class="info-box">📍 Thomas postet Baupläne auf Facebook → Verletzung der Geheimhaltungspflicht</div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="toggleAccordion(this)">
-          <span>Treuepflicht / Konkurrenzverbot <span class="art-chip">Art. 321a Abs. 3 OR</span></span>
-          <span class="chevron">▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>Kein Wettbewerb zum Arbeitgeber. Keine Schwarzarbeit in derselben Branche.</p>
-          <div class="info-box">
-            📍 Corina schneidet privat Haare neben Coiffeurjob → Verletzung Treuepflicht / Konkurrenz
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-head" onclick="toggleAccordion(this)">
-          <span>Rechenschafts- und Herausgabepflicht <span class="art-chip">Art. 321b OR</span></span>
-          <span class="chevron">▼</span>
-        </div>
-        <div class="accordion-body">
-          <p>Geschenke von Dritten dem AG melden. AG entscheidet: einfordern oder Lohnabzug.</p>
-          <div class="info-box">📍 Sophie behält Tablet → muss AG informieren, Art. 321b OR</div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-      <h2 style="font-size: 17px; font-weight: 600; margin-bottom: 14px">Pflichten des Arbeitgebers</h2>
-
-      <div class="block">
-        <div class="block-title">Übersicht AG-Pflichten</div>
-        <div class="table-wrap">
+        <div class="tw">
           <table>
             <thead>
               <tr>
                 <th>Pflicht</th>
-                <th>Details</th>
+                <th>Was?</th>
+                <th>Prüfungsbeispiel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="mr">
+                <td><strong>Sorgfaltspflicht</strong><br /><small>Art. 321a Abs. 2</small></td>
+                <td>Arbeitsgeräte sorgfältig behandeln → Schadenersatz bei Verletzung (Art. 321e)</td>
+                <td>Philipp wirft Laptop → zahlt Reparatur</td>
+              </tr>
+              <tr class="mr">
+                <td><strong>Geheimhaltungspflicht</strong><br /><small>Art. 321a Abs. 4</small></td>
+                <td>Betriebsgeheimnisse wahren, auch nach AV-Ende</td>
+                <td>Thomas postet Baupläne auf Facebook</td>
+              </tr>
+              <tr class="mr">
+                <td><strong>Treuepflicht</strong><br /><small>Art. 321a Abs. 3</small></td>
+                <td>Keine Konkurrenz zum AG, keine Schwarzarbeit in gleicher Branche</td>
+                <td>Corina schneidet privat Haare neben Coiffeur-Job</td>
+              </tr>
+              <tr class="mr">
+                <td><strong>Rechenschafts-/Herausgabepflicht</strong><br /><small>Art. 321b</small></td>
+                <td>Geschenke von Dritten melden; AG entscheidet</td>
+                <td>Sophie nimmt Tablet-Geschenk nach Hause</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h2 class="sub">Pflichten des Arbeitgebers</h2>
+      <div class="block">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Wichtigste AG-Pflichten</div>
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>Pflicht</th>
+                <th>Kern</th>
                 <th>Artikel</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><strong>Lohnzahlung</strong></td>
-                <td>Rechtzeitig, vereinbarter Betrag</td>
-                <td><code>Art. 322 OR</code></td>
-              </tr>
-              <tr>
-                <td><strong>Ferienanspruch</strong></td>
-                <td>Mind. 4 Wochen (AN bis 20 J: 5 W). Kein Abgelten durch Geld!</td>
-                <td><code>Art. 329a, 329d OR</code></td>
-              </tr>
-              <tr>
-                <td><strong>Freizeit</strong></td>
-                <td>Mind. 1 freier Tag pro Woche, max. 6 Tage am Stück</td>
-                <td><code>Art. 329 Abs. 1 OR</code></td>
-              </tr>
-              <tr>
+              <tr class="mr">
                 <td><strong>Arbeitszeugnis</strong></td>
-                <td>Jederzeit auf Verlangen. Vollständig und wahrheitsgetreu.</td>
-                <td><code>Art. 330a OR</code></td>
+                <td>Jederzeit auf Verlangen. Vollständig & wahrheitsgemäss. Nicht nur Bestätigung!</td>
+                <td>Art. 330a</td>
               </tr>
-              <tr>
+              <tr class="mr">
+                <td><strong>Ferien</strong></td>
+                <td>Mind. 4 Wochen. Dürfen NICHT durch Geld abgegolten werden!</td>
+                <td>Art. 329a, 329d</td>
+              </tr>
+              <tr class="mr">
+                <td><strong>Freizeit</strong></td>
+                <td>Mind. 1 freier Tag pro Woche. Max. 6 Tage am Stück.</td>
+                <td>Art. 329 Abs. 1</td>
+              </tr>
+              <tr class="mr">
+                <td><strong>Überstunden</strong></td>
+                <td>Kompensation durch Freizeit oder normaler Lohn + <strong>25% Zuschlag</strong> (dispositiv!)</td>
+                <td>Art. 321c</td>
+              </tr>
+              <tr class="rr">
                 <td><strong>Lohnfortzahlung Krankheit</strong></td>
-                <td>Nach Probezeit, 3. Dienstjahr: mind. 3 Monate</td>
-                <td><code>Art. 324a OR</code></td>
-              </tr>
-              <tr>
-                <td><strong>Fürsorge &amp; Schutz</strong></td>
-                <td>Gesundheitsschutz, Persönlichkeitsschutz</td>
-                <td><code>Art. 328 OR</code></td>
+                <td>Probezeit: keine Pflicht. Ab 3 Monate: Pflicht beginnt.</td>
+                <td>Art. 324a</td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
-
-      <div class="block">
-        <div class="block-title">⏱ Überstunden <span class="art-chip">Art. 321c OR</span></div>
-        <p style="font-size: 13px; margin-bottom: 10px"><strong>Pflicht zur Überstundenarbeit</strong> nur wenn:</p>
-        <ul class="clean">
-          <li>① Notwendigkeit (Betrieb es erfordert)</li>
-          <li>② Zumutbarkeit (persönliche Verhältnisse des AN)</li>
-          <li>③ Keine Überforderung (physisch/psychisch möglich)</li>
-        </ul>
-        <br />
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Artikel</th>
-                <th>Regelung</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Art. 321c Abs. 2</code></td>
-                <td>Kompensation durch Freizeit (im Einvernehmen mit AN)</td>
-              </tr>
-              <tr>
-                <td><code>Art. 321c Abs. 3</code></td>
-                <td>Lohnzahlung: normaler Lohn + <strong>25% Zuschlag</strong> (falls keine andere Vereinbarung)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="info-box">
-          Dispositive Vorschrift: „… sofern nicht schriftlich anderes vereinbart …" → schriftliche Abweichung möglich
-        </div>
-      </div>
-
-      <div class="block">
-        <div class="block-title">🏥 Lohnfortzahlung bei Krankheit <span class="art-chip">Art. 324a OR</span></div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Dienstjahre</th>
-                <th>Dauer Lohnfortzahlung</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>&lt; 3 Monate (Probezeit)</td>
-                <td>Keine Pflicht</td>
-              </tr>
-              <tr>
-                <td>1. Dienstjahr (nach Probezeit)</td>
-                <td>3 Wochen</td>
-              </tr>
-              <tr>
-                <td>2.–3. Dienstjahr</td>
-                <td>1 Monat (Berner Skala)</td>
-              </tr>
-              <tr>
-                <td>4.–5. Dienstjahr</td>
-                <td>2 Monate</td>
-              </tr>
-              <tr>
-                <td>ab 6. Dienstjahr</td>
-                <td>3 Monate und mehr</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="info-box">
-          📍 Frau Schnidrig: ab 1. Feb, krank am 14. Mai = >3 Monate → Lohnfortzahlungspflicht ✓<br />📍 Krank am 10.
-          Feb = nur 10 Tage → noch Probezeit → keine Pflicht ✗
+        <div class="mb">
+          ★ 25% Zuschlag ist dispositiv: "wenn nichts anderes schriftlich vereinbart" → schriftliche Abweichung möglich,
+          aber nicht unter OR-Minimum.
         </div>
       </div>
     </div>
 
-    <!-- KAP 20c: BEENDIGUNG -->
+    <!-- KAP 20c -->
     <div class="page" id="kap20c">
-      <h1 class="section-title">Kapitel 20 — Beendigung</h1>
-      <p class="section-sub">Kündigung, Fristen, Sperrzeiten, fristlose Kündigung, Konkurrenzverbot</p>
-
-      <div class="block">
-        <div class="block-title">Arten der Beendigung</div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Art</th>
-                <th>Beschreibung</th>
-                <th>Artikel</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Zeitablauf</strong></td>
-                <td>Befristetes Arbeitsverhältnis endet automatisch</td>
-                <td><code>Art. 334 OR</code></td>
-              </tr>
-              <tr>
-                <td><strong>Ordentliche Kündigung</strong></td>
-                <td>Mit Frist und Termin bei unbefristetem AV</td>
-                <td><code>Art. 335 ff. OR</code></td>
-              </tr>
-              <tr>
-                <td><strong>Missbräuchliche Kündigung</strong></td>
-                <td>Aus verbotenem Grund (Gewerkschaft, Nationalität…) → trotzdem gültig!</td>
-                <td><code>Art. 336 OR</code></td>
-              </tr>
-              <tr>
-                <td><strong>Fristlose Kündigung</strong></td>
-                <td>Wichtiger Grund vorhanden → sofortige Auflösung</td>
-                <td><code>Art. 337 OR</code></td>
-              </tr>
-              <tr>
-                <td><strong>Aufhebungsvereinbarung</strong></td>
-                <td>Gegenseitige Einigung über Beendigung</td>
-                <td><code>Art. 115 OR</code></td>
-              </tr>
-              <tr>
-                <td><strong>Tod des AN</strong></td>
-                <td>AV endet; AG-Tod beendet es nicht</td>
-                <td><code>Art. 338 OR</code></td>
-              </tr>
-            </tbody>
-          </table>
+      <h1 class="st">§20 — Beendigung</h1>
+      <p class="ss">Kündigung · Fristen · Sperrzeiten · Fristlos · Konkurrenzverbot</p>
+      <div class="legend">
+        <div class="li2">
+          <div class="ld ld-m"></div>
+          ★ AUSWENDIG
+        </div>
+        <div class="li2">
+          <div class="ld ld-r"></div>
+          ◆ NACHSCHLAGEN
+        </div>
+        <div class="li2">
+          <div class="ld ld-c"></div>
+          KONTEXT
         </div>
       </div>
 
       <div class="block">
-        <div class="block-title">📅 Kündigungsfristen (OR-Mindestzwang) <span class="art-chip">Art. 335c OR</span></div>
-        <div class="table-wrap">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Kündigungsfristen (Art. 335c OR)</div>
+        <div class="tw">
           <table>
             <thead>
               <tr>
-                <th>Zeitraum / Dienstjahr</th>
+                <th>Zeitraum</th>
                 <th>Frist</th>
                 <th>Termin</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr class="mr">
                 <td>Probezeit (1. Monat)</td>
                 <td>7 Tage</td>
                 <td>Jederzeit</td>
               </tr>
-              <tr>
+              <tr class="mr">
                 <td>1. Dienstjahr</td>
                 <td>1 Monat</td>
-                <td>Ende eines Monats</td>
+                <td>Ende Monat</td>
               </tr>
-              <tr>
+              <tr class="mr">
                 <td>2.–9. Dienstjahr</td>
                 <td>2 Monate</td>
-                <td>Ende eines Monats</td>
+                <td>Ende Monat</td>
               </tr>
-              <tr>
-                <td>ab 10. Dienstjahr</td>
+              <tr class="mr">
+                <td>Ab 10. Dienstjahr</td>
                 <td>3 Monate</td>
-                <td>Ende eines Monats</td>
+                <td>Ende Monat</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="info-box">
-          📍 Simona (8 Jahre) & Caroline (10 Jahre) kündigen am 16. Mai:<br />
-          Simona = 2 Monate → frühestens 31. Juli<br />
-          Caroline = 3 Monate → frühestens 31. August
+        <div class="ib">
+          📍 Simona (8 Dj.) kündigt 16. Mai → 2 Monate → frühestens 31. Juli<br />📍 Caroline (10 Dj.) kündigt 16. Mai →
+          3 Monate → frühestens 31. August<br />📍 Tamara (2. Woche = Probezeit) → darf mit 7 Tagen kündigen ✓
         </div>
       </div>
 
       <div class="block">
-        <div class="block-title">
-          🚫 Sperrzeiten — Kündigung verboten durch AG <span class="art-chip">Art. 336c OR</span>
+        <div class="bt">
+          <span class="badge bm">★ AUSWENDIG</span> Sperrzeiten — AG darf NICHT kündigen (Art. 336c OR)
         </div>
-        <ul class="clean">
-          <li>Während Militär-/Zivildienst und 4 Wochen danach</li>
-          <li>Krankheit/Unfall: 30 Tage (1. Dienstjahr), 90 Tage (2.–5. Dj.), 180 Tage (ab 6. Dj.)</li>
-          <li>Schwangerschaft und 16 Wochen nach Geburt</li>
+        <ul class="cl">
+          <li class="m">Während Militär-/Zivildienst und 4 Wochen danach</li>
+          <li class="m">Krankheit/Unfall: 30 Tage (1. Dj.) · 90 Tage (2.–5. Dj.) · 180 Tage (ab 6. Dj.)</li>
+          <li class="m">Schwangerschaft und 16 Wochen nach Geburt</li>
         </ul>
-        <div class="highlight">
-          📍 AG kündigt Thomas Stoll während Spitalaufenthalt → <strong>nichtig!</strong> (Sperrzeit)
+        <div class="mb">
+          Kündigung während Sperrzeit = <strong>nichtig</strong> (nicht nur missbräuchlich!). AG muss neu kündigen nach
+          Sperrzeit.
+        </div>
+        <div class="ib">📍 AG kündigt Thomas während Spitalaufenthalt → nichtig!</div>
+      </div>
+
+      <div class="block">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Missbräuchliche Kündigung (Art. 336 OR)</div>
+        <div class="mb">
+          ACHTUNG: Missbräuchliche Kündigung ist trotzdem <strong>wirksam/gültig!</strong> Nur Entschädigung bis 6 ML
+          (Art. 336a).
+        </div>
+        <ul class="cl">
+          <li class="m">Wegen Gewerkschaftsmitgliedschaft</li>
+          <li class="m">Wegen Rasse, Geschlecht, Nationalität, Religion, Sexualorientierung</li>
+          <li class="m">Um Ansprüche des AN zu vereiteln</li>
+        </ul>
+        <div class="ib">
+          📍 Frank: Kündigung wegen Sexualorientierung → missbräuchlich, aber trotzdem gültig! → Entschädigung bis 6 ML.
         </div>
       </div>
 
       <div class="block">
-        <div class="block-title">⚡ Fristlose Kündigung <span class="art-chip">Art. 337 OR</span></div>
-        <p style="font-size: 13px; margin-bottom: 10px">
-          Nur bei <strong>wichtigem Grund</strong>: wenn Fortsetzung des AV nach Treu und Glauben unzumutbar
-        </p>
-        <div class="table-wrap">
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Fristlose Kündigung — wichtiger Grund ja/nein?</div>
+        <div class="tw">
           <table>
             <thead>
               <tr>
                 <th>Fall</th>
-                <th>Fristlos gerechtfertigt?</th>
-                <th>Begründung</th>
+                <th>Fristlos ok?</th>
+                <th>Grund</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Thomas stiehlt aus Geschäftskasse</td>
-                <td><span class="verdict v-yes">✓ JA</span></td>
-                <td>Schwere Vertrauensverletzung, wichtiger Grund</td>
+              <tr class="mr">
+                <td>Diebstahl aus Geschäftskasse</td>
+                <td><span class="v vy">✓ JA</span></td>
+                <td>Schwere Vertrauensverletzung</td>
               </tr>
-              <tr>
-                <td>Thomas & Tamara (Lernende) in Beziehung</td>
-                <td><span class="verdict v-no">✗ NEIN</span></td>
-                <td>Privatsache, kein Einfluss auf Arbeit</td>
+              <tr class="mr">
+                <td>Abrechnungen fälschen</td>
+                <td><span class="v vy">✓ JA</span></td>
+                <td>Betrug gegenüber AG</td>
               </tr>
-              <tr>
-                <td>Sandra fälscht Abrechnungsbelege</td>
-                <td><span class="verdict v-yes">✓ JA</span></td>
-                <td>Betrug gegenüber AG, wichtiger Grund</td>
+              <tr class="mr">
+                <td>AG vor Konkurs, Lohn nicht mehr sicher</td>
+                <td><span class="v vy">✓ JA</span></td>
+                <td>AN kann fristlos kündigen</td>
               </tr>
-              <tr>
-                <td>Markus: AG vor Konkurs, Lohn unsicher</td>
-                <td><span class="verdict v-yes">✓ JA</span></td>
-                <td>AN kann fristlos kündigen wenn Lohn gefährdet</td>
+              <tr class="mr">
+                <td>Zwei Lernende in Beziehung</td>
+                <td><span class="v vn">✗ NEIN</span></td>
+                <td>Privatsache, kein Bezug zur Arbeit</td>
               </tr>
-              <tr>
-                <td>Sybille zu spät wegen Ausgehen</td>
-                <td><span class="verdict v-no">✗ NEIN</span></td>
-                <td>Einmalige Verspätung, kein wichtiger Grund</td>
-              </tr>
-              <tr>
-                <td>Frank: Kündigung wegen Sexualorientierung</td>
-                <td><span class="verdict v-no">✗ Missbr.</span></td>
-                <td>Missbräuchliche Kündigung, Art. 336 Abs. 1 lit. a OR → Entschädigung bis 2 ML</td>
+              <tr class="mr">
+                <td>Einmal verschlafen / zu spät</td>
+                <td><span class="v vn">✗ NEIN</span></td>
+                <td>Bagatelle, kein wichtiger Grund</td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
-
-      <div class="block">
-        <div class="block-title">🏛 Missbräuchliche Kündigung <span class="art-chip">Art. 336 OR</span></div>
-        <ul class="clean">
-          <li>Wegen Gewerkschaftsmitgliedschaft (Art. 336 Abs. 2 lit. b)</li>
-          <li>Wegen Geschlecht, Rasse, Nationalität, Religion, Sexualorientierung</li>
-          <li>Wegen Ausübung verfassungsmässiger Rechte</li>
-          <li>Um Ansprüche zu vereiteln</li>
-        </ul>
-        <div class="warn-box">
-          <strong>Wichtig:</strong> Missbräuchliche Kündigung ist trotzdem <em>gültig</em>! Folge: Entschädigung bis zu
-          <strong>6 Monatslöhnen</strong> (Art. 336a OR). Frist: Einsprache innert 20 Tagen, Klage innert 180 Tagen.
+        <div class="mb">
+          ★ Faustregel: Wichtiger Grund = Vertrauensbruch der Zusammenarbeit unzumutbar macht. Bagatellen / Einmaliges →
+          nie wichtiger Grund.
         </div>
       </div>
 
       <div class="block">
-        <div class="block-title">🔒 Konkurrenzverbot <span class="art-chip">Art. 340 OR</span></div>
-        <ul class="clean">
-          <li>Schriftlich, nach Volljährigkeit</li>
-          <li>Max. <strong>3 Jahre</strong> Dauer</li>
-          <li>Räumlich, zeitlich und sachlich angemessen begrenzt</li>
-          <li>AN muss Einblick in Kundschaft/Fabrikationsgeheimnisse gehabt haben</li>
+        <div class="bt"><span class="badge bm">★ AUSWENDIG</span> Konkurrenzverbot (Art. 340 OR)</div>
+        <ul class="cl">
+          <li class="m">Schriftlich + AN muss volljährig sein</li>
+          <li class="m">Max. <strong>3 Jahre</strong> Dauer</li>
+          <li class="m">Räumlich, sachlich, zeitlich <em>angemessen</em></li>
+          <li class="m">Wenn <strong>AG</strong> kündigt → Konkurrenzverbot fällt weg! (Art. 340c OR)</li>
         </ul>
-        <div class="highlight">
-          📍 Uranus-Verbot: 5 Jahre → zu lang (max. 3 J.) ✗ / 200 km Radius → unverhältnismässig ✗
+        <div class="ib">
+          📍 Uranus-Verbot 5 Jahre → zu lang (max. 3 J.) ✗ / 200 km → unverhältnismässig ✗<br />📍 Uranus entlässt Max →
+          Konkurrenzverbot entfällt → Max darf zu Mediamarkt ✓
         </div>
-        <div class="info-box">
-          📍 Wenn AG das AV kündigt (nicht AN schuld) → Konkurrenzverbot entfällt! Art. 340c OR → Max darf zu
-          Mediamarkt!
+      </div>
+    </div>
+
+    <!-- ÜBUNGEN -->
+    <div class="page" id="uebungen">
+      <h1 class="st">✏️ Fallübungen</h1>
+      <p class="ss">Lies den Sachverhalt, denk selbst nach, dann aufdecken</p>
+
+      <h2 class="sub">§17 — Vertragsmängel</h2>
+
+      <div class="case-card">
+        <div class="case-sc">
+          Lena bestellt online eine Designer-Handtasche für CHF 250. Als das Paket ankommt, ist es eine billige Kopie.
+          Der Shop behauptet, es war immer klar, dass nur "ähnliche" Produkte geliefert werden.
+        </div>
+        <div class="case-q">Liegt ein Willensmangel vor? Wenn ja, welcher?</div>
+        <button class="rev-btn" onclick="rc(this)">Antwort aufdecken</button>
+        <div class="case-ans">
+          <strong>Absichtliche Täuschung (Art. 28 OR)</strong><br /><br />Der Shop hat Lena absichtlich über den
+          Vertragsinhalt getäuscht — sie hat eine Original-Handtasche bestellt. → Vertrag ist anfechtbar. Frist: 1 Jahr
+          ab Entdeckung.
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-sc">
+          Kevin kauft ein Velo für CHF 600 weil er glaubt, damit täglich zur Arbeit zu fahren. Nach dem Kauf stellt er
+          fest, dass es keine Veloroute zu seiner Arbeit gibt.
+        </div>
+        <div class="case-q">Kann Kevin den Kaufvertrag anfechten?</div>
+        <button class="rev-btn" onclick="rc(this)">Antwort aufdecken</button>
+        <div class="case-ans">
+          <strong>Nein — Motivirrtum (Art. 24 Abs. 2 OR) → kein Anfechtungsgrund</strong><br /><br />Kevin irrt sich
+          über seinen eigenen Beweggrund. Das ist ein unwesentlicher Motivirrtum — das Velo ist wie bestellt.
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-sc">
+          Anna kauft von Max sein Auto "Citroën C3, ZH 123 456". Beim Abholen will Max ihr versehentlich einen anderen,
+          älteren C3 mit anderem Kennzeichen übergeben.
+        </div>
+        <div class="case-q">Liegt ein Irrtum vor? Welcher Typ?</div>
+        <button class="rev-btn" onclick="rc(this)">Antwort aufdecken</button>
+        <div class="case-ans">
+          <strong>Erklärungsirrtum (Art. 24 Abs. 1 Ziff. 1–3 OR) — wesentlicher Irrtum</strong><br /><br />Max irrt sich
+          über die <em>Sache</em> (falsches Fahrzeug). Irrtum über den Vertragsgegenstand → wesentlich → anfechtbar.
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-sc">
+          Niklas hat seinem AG 150 Franken Schaden verursacht. Der Chef droht mit Entlassung, wenn Niklas nicht auf 3
+          Monate Lohn verzichtet und einen Verzichtsvertrag unterschreibt.
+        </div>
+        <div class="case-q">Welcher Willensmangel? Was kann Niklas tun?</div>
+        <button class="rev-btn" onclick="rc(this)">Antwort aufdecken</button>
+        <div class="case-ans">
+          <strong>Furchterregung / Drohung (Art. 29–30 OR)</strong><br /><br />Niklas unterschreibt wegen Furcht um sein
+          Arbeitsverhältnis (Vermögen). Der Druck ist unverhältnismässig (CHF 150 ≠ 3 Monate Lohn). → Vertrag
+          anfechtbar! Frist: 1 Jahr ab Beseitigung der Furcht.
+        </div>
+      </div>
+
+      <div class="dv"></div>
+      <h2 class="sub">§17 — Erfüllung & Verletzung</h2>
+
+      <div class="case-card">
+        <div class="case-sc">
+          Du hast einen Handwerker beauftragt, dein Bad bis zum 1. März zu renovieren. Am 1. März ist nichts passiert.
+        </div>
+        <div class="case-q">Was musst du tun? Welche Rechte hast du?</div>
+        <button class="rev-btn" onclick="rc(this)">Antwort aufdecken</button>
+        <div class="case-ans">
+          <strong>Schuldnerverzug — Nachfrist setzen (Art. 107 OR)</strong><br /><br />1. Handwerker ist in Verzug
+          (Verfalltagsgeschäft).<br />2. Du musst eine angemessene <strong>Nachfrist</strong> setzen.<br />3. Danach
+          Wahlrechte: ① Erfüllung + SE für Verspätung · ② Verzicht auf Erfüllung + SE · ③ Rücktritt
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-sc">
+          Mechaniker sagt, Auto sei "bestimmt bis Freitag fertig". Freitagmittag rufst du an — er hat noch nicht mal
+          angefangen.
+        </div>
+        <div class="case-q">Mahngeschäft, Verfalltagsgeschäft oder Fixgeschäft?</div>
+        <button class="rev-btn" onclick="rc(this)">Antwort aufdecken</button>
+        <div class="case-ans">
+          <strong>Verfalltagsgeschäft (Art. 102 Abs. 2 OR)</strong><br /><br />Ein konkreter Termin (Freitag) wurde
+          vereinbart → Mechaniker automatisch in Verzug ohne Mahnung. Direkt Nachfrist setzen.
+        </div>
+      </div>
+
+      <div class="dv"></div>
+      <h2 class="sub">§20 — Arbeitsvertrag</h2>
+
+      <div class="case-card">
+        <div class="case-sc">
+          Ein Fotograf wird für eine einmalige Geburtstagsfeier engagiert und soll 50 Fotos liefern. Er arbeitet
+          selbstständig 3 Stunden.
+        </div>
+        <div class="case-q">Welcher Vertragstyp liegt vor?</div>
+        <button class="rev-btn" onclick="rc(this)">Antwort aufdecken</button>
+        <div class="case-ans">
+          <strong>Werkvertrag (Art. 363 OR)</strong><br /><br />Schuldet konkretes Ergebnis (50 fertige Fotos),
+          selbstständig, nicht weisungsgebunden → kein Arbeitsvertrag.
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-sc">
+          Andrea arbeitet seit 4 Jahren als Grafikerin. Am 15. November erhält sie die Kündigung per 31. Januar. Sie ist
+          seit 10 Tagen krank.
+        </div>
+        <div class="case-q">Ist die Kündigung gültig?</div>
+        <button class="rev-btn" onclick="rc(this)">Antwort aufdecken</button>
+        <div class="case-ans">
+          <strong>Nein — Sperrzeit! (Art. 336c OR)</strong><br /><br />Andrea ist krank. Im 2.–5. Dienstjahr = Sperrzeit
+          90 Tage. Kündigung während Sperrzeit = <strong>nichtig</strong>. AG muss nach Ablauf der Sperrzeit neu
+          kündigen.
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-sc">
+          Marco hat sich an der Mitarbeiterversammlung für faire Löhne eingesetzt. Kurz darauf erhält er die Kündigung.
+        </div>
+        <div class="case-q">Welche Art der Kündigung? Was sind die Folgen?</div>
+        <button class="rev-btn" onclick="rc(this)">Antwort aufdecken</button>
+        <div class="case-ans">
+          <strong>Missbräuchliche Kündigung (Art. 336 OR)</strong><br /><br />Kündigung wegen Ausübung
+          verfassungsmässiger Rechte = missbräuchlich. <strong>Kündigung bleibt trotzdem wirksam!</strong> Marco hat
+          Anspruch auf bis zu 6 Monatslöhne Entschädigung (Art. 336a). Frist: Einspruch 20 Tage, Klage 180 Tage.
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-sc">
+          Uranus AG schreibt im Vertrag: "Für Überstunden wird ein Zuschlag von 10% ausgerichtet." Normal wären 25%.
+        </div>
+        <div class="case-q">Ist diese Klausel rechtmässig?</div>
+        <button class="rev-btn" onclick="rc(this)">Antwort aufdecken</button>
+        <div class="case-ans">
+          <strong>Kommt darauf an — dispositives Recht!</strong><br /><br />Art. 321c Abs. 3 OR ist dispositiv.
+          Abweichung ist erlaubt, <strong>wenn schriftlich vereinbart</strong>. Da dies schriftlich im Vertrag steht:
+          <strong>gültig</strong>. 10% Zuschlag ist weniger als 25%, aber schriftliche Abweichung ist zulässig.
         </div>
       </div>
     </div>
 
     <!-- QUIZ -->
     <div class="page" id="quiz">
-      <h1 class="section-title">Prüfungs-Quiz</h1>
-      <p class="section-sub">Teste dein Wissen — klicke auf eine Antwort</p>
-
-      <div id="quiz-container"></div>
-      <div id="score-display"></div>
+      <h1 class="st">🎯 Quiz</h1>
+      <p class="ss">14 Prüfungsfragen mit direktem Feedback</p>
+      <div id="qc"></div>
+      <div id="sd"></div>
     </div>
 
     <!-- ARTIKEL -->
     <div class="page" id="artikel">
-      <h1 class="section-title">Artikel-Übersicht</h1>
-      <p class="section-sub">Alle relevanten OR/ZGB-Artikel für die Prüfung</p>
+      <h1 class="st">📋 Artikel-Übersicht</h1>
+      <p class="ss">Alle relevanten OR/ZGB-Artikel — nach Lernprioriät</p>
+      <div class="legend">
+        <div class="li2">
+          <div class="ld ld-m"></div>
+          ★ AUSWENDIG — Konzept kennen
+        </div>
+        <div class="li2">
+          <div class="ld ld-r"></div>
+          ◆ NACHSCHLAGEN
+        </div>
+        <div class="li2">
+          <div class="ld ld-c"></div>
+          KONTEXT
+        </div>
+      </div>
 
-      <h2 style="font-size: 15px; font-weight: 600; margin-bottom: 12px; color: var(--accent)">
-        Kapitel 17 — Allgemeine Vertragslehre
-      </h2>
+      <h2 class="sub" style="color: var(--accent)">Kapitel 17</h2>
       <div class="block">
-        <div class="table-wrap">
+        <div class="tw">
           <table>
             <thead>
               <tr>
                 <th>Artikel</th>
                 <th>Thema</th>
+                <th>Prio</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><code>Art. 1 OR</code></td>
-                <td>Einigung (übereinstimmende Willensäusserung)</td>
-              </tr>
-              <tr>
-                <td><code>Art. 2 OR</code></td>
-                <td>Einigung über wesentliche Vertragspunkte</td>
-              </tr>
-              <tr>
-                <td><code>Art. 3–5 OR</code></td>
-                <td>Bindungsdauer Angebot (befristet / unter Anwesenden / unter Abwesenden)</td>
-              </tr>
-              <tr>
-                <td><code>Art. 6a OR</code></td>
-                <td>Unverlangte Ansichtssendung (unverbindlich)</td>
+                <td>Einigung (Willensäusserung)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 7 OR</code></td>
-                <td>Verbindlichkeit von Anträgen (Preislisten etc. unverbindlich)</td>
-              </tr>
-              <tr>
-                <td><code>Art. 9 OR</code></td>
-                <td>Widerruf von Antrag und Annahme</td>
+                <td>Preislisten/Inserate = unverbindlich</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 11 OR</code></td>
-                <td>Formvorschriften</td>
+                <td>Formvorschriften (nichtig bei Nichteinhaltung)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 19–20 OR</code></td>
-                <td>Inhaltsfreiheit und -schranken (nichtig bei unmöglich/widerrechtlich/unsittlich)</td>
+                <td>Inhaltsfreiheit + nichtige Inhalte</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 21 OR</code></td>
-                <td>Übervorteilung (anfechtbar, 1 Jahr)</td>
+                <td>Übervorteilung</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 23–24 OR</code></td>
-                <td>Wesentlicher Irrtum (Erklärungs- und Grundlagenirrtum)</td>
+                <td>Wesentlicher / unwesentlicher Irrtum</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 28 OR</code></td>
-                <td>Absichtliche Täuschung (anfechtbar, 1 Jahr ab Entdeckung)</td>
+                <td>Absichtliche Täuschung</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 29–30 OR</code></td>
                 <td>Furchterregung / Drohung</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 31 OR</code></td>
                 <td>Anfechtungsfristen (1 Jahr)</td>
+                <td><span class="ab abr">◆ NACHSCHLAGEN</span></td>
+              </tr>
+              <tr>
+                <td><code>Art. 71 OR</code></td>
+                <td>Auswahl bei Gattungsware (Schuldner)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
+              </tr>
+              <tr>
+                <td><code>Art. 74 OR</code></td>
+                <td>Erfüllungsort (Bring-/Holschuld)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
+              </tr>
+              <tr>
+                <td><code>Art. 75 OR</code></td>
+                <td>Erfüllungszeit (sofort wenn nichts vereinbart)</td>
+                <td><span class="ab abr">◆ NACHSCHLAGEN</span></td>
+              </tr>
+              <tr>
+                <td><code>Art. 97 OR</code></td>
+                <td>Haftungsvoraussetzungen (4 Elemente)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
+              </tr>
+              <tr>
+                <td><code>Art. 102–104 OR</code></td>
+                <td>Schuldnerverzug, SE, Verzugszins 5%</td>
+                <td><span class="ab abr">◆ NACHSCHLAGEN</span></td>
+              </tr>
+              <tr>
+                <td><code>Art. 107 OR</code></td>
+                <td>Nachfrist + Wahlrechte</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
+              </tr>
+              <tr>
+                <td><code>Art. 3–5 OR</code></td>
+                <td>Bindungsdauer Angebote</td>
+                <td><span class="ab abc">KONTEXT</span></td>
               </tr>
               <tr>
                 <td><code>Art. 68 OR</code></td>
                 <td>Persönliche Erfüllung</td>
-              </tr>
-              <tr>
-                <td><code>Art. 71 OR</code></td>
-                <td>Auswahl bei Gattungsware (Schuldner wählt)</td>
-              </tr>
-              <tr>
-                <td><code>Art. 74 OR</code></td>
-                <td>Erfüllungsort</td>
-              </tr>
-              <tr>
-                <td><code>Art. 75 OR</code></td>
-                <td>Erfüllungszeit (sofort falls nichts vereinbart)</td>
-              </tr>
-              <tr>
-                <td><code>Art. 97 OR</code></td>
-                <td>Haftung bei Nichterfüllung (Schlechterfüllung)</td>
-              </tr>
-              <tr>
-                <td><code>Art. 102–104 OR</code></td>
-                <td>Schuldnerverzug, Haftung, Verzugszinsen 5%</td>
-              </tr>
-              <tr>
-                <td><code>Art. 107–109 OR</code></td>
-                <td>Nachfrist, Wahlrechte des Gläubigers</td>
-              </tr>
-              <tr>
-                <td><code>Art. 119 OR</code></td>
-                <td>Unmöglichkeit</td>
-              </tr>
-              <tr>
-                <td><code>Art. 12–19 ZGB</code></td>
-                <td>Handlungsfähigkeit</td>
+                <td><span class="ab abc">KONTEXT</span></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <h2 style="font-size: 15px; font-weight: 600; margin: 24px 0 12px; color: var(--accent)">
-        Kapitel 20 — Arbeitsvertrag
-      </h2>
+      <h2 class="sub" style="color: var(--accent)">Kapitel 20</h2>
       <div class="block">
-        <div class="table-wrap">
+        <div class="tw">
           <table>
             <thead>
               <tr>
                 <th>Artikel</th>
                 <th>Thema</th>
+                <th>Prio</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><code>Art. 319 OR</code></td>
                 <td>Definition Arbeitsvertrag</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 321a OR</code></td>
-                <td>Sorgfalts- und Treuepflicht des AN</td>
-              </tr>
-              <tr>
-                <td><code>Art. 321a Abs. 4</code></td>
-                <td>Geheimhaltungspflicht</td>
+                <td>Sorgfalts-, Geheimhaltungs- und Treuepflicht AN</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 321b OR</code></td>
-                <td>Rechenschafts- und Herausgabepflicht</td>
+                <td>Rechenschafts-/Herausgabepflicht</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 321c OR</code></td>
-                <td>Überstunden (Pflicht, Kompensation, 25%-Zuschlag)</td>
+                <td>Überstunden (+25% Zuschlag, dispositiv)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 321e OR</code></td>
-                <td>Haftung des AN für Schäden</td>
-              </tr>
-              <tr>
-                <td><code>Art. 322 OR</code></td>
-                <td>Lohnzahlungspflicht AG</td>
+                <td>Haftung AN für Schäden</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 324a OR</code></td>
-                <td>Lohnfortzahlung bei Krankheit/Unfall</td>
-              </tr>
-              <tr>
-                <td><code>Art. 328 OR</code></td>
-                <td>Fürsorgepflicht AG (Persönlichkeitsschutz)</td>
+                <td>Lohnfortzahlung Krankheit</td>
+                <td><span class="ab abr">◆ NACHSCHLAGEN</span></td>
               </tr>
               <tr>
                 <td><code>Art. 329 OR</code></td>
-                <td>Freizeit (1 Tag/Woche, max 6 Tage am Stück)</td>
+                <td>Freizeit (1 Tag/Wo, max. 6 Tage am Stück)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 329a OR</code></td>
                 <td>Ferien (mind. 4 Wochen)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 329d OR</code></td>
-                <td>Ferienlohn, kein Abgelten durch Geld</td>
+                <td>Ferienabgelten durch Geld verboten</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 330a OR</code></td>
-                <td>Arbeitszeugnis (jederzeit auf Verlangen)</td>
-              </tr>
-              <tr>
-                <td><code>Art. 334 OR</code></td>
-                <td>Befristetes Arbeitsverhältnis</td>
-              </tr>
-              <tr>
-                <td><code>Art. 335 ff. OR</code></td>
-                <td>Ordentliche Kündigung</td>
+                <td>Arbeitszeugnis (jederzeit, nicht nur Bestätigung)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 335b OR</code></td>
                 <td>Probezeit (max. 3 Monate)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 335c OR</code></td>
-                <td>Kündigungsfristen (1 / 2 / 3 Monate)</td>
+                <td>Kündigungsfristen (1/2/3 Monate)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 336 OR</code></td>
-                <td>Missbräuchliche Kündigung (Gründe)</td>
+                <td>Missbräuchliche Kündigung (trotzdem wirksam!)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 336a OR</code></td>
-                <td>Folge Missbr. Kündigung: bis 6 ML Entschädigung</td>
+                <td>Folge: bis 6 ML Entschädigung</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 336c OR</code></td>
                 <td>Sperrzeiten</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 337 OR</code></td>
                 <td>Fristlose Kündigung (wichtiger Grund)</td>
-              </tr>
-              <tr>
-                <td><code>Art. 338 OR</code></td>
-                <td>Tod des AN (AV endet)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 340 OR</code></td>
-                <td>Konkurrenzverbot (max. 3 Jahre)</td>
+                <td>Konkurrenzverbot (max. 3 Jahre, schriftlich)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 340c OR</code></td>
-                <td>Wegfall Konkurrenzverbot (bei Kündigung durch AG)</td>
+                <td>Wegfall Konkurrenzverbot (Kündigung durch AG)</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
-                <td><code>Art. 362–363 OR</code></td>
+                <td><code>Art. 363 OR</code></td>
                 <td>Werkvertrag</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
               <tr>
                 <td><code>Art. 394 OR</code></td>
                 <td>Auftrag</td>
+                <td><span class="ab abm">★ AUSWENDIG</span></td>
               </tr>
             </tbody>
           </table>
@@ -1930,193 +1981,213 @@
     </div>
 
     <script>
-      const quizData = [
+      function gp(id, btn) {
+        document.querySelectorAll(".page").forEach((p) => p.classList.remove("active"));
+        document.querySelectorAll(".tb").forEach((b) => b.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        if (btn) btn.classList.add("active");
+        window.scrollTo(0, 0);
+        if (id === "quiz" && !document.getElementById("qc").children.length) bq();
+      }
+      function ac(h) {
+        h.parentElement.classList.toggle("open");
+      }
+      function rc(btn) {
+        btn.nextElementSibling.classList.add("show");
+        btn.style.display = "none";
+      }
+
+      const Q = [
         {
-          q: "Theresa muss wegen Schnee im Hotel bleiben und zahlt CHF 350 statt 70. Welcher Willensmangel liegt vor?",
-          opts: [
-            "Absichtliche Täuschung (Art. 28 OR)",
-            "Übervorteilung (Art. 21 OR)",
-            "Wesentlicher Irrtum (Art. 23 OR)",
-            "Furchterregung (Art. 29 OR)",
+          q: "Theresa zahlt CHF 350 statt 70 im Hotel weil sie wegen Schnee nicht abreisen kann. Welcher Willensmangel?",
+          t: "§17 Mängel",
+          o: [
+            "Wesentlicher Irrtum (Art. 23)",
+            "Übervorteilung (Art. 21)",
+            "Absichtliche Täuschung (Art. 28)",
+            "Furchterregung (Art. 29)",
           ],
-          correct: 1,
-          feedback:
-            "✓ Übervorteilung (Art. 21 OR): offensichtliches Missverhältnis, Notlage, Ausbeutung. Frist: 1 Jahr ab Abschluss.",
+          c: 1,
+          fb: "✓ Übervorteilung Art. 21: Missverhältnis + Notlage + Ausbeutung. Alle 3 Voraussetzungen erfüllt.",
         },
         {
-          q: "Remo kauft ein Auto mit manipuliertem Km-Stand. Welcher Willensmangel liegt vor?",
-          opts: [
-            "Übervorteilung (Art. 21 OR)",
-            "Wesentlicher Irrtum (Art. 23 OR)",
-            "Absichtliche Täuschung (Art. 28 OR)",
-            "Furchterregung (Art. 29 OR)",
+          q: "Linda kauft Kleid für CHF 600, Kollegin sagt Farbe passe nicht. Linda will es zurückbringen. Welcher Irrtum liegt vor?",
+          t: "§17 Mängel",
+          o: [
+            "Erklärungsirrtum — wesentlich",
+            "Grundlagenirrtum — wesentlich",
+            "Motivirrtum — unwesentlich, kein Anfechtungsgrund",
+            "Furchterregung — anfechtbar",
           ],
-          correct: 2,
-          feedback:
-            "✓ Absichtliche Täuschung (Art. 28 OR): Km-Stand wurde bewusst manipuliert. Frist: 1 Jahr ab Entdeckung.",
+          c: 2,
+          fb: "✓ Motivirrtum Art. 24 Abs. 2: Linda irrt über ihren Beweggrund. Kein Anfechtungsgrund.",
         },
         {
-          q: "Dieter mietet eine Wohnung, bekommt aber statt der Attikaeinheit die dunkle Parterrewohnung. Welcher Irrtum liegt vor?",
-          opts: [
-            "Motivirrtum (unwesentlich)",
-            "Erklärungsirrtum (wesentlich)",
-            "Grundlagenirrtum (wesentlich)",
-            "Antwort B und C sind beide möglich",
+          q: "Auto-Km-Stand absichtlich von 60'000 auf 260'000 manipuliert. Welcher Mangel?",
+          t: "§17 Mängel",
+          o: [
+            "Übervorteilung (Art. 21)",
+            "Absichtliche Täuschung (Art. 28)",
+            "Grundlagenirrtum (Art. 24)",
+            "Furchterregung (Art. 30)",
           ],
-          correct: 3,
-          feedback:
-            "✓ Grundlagenirrtum / Erklärungsirrtum (Art. 24 Abs. 1 OR): Irrtum betreffend die Sache (falsche Wohnung). Wesentlich.",
+          c: 1,
+          fb: "✓ Absichtliche Täuschung Art. 28: Verkäufer lügt bewusst. Frist: 1 Jahr ab Entdeckung.",
         },
         {
-          q: "Was ist der gesetzliche Erfüllungsort für eine Geldschuld?",
-          opts: [
+          q: "Was ist der Erfüllungsort einer Geldschuld?",
+          t: "§17 Erfüllung",
+          o: [
             "Wohnsitz des Schuldners",
-            "Wohnsitz des Gläubigers",
             "Ort des Vertragsabschlusses",
+            "Wohnsitz des Gläubigers",
             "Wo die Sache sich befindet",
           ],
-          correct: 1,
-          feedback: "✓ Art. 74 Abs. 2 Ziff. 2 OR: Geldschulden = Bringschuld → Erfüllungsort beim Gläubiger.",
+          c: 2,
+          fb: "✓ Art. 74 Abs. 2 Ziff. 2: Geldschulden = Bringschuld → Erfüllungsort beim Gläubiger.",
         },
         {
-          q: "Der Schuldner liefert nicht rechtzeitig. Der Gläubiger will Schadenersatz. Was muss er tun?",
-          opts: ["Direkt klagen", "Nachfrist setzen (Art. 107 OR)", "Fristlose Kündigung erklären", "Polizei rufen"],
-          correct: 1,
-          feedback:
-            "✓ Art. 107 OR: Zuerst angemessene Nachfrist setzen, danach Wahlrechte (Erfüllung/Schadenersatz oder Rücktritt).",
+          q: "200 beliebige Küken werden verkauft. Wer darf die Küken aussuchen?",
+          t: "§17 Erfüllung",
+          o: ["Der Käufer (Gläubiger)", "Der Verkäufer (Schuldner, Art. 71)", "Das Gericht", "Beide einvernehmlich"],
+          c: 1,
+          fb: "✓ Art. 71 OR: Bei Gattungsware steht die Auswahl dem Schuldner zu.",
         },
         {
-          q: "Was ist der Unterschied zwischen Werkvertrag und Arbeitsvertrag?",
-          opts: [
+          q: "Was muss ein Gläubiger nach einem Schuldnerverzug zuerst tun, bevor er Schadenersatz verlangen kann?",
+          t: "§17 Verletzung",
+          o: ["Direkt klagen", "Nachfrist setzen (Art. 107)", "Polizei rufen", "Vertrag anfechten"],
+          c: 1,
+          fb: "✓ Art. 107: Zuerst angemessene Nachfrist setzen. Danach Wahlrechte ausüben.",
+        },
+        {
+          q: "Eine Kunstmalerin fertigt für eine Kundin ein Porträt an. Welcher Vertragstyp?",
+          t: "§20 Basics",
+          o: ["Arbeitsvertrag", "Auftrag", "Werkvertrag", "GAV"],
+          c: 2,
+          fb: "✓ Werkvertrag Art. 363: schuldet ein konkretes Ergebnis (das Porträt).",
+        },
+        {
+          q: "Worin unterscheidet sich Auftrag vom Werkvertrag?",
+          t: "§20 Basics",
+          o: [
+            "Auftrag muss schriftlich sein",
+            "Auftrag schuldet Tätigkeit (kein Erfolg), Werkvertrag schuldet Ergebnis",
+            "Werkvertrag nur für Handwerker",
             "Kein Unterschied",
-            "Werkvertrag schuldet Ergebnis, Arbeitsvertrag schuldet Tätigkeit in Unterordnung",
-            "Arbeitsvertrag nur für Vollzeit",
-            "Werkvertrag nur schriftlich gültig",
           ],
-          correct: 1,
-          feedback:
-            "✓ Werkvertrag (Art. 363 OR) = geschuldetes Werk/Ergebnis. Arbeitsvertrag (Art. 319 OR) = Tätigkeit + Weisungsgebundenheit.",
+          c: 1,
+          fb: "✓ Auftrag (Art. 394): sorgfältige Tätigkeit ohne Erfolgsgarantie. Werkvertrag (Art. 363): geschuldetes Ergebnis.",
         },
         {
-          q: "Wie lange dauert die gesetzliche Probezeit maximal?",
-          opts: ["1 Monat", "2 Monate", "3 Monate", "6 Monate"],
-          correct: 2,
-          feedback:
-            "✓ Art. 335b OR: Probezeit max. 3 Monate. Kündigung in Probezeit mit 7 Tagen Frist jederzeit möglich.",
-        },
-        {
-          q: "Frau Haug wird entlassen weil sie der Gewerkschaft beitritt. Was trifft zu?",
-          opts: [
-            "Kündigung ist nichtig",
-            "Ordentliche Kündigung, rechtmässig",
-            "Missbräuchliche Kündigung, trotzdem gültig, Entschädigung bis 6 ML",
-            "Fristlose Kündigung gerechtfertigt",
-          ],
-          correct: 2,
-          feedback:
-            "✓ Art. 336 Abs. 2 lit. b OR: Gewerkschaftsmitgliedschaft = missbräuchlicher Grund. Kündigung bleibt trotzdem wirksam! Entschädigung bis 6 ML.",
-        },
-        {
-          q: "Kann ein AG seinem Mitarbeiter im 4. Dienstjahr mit 14 Tagen Frist kündigen?",
-          opts: [
-            "Ja, falls vertraglich vereinbart",
-            "Nein, gesetzliche Mindestfrist ist 2 Monate",
-            "Ja, immer möglich",
-            "Nur bei fristloser Kündigung",
-          ],
-          correct: 1,
-          feedback:
-            "✓ Art. 335c OR: Im 2.–9. Dienstjahr beträgt die Mindestfrist 2 Monate auf Ende Monat. 14 Tage = rechtswidrig.",
-        },
-        {
-          q: "Philipp wirft seinen Geschäftslaptop auf den Boden. Welche Pflicht verletzt er?",
-          opts: [
-            "Geheimhaltungspflicht Art. 321a Abs. 4",
-            "Sorgfaltspflicht Art. 321a Abs. 2 + Haftung Art. 321e",
+          q: "Thomas postet Baupläne seiner Firma auf Facebook. Welche Pflicht verletzt er?",
+          t: "§20 Pflichten",
+          o: [
+            "Sorgfaltspflicht Art. 321a Abs. 2",
             "Herausgabepflicht Art. 321b",
+            "Geheimhaltungspflicht Art. 321a Abs. 4",
             "Treuepflicht Art. 321a Abs. 3",
           ],
-          correct: 1,
-          feedback:
-            "✓ Art. 321a Abs. 2 OR: Sorgfaltspflicht für Arbeitsgeräte verletzt. Art. 321e: Schadenersatzpflicht des AN.",
+          c: 2,
+          fb: "✓ Geheimhaltungspflicht Art. 321a Abs. 4: Betriebsgeheimnisse dürfen nicht weitergegeben werden.",
         },
         {
-          q: "Sandra hat 2 Wochen Ferien übrig und will sie sich auszahlen lassen. Darf die Chefin das?",
-          opts: [
+          q: "Sandra hat 2 Wochen Ferien übrig und will sie als Geld ausgezahlt bekommen. Darf die Chefin das?",
+          t: "§20 Pflichten",
+          o: [
             "Ja, wenn beide einverstanden",
-            "Nein, Ferien dürfen nicht durch Geld abgegolten werden",
-            "Ja, unbeschränkt möglich",
-            "Nur mit GAV erlaubt",
+            "Nein, Art. 329d Abs. 2: Ferien dürfen nicht durch Geld abgegolten werden",
+            "Ja, bis max. 1 Woche",
+            "Nur wenn GAV dies erlaubt",
           ],
-          correct: 1,
-          feedback: "✓ Art. 329d Abs. 2 OR: Abgelten von Ferien durch Geld ist verboten! Ferien müssen bezogen werden.",
+          c: 1,
+          fb: "✓ Art. 329d Abs. 2: Ferienabgelten durch Geld ist verboten.",
         },
         {
-          q: "Welche Frist gilt für alle Willensmängel (Übervorteilung, Täuschung, Drohung, Irrtum)?",
-          opts: ["6 Monate", "1 Jahr", "2 Jahre", "10 Jahre"],
-          correct: 1,
-          feedback:
-            "✓ Art. 31 OR: Alle Willensmängel = 1 Jahr Anfechtungsfrist (ab Vertragsabschluss / Entdeckung / Beseitigung).",
+          q: "AG kündigt Mitarbeiterin weil sie der Gewerkschaft beitritt. Was gilt?",
+          t: "§20 Beendigung",
+          o: [
+            "Kündigung ist nichtig",
+            "Ordentliche Kündigung, rechtmässig",
+            "Missbräuchliche Kündigung — trotzdem wirksam! Entschädigung bis 6 ML",
+            "Fristlose Kündigung",
+          ],
+          c: 2,
+          fb: "✓ Art. 336 Abs. 2: Gewerkschaft = missbräuchlicher Grund. Kündigung bleibt wirksam. Nur Entschädigung.",
+        },
+        {
+          q: "AG kündigt Thomas Stoll während eines krankheitsbedingten Spitalaufenthalts. Was gilt?",
+          t: "§20 Beendigung",
+          o: [
+            "Gültig, aber missbräuchlich",
+            "Nichtig wegen Sperrzeit (Art. 336c)",
+            "Fristlose Kündigung",
+            "Ordentlich und gültig",
+          ],
+          c: 1,
+          fb: "✓ Art. 336c: Krankheit = Sperrzeit → Kündigung während Sperrzeit ist nichtig!",
+        },
+        {
+          q: "Thomas wird beim Stehlen aus der Geschäftskasse erwischt. Fristlose Kündigung gerechtfertigt?",
+          t: "§20 Beendigung",
+          o: [
+            "Nein, einmalige Verfehlung reicht nicht",
+            "Ja — schwere Vertrauensverletzung, wichtiger Grund",
+            "Nur wenn es nicht der erste Diebstahl ist",
+            "Nur mit schriftlicher Verwarnung vorher",
+          ],
+          c: 1,
+          fb: "✓ Art. 337: Diebstahl = schwere Vertrauensverletzung → wichtiger Grund → fristlose Kündigung gerechtfertigt.",
+        },
+        {
+          q: "Konkurrenzverbot: Max darf 5 Jahre nicht in der Elektronikbranche arbeiten. Problematisch?",
+          t: "§20 Beendigung",
+          o: [
+            "Nein, erlaubt wenn schriftlich",
+            "Ja — max. 3 Jahre erlaubt (Art. 340)",
+            "Nur problematisch ohne wichtigen Grund",
+            "Nein, 5 Jahre sind branchenüblich",
+          ],
+          c: 1,
+          fb: "✓ Art. 340: Konkurrenzverbot max. 3 Jahre. 5 Jahre = rechtswidrig, auf das Maximum reduzierbar.",
         },
       ];
 
-      function buildQuiz() {
-        const container = document.getElementById("quiz-container");
-        container.innerHTML = "";
-        quizData.forEach((q, i) => {
-          const card = document.createElement("div");
-          card.className = "quiz-card";
-          card.innerHTML = `
-        <div class="quiz-q">F${i + 1}: ${q.q}</div>
-        <div class="quiz-options">
-          ${q.opts.map((o, j) => `<button class="quiz-opt" onclick="answerQuiz(this, ${i}, ${j})">${o}</button>`).join("")}
-        </div>
-        <div class="quiz-feedback" id="qf-${i}"></div>
-      `;
-          container.appendChild(card);
+      let ans = {};
+      function bq() {
+        const c = document.getElementById("qc");
+        c.innerHTML = "";
+        Q.forEach((q, i) => {
+          const d = document.createElement("div");
+          d.className = "qcard";
+          d.innerHTML = `<div class="qt">📍 ${q.t}</div><div class="qq">F${i + 1}: ${q.q}</div><div class="qopts">${q.o.map((o, j) => `<button class="qo" onclick="qa(this,${i},${j})">${o}</button>`).join("")}</div><div class="qfb" id="qf${i}"></div>`;
+          c.appendChild(d);
         });
       }
-
-      let answers = {};
-      function answerQuiz(btn, qi, optIdx) {
-        if (answers[qi] !== undefined) return;
-        answers[qi] = optIdx;
-        const opts = btn.closest(".quiz-options").querySelectorAll(".quiz-opt");
+      function qa(btn, qi, oi) {
+        if (ans[qi] !== undefined) return;
+        ans[qi] = oi;
+        const opts = btn.closest(".qopts").querySelectorAll(".qo");
         opts.forEach((o) => (o.disabled = true));
-        const fb = document.getElementById("qf-" + qi);
-        if (optIdx === quizData[qi].correct) {
+        const fb = document.getElementById("qf" + qi);
+        if (oi === Q[qi].c) {
           btn.classList.add("correct");
-          fb.className = "quiz-feedback show qf-ok";
-          fb.textContent = quizData[qi].feedback;
+          fb.className = "qfb show qok";
+          fb.innerHTML = Q[qi].fb;
         } else {
           btn.classList.add("wrong");
-          opts[quizData[qi].correct].classList.add("correct");
-          fb.className = "quiz-feedback show qf-err";
-          fb.textContent = "✗ Falsch. Richtig: " + quizData[qi].feedback;
+          opts[Q[qi].c].classList.add("correct");
+          fb.className = "qfb show qerr";
+          fb.innerHTML = "✗ Falsch. " + Q[qi].fb;
         }
-        if (Object.keys(answers).length === quizData.length) {
-          const score = Object.keys(answers).filter((k) => answers[k] === quizData[k].correct).length;
-          const sd = document.getElementById("score-display");
+        if (Object.keys(ans).length === Q.length) {
+          const sc = Object.keys(ans).filter((k) => ans[k] === Q[k].c).length;
+          const sd = document.getElementById("sd");
           sd.style.display = "block";
-          sd.textContent = `Ergebnis: ${score} / ${quizData.length} richtig (${Math.round((score / quizData.length) * 100)}%)`;
-          sd.style.color = score >= quizData.length * 0.7 ? "var(--success)" : "var(--accent)";
+          const pct = Math.round((sc / Q.length) * 100);
+          sd.textContent = `Ergebnis: ${sc} / ${Q.length} richtig (${pct}%)`;
+          sd.style.color = pct >= 70 ? "var(--success)" : pct >= 50 ? "var(--accent2)" : "var(--accent)";
         }
-      }
-
-      function switchPage(id) {
-        document.querySelectorAll(".page").forEach((p) => p.classList.remove("active"));
-        document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
-        document.getElementById(id).classList.add("active");
-        event.target.classList.add("active");
-        window.scrollTo(0, 0);
-        if (id === "quiz" && !document.getElementById("quiz-container").children.length) {
-          buildQuiz();
-        }
-      }
-
-      function toggleAccordion(head) {
-        const item = head.parentElement;
-        item.classList.toggle("open");
       }
     </script>
   </body>
