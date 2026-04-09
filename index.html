@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyHub BMSW – Übersicht</title>
+  <style>
+    :root {
+      --bg-top: #dde7ec;
+      --text: #1f2430;
+      --card: rgba(255, 255, 255, 0.88);
+      --border: rgba(0, 0, 0, 0.08);
+      --accent: #b4262f;
+      --accent-hover: #8f1f26;
+      --subject: #20242f;
+      --muted: #606776;
+      --shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Inter, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg-top);
+      min-height: 100vh;
+    }
+
+    .topbar {
+      background: var(--bg-top);
+      padding: 24px clamp(18px, 4vw, 56px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(4px);
+    }
+
+    .brand {
+      font-size: clamp(1.2rem, 2.8vw, 2rem);
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      margin: 0;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 34vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 48px 20px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(18, 24, 34, 0.55), rgba(18, 24, 34, 0.35)),
+        url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      transform: scale(1.03);
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2));
+      z-index: -1;
+    }
+
+    .hero h1 {
+      margin: 0;
+      color: #f9fbff;
+      font-size: clamp(1.8rem, 5.2vw, 3.2rem);
+      font-weight: 800;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      color: #f2f6ff;
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      opacity: 0.95;
+    }
+
+    .wrap {
+      width: min(1200px, 92vw);
+      margin: -48px auto 50px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .intro-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 3vw, 28px);
+      margin-bottom: 22px;
+      backdrop-filter: blur(4px);
+    }
+
+    .intro-card h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.25rem, 3vw, 1.7rem);
+    }
+
+    .intro-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .subjects {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .subject-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .subject-card h3 {
+      margin: 0;
+      color: var(--subject);
+      font-size: 1.15rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      padding-bottom: 10px;
+    }
+
+    .link-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .link-list a {
+      display: block;
+      text-decoration: none;
+      color: #f8f9fd;
+      background: linear-gradient(180deg, var(--accent), #9f2028);
+      border-radius: 11px;
+      padding: 10px 12px;
+      font-weight: 600;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+
+    .link-list a:hover {
+      background: linear-gradient(180deg, var(--accent-hover), #7f1a21);
+      transform: translateY(-1px);
+    }
+
+    .hint {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.05);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1 class="brand">StudyHub – BMS Übersicht</h1>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p>Alle Zusammenfassungen und Lektionen an einem Ort.</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <section class="intro-card">
+      <h2>Fächerübersicht</h2>
+      <p>
+        Hier kannst du pro Fach Links zu deinen HTML-Zusammenfassungen, Lektionen oder externen Webseiten sammeln.
+        Die Einträge sind unten als einfache Link-Listen aufgebaut.
+      </p>
+    </section>
+
+    <section class="subjects">
+      <article class="subject-card">
+        <h3>Wirtschaft &amp; Recht</h3>
+        <ul class="link-list">
+          <li><a href="./summaries/wirtschaft-recht/kap_17&amp;20.html" target="_blank" rel="noopener">Recht - Kapitel 17 + 20</a></li>
+        </ul>
+      </article>
+
+      <article class="subject-card">
+        <h3>Englisch</h3>
+        <ul class="link-list">
+        </ul>
+      </article>
+
+      <article class="subject-card">
+        <h3>Deutsch</h3>
+        <ul class="link-list">
+        
+        </ul>
+      </article>
+
+      <article class="subject-card">
+        <h3>Mathe</h3>
+        <ul class="link-list">
+      
+        </ul>
+      </article>
+
+      <article class="subject-card">
+        <h3>Physik</h3>
+        <ul class="link-list">
+        </ul>
+      </article>
+    </section>
+
+    <p class="hint">
+      Tipp: Ersetze einfach jedes <code>href="#"</code> durch den echten Link,
+      z. B. <code>href="./mathe/algebra.html"</code> oder <code>href="https://..."</code>.
+    </p>
+  </main>
+</body>
+</html>
