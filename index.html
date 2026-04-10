@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StudyHub BMSW – Übersicht</title>
+  <title>StudyHub</title>
   <style>
     :root {
       --bg-top: #dde7ec;
@@ -126,6 +126,63 @@
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 
+    .school-block {
+      margin-top: 28px;
+    }
+
+    .school-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(3px);
+    }
+
+    .school-name {
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: 0.4px;
+      font-weight: 800;
+      color: var(--subject);
+      text-transform: uppercase;
+    }
+
+    .school-type {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .school-logo {
+      width: auto;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    .school-separator {
+      margin: 30px 0;
+      border: 0;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(0, 0, 0, 0.24),
+        transparent
+      );
+    }
+
+    .placeholder-note {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
     .subject-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -187,13 +244,10 @@
 </head>
 <body>
   <header class="topbar">
-    <h1 class="brand">StudyHub – BMS Übersicht</h1>
+    <h1 class="brand">StudyHub</h1>
   </header>
 
   <section class="hero">
-    <div>
-      <p>Alle Zusammenfassungen und Lektionen an einem Ort.</p>
-    </div>
   </section>
 
   <main class="wrap">
@@ -205,39 +259,69 @@
       </p>
     </section>
 
-    <section class="subjects">
-      <article class="subject-card">
-        <h3>Wirtschaft &amp; Recht</h3>
-        <ul class="link-list">
-          <li><a href="./summaries/wirtschaft-recht/kap_17&amp;20.html" target="_blank" rel="noopener">Recht - Kapitel 17 + 20</a></li>
-        </ul>
-      </article>
+    <section class="school-block">
+      <div class="school-header">
+        <div>
+          <p class="school-name">BMSW</p>
+          <p class="school-type">Berufsmaturitätsschule</p>
+        </div>
+        <img class="school-logo" src="./logo-bmsw.png" alt="BMSW Logo" />
+      </div>
 
-      <article class="subject-card">
-        <h3>Englisch</h3>
-        <ul class="link-list">
-        </ul>
-      </article>
+      <section class="subjects">
+        <article class="subject-card">
+          <h3>Wirtschaft &amp; Recht</h3>
+          <ul class="link-list">
+            <li><a href="./summaries/wirtschaft-recht/kap_17&amp;20.html" target="_blank" rel="noopener">Recht - Kapitel 17 + 20</a></li>
+          </ul>
+        </article>
 
-      <article class="subject-card">
-        <h3>Deutsch</h3>
-        <ul class="link-list">
+        <article class="subject-card">
+          <h3>Englisch</h3>
+          <ul class="link-list">
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <h3>Deutsch</h3>
+          <ul class="link-list">
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <h3>Mathe</h3>
+          <ul class="link-list">
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <h3>Physik</h3>
+          <ul class="link-list">
+          </ul>
+        </article>
+      </section>
+    </section>
+
+    <hr class="school-separator" />
+
+    <section class="school-block">
+      <div class="school-header">
+        <div>
+          <p class="school-name">BBW</p>
+          <p class="school-type">Berufsschule</p>
+        </div>
+        <img class="school-logo" src="./logo-bbw.svg" alt="BBW Logo" />
+      </div>
+
+      <section class="subjects">
+        <article class="subject-card">
+          <h3>Modul 165 - NoSQL</h3>
+          <ul class="link-list">
+            <li><a href="./summaries/bbw/m165/exam_2.html" target="_blank" rel="noopener">D1G, E1G, F1G, G1G</a></li>
+          </ul>
+        </article>
         
-        </ul>
-      </article>
-
-      <article class="subject-card">
-        <h3>Mathe</h3>
-        <ul class="link-list">
-      
-        </ul>
-      </article>
-
-      <article class="subject-card">
-        <h3>Physik</h3>
-        <ul class="link-list">
-        </ul>
-      </article>
+      </section>
     </section>
 
     <p class="hint">
