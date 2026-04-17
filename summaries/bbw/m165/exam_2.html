@@ -1,887 +1,1920 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redis Prüfungszusammenfassung – Modul 165</title>
-  <style>
-    :root{
-      --bg:#f6f7fb;
-      --surface:#ffffff;
-      --surface-2:#f9fafc;
-      --text:#1f2937;
-      --muted:#5f6b7a;
-      --line:#e5e7eb;
-      --accent:#c62828;
-      --accent-2:#8f1d1d;
-      --green:#0f766e;
-      --amber:#b45309;
-      --blue:#1d4ed8;
-      --shadow:0 12px 28px rgba(15,23,42,.08);
-      --radius:22px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg,#eef2f8 0%, #f8fafc 100%);
-      line-height:1.55;
-    }
-    .page{
-      width:min(1180px, calc(100% - 24px));
-      margin:0 auto;
-      padding:24px 0 48px;
-    }
-    .hero{
-      background:linear-gradient(135deg,#fff 0%, #fff7f7 45%, #fef2f2 100%);
-      border:1px solid #f1d5d5;
-      border-radius:32px;
-      padding:28px;
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .hero:after{
-      content:"";
-      position:absolute;
-      right:-70px;
-      top:-70px;
-      width:220px;height:220px;
-      background:radial-gradient(circle, rgba(198,40,40,.12), rgba(198,40,40,0));
-      pointer-events:none;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 12px;
-      border-radius:999px;
-      background:#fff;
-      border:1px solid #f3d0d0;
-      color:var(--accent-2);
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:.02em;
-      margin-bottom:14px;
-    }
-    h1,h2,h3{margin:0 0 12px}
-    h1{font-size:clamp(1.95rem, 4vw, 3.1rem); line-height:1.07; letter-spacing:-.03em}
-    h2{font-size:clamp(1.35rem, 2.7vw, 1.95rem); letter-spacing:-.02em}
-    h3{font-size:1.08rem}
-    p{margin:0 0 12px}
-    .lead{font-size:1.05rem; color:#374151; max-width:900px}
-    .top-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:12px 16px; border-radius:999px; text-decoration:none; font-weight:700;
-      border:1px solid transparent; cursor:pointer; font-size:.95rem;
-    }
-    .btn.primary{background:var(--accent); color:#fff}
-    .btn.secondary{background:#fff; color:var(--text); border-color:var(--line)}
-    .layout{
-      display:grid;
-      grid-template-columns:280px minmax(0,1fr);
-      gap:20px;
-      margin-top:22px;
-      align-items:start;
-    }
-    .sidebar{
-      position:sticky; top:16px;
-      background:rgba(255,255,255,.88);
-      backdrop-filter:blur(10px);
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:18px;
-      box-shadow:var(--shadow);
-    }
-    .sidebar h3{font-size:1rem; margin-bottom:8px}
-    .sidebar a{
-      display:block; text-decoration:none; color:#334155; padding:10px 12px; border-radius:14px;
-      border:1px solid transparent; margin-bottom:6px;
-    }
-    .sidebar a:hover{background:#f8fafc; border-color:#e5e7eb}
-    .small{font-size:.92rem; color:var(--muted)}
-    .content{display:grid; gap:18px}
-    .card{
-      background:var(--surface);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow:var(--shadow);
-    }
-    .grid-2{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px}
-    .grid-3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px}
-    .pill{
-      display:inline-block; padding:5px 10px; border-radius:999px; font-size:12px; font-weight:700; margin-bottom:10px;
-      background:#f3f4f6; color:#374151;
-    }
-    .pill.red{background:#fef2f2; color:#991b1b}
-    .pill.green{background:#ecfdf5; color:#065f46}
-    .pill.blue{background:#eff6ff; color:#1d4ed8}
-    .pill.amber{background:#fffbeb; color:#92400e}
-    ul{margin:10px 0 0 20px; padding:0}
-    li{margin:6px 0}
-    .checklist{list-style:none; margin:0; padding:0}
-    .checklist li{position:relative; padding-left:28px; margin:10px 0}
-    .checklist li:before{
-      content:"✓"; position:absolute; left:0; top:0; width:20px; height:20px;
-      border-radius:50%; background:#ecfdf5; color:#047857; display:grid; place-items:center; font-size:12px; font-weight:800;
-    }
-    .danger{border-left:5px solid #ef4444; padding:12px 14px; background:#fff7f7; border-radius:14px; margin-top:10px}
-    .tip{border-left:5px solid #2563eb; padding:12px 14px; background:#f8fbff; border-radius:14px; margin-top:10px}
-    .success{border-left:5px solid #0f766e; padding:12px 14px; background:#f5fffc; border-radius:14px; margin-top:10px}
-    code,kbd{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      background:#f3f4f6; padding:2px 6px; border-radius:8px; font-size:.92em;
-    }
-    pre{
-      margin:12px 0 0; padding:14px 16px; overflow:auto; background:#0f172a; color:#f8fafc;
-      border-radius:18px; font-size:.92rem; line-height:1.5;
-    }
-    table{
-      width:100%; border-collapse:separate; border-spacing:0; margin-top:14px;
-      border:1px solid var(--line); border-radius:18px; overflow:hidden;
-      font-size:.95rem;
-    }
-    th,td{padding:13px 14px; border-bottom:1px solid var(--line); vertical-align:top}
-    th{background:#fafafa; text-align:left; font-size:.92rem}
-    tr:last-child td{border-bottom:none}
-    .exam-box{
-      background:linear-gradient(180deg,#fff, #fafafa);
-      border:1px dashed #d1d5db; border-radius:18px; padding:16px;
-    }
-    details{
-      border:1px solid var(--line); border-radius:16px; padding:14px 16px; background:#fff;
-    }
-    details + details{margin-top:12px}
-    summary{cursor:pointer; font-weight:700}
-    .muted{color:var(--muted)}
-    .footer-note{font-size:.9rem; color:var(--muted)}
-    .toc-inline{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
-    .toc-inline a{
-      text-decoration:none; color:#334155; background:#fff; border:1px solid var(--line); padding:8px 12px; border-radius:999px; font-size:.92rem;
-    }
-    .print-only{display:none}
-    .section-title{display:flex; align-items:center; gap:10px; margin-bottom:12px}
-    .section-title .dot{width:12px; height:12px; border-radius:50%; background:var(--accent)}
-    .nowrap{white-space:nowrap}
-    @media (max-width: 980px){
-      .layout{grid-template-columns:1fr}
-      .sidebar{position:relative; top:auto}
-      .grid-2,.grid-3{grid-template-columns:1fr}
-      .hero{padding:22px}
-      .card{padding:18px}
-      th,td{padding:11px 10px}
-      .top-actions{gap:8px}
-    }
-    @media print{
-      :root{--shadow:none}
-      body{background:#fff}
-      .page{width:100%; padding:0}
-      .layout{display:block}
-      .sidebar,.top-actions{display:none !important}
-      .card,.hero{box-shadow:none; break-inside:avoid; page-break-inside:avoid}
-      .hero{margin:0 0 14px; border-radius:0; border:none; border-bottom:2px solid #ddd; padding:0 0 14px}
-      .content{gap:12px}
-      .card{border:1px solid #ddd; margin-bottom:12px}
-      .print-only{display:block}
-      a{color:inherit; text-decoration:none}
-      details{border:1px solid #ddd}
-      details[open] summary{margin-bottom:10px}
-      .btn{display:none}
-      @page{size:A4; margin:14mm}
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <section class="hero">
-      <div class="badge">Modul 165 · Redis · Prüfungsfokus D1G / E1G / F1G / G1G</div>
-      <h1>Redis Lernzusammenfassung für die Prüfung</h1>
-      <p class="lead">Diese Zusammenfassung ist absichtlich auf <strong>Redis</strong> fokussiert. Sie deckt die vier genannten Kompetenzen vollständig ab: <strong>Zugriffsberechtigungen</strong>, <strong>Backup</strong>, <strong>Skalierung &amp; Replikation</strong> sowie <strong>Zugriff mit Queries/Projections</strong>. Dazu kommen Prüfungsfallen, Merksätze und anspruchsvolle Übungen mit Lösungen.</p>
-      <div class="toc-inline">
-        <a href="#ueberblick">Überblick</a>
-        <a href="#d1g">D1G</a>
-        <a href="#e1g">E1G</a>
-        <a href="#f1g">F1G</a>
-        <a href="#g1g">G1G</a>
-        <a href="#uebungen">Übungen</a>
-        <a href="#loesungen">Lösungen</a>
-      </div>
-      <div class="top-actions">
-        <button class="btn primary" onclick="window.print()">Als PDF speichern / drucken</button>
-        <a class="btn secondary" href="#pruefungscheck">Zur Prüfungscheckliste</a>
-      </div>
-      <p class="small print-only">PDF-Hinweis: Diese Seite ist für den Druck auf A4 optimiert. In Chrome oder Edge: Drucken → Als PDF speichern.</p>
-    </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redis Prüfungszusammenfassung – Modul 165</title>
+    <style>
+      :root {
+        --bg: #f6f7fb;
+        --surface: #ffffff;
+        --surface-2: #f9fafc;
+        --text: #1f2937;
+        --muted: #5f6b7a;
+        --line: #e5e7eb;
+        --accent: #c62828;
+        --accent-2: #8f1d1d;
+        --green: #0f766e;
+        --amber: #b45309;
+        --blue: #1d4ed8;
+        --shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+        --radius: 22px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, Arial, Helvetica, sans-serif;
+        color: var(--text);
+        background: linear-gradient(180deg, #eef2f8 0%, #f8fafc 100%);
+        line-height: 1.55;
+      }
+      .page {
+        width: min(1180px, calc(100% - 24px));
+        margin: 0 auto;
+        padding: 24px 0 48px;
+      }
+      .hero {
+        background: linear-gradient(135deg, #fff 0%, #fff7f7 45%, #fef2f2 100%);
+        border: 1px solid #f1d5d5;
+        border-radius: 32px;
+        padding: 28px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero:after {
+        content: "";
+        position: absolute;
+        right: -70px;
+        top: -70px;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(
+          circle,
+          rgba(198, 40, 40, 0.12),
+          rgba(198, 40, 40, 0)
+        );
+        pointer-events: none;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid #f3d0d0;
+        color: var(--accent-2);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        margin-bottom: 14px;
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0 0 12px;
+      }
+      h1 {
+        font-size: clamp(1.95rem, 4vw, 3.1rem);
+        line-height: 1.07;
+        letter-spacing: -0.03em;
+      }
+      h2 {
+        font-size: clamp(1.35rem, 2.7vw, 1.95rem);
+        letter-spacing: -0.02em;
+      }
+      h3 {
+        font-size: 1.08rem;
+      }
+      p {
+        margin: 0 0 12px;
+      }
+      .lead {
+        font-size: 1.05rem;
+        color: #374151;
+        max-width: 900px;
+      }
+      .top-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 16px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        border: 1px solid transparent;
+        cursor: pointer;
+        font-size: 0.95rem;
+      }
+      .btn.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn.secondary {
+        background: #fff;
+        color: var(--text);
+        border-color: var(--line);
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 20px;
+        margin-top: 22px;
+        align-items: start;
+      }
+      .sidebar {
+        position: sticky;
+        top: 16px;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+      .sidebar h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+      .sidebar a {
+        display: block;
+        text-decoration: none;
+        color: #334155;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid transparent;
+        margin-bottom: 6px;
+      }
+      .sidebar a:hover {
+        background: #f8fafc;
+        border-color: #e5e7eb;
+      }
+      .small {
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+      .content {
+        display: grid;
+        gap: 18px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 22px;
+        box-shadow: var(--shadow);
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .pill {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        background: #f3f4f6;
+        color: #374151;
+      }
+      .pill.red {
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      .pill.green {
+        background: #ecfdf5;
+        color: #065f46;
+      }
+      .pill.blue {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+      .pill.amber {
+        background: #fffbeb;
+        color: #92400e;
+      }
+      ul {
+        margin: 10px 0 0 20px;
+        padding: 0;
+      }
+      li {
+        margin: 6px 0;
+      }
+      .checklist {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .checklist li {
+        position: relative;
+        padding-left: 28px;
+        margin: 10px 0;
+      }
+      .checklist li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #ecfdf5;
+        color: #047857;
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .danger {
+        border-left: 5px solid #ef4444;
+        padding: 12px 14px;
+        background: #fff7f7;
+        border-radius: 14px;
+        margin-top: 10px;
+      }
+      .tip {
+        border-left: 5px solid #2563eb;
+        padding: 12px 14px;
+        background: #f8fbff;
+        border-radius: 14px;
+        margin-top: 10px;
+      }
+      .success {
+        border-left: 5px solid #0f766e;
+        padding: 12px 14px;
+        background: #f5fffc;
+        border-radius: 14px;
+        margin-top: 10px;
+      }
+      code,
+      kbd {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        background: #f3f4f6;
+        padding: 2px 6px;
+        border-radius: 8px;
+        font-size: 0.92em;
+      }
+      pre {
+        margin: 12px 0 0;
+        padding: 14px 16px;
+        overflow: auto;
+        background: #0f172a;
+        color: #f8fafc;
+        border-radius: 18px;
+        font-size: 0.92rem;
+        line-height: 1.5;
+      }
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 14px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        font-size: 0.95rem;
+      }
+      th,
+      td {
+        padding: 13px 14px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      th {
+        background: #fafafa;
+        text-align: left;
+        font-size: 0.92rem;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      .exam-box {
+        background: linear-gradient(180deg, #fff, #fafafa);
+        border: 1px dashed #d1d5db;
+        border-radius: 18px;
+        padding: 16px;
+      }
+      .window-shell {
+        border: 1px solid #cbd5e1;
+        border-radius: 22px;
+        overflow: hidden;
+        background: #0f172a;
+        box-shadow: 0 16px 36px rgba(15, 23, 42, 0.14);
+      }
+      .window-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        background: linear-gradient(180deg, #1e293b, #0f172a);
+        color: #e2e8f0;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      }
+      .window-controls {
+        display: flex;
+        gap: 8px;
+      }
+      .window-controls span {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+      .window-controls .red {
+        background: #ef4444;
+      }
+      .window-controls .amber {
+        background: #f59e0b;
+      }
+      .window-controls .green {
+        background: #22c55e;
+      }
+      .window-title {
+        font-size: 0.92rem;
+        font-weight: 700;
+      }
+      .window-body {
+        background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+        padding: 18px;
+      }
+      .pdf-preview-frame {
+        width: 100%;
+        height: 82vh;
+        min-height: 760px;
+        border: 0;
+        display: block;
+        background: #fff;
+      }
+      .pdf-preview-fallback {
+        padding: 18px;
+        border: 1px solid #dbe3ee;
+        border-radius: 16px;
+        background: #fff;
+      }
+      .question-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .question-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #dbe3ee;
+        border-radius: 16px;
+        padding: 14px;
+      }
+      .question-card h3 {
+        margin-bottom: 8px;
+        font-size: 1rem;
+      }
+      .question-card p {
+        margin-bottom: 8px;
+      }
+      details {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 14px 16px;
+        background: #fff;
+      }
+      details + details {
+        margin-top: 12px;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 700;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .footer-note {
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .toc-inline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .toc-inline a {
+        text-decoration: none;
+        color: #334155;
+        background: #fff;
+        border: 1px solid var(--line);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 0.92rem;
+      }
+      .print-only {
+        display: none;
+      }
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .section-title .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .nowrap {
+        white-space: nowrap;
+      }
+      @media (max-width: 980px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: relative;
+          top: auto;
+        }
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+        .pdf-preview-frame {
+          height: 78vh;
+          min-height: 520px;
+        }
+        .hero {
+          padding: 22px;
+        }
+        .card {
+          padding: 18px;
+        }
+        th,
+        td {
+          padding: 11px 10px;
+        }
+        .top-actions {
+          gap: 8px;
+        }
+      }
+      @media print {
+        :root {
+          --shadow: none;
+        }
+        body {
+          background: #fff;
+        }
+        .page {
+          width: 100%;
+          padding: 0;
+        }
+        .layout {
+          display: block;
+        }
+        .sidebar,
+        .top-actions {
+          display: none !important;
+        }
+        .card,
+        .hero {
+          box-shadow: none;
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        .hero {
+          margin: 0 0 14px;
+          border-radius: 0;
+          border: none;
+          border-bottom: 2px solid #ddd;
+          padding: 0 0 14px;
+        }
+        .content {
+          gap: 12px;
+        }
+        .card {
+          border: 1px solid #ddd;
+          margin-bottom: 12px;
+        }
+        .print-only {
+          display: block;
+        }
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+        details {
+          border: 1px solid #ddd;
+        }
+        details[open] summary {
+          margin-bottom: 10px;
+        }
+        .btn {
+          display: none;
+        }
+        @page {
+          size: A4;
+          margin: 14mm;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <section class="hero">
+        <div class="badge">
+          Modul 165 · Redis · Prüfungsfokus D1G / E1G / F1G / G1G
+        </div>
+        <h1>Redis Lernzusammenfassung für die Prüfung</h1>
+        <p class="lead">
+          Diese Zusammenfassung ist absichtlich auf
+          <strong>Redis</strong> fokussiert. Sie deckt die vier genannten
+          Kompetenzen vollständig ab: <strong>Zugriffsberechtigungen</strong>,
+          <strong>Backup</strong>,
+          <strong>Skalierung &amp; Replikation</strong> sowie
+          <strong>Zugriff mit Queries/Projections</strong>. Dazu kommen
+          Prüfungsfallen, Merksätze und anspruchsvolle Übungen mit Lösungen.
+        </p>
+        <div class="toc-inline">
+          <a href="#ueberblick">Überblick</a>
+          <a href="#d1g">D1G</a>
+          <a href="#e1g">E1G</a>
+          <a href="#f1g">F1G</a>
+          <a href="#g1g">G1G</a>
+          <a href="#uebungen">Übungen</a>
+          <a href="#loesungen">Lösungen</a>
+        </div>
+        <div class="top-actions">
+          <button class="btn primary" onclick="window.print()">
+            Als PDF speichern / drucken
+          </button>
+          <a class="btn secondary" href="#pruefungscheck"
+            >Zur Prüfungscheckliste</a
+          >
+        </div>
+        <p class="small print-only">
+          PDF-Hinweis: Diese Seite ist für den Druck auf A4 optimiert. In Chrome
+          oder Edge: Drucken → Als PDF speichern.
+        </p>
+      </section>
 
-    <div class="layout">
-      <aside class="sidebar">
-        <h3>Schnellnavigation</h3>
-        <a href="#ueberblick">1. Redis-Grundlagen</a>
-        <a href="#d1g">2. D1G Berechtigungen</a>
-        <a href="#e1g">3. E1G Backup</a>
-        <a href="#f1g">4. F1G Skalierung &amp; Replikation</a>
-        <a href="#g1g">5. G1G Zugriff / Queries / Projections</a>
-        <a href="#pruefungsfallen">6. Häufige Prüfungsfallen</a>
-        <a href="#pruefungscheck">7. Prüfungscheckliste</a>
-        <a href="#uebungen">8. Übungen</a>
-        <a href="#loesungen">9. Lösungen</a>
-        <a href="#quellen">10. Quellen</a>
-        <p class="small" style="margin-top:12px">Tipp: Lerne nicht nur Begriffe auswendig, sondern immer auch <strong>warum</strong>, <strong>wann</strong> und <strong>welcher Vorteil/Nachteil</strong>.</p>
-      </aside>
+      <div class="layout">
+        <aside class="sidebar">
+          <h3>Schnellnavigation</h3>
+          <a href="#ueberblick">1. Redis-Grundlagen</a>
+          <a href="#d1g">2. D1G Berechtigungen</a>
+          <a href="#e1g">3. E1G Backup</a>
+          <a href="#f1g">4. F1G Skalierung &amp; Replikation</a>
+          <a href="#g1g">5. G1G Zugriff / Queries / Projections</a>
+          <a href="#pruefungsfallen">6. Häufige Prüfungsfallen</a>
+          <a href="#pruefungscheck">7. Prüfungscheckliste</a>
+          <a href="#uebungen">8. Übungen</a>
+          <a href="#loesungen">9. Lösungen</a>
+          <a href="#fragenfenster">10. PDF-Vorschau</a>
+          <p class="small" style="margin-top: 12px">
+            Tipp: Lerne nicht nur Begriffe auswendig, sondern immer auch
+            <strong>warum</strong>, <strong>wann</strong> und
+            <strong>welcher Vorteil/Nachteil</strong>.
+          </p>
+        </aside>
 
-      <main class="content">
-        <section id="ueberblick" class="card">
-          <div class="section-title"><span class="dot"></span><h2>1. Redis in 60 Sekunden</h2></div>
-          <div class="grid-3">
-            <div class="exam-box">
-              <span class="pill red">Grundidee</span>
-              <h3>Was ist Redis?</h3>
-              <p>Redis ist eine <strong>NoSQL-Datenbank</strong>, genauer ein <strong>Key-Value-Store</strong>. Daten werden sehr schnell verarbeitet, weil Redis stark auf <strong>Arbeitsspeicher</strong> ausgerichtet ist.</p>
+        <main class="content">
+          <section id="ueberblick" class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>1. Redis in 60 Sekunden</h2>
             </div>
-            <div class="exam-box">
-              <span class="pill blue">Für die Prüfung</span>
-              <h3>Typische Stärken</h3>
-              <p>Sehr schnell, einfaches Datenmodell, gut für Caching, Sessions, Leaderboards, Counters, Echtzeitdaten und schnelle Reads/Writes.</p>
+            <div class="grid-3">
+              <div class="exam-box">
+                <span class="pill red">Grundidee</span>
+                <h3>Was ist Redis?</h3>
+                <p>
+                  Redis ist eine <strong>NoSQL-Datenbank</strong>, genauer ein
+                  <strong>Key-Value-Store</strong>. Daten werden sehr schnell
+                  verarbeitet, weil Redis stark auf
+                  <strong>Arbeitsspeicher</strong> ausgerichtet ist.
+                </p>
+              </div>
+              <div class="exam-box">
+                <span class="pill blue">Für die Prüfung</span>
+                <h3>Typische Stärken</h3>
+                <p>
+                  Sehr schnell, einfaches Datenmodell, gut für Caching,
+                  Sessions, Leaderboards, Counters, Echtzeitdaten und schnelle
+                  Reads/Writes.
+                </p>
+              </div>
+              <div class="exam-box">
+                <span class="pill amber">Wichtig</span>
+                <h3>Grenze</h3>
+                <p>
+                  Redis ist nicht automatisch ein perfekter Ersatz für
+                  relationale SQL-Datenbanken. Man muss Durability, Backup,
+                  Replikation und Berechtigungen bewusst konfigurieren.
+                </p>
+              </div>
             </div>
-            <div class="exam-box">
-              <span class="pill amber">Wichtig</span>
-              <h3>Grenze</h3>
-              <p>Redis ist nicht automatisch ein perfekter Ersatz für relationale SQL-Datenbanken. Man muss Durability, Backup, Replikation und Berechtigungen bewusst konfigurieren.</p>
+            <div class="tip">
+              <strong>Merksatz:</strong> Redis ist schnell, weil es einfach und
+              speicherbasiert arbeitet. Genau deshalb muss man sich besonders
+              mit <strong>Persistenz</strong>, <strong>Backup</strong>,
+              <strong>Replikation</strong> und
+              <strong>Sicherheit</strong> beschäftigen.
             </div>
-          </div>
-          <div class="tip">
-            <strong>Merksatz:</strong> Redis ist schnell, weil es einfach und speicherbasiert arbeitet. Genau deshalb muss man sich besonders mit <strong>Persistenz</strong>, <strong>Backup</strong>, <strong>Replikation</strong> und <strong>Sicherheit</strong> beschäftigen.
-          </div>
-        </section>
+          </section>
 
-        <section class="card">
-          <div class="section-title"><span class="dot"></span><h2>Begriffe, die du sicher können musst</h2></div>
-          <table>
-            <thead>
-              <tr><th>Begriff</th><th>Einfache Erklärung</th><th>Redis-Bezug</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Key</td><td>Eindeutiger Schlüssel, unter dem Daten gespeichert werden.</td><td>z. B. <code>user:1001</code></td></tr>
-              <tr><td>Value</td><td>Der Wert zum Key; kann String, Hash, Set, List, JSON usw. sein.</td><td>z. B. Name, Session-Daten, Warenkorb</td></tr>
-              <tr><td>ACL</td><td>Access Control List: Regeln, die bestimmen, was ein User darf.</td><td>z. B. nur lesen, nur bestimmte Keys, gewisse Befehle verboten</td></tr>
-              <tr><td>RDB</td><td>Snapshot-Datei von Redis zu einem bestimmten Zeitpunkt.</td><td>Schnell für Backups und Neustarts</td></tr>
-              <tr><td>AOF</td><td>Append Only File: schreibt Operationen fortlaufend mit.</td><td>Mehr Durability, aber mehr Overhead</td></tr>
-              <tr><td>Replica</td><td>Kopie eines Primary-Servers.</td><td>Für Ausfallsicherheit und mehr Leselast</td></tr>
-              <tr><td>Sentinel</td><td>Überwacht Redis und organisiert Failover.</td><td>Wichtig bei aktiv-passiv / high availability</td></tr>
-              <tr><td>Cluster / Sharding</td><td>Verteilt Daten auf mehrere Knoten.</td><td>Horizontale Skalierung</td></tr>
-              <tr><td>Projection</td><td>Nur die benötigten Felder zurückgeben statt alles.</td><td>z. B. <code>HMGET</code> statt <code>HGETALL</code></td></tr>
-            </tbody>
-          </table>
-        </section>
-
-                <section id="d1g" class="card">
-          <div class="section-title"><span class="dot"></span><h2>2. D1G – Zugriffsberechtigungen in Redis</h2></div>
-          <span class="pill red">D1G</span>
-          <p>Bei Zugriffsberechtigungen geht es darum, <strong>wer</strong> auf Redis zugreifen darf und <strong>was genau</strong> diese Person oder dieses System tun darf. In Redis bedeutet das vor allem: <strong>Benutzer</strong>, <strong>ACL-Regeln</strong>, <strong>Befehlsrechte</strong>, <strong>Key-Muster</strong> und das Prinzip der <strong>minimalen Rechte</strong>.</p>
-
-          <div class="grid-2">
-            <div>
-              <h3>Was du erklären können musst</h3>
-              <ul class="checklist">
-                <li><strong>Benutzer:</strong> einzelne Konten für Anwendungen oder Personen</li>
-                <li><strong>Rollen:</strong> logische Bündelung von Rechten, z. B. Leser, App, Admin</li>
-                <li><strong>Zugriffsrechte:</strong> welche Befehle, Keys oder Channels erlaubt sind</li>
-                <li><strong>Least Privilege:</strong> immer nur so viele Rechte wie nötig</li>
-              </ul>
+          <section class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>Begriffe, die du sicher können musst</h2>
             </div>
-            <div>
-              <h3>Warum ist das wichtig?</h3>
-              <ul class="checklist">
-                <li>Schutz vor versehentlichem Löschen von Daten</li>
-                <li>Trennung von Admin, App und Analyse-Zugriff</li>
-                <li>Mehr Sicherheit bei mehreren Anwendungen</li>
-                <li>Fehler in einer App betreffen nicht automatisch alle Daten</li>
-              </ul>
-            </div>
-          </div>
-
-          <table>
-            <thead>
-              <tr><th>Element</th><th>In Redis</th><th>Beispiel</th><th>Nutzen</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Benutzer</td><td>Mit ACL definierte Accounts</td><td><code>readonly</code>, <code>analyst</code>, <code>appuser</code></td><td>Getrennter Zugang pro System</td></tr>
-              <tr><td>Rolle</td><td>Fachlich gedachte Rechte-Sammlung</td><td>Leser, Read-Write, Admin</td><td>Einfachere Erklärung in der Prüfung</td></tr>
-              <tr><td>Befehlsrechte</td><td>Erlaubte/verbotene Kommandos</td><td><code>+GET</code>, <code>+HGET</code>, kein <code>SET</code>, kein <code>DEL</code></td><td>Schutz vor gefährlichen Aktionen</td></tr>
-              <tr><td>Key-Muster</td><td>Zugriff nur auf gewisse Schlüsselbereiche</td><td><code>~orders:*</code>, <code>~logs:*</code></td><td>Isolation von Datenbereichen</td></tr>
-              <tr><td>Benutzerstatus</td><td>User aktiv oder deaktiviert</td><td><code>on</code> oder <code>off</code></td><td>Kontrolle, ob Login erlaubt ist</td></tr>
-            </tbody>
-          </table>
-
-          <div class="success">
-            <strong>Prüfungslogik:</strong> <strong>Benutzer</strong> sagt, <em>wer</em> zugreift. <strong>Rolle</strong> beschreibt fachlich, <em>welche Art von Benutzer</em> das ist. <strong>Zugriffsrechte</strong> sagen konkret, <em>welche Befehle und Keys</em> erlaubt sind.
-          </div>
-
-          <div class="danger">
-            <strong>Prüfungsfalle:</strong> Nicht nur "Passwort" schreiben. Erwartet wird meist: <strong>User + Rolle + konkrete Rechte + Key-Bereich</strong>.
-          </div>
-
-          <h3>ACL-Bestandteile, die du sicher lesen können musst</h3>
-          <table>
-            <thead>
-              <tr><th>Bestandteil</th><th>Bedeutung</th><th>Beispiel</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>ACL SETUSER</code></td><td>User erstellen oder ändern</td><td><code>ACL SETUSER readonly ...</code></td></tr>
-              <tr><td><code>readonly</code></td><td>Name des Benutzers</td><td>frei wählbar</td></tr>
-              <tr><td><code>on</code></td><td>Benutzer ist aktiviert</td><td>Login erlaubt</td></tr>
-              <tr><td><code>&gt;pass123</code></td><td>Passwort setzen</td><td>hier: <code>pass123</code></td></tr>
-              <tr><td><code>~*</code></td><td>Zugriff auf alle Keys</td><td>oder gezielt <code>~orders:*</code></td></tr>
-              <tr><td><code>+GET</code></td><td>Befehl GET erlauben</td><td>nur lesen von String-Keys</td></tr>
-              <tr><td><code>+HGET</code></td><td>Befehl HGET erlauben</td><td>lesen einzelner Hash-Felder</td></tr>
-              <tr><td><code>+DEL</code></td><td>Befehl DEL erlauben</td><td>löschen von Keys</td></tr>
-            </tbody>
-          </table>
-
-          <h3>Exakte Prüfungsfrage zu D1G</h3>
-          <div class="exam-box">
-            <span class="pill green">Originalstil</span>
-            <p><strong>Ein Entwickler erstellt in Redis den Benutzer readonly mit folgendem Befehl:</strong></p>
-<pre>ACL SETUSER readonly on >pass123 ~* +GET</pre>
-            <p><strong>a)</strong> Erklären Sie, was die einzelnen Bestandteile des Befehls bedeuten. <strong>(1P)</strong></p>
-            <p><strong>b)</strong> Welche Aktionen darf dieser Benutzer ausführen und welche nicht? <strong>(1P)</strong></p>
-            <p><strong>c)</strong> Ordnen Sie die Begriffe korrekt zu / verbinde es: <strong>(1P)</strong></p>
             <table>
-              <thead><tr><th>Begriff</th><th>Passende Antwort</th></tr></thead>
+              <thead>
+                <tr>
+                  <th>Begriff</th>
+                  <th>Einfache Erklärung</th>
+                  <th>Redis-Bezug</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td>Benutzer</td><td><code>readonly</code></td></tr>
-                <tr><td>Rolle</td><td>Leser (<code>readonly</code>)</td></tr>
-                <tr><td>Zugriffsrechte</td><td>nur <code>GET</code></td></tr>
+                <tr>
+                  <td>Key</td>
+                  <td>
+                    Eindeutiger Schlüssel, unter dem Daten gespeichert werden.
+                  </td>
+                  <td>z. B. <code>user:1001</code></td>
+                </tr>
+                <tr>
+                  <td>Value</td>
+                  <td>
+                    Der Wert zum Key; kann String, Hash, Set, List, JSON usw.
+                    sein.
+                  </td>
+                  <td>z. B. Name, Session-Daten, Warenkorb</td>
+                </tr>
+                <tr>
+                  <td>ACL</td>
+                  <td>
+                    Access Control List: Regeln, die bestimmen, was ein User
+                    darf.
+                  </td>
+                  <td>
+                    z. B. nur lesen, nur bestimmte Keys, gewisse Befehle
+                    verboten
+                  </td>
+                </tr>
+                <tr>
+                  <td>RDB</td>
+                  <td>
+                    Snapshot-Datei von Redis zu einem bestimmten Zeitpunkt.
+                  </td>
+                  <td>Schnell für Backups und Neustarts</td>
+                </tr>
+                <tr>
+                  <td>AOF</td>
+                  <td>
+                    Append Only File: schreibt Operationen fortlaufend mit.
+                  </td>
+                  <td>Mehr Durability, aber mehr Overhead</td>
+                </tr>
+                <tr>
+                  <td>Replica</td>
+                  <td>Kopie eines Primary-Servers.</td>
+                  <td>Für Ausfallsicherheit und mehr Leselast</td>
+                </tr>
+                <tr>
+                  <td>Sentinel</td>
+                  <td>Überwacht Redis und organisiert Failover.</td>
+                  <td>Wichtig bei aktiv-passiv / high availability</td>
+                </tr>
+                <tr>
+                  <td>Cluster / Sharding</td>
+                  <td>Verteilt Daten auf mehrere Knoten.</td>
+                  <td>Horizontale Skalierung</td>
+                </tr>
+                <tr>
+                  <td>Projection</td>
+                  <td>Nur die benötigten Felder zurückgeben statt alles.</td>
+                  <td>z. B. <code>HMGET</code> statt <code>HGETALL</code></td>
+                </tr>
               </tbody>
             </table>
-          </div>
+          </section>
 
-          <details open>
-            <summary>Musterlösung zur exakten D1G-Prüfungsfrage</summary>
-            <div class="solution-box">
-              <p><strong>a) Bestandteile</strong></p>
-              <ul>
-                <li><code>ACL SETUSER</code> -> Benutzer erstellen oder ändern</li>
-                <li><code>readonly</code> -> Benutzername</li>
-                <li><code>on</code> -> Benutzer aktiv</li>
-                <li><code>&gt;pass123</code> -> Passwort</li>
-                <li><code>~*</code> -> Zugriff auf alle Keys</li>
-                <li><code>+GET</code> -> nur GET ist erlaubt</li>
-              </ul>
-              <p><strong>b) Erlaubt / nicht erlaubt</strong></p>
-              <ul>
-                <li>Erlaubt: Daten lesen mit <code>GET</code></li>
-                <li>Nicht erlaubt: schreiben mit <code>SET</code>, löschen mit <code>DEL</code>, andere nicht freigegebene Befehle</li>
-              </ul>
-              <p><strong>c) Zuordnung</strong></p>
-              <ul>
-                <li>Benutzer -> <code>readonly</code></li>
-                <li>Rolle -> Leser (<code>readonly</code>)</li>
-                <li>Zugriffsrechte -> nur <code>GET</code></li>
-              </ul>
+          <section id="d1g" class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>2. D1G – Zugriffsberechtigungen in Redis</h2>
             </div>
-          </details>
+            <span class="pill red">D1G</span>
+            <p>
+              Bei Zugriffsberechtigungen geht es darum, <strong>wer</strong> auf
+              Redis zugreifen darf und <strong>was genau</strong> diese Person
+              oder dieses System tun darf. In Redis bedeutet das vor allem:
+              <strong>Benutzer</strong>, <strong>ACL-Regeln</strong>,
+              <strong>Befehlsrechte</strong>, <strong>Key-Muster</strong> und
+              das Prinzip der <strong>minimalen Rechte</strong>.
+            </p>
 
-          <h3>Zusätzliche Prüfungslogik für ähnliche Aufgaben</h3>
-          <ul>
-            <li>Wenn nur <code>+GET</code> erlaubt ist, dann ist es ein Lese-User für String-Werte.</li>
-            <li>Wenn zusätzlich <code>+HGET</code> erlaubt ist, kann der User auch Hash-Felder lesen.</li>
-            <li>Wenn statt <code>~*</code> ein Muster wie <code>~orders:*</code> steht, darf der User nur auf diesen Key-Bereich zugreifen.</li>
-            <li>Wenn <code>+DEL</code> ergänzt wird, darf er passende Keys auch löschen.</li>
-          </ul>
-        </section>
+            <div class="grid-2">
+              <div>
+                <h3>Was du erklären können musst</h3>
+                <ul class="checklist">
+                  <li>
+                    <strong>Benutzer:</strong> einzelne Konten für Anwendungen
+                    oder Personen
+                  </li>
+                  <li>
+                    <strong>Rollen:</strong> logische Bündelung von Rechten, z.
+                    B. Leser, App, Admin
+                  </li>
+                  <li>
+                    <strong>Zugriffsrechte:</strong> welche Befehle, Keys oder
+                    Channels erlaubt sind
+                  </li>
+                  <li>
+                    <strong>Least Privilege:</strong> immer nur so viele Rechte
+                    wie nötig
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3>Warum ist das wichtig?</h3>
+                <ul class="checklist">
+                  <li>Schutz vor versehentlichem Löschen von Daten</li>
+                  <li>Trennung von Admin, App und Analyse-Zugriff</li>
+                  <li>Mehr Sicherheit bei mehreren Anwendungen</li>
+                  <li>
+                    Fehler in einer App betreffen nicht automatisch alle Daten
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-        <section id="e1g" class="card">
-          <div class="section-title"><span class="dot"></span><h2>3. E1G – Backup-Konzepte in Redis</h2></div>
-          <span class="pill amber">E1G</span>
-          <p>Bei Redis muss man <strong>Persistenz</strong> und <strong>Backup</strong> unterscheiden:</p>
-          <ul>
-            <li><strong>Persistenz</strong> bedeutet: Daten werden so gespeichert, dass sie einen Neustart überleben.</li>
-            <li><strong>Backup</strong> bedeutet: Es gibt eine zusätzliche Sicherung, damit man Daten nach Fehlern, Löschen, Defekt oder Fehlkonfiguration wiederherstellen kann.</li>
-          </ul>
+            <table>
+              <thead>
+                <tr>
+                  <th>Element</th>
+                  <th>In Redis</th>
+                  <th>Beispiel</th>
+                  <th>Nutzen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Benutzer</td>
+                  <td>Mit ACL definierte Accounts</td>
+                  <td>
+                    <code>readonly</code>, <code>analyst</code>,
+                    <code>appuser</code>
+                  </td>
+                  <td>Getrennter Zugang pro System</td>
+                </tr>
+                <tr>
+                  <td>Rolle</td>
+                  <td>Fachlich gedachte Rechte-Sammlung</td>
+                  <td>Leser, Read-Write, Admin</td>
+                  <td>Einfachere Erklärung in der Prüfung</td>
+                </tr>
+                <tr>
+                  <td>Befehlsrechte</td>
+                  <td>Erlaubte/verbotene Kommandos</td>
+                  <td>
+                    <code>+GET</code>, <code>+HGET</code>, kein
+                    <code>SET</code>, kein <code>DEL</code>
+                  </td>
+                  <td>Schutz vor gefährlichen Aktionen</td>
+                </tr>
+                <tr>
+                  <td>Key-Muster</td>
+                  <td>Zugriff nur auf gewisse Schlüsselbereiche</td>
+                  <td><code>~orders:*</code>, <code>~logs:*</code></td>
+                  <td>Isolation von Datenbereichen</td>
+                </tr>
+                <tr>
+                  <td>Benutzerstatus</td>
+                  <td>User aktiv oder deaktiviert</td>
+                  <td><code>on</code> oder <code>off</code></td>
+                  <td>Kontrolle, ob Login erlaubt ist</td>
+                </tr>
+              </tbody>
+            </table>
 
-          <table>
-            <thead>
-              <tr><th>Konzept</th><th>Erklärung</th><th>Redis-Beispiel</th><th>Wofür gut?</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>On-demand Snapshot</td><td>Punktuelle Sicherung zu einem bestimmten Zeitpunkt</td><td><code>BGSAVE</code> erzeugt eine RDB-Snapshot-Datei</td><td>Schnelles manuelles Backup vor Änderungen</td></tr>
-              <tr><td>Kontinuierliche Sicherung</td><td>Änderungen laufend protokollieren</td><td>AOF schreibt Operationen fortlaufend mit</td><td>Weniger Datenverlust zwischen Snapshots</td></tr>
-              <tr><td>Cloud Backup</td><td>Gemanagerter Backup-Prozess beim Anbieter</td><td>automatische Backups, Aufbewahrungsregeln, Restore-Funktionen</td><td>Einfacher Betrieb, Offsite-Schutz</td></tr>
-              <tr><td>Legacy Backup</td><td>Ältere oder manuelle Sicherungsmethode</td><td>kopieren von <code>dump.rdb</code> oder AOF-Dateien auf andere Systeme</td><td>Einfach, aber oft weniger komfortabel</td></tr>
-              <tr><td>Hybrid</td><td>Kombination mehrerer Verfahren</td><td>RDB + AOF zusammen</td><td>Balance zwischen Performance und Sicherheit</td></tr>
-            </tbody>
-          </table>
+            <div class="success">
+              <strong>Prüfungslogik:</strong> <strong>Benutzer</strong> sagt,
+              <em>wer</em> zugreift. <strong>Rolle</strong> beschreibt fachlich,
+              <em>welche Art von Benutzer</em> das ist.
+              <strong>Zugriffsrechte</strong> sagen konkret,
+              <em>welche Befehle und Keys</em> erlaubt sind.
+            </div>
 
-          <div class="grid-2">
+            <div class="danger">
+              <strong>Prüfungsfalle:</strong> Nicht nur "Passwort" schreiben.
+              Erwartet wird meist:
+              <strong>User + Rolle + konkrete Rechte + Key-Bereich</strong>.
+            </div>
+
+            <h3>ACL-Bestandteile, die du sicher lesen können musst</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Bestandteil</th>
+                  <th>Bedeutung</th>
+                  <th>Beispiel</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>ACL SETUSER</code></td>
+                  <td>User erstellen oder ändern</td>
+                  <td><code>ACL SETUSER readonly ...</code></td>
+                </tr>
+                <tr>
+                  <td><code>readonly</code></td>
+                  <td>Name des Benutzers</td>
+                  <td>frei wählbar</td>
+                </tr>
+                <tr>
+                  <td><code>on</code></td>
+                  <td>Benutzer ist aktiviert</td>
+                  <td>Login erlaubt</td>
+                </tr>
+                <tr>
+                  <td><code>&gt;pass123</code></td>
+                  <td>Passwort setzen</td>
+                  <td>hier: <code>pass123</code></td>
+                </tr>
+                <tr>
+                  <td><code>~*</code></td>
+                  <td>Zugriff auf alle Keys</td>
+                  <td>oder gezielt <code>~orders:*</code></td>
+                </tr>
+                <tr>
+                  <td><code>+GET</code></td>
+                  <td>Befehl GET erlauben</td>
+                  <td>nur lesen von String-Keys</td>
+                </tr>
+                <tr>
+                  <td><code>+HGET</code></td>
+                  <td>Befehl HGET erlauben</td>
+                  <td>lesen einzelner Hash-Felder</td>
+                </tr>
+                <tr>
+                  <td><code>+DEL</code></td>
+                  <td>Befehl DEL erlauben</td>
+                  <td>löschen von Keys</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Exakte Prüfungsfrage zu D1G</h3>
             <div class="exam-box">
-              <span class="pill green">RDB Snapshot</span>
-              <h3>Vorteile</h3>
-              <ul>
-                <li>Einfaches, kompaktes Backup</li>
-                <li>Schnell für Wiederherstellung</li>
-                <li>Gut als periodische Sicherung</li>
-              </ul>
-              <h3 style="margin-top:12px">Nachteile</h3>
-              <ul>
-                <li>Datenverlust seit letztem Snapshot möglich</li>
-                <li>Nur punktuelle Sicherung</li>
-              </ul>
+              <span class="pill green">Originalstil</span>
+              <p>
+                <strong
+                  >Ein Entwickler erstellt in Redis den Benutzer readonly mit
+                  folgendem Befehl:</strong
+                >
+              </p>
+              <pre>ACL SETUSER readonly on >pass123 ~* +GET</pre>
+              <p>
+                <strong>a)</strong> Erklären Sie, was die einzelnen Bestandteile
+                des Befehls bedeuten. <strong>(1P)</strong>
+              </p>
+              <p>
+                <strong>b)</strong> Welche Aktionen darf dieser Benutzer
+                ausführen und welche nicht? <strong>(1P)</strong>
+              </p>
+              <p>
+                <strong>c)</strong> Ordnen Sie die Begriffe korrekt zu /
+                verbinde es: <strong>(1P)</strong>
+              </p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Begriff</th>
+                    <th>Passende Antwort</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Benutzer</td>
+                    <td><code>readonly</code></td>
+                  </tr>
+                  <tr>
+                    <td>Rolle</td>
+                    <td>Leser (<code>readonly</code>)</td>
+                  </tr>
+                  <tr>
+                    <td>Zugriffsrechte</td>
+                    <td>nur <code>GET</code></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="exam-box">
-              <span class="pill blue">AOF</span>
-              <h3>Vorteile</h3>
-              <ul>
-                <li>Höhere Nachvollziehbarkeit von Änderungen</li>
-                <li>Weniger Datenverlust bei Crashs</li>
-                <li>Geeignet für laufende Sicherung</li>
-              </ul>
-              <h3 style="margin-top:12px">Nachteile</h3>
-              <ul>
-                <li>Mehr Speicherbedarf</li>
-                <li>Mehr I/O und potenziell mehr Overhead</li>
-              </ul>
+
+            <details open>
+              <summary>Musterlösung zur exakten D1G-Prüfungsfrage</summary>
+              <div class="solution-box">
+                <p><strong>a) Bestandteile</strong></p>
+                <ul>
+                  <li>
+                    <code>ACL SETUSER</code> -> Benutzer erstellen oder ändern
+                  </li>
+                  <li><code>readonly</code> -> Benutzername</li>
+                  <li><code>on</code> -> Benutzer aktiv</li>
+                  <li><code>&gt;pass123</code> -> Passwort</li>
+                  <li><code>~*</code> -> Zugriff auf alle Keys</li>
+                  <li><code>+GET</code> -> nur GET ist erlaubt</li>
+                </ul>
+                <p><strong>b) Erlaubt / nicht erlaubt</strong></p>
+                <ul>
+                  <li>Erlaubt: Daten lesen mit <code>GET</code></li>
+                  <li>
+                    Nicht erlaubt: schreiben mit <code>SET</code>, löschen mit
+                    <code>DEL</code>, andere nicht freigegebene Befehle
+                  </li>
+                </ul>
+                <p><strong>c) Zuordnung</strong></p>
+                <ul>
+                  <li>Benutzer -> <code>readonly</code></li>
+                  <li>Rolle -> Leser (<code>readonly</code>)</li>
+                  <li>Zugriffsrechte -> nur <code>GET</code></li>
+                </ul>
+              </div>
+            </details>
+
+            <h3>Zusätzliche Prüfungslogik für ähnliche Aufgaben</h3>
+            <ul>
+              <li>
+                Wenn nur <code>+GET</code> erlaubt ist, dann ist es ein
+                Lese-User für String-Werte.
+              </li>
+              <li>
+                Wenn zusätzlich <code>+HGET</code> erlaubt ist, kann der User
+                auch Hash-Felder lesen.
+              </li>
+              <li>
+                Wenn statt <code>~*</code> ein Muster wie
+                <code>~orders:*</code> steht, darf der User nur auf diesen
+                Key-Bereich zugreifen.
+              </li>
+              <li>
+                Wenn <code>+DEL</code> ergänzt wird, darf er passende Keys auch
+                löschen.
+              </li>
+            </ul>
+          </section>
+
+          <section id="e1g" class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>3. E1G – Backup-Konzepte in Redis</h2>
             </div>
-          </div>
+            <span class="pill amber">E1G</span>
+            <p>
+              Bei Redis muss man <strong>Persistenz</strong> und
+              <strong>Backup</strong> unterscheiden:
+            </p>
+            <ul>
+              <li>
+                <strong>Persistenz</strong> bedeutet: Daten werden so
+                gespeichert, dass sie einen Neustart überleben.
+              </li>
+              <li>
+                <strong>Backup</strong> bedeutet: Es gibt eine zusätzliche
+                Sicherung, damit man Daten nach Fehlern, Löschen, Defekt oder
+                Fehlkonfiguration wiederherstellen kann.
+              </li>
+            </ul>
 
-          <div class="tip">
-            <strong>Wichtige Prüfungsdifferenz:</strong> <strong>Replikation ist nicht dasselbe wie Backup.</strong> Eine Replica übernimmt Fehler oder versehentlich gelöschte Daten oft ebenfalls. Ein echtes Backup braucht eine getrennte Sicherung, idealerweise mit Versionierung oder zeitlicher Historie.
-          </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Konzept</th>
+                  <th>Erklärung</th>
+                  <th>Redis-Beispiel</th>
+                  <th>Wofür gut?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>On-demand Snapshot</td>
+                  <td>Punktuelle Sicherung zu einem bestimmten Zeitpunkt</td>
+                  <td><code>BGSAVE</code> erzeugt eine RDB-Snapshot-Datei</td>
+                  <td>Schnelles manuelles Backup vor Änderungen</td>
+                </tr>
+                <tr>
+                  <td>Kontinuierliche Sicherung</td>
+                  <td>Änderungen laufend protokollieren</td>
+                  <td>AOF schreibt Operationen fortlaufend mit</td>
+                  <td>Weniger Datenverlust zwischen Snapshots</td>
+                </tr>
+                <tr>
+                  <td>Cloud Backup</td>
+                  <td>Gemanagerter Backup-Prozess beim Anbieter</td>
+                  <td>
+                    automatische Backups, Aufbewahrungsregeln,
+                    Restore-Funktionen
+                  </td>
+                  <td>Einfacher Betrieb, Offsite-Schutz</td>
+                </tr>
+                <tr>
+                  <td>Legacy Backup</td>
+                  <td>Ältere oder manuelle Sicherungsmethode</td>
+                  <td>
+                    kopieren von <code>dump.rdb</code> oder AOF-Dateien auf
+                    andere Systeme
+                  </td>
+                  <td>Einfach, aber oft weniger komfortabel</td>
+                </tr>
+                <tr>
+                  <td>Hybrid</td>
+                  <td>Kombination mehrerer Verfahren</td>
+                  <td>RDB + AOF zusammen</td>
+                  <td>Balance zwischen Performance und Sicherheit</td>
+                </tr>
+              </tbody>
+            </table>
 
-          <h3>Typische Prüfungsantwort</h3>
-          <p>Ein sinnvolles Backup-Konzept für Redis kombiniert regelmässige Snapshots mit kontinuierlicher Persistenz oder externen Cloud-Backups. So kann man einerseits schnell wiederherstellen und andererseits den Datenverlust minimieren.</p>
+            <div class="grid-2">
+              <div class="exam-box">
+                <span class="pill green">RDB Snapshot</span>
+                <h3>Vorteile</h3>
+                <ul>
+                  <li>Einfaches, kompaktes Backup</li>
+                  <li>Schnell für Wiederherstellung</li>
+                  <li>Gut als periodische Sicherung</li>
+                </ul>
+                <h3 style="margin-top: 12px">Nachteile</h3>
+                <ul>
+                  <li>Datenverlust seit letztem Snapshot möglich</li>
+                  <li>Nur punktuelle Sicherung</li>
+                </ul>
+              </div>
+              <div class="exam-box">
+                <span class="pill blue">AOF</span>
+                <h3>Vorteile</h3>
+                <ul>
+                  <li>Höhere Nachvollziehbarkeit von Änderungen</li>
+                  <li>Weniger Datenverlust bei Crashs</li>
+                  <li>Geeignet für laufende Sicherung</li>
+                </ul>
+                <h3 style="margin-top: 12px">Nachteile</h3>
+                <ul>
+                  <li>Mehr Speicherbedarf</li>
+                  <li>Mehr I/O und potenziell mehr Overhead</li>
+                </ul>
+              </div>
+            </div>
 
-          <h3>Wann welches Konzept?</h3>
-          <table>
-            <thead>
-              <tr><th>Situation</th><th>Passendes Konzept</th><th>Begründung</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Vor grösserem Update</td><td>On-demand Snapshot</td><td>Schneller Sicherungspunkt vor Risiko</td></tr>
-              <tr><td>Wichtige produktive Daten</td><td>AOF oder Hybrid</td><td>Weniger Datenverlust</td></tr>
-              <tr><td>Managed Service in Cloud</td><td>Cloud Backups</td><td>Automatisch, einfacher Restore</td></tr>
-              <tr><td>Kleine Lernumgebung</td><td>RDB + manuelles Kopieren</td><td>Einfach und verständlich</td></tr>
-            </tbody>
-          </table>
-        </section>
+            <div class="tip">
+              <strong>Wichtige Prüfungsdifferenz:</strong>
+              <strong>Replikation ist nicht dasselbe wie Backup.</strong> Eine
+              Replica übernimmt Fehler oder versehentlich gelöschte Daten oft
+              ebenfalls. Ein echtes Backup braucht eine getrennte Sicherung,
+              idealerweise mit Versionierung oder zeitlicher Historie.
+            </div>
 
-        <section id="f1g" class="card">
-          <div class="section-title"><span class="dot"></span><h2>4. F1G – Skalierung und Replikationsarten in Redis</h2></div>
-          <span class="pill blue">F1G</span>
-          <p>Hier geht es um zwei Themen, die oft vermischt werden:</p>
-          <ul>
-            <li><strong>Skalierung</strong> = mehr Leistung / mehr Kapazität</li>
-            <li><strong>Replikation</strong> = Kopien von Daten für Verfügbarkeit und Ausfallsicherheit</li>
-          </ul>
+            <h3>Typische Prüfungsantwort</h3>
+            <p>
+              Ein sinnvolles Backup-Konzept für Redis kombiniert regelmässige
+              Snapshots mit kontinuierlicher Persistenz oder externen
+              Cloud-Backups. So kann man einerseits schnell wiederherstellen und
+              andererseits den Datenverlust minimieren.
+            </p>
 
-          <h3>4.1 Vertikal vs. horizontal skalieren</h3>
-          <table>
-            <thead>
-              <tr><th>Art</th><th>Erklärung</th><th>Beispiel mit Redis</th><th>Vor-/Nachteile</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Vertikale Skalierung</td><td>Einen Server stärker machen</td><td>Mehr RAM / CPU für einen Redis-Node</td><td>Einfach, aber begrenzt</td></tr>
-              <tr><td>Horizontale Skalierung</td><td>Mehrere Server einsetzen</td><td>Redis Cluster mit Sharding</td><td>Sehr skalierbar, aber komplexer</td></tr>
-            </tbody>
-          </table>
+            <h3>Wann welches Konzept?</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Situation</th>
+                  <th>Passendes Konzept</th>
+                  <th>Begründung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Vor grösserem Update</td>
+                  <td>On-demand Snapshot</td>
+                  <td>Schneller Sicherungspunkt vor Risiko</td>
+                </tr>
+                <tr>
+                  <td>Wichtige produktive Daten</td>
+                  <td>AOF oder Hybrid</td>
+                  <td>Weniger Datenverlust</td>
+                </tr>
+                <tr>
+                  <td>Managed Service in Cloud</td>
+                  <td>Cloud Backups</td>
+                  <td>Automatisch, einfacher Restore</td>
+                </tr>
+                <tr>
+                  <td>Kleine Lernumgebung</td>
+                  <td>RDB + manuelles Kopieren</td>
+                  <td>Einfach und verständlich</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
 
-          <h3>4.2 Replikationsarten</h3>
-          <table>
-            <thead>
-              <tr><th>Art</th><th>Was bedeutet das?</th><th>Redis-Bezug</th><th>Wozu gut?</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Primary and Replica</td><td>Ein Primary verarbeitet Writes, Replica(s) halten Kopien</td><td>Standard-Replikation in Redis</td><td>High Availability, mehr Leselast</td></tr>
-              <tr><td>Aktiv-Passiv</td><td>Ein aktiver Knoten, ein passiver wartet auf Failover</td><td>Primary + Replica + Sentinel</td><td>Ausfallsicherheit</td></tr>
-              <tr><td>Multimaster / Active-Active</td><td>Mehrere Knoten dürfen schreiben</td><td>Vor allem Redis Enterprise / Active-Active</td><td>Geo-Verteilung, lokale Schreibzugriffe</td></tr>
-              <tr><td>Horizontale Skalierung</td><td>Daten auf mehrere Primaries/Shards verteilen</td><td>Redis Cluster</td><td>Mehr Speicher und Durchsatz</td></tr>
-            </tbody>
-          </table>
+          <section id="f1g" class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>4. F1G – Skalierung und Replikationsarten in Redis</h2>
+            </div>
+            <span class="pill blue">F1G</span>
+            <p>Hier geht es um zwei Themen, die oft vermischt werden:</p>
+            <ul>
+              <li>
+                <strong>Skalierung</strong> = mehr Leistung / mehr Kapazität
+              </li>
+              <li>
+                <strong>Replikation</strong> = Kopien von Daten für
+                Verfügbarkeit und Ausfallsicherheit
+              </li>
+            </ul>
 
-          <div class="danger">
-            <strong>Ganz wichtig:</strong> Im klassischen Redis Open Source ist die Standardform <strong>Primary-Replica</strong>. <strong>Multimaster</strong> ist kein Standard-Setup wie bei normaler Replikation, sondern eine spezielle Active-Active-Lösung in Redis Enterprise/Cloud-Umgebungen.
-          </div>
+            <h3>4.1 Vertikal vs. horizontal skalieren</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Art</th>
+                  <th>Erklärung</th>
+                  <th>Beispiel mit Redis</th>
+                  <th>Vor-/Nachteile</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Vertikale Skalierung</td>
+                  <td>Einen Server stärker machen</td>
+                  <td>Mehr RAM / CPU für einen Redis-Node</td>
+                  <td>Einfach, aber begrenzt</td>
+                </tr>
+                <tr>
+                  <td>Horizontale Skalierung</td>
+                  <td>Mehrere Server einsetzen</td>
+                  <td>Redis Cluster mit Sharding</td>
+                  <td>Sehr skalierbar, aber komplexer</td>
+                </tr>
+              </tbody>
+            </table>
 
-          <div class="grid-2">
-            <div>
-              <h3>Primary-Replica einfach erklärt</h3>
-<pre>Client schreibt -> Primary
+            <h3>4.2 Replikationsarten</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Art</th>
+                  <th>Was bedeutet das?</th>
+                  <th>Redis-Bezug</th>
+                  <th>Wozu gut?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Primary and Replica</td>
+                  <td>
+                    Ein Primary verarbeitet Writes, Replica(s) halten Kopien
+                  </td>
+                  <td>Standard-Replikation in Redis</td>
+                  <td>High Availability, mehr Leselast</td>
+                </tr>
+                <tr>
+                  <td>Aktiv-Passiv</td>
+                  <td>Ein aktiver Knoten, ein passiver wartet auf Failover</td>
+                  <td>Primary + Replica + Sentinel</td>
+                  <td>Ausfallsicherheit</td>
+                </tr>
+                <tr>
+                  <td>Multimaster / Active-Active</td>
+                  <td>Mehrere Knoten dürfen schreiben</td>
+                  <td>Vor allem Redis Enterprise / Active-Active</td>
+                  <td>Geo-Verteilung, lokale Schreibzugriffe</td>
+                </tr>
+                <tr>
+                  <td>Horizontale Skalierung</td>
+                  <td>Daten auf mehrere Primaries/Shards verteilen</td>
+                  <td>Redis Cluster</td>
+                  <td>Mehr Speicher und Durchsatz</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="danger">
+              <strong>Ganz wichtig:</strong> Im klassischen Redis Open Source
+              ist die Standardform <strong>Primary-Replica</strong>.
+              <strong>Multimaster</strong> ist kein Standard-Setup wie bei
+              normaler Replikation, sondern eine spezielle Active-Active-Lösung
+              in Redis Enterprise/Cloud-Umgebungen.
+            </div>
+
+            <div class="grid-2">
+              <div>
+                <h3>Primary-Replica einfach erklärt</h3>
+                <pre>
+Client schreibt -> Primary
 Replica 1 <- kopiert Daten
 Replica 2 <- kopiert Daten
 
 Nutzen:
 - Fällt Primary aus, kann eine Replica übernehmen
-- Lesende Zugriffe können verteilt werden</pre>
-            </div>
-            <div>
-              <h3>Redis Cluster einfach erklärt</h3>
-<pre>Shard A -> Teil der Keys
+- Lesende Zugriffe können verteilt werden</pre
+                >
+              </div>
+              <div>
+                <h3>Redis Cluster einfach erklärt</h3>
+                <pre>
+Shard A -> Teil der Keys
 Shard B -> anderer Teil der Keys
 Shard C -> weiterer Teil der Keys
 
 Nutzen:
 - Mehr Daten passen ins System
-- Last wird aufgeteilt</pre>
+- Last wird aufgeteilt</pre
+                >
+              </div>
             </div>
-          </div>
 
-          <h3>4.3 Aktiv-Passiv in Redis</h3>
-          <p>Aktiv-passiv bedeutet: Ein Primary bedient den Betrieb. Die Replica ist bereit, zu übernehmen. <strong>Sentinel</strong> erkennt einen Ausfall und organisiert das <strong>Failover</strong>, also den Rollenwechsel.</p>
+            <h3>4.3 Aktiv-Passiv in Redis</h3>
+            <p>
+              Aktiv-passiv bedeutet: Ein Primary bedient den Betrieb. Die
+              Replica ist bereit, zu übernehmen.
+              <strong>Sentinel</strong> erkennt einen Ausfall und organisiert
+              das <strong>Failover</strong>, also den Rollenwechsel.
+            </p>
 
-          <h3>4.4 Multimaster / Active-Active</h3>
-          <p>Hier dürfen mehrere Standorte oder Knoten schreiben. Das ist stark für geografisch verteilte Systeme, aber deutlich komplexer wegen Konfliktlösung und Konsistenzverhalten. Für eine normale Schulantwort reicht meist: <strong>mehrere aktive Schreibknoten, gut für globale Verteilung, aber komplexer als Primary-Replica</strong>.</p>
+            <h3>4.4 Multimaster / Active-Active</h3>
+            <p>
+              Hier dürfen mehrere Standorte oder Knoten schreiben. Das ist stark
+              für geografisch verteilte Systeme, aber deutlich komplexer wegen
+              Konfliktlösung und Konsistenzverhalten. Für eine normale
+              Schulantwort reicht meist:
+              <strong
+                >mehrere aktive Schreibknoten, gut für globale Verteilung, aber
+                komplexer als Primary-Replica</strong
+              >.
+            </p>
 
-          <h3>4.5 Was bringt horizontale Skalierung konkret?</h3>
-          <ul>
-            <li>Mehr Datenvolumen, weil Daten auf Shards verteilt werden</li>
-            <li>Mehr Durchsatz, weil Last auf mehrere Knoten verteilt wird</li>
-            <li>Oft bessere Ausfallsicherheit in Kombination mit Replicas</li>
-            <li>Aber: höherer Betriebsaufwand und mehr Komplexität</li>
-          </ul>
+            <h3>4.5 Was bringt horizontale Skalierung konkret?</h3>
+            <ul>
+              <li>Mehr Datenvolumen, weil Daten auf Shards verteilt werden</li>
+              <li>
+                Mehr Durchsatz, weil Last auf mehrere Knoten verteilt wird
+              </li>
+              <li>Oft bessere Ausfallsicherheit in Kombination mit Replicas</li>
+              <li>Aber: höherer Betriebsaufwand und mehr Komplexität</li>
+            </ul>
 
-          <div class="success">
-            <strong>Starke Prüfungsformulierung:</strong> Skalierung erhöht die Leistungsfähigkeit eines Redis-Systems. Replikation erzeugt Datenkopien für Verfügbarkeit und Ausfallsicherheit. Primary-Replica ist die Standardform in Redis, Aktiv-Passiv nutzt diese mit Failover, und horizontale Skalierung verteilt Daten per Cluster auf mehrere Knoten.
-          </div>
-        </section>
+            <div class="success">
+              <strong>Starke Prüfungsformulierung:</strong> Skalierung erhöht
+              die Leistungsfähigkeit eines Redis-Systems. Replikation erzeugt
+              Datenkopien für Verfügbarkeit und Ausfallsicherheit.
+              Primary-Replica ist die Standardform in Redis, Aktiv-Passiv nutzt
+              diese mit Failover, und horizontale Skalierung verteilt Daten per
+              Cluster auf mehrere Knoten.
+            </div>
+          </section>
 
-        <section id="g1g" class="card">
-          <div class="section-title"><span class="dot"></span><h2>5. G1G – Prinzip des Zugriffs in Redis: Queries und Projections</h2></div>
-          <span class="pill green">G1G</span>
-          <p>In Redis greift man meistens nicht mit komplexem SQL auf Tabellen zu, sondern mit <strong>Befehlen passend zum Datentyp</strong>. Darum ist das Zugriffsprinzip anders als bei SQL.</p>
+          <section id="g1g" class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>
+                5. G1G – Prinzip des Zugriffs in Redis: Queries und Projections
+              </h2>
+            </div>
+            <span class="pill green">G1G</span>
+            <p>
+              In Redis greift man meistens nicht mit komplexem SQL auf Tabellen
+              zu, sondern mit <strong>Befehlen passend zum Datentyp</strong>.
+              Darum ist das Zugriffsprinzip anders als bei SQL.
+            </p>
 
-          <h3>5.1 Grundidee</h3>
-          <table>
-            <thead>
-              <tr><th>Frage</th><th>In SQL</th><th>In Redis</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Wie hole ich Daten?</td><td>Mit SELECT-Abfragen</td><td>Mit Key-basierten Kommandos wie GET, HGET, LRANGE, SMEMBERS</td></tr>
-              <tr><td>Wie finde ich Datensätze?</td><td>Über WHERE, JOIN usw.</td><td>Oft direkt über den Key oder spezielle Index-/Query-Funktionen</td></tr>
-              <tr><td>Wie hole ich nur gewisse Felder?</td><td>Projection, z. B. SELECT name</td><td>z. B. HGET oder HMGET statt HGETALL</td></tr>
-            </tbody>
-          </table>
+            <h3>5.1 Grundidee</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Frage</th>
+                  <th>In SQL</th>
+                  <th>In Redis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Wie hole ich Daten?</td>
+                  <td>Mit SELECT-Abfragen</td>
+                  <td>
+                    Mit Key-basierten Kommandos wie GET, HGET, LRANGE, SMEMBERS
+                  </td>
+                </tr>
+                <tr>
+                  <td>Wie finde ich Datensätze?</td>
+                  <td>Über WHERE, JOIN usw.</td>
+                  <td>
+                    Oft direkt über den Key oder spezielle
+                    Index-/Query-Funktionen
+                  </td>
+                </tr>
+                <tr>
+                  <td>Wie hole ich nur gewisse Felder?</td>
+                  <td>Projection, z. B. SELECT name</td>
+                  <td>z. B. HGET oder HMGET statt HGETALL</td>
+                </tr>
+              </tbody>
+            </table>
 
-          <h3>5.2 Query in Redis</h3>
-          <p>Eine <strong>Query</strong> ist allgemein eine Abfrage. In Redis kann das sehr direkt sein:</p>
-          <ul>
-            <li><code>GET session:123</code> -> einen String-Wert holen</li>
-            <li><code>HGET user:1001 name</code> -> genau ein Feld aus einem Hash holen</li>
-            <li><code>HMGET user:1001 name email role</code> -> mehrere gezielte Felder holen</li>
-            <li><code>ZRANGE leaderboard 0 9 WITHSCORES</code> -> Bereich aus sortierter Menge holen</li>
-          </ul>
+            <h3>5.2 Query in Redis</h3>
+            <p>
+              Eine <strong>Query</strong> ist allgemein eine Abfrage. In Redis
+              kann das sehr direkt sein:
+            </p>
+            <ul>
+              <li><code>GET session:123</code> -> einen String-Wert holen</li>
+              <li>
+                <code>HGET user:1001 name</code> -> genau ein Feld aus einem
+                Hash holen
+              </li>
+              <li>
+                <code>HMGET user:1001 name email role</code> -> mehrere gezielte
+                Felder holen
+              </li>
+              <li>
+                <code>ZRANGE leaderboard 0 9 WITHSCORES</code> -> Bereich aus
+                sortierter Menge holen
+              </li>
+            </ul>
 
-          <h3>5.3 Projection in Redis</h3>
-          <p>Eine <strong>Projection</strong> bedeutet: nur das zurückgeben, was man wirklich braucht.</p>
-          <table>
-            <thead>
-              <tr><th>Schlecht / unnötig breit</th><th>Besser / gezielt</th><th>Warum?</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>HGETALL user:1001</code></td><td><code>HMGET user:1001 name email</code></td><td>Weniger Daten, gezielter Zugriff</td></tr>
-              <tr><td><code>KEYS *</code></td><td>gezielte Keys oder strukturierte Key-Namen</td><td>performanter und sicherer</td></tr>
-              <tr><td>Ganzes JSON laden</td><td>nur benötigte JSON-Pfade zurückgeben</td><td>effizienter</td></tr>
-            </tbody>
-          </table>
+            <h3>5.3 Projection in Redis</h3>
+            <p>
+              Eine <strong>Projection</strong> bedeutet: nur das zurückgeben,
+              was man wirklich braucht.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Schlecht / unnötig breit</th>
+                  <th>Besser / gezielt</th>
+                  <th>Warum?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>HGETALL user:1001</code></td>
+                  <td><code>HMGET user:1001 name email</code></td>
+                  <td>Weniger Daten, gezielter Zugriff</td>
+                </tr>
+                <tr>
+                  <td><code>KEYS *</code></td>
+                  <td>gezielte Keys oder strukturierte Key-Namen</td>
+                  <td>performanter und sicherer</td>
+                </tr>
+                <tr>
+                  <td>Ganzes JSON laden</td>
+                  <td>nur benötigte JSON-Pfade zurückgeben</td>
+                  <td>effizienter</td>
+                </tr>
+              </tbody>
+            </table>
 
-          <div class="tip">
-            <strong>Merksatz:</strong> Gute Redis-Zugriffe sind <strong>zielgerichtet</strong>. Hole möglichst direkt den richtigen Key und möglichst nur die Felder, die du wirklich brauchst.
-          </div>
+            <div class="tip">
+              <strong>Merksatz:</strong> Gute Redis-Zugriffe sind
+              <strong>zielgerichtet</strong>. Hole möglichst direkt den
+              richtigen Key und möglichst nur die Felder, die du wirklich
+              brauchst.
+            </div>
 
-          <h3>5.4 Typische Redis-Datentypen und Zugriff</h3>
-          <table>
-            <thead>
-              <tr><th>Datentyp</th><th>Wofür geeignet?</th><th>Beispielzugriff</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>String</td><td>Einzelwerte, Tokens, Sessions</td><td><code>GET</code>, <code>SET</code></td></tr>
-              <tr><td>Hash</td><td>Objektähnliche Daten wie User</td><td><code>HGET</code>, <code>HMGET</code>, <code>HGETALL</code></td></tr>
-              <tr><td>List</td><td>Reihenfolge wichtig, Queues</td><td><code>LRANGE</code></td></tr>
-              <tr><td>Set</td><td>Eindeutige Werte</td><td><code>SMEMBERS</code></td></tr>
-              <tr><td>Sorted Set</td><td>Rankings, Scores</td><td><code>ZRANGE</code>, <code>ZREVRANGE</code></td></tr>
-              <tr><td>JSON</td><td>Dokumentartige Daten</td><td>gezielte JSON-Pfade und Query Engine</td></tr>
-            </tbody>
-          </table>
+            <h3>5.4 Typische Redis-Datentypen und Zugriff</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Datentyp</th>
+                  <th>Wofür geeignet?</th>
+                  <th>Beispielzugriff</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>String</td>
+                  <td>Einzelwerte, Tokens, Sessions</td>
+                  <td><code>GET</code>, <code>SET</code></td>
+                </tr>
+                <tr>
+                  <td>Hash</td>
+                  <td>Objektähnliche Daten wie User</td>
+                  <td>
+                    <code>HGET</code>, <code>HMGET</code>, <code>HGETALL</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td>List</td>
+                  <td>Reihenfolge wichtig, Queues</td>
+                  <td><code>LRANGE</code></td>
+                </tr>
+                <tr>
+                  <td>Set</td>
+                  <td>Eindeutige Werte</td>
+                  <td><code>SMEMBERS</code></td>
+                </tr>
+                <tr>
+                  <td>Sorted Set</td>
+                  <td>Rankings, Scores</td>
+                  <td><code>ZRANGE</code>, <code>ZREVRANGE</code></td>
+                </tr>
+                <tr>
+                  <td>JSON</td>
+                  <td>Dokumentartige Daten</td>
+                  <td>gezielte JSON-Pfade und Query Engine</td>
+                </tr>
+              </tbody>
+            </table>
 
-          <h3>5.5 Redis-spezifische Antwort für die Prüfung</h3>
-          <p>Das Prinzip des Zugriffs in Redis basiert meist auf einem direkten Zugriff über Keys und datentyp-spezifische Befehle. Queries sind also oft einfacher und zielgerichteter als in SQL. Projections bedeuten in Redis, dass nur einzelne Felder oder Teilbereiche abgefragt werden, zum Beispiel mit <code>HMGET</code> statt <code>HGETALL</code>.</p>
+            <h3>5.5 Redis-spezifische Antwort für die Prüfung</h3>
+            <p>
+              Das Prinzip des Zugriffs in Redis basiert meist auf einem direkten
+              Zugriff über Keys und datentyp-spezifische Befehle. Queries sind
+              also oft einfacher und zielgerichteter als in SQL. Projections
+              bedeuten in Redis, dass nur einzelne Felder oder Teilbereiche
+              abgefragt werden, zum Beispiel mit <code>HMGET</code> statt
+              <code>HGETALL</code>.
+            </p>
 
-          <div class="danger">
-            <strong>Prüfungsfalle:</strong> Nicht so tun, als sei Redis einfach „SQL ohne Tabellen“. Redis arbeitet anders: Der Zugriff orientiert sich am <strong>Key</strong> und am <strong>Datentyp</strong>.
-          </div>
-        </section>
+            <div class="danger">
+              <strong>Prüfungsfalle:</strong> Nicht so tun, als sei Redis
+              einfach „SQL ohne Tabellen“. Redis arbeitet anders: Der Zugriff
+              orientiert sich am <strong>Key</strong> und am
+              <strong>Datentyp</strong>.
+            </div>
+          </section>
 
-        <section id="pruefungsfallen" class="card">
-          <div class="section-title"><span class="dot"></span><h2>6. Häufige Prüfungsfallen</h2></div>
-          <div class="grid-2">
-            <div>
-              <h3>Verwechslungen</h3>
+          <section id="pruefungsfallen" class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>6. Häufige Prüfungsfallen</h2>
+            </div>
+            <div class="grid-2">
+              <div>
+                <h3>Verwechslungen</h3>
+                <ul>
+                  <li>Replikation ≠ Backup</li>
+                  <li>Persistenz ≠ Backup</li>
+                  <li>Skalierung ≠ Replikation</li>
+                  <li>Redis ≠ relationale SQL-Datenbank</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Unscharfe Aussagen</h3>
+                <ul>
+                  <li>„Es ist sicher, weil Passwort“ -> zu oberflächlich</li>
+                  <li>„Backup ist einfach eine Kopie“ -> zu ungenau</li>
+                  <li>„Multimaster ist Standard bei Redis“ -> falsch</li>
+                  <li>„Projection ist einfach irgendeine Query“ -> ungenau</li>
+                </ul>
+              </div>
+            </div>
+            <div class="success">
+              <strong>Was Prüfer oft mögen:</strong> klare Unterscheidungen,
+              passende Redis-Beispiele und kurze Begründungen mit
+              Vorteil/Nachteil.
+            </div>
+          </section>
+
+          <section id="pruefungscheck" class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>7. Prüfungscheckliste – das musst du wirklich können</h2>
+            </div>
+            <ul class="checklist">
+              <li>
+                Ich kann erklären, was Redis ist und warum es als
+                NoSQL-Key-Value-Store gilt.
+              </li>
+              <li>
+                Ich kann Benutzer, Rollen und Zugriffsrechte in Redis erklären.
+              </li>
+              <li>Ich kann sagen, warum Least Privilege sinnvoll ist.</li>
+              <li>
+                Ich kann On-demand Snapshots, AOF, Cloud Backups und Legacy
+                Backups unterscheiden.
+              </li>
+              <li>
+                Ich kann erklären, warum Replikation kein vollwertiges Backup
+                ersetzt.
+              </li>
+              <li>
+                Ich kann vertikale und horizontale Skalierung unterscheiden.
+              </li>
+              <li>
+                Ich kann Primary-Replica, Aktiv-Passiv und
+                Multimaster/Active-Active erklären.
+              </li>
+              <li>Ich kann beschreiben, wie Sentinel bei Failover hilft.</li>
+              <li>
+                Ich kann das Zugriffsprinzip in Redis mit Keys und Datentypen
+                erklären.
+              </li>
+              <li>
+                Ich kann Queries und Projections mit passenden Redis-Beispielen
+                erläutern.
+              </li>
+            </ul>
+          </section>
+
+          <section id="uebungen" class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>8. Prüfungsvorschlag + Exam Prep Aufgaben</h2>
+            </div>
+            <p class="muted">
+              Diese Aufgaben sind absichtlich prüfungsnah formuliert. Lerne die
+              Musterlösung, aber verstehe vor allem die Logik dahinter, damit du
+              auch angepasste Fragen lösen kannst.
+            </p>
+
+            <details open>
+              <summary>
+                Aufgabe 1 - D1G: Zugriffsberechtigungen analysieren
+              </summary>
+              <p><strong>Gegeben ist folgender Befehl:</strong></p>
+              <pre>ACL SETUSER analyst on >secure99 ~orders:* +GET +HGET</pre>
+              <p>
+                <strong>a)</strong> Erklären Sie die einzelnen Bestandteile.
+              </p>
+              <p>
+                <strong>b)</strong> Welche Aktionen darf der Benutzer ausführen
+                und welche nicht?
+              </p>
+              <p><strong>c)</strong> Ordnen Sie zu:</p>
               <ul>
-                <li>Replikation ≠ Backup</li>
-                <li>Persistenz ≠ Backup</li>
-                <li>Skalierung ≠ Replikation</li>
-                <li>Redis ≠ relationale SQL-Datenbank</li>
+                <li>Benutzer: _______</li>
+                <li>Rolle: _______</li>
+                <li>Zugriffsrechte: _______</li>
               </ul>
-            </div>
-            <div>
-              <h3>Unscharfe Aussagen</h3>
+            </details>
+
+            <details>
+              <summary>Aufgabe 2 - D1G: Anpassung eines ACL-Befehls</summary>
+              <p>
+                Der Benutzer soll nur auf Keys mit <code>logs:</code> zugreifen
+                dürfen und zusätzlich löschen können.
+              </p>
+              <p>
+                <strong>Frage:</strong> Wie müsste der Befehl angepasst werden?
+              </p>
+            </details>
+
+            <details>
+              <summary>
+                Aufgabe 3 - E1G: Zwei Redis-Backup-Mechanismen beschreiben
+              </summary>
+              <p>
+                Beschreiben Sie zwei Backup-Mechanismen von Redis. Gehen Sie
+                jeweils auf <strong>Funktionsweise</strong> und
+                <strong>Vorteil</strong> ein.
+              </p>
+            </details>
+
+            <details>
+              <summary>Aufgabe 4 - E1G: RDB und AOF vergleichen</summary>
+              <p>
+                Vergleichen Sie <strong>RDB</strong> und <strong>AOF</strong>.
+                Welche Methode ist besser für:
+              </p>
               <ul>
-                <li>„Es ist sicher, weil Passwort“ -> zu oberflächlich</li>
-                <li>„Backup ist einfach eine Kopie“ -> zu ungenau</li>
-                <li>„Multimaster ist Standard bei Redis“ -> falsch</li>
-                <li>„Projection ist einfach irgendeine Query“ -> ungenau</li>
+                <li>Speed: _______</li>
+                <li>Datenverlust: _______</li>
+                <li>Speicherbedarf: _______</li>
               </ul>
+            </details>
+
+            <details>
+              <summary>Aufgabe 5 - E1G: Wahl bei Null-Datenverlust</summary>
+              <p>
+                Welche Methode wählen Sie, wenn
+                <strong>kein Datenverlust erlaubt</strong> ist? Begründen Sie.
+              </p>
+            </details>
+
+            <details>
+              <summary>Aufgabe 6 - F1G: Horizontale Skalierung</summary>
+              <p>Was bedeutet horizontale Skalierung?</p>
+              <ul>
+                <li>☐ Mehr RAM</li>
+                <li>☐ Mehr Server</li>
+                <li>☐ Schnellere SSD</li>
+                <li>☐ Weniger Benutzer</li>
+              </ul>
+            </details>
+
+            <details>
+              <summary>Aufgabe 7 - F1G: Sharding vs. Replikation</summary>
+              <p>
+                Erklären Sie den Unterschied zwischen
+                <strong>Sharding</strong> und <strong>Replikation</strong>.
+              </p>
+            </details>
+
+            <details>
+              <summary>Aufgabe 8 - F1G: Hochverfügbarkeit</summary>
+              <p>
+                Was ist <strong>Hochverfügbarkeit</strong> und wie wird sie in
+                Redis erreicht?
+              </p>
+            </details>
+
+            <details>
+              <summary>Aufgabe 9 - G1G: Was ist Redis primär?</summary>
+              <p>
+                Was für eine NoSQL-Datenbank ist Redis? Geben Sie
+                <strong>3 Beispiel-Einträge</strong> für diese DB an.
+              </p>
+            </details>
+
+            <details>
+              <summary>Aufgabe 10 - G1G: Zugriff auf Daten</summary>
+              <p>
+                Wie greift man auf Daten zu? Zeigen Sie ein
+                <strong>einfaches Beispiel</strong> und ein
+                <strong>Hash-Beispiel</strong>.
+              </p>
+            </details>
+
+            <details>
+              <summary>Aufgabe 11 - G1G: Projection anwenden</summary>
+              <p>
+                Was ist eine <strong>Projection</strong>? Zeigen Sie dies an
+                einem Beispiel. Wenden Sie zwei Projektionen an:
+              </p>
+              <pre>
+HSET user:1001 name "Alice" age 23 city "Bern" email alice@mail.com</pre
+              >
+            </details>
+          </section>
+
+          <section id="loesungen" class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>9. Lösungen zum Prüfungsvorschlag</h2>
             </div>
-          </div>
-          <div class="success">
-            <strong>Was Prüfer oft mögen:</strong> klare Unterscheidungen, passende Redis-Beispiele und kurze Begründungen mit Vorteil/Nachteil.
-          </div>
-        </section>
 
-        <section id="pruefungscheck" class="card">
-          <div class="section-title"><span class="dot"></span><h2>7. Prüfungscheckliste – das musst du wirklich können</h2></div>
-          <ul class="checklist">
-            <li>Ich kann erklären, was Redis ist und warum es als NoSQL-Key-Value-Store gilt.</li>
-            <li>Ich kann Benutzer, Rollen und Zugriffsrechte in Redis erklären.</li>
-            <li>Ich kann sagen, warum Least Privilege sinnvoll ist.</li>
-            <li>Ich kann On-demand Snapshots, AOF, Cloud Backups und Legacy Backups unterscheiden.</li>
-            <li>Ich kann erklären, warum Replikation kein vollwertiges Backup ersetzt.</li>
-            <li>Ich kann vertikale und horizontale Skalierung unterscheiden.</li>
-            <li>Ich kann Primary-Replica, Aktiv-Passiv und Multimaster/Active-Active erklären.</li>
-            <li>Ich kann beschreiben, wie Sentinel bei Failover hilft.</li>
-            <li>Ich kann das Zugriffsprinzip in Redis mit Keys und Datentypen erklären.</li>
-            <li>Ich kann Queries und Projections mit passenden Redis-Beispielen erläutern.</li>
-          </ul>
-        </section>
+            <details open>
+              <summary>Lösung zu Aufgabe 1 - D1G</summary>
+              <p><strong>a) Bestandteile</strong></p>
+              <ul>
+                <li>
+                  <code>ACL SETUSER</code> -> erstellt oder ändert einen
+                  Benutzer
+                </li>
+                <li><code>analyst</code> -> Benutzername</li>
+                <li><code>on</code> -> Benutzer ist aktiv</li>
+                <li><code>&gt;secure99</code> -> Passwort des Benutzers</li>
+                <li>
+                  <code>~orders:*</code> -> Zugriff nur auf Keys, die mit
+                  <code>orders:</code> beginnen
+                </li>
+                <li>
+                  <code>+GET</code> -> erlaubt <code>GET</code> für String-Werte
+                </li>
+                <li>
+                  <code>+HGET</code> -> erlaubt <code>HGET</code> für
+                  Hash-Felder
+                </li>
+              </ul>
+              <p><strong>b) Erlaubt / nicht erlaubt</strong></p>
+              <ul>
+                <li>
+                  Erlaubt: lesen von passenden String-Keys mit <code>GET</code>
+                </li>
+                <li>
+                  Erlaubt: lesen einzelner Felder aus Hashes mit
+                  <code>HGET</code>
+                </li>
+                <li>
+                  Nicht erlaubt: schreiben mit <code>SET</code>,
+                  <code>HSET</code>
+                </li>
+                <li>Nicht erlaubt: löschen mit <code>DEL</code></li>
+                <li>
+                  Nicht erlaubt: Zugriff auf andere Key-Bereiche ausser
+                  <code>orders:*</code>
+                </li>
+              </ul>
+              <p><strong>c) Zuordnung</strong></p>
+              <ul>
+                <li>Benutzer: <code>analyst</code></li>
+                <li>Rolle: Leser / Analyst</li>
+                <li>
+                  Zugriffsrechte: <code>GET</code> und <code>HGET</code> auf
+                  <code>orders:*</code>
+                </li>
+              </ul>
+            </details>
 
-                <section id="uebungen" class="card">
-          <div class="section-title"><span class="dot"></span><h2>8. Prüfungsvorschlag + Exam Prep Aufgaben</h2></div>
-          <p class="muted">Diese Aufgaben sind absichtlich prüfungsnah formuliert. Lerne die Musterlösung, aber verstehe vor allem die Logik dahinter, damit du auch angepasste Fragen lösen kannst.</p>
+            <details>
+              <summary>Lösung zu Aufgabe 2 - D1G</summary>
+              <pre>
+ACL SETUSER analyst on >secure99 ~logs:* +GET +HGET +DEL</pre
+              >
+              <p>
+                <strong>Erklärung:</strong> Das Key-Muster wird von
+                <code>~orders:*</code> auf <code>~logs:*</code> geändert. Mit
+                <code>+DEL</code> wird zusätzlich das Löschen erlaubt.
+              </p>
+            </details>
 
-          <details open>
-            <summary>Aufgabe 1 - D1G: Zugriffsberechtigungen analysieren</summary>
-            <p><strong>Gegeben ist folgender Befehl:</strong></p>
-<pre>ACL SETUSER analyst on >secure99 ~orders:* +GET +HGET</pre>
-            <p><strong>a)</strong> Erklären Sie die einzelnen Bestandteile.</p>
-            <p><strong>b)</strong> Welche Aktionen darf der Benutzer ausführen und welche nicht?</p>
-            <p><strong>c)</strong> Ordnen Sie zu:</p>
-            <ul>
-              <li>Benutzer: _______</li>
-              <li>Rolle: _______</li>
-              <li>Zugriffsrechte: _______</li>
-            </ul>
-          </details>
+            <details>
+              <summary>Lösung zu Aufgabe 3 - E1G</summary>
+              <p>
+                <strong>RDB Snapshot:</strong> Redis speichert zu bestimmten
+                Zeitpunkten den kompletten Datenstand in einer Snapshot-Datei.
+                Vorteil: schnell, kompakt und gut für Restore oder periodische
+                Sicherungen.
+              </p>
+              <p>
+                <strong>AOF:</strong> Redis schreibt jede Schreiboperation
+                fortlaufend in eine Datei. Beim Neustart können die Befehle
+                wieder abgespielt werden. Vorteil: deutlich aktuellerer
+                Datenstand und weniger Datenverlust.
+              </p>
+            </details>
 
-          <details>
-            <summary>Aufgabe 2 - D1G: Anpassung eines ACL-Befehls</summary>
-            <p>Der Benutzer soll nur auf Keys mit <code>logs:</code> zugreifen dürfen und zusätzlich löschen können.</p>
-            <p><strong>Frage:</strong> Wie müsste der Befehl angepasst werden?</p>
-          </details>
+            <details>
+              <summary>Lösung zu Aufgabe 4 - E1G</summary>
+              <ul>
+                <li><strong>Speed:</strong> <code>RDB</code></li>
+                <li><strong>Datenverlust:</strong> <code>AOF</code></li>
+                <li>
+                  <strong>Speicherbedarf:</strong> <code>RDB</code> braucht
+                  meist weniger Speicher
+                </li>
+              </ul>
+              <p>
+                <strong>Merksatz:</strong> RDB = schneller und kompakter. AOF =
+                aktueller und sicherer gegen Datenverlust, aber schwerer und
+                langsamer.
+              </p>
+            </details>
 
-          <details>
-            <summary>Aufgabe 3 - E1G: Zwei Redis-Backup-Mechanismen beschreiben</summary>
-            <p>Beschreiben Sie zwei Backup-Mechanismen von Redis. Gehen Sie jeweils auf <strong>Funktionsweise</strong> und <strong>Vorteil</strong> ein.</p>
-          </details>
+            <details>
+              <summary>Lösung zu Aufgabe 5 - E1G</summary>
+              <p>
+                Wenn kein Datenverlust erlaubt ist, würde man
+                <strong>AOF</strong> wählen, weil jede Schreiboperation
+                mitprotokolliert wird. Dadurch ist der Datenstand beim
+                Wiederherstellen viel aktueller als bei periodischen Snapshots.
+                In einer sehr strengen Umgebung wäre zusätzlich eine Kombination
+                aus <strong>AOF + externem Backup</strong> am besten.
+              </p>
+            </details>
 
-          <details>
-            <summary>Aufgabe 4 - E1G: RDB und AOF vergleichen</summary>
-            <p>Vergleichen Sie <strong>RDB</strong> und <strong>AOF</strong>. Welche Methode ist besser für:</p>
-            <ul>
-              <li>Speed: _______</li>
-              <li>Datenverlust: _______</li>
-              <li>Speicherbedarf: _______</li>
-            </ul>
-          </details>
+            <details>
+              <summary>Lösung zu Aufgabe 6 - F1G</summary>
+              <p><strong>Richtig:</strong> <strong>Mehr Server</strong></p>
+              <p>
+                Horizontale Skalierung bedeutet, dass man weitere Knoten oder
+                Server hinzufügt, statt nur einen bestehenden Server stärker zu
+                machen.
+              </p>
+            </details>
 
-          <details>
-            <summary>Aufgabe 5 - E1G: Wahl bei Null-Datenverlust</summary>
-            <p>Welche Methode wählen Sie, wenn <strong>kein Datenverlust erlaubt</strong> ist? Begründen Sie.</p>
-          </details>
+            <details>
+              <summary>Lösung zu Aufgabe 7 - F1G</summary>
+              <p>
+                <strong>Sharding:</strong> Die Daten werden auf mehrere Knoten
+                aufgeteilt. Jeder Knoten hält nur einen Teil der Daten. Ziel:
+                Lastverteilung und mehr Gesamtkapazität.
+              </p>
+              <p>
+                <strong>Replikation:</strong> Dieselben Daten werden auf mehrere
+                Knoten kopiert und synchron gehalten. Ziel: Ausfallsicherheit
+                und teilweise Entlastung bei Lesezugriffen.
+              </p>
+              <p>
+                <strong>Kurz:</strong> Sharding verteilt Daten, Replikation
+                kopiert Daten.
+              </p>
+            </details>
 
-          <details>
-            <summary>Aufgabe 6 - F1G: Horizontale Skalierung</summary>
-            <p>Was bedeutet horizontale Skalierung?</p>
-            <ul>
-              <li>☐ Mehr RAM</li>
-              <li>☐ Mehr Server</li>
-              <li>☐ Schnellere SSD</li>
-              <li>☐ Weniger Benutzer</li>
-            </ul>
-          </details>
+            <details>
+              <summary>Lösung zu Aufgabe 8 - F1G</summary>
+              <p>
+                Hochverfügbarkeit bedeutet, dass das System trotz Ausfall
+                einzelner Komponenten weiter erreichbar bleibt. In Redis
+                erreicht man das typischerweise mit
+                <strong>Primary + Replica</strong> und einem
+                <strong>Failover-Mechanismus</strong> wie Sentinel. Fällt der
+                Primary aus, kann eine Replica übernehmen.
+              </p>
+            </details>
 
-          <details>
-            <summary>Aufgabe 7 - F1G: Sharding vs. Replikation</summary>
-            <p>Erklären Sie den Unterschied zwischen <strong>Sharding</strong> und <strong>Replikation</strong>.</p>
-          </details>
-
-          <details>
-            <summary>Aufgabe 8 - F1G: Hochverfügbarkeit</summary>
-            <p>Was ist <strong>Hochverfügbarkeit</strong> und wie wird sie in Redis erreicht?</p>
-          </details>
-
-          <details>
-            <summary>Aufgabe 9 - G1G: Was ist Redis primär?</summary>
-            <p>Was für eine NoSQL-Datenbank ist Redis? Geben Sie <strong>3 Beispiel-Einträge</strong> für diese DB an.</p>
-          </details>
-
-          <details>
-            <summary>Aufgabe 10 - G1G: Zugriff auf Daten</summary>
-            <p>Wie greift man auf Daten zu? Zeigen Sie ein <strong>einfaches Beispiel</strong> und ein <strong>Hash-Beispiel</strong>.</p>
-          </details>
-
-          <details>
-            <summary>Aufgabe 11 - G1G: Projection anwenden</summary>
-            <p>Was ist eine <strong>Projection</strong>? Zeigen Sie dies an einem Beispiel. Wenden Sie zwei Projektionen an:</p>
-<pre>HSET user:1001 name "Alice" age 23 city "Bern" email alice@mail.com</pre>
-          </details>
-        </section>
-
-                <section id="loesungen" class="card">
-          <div class="section-title"><span class="dot"></span><h2>9. Lösungen zum Prüfungsvorschlag</h2></div>
-
-          <details open>
-            <summary>Lösung zu Aufgabe 1 - D1G</summary>
-            <p><strong>a) Bestandteile</strong></p>
-            <ul>
-              <li><code>ACL SETUSER</code> -> erstellt oder ändert einen Benutzer</li>
-              <li><code>analyst</code> -> Benutzername</li>
-              <li><code>on</code> -> Benutzer ist aktiv</li>
-              <li><code>&gt;secure99</code> -> Passwort des Benutzers</li>
-              <li><code>~orders:*</code> -> Zugriff nur auf Keys, die mit <code>orders:</code> beginnen</li>
-              <li><code>+GET</code> -> erlaubt <code>GET</code> für String-Werte</li>
-              <li><code>+HGET</code> -> erlaubt <code>HGET</code> für Hash-Felder</li>
-            </ul>
-            <p><strong>b) Erlaubt / nicht erlaubt</strong></p>
-            <ul>
-              <li>Erlaubt: lesen von passenden String-Keys mit <code>GET</code></li>
-              <li>Erlaubt: lesen einzelner Felder aus Hashes mit <code>HGET</code></li>
-              <li>Nicht erlaubt: schreiben mit <code>SET</code>, <code>HSET</code></li>
-              <li>Nicht erlaubt: löschen mit <code>DEL</code></li>
-              <li>Nicht erlaubt: Zugriff auf andere Key-Bereiche ausser <code>orders:*</code></li>
-            </ul>
-            <p><strong>c) Zuordnung</strong></p>
-            <ul>
-              <li>Benutzer: <code>analyst</code></li>
-              <li>Rolle: Leser / Analyst</li>
-              <li>Zugriffsrechte: <code>GET</code> und <code>HGET</code> auf <code>orders:*</code></li>
-            </ul>
-          </details>
-
-          <details>
-            <summary>Lösung zu Aufgabe 2 - D1G</summary>
-<pre>ACL SETUSER analyst on >secure99 ~logs:* +GET +HGET +DEL</pre>
-            <p><strong>Erklärung:</strong> Das Key-Muster wird von <code>~orders:*</code> auf <code>~logs:*</code> geändert. Mit <code>+DEL</code> wird zusätzlich das Löschen erlaubt.</p>
-          </details>
-
-          <details>
-            <summary>Lösung zu Aufgabe 3 - E1G</summary>
-            <p><strong>RDB Snapshot:</strong> Redis speichert zu bestimmten Zeitpunkten den kompletten Datenstand in einer Snapshot-Datei. Vorteil: schnell, kompakt und gut für Restore oder periodische Sicherungen.</p>
-            <p><strong>AOF:</strong> Redis schreibt jede Schreiboperation fortlaufend in eine Datei. Beim Neustart können die Befehle wieder abgespielt werden. Vorteil: deutlich aktuellerer Datenstand und weniger Datenverlust.</p>
-          </details>
-
-          <details>
-            <summary>Lösung zu Aufgabe 4 - E1G</summary>
-            <ul>
-              <li><strong>Speed:</strong> <code>RDB</code></li>
-              <li><strong>Datenverlust:</strong> <code>AOF</code></li>
-              <li><strong>Speicherbedarf:</strong> <code>RDB</code> braucht meist weniger Speicher</li>
-            </ul>
-            <p><strong>Merksatz:</strong> RDB = schneller und kompakter. AOF = aktueller und sicherer gegen Datenverlust, aber schwerer und langsamer.</p>
-          </details>
-
-          <details>
-            <summary>Lösung zu Aufgabe 5 - E1G</summary>
-            <p>Wenn kein Datenverlust erlaubt ist, würde man <strong>AOF</strong> wählen, weil jede Schreiboperation mitprotokolliert wird. Dadurch ist der Datenstand beim Wiederherstellen viel aktueller als bei periodischen Snapshots. In einer sehr strengen Umgebung wäre zusätzlich eine Kombination aus <strong>AOF + externem Backup</strong> am besten.</p>
-          </details>
-
-          <details>
-            <summary>Lösung zu Aufgabe 6 - F1G</summary>
-            <p><strong>Richtig:</strong> <strong>Mehr Server</strong></p>
-            <p>Horizontale Skalierung bedeutet, dass man weitere Knoten oder Server hinzufügt, statt nur einen bestehenden Server stärker zu machen.</p>
-          </details>
-
-          <details>
-            <summary>Lösung zu Aufgabe 7 - F1G</summary>
-            <p><strong>Sharding:</strong> Die Daten werden auf mehrere Knoten aufgeteilt. Jeder Knoten hält nur einen Teil der Daten. Ziel: Lastverteilung und mehr Gesamtkapazität.</p>
-            <p><strong>Replikation:</strong> Dieselben Daten werden auf mehrere Knoten kopiert und synchron gehalten. Ziel: Ausfallsicherheit und teilweise Entlastung bei Lesezugriffen.</p>
-            <p><strong>Kurz:</strong> Sharding verteilt Daten, Replikation kopiert Daten.</p>
-          </details>
-
-          <details>
-            <summary>Lösung zu Aufgabe 8 - F1G</summary>
-            <p>Hochverfügbarkeit bedeutet, dass das System trotz Ausfall einzelner Komponenten weiter erreichbar bleibt. In Redis erreicht man das typischerweise mit <strong>Primary + Replica</strong> und einem <strong>Failover-Mechanismus</strong> wie Sentinel. Fällt der Primary aus, kann eine Replica übernehmen.</p>
-          </details>
-
-          <details>
-            <summary>Lösung zu Aufgabe 9 - G1G</summary>
-            <p>Redis ist primär ein <strong>In-Memory Key-Value Store</strong>. Die Daten liegen im RAM und werden über eindeutige Keys angesprochen.</p>
-            <p><strong>Beispiel-Einträge:</strong></p>
-<pre>username -> "alice99"
+            <details>
+              <summary>Lösung zu Aufgabe 9 - G1G</summary>
+              <p>
+                Redis ist primär ein <strong>In-Memory Key-Value Store</strong>.
+                Die Daten liegen im RAM und werden über eindeutige Keys
+                angesprochen.
+              </p>
+              <p><strong>Beispiel-Einträge:</strong></p>
+              <pre>
+username -> "alice99"
 score -> "1500"
-online -> "true"</pre>
-          </details>
+online -> "true"</pre
+              >
+            </details>
 
-          <details>
-            <summary>Lösung zu Aufgabe 10 - G1G</summary>
-            <p><strong>Einfaches Beispiel mit String:</strong></p>
-<pre>SET username "alice99"
-GET username</pre>
-            <p><strong>Hash-Beispiel:</strong></p>
-<pre>HSET user:1001 name "Alice" age 23 city "Bern"
+            <details>
+              <summary>Lösung zu Aufgabe 10 - G1G</summary>
+              <p><strong>Einfaches Beispiel mit String:</strong></p>
+              <pre>
+SET username "alice99"
+GET username</pre
+              >
+              <p><strong>Hash-Beispiel:</strong></p>
+              <pre>
+HSET user:1001 name "Alice" age 23 city "Bern"
 HGET user:1001 name
-HGETALL user:1001</pre>
-            <p>In Redis greift man direkt über den <strong>Key</strong> zu. Bei Hashes kommt zusätzlich der Feldname dazu.</p>
-          </details>
+HGETALL user:1001</pre
+              >
+              <p>
+                In Redis greift man direkt über den <strong>Key</strong> zu. Bei
+                Hashes kommt zusätzlich der Feldname dazu.
+              </p>
+            </details>
 
-          <details>
-            <summary>Lösung zu Aufgabe 11 - G1G</summary>
-            <p>Eine <strong>Projection</strong> bedeutet, dass man nur bestimmte Felder holt und nicht den ganzen Datensatz. Das reduziert Datenmenge und Overhead.</p>
-            <p><strong>Ausgangsdaten:</strong></p>
-<pre>HSET user:1001 name "Alice" age 23 city "Bern" email alice@mail.com</pre>
-            <p><strong>Projection 1:</strong> nur Name</p>
-<pre>HMGET user:1001 name</pre>
-            <p><strong>Projection 2:</strong> nur Name und City</p>
-<pre>HMGET user:1001 name city</pre>
-            <p><strong>Abgrenzung:</strong> <code>HGETALL user:1001</code> würde alle Felder laden. <code>HMGET</code> lädt nur die benötigten Felder.</p>
-          </details>
-        </section>
+            <details>
+              <summary>Lösung zu Aufgabe 11 - G1G</summary>
+              <p>
+                Eine <strong>Projection</strong> bedeutet, dass man nur
+                bestimmte Felder holt und nicht den ganzen Datensatz. Das
+                reduziert Datenmenge und Overhead.
+              </p>
+              <p><strong>Ausgangsdaten:</strong></p>
+              <pre>
+HSET user:1001 name "Alice" age 23 city "Bern" email alice@mail.com</pre
+              >
+              <p><strong>Projection 1:</strong> nur Name</p>
+              <pre>HMGET user:1001 name</pre>
+              <p><strong>Projection 2:</strong> nur Name und City</p>
+              <pre>HMGET user:1001 name city</pre>
+              <p>
+                <strong>Abgrenzung:</strong>
+                <code>HGETALL user:1001</code> würde alle Felder laden.
+                <code>HMGET</code> lädt nur die benötigten Felder.
+              </p>
+            </details>
+          </section>
 
-        <section class="card">
-          <div class="section-title"><span class="dot"></span><h2>10. Mini-Spickzettel vor der Prüfung</h2></div>
-          <div class="grid-2">
-            <div class="exam-box">
-              <h3>D1G</h3>
-              <p>Berechtigungen in Redis = Benutzer + Rollen + konkrete Rechte auf Befehle, Keys und Channels. Ziel: Sicherheit und minimale Rechte.</p>
+          <section id="fragenfenster" class="card">
+            <div class="section-title">
+              <span class="dot"></span>
+              <h2>10. PDF-Vorschau im Website-Layout</h2>
             </div>
-            <div class="exam-box">
-              <h3>E1G</h3>
-              <p>Backup in Redis = Snapshots (RDB), kontinuierliche Sicherung (AOF), Cloud Backups, Legacy Backups. Replikation ersetzt kein Backup.</p>
-            </div>
-            <div class="exam-box">
-              <h3>F1G</h3>
-              <p>Skalierung = mehr Leistung/Kapazität. Replikation = Kopien für Verfügbarkeit. Standard in Redis: Primary-Replica. Horizontal: Cluster/Sharding.</p>
-            </div>
-            <div class="exam-box">
-              <h3>G1G</h3>
-              <p>Zugriff in Redis erfolgt meist key-basiert und datentyp-spezifisch. Projection = nur die benötigten Felder holen, z. B. <code>HMGET</code> statt <code>HGETALL</code>.</p>
-            </div>
-          </div>
-        </section>
+            <p class="muted">
+              Dieser Bereich bettet die PDF direkt in die Seite ein, damit du
+              sie wie eine Vorschau ansehen kannst, ohne den Download zu öffnen.
+            </p>
 
-        <section id="quellen" class="card">
-          <div class="section-title"><span class="dot"></span><h2>11. Quellenbasis dieser Zusammenfassung</h2></div>
-          <p>Diese Lernseite kombiniert Unterrichtsunterlagen aus Modul 165 mit aktueller offizieller Redis-Dokumentation.</p>
-          <ul>
-            <li>Unterrichtsunterlagen zu NoSQL-Modellen, BASE/ACID, Redis als Key-Value-Store und In-Memory-Prinzip</li>
-            <li>Offizielle Redis-Dokumentation zu ACLs, Persistence, Replication, Sentinel, Cluster und Query-/JSON-Zugriff</li>
-          </ul>
-          <p class="footer-note">Erstellt als lernorientierte Zusammenfassung: verständlich, prüfungsnah und auf Redis fokussiert.</p>
-        </section>
-      </main>
+            <div class="window-shell">
+              <div class="window-bar">
+                <div class="window-controls" aria-hidden="true">
+                  <span class="red"></span>
+                  <span class="amber"></span>
+                  <span class="green"></span>
+                </div>
+                <div class="window-title">Modul_165_Prüfungsfragen_2.pdf</div>
+              </div>
+              <div class="window-body">
+                <object
+                  data="Modul_165_Prüfungsfragen_2.pdf"
+                  type="application/pdf"
+                  class="pdf-preview-frame"
+                >
+                  <div class="pdf-preview-fallback">
+                    <p>
+                      Dein Browser kann die PDF-Vorschau nicht direkt anzeigen.
+                    </p>
+                    <p>
+                      <a href="Modul_165_Prüfungsfragen_2.pdf">PDF öffnen</a>
+                    </p>
+                  </div>
+                </object>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
