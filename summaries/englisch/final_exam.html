@@ -1,0 +1,1384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Final Exam - Interactive Summary</title>
+    <style>
+      :root {
+        --bg: #08111f;
+        --s: #101c2e;
+        --s2: #17263d;
+        --s3: #203451;
+        --b: #2b4261;
+        --a: #38bdf8;
+        --a2: #7dd3fc;
+        --txt: #eaf6ff;
+        --m: #9ab0c8;
+        --ok: #34d399;
+        --bad: #fb7185;
+        --w: #fbbf24;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(
+          circle at top left,
+          #102847,
+          #08111f 45%,
+          #050912
+        );
+        color: var(--txt);
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Arial,
+          sans-serif;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(8, 17, 31, 0.94);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--b);
+      }
+      .nav {
+        max-width: 1180px;
+        margin: auto;
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        overflow-x: auto;
+        padding: 9px 12px;
+        scrollbar-width: none;
+      }
+      .nav::-webkit-scrollbar {
+        display: none;
+      }
+      .brand {
+        color: var(--a);
+        font-weight: 900;
+        white-space: nowrap;
+      }
+      .tb {
+        border: 0;
+        background: transparent;
+        color: var(--m);
+        padding: 8px 11px;
+        border-radius: 10px;
+        font-weight: 700;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .tb:hover,
+      .tb.active {
+        background: var(--s2);
+        color: var(--txt);
+      }
+      .tb.active {
+        background: linear-gradient(135deg, #0284c7, var(--a));
+        color: #03101c;
+      }
+      .page {
+        display: none;
+        max-width: 1180px;
+        margin: auto;
+        padding: 26px 16px 54px;
+      }
+      .page.active {
+        display: block;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: 16px;
+      }
+      .card,
+      .exercise,
+      .hero-card {
+        background: linear-gradient(
+          180deg,
+          rgba(16, 28, 46, 0.98),
+          rgba(11, 22, 38, 0.98)
+        );
+        border: 1px solid var(--b);
+        border-radius: 22px;
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+      }
+      .hero-card {
+        padding: 30px;
+      }
+      .hero h1 {
+        font-size: clamp(32px, 5vw, 58px);
+        line-height: 1.02;
+        margin: 0 0 10px;
+      }
+      .muted {
+        color: var(--m);
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .stat {
+        padding: 18px;
+        background: var(--s);
+        border: 1px solid var(--b);
+        border-radius: 18px;
+      }
+      .stat strong {
+        display: block;
+        color: var(--a);
+        font-size: 30px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+        gap: 14px;
+        margin-top: 18px;
+      }
+      .jump {
+        padding: 17px;
+        cursor: pointer;
+        transition: 0.18s;
+      }
+      .jump:hover {
+        transform: translateY(-2px);
+        border-color: var(--a);
+      }
+      h2 {
+        font-size: clamp(26px, 4vw, 40px);
+        margin: 0 0 6px;
+      }
+      .sub {
+        margin: 0 0 20px;
+        color: var(--m);
+      }
+      .topic {
+        padding: 18px;
+      }
+      .topic h3 {
+        margin: 0 0 8px;
+        color: var(--a2);
+      }
+      .topic p {
+        margin: 0;
+      }
+      .topic ul {
+        color: var(--m);
+        padding-left: 18px;
+        margin-bottom: 0;
+      }
+      .rule {
+        border-left: 4px solid var(--a);
+        background: rgba(56, 189, 248, 0.08);
+        padding: 11px 13px;
+        border-radius: 0 12px 12px 0;
+        margin: 12px 0;
+      }
+      .warn {
+        border-color: var(--w);
+        background: rgba(251, 191, 36, 0.08);
+      }
+      .controls {
+        position: sticky;
+        top: 58px;
+        z-index: 10;
+        background: rgba(8, 17, 31, 0.94);
+        border: 1px solid var(--b);
+        border-radius: 16px;
+        padding: 12px;
+        margin: 16px 0;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .controls select {
+        background: var(--s2);
+        border: 1px solid var(--b);
+        color: var(--txt);
+        border-radius: 10px;
+        padding: 9px 10px;
+      }
+      .btn {
+        background: linear-gradient(135deg, #0284c7, var(--a));
+        border: 0;
+        color: #041525;
+        border-radius: 10px;
+        padding: 9px 13px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+      .btn.secondary {
+        background: var(--s2);
+        border: 1px solid var(--b);
+        color: var(--txt);
+      }
+      .score {
+        margin-left: auto;
+        color: var(--m);
+        font-weight: 800;
+      }
+      .exercise {
+        padding: 18px;
+        margin-bottom: 14px;
+      }
+      .meta {
+        font-size: 12px;
+        color: var(--a2);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .q {
+        font-weight: 800;
+        font-size: 16px;
+        margin: 8px 0 12px;
+      }
+      .opts {
+        display: grid;
+        gap: 8px;
+      }
+      .opt {
+        background: var(--s2);
+        border: 1px solid var(--b);
+        color: var(--txt);
+        padding: 10px 12px;
+        border-radius: 12px;
+        text-align: left;
+        cursor: pointer;
+      }
+      .opt:hover {
+        border-color: var(--a);
+      }
+      .opt.correct {
+        border-color: var(--ok);
+        background: rgba(52, 211, 153, 0.12);
+      }
+      .opt.wrong {
+        border-color: var(--bad);
+        background: rgba(251, 113, 133, 0.1);
+      }
+      input,
+      textarea {
+        width: 100%;
+        background: var(--s2);
+        border: 1px solid var(--b);
+        color: var(--txt);
+        border-radius: 12px;
+        padding: 11px 12px;
+        font: inherit;
+      }
+      textarea {
+        min-height: 150px;
+      }
+      .fb {
+        display: none;
+        margin-top: 12px;
+        border-radius: 12px;
+        padding: 11px 13px;
+        border: 1px solid var(--b);
+        background: var(--s2);
+      }
+      .fb.show {
+        display: block;
+      }
+      .fb.ok {
+        border-color: rgba(52, 211, 153, 0.5);
+        background: rgba(52, 211, 153, 0.1);
+      }
+      .fb.err {
+        border-color: rgba(251, 113, 133, 0.5);
+        background: rgba(251, 113, 133, 0.1);
+      }
+      .solution {
+        color: #bfdbfe;
+        font-weight: 800;
+      }
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      .table th {
+        background: var(--s3);
+        color: var(--a2);
+        text-align: left;
+        padding: 10px;
+      }
+      .table td {
+        border-top: 1px solid var(--b);
+        padding: 10px;
+      }
+      .check span {
+        display: block;
+        background: rgba(56, 189, 248, 0.07);
+        border: 1px solid var(--b);
+        padding: 8px 10px;
+        border-radius: 10px;
+        margin-top: 7px;
+      }
+      @media (max-width: 800px) {
+        .hero,
+        .two {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .page {
+          padding: 18px 12px 42px;
+        }
+        .controls {
+          top: 54px;
+        }
+        .score {
+          width: 100%;
+          margin-left: 0;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .controls select {
+          width: 100%;
+        }
+        .hero-card,
+        .card,
+        .exercise {
+          border-radius: 17px;
+        }
+      }
+      @media (max-width: 420px) {
+        body {
+          font-size: 14px;
+        }
+        .stats {
+          grid-template-columns: 1fr;
+        }
+        .brand {
+          display: none;
+        }
+        .exercise,
+        .topic {
+          padding: 14px;
+        }
+        .tb {
+          font-size: 13px;
+          padding: 7px 9px;
+        }
+        .table {
+          font-size: 13px;
+        }
+        .table th,
+        .table td {
+          padding: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav">
+        <div class="brand">English Exam</div>
+        <button class="tb active" onclick="go('home', this)">Start</button
+        ><button class="tb" onclick="go('summary', this)">Summary</button
+        ><button class="tb" onclick="go('rules', this)">Quick Rules</button
+        ><button class="tb" onclick="go('practice', this)">Practice</button
+        ><button class="tb" onclick="go('errors', this)">Errors</button
+        ><button class="tb" onclick="go('transform', this)">
+          Transformations</button
+        ><button class="tb" onclick="go('writing', this)">Writing</button>
+      </div>
+    </nav>
+    <section class="page active" id="home">
+      <div class="hero">
+        <div class="hero-card">
+          <p class="solution">BMS Final Exam Training</p>
+          <h1>English Final Exam: Summary + Interactive Exercises</h1>
+          <p class="muted">
+            A complete responsive learning website with all grammar and
+            vocabulary topics, exam-style exercises, automatic correction, model
+            solutions and explanations.
+          </p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <strong>24</strong><span class="muted">topics</span>
+          </div>
+          <div class="stat">
+            <strong>70+</strong><span class="muted">tasks</span>
+          </div>
+          <div class="stat">
+            <strong>4</strong><span class="muted">exercise types</span>
+          </div>
+          <div class="stat">
+            <strong>Mobile</strong><span class="muted">responsive</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card jump" onclick="go('summary')">
+          <h3>Full Summary</h3>
+          <p class="muted">Rules, examples and common mistakes.</p>
+        </div>
+        <div class="card jump" onclick="go('practice')">
+          <h3>Mixed Practice</h3>
+          <p class="muted">Multiple choice and fill-in-the-gap.</p>
+        </div>
+        <div class="card jump" onclick="go('errors')">
+          <h3>Error Correction</h3>
+          <p class="muted">Correct typical exam mistakes.</p>
+        </div>
+        <div class="card jump" onclick="go('transform')">
+          <h3>Transformations</h3>
+          <p class="muted">Passive, reported speech, conditionals and more.</p>
+        </div>
+        <div class="card jump" onclick="go('writing')">
+          <h3>Writing</h3>
+          <p class="muted">Short paragraphs with model answers.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="summary">
+      <h2>Complete Summary</h2>
+      <p class="sub">All exam topics in one place.</p>
+      <div class="grid" id="summaryGrid"></div>
+    </section>
+    <section class="page" id="rules">
+      <h2>Quick Rules and Common Traps</h2>
+      <p class="sub">Use this as a last-minute checklist.</p>
+      <div class="two">
+        <div class="card topic">
+          <h3>Tense Signals</h3>
+          <table class="table">
+            <tr>
+              <th>Tense</th>
+              <th>Signal words</th>
+            </tr>
+            <tr>
+              <td>Present Simple</td>
+              <td>always, often, every day</td>
+            </tr>
+            <tr>
+              <td>Present Continuous</td>
+              <td>now, at the moment, today</td>
+            </tr>
+            <tr>
+              <td>Present Perfect</td>
+              <td>ever, never, already, yet, since, for</td>
+            </tr>
+            <tr>
+              <td>Past Simple</td>
+              <td>yesterday, ago, last week</td>
+            </tr>
+            <tr>
+              <td>Past Continuous</td>
+              <td>while, when</td>
+            </tr>
+            <tr>
+              <td>Past Perfect</td>
+              <td>before, after, by the time</td>
+            </tr>
+          </table>
+        </div>
+        <div class="card topic">
+          <h3>Conditionals</h3>
+          <table class="table">
+            <tr>
+              <th>Type</th>
+              <th>Structure</th>
+            </tr>
+            <tr>
+              <td>0</td>
+              <td>If + present, present</td>
+            </tr>
+            <tr>
+              <td>I</td>
+              <td>If + present, will + base verb</td>
+            </tr>
+            <tr>
+              <td>II</td>
+              <td>If + past, would + base verb</td>
+            </tr>
+            <tr>
+              <td>III</td>
+              <td>If + past perfect, would have + past participle</td>
+            </tr>
+          </table>
+          <div class="rule warn">
+            Never write: If it will rain. Write: If it rains.
+          </div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card topic">
+          <h3>Verb Pattern Traps</h3>
+          <p>
+            enjoy/avoid/finish/suggest + -ing. want/decide/hope/promise + to.
+            tell/ask/remind + object + to. make/let/help + object + base verb.
+            After prepositions, always use -ing.
+          </p>
+          <div class="rule">
+            Remember to lock = future duty. Remember locking = memory.
+          </div>
+          <div class="rule">
+            Stop smoking = quit. Stop to smoke = pause for another action.
+          </div>
+        </div>
+        <div class="card topic">
+          <h3>Passive Forms</h3>
+          <p>
+            is done, was done, has been done, had been done, will be done, is
+            going to be done, is being done, must be done.
+          </p>
+        </div>
+        <div class="card topic">
+          <h3>Question Traps</h3>
+          <p>
+            After do/does/did, use the base verb. Subject question: Who called
+            you? Object question: Who did you call?
+          </p>
+        </div>
+        <div class="card topic">
+          <h3>Vocabulary Traps</h3>
+          <p>
+            Use: do homework, make a mistake, take a photo. Information, advice,
+            money and homework are uncountable.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="practice">
+      <h2>Part 1: Mixed Grammar Practice</h2>
+      <p class="sub">Choose or type the correct answer.</p>
+      <div class="controls">
+        <select id="topicFilter" onchange="renderPractice()">
+          <option value="all">All topics</option></select
+        ><button class="btn secondary" onclick="resetPractice()">
+          Reset practice
+        </button>
+        <div class="score" id="practiceScore">Score: 0 / 0</div>
+      </div>
+      <div id="practiceList"></div>
+    </section>
+    <section class="page" id="errors">
+      <h2>Part 2: Error Correction</h2>
+      <p class="sub">Rewrite each sentence correctly.</p>
+      <div class="controls">
+        <button class="btn secondary" onclick="resetSection('err')">
+          Reset errors
+        </button>
+        <div class="score" id="errScore">Score: 0 / 0</div>
+      </div>
+      <div id="errorList"></div>
+    </section>
+    <section class="page" id="transform">
+      <h2>Part 3: Sentence Transformations</h2>
+      <p class="sub">Keep the meaning as close as possible.</p>
+      <div class="controls">
+        <button class="btn secondary" onclick="resetSection('tr')">
+          Reset transformations
+        </button>
+        <div class="score" id="trScore">Score: 0 / 0</div>
+      </div>
+      <div id="transformList"></div>
+    </section>
+    <section class="page" id="writing">
+      <h2>Part 4: Short Writing</h2>
+      <p class="sub">
+        Write your answer, then compare it with the model answer.
+      </p>
+      <div id="writingList"></div>
+    </section>
+    <script>
+      const SUMMARY = [
+        [
+          "Tenses",
+          "Present Simple = habits/facts/timetables. Present Continuous = now/temporary/fixed future plans. Present Perfect Simple = result/experience/until now. Present Perfect Continuous = duration. Past Simple = finished past. Past Continuous = past background/action in progress. Past Perfect = earlier past. Future: will, going to, present continuous and present simple for timetables.",
+          [
+            "She works every Friday.",
+            "She is working now.",
+            "She has worked here since 2024.",
+            "She had left before I arrived.",
+          ],
+        ],
+        [
+          "Conditionals",
+          "Type 0: facts. Type I: real future. Type II: unreal present/future. Type III: unreal past. Do not use will directly after if in Type I.",
+          [
+            "If it rains, I will stay inside.",
+            "If I were you, I would apologise.",
+            "If she had studied, she would have passed.",
+          ],
+        ],
+        [
+          "Active and Passive",
+          "Passive = object + be + past participle. Keep the tense of be. Use passive when the action is more important than the doer.",
+          [
+            "The car was repaired.",
+            "The room is being cleaned.",
+            "The letter has been written.",
+          ],
+        ],
+        [
+          "Reported Speech",
+          "Backshift after a past reporting verb: present -> past, past -> past perfect, will -> would, can -> could. Change pronouns and time words.",
+          ["She said she was tired.", "He said he had gone home."],
+        ],
+        [
+          "State Verbs",
+          "Know, believe, like, love, hate, understand, own and need usually do not use continuous forms. Some verbs have action meanings too.",
+          ["I know the answer.", "I am having dinner."],
+        ],
+        [
+          "Sentence Structure",
+          "Positive: subject + verb. Negative: subject + auxiliary + not + base verb. Question: auxiliary + subject + base verb.",
+          [
+            "She lives in London.",
+            "She does not live in London.",
+            "Did she live in London?",
+          ],
+        ],
+        [
+          "Verb Patterns",
+          "Verb + -ing: enjoy, avoid, finish, suggest, mind. Verb + to: want, hope, decide, plan, promise. Verb + object + to: tell, ask, advise, remind. Bare infinitive after make/let/help.",
+          [
+            "I enjoy learning.",
+            "She decided to study.",
+            "They made him apologise.",
+          ],
+        ],
+        [
+          "Phrasal Verbs",
+          "Common verbs: hand in, look up, go over, call back, set off, get on, get off, take off, get along with, break up.",
+          ["Hand in your homework.", "Look up the word.", "We set off early."],
+        ],
+        [
+          "Modals",
+          "Modal + base verb. Can/could = ability. Must/have to = obligation. Should = advice. Might/may/could = possibility.",
+          ["She can swim.", "You must study.", "It might rain."],
+        ],
+        [
+          "Questions and Tags",
+          "Yes/no questions use auxiliary + subject + verb. Subject questions do not use do. Tags: positive sentence -> negative tag.",
+          [
+            "Who called you?",
+            "Who did you call?",
+            "You are tired, aren't you?",
+          ],
+        ],
+        [
+          "Nouns and Quantifiers",
+          "Countable: many, few, a few. Uncountable: much, little, a little. Some in positives; any in negatives/questions.",
+          ["a few students", "a little water", "Do you have any money?"],
+        ],
+        [
+          "Pronouns and Articles",
+          "Subject, object and possessive pronouns must match. Use a/an for general or first mention; the for specific/known nouns. A/an depends on sound.",
+          ["She loves him.", "This book is mine.", "a university, an hour"],
+        ],
+        [
+          "Adjectives and Adverbs",
+          "-ed = feeling, -ing = cause. Adjectives describe nouns; adverbs describe verbs.",
+          ["I am bored.", "The film is boring.", "He drives carefully."],
+        ],
+        [
+          "Comparatives and Superlatives",
+          "Short adjectives use -er/-est; longer adjectives use more/most. Irregular: good, better, best.",
+          ["faster than", "more interesting than", "the best student"],
+        ],
+        [
+          "Prepositions",
+          "At for exact times, on for days/dates, in for months/years/periods. Since = starting point, for = duration.",
+          [
+            "at 8 o'clock",
+            "on Monday",
+            "in 2026",
+            "since 2024",
+            "for two hours",
+          ],
+        ],
+        [
+          "Linking Words",
+          "Use addition, contrast, reason, result, example and sequencing words to structure writing clearly.",
+          ["however", "therefore", "because", "for example", "finally"],
+        ],
+        [
+          "Relative Clauses",
+          "Who for people, which for things, that for both, whose for possession, where for places.",
+          [
+            "The girl whose phone rang is here.",
+            "The house where I grew up is old.",
+          ],
+        ],
+        [
+          "Word Formation",
+          "Prefixes and suffixes change meaning or word class. Common prefixes: un-, im-, in-, dis-, re-. Common suffixes: -er, -ful, -less, -ly, -ness.",
+          ["possible -> impossible", "care -> careful", "quick -> quickly"],
+        ],
+        [
+          "Collocations",
+          "Words that naturally go together must be learned.",
+          ["do homework", "make a mistake", "take a photo", "have lunch"],
+        ],
+        [
+          "Irregular Plurals",
+          "Some plurals do not use regular -s.",
+          [
+            "woman -> women",
+            "child -> children",
+            "foot -> feet",
+            "knife -> knives",
+          ],
+        ],
+      ];
+      const MCQ = [
+        [
+          "Tenses",
+          "By the time we arrived, the film ____.",
+          ["started", "has started", "had started", "was starting"],
+          "had started",
+          "The film started before we arrived, so use Past Perfect.",
+        ],
+        [
+          "Tenses",
+          "Look at those clouds. It ____ soon.",
+          ["will rain", "is going to rain", "rains", "has rained"],
+          "is going to rain",
+          "Strong present evidence uses going to.",
+        ],
+        [
+          "Tenses",
+          "The train ____ at 8.15 tomorrow.",
+          ["is leaving", "will leave", "leaves", "has left"],
+          "leaves",
+          "Timetables use Present Simple.",
+        ],
+        [
+          "Conditionals",
+          "If I ____ more time, I would join the project.",
+          ["have", "had", "will have", "had had"],
+          "had",
+          "Type II: if + Past Simple, would + base verb.",
+        ],
+        [
+          "Conditionals",
+          "If she had checked the timetable, she ____ the bus.",
+          [
+            "would not miss",
+            "will not miss",
+            "would not have missed",
+            "did not miss",
+          ],
+          "would not have missed",
+          "Type III: would have + past participle.",
+        ],
+        [
+          "Passive",
+          "The classroom ____ at the moment.",
+          ["cleans", "is cleaning", "is being cleaned", "has cleaned"],
+          "is being cleaned",
+          "Present Continuous passive: is being cleaned.",
+        ],
+        [
+          "Reported Speech",
+          'He said, "I can help you." -> He said he ____ help me.',
+          ["can", "could", "will can", "could to"],
+          "could",
+          "Can changes to could.",
+        ],
+        [
+          "State Verbs",
+          "Which sentence is correct?",
+          [
+            "I am knowing the answer.",
+            "I know the answer.",
+            "She is believing me.",
+            "He is owning a car.",
+          ],
+          "I know the answer.",
+          "Know is a state verb.",
+        ],
+        [
+          "Verb Patterns",
+          "She avoided ____ about the problem.",
+          ["to talk", "talk", "talking", "to talking"],
+          "talking",
+          "Avoid is followed by -ing.",
+        ],
+        [
+          "Verb Patterns",
+          "Remember ____ the door before you leave.",
+          ["locking", "to lock", "lock", "locked"],
+          "to lock",
+          "Remember + to means a future duty.",
+        ],
+        [
+          "Verb Patterns",
+          "He stopped ____ a coffee on his way home.",
+          ["buying", "to buy", "buy", "bought"],
+          "to buy",
+          "Stop + to means pause in order to do something.",
+        ],
+        [
+          "Phrasal Verbs",
+          "I need to ____ this word in a dictionary.",
+          ["look after", "look up", "look for", "look forward to"],
+          "look up",
+          "Look up means search for information.",
+        ],
+        [
+          "Modals",
+          "You ____ use your phone during the exam. It is forbidden.",
+          ["do not have to", "must not", "should not", "might not"],
+          "must not",
+          "Must not = prohibition.",
+        ],
+        [
+          "Questions",
+          "Which question asks about the subject?",
+          [
+            "Who did you meet?",
+            "Who called you?",
+            "What did you buy?",
+            "Where did he go?",
+          ],
+          "Who called you?",
+          "Subject questions do not use do/did.",
+        ],
+        [
+          "Tag Questions",
+          "I am late, ____?",
+          ["am not I", "aren't I", "don't I", "isn't I"],
+          "aren't I",
+          "Special tag: I am -> aren't I.",
+        ],
+        [
+          "Quantifiers",
+          "We have ____ time before the train leaves.",
+          ["little", "a little", "few", "a few"],
+          "a little",
+          "Time is uncountable; a little means some.",
+        ],
+        [
+          "Articles",
+          "She studies at ____ university.",
+          ["an", "a", "the", "-"],
+          "a",
+          "University starts with /ju:/, a consonant sound.",
+        ],
+        [
+          "Adjectives",
+          "I was really ____ by the ending.",
+          ["surprising", "surprised", "surprise", "surprisingly"],
+          "surprised",
+          "-ed describes feelings.",
+        ],
+        [
+          "Adverbs",
+          "He speaks English very ____.",
+          ["good", "well", "goodly", "betterly"],
+          "well",
+          "Well is the adverb form.",
+        ],
+        [
+          "Prepositions",
+          "I have known her ____ 2022.",
+          ["for", "since", "during", "from"],
+          "since",
+          "Since = starting point.",
+        ],
+        [
+          "Relative Clauses",
+          "This is the teacher ____ helped me.",
+          ["which", "where", "who", "whose"],
+          "who",
+          "Who is for people.",
+        ],
+        [
+          "Collocations",
+          "Which collocation is correct?",
+          ["make homework", "do a mistake", "take a photo", "make exercise"],
+          "take a photo",
+          "Correct: take a photo.",
+        ],
+      ];
+      const FILL = [
+        [
+          "Tenses",
+          "I _____ (study) English for three hours, and I am still not finished.",
+          ["have been studying", "'ve been studying"],
+          "Duration until now: Present Perfect Continuous.",
+        ],
+        [
+          "Tenses",
+          "While I _____ (walk) home, I saw an old friend.",
+          ["was walking"],
+          "Background action: Past Continuous.",
+        ],
+        [
+          "Tenses",
+          "She usually _____ (go) by bus, but today she _____ (walk).",
+          ["goes, is walking", "goes is walking"],
+          "Habit + temporary action.",
+        ],
+        [
+          "Conditionals",
+          "If he _____ (not forget) his password yesterday, he _____ (finish) the form.",
+          [
+            "had not forgotten, would have finished",
+            "hadn't forgotten, would have finished",
+          ],
+          "Unreal past: Type III.",
+        ],
+        [
+          "Passive",
+          "The letters _____ (send) every Monday.",
+          ["are sent"],
+          "Present Simple passive.",
+        ],
+        [
+          "Reported Speech",
+          'She said, "I am working late." -> She said she _____ late.',
+          ["was working"],
+          "Present Continuous backshifts to Past Continuous.",
+        ],
+        [
+          "State Verbs",
+          "This soup _____ (taste) delicious.",
+          ["tastes"],
+          "Taste is a state here.",
+        ],
+        [
+          "Verb Patterns",
+          "I look forward to _____ (hear) from you.",
+          ["hearing"],
+          "After a preposition, use -ing.",
+        ],
+        [
+          "Verb Patterns",
+          "The teacher reminded us _____ (bring) dictionaries.",
+          ["to bring"],
+          "Remind + object + to-infinitive.",
+        ],
+        [
+          "Phrasal Verbs",
+          "Please _____ your homework before Friday. (submit)",
+          ["hand in", "hand your homework in"],
+          "Hand in = submit.",
+        ],
+        [
+          "Modals",
+          "In the future, she _____ speak English fluently.",
+          ["will be able to"],
+          "Future ability: will be able to.",
+        ],
+        [
+          "Articles",
+          "I bought _____ umbrella and _____ jacket.",
+          ["an, a", "an a"],
+          "An before vowel sound, a before consonant sound.",
+        ],
+        [
+          "Prepositions",
+          "The meeting starts _____ 8 o'clock _____ Monday.",
+          ["at, on", "at on"],
+          "At for exact time, on for days.",
+        ],
+        [
+          "Word Formation",
+          "It is _____ (possible) to finish this in five minutes.",
+          ["impossible"],
+          "Negative prefix im-.",
+        ],
+        [
+          "Irregular Plurals",
+          "One _____, two _____. (child)",
+          ["child, children", "child children"],
+          "Child -> children.",
+        ],
+      ];
+      const ERR = [
+        [
+          "Tenses",
+          "I have seen him yesterday.",
+          ["I saw him yesterday."],
+          "Yesterday needs Past Simple.",
+        ],
+        [
+          "Questions",
+          "Did she went home?",
+          ["Did she go home?"],
+          "After did, use base verb.",
+        ],
+        [
+          "Conditionals",
+          "If it will rain, I will stay at home.",
+          ["If it rains, I will stay at home."],
+          "No will after if in Type I.",
+        ],
+        [
+          "Passive",
+          "The car repaired yesterday.",
+          ["The car was repaired yesterday."],
+          "Passive needs be + past participle.",
+        ],
+        [
+          "Reported Speech",
+          "He said that he is tired.",
+          ["He said that he was tired.", "He said he was tired."],
+          "Backshift after said.",
+        ],
+        [
+          "State Verbs",
+          "I am knowing the answer.",
+          ["I know the answer."],
+          "Know is a state verb.",
+        ],
+        [
+          "Verb Patterns",
+          "She enjoys to swim.",
+          ["She enjoys swimming."],
+          "Enjoy + -ing.",
+        ],
+        [
+          "Modal Verbs",
+          "You must to study for the exam.",
+          ["You must study for the exam."],
+          "Modal + base verb.",
+        ],
+        [
+          "Quantifiers",
+          "I have many money.",
+          ["I have much money.", "I have a lot of money."],
+          "Money is uncountable.",
+        ],
+        [
+          "Articles",
+          "She is an university student.",
+          ["She is a university student."],
+          "University starts with consonant sound.",
+        ],
+        [
+          "Adjectives",
+          "The film was bored.",
+          ["The film was boring."],
+          "The film causes the feeling.",
+        ],
+        [
+          "Adverbs",
+          "He drives careful.",
+          ["He drives carefully."],
+          "Use adverb for a verb.",
+        ],
+        [
+          "Prepositions",
+          "I am interested to learn English.",
+          ["I am interested in learning English."],
+          "Interested in + -ing.",
+        ],
+        [
+          "Relative Clauses",
+          "The woman which lives here is friendly.",
+          [
+            "The woman who lives here is friendly.",
+            "The woman that lives here is friendly.",
+          ],
+          "Who/that for people.",
+        ],
+      ];
+      const TR = [
+        [
+          "Passive",
+          "Rewrite in the passive.",
+          "They built this school in 1998.",
+          ["This school was built in 1998."],
+          "Past Simple passive.",
+        ],
+        [
+          "Passive",
+          "Rewrite in the passive.",
+          "Someone has stolen my bike.",
+          ["My bike has been stolen."],
+          "Present Perfect passive.",
+        ],
+        [
+          "Reported Speech",
+          "Rewrite in reported speech.",
+          'Mia said, "I will call you tomorrow."',
+          [
+            "Mia said she would call me the next day.",
+            "Mia said that she would call me the next day.",
+          ],
+          "Will -> would, tomorrow -> the next day.",
+        ],
+        [
+          "Conditionals",
+          "Rewrite as a Type III conditional.",
+          "I did not study. I failed the test.",
+          [
+            "If I had studied, I would have passed the test.",
+            "If I had studied, I would not have failed the test.",
+          ],
+          "Unreal past.",
+        ],
+        [
+          "Questions",
+          "Ask a subject question.",
+          "Tom wrote the letter.",
+          ["Who wrote the letter?"],
+          "Subject question, no did.",
+        ],
+        [
+          "Questions",
+          "Ask an object question about Anna.",
+          "Tom wrote a letter to Anna.",
+          ["Who did Tom write a letter to?", "To whom did Tom write a letter?"],
+          "Object question uses did.",
+        ],
+        [
+          "Tag Questions",
+          "Add a tag question.",
+          "She has finished her homework.",
+          ["She has finished her homework, hasn't she?"],
+          "Positive sentence -> negative tag.",
+        ],
+        [
+          "Verb Patterns",
+          "Combine with remember + -ing.",
+          "I met her before. I remember it.",
+          ["I remember meeting her before.", "I remember meeting her."],
+          "Remember + -ing = memory.",
+        ],
+        [
+          "Comparatives",
+          "Rewrite using more ... than.",
+          "This exercise is difficult. The last exercise was not as difficult.",
+          [
+            "This exercise is more difficult than the last exercise.",
+            "This exercise is more difficult than the last one.",
+          ],
+          "Long adjective uses more.",
+        ],
+        [
+          "Relative Clauses",
+          "Combine with whose.",
+          "The girl is my neighbour. Her phone rang during the lesson.",
+          ["The girl whose phone rang during the lesson is my neighbour."],
+          "Whose shows possession.",
+        ],
+      ];
+      const WR = [
+        [
+          "Short Paragraph: School and Exams",
+          "Write 80-100 words about how students should prepare for exams. Use at least four linking words, two different tenses, one modal verb and one conditional sentence.",
+          "First, students should make a realistic study plan because this helps them stay organised. In addition, they should revise difficult topics several times instead of learning everything the night before. I have already tried this method, and it has helped me feel more confident. However, breaks are also important because the brain needs time to process information. If students study regularly, they will probably perform better in the final exam.",
+          [
+            "First / In addition / However / because",
+            "Present Perfect and Present Simple",
+            "Modal verb: should",
+            "Type I conditional",
+          ],
+        ],
+        [
+          "Short Email: Asking for Help",
+          "Write a polite email of 70-90 words to your English teacher. Ask for help with verb patterns and explain what you have already done.",
+          "Dear Ms Smith, I am writing because I need some help with verb patterns. I have revised the rules for gerunds and infinitives, but I still make mistakes with verbs such as remember, stop and try. Could we maybe go over a few examples before the exam? I would also be grateful if you could recommend some extra exercises. Kind regards, Alex",
+          [
+            "Polite opening and closing",
+            "Present Perfect for preparation",
+            "Modal could for polite request",
+            "Specific problem",
+          ],
+        ],
+        [
+          "Mini Essay Paragraph: Technology in School",
+          "Write one PEEL paragraph about whether students should use laptops in class. Use one contrast linker and one example linker.",
+          "One advantage of using laptops in class is that students can work more efficiently. For example, they can research information quickly, organise notes clearly and correct mistakes more easily. However, laptops can also distract students if they use social media or play games during lessons. Therefore, schools should allow laptops, but they should also set clear rules so that students use them responsibly.",
+          ["Clear point", "Example linker", "Contrast linker", "Result linker"],
+        ],
+      ];
+      let state = { mcq: {}, fill: {}, err: {}, tr: {} };
+      function esc(s) {
+        return String(s).replace(
+          /[&<>"]/g,
+          (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
+        );
+      }
+      function norm(s) {
+        return (s || "")
+          .toLowerCase()
+          .replace(/[’']/g, "'")
+          .replace(/[.,!?]/g, "")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+      function ok(v, ans) {
+        const n = norm(v);
+        return ans.some((a) => norm(a) === n);
+      }
+      function go(id, btn) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        document
+          .querySelectorAll(".tb")
+          .forEach((b) => b.classList.remove("active"));
+        if (btn) btn.classList.add("active");
+        window.scrollTo(0, 0);
+        if (id === "practice") renderPractice();
+        if (id === "errors") renderErrors();
+        if (id === "transform") renderTransform();
+        if (id === "writing") renderWriting();
+      }
+      function init() {
+        const sg = document.getElementById("summaryGrid");
+        SUMMARY.forEach((x) => {
+          sg.innerHTML += `<article class="card topic"><h3>${esc(x[0])}</h3><p>${esc(x[1])}</p><ul>${x[2].map((e) => `<li>${esc(e)}</li>`).join("")}</ul></article>`;
+        });
+        const topics = [...new Set([...MCQ, ...FILL].map((x) => x[0]))].sort();
+        topics.forEach(
+          (t) =>
+            (document.getElementById("topicFilter").innerHTML +=
+              `<option>${esc(t)}</option>`),
+        );
+        renderPractice();
+      }
+      function renderPractice() {
+        const f = document.getElementById("topicFilter").value;
+        const list = document.getElementById("practiceList");
+        list.innerHTML = "";
+        let n = 0;
+        MCQ.filter((x) => f === "all" || x[0] === f).forEach((x) => {
+          n++;
+          let i = MCQ.indexOf(x);
+          list.innerHTML += `<div class="exercise"><div class="meta">${esc(x[0])} · Multiple choice</div><div class="q">${n}. ${esc(x[1])}</div><div class="opts">${x[2].map((o, j) => `<button class="opt" onclick="answerMcq(${i},${j},this)">${esc(o)}</button>`).join("")}</div><div class="fb" id="mcqfb${i}"></div></div>`;
+        });
+        FILL.filter((x) => f === "all" || x[0] === f).forEach((x) => {
+          n++;
+          let i = FILL.indexOf(x);
+          list.innerHTML += `<div class="exercise"><div class="meta">${esc(x[0])} · Fill in the gap</div><div class="q">${n}. ${esc(x[1])}</div><input id="fill${i}" placeholder="Type your answer"><button class="btn" style="margin-top:10px" onclick="answerText('fill',${i})">Check</button><div class="fb" id="fillfb${i}"></div></div>`;
+        });
+        updateScores();
+      }
+      function answerMcq(i, j, btn) {
+        if (state.mcq[i] !== undefined) return;
+        state.mcq[i] = j;
+        const x = MCQ[i],
+          correct = x[2].indexOf(x[3]);
+        const opts = btn.closest(".opts").querySelectorAll(".opt");
+        opts.forEach((b) => (b.disabled = true));
+        opts[correct].classList.add("correct");
+        const fb = document.getElementById("mcqfb" + i);
+        if (j === correct) {
+          fb.className = "fb show ok";
+          fb.innerHTML = "Correct. " + esc(x[4]);
+        } else {
+          btn.classList.add("wrong");
+          fb.className = "fb show err";
+          fb.innerHTML = `Not quite. <span class="solution">Correct answer: ${esc(x[3])}</span><br>${esc(x[4])}`;
+        }
+        updateScores();
+      }
+      function answerText(k, i) {
+        if (state[k][i] !== undefined) return;
+        const data = k === "fill" ? FILL : k === "err" ? ERR : TR;
+        const prefix = k === "fill" ? "fill" : k === "err" ? "err" : "tr";
+        const input = document.getElementById(prefix + i);
+        const good = ok(input.value, data[i][k === "tr" ? 3 : 2]);
+        state[k][i] = good;
+        input.disabled = true;
+        const fb = document.getElementById(prefix + "fb" + i);
+        const answer = data[i][k === "tr" ? 3 : 2][0],
+          exp = data[i][k === "tr" ? 4 : 3];
+        if (good) {
+          fb.className = "fb show ok";
+          fb.innerHTML = "Correct. " + esc(exp);
+        } else {
+          fb.className = "fb show err";
+          fb.innerHTML = `Not quite. <span class="solution">Possible answer: ${esc(answer)}</span><br>${esc(exp)}`;
+        }
+        updateScores();
+      }
+      function renderErrors() {
+        const list = document.getElementById("errorList");
+        if (list.children.length) return;
+        ERR.forEach(
+          (x, i) =>
+            (list.innerHTML += `<div class="exercise"><div class="meta">${esc(x[0])} · Error correction</div><div class="q">${i + 1}. Correct this sentence:<br><span class="solution">${esc(x[1])}</span></div><input id="err${i}" placeholder="Write the corrected sentence"><button class="btn" style="margin-top:10px" onclick="answerText('err',${i})">Check</button><div class="fb" id="errfb${i}"></div></div>`),
+        );
+        updateScores();
+      }
+      function renderTransform() {
+        const list = document.getElementById("transformList");
+        if (list.children.length) return;
+        TR.forEach(
+          (x, i) =>
+            (list.innerHTML += `<div class="exercise"><div class="meta">${esc(x[0])} · Transformation</div><div class="q">${i + 1}. ${esc(x[1])}<br><span class="solution">${esc(x[2])}</span></div><input id="tr${i}" placeholder="Write your transformation"><button class="btn" style="margin-top:10px" onclick="answerText('tr',${i})">Check</button><div class="fb" id="trfb${i}"></div></div>`),
+        );
+        updateScores();
+      }
+      function renderWriting() {
+        const list = document.getElementById("writingList");
+        if (list.children.length) return;
+        WR.forEach(
+          (x, i) =>
+            (list.innerHTML += `<div class="exercise"><div class="meta">Writing task ${i + 1}</div><div class="q">${esc(x[0])}</div><p>${esc(x[1])}</p><textarea placeholder="Write your answer here"></textarea><button class="btn" style="margin-top:10px" onclick="showWriting(this,${i})">Show model answer and checklist</button><div class="fb"></div></div>`),
+        );
+      }
+      function showWriting(btn, i) {
+        const x = WR[i],
+          fb = btn.nextElementSibling;
+        fb.className = "fb show ok";
+        fb.innerHTML = `<strong>Model answer</strong><br>${esc(x[2])}<br><br><strong>Checklist</strong><div class="check">${x[3].map((c) => `<span>${esc(c)}</span>`).join("")}</div>`;
+        btn.disabled = true;
+      }
+      function updateScores() {
+        let mg = Object.entries(state.mcq).filter(
+            ([i, j]) => MCQ[i][2].indexOf(MCQ[i][3]) === j,
+          ).length,
+          md = Object.keys(state.mcq).length,
+          fg = Object.values(state.fill).filter(Boolean).length,
+          fd = Object.keys(state.fill).length;
+        document.getElementById("practiceScore").textContent =
+          `Score: ${mg + fg} / ${md + fd}`;
+        document.getElementById("errScore").textContent =
+          `Score: ${Object.values(state.err).filter(Boolean).length} / ${Object.keys(state.err).length}`;
+        document.getElementById("trScore").textContent =
+          `Score: ${Object.values(state.tr).filter(Boolean).length} / ${Object.keys(state.tr).length}`;
+      }
+      function resetPractice() {
+        state.mcq = {};
+        state.fill = {};
+        renderPractice();
+      }
+      function resetSection(k) {
+        state[k] = {};
+        if (k === "err") {
+          document.getElementById("errorList").innerHTML = "";
+          renderErrors();
+        } else {
+          document.getElementById("transformList").innerHTML = "";
+          renderTransform();
+        }
+        updateScores();
+      }
+      init();
+    </script>
+  </body>
+</html>
