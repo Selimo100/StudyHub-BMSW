@@ -1,0 +1,1989 @@
+<!doctype html>
+<html lang="de-CH">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Erbrecht · Kapitel 22 · Prüfungsvorbereitung</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:wght@400;500;600&family=Archivo:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f6f1e8;
+        --paper: #fffdf8;
+        --ink: #1d1a15;
+        --ink-soft: #4a4438;
+        --line: #e0d7c6;
+        --red: #b5121b;
+        --red-soft: #fbe9e9;
+        --p1: #d9760f; /* 1. Parentel – Nachkommen */
+        --p1-bg: #fbeed9;
+        --p2: #7f8c1f; /* 2. Parentel – elterlicher Stamm */
+        --p2-bg: #eef0d8;
+        --p3: #2f6db2; /* 3. Parentel – grosselterlicher Stamm */
+        --p3-bg: #e1ecf7;
+        --gem: #8e4a8c; /* Gemeinwesen */
+        --gem-bg: #f1e3f0;
+        --spouse: #0f7d7a; /* Ehegatte */
+        --spouse-bg: #dcefee;
+        --gold: #a8791a;
+        --gold-bg: #f7ecd0;
+        --shadow: 0 1px 2px rgba(40, 30, 10, 0.04), 0 10px 30px rgba(60, 45, 15, 0.06);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Spectral", Georgia, serif;
+        font-size: 18px;
+        line-height: 1.62;
+        -webkit-font-smoothing: antialiased;
+        background-image:
+          radial-gradient(circle at 12% 8%, rgba(181, 18, 27, 0.035), transparent 40%),
+          radial-gradient(circle at 90% 92%, rgba(47, 109, 178, 0.04), transparent 45%);
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Fraunces", Georgia, serif;
+        line-height: 1.12;
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .ui {
+        font-family: "Archivo", system-ui, sans-serif;
+      }
+
+      /* ---------- top bar ---------- */
+      header.top {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(246, 241, 232, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      .top-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 10px 22px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .logo {
+        font-family: "Archivo";
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: var(--red);
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .logo .mark {
+        width: 26px;
+        height: 26px;
+        background: var(--red);
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 13px;
+        transform: rotate(-4deg);
+      }
+      nav.top-nav {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+        margin-left: auto;
+      }
+      nav.top-nav a {
+        font-family: "Archivo";
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink-soft);
+        text-decoration: none;
+        padding: 6px 11px;
+        border-radius: 7px;
+        transition: 0.18s;
+      }
+      nav.top-nav a:hover {
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 54px 22px 30px;
+      }
+      .hero .kicker {
+        font-family: "Archivo";
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: var(--red);
+      }
+      .hero h1 {
+        font-size: clamp(42px, 7vw, 82px);
+        font-weight: 900;
+        margin: 0.18em 0 0.12em;
+        letter-spacing: -1.5px;
+      }
+      .hero h1 em {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--red);
+      }
+      .hero .lead {
+        font-size: 21px;
+        color: var(--ink-soft);
+        max-width: 680px;
+      }
+      .exam-strip {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 26px;
+      }
+      .exam-card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        padding: 13px 18px;
+        box-shadow: var(--shadow);
+      }
+      .exam-card .l {
+        font-family: "Archivo";
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        opacity: 0.7;
+      }
+      .exam-card .v {
+        font-family: "Fraunces";
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 2px;
+      }
+
+      /* ---------- layout ---------- */
+      main {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 22px 80px;
+      }
+      section {
+        scroll-margin-top: 80px;
+        margin-top: 54px;
+      }
+      .sec-head {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+        border-bottom: 3px solid var(--ink);
+        padding-bottom: 10px;
+        margin-bottom: 26px;
+      }
+      .sec-num {
+        font-family: "Archivo";
+        font-weight: 800;
+        font-size: 15px;
+        color: #fff;
+        background: var(--ink);
+        padding: 4px 11px;
+        border-radius: 8px;
+        letter-spacing: 0.5px;
+      }
+      .sec-head h2 {
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 700;
+        letter-spacing: -0.8px;
+        margin: 0;
+      }
+
+      /* ---------- cards / boxes ---------- */
+      .card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 26px 28px;
+        box-shadow: var(--shadow);
+        margin: 20px 0;
+      }
+      .card h3 {
+        font-size: 25px;
+        margin: 0 0 8px;
+      }
+      .card h4 {
+        font-size: 19px;
+        margin: 22px 0 6px;
+        font-weight: 600;
+      }
+      p {
+        margin: 0 0 14px;
+      }
+      .note {
+        background: var(--gold-bg);
+        border-left: 4px solid var(--gold);
+        border-radius: 0 11px 11px 0;
+        padding: 14px 18px;
+        margin: 18px 0;
+        font-size: 16.5px;
+      }
+      .note strong {
+        color: var(--gold);
+      }
+      .warn {
+        background: var(--red-soft);
+        border-left: 4px solid var(--red);
+        border-radius: 0 11px 11px 0;
+        padding: 14px 18px;
+        margin: 18px 0;
+        font-size: 16.5px;
+      }
+      .warn strong {
+        color: var(--red);
+      }
+      .reform {
+        background: linear-gradient(180deg, #fff8ec, #fdf0d8);
+        border: 1.5px solid var(--gold);
+        border-radius: 14px;
+        padding: 18px 22px;
+        margin: 20px 0;
+      }
+      .reform .tag {
+        font-family: "Archivo";
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        display: inline-block;
+        margin-bottom: 6px;
+      }
+
+      .art {
+        font-family: "Archivo";
+        font-weight: 700;
+        font-size: 13px;
+        background: var(--ink);
+        color: #fff;
+        padding: 2px 9px;
+        border-radius: 6px;
+        white-space: nowrap;
+        display: inline-block;
+        line-height: 1.5;
+      }
+      .art.r {
+        background: var(--red);
+      }
+      .term {
+        font-weight: 600;
+        color: var(--red);
+        font-style: italic;
+      }
+
+      ul.clean {
+        list-style: none;
+        padding: 0;
+        margin: 14px 0;
+      }
+      ul.clean li {
+        padding: 7px 0 7px 30px;
+        position: relative;
+        border-bottom: 1px dashed var(--line);
+      }
+      ul.clean li:last-child {
+        border-bottom: none;
+      }
+      ul.clean li::before {
+        content: "§";
+        font-family: "Fraunces";
+        font-weight: 700;
+        color: var(--red);
+        position: absolute;
+        left: 4px;
+        top: 6px;
+        font-size: 19px;
+      }
+      ul.check li::before {
+        content: "✓";
+        color: var(--p2);
+        font-family: "Archivo";
+        font-weight: 800;
+      }
+      ul.cross li::before {
+        content: "✕";
+        color: var(--red);
+        font-family: "Archivo";
+        font-weight: 800;
+      }
+
+      /* ---------- parentel grid ---------- */
+      .par-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 18px 0;
+      }
+      .par {
+        border-radius: 13px;
+        padding: 16px 20px;
+        border: 1.5px solid;
+        position: relative;
+        overflow: hidden;
+      }
+      .par .ord {
+        font-family: "Archivo";
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .par h4 {
+        margin: 3px 0 4px;
+        font-size: 21px;
+      }
+      .par p {
+        margin: 0;
+        font-size: 16px;
+      }
+      .par.one {
+        background: var(--p1-bg);
+        border-color: var(--p1);
+        color: #6b3a05;
+      }
+      .par.one .ord {
+        color: var(--p1);
+      }
+      .par.two {
+        background: var(--p2-bg);
+        border-color: var(--p2);
+        color: #454d0c;
+      }
+      .par.two .ord {
+        color: var(--p2);
+      }
+      .par.three {
+        background: var(--p3-bg);
+        border-color: var(--p3);
+        color: #1c4675;
+      }
+      .par.three .ord {
+        color: var(--p3);
+      }
+      .par.gem {
+        background: var(--gem-bg);
+        border-color: var(--gem);
+        color: #5b2e59;
+      }
+      .par.gem .ord {
+        color: var(--gem);
+      }
+      .par .big {
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: "Fraunces";
+        font-weight: 900;
+        font-size: 46px;
+        opacity: 0.16;
+      }
+
+      /* ---------- spouse quota ---------- */
+      .quota-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 14px;
+        margin: 18px 0;
+      }
+      .quota {
+        background: var(--spouse-bg);
+        border: 1.5px solid var(--spouse);
+        border-radius: 13px;
+        padding: 18px;
+        text-align: center;
+      }
+      .quota .frac {
+        font-family: "Fraunces";
+        font-weight: 900;
+        font-size: 44px;
+        color: var(--spouse);
+        line-height: 1;
+      }
+      .quota .who {
+        font-family: "Archivo";
+        font-weight: 700;
+        font-size: 14px;
+        margin-top: 8px;
+        color: #0a5654;
+      }
+      .quota .desc {
+        font-size: 14.5px;
+        color: var(--ink-soft);
+        margin-top: 4px;
+      }
+
+      /* ---------- tables ---------- */
+      .tbl-wrap {
+        overflow-x: auto;
+        margin: 20px 0;
+        border-radius: 13px;
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 16px;
+        background: var(--paper);
+        min-width: 560px;
+      }
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+      thead th {
+        font-family: "Archivo";
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.4px;
+        background: var(--ink);
+        color: #fff;
+        text-transform: uppercase;
+      }
+      tbody tr:nth-child(even) {
+        background: rgba(224, 215, 198, 0.22);
+      }
+      td.frac {
+        font-family: "Fraunces";
+        font-weight: 700;
+        font-size: 18px;
+      }
+      .pill {
+        font-family: "Archivo";
+        font-weight: 700;
+        font-size: 12px;
+        padding: 2px 9px;
+        border-radius: 20px;
+        display: inline-block;
+      }
+      .pill.free {
+        background: var(--p2-bg);
+        color: #454d0c;
+      }
+      .pill.flicht {
+        background: var(--gold-bg);
+        color: var(--gold);
+      }
+      .pill.none {
+        background: #eee;
+        color: #777;
+      }
+
+      /* ---------- two-col compare ---------- */
+      .compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 18px 0;
+      }
+      .compare .col {
+        border-radius: 14px;
+        padding: 20px;
+        border: 1.5px solid;
+      }
+      .compare .testament {
+        background: #eef4fb;
+        border-color: var(--p3);
+      }
+      .compare .vertrag {
+        background: #fbf0e8;
+        border-color: var(--p1);
+      }
+      .compare h4 {
+        margin: 0 0 12px;
+        font-size: 21px;
+      }
+      .compare .testament h4 {
+        color: var(--p3);
+      }
+      .compare .vertrag h4 {
+        color: var(--p1);
+      }
+      .compare ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+      .compare li {
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+
+      /* ---------- worked examples ---------- */
+      .ex {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        margin: 18px 0;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .ex-head {
+        padding: 18px 24px;
+        background: linear-gradient(180deg, #fdf6e8, #f9eed5);
+        border-bottom: 1px solid var(--line);
+      }
+      .ex-head .label {
+        font-family: "Archivo";
+        font-weight: 800;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--red);
+      }
+      .ex-head h3 {
+        margin: 4px 0 0;
+        font-size: 22px;
+      }
+      .ex-body {
+        padding: 22px 24px;
+      }
+      .case {
+        background: var(--bg);
+        border-radius: 11px;
+        padding: 14px 18px;
+        font-size: 16.5px;
+        margin-bottom: 16px;
+      }
+      .case .sum {
+        font-family: "Archivo";
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--red);
+        letter-spacing: 0.5px;
+      }
+      .q {
+        font-weight: 600;
+        margin: 18px 0 8px;
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+      }
+      .q .letter {
+        font-family: "Archivo";
+        font-weight: 800;
+        background: var(--ink);
+        color: #fff;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        flex-shrink: 0;
+      }
+      .reveal-btn {
+        font-family: "Archivo";
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+        background: var(--ink);
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: 0.18s;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .reveal-btn:hover {
+        background: var(--red);
+      }
+      .reveal-btn .ic {
+        transition: transform 0.25s;
+      }
+      .sol {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        border-left: 3px solid var(--p2);
+        margin-top: 0;
+      }
+      .sol.open {
+        max-height: 2200px;
+        margin-top: 14px;
+      }
+      .sol-inner {
+        padding: 6px 0 6px 18px;
+        font-size: 16.5px;
+      }
+      .sol-inner .res {
+        font-family: "Archivo";
+        font-weight: 700;
+        background: var(--p2-bg);
+        color: #3a4209;
+        padding: 3px 10px;
+        border-radius: 7px;
+        display: inline-block;
+        margin: 2px 0;
+      }
+      .sol-inner table {
+        min-width: auto;
+        margin: 12px 0;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      /* family sketch */
+      .tree {
+        background: #15130f;
+        color: #e8e2d4;
+        border-radius: 13px;
+        padding: 22px;
+        margin: 16px 0;
+        font-family: "Archivo";
+        font-size: 14px;
+      }
+      .tree .row {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 8px 0;
+      }
+      .tnode {
+        border: 1.5px solid #555049;
+        border-radius: 9px;
+        padding: 8px 14px;
+        text-align: center;
+        background: #221f19;
+        min-width: 90px;
+      }
+      .tnode.dead {
+        opacity: 0.5;
+        text-decoration: line-through;
+      }
+      .tnode.heir {
+        border-color: var(--p1);
+        background: #3a2a12;
+      }
+      .tnode .amt {
+        display: block;
+        font-weight: 800;
+        color: #f0b56a;
+        margin-top: 3px;
+        font-size: 13px;
+      }
+      .tnode.spouse {
+        border-color: var(--spouse);
+        background: #11302f;
+      }
+      .tnode.spouse .amt {
+        color: #5fd0cd;
+      }
+
+      /* ---------- quiz ---------- */
+      .quiz-q {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 20px 24px;
+        margin: 16px 0;
+        box-shadow: var(--shadow);
+      }
+      .quiz-q .qn {
+        font-family: "Archivo";
+        font-weight: 800;
+        color: var(--red);
+        font-size: 13px;
+        letter-spacing: 1px;
+      }
+      .quiz-q p.qt {
+        font-weight: 600;
+        font-size: 18px;
+        margin: 6px 0 14px;
+      }
+      .opt {
+        display: block;
+        width: 100%;
+        text-align: left;
+        font-family: "Spectral";
+        font-size: 16.5px;
+        padding: 11px 16px;
+        margin: 7px 0;
+        border: 1.5px solid var(--line);
+        border-radius: 10px;
+        background: var(--bg);
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      .opt:hover {
+        border-color: var(--ink-soft);
+      }
+      .opt.correct {
+        background: var(--p2-bg);
+        border-color: var(--p2);
+        color: #3a4209;
+        font-weight: 600;
+      }
+      .opt.wrong {
+        background: var(--red-soft);
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .opt.disabled {
+        cursor: default;
+        opacity: 0.85;
+      }
+      .feedback {
+        margin-top: 10px;
+        font-size: 15.5px;
+        padding: 10px 14px;
+        border-radius: 9px;
+        display: none;
+      }
+      .feedback.show {
+        display: block;
+      }
+      .feedback.ok {
+        background: var(--p2-bg);
+        color: #3a4209;
+      }
+      .feedback.no {
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      /* flashcards */
+      .fc-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        gap: 12px;
+        margin: 18px 0;
+      }
+      .fc {
+        perspective: 1000px;
+        height: 120px;
+        cursor: pointer;
+      }
+      .fc-in {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.55s;
+        transform-style: preserve-3d;
+      }
+      .fc.flip .fc-in {
+        transform: rotateY(180deg);
+      }
+      .fc-face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 12px;
+        font-family: "Archivo";
+        font-weight: 700;
+      }
+      .fc-front {
+        background: var(--ink);
+        color: #fff;
+        font-size: 15px;
+      }
+      .fc-back {
+        background: var(--gold-bg);
+        color: var(--gold);
+        transform: rotateY(180deg);
+        font-size: 14px;
+        border: 1.5px solid var(--gold);
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 22px;
+        color: var(--ink-soft);
+        font-size: 14px;
+        font-family: "Archivo";
+        border-top: 1px solid var(--line);
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 680px) {
+        body {
+          font-size: 17px;
+        }
+        .compare {
+          grid-template-columns: 1fr;
+        }
+        .hero h1 {
+          letter-spacing: -1px;
+        }
+        .card {
+          padding: 20px;
+        }
+        nav.top-nav {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top-inner">
+        <div class="logo"><span class="mark">§</span> ERBRECHT · KAP. 22</div>
+        <nav class="top-nav ui">
+          <a href="#grund">Grundlagen</a>
+          <a href="#gesetzlich">Gesetzl. Erbfolge</a>
+          <a href="#pflicht">Pflichtteile</a>
+          <a href="#verfuegung">Testament & Erbvertrag</a>
+          <a href="#erbgang">Erbgang</a>
+          <a href="#beispiele">Beispiele</a>
+          <a href="#ueben">Üben</a>
+          <a href="#quiz">Quiz</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="kicker ui">Wirtschaft &amp; Recht · BMS Winterthur · Klasse 4k</div>
+      <h1>Das <em>Erbrecht</em></h1>
+      <p class="lead">
+        Komplette Prüfungsvorbereitung zu Kapitel 22 – mit allen drei Lernzielen, voll gelösten Fallbeispielen, Übungen
+        zum Selbsttesten und einem Quiz. Das Erbe folgt dem Blut.
+      </p>
+      <div class="exam-strip">
+        <div class="exam-card">
+          <div class="l ui">Prüfung</div>
+          <div class="v">04.06.2026</div>
+        </div>
+        <div class="exam-card">
+          <div class="l ui">Stoff</div>
+          <div class="v">Kap. 21 + 22</div>
+        </div>
+        <div class="exam-card">
+          <div class="l ui">Buch</div>
+          <div class="v">S. 290–299</div>
+        </div>
+        <div class="exam-card">
+          <div class="l ui">Hilfsmittel</div>
+          <div class="v">Gesetzestexte (ZGB)</div>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <!-- ============ LERNZIELE ============ -->
+      <section id="ziele">
+        <div class="card" style="border: 2px solid var(--ink)">
+          <h3 style="display: flex; align-items: center; gap: 10px">
+            <span class="art r">Lernziele</span> Was du können musst
+          </h3>
+          <ul class="clean check" style="font-size: 17px">
+            <li>
+              <strong>Lernziel 1 – Gesetzliche Erben:</strong> Anhand von Fällen berechnen, <em>welche</em> Personen
+              gesetzliche Erben sind und <em>wie viel</em> jede erhält.
+            </li>
+            <li>
+              <strong>Lernziel 2 – Verfügungsformen &amp; Pflichtteile:</strong> Zwischen den Verfügungsformen
+              (Testament, Erbvertrag) unterscheiden und beurteilen, wer welchen Anspruch hat –
+              <em>unter Berücksichtigung der Pflichtteile</em>.
+            </li>
+            <li>
+              <strong>Lernziel 3 – Wahlmöglichkeiten:</strong> Die Wahlmöglichkeiten der Erben (Inventar, Ausschlagung,
+              amtliche Liquidation) auf konkrete Fälle anwenden.
+            </li>
+          </ul>
+          <div class="note">
+            <strong>Hilfsmittel-Tipp:</strong> Im Gesetzestext sind keine Notizen erlaubt – nur
+            Leuchtstift-Markierungen. Post-its sind erlaubt, dürfen aber <em>nur</em> mit Artikelnummern beschriftet
+            sein (z.&nbsp;B. «Art. 462»), keine Wörter. Klebe dir die wichtigsten Artikel (457–466, 470–480, 494–512,
+            560–603) vor.
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 22.1 GRUNDLAGEN ============ -->
+      <section id="grund">
+        <div class="sec-head">
+          <span class="sec-num ui">22.1</span>
+          <h2>Grundlagen des Erbrechts</h2>
+        </div>
+
+        <div class="card">
+          <p>
+            Beim Tod einer Person muss ihr Vermögen (der <span class="term">Nachlass</span>) verteilt werden. Dafür gibt
+            es zwei grundsätzliche Wege:
+          </p>
+
+          <div class="compare">
+            <div class="col" style="background: var(--p2-bg); border-color: var(--p2)">
+              <h4 style="color: var(--p2)">① Gesetzliche Erbfolge</h4>
+              <p style="font-size: 16px; margin: 0 0 8px">
+                <strong>Wenn vor dem Tod nichts geregelt wurde.</strong> Das Gesetz bestimmt, wer erbt.
+              </p>
+              <ul style="margin: 0; padding-left: 20px; font-size: 15.5px">
+                <li>Verwandte <span class="art">Art. 457–460</span></li>
+                <li>Ehegatte / eingetr. Partner/in <span class="art">Art. 462</span></li>
+                <li>
+                  Gemeinwesen (Kanton/Gemeinde) <span class="art">Art. 466</span> – nur wenn <em>niemand</em> sonst da
+                  ist
+                </li>
+              </ul>
+              <p style="font-size: 15px; margin-top: 10px; font-style: italic">
+                → <strong>keine</strong> Verfügungsmacht: die Verteilung ist fix vorgegeben.
+              </p>
+            </div>
+            <div class="col" style="background: var(--p3-bg); border-color: var(--p3)">
+              <h4 style="color: var(--p3)">② Verfügung von Todes wegen</h4>
+              <p style="font-size: 16px; margin: 0 0 8px">
+                <strong>Die erblassende Person regelt selbst</strong>, wer was bekommt. Sie setzt die gesetzliche
+                Erbfolge ausser Kraft.
+              </p>
+              <ul style="margin: 0; padding-left: 20px; font-size: 15.5px">
+                <li><strong>Testament</strong> <span class="art">Art. 498 ff.</span> – einseitig</li>
+                <li><strong>Erbvertrag</strong> <span class="art">Art. 512 ff.</span> – mehrseitig</li>
+              </ul>
+              <p style="font-size: 15px; margin-top: 10px; font-style: italic">
+                → <strong>Verfügungsmacht</strong>, aber begrenzt durch die <em>Pflichtteile</em> (Testament) bzw. das
+                Einverständnis der Erben (Erbvertrag).
+              </p>
+            </div>
+          </div>
+
+          <div class="note">
+            <strong>Merksatz:</strong> Gibt es eine gültige Verfügung von Todes wegen, gilt diese – aber die
+            Pflichtteile müssen trotzdem eingehalten werden. Gibt es keine Verfügung, greift die gesetzliche Erbfolge.
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 22.2 GESETZLICHE ERBFOLGE ============ -->
+      <section id="gesetzlich">
+        <div class="sec-head">
+          <span class="sec-num ui">22.2</span>
+          <h2>Die gesetzliche Erbfolge</h2>
+        </div>
+
+        <div class="card">
+          <h3>Das Parentelsystem – «Das Erbe folgt dem Blut»</h3>
+          <p>
+            Die Verwandten werden in drei <span class="term">Parentelen</span> (Stämme) eingeteilt. Es gilt:
+            <strong>Eine vorhandene nähere Parentel schliesst die ferneren komplett aus.</strong> Solange es z.&nbsp;B.
+            Nachkommen gibt, erben Eltern und Geschwister nichts.
+          </p>
+
+          <div class="par-stack">
+            <div class="par one">
+              <div class="ord ui">1. Parentel <span class="art">Art. 457</span></div>
+              <h4>Nachkommen</h4>
+              <p>Kinder, Enkel, Urenkel … (der eigene Stamm)</p>
+              <span class="big">I</span>
+            </div>
+            <div class="par two">
+              <div class="ord ui">2. Parentel <span class="art">Art. 458</span></div>
+              <h4>Elterlicher Stamm</h4>
+              <p>Eltern und deren Nachkommen → Geschwister, Nichten/Neffen</p>
+              <span class="big">II</span>
+            </div>
+            <div class="par three">
+              <div class="ord ui">3. Parentel <span class="art">Art. 459</span></div>
+              <h4>Grosselterlicher Stamm</h4>
+              <p>Grosseltern und deren Nachkommen → Onkel/Tanten, Cousins/Cousinen</p>
+              <span class="big">III</span>
+            </div>
+            <div class="par gem">
+              <div class="ord ui">Auffangstufe <span class="art">Art. 466</span></div>
+              <h4>Gemeinwesen</h4>
+              <p>Kanton / Gemeinde – nur wenn keine erbberechtigten Verwandten und kein Ehegatte da sind</p>
+              <span class="big">CH</span>
+            </div>
+          </div>
+
+          <div class="warn">
+            <strong>Grenze des Verwandtenerbrechts:</strong> Verwandtschaft erbt <em>höchstens</em> bis zur 3. Parentel
+            (Grosseltern und deren Nachkommen). Ein <em>Grossonkel</em> oder eine <em>Grosstante</em> (= Geschwister der
+            Grosseltern) erben <strong>nicht</strong> – sie stammen von den Urgrosseltern ab. Sind nur noch solche
+            Personen da, fällt das Erbe an das Gemeinwesen.
+          </div>
+
+          <h4>Zwei Prinzipien innerhalb der Parentelen</h4>
+          <ul class="clean">
+            <li>
+              <strong>Eintrittsprinzip (Stammesprinzip)</strong> <span class="art">Art. 457 Abs. 3</span>: Ist ein Erbe
+              bereits verstorben, treten <em>seine</em> Nachkommen an seine Stelle und teilen seinen Anteil unter sich
+              auf.
+            </li>
+            <li>
+              <strong>Das Erbe folgt dem Blut:</strong> Angeheiratete Personen (Schwiegersohn, Schwiegertochter,
+              Witwe/Witwer eines Geschwisters) sind <em>keine</em> Blutsverwandten und erben in der gesetzlichen
+              Erbfolge <strong>nichts</strong>.
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Der Erbteil des Ehegatten / der eingetragenen Partnerschaft <span class="art r">Art. 462</span></h3>
+          <p>
+            Der überlebende Ehegatte ist kein Verwandter, sondern eigener Erbe. Wie viel er bekommt, hängt davon ab, mit
+            <em>welcher</em> Parentel er teilen muss:
+          </p>
+
+          <div class="quota-grid">
+            <div class="quota">
+              <div class="frac">½</div>
+              <div class="who ui">neben 1. Parentel</div>
+              <div class="desc">Ehegatte teilt mit den Nachkommen → je die Hälfte</div>
+            </div>
+            <div class="quota">
+              <div class="frac">¾</div>
+              <div class="who ui">neben 2. Parentel</div>
+              <div class="desc">Ehegatte teilt mit elterlichem Stamm → diesem bleibt ¼</div>
+            </div>
+            <div class="quota">
+              <div class="frac">Alles</div>
+              <div class="who ui">neben 3. Parentel<br />oder allein</div>
+              <div class="desc">Ehegatte erbt den <strong>ganzen</strong> Nachlass</div>
+            </div>
+          </div>
+          <div class="note">
+            <strong>Wichtig:</strong> Neben der 3. Parentel (Grosseltern, Onkel, Tanten, Cousins) bekommt der Ehegatte
+            <em>alles</em> – die entfernten Verwandten gehen leer aus, solange der Ehegatte lebt.
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 22.3 PFLICHTTEILE ============ -->
+      <section id="pflicht">
+        <div class="sec-head">
+          <span class="sec-num ui">22.3</span>
+          <h2>Verfügungen von Todes wegen &amp; Pflichtteile</h2>
+        </div>
+
+        <div class="card">
+          <h3>Pflichtteil und freie Quote</h3>
+          <p>
+            Wer ein Testament macht, kann <strong>nicht</strong> über das ganze Vermögen frei verfügen. Das Gesetz
+            schützt bestimmte Erben mit einem Mindestanteil – dem <span class="term">Pflichtteil</span>. Den Rest, über
+            den frei verfügt werden darf, nennt man <span class="term">freie (verfügbare) Quote</span>.
+          </p>
+
+          <div class="reform">
+            <span class="tag ui">⚠ Erbrechtsreform – gültig seit 1.1.2023</span>
+            <p style="margin: 0 0 8px">
+              <strong>Das musst du auswendig wissen</strong> – die Pflichtteile wurden geändert:
+            </p>
+            <ul class="clean" style="margin: 0">
+              <li>
+                <strong>Nachkommen:</strong> Pflichtteil = <strong>½</strong> des gesetzlichen Erbanspruchs
+                <span style="color: var(--ink-soft)">(früher ¾)</span>
+              </li>
+              <li>
+                <strong>Ehegatte / eingetr. Partner/in:</strong> Pflichtteil = <strong>½</strong> des gesetzlichen
+                Erbanspruchs
+              </li>
+              <li>
+                <strong>Eltern:</strong> <strong>KEIN</strong> Pflichtteil mehr
+                <span style="color: var(--ink-soft)">(früher ½)</span> → über deren Anteil kann frei verfügt werden
+              </li>
+              <li><strong>Geschwister, Onkel/Tanten usw.:</strong> hatten <em>nie</em> einen Pflichtteil</li>
+            </ul>
+          </div>
+
+          <h4>So rechnest du</h4>
+          <p>
+            <strong>Mindestanspruch (Pflichtteil in Franken) = gesetzlicher Erbteil × Pflichtteilsquote.</strong><br />
+            Die <strong>freie Quote = 1 − Summe aller Pflichtteile</strong>. Wenn ein Testament «alle Erben auf den
+            Pflichtteil setzt», erhält der begünstigte Erbe seinen eigenen Pflichtteil <em>plus</em> die ganze freie
+            Quote.
+          </p>
+
+          <h4>Übersicht: Pflichtteile &amp; freie Quote (Aufgabe 2)</h4>
+          <div class="tbl-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Konstellation</th>
+                  <th>gesetzl. Erbteil</th>
+                  <th>Pflichtteil</th>
+                  <th>Mindestanspruch</th>
+                  <th>freie Quote</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nachkommen allein</td>
+                  <td class="frac">1/1</td>
+                  <td class="frac">½</td>
+                  <td class="frac">½</td>
+                  <td><span class="pill free">½</span></td>
+                </tr>
+                <tr>
+                  <td>Ehegatte allein</td>
+                  <td class="frac">1/1</td>
+                  <td class="frac">½</td>
+                  <td class="frac">½</td>
+                  <td><span class="pill free">½</span></td>
+                </tr>
+                <tr>
+                  <td>Eltern allein</td>
+                  <td class="frac">1/1</td>
+                  <td><span class="pill none">keiner</span></td>
+                  <td class="frac">0</td>
+                  <td><span class="pill free">alles</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    Nachkommen <em>+</em> Ehegatte<br /><span style="font-size: 13px; color: var(--ink-soft)"
+                      >Nachkommen / Ehegatte</span
+                    >
+                  </td>
+                  <td class="frac">½ &nbsp;/&nbsp; ½</td>
+                  <td class="frac">½ &nbsp;/&nbsp; ½</td>
+                  <td class="frac">¼ &nbsp;/&nbsp; ¼</td>
+                  <td><span class="pill free">½</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    Eltern <em>+</em> Ehegatte<br /><span style="font-size: 13px; color: var(--ink-soft)"
+                      >Eltern / Ehegatte</span
+                    >
+                  </td>
+                  <td class="frac">¼ &nbsp;/&nbsp; ¾</td>
+                  <td class="frac">– &nbsp;/&nbsp; ½</td>
+                  <td class="frac">0 &nbsp;/&nbsp; 3/8</td>
+                  <td><span class="pill free">5/8</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note">
+            <strong>Rechenbeispiel letzte Zeile:</strong> Ehegatte neben Eltern erbt gesetzlich ¾. Sein Pflichtteil = ¾
+            × ½ = <strong>3/8</strong>. Eltern haben keinen Pflichtteil → 0. Freie Quote = 1 − 3/8 =
+            <strong>5/8</strong>.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Enterbung – die einzige Ausnahme <span class="art r">Art. 477 ff.</span></h3>
+          <p>
+            Pflichtteilsgeschützten Erben kann der Pflichtteil <strong>nur</strong> entzogen werden, wenn ein
+            gesetzlicher Enterbungsgrund vorliegt:
+          </p>
+          <ul class="clean cross">
+            <li>
+              Der Erbe hat gegen die erblassende Person oder eine ihr nahe verbundene Person ein
+              <strong>schweres Verbrechen</strong> begangen.
+            </li>
+            <li>
+              Der Erbe hat seine <strong>familienrechtlichen Pflichten</strong> gegenüber der erblassenden Person schwer
+              verletzt.
+            </li>
+          </ul>
+          <div class="warn">
+            <strong>Achtung:</strong> Blosser Streit oder Zerwürfnis reicht <em>nicht</em> aus. Möchte man Pflichtteile
+            umgehen, ohne dass ein Enterbungsgrund vorliegt, geht das nur über einen <strong>Erbvertrag</strong> mit
+            Zustimmung der Betroffenen (Erbverzicht).
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TESTAMENT vs ERBVERTRAG ============ -->
+      <section id="verfuegung">
+        <div class="sec-head">
+          <span class="sec-num ui">22.3b</span>
+          <h2>Testament vs. Erbvertrag</h2>
+        </div>
+
+        <div class="compare">
+          <div class="col testament">
+            <h4>📄 Testament <span class="art">Art. 498 ff.</span></h4>
+            <ul>
+              <li><strong>Einseitige</strong> persönliche Verfügung – keine Zustimmung anderer nötig</li>
+              <li>Jederzeit <strong>frei änderbar / widerrufbar</strong></li>
+              <li>Man muss <strong>handlungsfähig</strong> sein (urteilsfähig, mind. 18 J.)</li>
+              <li>Pflichtteile <strong>müssen beachtet</strong> werden → eingeschränkte Verfügungsmacht</li>
+              <li><strong>Formen:</strong></li>
+            </ul>
+            <ul style="margin-top: 0">
+              <li>öffentlich beurkundet <span class="art">Art. 499–504</span></li>
+              <li>eigenhändig <span class="art">Art. 505</span></li>
+              <li>mündlich (Notfall) <span class="art">Art. 506–508</span></li>
+            </ul>
+          </div>
+          <div class="col vertrag">
+            <h4>🤝 Erbvertrag <span class="art">Art. 512 ff.</span></h4>
+            <ul>
+              <li><strong>Mehrseitige</strong> Verfügung – mehrere Personen sind beteiligt</li>
+              <li><strong>Bindend</strong> – kann nur mit Zustimmung aller geändert werden</li>
+              <li>
+                <strong>Volle</strong> Verfügungsmacht, wenn die Betroffenen einverstanden sind → Pflichtteile können
+                umgangen werden (<strong>Erbverzicht</strong>, <span class="art">Art. 495</span>)
+              </li>
+              <li>
+                <strong>Form (zwingend):</strong> öffentliche Beurkundung + <strong>2 Zeugen</strong>
+                <span class="art">Art. 512</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>Das eigenhändige Testament – 3 Gültigkeitsvoraussetzungen <span class="art r">Art. 505</span></h4>
+          <ul class="clean check">
+            <li>Von <strong>Anfang bis Ende von Hand</strong> geschrieben (nicht am Computer!)</li>
+            <li>Mit <strong>Datum</strong> versehen</li>
+            <li><strong>Unterschrieben</strong></li>
+          </ul>
+          <div class="note">
+            <strong>Wann lohnt sich ein Erbvertrag?</strong> Wenn Pflichtteile abgeändert/umgangen werden sollen,
+            z.&nbsp;B.: das Vermögen steckt in einer <em>Immobilie</em>, die sonst verkauft werden müsste · der
+            <em>Ehegatte</em> ist auf das Geld angewiesen, um wie bisher leben zu können · bei <em>Konkubinat</em>, weil
+            der/die Partner/in sonst gesetzlich nichts erbt.
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 22.4 ERBGANG ============ -->
+      <section id="erbgang">
+        <div class="sec-head">
+          <span class="sec-num ui">22.4</span>
+          <h2>Der Erbgang – Wahlmöglichkeiten der Erben</h2>
+        </div>
+        <div class="card">
+          <p>
+            Sobald die erblassende Person stirbt, geht der Nachlass automatisch auf die Erben über
+            (Universalsukzession). Erben übernehmen aber auch die <strong>Schulden</strong>. Deshalb gibt das Gesetz
+            ihnen mehrere Wahlmöglichkeiten:
+          </p>
+
+          <div class="par-stack">
+            <div class="par three" style="background: var(--p3-bg)">
+              <div class="ord ui">Wahlmöglichkeit 1 <span class="art">Art. 580 ff.</span></div>
+              <h4>Öffentliches Inventar</h4>
+              <p>
+                Die Behörde erstellt eine Aufstellung von <strong>Vermögen und Schulden</strong> des Erblassers. So
+                sehen die Erben die finanzielle Lage, bevor sie entscheiden. <em>Vermögen − Schulden = Total.</em>
+              </p>
+            </div>
+            <div class="par two" style="background: var(--p2-bg)">
+              <div class="ord ui">Wahlmöglichkeit 2 <span class="art">Art. 566 ff.</span></div>
+              <h4>Erbausschlagung</h4>
+              <p>
+                Der Erbe kann die Erbschaft innerhalb von <strong>3 Monaten ausschlagen</strong> (ablehnen) – sinnvoll,
+                wenn der Nachlass überschuldet ist. Dann übernimmt er auch die Schulden nicht.
+              </p>
+            </div>
+            <div class="par one" style="background: var(--p1-bg)">
+              <div class="ord ui">Wahlmöglichkeit 3 <span class="art">Art. 593 ff.</span></div>
+              <h4>Amtliche Liquidation</h4>
+              <p>
+                Die Behörde löst den Nachlass auf, bezahlt die <strong>Schulden</strong> ab und überweist den Erben
+                einen allfälligen <strong>Überschuss</strong>. Der Erbe haftet nicht mit dem eigenen Vermögen.
+              </p>
+            </div>
+            <div class="par gem" style="background: var(--gem-bg)">
+              <div class="ord ui">Mehrere Erben <span class="art">Art. 602 / 603</span></div>
+              <h4>Erbengemeinschaft</h4>
+              <p>
+                Mehrere Erben bilden eine <strong>Erbengemeinschaft</strong> und verfügen <em>gemeinsam</em> über den
+                Nachlass (Gesamthand). Die Aufteilung erfolgt erst, wenn <strong>alle</strong> Erben einverstanden sind.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ WORKED EXAMPLES ============ -->
+      <section id="beispiele">
+        <div class="sec-head">
+          <span class="sec-num ui">★</span>
+          <h2>Voll gelöste Fallbeispiele</h2>
+        </div>
+        <p style="font-size: 17px; color: var(--ink-soft); margin-top: -10px">
+          Klick auf «Lösung zeigen», sobald du den Fall selbst gerechnet hast.
+        </p>
+
+        <!-- Beispiel 1 -->
+        <div class="ex">
+          <div class="ex-head">
+            <div class="label ui">Beispiel 1 · Lernziel 1</div>
+            <h3>Gesetzliche Erbteilung – Astrid Moser</h3>
+          </div>
+          <div class="ex-body">
+            <div class="case">
+              <span class="sum ui">Sachverhalt</span><br />Astrid Moser stirbt mit 55 Jahren und hinterlässt CHF
+              800'000.–. Wie wird verteilt?
+            </div>
+
+            <div class="q"><span class="letter ui">a</span> Astrid war verheiratet und hatte zwei Kinder.</div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>Ehegatte teilt mit der 1. Parentel → je die Hälfte.</p>
+                <span class="res ui">Ehegatte: ½ = CHF 400'000</span><br />
+                <span class="res ui">Kinder zusammen: ½ = je ¼ = CHF 200'000</span>
+                <p style="margin-top: 10px">
+                  <span class="art">Art. 462</span> (Ehegatte) · <span class="art">Art. 457 Abs. 2</span> (Kinder zu
+                  gleichen Teilen)
+                </p>
+              </div>
+            </div>
+
+            <div class="q"><span class="letter ui">b</span> Astrid war geschieden und hatte zwei Kinder.</div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>Eine geschiedene Ehe = <strong>kein Erbrecht mehr</strong>. Der Ex-Ehegatte erbt nichts.</p>
+                <span class="res ui">Ex-Ehegatte: 0</span><br />
+                <span class="res ui">Kinder: alles, je ½ = CHF 400'000</span>
+                <p style="margin-top: 10px"><span class="art">Art. 457</span></p>
+              </div>
+            </div>
+
+            <div class="q">
+              <span class="letter ui">c</span> Astrid war ledig, kinderlos, Eltern verstorben. Schwester Sophia (lebt,
+              kinderlos). Bruder Hans (verstorben) hinterlässt zwei Töchter Emily &amp; Tonya.
+            </div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  Keine Nachkommen → 2. Parentel (elterlicher Stamm). Eltern tot → ihr Anteil geht an deren Nachkommen
+                  (Sophia und Hans' Linie). Hans ist tot → Eintrittsprinzip: seine Töchter treten an seine Stelle.
+                </p>
+                <div class="tree">
+                  <div class="row">
+                    <div class="tnode dead">Vater †</div>
+                    <div class="tnode dead">Mutter †</div>
+                  </div>
+                  <div class="row">
+                    <div class="tnode dead">Astrid (Erblasserin)</div>
+                    <div class="tnode heir">Sophia<span class="amt">½ = 400'000</span></div>
+                    <div class="tnode dead">Hans †</div>
+                  </div>
+                  <div class="row">
+                    <div class="tnode heir">Emily<span class="amt">¼ = 200'000</span></div>
+                    <div class="tnode heir">Tonya<span class="amt">¼ = 200'000</span></div>
+                  </div>
+                </div>
+                <span class="res ui">Sophia ½ · Emily ¼ · Tonya ¼</span>
+                <p style="margin-top: 10px">
+                  Georg (Sophias Mann) und Anna (Hans' Witwe) erben <strong>nichts</strong> – sie sind nicht
+                  blutsverwandt. <span class="art">Art. 458</span> · <span class="art">Art. 457 Abs. 3</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beispiel 2 -->
+        <div class="ex">
+          <div class="ex-head">
+            <div class="label ui">Beispiel 2 · Lernziel 2</div>
+            <h3>Letztwillige Verfügung – Anna Müller</h3>
+          </div>
+          <div class="ex-body">
+            <div class="case">
+              <span class="sum ui">Sachverhalt</span><br />Anna Müller hinterlässt Ehemann Robert, ihre Eltern Barbara
+              &amp; Josef und zwei Söhne Thomas &amp; Sandro. Nachlass: CHF 1'000'000.–.
+            </div>
+
+            <div class="q"><span class="letter ui">a</span> Wer erbt wie viel <em>ohne</em> Testament?</div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  Es gibt Nachkommen → 1. Parentel. Die Eltern (2. Parentel) sind dadurch
+                  <strong>ausgeschlossen</strong>. Ehegatte teilt mit 1. Parentel.
+                </p>
+                <span class="res ui">Robert (Ehegatte): ½ = CHF 500'000</span><br />
+                <span class="res ui">Söhne: ½ zusammen = je ¼ = CHF 250'000</span><br />
+                <span class="res ui">Barbara &amp; Josef: 0</span>
+              </div>
+            </div>
+
+            <div class="q"><span class="letter ui">b</span> Berechne die Pflichtteile und die freie Quote.</div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>Pflichtteil = gesetzlicher Erbteil × ½.</p>
+                <span class="res ui">Ehegatte: ½ × ½ = ¼ = CHF 250'000</span><br />
+                <span class="res ui">Söhne: ½ × ½ = ¼ = je CHF 125'000</span><br />
+                <span class="res ui">freie Quote: 1 − ¼ − ¼ = ½ = CHF 500'000</span>
+              </div>
+            </div>
+
+            <div class="q">
+              <span class="letter ui">c</span> Annas eigenhändiges Testament: Söhne auf den Pflichtteil; Vermächtnisse:
+              Schuhsammlung an Freundin Tekla, CHF 20'000 an die Stiftung Krebshilfe; Rest an Robert. Gültig? Wer
+              bekommt was?
+            </div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  <strong>Gültig?</strong> Ja. Das eigenhändige Testament erfüllt alle 3 Voraussetzungen (<span
+                    class="art"
+                    >Art. 505</span
+                  >): von Hand geschrieben, datiert (28.&nbsp;März&nbsp;2010), unterschrieben.
+                </p>
+                <p><strong>Verteilung:</strong></p>
+                <span class="res ui">Söhne (Pflichtteil): ¼ = CHF 250'000 → je 125'000</span><br />
+                <span class="res ui">Stiftung Krebshilfe (Vermächtnis): CHF 20'000</span><br />
+                <span class="res ui">Tekla: Schuhsammlung (Vermächtnis)</span><br />
+                <span class="res ui">Robert: Rest = CHF 730'000</span>
+                <p style="margin-top: 10px"><em>Probe:</em> 250'000 + 20'000 + 730'000 = 1'000'000 ✓</p>
+              </div>
+            </div>
+
+            <div class="q">
+              <span class="letter ui">d</span> Anna ist mit beiden Söhnen zerstritten und will je die Hälfte an Robert
+              und an Freundin Tekla geben – die Söhne sollen leer ausgehen. Darf sie das?
+            </div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  <strong>Nein.</strong> Die Söhne sind als Nachkommen <strong>pflichtteilsgeschützt</strong> und müssen
+                  mindestens ihren Pflichtteil (zusammen ¼) erhalten.
+                </p>
+                <p>
+                  Ausnahme (hier <em>nicht</em> anwendbar): eine <strong>Enterbung</strong> nach
+                  <span class="art">Art. 477</span> – die setzt aber ein schweres Verbrechen oder eine schwere
+                  Pflichtverletzung voraus. Blosser Streit genügt nicht.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beispiel 3 -->
+        <div class="ex">
+          <div class="ex-head">
+            <div class="label ui">Beispiel 3 · Lernziel 1+2</div>
+            <h3>Eintrittsprinzip + Testament – Paul Bühler</h3>
+          </div>
+          <div class="ex-body">
+            <div class="case">
+              <span class="sum ui">Sachverhalt</span><br />Paul Bühler hinterlässt Ehefrau Margrith, Sohn Heiri,
+              Schwiegersohn Walter (Tochter Cornelia ist vorverstorben) sowie deren Kinder Sonja &amp; Boris. Erbschaft:
+              CHF 240'000.–.
+            </div>
+
+            <div class="q"><span class="letter ui">a</span> Wer erbt wie viel ohne Testament/Erbvertrag?</div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  Ehegatte teilt mit 1. Parentel → je ½. Die Nachkommen-Hälfte teilt sich auf Heiri und Cornelias Linie.
+                  Cornelia ist tot → ihre Kinder Sonja &amp; Boris treten ein (Eintrittsprinzip).
+                </p>
+                <div class="tree">
+                  <div class="row">
+                    <div class="tnode dead">Paul (Erblasser)</div>
+                    <div class="tnode spouse">Margrith<span class="amt">½ = 120'000</span></div>
+                  </div>
+                  <div class="row">
+                    <div class="tnode heir">Heiri<span class="amt">¼ = 60'000</span></div>
+                    <div class="tnode dead">Cornelia †</div>
+                  </div>
+                  <div class="row">
+                    <div class="tnode heir">Sonja<span class="amt">⅛ = 30'000</span></div>
+                    <div class="tnode heir">Boris<span class="amt">⅛ = 30'000</span></div>
+                  </div>
+                </div>
+                <span class="res ui">Walter (Schwiegersohn): 0 – nicht blutsverwandt</span>
+              </div>
+            </div>
+
+            <div class="q">
+              <span class="letter ui">b</span> Wie viel erbt Margrith, wenn ein Testament alle übrigen Erben zu ihren
+              Gunsten auf den Pflichtteil setzt?
+            </div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  Die Nachkommen erhalten nur noch ihren Pflichtteil: ½ × ½ = ¼ = CHF 60'000 (für Heiri, Sonja, Boris
+                  zusammen). Margrith bekommt ihren Pflichtteil (¼) <em>plus</em> die freie Quote (½) = ¾.
+                </p>
+                <span class="res ui">Margrith: ¾ von 240'000 = CHF 180'000</span><br />
+                <span class="res ui">Nachkommen zusammen: ¼ = CHF 60'000</span>
+                <p style="margin-top: 10px"><em>Probe:</em> 180'000 + 60'000 = 240'000 ✓</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beispiel 4 -->
+        <div class="ex">
+          <div class="ex-head">
+            <div class="label ui">Beispiel 4 · Lernziel 1+2</div>
+            <h3>2. Parentel + freie Quote – Franziska Schindler</h3>
+          </div>
+          <div class="ex-body">
+            <div class="case">
+              <span class="sum ui">Sachverhalt</span><br />Franziska Schindler hinterlässt Ehemann Adrian, Mutter Doris
+              (Vater Daniel vorverstorben), Schwester Nathalie, Bruder Markus + dessen Kinder Elias &amp; Mona.
+              Erbschaft: CHF 400'000.–.
+            </div>
+
+            <div class="q"><span class="letter ui">a</span> Wer erbt wie viel ohne Testament?</div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  Keine Nachkommen → 2. Parentel. Ehegatte neben 2. Parentel = ¾. Dem elterlichen Stamm bleibt ¼. Dieses
+                  ¼ teilt sich je zur Hälfte auf die mütterliche und väterliche Seite (je ⅛). Mutter Doris lebt → nimmt
+                  ihr ⅛. Vater Daniel tot → sein ⅛ geht an seine Nachkommen (Nathalie &amp; Markus), je 1/16.
+                </p>
+                <span class="res ui">Adrian (Ehegatte): ¾ = CHF 300'000</span><br />
+                <span class="res ui">Mutter Doris: ⅛ = CHF 50'000</span><br />
+                <span class="res ui">Nathalie: 1/16 = CHF 25'000</span><br />
+                <span class="res ui">Markus: 1/16 = CHF 25'000</span><br />
+                <span class="res ui">Elias &amp; Mona: 0 – Markus lebt noch</span>
+                <p style="margin-top: 10px"><em>Probe:</em> 300'000 + 50'000 + 25'000 + 25'000 = 400'000 ✓</p>
+              </div>
+            </div>
+
+            <div class="q">
+              <span class="letter ui">b</span> Testament: alle Erben sollen so wenig wie möglich erhalten, die freie
+              Quote geht an «Vier Pfoten». Wie viel bekommt die Tierschutzorganisation?
+            </div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  <strong>Wichtig (Reform 2023):</strong> Nur der Ehegatte hat hier einen Pflichtteil. Eltern haben
+                  keinen Pflichtteil mehr, Geschwister hatten nie einen → Doris, Nathalie und Markus können auf
+                  <strong>0</strong> gesetzt werden.
+                </p>
+                <span class="res ui">Adrian (Pflichtteil): ¾ × ½ = 3/8 = CHF 150'000</span><br />
+                <span class="res ui">Doris, Nathalie, Markus: 0</span><br />
+                <span class="res ui">Vier Pfoten (freie Quote): Rest = CHF 250'000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ÜBEN ============ -->
+      <section id="ueben">
+        <div class="sec-head">
+          <span class="sec-num ui">✎</span>
+          <h2>Selbst üben – Weitere Aufgaben</h2>
+        </div>
+        <p style="font-size: 17px; color: var(--ink-soft); margin-top: -10px">
+          Hier ist kein Testament und kein Erbvertrag vorhanden – reine gesetzliche Erbfolge. Zeichne dir jeweils eine
+          Skizze, rechne, und vergleiche.
+        </p>
+
+        <div class="ex">
+          <div class="ex-body">
+            <div class="q"><span class="letter ui">1</span> Ehegatte + zwei Kinder. Erbe: Fr. 60'000.–.</div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <span class="res ui">Ehegatte: ½ = 30'000</span> &nbsp; <span class="res ui">je Kind: ¼ = 15'000</span>
+              </div>
+            </div>
+
+            <div class="q">
+              <span class="letter ui">2</span> Ehegatte, keine Kinder, zwei Schwestern + Sohn eines vorverstorbenen
+              Bruders. Fr. 100'000.–.
+            </div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  Keine Nachkommen → 2. Parentel. Ehegatte = ¾. Den Geschwistern bleibt ¼, aufgeteilt auf 3 Stämme (2
+                  Schwestern + Bruderlinie). Bruder tot → sein Sohn tritt ein.
+                </p>
+                <span class="res ui">Ehegatte: ¾ = 75'000</span><br />
+                <span class="res ui">je Schwester: 1/12 ≈ 8'333</span> &nbsp;
+                <span class="res ui">Sohn des Bruders: 1/12 ≈ 8'333</span>
+              </div>
+            </div>
+
+            <div class="q">
+              <span class="letter ui">3</span> Ledig. Hinterlässt Eltern + einen Bruder, dazu Grosseltern und zwei
+              Tanten. Fr. 20'000.–.
+            </div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  2. Parentel vorhanden → schliesst 3. Parentel (Grosseltern, Tanten) aus.
+                  <strong>Beide Eltern leben</strong> → sie nehmen die ganze 2. Parentel, je ½. Der Bruder tritt nur
+                  ein, wenn ein Elternteil tot wäre.
+                </p>
+                <span class="res ui">Vater: ½ = 10'000</span> &nbsp; <span class="res ui">Mutter: ½ = 10'000</span
+                ><br />
+                <span class="res ui">Bruder, Grosseltern, Tanten: 0</span>
+              </div>
+            </div>
+
+            <div class="q">
+              <span class="letter ui">4</span> Ausser einem Grossonkel keine Verwandten. Nachlass: Villa + Fr.
+              150'000.–.
+            </div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  Ein Grossonkel ist Geschwister eines Grosselternteils → er gehört <strong>nicht</strong> mehr zur 3.
+                  Parentel und erbt nichts. Es gibt keine erbberechtigten Verwandten und keinen Ehegatten.
+                </p>
+                <span class="res ui">→ Gemeinwesen (Kanton/Gemeinde): Villa + 150'000</span> &nbsp;<span class="art"
+                  >Art. 466</span
+                >
+              </div>
+            </div>
+
+            <div class="q">
+              <span class="letter ui">5</span> Nächste Verwandte: eine Nichte und ein Cousin. Ehefrau vorverstorben. Fr.
+              20'000.–.
+            </div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  Nichte = 2. Parentel (Kind eines Geschwisters). Cousin = 3. Parentel. Die nähere Parentel schliesst
+                  die fernere aus.
+                </p>
+                <span class="res ui">Nichte: alles = 20'000</span> &nbsp; <span class="res ui">Cousin: 0</span>
+              </div>
+            </div>
+
+            <div class="q">
+              <span class="letter ui">6</span> <strong>Knacknuss (3. Parentel).</strong> Väterliche Seite: Grossvater,
+              ein Onkel, eine Tante mit zwei Kindern. Mütterliche Seite: ein Onkel + ein Sohn einer vorverstorbenen
+              Tante. Fr. 100'000.–.<br />
+              <span style="font-weight: 400; font-size: 16px"
+                >a) wenn die Ehefrau vorverstorben ist &nbsp; b) wenn die Ehefrau noch lebt</span
+              >
+            </div>
+            <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+            <div class="sol">
+              <div class="sol-inner">
+                <p>
+                  <strong>a) Ehefrau tot</strong> → nur 3. Parentel. Väterliche Hälfte (50'000) und mütterliche Hälfte
+                  (50'000).
+                </p>
+                <p>
+                  <em>Väterlich:</em> Grossvater lebt → ¼ = 25'000. Grossmutter tot → ihr ¼ an ihre Nachkommen Onkel
+                  &amp; Tante, je ⅛ = 12'500 (Tante lebt → ihre Kinder gehen leer aus).
+                </p>
+                <span class="res ui">Grossvater: 25'000 · Onkel (väterl.): 12'500 · Tante: 12'500</span>
+                <p style="margin-top: 10px">
+                  <em>Mütterlich:</em> beide Grosseltern tot → ganze Hälfte an deren Nachkommen Onkel &amp; Tante. Tante
+                  tot → ihr Sohn tritt ein. 2 Stämme, je ¼ = 25'000.
+                </p>
+                <span class="res ui">Onkel (mütterl.): 25'000 · Sohn der † Tante: 25'000</span>
+                <p style="margin-top: 14px">
+                  <strong>b) Ehefrau lebt</strong> → Ehegatte neben 3. Parentel erbt <strong>alles</strong>.
+                  <span class="art">Art. 462 Ziff. 3</span>
+                </p>
+                <span class="res ui">Ehefrau: 100'000 · alle Verwandten: 0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FLASHCARDS ============ -->
+      <section id="cards">
+        <div class="sec-head">
+          <span class="sec-num ui">⚡</span>
+          <h2>Gesetzesartikel – Schnellabfrage</h2>
+        </div>
+        <p style="font-size: 17px; color: var(--ink-soft); margin-top: -10px">
+          Klick zum Umdrehen. Diese Artikel solltest du mit Post-it markieren.
+        </p>
+        <div class="fc-grid">
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Erbteil des Ehegatten</div>
+              <div class="fc-face fc-back">Art. 462 ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Nachkommen (1. Parentel)</div>
+              <div class="fc-face fc-back">Art. 457 ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Elterlicher Stamm (2.)</div>
+              <div class="fc-face fc-back">Art. 458 ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Grosselterl. Stamm (3.)</div>
+              <div class="fc-face fc-back">Art. 459 ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Gemeinwesen</div>
+              <div class="fc-face fc-back">Art. 466 ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Enterbung</div>
+              <div class="fc-face fc-back">Art. 477 ff. ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Eigenhändiges Testament</div>
+              <div class="fc-face fc-back">Art. 505 ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Öffentl. Testament</div>
+              <div class="fc-face fc-back">Art. 499–504 ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Erbverzicht</div>
+              <div class="fc-face fc-back">Art. 495 ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Erbvertrag</div>
+              <div class="fc-face fc-back">Art. 512 ff. ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Öffentliches Inventar</div>
+              <div class="fc-face fc-back">Art. 580 ff. ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Erbausschlagung (3 Mt.)</div>
+              <div class="fc-face fc-back">Art. 566 ff. ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Amtliche Liquidation</div>
+              <div class="fc-face fc-back">Art. 593 ff. ZGB</div>
+            </div>
+          </div>
+          <div class="fc" onclick="this.classList.toggle('flip')">
+            <div class="fc-in">
+              <div class="fc-face fc-front">Erbengemeinschaft</div>
+              <div class="fc-face fc-back">Art. 602 / 603 ZGB</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ QUIZ ============ -->
+      <section id="quiz">
+        <div class="sec-head">
+          <span class="sec-num ui">?</span>
+          <h2>Quiz zur Selbstkontrolle</h2>
+        </div>
+
+        <div class="quiz-q">
+          <div class="qn ui">Frage 1</div>
+          <p class="qt">Eine ledige, kinderlose Person stirbt. Es leben noch: beide Eltern und ein Bruder. Wer erbt?</p>
+          <button class="opt" onclick="ans(this, 0)">Eltern und Bruder zu je ⅓</button>
+          <button class="opt" onclick="ans(this, 1)">Vater ½, Mutter ½ – der Bruder erbt nichts</button>
+          <button class="opt" onclick="ans(this, 0)">Nur der Bruder</button>
+          <div
+            class="feedback"
+            data-ok="Richtig! Solange beide Eltern leben, nehmen sie die ganze 2. Parentel. Der Bruder würde nur eintreten, wenn ein Elternteil verstorben wäre."
+          ></div>
+        </div>
+
+        <div class="quiz-q">
+          <div class="qn ui">Frage 2</div>
+          <p class="qt">
+            Ein Erblasser hinterlässt seinen Ehegatten und seine Eltern (keine Kinder). Welchen gesetzlichen Erbteil
+            erhält der Ehegatte?
+          </p>
+          <button class="opt" onclick="ans(this, 0)">½</button>
+          <button class="opt" onclick="ans(this, 1)">¾</button>
+          <button class="opt" onclick="ans(this, 0)">alles</button>
+          <div
+            class="feedback"
+            data-ok="Genau! Neben der 2. Parentel (elterlicher Stamm) erhält der Ehegatte ¾, den Eltern bleibt ¼."
+          ></div>
+        </div>
+
+        <div class="quiz-q">
+          <div class="qn ui">Frage 3</div>
+          <p class="qt">Wie hoch ist der Pflichtteil der Nachkommen seit der Erbrechtsreform 2023?</p>
+          <button class="opt" onclick="ans(this, 0)">¾ des gesetzlichen Erbanspruchs</button>
+          <button class="opt" onclick="ans(this, 1)">½ des gesetzlichen Erbanspruchs</button>
+          <button class="opt" onclick="ans(this, 0)">Nachkommen haben keinen Pflichtteil</button>
+          <div
+            class="feedback"
+            data-ok="Korrekt! Seit 1.1.2023 beträgt der Pflichtteil der Nachkommen nur noch ½ (vorher ¾)."
+          ></div>
+        </div>
+
+        <div class="quiz-q">
+          <div class="qn ui">Frage 4</div>
+          <p class="qt">Welche Aussage zu den Eltern stimmt nach der Reform 2023?</p>
+          <button class="opt" onclick="ans(this, 1)">Eltern haben keinen Pflichtteil mehr</button>
+          <button class="opt" onclick="ans(this, 0)">Eltern haben einen Pflichtteil von ½</button>
+          <button class="opt" onclick="ans(this, 0)">Eltern erben immer vor dem Ehegatten</button>
+          <div
+            class="feedback"
+            data-ok="Richtig! Der Pflichtteil der Eltern wurde abgeschafft. Über deren Anteil kann frei verfügt werden."
+          ></div>
+        </div>
+
+        <div class="quiz-q">
+          <div class="qn ui">Frage 5</div>
+          <p class="qt">Welche Voraussetzung gehört NICHT zum gültigen eigenhändigen Testament?</p>
+          <button class="opt" onclick="ans(this, 0)">Vollständig von Hand geschrieben</button>
+          <button class="opt" onclick="ans(this, 0)">Datum</button>
+          <button class="opt" onclick="ans(this, 1)">Zwei Zeugen</button>
+          <div
+            class="feedback"
+            data-ok="Richtig! Zwei Zeugen braucht es beim Erbvertrag / der öffentlichen Beurkundung, nicht beim eigenhändigen Testament. Dort genügen Handschrift, Datum und Unterschrift."
+          ></div>
+        </div>
+
+        <div class="quiz-q">
+          <div class="qn ui">Frage 6</div>
+          <p class="qt">
+            Ein Nachlass ist vermutlich überschuldet. Welche Wahlmöglichkeit schützt den Erben am direktesten davor, die
+            Schulden zu übernehmen?
+          </p>
+          <button class="opt" onclick="ans(this, 1)">Erbausschlagung innerhalb von 3 Monaten</button>
+          <button class="opt" onclick="ans(this, 0)">Eine Erbengemeinschaft gründen</button>
+          <button class="opt" onclick="ans(this, 0)">Ein öffentliches Testament verfassen</button>
+          <div
+            class="feedback"
+            data-ok="Korrekt! Mit der Erbausschlagung (Art. 566 ff.) lehnt der Erbe die Erbschaft samt Schulden innert 3 Monaten ab."
+          ></div>
+        </div>
+
+        <div class="quiz-q">
+          <div class="qn ui">Frage 7</div>
+          <p class="qt">
+            Witwer Tobias stirbt, hinterlässt eine Tochter Lea und die zwei Kinder seines vorverstorbenen Sohnes Tim.
+            Nachlass CHF 120'000. Was erhalten Tims Kinder zusammen?
+          </p>
+          <button class="opt" onclick="ans(this, 1)">CHF 60'000 (je 30'000)</button>
+          <button class="opt" onclick="ans(this, 0)">CHF 40'000</button>
+          <button class="opt" onclick="ans(this, 0)">Nichts, da Tim verstorben ist</button>
+          <div
+            class="feedback"
+            data-ok="Richtig! Eintrittsprinzip: Tims Anteil ½ = 60'000 geht an seine zwei Kinder, je ¼ = 30'000. Lea erhält die andere Hälfte."
+          ></div>
+        </div>
+
+        <div class="card" id="score" style="text-align: center; display: none; border: 2px solid var(--p2)">
+          <h3 style="color: var(--p2)">Dein Ergebnis</h3>
+          <p style="font-size: 42px; font-family: &quot;Fraunces&quot;; font-weight: 900; margin: 6px 0" id="scoretext">
+            0 / 7
+          </p>
+          <p id="scoremsg" style="margin: 0"></p>
+        </div>
+      </section>
+
+      <footer>
+        Wirtschaft &amp; Recht · Kapitel 22 Erbrecht · BMS Samuel Obrecht Winterthur 25/26 · Lernzusammenfassung zur
+        Prüfung vom 04.06.2026<br />
+        <span style="opacity: 0.7"
+          >Pflichtteile nach geltendem Recht (Erbrechtsreform seit 1.1.2023). Bei Abweichungen gilt immer der
+          Gesetzestext (ZGB).</span
+        >
+      </footer>
+    </main>
+
+    <script>
+      function rev(btn) {
+        const sol = btn.nextElementSibling;
+        const open = sol.classList.toggle("open");
+        const ic = btn.querySelector(".ic");
+        ic.style.transform = open ? "rotate(90deg)" : "rotate(0)";
+        btn.childNodes[1].textContent = open ? " Lösung verbergen" : " Lösung zeigen";
+      }
+
+      let answered = {},
+        score = 0,
+        total = 7;
+      function ans(el, correct) {
+        const q = el.closest(".quiz-q");
+        if (answered[q.querySelector(".qn").textContent]) return;
+        answered[q.querySelector(".qn").textContent] = true;
+        const fb = q.querySelector(".feedback");
+        q.querySelectorAll(".opt").forEach((o) => o.classList.add("disabled"));
+        if (correct) {
+          el.classList.add("correct");
+          score++;
+          fb.textContent = fb.dataset.ok;
+          fb.className = "feedback show ok";
+        } else {
+          el.classList.add("wrong");
+          // mark the correct one
+          q.querySelectorAll(".opt").forEach((o) => {
+            if (o.getAttribute("onclick").includes(",1)")) o.classList.add("correct");
+          });
+          fb.textContent = "Nicht ganz. " + fb.dataset.ok;
+          fb.className = "feedback show no";
+        }
+        if (Object.keys(answered).length === total) showScore();
+      }
+      function showScore() {
+        const box = document.getElementById("score");
+        box.style.display = "block";
+        document.getElementById("scoretext").textContent = score + " / " + total;
+        let m;
+        if (score === total) m = "Perfekt – du bist bestens vorbereitet! 🎓";
+        else if (score >= 5) m = "Sehr gut! Schau dir die verpassten Fragen nochmals an.";
+        else if (score >= 3) m = "Solide Basis. Wiederhole Parentelsystem und Pflichtteile.";
+        else m = "Geh die Grundlagen und Beispiele nochmals durch – dann klappt das.";
+        document.getElementById("scoremsg").textContent = m;
+        box.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    </script>
+  </body>
+</html>
