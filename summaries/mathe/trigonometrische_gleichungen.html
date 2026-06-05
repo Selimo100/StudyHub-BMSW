@@ -1,0 +1,2249 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trigonometrie III &amp; IV – Prüfungsvorbereitung</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f6f1e7;
+        --paper2: #efe7d6;
+        --ink: #23201b;
+        --ink-soft: #4c463c;
+        --line: #d8cdb6;
+        --primary: #1f5d5a; /* tealgrün */
+        --primary-d: #143f3d;
+        --a: #d2553a; /* Amplitude  */
+        --b: #2e8b57; /* Frequenz   */
+        --c: #2f6fd0; /* Phase      */
+        --d: #8a4fbf; /* y-Versch.  */
+        --gold: #c79a3a;
+        --warn: #b8412b;
+        --ok: #2e8b57;
+        --shadow: 0 2px 0 rgba(35, 32, 27, 0.12), 0 14px 30px -12px rgba(35, 32, 27, 0.35);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at 12% -5%, #fbf7ee, transparent 40%), var(--paper);
+        color: var(--ink);
+        font-family: "Hanken Grotesk", system-ui, sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 18px 90px;
+      }
+
+      /* ---------- Header ---------- */
+      header.top {
+        text-align: center;
+        padding: 46px 18px 26px;
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+      h1 {
+        font-family: "Fraunces", serif;
+        font-weight: 800;
+        font-size: clamp(2.1rem, 6vw, 3.6rem);
+        line-height: 1.02;
+        margin: 0;
+        color: var(--ink);
+      }
+      h1 em {
+        font-style: italic;
+        color: var(--primary);
+      }
+      .sub {
+        max-width: 600px;
+        margin: 14px auto 0;
+        color: var(--ink-soft);
+        font-size: 1.02rem;
+      }
+
+      /* ---------- Tabs ---------- */
+      nav.tabs {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(246, 241, 231, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1.5px solid var(--line);
+        margin: 18px -18px 0;
+        padding: 10px 14px;
+      }
+      .tabrow {
+        display: flex;
+        gap: 7px;
+        overflow-x: auto;
+        max-width: 1000px;
+        margin: 0 auto;
+        scrollbar-width: thin;
+      }
+      .tabrow::-webkit-scrollbar {
+        height: 5px;
+      }
+      .tabrow::-webkit-scrollbar-thumb {
+        background: var(--line);
+        border-radius: 5px;
+      }
+      .tab {
+        flex: 0 0 auto;
+        border: 1.5px solid var(--line);
+        background: #fff;
+        color: var(--ink-soft);
+        font-family: "Hanken Grotesk";
+        font-weight: 600;
+        font-size: 0.84rem;
+        padding: 8px 13px;
+        border-radius: 999px;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: 0.18s;
+      }
+      .tab:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+      .tab.active {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+        box-shadow: var(--shadow);
+      }
+
+      /* ---------- Sections ---------- */
+      .panel {
+        display: none;
+        animation: fade 0.35s ease;
+      }
+      .panel.active {
+        display: block;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      section.block {
+        margin-top: 30px;
+      }
+      h2 {
+        font-family: "Fraunces", serif;
+        font-weight: 700;
+        font-size: 1.7rem;
+        margin: 34px 0 6px;
+        color: var(--primary-d);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      h2 .num {
+        font-family: "JetBrains Mono";
+        font-size: 0.85rem;
+        background: var(--primary);
+        color: #fff;
+        border-radius: 7px;
+        padding: 3px 8px;
+        font-weight: 600;
+      }
+      h3 {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: 1.22rem;
+        margin: 24px 0 4px;
+        color: var(--ink);
+      }
+      h4 {
+        font-size: 1rem;
+        margin: 16px 0 4px;
+        color: var(--primary-d);
+      }
+      p {
+        margin: 8px 0;
+      }
+      .lead {
+        font-size: 1.05rem;
+        color: var(--ink-soft);
+      }
+
+      /* ---------- Cards / callouts ---------- */
+      .card {
+        background: #fff;
+        border: 1.5px solid var(--line);
+        border-radius: 16px;
+        padding: 20px 22px;
+        margin: 16px 0;
+        box-shadow: var(--shadow);
+      }
+      .merke {
+        border-left: 6px solid var(--gold);
+        background: #fffaf0;
+        border-radius: 10px;
+        padding: 14px 18px;
+        margin: 16px 0;
+      }
+      .merke .tag {
+        font-family: "JetBrains Mono";
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 600;
+      }
+      .warn {
+        border-left: 6px solid var(--warn);
+        background: #fdeee9;
+        border-radius: 10px;
+        padding: 14px 18px;
+        margin: 16px 0;
+      }
+      .warn .tag {
+        font-family: "JetBrains Mono";
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--warn);
+        font-weight: 600;
+      }
+      .tip {
+        border-left: 6px solid var(--primary);
+        background: #eef6f5;
+        border-radius: 10px;
+        padding: 14px 18px;
+        margin: 16px 0;
+      }
+      .tip .tag {
+        font-family: "JetBrains Mono";
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      /* ---------- Steps ---------- */
+      ol.steps {
+        counter-reset: s;
+        list-style: none;
+        padding: 0;
+        margin: 14px 0;
+      }
+      ol.steps > li {
+        position: relative;
+        padding: 10px 6px 10px 46px;
+        margin: 8px 0;
+        border-bottom: 1px dashed var(--line);
+      }
+      ol.steps > li:last-child {
+        border-bottom: none;
+      }
+      ol.steps > li::before {
+        counter-increment: s;
+        content: counter(s);
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      /* ---------- Math ---------- */
+      .eq {
+        font-family: "JetBrains Mono", monospace;
+        background: var(--paper2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 2px 7px;
+        font-size: 0.95em;
+        color: var(--primary-d);
+        white-space: nowrap;
+      }
+      .eqblock {
+        font-family: "JetBrains Mono";
+        background: #fff;
+        border: 1.5px solid var(--line);
+        border-radius: 12px;
+        padding: 16px;
+        text-align: center;
+        font-size: 1.05rem;
+        margin: 14px 0;
+        color: var(--primary-d);
+        overflow-x: auto;
+      }
+      .pa {
+        color: var(--a);
+        font-weight: 700;
+      }
+      .pb {
+        color: var(--b);
+        font-weight: 700;
+      }
+      .pc {
+        color: var(--c);
+        font-weight: 700;
+      }
+      .pd {
+        color: var(--d);
+        font-weight: 700;
+      }
+
+      /* ---------- Tables ---------- */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0;
+        font-size: 0.92rem;
+        background: #fff;
+        border: 1.5px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      th,
+      td {
+        padding: 9px 11px;
+        text-align: center;
+        border-bottom: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+      }
+      th {
+        background: var(--primary);
+        color: #fff;
+        font-weight: 600;
+      }
+      td:first-child,
+      th:first-child {
+        text-align: left;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      td:last-child,
+      th:last-child {
+        border-right: none;
+      }
+      .mono {
+        font-family: "JetBrains Mono";
+        font-size: 0.9em;
+      }
+
+      /* ---------- Interactive ---------- */
+      .tool {
+        background: #fff;
+        border: 1.5px solid var(--line);
+        border-radius: 18px;
+        padding: 20px;
+        margin: 18px 0;
+        box-shadow: var(--shadow);
+      }
+      canvas {
+        display: block;
+        max-width: 100%;
+        background: #fffdf8;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+      }
+      .sliders {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 14px;
+        margin-top: 16px;
+      }
+      .sl {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .sl label {
+        font-weight: 600;
+        font-size: 0.86rem;
+        display: flex;
+        justify-content: space-between;
+      }
+      .sl .val {
+        font-family: "JetBrains Mono";
+        font-weight: 600;
+      }
+      input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        border-radius: 6px;
+        background: var(--line);
+        outline: none;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 3px solid #fff;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      }
+      input[type="range"].ra::-webkit-slider-thumb {
+        background: var(--a);
+      }
+      input[type="range"].rb::-webkit-slider-thumb {
+        background: var(--b);
+      }
+      input[type="range"].rc::-webkit-slider-thumb {
+        background: var(--c);
+      }
+      input[type="range"].rd::-webkit-slider-thumb {
+        background: var(--d);
+      }
+      .readout {
+        font-family: "JetBrains Mono";
+        background: var(--paper2);
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin-top: 14px;
+        font-size: 0.92rem;
+        line-height: 1.9;
+      }
+      .readout b {
+        color: var(--primary-d);
+      }
+      .btnrow {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+      button.b {
+        font-family: "Hanken Grotesk";
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: 1.5px solid var(--primary);
+        background: #fff;
+        color: var(--primary);
+        border-radius: 999px;
+        padding: 7px 14px;
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      button.b:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+      button.b.on {
+        background: var(--primary);
+        color: #fff;
+      }
+      select,
+      input[type="number"] {
+        font-family: "JetBrains Mono";
+        font-size: 0.9rem;
+        padding: 7px 9px;
+        border: 1.5px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+      }
+
+      /* ---------- Exercises ---------- */
+      .ex {
+        border: 1.5px solid var(--line);
+        border-radius: 14px;
+        margin: 12px 0;
+        overflow: hidden;
+        background: #fff;
+      }
+      .ex .q {
+        padding: 14px 16px;
+        font-weight: 500;
+      }
+      .ex .q .lbl {
+        font-family: "JetBrains Mono";
+        font-size: 0.72rem;
+        background: var(--paper2);
+        color: var(--primary-d);
+        border-radius: 6px;
+        padding: 2px 8px;
+        margin-right: 8px;
+        font-weight: 600;
+      }
+      .ex .sol {
+        display: none;
+        padding: 0 16px 16px;
+        border-top: 1px dashed var(--line);
+        background: #fbfdfc;
+      }
+      .ex .sol.show {
+        display: block;
+        padding-top: 14px;
+      }
+      .ex .sol .stag {
+        font-family: "JetBrains Mono";
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ok);
+        font-weight: 600;
+      }
+      .reveal {
+        font-family: "Hanken Grotesk";
+        font-weight: 600;
+        font-size: 0.8rem;
+        border: none;
+        background: var(--primary);
+        color: #fff;
+        border-radius: 8px;
+        padding: 6px 12px;
+        cursor: pointer;
+        margin: 0 16px 14px;
+      }
+      .reveal:hover {
+        background: var(--primary-d);
+      }
+
+      /* ---------- Checklist ---------- */
+      .check {
+        list-style: none;
+        padding: 0;
+        margin: 14px 0;
+      }
+      .check li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 11px 14px;
+        border: 1.5px solid var(--line);
+        border-radius: 12px;
+        margin: 8px 0;
+        background: #fff;
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      .check li:hover {
+        border-color: var(--primary);
+      }
+      .check li.done {
+        background: #eef6f5;
+        border-color: var(--ok);
+      }
+      .check .box {
+        flex: 0 0 22px;
+        height: 22px;
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        margin-top: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        color: #fff;
+        transition: 0.15s;
+      }
+      .check li.done .box {
+        background: var(--ok);
+        border-color: var(--ok);
+      }
+      .check .ctxt b {
+        display: block;
+      }
+      .check .ctxt span {
+        color: var(--ink-soft);
+        font-size: 0.88rem;
+      }
+
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      @media (max-width: 640px) {
+        .grid2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      .pill {
+        display: inline-block;
+        font-family: "JetBrains Mono";
+        font-size: 0.72rem;
+        font-weight: 600;
+        border-radius: 999px;
+        padding: 3px 10px;
+        margin: 2px;
+      }
+      .pill.tr {
+        background: #eef6f5;
+        color: var(--primary-d);
+      }
+      .pill.hand {
+        background: #fffaf0;
+        color: var(--gold);
+      }
+      hr.soft {
+        border: none;
+        border-top: 1.5px dashed var(--line);
+        margin: 26px 0;
+      }
+      .kbd {
+        font-family: "JetBrains Mono";
+        background: #23201b;
+        color: #f6f1e7;
+        border-radius: 6px;
+        padding: 2px 7px;
+        font-size: 0.85em;
+      }
+      footer {
+        text-align: center;
+        color: var(--ink-soft);
+        font-size: 0.85rem;
+        margin-top: 50px;
+      }
+      .legend {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 0.82rem;
+        margin-top: 8px;
+      }
+      .legend span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="eyebrow">BMS Winterthur · Mathematik · Skript 10</div>
+      <h1>Trigonometrie <em>III &amp; IV</em></h1>
+      <p class="sub">
+        Dein kompletter Prüfungs-Coach: Schritt-für-Schritt-Denkweisen, interaktive Werkzeuge, Taschenrechner-Anleitung
+        und Übungen mit echten Lösungen aus deiner Aufgabensammlung.
+      </p>
+    </header>
+
+    <nav class="tabs">
+      <div class="tabrow" id="tabrow">
+        <button class="tab active" data-t="start">🚀 Start &amp; Plan</button>
+        <button class="tab" data-t="grund">📐 Grundlagen</button>
+        <button class="tab" data-t="graph">📈 Graphen</button>
+        <button class="tab" data-t="trans">🎛️ Transformationen</button>
+        <button class="tab" data-t="ablesen">🔍 Gleichung ablesen</button>
+        <button class="tab" data-t="arkus">↩️ Arkusfunktionen</button>
+        <button class="tab" data-t="gleich">⚖️ Gleichungen lösen</button>
+        <button class="tab" data-t="verein">🧩 Terme vereinfachen</button>
+        <button class="tab" data-t="tr">🖩 Taschenrechner</button>
+        <button class="tab" data-t="ueben">✍️ Übungen</button>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <!-- ============== START ============== -->
+      <div class="panel active" id="start">
+        <section class="block">
+          <h2><span class="num">0</span> So gehst du das Thema an</h2>
+          <p class="lead">
+            Das ganze Kapitel besteht eigentlich aus nur <b>zwei grossen Ideen</b>. Wenn du diese zwei verstehst, kannst
+            du jede Aufgabe einordnen:
+          </p>
+
+          <div class="grid2">
+            <div class="card">
+              <h3 style="margin-top: 0">① Trigonometrische <span style="color: var(--primary)">Funktionen</span></h3>
+              <p>Sinus, Cosinus, Tangens sind <b>Wellen</b>. Du musst:</p>
+              <p>
+                · Graphen zeichnen &amp; Eigenschaften ablesen<br />
+                · sie <b>transformieren</b> (höher, breiter, verschieben) mit
+                <span class="eq"
+                  ><span class="pa">a</span>·sin(<span class="pb">b</span>(α+<span class="pc">c</span>))+<span
+                    class="pd"
+                    >d</span
+                  ></span
+                ><br />
+                · aus einem fertigen Graphen die Gleichung herauslesen
+              </p>
+            </div>
+            <div class="card">
+              <h3 style="margin-top: 0">② Trigonometrische <span style="color: var(--warn)">Gleichungen</span></h3>
+              <p>Hier ist der Winkel <b>gesucht</b>. Du musst:</p>
+              <p>
+                · Terme <b>vereinfachen</b> (trig. Pythagoras, tan=sin/cos)<br />
+                · Gleichungen wie <span class="eq">sin α = 0.5</span> lösen – von Hand mit dem Einheitskreis und mit dem
+                TR<br />
+                · alle Lösungen im Bereich 0°–360° finden
+              </p>
+            </div>
+          </div>
+
+          <div class="merke">
+            <span class="tag">Die goldene Lernreihenfolge</span>
+            <p style="margin: 6px 0 0">
+              1️⃣ Grundlagen (Einheitskreis + 5 Beziehungen + Spezialwerte) → 2️⃣ Graphen → 3️⃣ Transformationen (mit dem
+              Plotter spielen!) → 4️⃣ Gleichung ablesen → 5️⃣ Gleichungen lösen → 6️⃣ Vereinfachen → 7️⃣ TR sicher → 8️⃣
+              Üben, üben, üben.
+            </p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">✓</span> Lernziel-Checkliste</h2>
+          <p>Tippe an, was du sicher kannst. Ziel: am Ende alles grün.</p>
+          <ul class="check" id="checklist">
+            <li>
+              <div class="box">✓</div>
+              <div class="ctxt">
+                <b>Graphen skizzieren &amp; ablesen</b
+                ><span>sin/cos/tan zeichnen, Eigenschaften nennen · Skript S.6 Aufg.1, Buch 165, 167</span>
+              </div>
+            </li>
+            <li>
+              <div class="box">✓</div>
+              <div class="ctxt">
+                <b>Nullstellen, Amplitude &amp; Periode bestimmen</b
+                ><span>aus Gleichung und aus Graph · Aufg. 165, unterricht.de</span>
+              </div>
+            </li>
+            <li>
+              <div class="box">✓</div>
+              <div class="ctxt">
+                <b>Transformationen verstehen</b><span>a, b, c, d und ihre Wirkung im Graphen</span>
+              </div>
+            </li>
+            <li>
+              <div class="box">✓</div>
+              <div class="ctxt">
+                <b>Arkusfunktionen interpretieren</b
+                ><span>Umkehrfunktion = Spiegelung an y=x, eingeschränkter Bereich</span>
+              </div>
+            </li>
+            <li>
+              <div class="box">✓</div>
+              <div class="ctxt">
+                <b>Trig. Terme vereinfachen</b><span>Pythagoras + tan=sin/cos + binomische Formeln · Buch 183</span>
+              </div>
+            </li>
+            <li>
+              <div class="box">✓</div>
+              <div class="ctxt">
+                <b>Gleichungen von Hand lösen</b
+                ><span>Einheitskreis-Methode · Strukturaufg. S.5 Nr.3k–x, Buch 85–87</span>
+              </div>
+            </li>
+            <li>
+              <div class="box">✓</div>
+              <div class="ctxt">
+                <b>Gleichungen mit TR lösen</b><span>solve() richtig einsetzen · Strukturaufg. Nr.29, 58</span>
+              </div>
+            </li>
+            <li>
+              <div class="box">✓</div>
+              <div class="ctxt"><b>Alte Prüfungsaufgaben gerechnet</b><span>Aufgabenblatt + Tab „Übungen“</span></div>
+            </li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--ink-soft)">
+            💾 Fortschritt wird in dieser Sitzung gemerkt (nicht dauerhaft gespeichert).
+          </p>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">⏱</span> Realistischer Lernplan (z.&nbsp;B. 4 Tage)</h2>
+          <table>
+            <tr>
+              <th>Tag</th>
+              <th>Fokus</th>
+              <th>Konkret</th>
+            </tr>
+            <tr>
+              <td><b>1</b></td>
+              <td>Verstehen</td>
+              <td>
+                Tabs Grundlagen + Graphen + Transformationen lesen, mit dem <b>Plotter</b> spielen, bis a/b/c/d „im
+                Gefühl“ sind
+              </td>
+            </tr>
+            <tr>
+              <td><b>2</b></td>
+              <td>Funktionen</td>
+              <td>Gleichung-ablesen + Arkusfunktionen, dann Übungen 165 &amp; 167 rechnen</td>
+            </tr>
+            <tr>
+              <td><b>3</b></td>
+              <td>Gleichungen</td>
+              <td>Einheitskreis-Methode + Vereinfachen, Übungen 85–87 &amp; 183</td>
+            </tr>
+            <tr>
+              <td><b>4</b></td>
+              <td>Prüfungssimulation</td>
+              <td>TR-Workflow sicher, alte Prüfungsaufgaben unter Zeitdruck, Merkblatt erstellen</td>
+            </tr>
+          </table>
+        </section>
+      </div>
+
+      <!-- ============== GRUNDLAGEN ============== -->
+      <div class="panel" id="grund">
+        <section class="block">
+          <h2><span class="num">1</span> Der Einheitskreis – das Fundament</h2>
+          <p class="lead">
+            Alles kommt vom Einheitskreis (Radius 1). Ein Punkt P läuft auf dem Kreis, der Winkel α wird von der
+            positiven x-Achse gegen den Uhrzeigersinn gemessen.
+          </p>
+
+          <div class="merke">
+            <span class="tag">Das musst du auswendig wissen</span>
+            <p style="margin: 6px 0 0">
+              🔵 <b><span style="color: var(--c)">cos(α) = x-Koordinate</span></b> von P (waagrecht)<br />
+              🟢 <b><span style="color: var(--b)">sin(α) = y-Koordinate</span></b> von P (senkrecht)<br />
+              🟣 <b><span style="color: var(--d)">tan(α) = sin(α)/cos(α)</span></b> (Steigung der Geraden 0P)
+            </p>
+          </div>
+
+          <div class="tool">
+            <h3 style="margin-top: 0">Spiel mit dem Einheitskreis 🎮</h3>
+            <p>
+              Ziehe den Regler und sieh, wie sich sin, cos und tan ändern. Achte darauf, <b>wo</b> die Werte
+              positiv/negativ werden.
+            </p>
+            <canvas id="ucCanvas" width="640" height="360"></canvas>
+            <div class="sl" style="margin-top: 14px">
+              <label>Winkel α <span class="val" id="ucDeg">45°</span></label>
+              <input type="range" id="ucSlide" min="0" max="360" value="45" />
+            </div>
+            <div class="readout" id="ucRead"></div>
+            <div class="legend">
+              <span><span class="dot" style="background: var(--c)"></span>cos (x)</span>
+              <span><span class="dot" style="background: var(--b)"></span>sin (y)</span>
+              <span><span class="dot" style="background: var(--d)"></span>tan</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">2</span> Die 5 Beziehungen (Begründungen kommen direkt vom Kreis)</h2>
+          <table>
+            <tr>
+              <th>Beziehung</th>
+              <th>Warum (Denkweise)</th>
+            </tr>
+            <tr>
+              <td class="mono">sin²α + cos²α = 1</td>
+              <td>Satz des Pythagoras im Kreis (x²+y²=1²). „Trig. Pythagoras“ – <b>das wichtigste Werkzeug</b>.</td>
+            </tr>
+            <tr>
+              <td class="mono">tan α = sin α / cos α</td>
+              <td>Gegenkathete/Ankathete = (y/r)/(x/r) = y/x.</td>
+            </tr>
+            <tr>
+              <td class="mono">cos α = sin(α+90°)</td>
+              <td>Cosinus eilt dem Sinus um 90° voraus (gleiche Welle, verschoben).</td>
+            </tr>
+            <tr>
+              <td class="mono">sin(−α) = −sin α<br />cos(−α) = cos α</td>
+              <td>Sinus ist punktsymmetrisch (Ursprung), Cosinus achsensymmetrisch (y-Achse).</td>
+            </tr>
+            <tr>
+              <td class="mono">sin α = sin(180°−α)<br />cos α = cos(360°−α)</td>
+              <td>Zwei verschiedene Winkel mit gleichem Wert – <b>genau das brauchst du beim Gleichungslösen!</b></td>
+            </tr>
+          </table>
+          <div class="tip">
+            <span class="tag">Denk-Trick</span>
+            <p style="margin: 6px 0 0">
+              Wenn in einer Aufgabe irgendwo eine <b>1</b> steht oder ein <b>sin²/cos²</b> auftaucht → fast immer ist
+              „<span class="eq">sin²+cos²=1</span>“ der Schlüssel. Wenn <b>tan</b> auftaucht → ersetze es durch
+              <span class="eq">sin/cos</span>.
+            </p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">3</span> Spezialwerte – auswendig!</h2>
+          <p>Diese Tabelle solltest du im Schlaf können (für die Aufgaben „ohne Hilfsmittel“).</p>
+          <table>
+            <tr>
+              <th>α (Grad)</th>
+              <th>0°</th>
+              <th>30°</th>
+              <th>45°</th>
+              <th>60°</th>
+              <th>90°</th>
+            </tr>
+            <tr>
+              <td>α (Bogen)</td>
+              <td>0</td>
+              <td>π/6</td>
+              <td>π/4</td>
+              <td>π/3</td>
+              <td>π/2</td>
+            </tr>
+            <tr>
+              <td><b>sin</b></td>
+              <td>0</td>
+              <td>1/2</td>
+              <td>√2/2</td>
+              <td>√3/2</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td><b>cos</b></td>
+              <td>1</td>
+              <td>√3/2</td>
+              <td>√2/2</td>
+              <td>1/2</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td><b>tan</b></td>
+              <td>0</td>
+              <td>1/√3</td>
+              <td>1</td>
+              <td>√3</td>
+              <td>—</td>
+            </tr>
+          </table>
+          <div class="merke">
+            <span class="tag">Eselsbrücke sin</span>
+            <p style="margin: 6px 0 0">
+              sin von 0°,30°,45°,60°,90° = <span class="mono">√0/2, √1/2, √2/2, √3/2, √4/2</span>. Also einfach
+              <b>√0 bis √4, alles geteilt durch 2</b>. Bei cos genau rückwärts. 🤯
+            </p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">4</span> Grad ↔ Bogenmass</h2>
+          <div class="eqblock">
+            α<sub>Grad</sub> = α<sub>Bogen</sub> · 180°/π &nbsp;&nbsp;|&nbsp;&nbsp; α<sub>Bogen</sub> = α<sub>Grad</sub>
+            · π/180°
+          </div>
+          <p>Merke: <span class="eq">180° = π</span>. Daraus folgt alles: 90°=π/2, 360°=2π, 30°=π/6 …</p>
+          <div class="warn">
+            <span class="tag">Prüfungsfalle</span>
+            <p style="margin: 6px 0 0">
+              Steht in der Aufgabe „im Bogenmass“ → TR auf <b>RAD</b> stellen. Steht „°“ in der Aufgabe → <b>DEG</b>.
+              Falscher Modus = alle Antworten falsch! (Siehe Tab Taschenrechner.)
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============== GRAPHEN ============== -->
+      <div class="panel" id="graph">
+        <section class="block">
+          <h2><span class="num">5</span> Die drei Grundgraphen &amp; ihre Eigenschaften</h2>
+          <p class="lead">Du musst die Graphen ohne Hilfsmittel zeichnen können und die Eigenschaften kennen.</p>
+
+          <div class="tool">
+            <canvas id="threeCanvas" width="680" height="320"></canvas>
+            <div class="legend" style="margin-top: 10px">
+              <span><span class="dot" style="background: var(--b)"></span>sin α</span>
+              <span><span class="dot" style="background: var(--c)"></span>cos α</span>
+              <span><span class="dot" style="background: var(--d)"></span>tan α</span>
+            </div>
+          </div>
+
+          <table>
+            <tr>
+              <th>Eigenschaft</th>
+              <th>y = sin α</th>
+              <th>y = cos α</th>
+              <th>y = tan α</th>
+            </tr>
+            <tr>
+              <td>Definitionsbereich 𝔻</td>
+              <td>ℝ</td>
+              <td>ℝ</td>
+              <td>ℝ \ {90°+k·180°}</td>
+            </tr>
+            <tr>
+              <td>Wertebereich 𝕎</td>
+              <td>[−1; 1]</td>
+              <td>[−1; 1]</td>
+              <td>ℝ</td>
+            </tr>
+            <tr>
+              <td>Nullstellen</td>
+              <td>0°, 180°, 360° …<br />(k·180°)</td>
+              <td>90°, 270° …<br />(90°+k·180°)</td>
+              <td>0°, 180° …<br />(k·180°)</td>
+            </tr>
+            <tr>
+              <td>Periode</td>
+              <td>360°</td>
+              <td>360°</td>
+              <td><b>180°</b></td>
+            </tr>
+            <tr>
+              <td>y-Achsenabschnitt</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Symmetrie</td>
+              <td>Punkt (Ursprung)</td>
+              <td>Achse (y-Achse)</td>
+              <td>Punkt (Ursprung)</td>
+            </tr>
+          </table>
+
+          <div class="merke">
+            <span class="tag">Skizzier-Reihenfolge ohne Hilfsmittel</span>
+            <ol class="steps">
+              <li>Achsen zeichnen, x in 90°-Schritten markieren (0,90,180,270,360).</li>
+              <li>
+                Markante Punkte setzen: <b>sin</b> startet bei 0, hoch zu 1 (bei 90°), runter zu 0 (180°), Tief −1
+                (270°), zurück 0 (360°).
+              </li>
+              <li><b>cos</b> = sin um 90° nach links → startet bei 1, runter zu 0 (90°), Tief −1 (180°)…</li>
+              <li>Punkte mit einer schönen Welle verbinden. Fertig.</li>
+            </ol>
+          </div>
+          <div class="tip">
+            <span class="tag">tan merken</span>
+            <p style="margin: 6px 0 0">
+              tan hat <b>Polstellen</b> (senkrechte Asymptoten) genau dort, wo cos = 0 ist (90°, 270°…), weil
+              <span class="eq">tan = sin/cos</span> und „durch 0“ nicht geht. Zwischen zwei Polstellen steigt tan von −∞
+              nach +∞.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============== TRANSFORMATIONEN ============== -->
+      <div class="panel" id="trans">
+        <section class="block">
+          <h2><span class="num">6</span> Die allgemeine Sinusfunktion</h2>
+          <div class="eqblock" style="font-size: 1.3rem">
+            f(α) = <span class="pa">a</span> · sin( <span class="pb">b</span> · (α + <span class="pc">c</span>) ) +
+            <span class="pd">d</span>
+          </div>
+          <p>Vier Stellschrauben. Hier ist die <b>komplette Denkweise</b> für jede:</p>
+
+          <table>
+            <tr>
+              <th>Parameter</th>
+              <th>Was er macht</th>
+              <th>So denkst du</th>
+            </tr>
+            <tr>
+              <td><span class="pa">a</span> – Amplitude</td>
+              <td>Streckt/staucht in <b>y</b> (Höhe)</td>
+              <td>
+                |a| = halbe Höhe der Welle. a&gt;1 höher, |a|&lt;1 flacher, <b>a&lt;0 = gespiegelt</b> (auf dem Kopf).
+              </td>
+            </tr>
+            <tr>
+              <td><span class="pb">b</span> – Frequenz</td>
+              <td>Streckt/staucht in <b>x</b> (Breite)</td>
+              <td>b = Anzahl Wellen in 360°. <b>Periode = 360°/b</b> (bzw. 2π/b). b&gt;1 = enger, b&lt;1 = breiter.</td>
+            </tr>
+            <tr>
+              <td><span class="pc">c</span> – Phase</td>
+              <td>Verschiebt nach <b>links/rechts</b></td>
+              <td>
+                Achtung: <b>c&gt;0 → nach links, c&lt;0 → nach rechts</b> (das Vorzeichen „lügt“). Verschiebung = c.
+              </td>
+            </tr>
+            <tr>
+              <td><span class="pd">d</span> – y-Verschiebung</td>
+              <td>Verschiebt nach <b>oben/unten</b></td>
+              <td>d = Mittellinie. <b>d&gt;0 → nach oben, d&lt;0 → nach unten.</b></td>
+            </tr>
+          </table>
+
+          <div class="warn">
+            <span class="tag">Vorzeichen c – die häufigste Falle</span>
+            <p style="margin: 6px 0 0">
+              In der Form <span class="eq">sin(b(α+c))</span> bedeutet ein <b>Minus</b> Verschiebung nach <b>rechts</b>:
+              <span class="eq">sin(α−45°)</span> ist 45° nach rechts. Grund: damit das Argument wieder „0“ wird, muss α
+              um 45° grösser sein → der Start passiert später → rechts.
+            </p>
+          </div>
+
+          <div class="tool">
+            <h3 style="margin-top: 0">🎛️ Transformations-Plotter – das Herzstück</h3>
+            <p>
+              Schiebe die Regler und beobachte. Die graue Welle ist immer das Original <span class="eq">sin α</span>,
+              die farbige ist deine Funktion.
+            </p>
+            <canvas id="tCanvas" width="680" height="340"></canvas>
+            <div class="sliders">
+              <div class="sl">
+                <label><span class="pa">a · Amplitude</span><span class="val" id="vA">1</span></label
+                ><input type="range" class="ra" id="sA" min="-3" max="3" step="0.1" value="1" />
+              </div>
+              <div class="sl">
+                <label><span class="pb">b · Frequenz</span><span class="val" id="vB">1</span></label
+                ><input type="range" class="rb" id="sB" min="0.25" max="4" step="0.25" value="1" />
+              </div>
+              <div class="sl">
+                <label><span class="pc">c · Phase</span><span class="val" id="vC">0°</span></label
+                ><input type="range" class="rc" id="sC" min="-180" max="180" step="15" value="0" />
+              </div>
+              <div class="sl">
+                <label><span class="pd">d · y-Versch.</span><span class="val" id="vD">0</span></label
+                ><input type="range" class="rd" id="sD" min="-3" max="3" step="0.1" value="0" />
+              </div>
+            </div>
+            <div class="readout" id="tRead"></div>
+            <div class="btnrow">
+              <button class="b" data-preset="1,2,0,0">2·sin(2α)</button>
+              <button class="b" data-preset="1.5,1,-45,0">1.5·sin(α−45°)</button>
+              <button class="b" data-preset="-1,1,0,1">−sin(α)+1</button>
+              <button class="b" data-preset="2,0.5,0,0">2·sin(0.5α)</button>
+              <button class="b" data-preset="1,1,0,0">Reset</button>
+            </div>
+          </div>
+
+          <div class="merke">
+            <span class="tag">Aufg. 1a Beispiel</span>
+            <p style="margin: 6px 0 0">
+              „Sinus um 20% in y gestreckt und 30° nach rechts“ → 20% höher = a=1.2, 30° rechts = c=−30°. Also
+              <span class="eq">f(α)=1.2·sin(α−30°)</span>.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============== ABLESEN ============== -->
+      <div class="panel" id="ablesen">
+        <section class="block">
+          <h2><span class="num">7</span> Aus dem Graphen die Gleichung herauslesen</h2>
+          <p class="lead">
+            Das ist der „umgekehrte“ Plotter und kommt sehr oft in Prüfungen (Aufg. 1b–e, 167). Immer dieselbe
+            Reihenfolge: <b>a → d → b → c</b>.
+          </p>
+
+          <ol class="steps">
+            <li><b>Max &amp; Min ablesen.</b> Höchster Wert = Max, tiefster = Min.</li>
+            <li>
+              <b><span class="pa">a</span> = (Max − Min) / 2</b> → die Amplitude (halbe Gesamthöhe).
+            </li>
+            <li>
+              <b><span class="pd">d</span> = (Max + Min) / 2</b> → die Mittellinie (um die die Welle schwingt).
+            </li>
+            <li>
+              <b><span class="pb">b</span> = 360° / Periode.</b> Periode = Länge bis sich die Welle wiederholt
+              (z.&nbsp;B. Hoch zu nächstem Hoch).
+            </li>
+            <li>
+              <b><span class="pc">c</span>:</b> Wo „startet“ die Sinuswelle (Nulldurchgang nach oben, bei der
+              Mittellinie)? Bei einer normalen sin-Funktion ist das bei 0°. Liegt der Start bei x₀, dann ist c = −x₀
+              (nach rechts) bzw. +… (nach links). Bei Cosinus: schau auf das <b>Maximum</b> (cos hat Max bei α=0).
+            </li>
+            <li><b>Prüfen:</b> Setze α=0 ein, vergleiche mit dem y-Achsenabschnitt im Graphen.</li>
+          </ol>
+
+          <div class="card">
+            <h3 style="margin-top: 0">Durchgerechnetes Beispiel (wie Aufg. 167)</h3>
+            <p>
+              Eine Sinuskurve hat Max = 1.4 und Min = −1.4, und schafft in 360° genau <b>3</b> volle Wellen, Start
+              normal bei 0.
+            </p>
+            <p>
+              → a = (1.4−(−1.4))/2 = <b>1.4</b><br />
+              → d = (1.4+(−1.4))/2 = <b>0</b><br />
+              → 3 Wellen in 360° → b = <b>3</b> (Periode 120°)<br />
+              → kein Versatz → c = 0
+            </p>
+            <div class="eqblock">f(α) = 1.4 · sin(3α)</div>
+            <p style="font-size: 0.86rem; color: var(--ink-soft)">
+              Genau das ist die offizielle Lösung von 167 b). 167 a) = 0.8·sin α, 167 c) = −1.5·sin(1.5α) (gespiegelt!).
+            </p>
+          </div>
+
+          <div class="tip">
+            <span class="tag">Sinus oder Cosinus?</span>
+            <p style="margin: 6px 0 0">
+              Du darfst beides nehmen – sie sind nur um 90° verschoben. Wenn der Graph bei α=0 ein <b>Maximum</b> hat,
+              ist Cosinus bequemer (c=0). Wenn er bei α=0 durch die Mittellinie <b>nach oben</b> geht, ist Sinus
+              bequemer.
+            </p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">8</span> Eigenschaften berechnen (Aufg. 165)</h2>
+          <p>Typische Frage: y-Achsenabschnitt, Periode, kleinste positive Nullstelle, Hoch-/Tiefpunkt.</p>
+          <ol class="steps">
+            <li><b>y-Achsenabschnitt:</b> einfach α=0 einsetzen, f(0) ausrechnen.</li>
+            <li><b>Periode:</b> 360°/|b| (Grad) bzw. 2π/|b| (Bogen).</li>
+            <li><b>Hoch-/Tiefpunkt-Höhe:</b> y<sub>max</sub> = d+|a|, y<sub>min</sub> = d−|a|.</li>
+            <li>
+              <b>Wo der Hochpunkt liegt:</b> dort wo sin(...) = +1 (bzw. bei a&lt;0 wo sin=−1). Argument = 90° lösen.
+            </li>
+            <li><b>Nullstellen:</b> f(α)=0 setzen → sin(...)= −d/a → mit Arkussinus lösen.</li>
+          </ol>
+          <div class="card">
+            <h4 style="margin-top: 0">Beispiel 165 b) y = cos(−3α)</h4>
+            <p>
+              f(0)=cos(0)=<b>1</b>. Periode = 360°/3 = <b>120°</b>. cos(−3α)=cos(3α) (gerade Funktion). Hochpunkt bei
+              α=0 → (0°/1). Tiefpunkt eine halbe Periode später → (60°/−1). Kleinste positive Nullstelle bei 30°. ✔
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============== ARKUS ============== -->
+      <div class="panel" id="arkus">
+        <section class="block">
+          <h2><span class="num">9</span> Arkusfunktionen = Umkehrfunktionen</h2>
+          <p class="lead">
+            Frage umgekehrt: „Ich kenne den <b>Wert</b> (z.&nbsp;B. sin α = 0.6) – wie gross ist der <b>Winkel</b>?“
+            Antwort liefert die Arkusfunktion.
+          </p>
+          <div class="eqblock">sin α = 0.6 &nbsp;→&nbsp; α = arcsin(0.6) = sin⁻¹(0.6) ≈ 36.9°</div>
+          <div class="merke">
+            <span class="tag">Schreibweisen – alle gleich</span>
+            <p style="margin: 6px 0 0">
+              <span class="eq">arcsin(x)</span> = <span class="eq">sin⁻¹(x)</span> = <span class="eq">asin(x)</span>.
+              (sin⁻¹ ist <b>nicht</b> 1/sin!) Genauso für cos und tan.
+            </p>
+          </div>
+
+          <h3>Warum „eingeschränkter Bereich“?</h3>
+          <p>
+            Die Sinuskurve trifft den Wert 0.6 <b>unendlich oft</b> (sie wiederholt sich). Eine echte Umkehrfunktion
+            braucht aber <b>eindeutige</b> Zuordnung. Darum schränkt man ein:
+          </p>
+          <table>
+            <tr>
+              <th>Funktion</th>
+              <th>Eingeschränkter Bereich</th>
+              <th>arcsin/cos/tan liefert</th>
+            </tr>
+            <tr>
+              <td>sin⁻¹</td>
+              <td>[−90°; 90°]</td>
+              <td>−90° … 90°</td>
+            </tr>
+            <tr>
+              <td>cos⁻¹</td>
+              <td>[0°; 180°]</td>
+              <td>0° … 180°</td>
+            </tr>
+            <tr>
+              <td>tan⁻¹</td>
+              <td>(−90°; 90°)</td>
+              <td>−90° … 90°</td>
+            </tr>
+          </table>
+          <div class="tip">
+            <span class="tag">Grafisch</span>
+            <p style="margin: 6px 0 0">
+              Den Graphen der Umkehrfunktion bekommst du durch <b>Spiegelung an der Geraden y = x</b>. Das ist genau
+              das, was du im Skript S.11 sehen sollst.
+            </p>
+          </div>
+          <div class="warn">
+            <span class="tag">Wichtige Konsequenz fürs Gleichungslösen</span>
+            <p style="margin: 6px 0 0">
+              Der TR (arcsin) gibt dir <b>nur EINE</b> Lösung! In 0°–360° gibt es aber meist <b>zwei</b>. Die zweite
+              musst du selbst über den Einheitskreis finden → nächster Tab.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============== GLEICHUNGEN ============== -->
+      <div class="panel" id="gleich">
+        <section class="block">
+          <h2><span class="num">10</span> Trigonometrische Gleichungen lösen</h2>
+          <p class="lead">
+            Ziel: alle Winkel im Bereich 0° ≤ α &lt; 360° finden. Der TR gibt nur eine – die andere holst du dir mit
+            Symmetrie.
+          </p>
+
+          <div class="merke">
+            <span class="tag">Wo ist die Funktion positiv? (Einheitskreis-Logik)</span>
+            <p style="margin: 6px 0 0">
+              🟢 <b>sin = y</b> → positiv in <b>Q1 &amp; Q2</b> (obere Hälfte)<br />
+              🔵 <b>cos = x</b> → positiv in <b>Q1 &amp; Q4</b> (rechte Hälfte)<br />
+              🟣 <b>tan</b> → positiv in <b>Q1 &amp; Q3</b>
+            </p>
+          </div>
+
+          <h3>Die universellen Formeln (auswendig!)</h3>
+          <table>
+            <tr>
+              <th>Gleichung</th>
+              <th>1. Lösung (TR)</th>
+              <th>2. Lösung</th>
+              <th>danach</th>
+            </tr>
+            <tr>
+              <td>sin α = w</td>
+              <td>α₁ = arcsin(w)</td>
+              <td>α₂ = 180° − α₁</td>
+              <td>+360° bis im Bereich 0–360°</td>
+            </tr>
+            <tr>
+              <td>cos α = w</td>
+              <td>α₁ = arccos(w)</td>
+              <td>α₂ = 360° − α₁<br />(= −α₁)</td>
+              <td>+360° falls nötig</td>
+            </tr>
+            <tr>
+              <td>tan α = w</td>
+              <td>α₁ = arctan(w)</td>
+              <td>α₂ = α₁ + 180°</td>
+              <td>+360° falls nötig</td>
+            </tr>
+          </table>
+          <div class="tip">
+            <span class="tag">Merksatz</span>
+            <p style="margin: 6px 0 0"><b>Sinus: 180 minus. Cosinus: 360 minus. Tangens: 180 plus.</b></p>
+          </div>
+
+          <div class="tool">
+            <h3 style="margin-top: 0">⚖️ Gleichungs-Löser mit Einheitskreis &amp; Schritten</h3>
+            <p>
+              Wähle Funktion und Wert. Du siehst beide Lösungen am Kreis + den kompletten Lösungsweg, wie du ihn
+              aufschreiben solltest.
+            </p>
+            <div class="btnrow">
+              <button class="b on" data-fn="sin">sin α = w</button>
+              <button class="b" data-fn="cos">cos α = w</button>
+              <button class="b" data-fn="tan">tan α = w</button>
+              <label style="margin-left: 8px; align-self: center">w = </label>
+              <input type="number" id="solW" value="0.5" step="0.05" style="width: 90px" />
+              <button class="b" id="solGo">Lösen ▶</button>
+            </div>
+            <canvas id="solCanvas" width="640" height="360" style="margin-top: 14px"></canvas>
+            <div class="readout" id="solRead"></div>
+          </div>
+
+          <h3>Beispiel zum Mitschreiben: sin φ = 0.574 (Aufg. 85a)</h3>
+          <ol class="steps">
+            <li>TR (DEG): arcsin(0.574) = 35.0° → das ist α₁.</li>
+            <li>w &gt; 0 → sin positiv in Q1 &amp; Q2. α₂ = 180° − 35° = 145°.</li>
+            <li>Lösungsmenge: <b>L = {35.0°; 145.0°}</b>. ✔</li>
+          </ol>
+
+          <h3>Beispiel mit negativem Wert: sin φ = −0.259 (Aufg. 85d)</h3>
+          <ol class="steps">
+            <li>arcsin(−0.259) = −15° (TR-Wert, liegt ausserhalb 0–360°).</li>
+            <li>w &lt; 0 → sin negativ in Q3 &amp; Q4. Q3: 180° − (−15°) = 195°. Q4: 360° + (−15°) = 345°.</li>
+            <li><b>L = {195°; 345°}</b>. ✔</li>
+          </ol>
+
+          <h3>„Ohne Hilfsmittel“: Gleichungen mit Symmetrie (Aufg. 85e–h, 86, 87)</h3>
+          <p>Hier steht z.&nbsp;B. <span class="eq">sin 75° = −sin φ</span>. Vorgehen mit den Beziehungen:</p>
+          <ol class="steps">
+            <li>Nach der gesuchten Funktion umstellen: −sin φ = sin 75° → sin φ = −sin 75° = sin(−75°).</li>
+            <li>Jetzt normales Lösen: sin φ &lt; 0 → Q3, Q4. φ = 180−(−75)=255° und 360+(−75)=285°.</li>
+            <li><b>L = {255°; 285°}</b>. (= offizielle Lösung 85e) ✔</li>
+          </ol>
+          <div class="merke">
+            <span class="tag">Werkzeugkasten ohne TR</span>
+            <p style="margin: 6px 0 0">
+              <span class="eq">sin(−α)=−sin α</span>, <span class="eq">cos(−α)=cos α</span>,
+              <span class="eq">sin α=sin(180°−α)</span>, <span class="eq">cos α=cos(360°−α)</span>,
+              <span class="eq">−cos α=cos(180°−α)</span>. Damit formst du immer auf „sin(etwas) = sin φ“ um und liest
+              die Winkel direkt ab.
+            </p>
+          </div>
+
+          <h3>Gleichungen mit Struktur (Substitution, Faktorisieren)</h3>
+          <p>
+            Wenn z.&nbsp;B. <span class="eq">2sin²α − sin α = 0</span>: hier hilft <b>Faktorisieren</b>: sin α·(2sin α −
+            1) = 0 → sin α = 0 <b>oder</b> sin α = 0.5. Dann jeden Fall einzeln lösen. Bei
+            <span class="eq">2cos²α + 3cos α − 2 = 0</span>: <b>Substitution</b> u = cos α → quadratische Gleichung → u
+            zurücksetzen.
+          </p>
+          <div class="tip">
+            <span class="tag">Wenn sin UND cos gemischt sind</span>
+            <p style="margin: 6px 0 0">
+              Versuche, mit <span class="eq">sin²+cos²=1</span> alles auf <b>eine</b> Funktion zu bringen (z.&nbsp;B.
+              cos² durch 1−sin² ersetzen). Dann substituieren.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============== VEREINFACHEN ============== -->
+      <div class="panel" id="verein">
+        <section class="block">
+          <h2><span class="num">11</span> Trigonometrische Terme vereinfachen (Aufg. 183)</h2>
+          <p class="lead">
+            Hier wird nichts gelöst – du formst nur um, bis etwas Schönes übrig bleibt. Du brauchst nur 3 Werkzeuge plus
+            Algebra.
+          </p>
+
+          <div class="merke">
+            <span class="tag">Werkzeugkasten</span>
+            <p style="margin: 6px 0 0">
+              ① <span class="eq">sin²α + cos²α = 1</span> (und Umstellungen: sin²=1−cos², cos²=1−sin²)<br />
+              ② <span class="eq">tan α = sin α / cos α</span><br />
+              ③ binomische Formeln: <span class="eq">(x+y)(x−y) = x²−y²</span><br />
+              + Bruchrechnen (gemeinsamer Nenner, kürzen).
+            </p>
+          </div>
+
+          <h3>So denkst du bei jedem Term:</h3>
+          <ol class="steps">
+            <li>Gibt es <b>tan</b>? → ersetze durch sin/cos.</li>
+            <li>Sehe ich <b>(...)·(...)</b> mit Plus/Minus? → binomische Formel ausmultiplizieren.</li>
+            <li>Sehe ich <b>1 − sin²</b> oder <b>1 − cos²</b>? → durch cos² bzw. sin² ersetzen.</li>
+            <li>Sehe ich Brüche? → gemeinsamen Nenner, dann kürzen.</li>
+            <li>Sehe ich eine alleinstehende <b>1</b>? → vielleicht durch sin²+cos² ersetzen, um kürzen zu können.</li>
+          </ol>
+
+          <div class="card">
+            <h4 style="margin-top: 0">Vorgemacht 183 b)</h4>
+            <p class="mono">(1+sin φ)(1−sin φ) = 1 − sin²φ = cos²φ ✔</p>
+            <p style="font-size: 0.86rem; color: var(--ink-soft)">→ binomische Formel, dann Pythagoras.</p>
+          </div>
+          <div class="card">
+            <h4 style="margin-top: 0">Vorgemacht 183 c)</h4>
+            <p class="mono">1/cos²β − 1 = (1 − cos²β)/cos²β = sin²β/cos²β = tan²β ✔</p>
+          </div>
+          <div class="card">
+            <h4 style="margin-top: 0">Vorgemacht 183 d)</h4>
+            <p class="mono">sin²α/(1−cos α) = (1−cos²α)/(1−cos α) = (1−cos α)(1+cos α)/(1−cos α) = 1+cos α ✔</p>
+            <p style="font-size: 0.86rem; color: var(--ink-soft)">
+              → sin² durch 1−cos² ersetzen, binomisch faktorisieren, kürzen.
+            </p>
+          </div>
+          <div class="card">
+            <h4 style="margin-top: 0">Vorgemacht 183 g) (Skript-Aufg. 9a)</h4>
+            <p class="mono">1/(1+tan²α) = 1/(1 + sin²α/cos²α) = cos²α/(cos²α+sin²α) = cos²α/1 = cos²α ✔</p>
+          </div>
+          <p>Lösungen aller Teile findest du im Tab „Übungen“.</p>
+        </section>
+      </div>
+
+      <!-- ============== TASCHENRECHNER ============== -->
+      <div class="panel" id="tr">
+        <section class="block">
+          <h2><span class="num">12</span> Taschenrechner sicher einsetzen</h2>
+          <p class="lead">
+            Die Screenshots in deinem Skript stammen vom <b>TI-Nspire CX (CAS)</b>. Hier der komplette Workflow + was du
+            dir merken/abspeichern solltest. (Bei einem anderen Modell ist die Logik gleich, nur die Tasten heissen
+            anders.)
+          </p>
+
+          <div class="warn">
+            <span class="tag">Schritt 0 – IMMER zuerst</span>
+            <p style="margin: 6px 0 0">
+              Modus prüfen: <b>DEG</b> (Grad) oder <b>RAD</b> (Bogenmass)? Oben rechts im Display steht es. Umstellen
+              über <span class="kbd">Einstellungen → Dokument → Winkel</span>. Falscher Modus ist der Fehler Nr. 1.
+            </p>
+          </div>
+
+          <h3>A) Eine Gleichung lösen – <span class="mono">solve()</span></h3>
+          <p>Tippe in einer Rechner-Seite:</p>
+          <div class="eqblock" style="text-align: left">solve(sin(x)=0.6, x) | 0≤x&lt;360</div>
+          <p>So denkst du dabei:</p>
+          <ol class="steps">
+            <li><b>solve(</b> … startet das Lösen.</li>
+            <li>
+              <b>Gleichung</b> hineinschreiben, mit <span class="kbd">=</span> (nicht <span class="kbd">:=</span>).
+            </li>
+            <li>Komma, dann die <b>Variable x</b>, nach der gelöst wird.</li>
+            <li>
+              Der senkrechte Strich <b>|</b> (Taste <span class="kbd">ctrl + =</span> oder im Symbolmenü) bedeutet
+              „unter der Bedingung“.
+            </li>
+            <li>
+              <b>0≤x&lt;360</b> schränkt auf den Prüfungsbereich ein → du bekommst genau die richtigen Lösungen, nicht
+              +k·360°.
+            </li>
+          </ol>
+          <div class="tip">
+            <span class="tag">Ohne Einschränkung</span>
+            <p style="margin: 6px 0 0">
+              Lässt du das <b>|0≤x&lt;360</b> weg, gibt der TR die allgemeine Lösung mit <b>n1·360</b> aus (n1 = ganze
+              Zahl). Das ist korrekt, aber für die Prüfung meist die eingeschränkte Form gefragt.
+            </p>
+          </div>
+
+          <h3>B) Funktion definieren &amp; analysieren</h3>
+          <ol class="steps">
+            <li>
+              Funktion speichern: <span class="mono">f1(x):=3·sin(2x)</span> (mit <span class="kbd">:=</span> ! Das ist
+              „definiere“).
+            </li>
+            <li>Nullstellen: <span class="mono">solve(f1(x)=0, x)|0≤x≤3π</span> (RAD-Modus!).</li>
+            <li>Bestimmten Wert: <span class="mono">solve(f1(x)=2, x)|0≤x≤3π</span>.</li>
+            <li>
+              Grafisch: in der <b>Graph</b>-Seite <span class="kbd">menu → Graph analysieren</span> → Nullstelle /
+              Minimum / Maximum / <b>Schnittpunkt</b>.
+            </li>
+          </ol>
+          <div class="card">
+            <h4 style="margin-top: 0">Aufg. 6 nachgemacht: f(x)=3·sin(2x), x∈[0;3π], RAD</h4>
+            <p class="mono">
+              f1(x):=3*sin(2x)<br />solve(f1(x)=0,x)|0≤x≤3π → 0, π/2, π, 3π/2, 2π, 5π/2, 3π<br />solve(f1(x)=2,x)|0≤x≤3π
+              → 0.364, 1.21, 3.51, 4.35, 6.65
+            </p>
+          </div>
+
+          <h3>C) Schnittpunkte zweier Funktionen (Aufg. 5)</h3>
+          <ol class="steps">
+            <li>
+              <span class="mono">f1(x):=1.5·cos(x+20°)</span> und <span class="mono">f2(x):=sin(0.5x)</span> (DEG).
+            </li>
+            <li><span class="mono">solve(f1(x)=f2(x), x)|0≤x≤360</span> → x-Werte der Schnittpunkte.</li>
+            <li>
+              y-Wert: x in f1 einsetzen. Oder grafisch über „Schnittpunkt“ ablesen → S₁=(52.8°|0.444), S₂=(276°|0.667).
+            </li>
+          </ol>
+
+          <h3>D) Inverse / Arkusfunktion</h3>
+          <p>
+            <span class="mono">arcsin(0.6)</span> bzw. <span class="kbd">trig-Taste → sin⁻¹</span>. Denke daran: das
+            gibt nur <b>eine</b> Lösung – die zweite selbst ergänzen (Tab Gleichungen).
+          </p>
+
+          <div class="merke">
+            <span class="tag">💾 Das solltest du dir zur Sicherheit „abspeichern“/merken</span>
+            <p style="margin: 6px 0 0">Wenn ein Merkblatt erlaubt ist, schreib dir auf:</p>
+            <ul style="margin: 6px 0 0">
+              <li>📌 <b>solve(Gleichung, x) | 0≤x&lt;360</b> – die wichtigste Zeile überhaupt.</li>
+              <li>📌 DEG/RAD-Umschaltung (wo im Menü).</li>
+              <li>📌 <b>Definieren mit :=</b> , Lösen mit <b>=</b> (der Unterschied!).</li>
+              <li>📌 Periode = 360°/b , Amplitude = (Max−Min)/2 , Mittellinie d = (Max+Min)/2.</li>
+              <li>📌 „sin 180 minus, cos 360 minus, tan 180 plus“.</li>
+              <li>📌 Spezialwert-Tabelle (0–90°) und sin²+cos²=1.</li>
+              <li>📌 Menü-Pfad: <b>Graph analysieren → Schnittpunkt/Nullstelle/Max/Min</b>.</li>
+            </ul>
+          </div>
+
+          <div class="warn">
+            <span class="tag">Typische TR-Fehler</span>
+            <p style="margin: 6px 0 0">
+              · Falscher Winkelmodus · <span class="mono">=</span> statt <span class="mono">:=</span> beim Definieren ·
+              vergessenes Multiplikationszeichen (2x ist okay, aber 2(x) kann nötig sein) · Klammern bei
+              <span class="mono">sin(0.5x)</span> nicht zu <span class="mono">sin(0.5)x</span> verrutschen lassen.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============== ÜBUNGEN ============== -->
+      <div class="panel" id="ueben">
+        <section class="block">
+          <h2><span class="num">13</span> Übungen mit Lösungen</h2>
+          <p class="lead">
+            Rechne <b>selbst</b>, dann aufdecken. <span class="pill tr">mit TR</span>
+            <span class="pill hand">ohne Hilfsmittel</span>
+          </p>
+
+          <h3>Gleichungen lösen (0° ≤ φ &lt; 360°) – Aufg. 85–87</h3>
+          <div id="exEq"></div>
+
+          <h3>Terme vereinfachen – Aufg. 183</h3>
+          <div id="exSimp"></div>
+
+          <h3>Funktionen: Eigenschaften &amp; Gleichung – Aufg. 165 / 167 / 179</h3>
+          <div id="exFn"></div>
+
+          <h3>Ohne Hilfsmittel: Werte über Pythagoras (Aufg. 3 Skript)</h3>
+          <div id="exTab"></div>
+
+          <h3>Mini-Selbsttest</h3>
+          <div id="exQuiz"></div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">★</span> Letzter Schliff vor der Prüfung</h2>
+          <div class="merke">
+            <span class="tag">Am Prüfungstag</span>
+            <p style="margin: 6px 0 0">
+              1. TR-Modus checken (DEG/RAD je nach Aufgabe). 2. Bei „Gleichung lösen“ immer fragen: „Wie viele Lösungen
+              in 0–360°?“ → meist zwei. 3. Bei „Graph → Gleichung“: a, d, b, c in dieser Reihenfolge. 4. Bei
+              „vereinfachen“: tan→sin/cos, dann Pythagoras suchen. 5. Antwort am Schluss in den richtigen Einheiten (°
+              oder rad) hinschreiben.
+            </p>
+          </div>
+          <p
+            style="
+              text-align: center;
+              font-family: &quot;Fraunces&quot;;
+              font-style: italic;
+              font-size: 1.3rem;
+              color: var(--primary);
+              margin-top: 24px;
+            "
+          >
+            Du schaffst das. 💪 Viel Erfolg, Emma!
+          </p>
+        </section>
+      </div>
+
+      <footer>
+        Interaktive Lernhilfe · Trigonometrie III &amp; IV · basierend auf Skript 10 (TALS) &amp; Aufgabensammlung, BMS
+        Winterthur
+      </footer>
+    </div>
+
+    <script>
+      /* ---------------- Tabs ---------------- */
+      const tabs = document.querySelectorAll(".tab"),
+        panels = document.querySelectorAll(".panel");
+      tabs.forEach((t) =>
+        t.addEventListener("click", () => {
+          tabs.forEach((x) => x.classList.remove("active"));
+          t.classList.add("active");
+          panels.forEach((p) => p.classList.remove("active"));
+          document.getElementById(t.dataset.t).classList.add("active");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }),
+      );
+
+      /* ---------------- Checklist ---------------- */
+      document
+        .querySelectorAll("#checklist li")
+        .forEach((li) => li.addEventListener("click", () => li.classList.toggle("done")));
+
+      /* ---------------- Helper drawing ---------------- */
+      function axes(ctx, W, H, ox, oy, sx, sy, xlabels) {
+        ctx.strokeStyle = "#d8cdb6";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, oy);
+        ctx.lineTo(W, oy);
+        ctx.moveTo(ox, 0);
+        ctx.lineTo(ox, H);
+        ctx.stroke();
+      }
+
+      /* ---------------- Einheitskreis (Grundlagen) ---------------- */
+      (function () {
+        const c = document.getElementById("ucCanvas"),
+          ctx = c.getContext("2d");
+        const slide = document.getElementById("ucSlide"),
+          degEl = document.getElementById("ucDeg"),
+          read = document.getElementById("ucRead");
+        const cx = 180,
+          cy = 180,
+          R = 130;
+        function draw() {
+          const deg = +slide.value,
+            rad = (deg * Math.PI) / 180;
+          degEl.textContent = deg + "°";
+          ctx.clearRect(0, 0, c.width, c.height);
+          // grid
+          ctx.strokeStyle = "#ece3cf";
+          ctx.lineWidth = 1;
+          for (let i = -3; i <= 3; i++) {
+            ctx.beginPath();
+            ctx.moveTo(cx + (i * R) / 2, cy - R - 20);
+            ctx.lineTo(cx + (i * R) / 2, cy + R + 20);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(cx - R - 20, cy + (i * R) / 2);
+            ctx.lineTo(cx + R + 20, cy + (i * R) / 2);
+            ctx.stroke();
+          }
+          // axes
+          ctx.strokeStyle = "#b9ad92";
+          ctx.beginPath();
+          ctx.moveTo(cx - R - 20, cy);
+          ctx.lineTo(cx + R + 20, cy);
+          ctx.moveTo(cx, cy - R - 20);
+          ctx.lineTo(cx, cy + R + 20);
+          ctx.stroke();
+          // circle
+          ctx.strokeStyle = "#23201b";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(cx, cy, R, 0, 7);
+          ctx.stroke();
+          const px = cx + R * Math.cos(rad),
+            py = cy - R * Math.sin(rad);
+          // cos (x) line
+          ctx.strokeStyle = "#2f6fd0";
+          ctx.lineWidth = 4;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(px, cy);
+          ctx.stroke();
+          // sin (y) line
+          ctx.strokeStyle = "#2e8b57";
+          ctx.beginPath();
+          ctx.moveTo(px, cy);
+          ctx.lineTo(px, py);
+          ctx.stroke();
+          // radius
+          ctx.strokeStyle = "#d2553a";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(px, py);
+          ctx.stroke();
+          // tan line on x=R
+          const co = Math.cos(rad);
+          if (Math.abs(co) > 0.03) {
+            let t = Math.tan(rad);
+            let ty = cy - R * t;
+            ty = Math.max(cy - R - 20, Math.min(cy + R + 20, ty));
+            ctx.strokeStyle = "#8a4fbf";
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx + R, cy);
+            ctx.lineTo(cx + R, ty);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.strokeStyle = "#cabd9f";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(cx + R, cy - R - 20);
+            ctx.lineTo(cx + R, cy + R + 20);
+            ctx.stroke();
+          }
+          // point
+          ctx.fillStyle = "#d2553a";
+          ctx.beginPath();
+          ctx.arc(px, py, 5, 0, 7);
+          ctx.fill();
+          // arc for angle
+          ctx.strokeStyle = "#c79a3a";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(cx, cy, 26, 0, -rad, rad > 0 ? true : false);
+          ctx.stroke();
+          // labels on right
+          const s = Math.sin(rad),
+            co2 = Math.cos(rad),
+            tn = Math.abs(co2) < 0.001 ? "n.def." : Math.tan(rad).toFixed(3);
+          read.innerHTML = `bei <b>α = ${deg}°</b> &nbsp; (= ${rad.toFixed(3)} rad)<br>
+      <span style="color:#2e8b57">sin α = ${s.toFixed(3)}</span> &nbsp;
+      <span style="color:#2f6fd0">cos α = ${co2.toFixed(3)}</span> &nbsp;
+      <span style="color:#8a4fbf">tan α = ${tn}</span>`;
+        }
+        slide.addEventListener("input", draw);
+        draw();
+      })();
+
+      /* ---------------- Drei Graphen ---------------- */
+      (function () {
+        const c = document.getElementById("threeCanvas"),
+          ctx = c.getContext("2d");
+        const W = c.width,
+          H = c.height,
+          oy = H / 2,
+          padL = 30;
+        const xMin = -90,
+          xMax = 450,
+          plotW = W - padL - 10;
+        function X(d) {
+          return padL + ((d - xMin) / (xMax - xMin)) * plotW;
+        }
+        function Y(v) {
+          return oy - (v * (H / 2 - 30)) / 2;
+        }
+        ctx.clearRect(0, 0, W, H);
+        // grid verticals every 90
+        ctx.strokeStyle = "#ece3cf";
+        ctx.lineWidth = 1;
+        ctx.font = "10px JetBrains Mono";
+        ctx.fillStyle = "#9a8e72";
+        for (let d = xMin; d <= xMax; d += 90) {
+          ctx.beginPath();
+          ctx.moveTo(X(d), 10);
+          ctx.lineTo(X(d), H - 10);
+          ctx.stroke();
+          ctx.fillText(d + "°", X(d) - 10, oy + 16);
+        }
+        for (let v = -2; v <= 2; v++) {
+          ctx.beginPath();
+          ctx.moveTo(padL, Y(v));
+          ctx.lineTo(W - 10, Y(v));
+          ctx.stroke();
+          if (v !== 0) ctx.fillText(v, padL - 18, Y(v) + 3);
+        }
+        ctx.strokeStyle = "#b9ad92";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(padL, oy);
+        ctx.lineTo(W - 10, oy);
+        ctx.moveTo(padL, 10);
+        ctx.lineTo(padL, H - 10);
+        ctx.stroke();
+        function plot(fn, color, dash) {
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 2.4;
+          ctx.setLineDash(dash || []);
+          ctx.beginPath();
+          let first = true;
+          for (let d = xMin; d <= xMax; d += 1) {
+            const v = fn((d * Math.PI) / 180);
+            if (!isFinite(v) || Math.abs(v) > 2.3) {
+              first = true;
+              continue;
+            }
+            const x = X(d),
+              y = Y(v);
+            if (first) {
+              ctx.moveTo(x, y);
+              first = false;
+            } else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+        plot(Math.sin, "#2e8b57");
+        plot(Math.cos, "#2f6fd0");
+        plot((a) => Math.tan(a), "#8a4fbf", [4, 4]);
+      })();
+
+      /* ---------------- Transformations-Plotter ---------------- */
+      (function () {
+        const c = document.getElementById("tCanvas"),
+          ctx = c.getContext("2d");
+        const W = c.width,
+          H = c.height,
+          oy = H / 2,
+          padL = 34;
+        const xMin = 0,
+          xMax = 540,
+          plotW = W - padL - 10;
+        const sA = document.getElementById("sA"),
+          sB = document.getElementById("sB"),
+          sC = document.getElementById("sC"),
+          sD = document.getElementById("sD");
+        const vA = document.getElementById("vA"),
+          vB = document.getElementById("vB"),
+          vC = document.getElementById("vC"),
+          vD = document.getElementById("vD");
+        const read = document.getElementById("tRead");
+        function X(d) {
+          return padL + ((d - xMin) / (xMax - xMin)) * plotW;
+        }
+        function Y(v) {
+          return oy - (v * (H / 2 - 22)) / 4;
+        }
+        function draw() {
+          const a = +sA.value,
+            b = +sB.value,
+            cc = +sC.value,
+            d = +sD.value;
+          vA.textContent = a;
+          vB.textContent = b;
+          vC.textContent = cc + "°";
+          vD.textContent = d;
+          ctx.clearRect(0, 0, W, H);
+          ctx.strokeStyle = "#ece3cf";
+          ctx.lineWidth = 1;
+          ctx.font = "10px JetBrains Mono";
+          ctx.fillStyle = "#9a8e72";
+          for (let dg = xMin; dg <= xMax; dg += 90) {
+            ctx.beginPath();
+            ctx.moveTo(X(dg), 10);
+            ctx.lineTo(X(dg), H - 10);
+            ctx.stroke();
+            ctx.fillText(dg + "°", X(dg) - 12, oy + 16);
+          }
+          for (let v = -4; v <= 4; v++) {
+            if (v % 1 === 0) {
+              ctx.beginPath();
+              ctx.moveTo(padL, Y(v));
+              ctx.lineTo(W - 10, Y(v));
+              ctx.stroke();
+              if (v !== 0) ctx.fillText(v, padL - 20, Y(v) + 3);
+            }
+          }
+          ctx.strokeStyle = "#b9ad92";
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(padL, oy);
+          ctx.lineTo(W - 10, oy);
+          ctx.moveTo(padL, 10);
+          ctx.lineTo(padL, H - 10);
+          ctx.stroke();
+          // reference sin
+          ctx.strokeStyle = "#cabd9f";
+          ctx.lineWidth = 1.6;
+          ctx.setLineDash([5, 5]);
+          ctx.beginPath();
+          let f = true;
+          for (let dg = xMin; dg <= xMax; dg++) {
+            const v = Math.sin((dg * Math.PI) / 180);
+            const x = X(dg),
+              y = Y(v);
+            f ? (ctx.moveTo(x, y), (f = false)) : ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+          ctx.setLineDash([]);
+          // midline d
+          if (d !== 0) {
+            ctx.strokeStyle = "#8a4fbf";
+            ctx.setLineDash([2, 4]);
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(padL, Y(d));
+            ctx.lineTo(W - 10, Y(d));
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+          // transformed
+          ctx.strokeStyle = "#1f5d5a";
+          ctx.lineWidth = 2.8;
+          ctx.beginPath();
+          f = true;
+          for (let dg = xMin; dg <= xMax; dg += 0.5) {
+            const v = a * Math.sin(b * (((dg + cc) * Math.PI) / 180)) + d;
+            const x = X(dg),
+              y = Y(v);
+            if (Math.abs(v) > 4.3) {
+              f = true;
+              continue;
+            }
+            f ? (ctx.moveTo(x, y), (f = false)) : ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+          const per = (360 / b).toFixed(0),
+            mx = (d + Math.abs(a)).toFixed(2),
+            mn = (d - Math.abs(a)).toFixed(2);
+          read.innerHTML = `f(α) = <b style="color:#d2553a">${a}</b>·sin( <b style="color:#2e8b57">${b}</b>·(α ${cc >= 0 ? "+" : "−"} ${Math.abs(cc)}°) ) ${d >= 0 ? "+" : "−"} <b style="color:#8a4fbf">${Math.abs(d)}</b><br>
+      Amplitude = ${Math.abs(a)} &nbsp;|&nbsp; Periode = <b>${per}°</b> &nbsp;|&nbsp; Max = ${mx} &nbsp;|&nbsp; Min = ${mn} ${a < 0 ? "&nbsp;⟳ gespiegelt" : ""}`;
+        }
+        [sA, sB, sC, sD].forEach((s) => s.addEventListener("input", draw));
+        document.querySelectorAll("[data-preset]").forEach((btn) =>
+          btn.addEventListener("click", () => {
+            const [a, b, cc, d] = btn.dataset.preset.split(",").map(Number);
+            sA.value = a;
+            sB.value = b;
+            sC.value = cc;
+            sD.value = d;
+            draw();
+          }),
+        );
+        draw();
+      })();
+
+      /* ---------------- Gleichungs-Löser ---------------- */
+      (function () {
+        let fn = "sin";
+        const btns = document.querySelectorAll("[data-fn]"),
+          wIn = document.getElementById("solW"),
+          go = document.getElementById("solGo");
+        const c = document.getElementById("solCanvas"),
+          ctx = c.getContext("2d"),
+          read = document.getElementById("solRead");
+        const cx = 180,
+          cy = 180,
+          R = 130;
+        btns.forEach((b) =>
+          b.addEventListener("click", () => {
+            btns.forEach((x) => x.classList.remove("on"));
+            b.classList.add("on");
+            fn = b.dataset.fn;
+            solve();
+          }),
+        );
+        go.addEventListener("click", solve);
+        wIn.addEventListener("change", solve);
+        function solve() {
+          const w = +wIn.value;
+          let sols = [],
+            steps = "",
+            valid = true;
+          if (fn === "sin") {
+            if (w < -1 || w > 1) {
+              valid = false;
+            } else {
+              let a1 = (Math.asin(w) * 180) / Math.PI;
+              let s1 = (a1 + 360) % 360;
+              let s2 = (180 - a1 + 360) % 360;
+              sols = [s1, s2];
+              steps = `arcsin(${w}) = ${a1.toFixed(1)}° → α₁ = ${s1.toFixed(1)}°, α₂ = 180°−α₁ = ${s2.toFixed(1)}°`;
+            }
+          } else if (fn === "cos") {
+            if (w < -1 || w > 1) {
+              valid = false;
+            } else {
+              let a1 = (Math.acos(w) * 180) / Math.PI;
+              let s1 = a1;
+              let s2 = (360 - a1) % 360;
+              sols = [s1, s2];
+              steps = `arccos(${w}) = ${a1.toFixed(1)}° → α₁ = ${s1.toFixed(1)}°, α₂ = 360°−α₁ = ${s2.toFixed(1)}°`;
+            }
+          } else {
+            let a1 = (Math.atan(w) * 180) / Math.PI;
+            let s1 = (a1 + 360) % 360;
+            let s2 = (a1 + 180 + 360) % 360;
+            sols = [s1, s2];
+            steps = `arctan(${w}) = ${a1.toFixed(1)}° → α₁ = ${s1.toFixed(1)}°, α₂ = α₁+180° = ${s2.toFixed(1)}°`;
+          }
+          // draw
+          ctx.clearRect(0, 0, c.width, c.height);
+          ctx.strokeStyle = "#ece3cf";
+          for (let i = -2; i <= 2; i++) {
+            ctx.beginPath();
+            ctx.moveTo(cx + (i * R) / 2, cy - R - 20);
+            ctx.lineTo(cx + (i * R) / 2, cy + R + 20);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(cx - R - 20, cy + (i * R) / 2);
+            ctx.lineTo(cx + R + 20, cy + (i * R) / 2);
+            ctx.stroke();
+          }
+          ctx.strokeStyle = "#b9ad92";
+          ctx.beginPath();
+          ctx.moveTo(cx - R - 20, cy);
+          ctx.lineTo(cx + R + 20, cy);
+          ctx.moveTo(cx, cy - R - 20);
+          ctx.lineTo(cx, cy + R + 20);
+          ctx.stroke();
+          ctx.strokeStyle = "#23201b";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(cx, cy, R, 0, 7);
+          ctx.stroke();
+          ctx.font = "11px JetBrains Mono";
+          ctx.fillStyle = "#9a8e72";
+          ctx.fillText("0°", cx + R + 4, cy + 14);
+          ctx.fillText("90°", cx - 8, cy - R - 6);
+          ctx.fillText("180°", cx - R - 34, cy + 4);
+          ctx.fillText("270°", cx - 12, cy + R + 16);
+          if (valid) {
+            const colors = ["#d2553a", "#2f6fd0"];
+            sols.forEach((deg, i) => {
+              const r = (deg * Math.PI) / 180,
+                px = cx + R * Math.cos(r),
+                py = cy - R * Math.sin(r);
+              ctx.strokeStyle = colors[i];
+              ctx.lineWidth = 2.4;
+              ctx.beginPath();
+              ctx.moveTo(cx, cy);
+              ctx.lineTo(px, py);
+              ctx.stroke();
+              ctx.fillStyle = colors[i];
+              ctx.beginPath();
+              ctx.arc(px, py, 5, 0, 7);
+              ctx.fill();
+              ctx.font = "12px JetBrains Mono";
+              ctx.fillText(deg.toFixed(0) + "°", px + (Math.cos(r) >= 0 ? 6 : -30), py + (Math.sin(r) >= 0 ? -6 : 14));
+            });
+            read.innerHTML = `<b>${fn} α = ${w}</b><br>${steps}<br><b style="color:#1f5d5a">L = { ${sols[0].toFixed(1)}° ; ${sols[1].toFixed(1)}° }</b>`;
+          } else {
+            read.innerHTML = `<b style="color:#b8412b">Keine Lösung:</b> ${fn} liefert nur Werte zwischen −1 und 1. Wähle |w| ≤ 1.`;
+          }
+        }
+        solve();
+      })();
+
+      /* ---------------- Übungen ---------------- */
+      function exHTML(items, container) {
+        document.getElementById(container).innerHTML = items
+          .map(
+            (it) => `
+    <div class="ex">
+      <div class="q"><span class="lbl">${it.lbl}</span>${it.q}</div>
+      <button class="reveal">Lösung zeigen</button>
+      <div class="sol"><span class="stag">Lösung</span><div style="margin-top:6px">${it.s}</div></div>
+    </div>`,
+          )
+          .join("");
+      }
+      const eqItems = [
+        { lbl: "85a · TR", q: "sin φ = 0.574", s: "arcsin(0.574)=35.0° → α₂=180−35=145°. <b>L={35.0°; 145.0°}</b>" },
+        { lbl: "85b · TR", q: "2/3 = sin φ", s: "arcsin(0.667)=41.8° → 180−41.8=138.2°. <b>L={41.8°; 138.2°}</b>" },
+        {
+          lbl: "85d · TR",
+          q: "sin φ = −0.259",
+          s: "arcsin(−0.259)=−15°. sin&lt;0 → Q3,Q4: 180−(−15)=195°, 360+(−15)=345°. <b>L={195°; 345°}</b>",
+        },
+        {
+          lbl: "85e · Hand",
+          q: "sin 75° = −sin φ",
+          s: "sin φ=−sin75°=sin(−75°). sin&lt;0 → 180−(−75)=255°, 360−75=285°. <b>L={255°; 285°}</b>",
+        },
+        { lbl: "86a · TR", q: "cos τ = 0.559", s: "arccos(0.559)=56.0° → α₂=360−56=304°. <b>L={56.0°; 304.0°}</b>" },
+        {
+          lbl: "86b · TR",
+          q: "−0.530 = cos τ",
+          s: "arccos(−0.530)=122°. cos&lt;0 → Q2,Q3: 122°, 360−122=238°. <b>L={122°; 238°}</b>",
+        },
+        {
+          lbl: "86c · Hand",
+          q: "cos τ = −cos 39°",
+          s: "−cos39°=cos(180−39)=cos141°. → 141°, 360−141=219°. <b>L={141°; 219°}</b>",
+        },
+        {
+          lbl: "87a · TR",
+          q: "tan ε = 0.740",
+          s: "arctan(0.740)=36.5° → +180=216.5°. <b>L={36.5°; 216.5°}</b> (tan: immer 180° Abstand)",
+        },
+        {
+          lbl: "87c · Hand",
+          q: "−tan ε = tan(−12°)",
+          s: "tan ε=−tan(−12°)=tan12°. → 12°, 12+180=192°. <b>L={12°; 192°}</b>",
+        },
+        {
+          lbl: "87d · Hand",
+          q: "tan(−ε) = tan 134°",
+          s: "−tan ε=tan134° → tan ε=−tan134°=tan(−134°)=tan46°. → 46°, 226°. <b>L={46°; 226°}</b>",
+        },
+      ];
+      const simpItems = [
+        { lbl: "183a", q: "tan α · cos α", s: "= (sin α/cos α)·cos α = <b>sin α</b>" },
+        { lbl: "183b", q: "(1+sin φ)(1−sin φ)", s: "= 1−sin²φ = <b>cos²φ</b>" },
+        { lbl: "183c", q: "1/cos²β − 1", s: "= (1−cos²β)/cos²β = sin²β/cos²β = <b>tan²β</b>" },
+        {
+          lbl: "183d",
+          q: "sin²α / (1−cos α)",
+          s: "= (1−cos²α)/(1−cos α) = (1−cosα)(1+cosα)/(1−cosα) = <b>1+cos α</b>",
+        },
+        { lbl: "183g", q: "1/(1+tan²ω)", s: "= 1/(1+sin²ω/cos²ω) = cos²ω/(cos²ω+sin²ω) = <b>cos²ω</b>" },
+        { lbl: "183i", q: "(sinδ+cosδ)² + (sinδ−cosδ)²", s: "= (sin²+2sc+cos²)+(sin²−2sc+cos²) = 1+1 = <b>2</b>" },
+        { lbl: "183k", q: "1/tan²α + 1", s: "= cos²α/sin²α + sin²α/sin²α = (cos²+sin²)/sin²α = <b>1/sin²α</b>" },
+      ];
+      const fnItems = [
+        {
+          lbl: "167a",
+          q: "Sinuskurve: Max 0.8, Min −0.8, 1 Welle pro 360°. Gleichung?",
+          s: "a=(0.8+0.8)/2=0.8, d=0, b=1. <b>y = 0.8·sin α</b>",
+        },
+        { lbl: "167b", q: "Max 1.4, Min −1.4, 3 Wellen pro 360°.", s: "a=1.4, b=3. <b>y = 1.4·sin(3α)</b>" },
+        {
+          lbl: "167c",
+          q: "Max 1.5, Min −1.5, 1.5 Wellen pro 360°, gespiegelt (startet nach unten).",
+          s: "a=−1.5, b=1.5. <b>y = −1.5·sin(1.5α)</b>",
+        },
+        {
+          lbl: "165b",
+          q: "y=cos(−3α): f(0)? Periode? kl. pos. Nullstelle? HP? TP?",
+          s: "f(0)=1; Periode 360/3=120°; cos(−3α)=cos(3α); HP(0°/1), TP(60°/−1); kl. NS bei 30°.",
+        },
+        {
+          lbl: "165c",
+          q: "y=sin(2α)−2: f(0)? Periode? Nullstellen? HP/TP?",
+          s: "f(0)=−2; Periode 180°; Welle schwingt um d=−2 mit Amplitude 1 → Max −1, Min −3 → <b>keine</b> Nullstellen; HP(45°/−1), TP(135°/−3).",
+        },
+        {
+          lbl: "179",
+          q: "Gezeiten: Periode 12.5 h, Tidenhub 7 m, Mittelwert 0. Sinusfunktion H(t)?",
+          s: "Amplitude=7/2=3.5; b=2π/12.5. <b>H(t)=3.5·sin((2π/12.5)·t)</b>",
+        },
+      ];
+      const tabItems = [
+        { lbl: "3a · Hand", q: "α = 5π/6. Bestimme sin, cos, tan.", s: "5π/6=150°. sin=1/2, cos=−√3/2, tan=−1/√3." },
+        {
+          lbl: "3b · Hand",
+          q: "0°&lt;α&lt;90°, sin α = 5/13. cos, tan?",
+          s: "Pythagoras: cos=√(1−25/169)=12/13 (Q1→positiv). tan=(5/13)/(12/13)=5/12.",
+        },
+        {
+          lbl: "3c · Hand",
+          q: "90°&lt;α&lt;180°, sin α = 3/5. cos, tan?",
+          s: "cos=√(1−9/25)=4/5, aber Q2 → cos negativ = −4/5. tan=−3/4.",
+        },
+        {
+          lbl: "3d · Hand",
+          q: "sin α = −3/5, cos α = 4/5. In welchem Bereich liegt α? tan?",
+          s: "sin&lt;0, cos&gt;0 → Q4 → 270°&lt;α&lt;360°. tan=−3/4.",
+        },
+      ];
+      exHTML(eqItems, "exEq");
+      exHTML(simpItems, "exSimp");
+      exHTML(fnItems, "exFn");
+      exHTML(tabItems, "exTab");
+      document.querySelectorAll(".reveal").forEach((b) =>
+        b.addEventListener("click", () => {
+          const sol = b.nextElementSibling;
+          sol.classList.toggle("show");
+          b.textContent = sol.classList.contains("show") ? "Lösung verbergen" : "Lösung zeigen";
+        }),
+      );
+
+      /* ---------------- Mini-Quiz ---------------- */
+      const quiz = [
+        {
+          q: "Wie lautet die Periode von y = sin(4α)?",
+          opts: ["90°", "4°", "1440°", "360°"],
+          a: 0,
+          e: "Periode = 360°/b = 360°/4 = 90°.",
+        },
+        {
+          q: "Wie viele Lösungen hat cos α = 0.5 im Bereich 0°–360°?",
+          opts: ["1", "2", "3", "keine"],
+          a: 1,
+          e: "arccos(0.5)=60°, zweite: 360−60=300°.",
+        },
+        {
+          q: "In sin(α − 30°): wohin ist die Kurve verschoben?",
+          opts: ["30° nach links", "30° nach oben", "30° nach rechts", "gar nicht"],
+          a: 2,
+          e: "Minus im Argument = Verschiebung nach rechts.",
+        },
+        { q: "tan α = sin α / ___", opts: ["1", "cos α", "sin α", "cos²α"], a: 1, e: "Definition: tan = sin/cos." },
+        {
+          q: "Vereinfache: 1 − cos²α",
+          opts: ["tan²α", "1", "sin²α", "cos α"],
+          a: 2,
+          e: "Trig. Pythagoras umgestellt: sin²α.",
+        },
+      ];
+      let qHTML = "";
+      quiz.forEach((it, i) => {
+        qHTML += `<div class="ex"><div class="q"><span class="lbl">Q${i + 1}</span>${it.q}<div class="btnrow" data-qi="${i}">${it.opts
+          .map((o, j) => `<button class="b qopt" data-j="${j}">${o}</button>`)
+          .join("")}</div>
+ <div class="qfb" style="margin-top:8px;font-size:.88rem"></div></div></div>`;
+      });
+      document.getElementById("exQuiz").innerHTML = qHTML;
+      document.querySelectorAll(".qopt").forEach((btn) =>
+        btn.addEventListener("click", function () {
+          const row = this.closest(".btnrow"),
+            qi = +row.dataset.qi,
+            j = +this.dataset.j,
+            fb = row.nextElementSibling;
+          row.querySelectorAll(".qopt").forEach((b) => (b.disabled = true));
+          if (j === quiz[qi].a) {
+            this.style.background = "#2e8b57";
+            this.style.color = "#fff";
+            this.style.borderColor = "#2e8b57";
+            fb.innerHTML = "✅ Richtig! " + quiz[qi].e;
+            fb.style.color = "#2e8b57";
+          } else {
+            this.style.background = "#b8412b";
+            this.style.color = "#fff";
+            this.style.borderColor = "#b8412b";
+            row.querySelectorAll(".qopt")[quiz[qi].a].style.background = "#2e8b57";
+            row.querySelectorAll(".qopt")[quiz[qi].a].style.color = "#fff";
+            fb.innerHTML = "❌ Nicht ganz. " + quiz[qi].e;
+            fb.style.color = "#b8412b";
+          }
+        }),
+      );
+    </script>
+  </body>
+</html>
