@@ -1,0 +1,3636 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Test 3 · 28 May 2026</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0f1117;
+        --surface: #181c27;
+        --surface2: #1e2336;
+        --surface3: #252b40;
+        --border: #2a3050;
+        --border2: #343d60;
+        --text: #e8ecf4;
+        --muted: #8891b0;
+        --dim: #5a6380;
+        --accent: #6c8fff;
+        --accent-dim: #1a2450;
+        --green: #4ade80;
+        --green-dim: #0d3320;
+        --red: #f87171;
+        --red-dim: #3d1515;
+        --amber: #fbbf24;
+        --amber-dim: #3d2e00;
+        --purple: #c084fc;
+        --purple-dim: #2a1050;
+        --teal: #2dd4bf;
+        --nav-w: 240px;
+        --header-h: 56px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+        font-family: "Inter", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      /* ── LAYOUT ── */
+      #app {
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+      }
+      #sidebar {
+        width: var(--nav-w);
+        background: var(--surface);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      #main {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── SIDEBAR ── */
+      .sid-header {
+        padding: 20px 18px 14px;
+        border-bottom: 1px solid var(--border);
+      }
+      .sid-header .logo {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .sid-header .date {
+        font-size: 11px;
+        color: var(--dim);
+        margin-top: 3px;
+        font-family: "Fira Code", monospace;
+      }
+      .sid-progress {
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--border);
+      }
+      .sid-progress-label {
+        font-size: 11px;
+        color: var(--dim);
+        margin-bottom: 6px;
+      }
+      .sid-progress-bar {
+        height: 4px;
+        background: var(--border2);
+        border-radius: 2px;
+      }
+      .sid-progress-fill {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 2px;
+        transition: width 0.4s;
+      }
+      .sid-progress-val {
+        font-size: 11px;
+        color: var(--accent);
+        margin-top: 4px;
+        font-family: "Fira Code", monospace;
+      }
+      .nav-section-label {
+        padding: 14px 18px 6px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 18px;
+        cursor: pointer;
+        border-radius: 0;
+        transition: background 0.15s;
+        border-left: 2px solid transparent;
+        font-size: 13.5px;
+        color: var(--muted);
+        user-select: none;
+      }
+      .nav-item:hover {
+        background: var(--surface2);
+        color: var(--text);
+      }
+      .nav-item.active {
+        background: var(--accent-dim);
+        border-left-color: var(--accent);
+        color: var(--accent);
+        font-weight: 500;
+      }
+      .nav-item .icon {
+        width: 18px;
+        text-align: center;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .nav-item .badge {
+        margin-left: auto;
+        font-family: "Fira Code", monospace;
+        font-size: 10px;
+        background: var(--surface3);
+        color: var(--dim);
+        padding: 2px 6px;
+        border-radius: 10px;
+      }
+      .nav-item.active .badge {
+        background: var(--accent-dim);
+        color: var(--accent);
+      }
+      .sid-footer {
+        margin-top: auto;
+        padding: 14px 18px;
+        border-top: 1px solid var(--border);
+        font-size: 11px;
+        color: var(--dim);
+      }
+
+      /* ── HEADER ── */
+      #page-header {
+        height: var(--header-h);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        padding: 0 32px;
+        gap: 16px;
+        background: var(--surface);
+        flex-shrink: 0;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .page-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .page-subtitle {
+        font-size: 13px;
+        color: var(--dim);
+      }
+      .header-score {
+        margin-left: auto;
+        font-family: "Fira Code", monospace;
+        font-size: 12px;
+        color: var(--muted);
+        background: var(--surface2);
+        padding: 4px 12px;
+        border-radius: 20px;
+        display: none;
+      }
+      .header-score.visible {
+        display: block;
+      }
+      .header-score span {
+        color: var(--accent);
+      }
+
+      /* ── CONTENT ── */
+      #page-content {
+        flex: 1;
+        padding: 32px;
+        max-width: 900px;
+      }
+
+      /* ── PAGES ── */
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+
+      /* ── HOME ── */
+      .home-hero {
+        margin-bottom: 32px;
+      }
+      .home-hero h1 {
+        font-size: 28px;
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1.2;
+      }
+      .home-hero h1 em {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .home-hero p {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 14px;
+        max-width: 540px;
+      }
+      .home-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+      .home-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px;
+        cursor: pointer;
+        transition: all 0.2s;
+        border-top: 3px solid transparent;
+      }
+      .home-card:hover {
+        border-color: var(--border2);
+        background: var(--surface2);
+        transform: translateY(-1px);
+      }
+      .home-card.c-accent {
+        border-top-color: var(--accent);
+      }
+      .home-card.c-green {
+        border-top-color: var(--green);
+      }
+      .home-card.c-amber {
+        border-top-color: var(--amber);
+      }
+      .home-card.c-purple {
+        border-top-color: var(--purple);
+      }
+      .home-card.c-teal {
+        border-top-color: var(--teal);
+      }
+      .home-card.c-red {
+        border-top-color: var(--red);
+      }
+      .home-card.c-dim {
+        border-top-color: var(--dim);
+      }
+      .home-card h3 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .home-card p {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .home-card .hc-num {
+        font-family: "Fira Code", monospace;
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+      .stats-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 32px;
+      }
+      .stat-pill {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .stat-pill .sp-val {
+        font-size: 20px;
+        font-weight: 600;
+        font-family: "Fira Code", monospace;
+        color: var(--accent);
+      }
+      .stat-pill .sp-label {
+        font-size: 11px;
+        color: var(--dim);
+      }
+
+      /* ── THEORY SECTION ── */
+      .sec-h2 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .sec-h2::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+      .sec-h3 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--accent);
+        margin: 20px 0 10px;
+        font-family: "Fira Code", monospace;
+        letter-spacing: 0.02em;
+      }
+
+      /* ── CALLOUT ── */
+      .callout {
+        border-radius: 8px;
+        padding: 14px 16px;
+        margin: 12px 0;
+        font-size: 13.5px;
+        border: 1px solid;
+      }
+      .callout.info {
+        background: var(--accent-dim);
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .callout.green {
+        background: var(--green-dim);
+        border-color: var(--green);
+        color: var(--text);
+      }
+      .callout.red {
+        background: var(--red-dim);
+        border-color: var(--red);
+        color: var(--text);
+      }
+      .callout.amber {
+        background: var(--amber-dim);
+        border-color: var(--amber);
+        color: var(--text);
+      }
+      .callout.purple {
+        background: var(--purple-dim);
+        border-color: var(--purple);
+        color: var(--text);
+      }
+      .callout strong {
+        font-weight: 600;
+      }
+
+      /* ── CODE ── */
+      .formula {
+        font-family: "Fira Code", monospace;
+        font-size: 13px;
+        background: var(--surface3);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 10px 14px;
+        margin: 8px 0;
+        color: var(--text);
+      }
+      .formula .hl {
+        color: var(--accent);
+      }
+      .formula .hl2 {
+        color: var(--green);
+      }
+      .formula .hl3 {
+        color: var(--amber);
+      }
+      code {
+        font-family: "Fira Code", monospace;
+        font-size: 12px;
+        background: var(--surface3);
+        padding: 1px 5px;
+        border-radius: 3px;
+        color: var(--purple);
+      }
+      .ex {
+        font-style: italic;
+        color: var(--muted);
+        margin: 4px 0 4px 14px;
+        font-size: 14px;
+      }
+      .ex::before {
+        content: "→ ";
+        color: var(--accent);
+        font-style: normal;
+      }
+      .ex.wrong {
+        color: var(--red);
+      }
+      .ex.wrong::before {
+        content: "✗ ";
+        color: var(--red);
+      }
+      .ex.right {
+        color: var(--green);
+      }
+      .ex.right::before {
+        content: "✓ ";
+        color: var(--green);
+      }
+
+      /* ── TABLE ── */
+      .t {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13.5px;
+        margin: 10px 0;
+      }
+      .t th {
+        background: var(--surface3);
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 8px 12px;
+        text-align: left;
+        border-bottom: 1px solid var(--border2);
+      }
+      .t td {
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      .t tr:last-child td {
+        border-bottom: none;
+      }
+      .t tr:hover td {
+        background: var(--surface2);
+      }
+      .t td:first-child {
+        font-family: "Fira Code", monospace;
+        font-size: 12px;
+        color: var(--accent);
+        white-space: nowrap;
+      }
+      .t-wrap {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 12px 0;
+      }
+
+      /* ── SUB-TABS ── */
+      .subtab-nav {
+        display: flex;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 20px;
+        overflow-x: auto;
+        flex-shrink: 0;
+      }
+      .stab {
+        background: none;
+        border: none;
+        font-size: 13px;
+        font-family: "Inter", sans-serif;
+        color: var(--dim);
+        padding: 10px 16px;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        white-space: nowrap;
+        transition: color 0.15s;
+      }
+      .stab:hover {
+        color: var(--muted);
+      }
+      .stab.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+        font-weight: 500;
+      }
+      .stab-panel {
+        display: none;
+      }
+      .stab-panel.active {
+        display: block;
+      }
+
+      /* ── QUIZ ── */
+      .quiz-score-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 20px;
+      }
+      .qsb-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .qsb-val {
+        font-family: "Fira Code", monospace;
+        font-size: 14px;
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .qsb-reset {
+        font-size: 12px;
+        background: var(--surface3);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 5px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: "Inter", sans-serif;
+        transition: all 0.15s;
+      }
+      .qsb-reset:hover {
+        color: var(--text);
+        border-color: var(--border2);
+      }
+
+      .qcard {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px;
+        margin-bottom: 12px;
+        transition: border-color 0.2s;
+      }
+      .qcard.answered {
+        border-color: var(--border2);
+      }
+      .q-num {
+        font-family: "Fira Code", monospace;
+        font-size: 11px;
+        color: var(--dim);
+        margin-bottom: 6px;
+      }
+      .q-prompt {
+        font-size: 14.5px;
+        margin-bottom: 14px;
+        line-height: 1.6;
+        color: var(--text);
+      }
+      .q-hint {
+        font-size: 12px;
+        color: var(--dim);
+        margin-bottom: 10px;
+        font-style: italic;
+      }
+
+      /* MC options */
+      .opts {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .opt-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        padding: 10px 14px;
+        cursor: pointer;
+        text-align: left;
+        font-size: 13.5px;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        transition: all 0.15s;
+      }
+      .opt-btn:hover:not(.locked) {
+        background: var(--surface3);
+        border-color: var(--border2);
+      }
+      .opt-btn .opt-letter {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--surface3);
+        border: 1px solid var(--border2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-family: "Fira Code", monospace;
+        flex-shrink: 0;
+        color: var(--muted);
+      }
+      .opt-btn.correct {
+        background: var(--green-dim);
+        border-color: var(--green);
+      }
+      .opt-btn.correct .opt-letter {
+        background: var(--green);
+        color: #0a1f0a;
+        border-color: var(--green);
+        font-weight: 600;
+      }
+      .opt-btn.wrong {
+        background: var(--red-dim);
+        border-color: var(--red);
+      }
+      .opt-btn.wrong .opt-letter {
+        background: var(--red);
+        color: #1a0505;
+        border-color: var(--red);
+        font-weight: 600;
+      }
+      .opt-btn.locked {
+        cursor: default;
+        opacity: 0.55;
+      }
+      .opt-btn.locked.correct {
+        opacity: 1;
+      }
+
+      /* Fill-in */
+      .fill-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .fill-input {
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        border-radius: 6px;
+        padding: 7px 12px;
+        font-size: 14px;
+        font-family: "Fira Code", monospace;
+        color: var(--text);
+        width: 200px;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .fill-input:focus {
+        border-color: var(--accent);
+      }
+      .fill-input.correct {
+        border-color: var(--green);
+        color: var(--green);
+        background: var(--green-dim);
+      }
+      .fill-input.wrong {
+        border-color: var(--red);
+        color: var(--red);
+        background: var(--red-dim);
+      }
+      .btn-check {
+        background: var(--accent);
+        color: #0a1428;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: "Inter", sans-serif;
+        border: none;
+        padding: 7px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: opacity 0.15s;
+      }
+      .btn-check:hover {
+        opacity: 0.85;
+      }
+      .btn-check:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .btn-reset-q {
+        background: var(--surface3);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 12px;
+        font-family: "Inter", sans-serif;
+        padding: 7px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .q-feedback {
+        margin-top: 10px;
+        font-size: 13px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        display: none;
+      }
+      .q-feedback.show {
+        display: block;
+      }
+      .q-feedback.ok {
+        background: var(--green-dim);
+        color: var(--green);
+        border: 1px solid var(--green);
+      }
+      .q-feedback.bad {
+        background: var(--red-dim);
+        color: var(--red);
+        border: 1px solid var(--red);
+      }
+      .q-feedback.bad strong {
+        color: #fca5a5;
+      }
+
+      /* SIGNAL GRID */
+      .signal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 10px;
+        margin: 12px 0;
+      }
+      .sgcard {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px;
+      }
+      .sgcard h4 {
+        font-family: "Fira Code", monospace;
+        font-size: 11px;
+        color: var(--accent);
+        margin-bottom: 8px;
+        letter-spacing: 0.04em;
+      }
+      .sgcard ul {
+        list-style: none;
+      }
+      .sgcard li {
+        font-size: 12.5px;
+        color: var(--muted);
+        padding: 2px 0;
+      }
+      .sgcard li::before {
+        content: "· ";
+        color: var(--accent);
+      }
+
+      /* WF GRID */
+      .wf-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 10px;
+        margin: 12px 0;
+      }
+      .wfcard {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px;
+      }
+      .wfcard h4 {
+        font-size: 11px;
+        font-family: "Fira Code", monospace;
+        color: var(--purple);
+        margin-bottom: 8px;
+        letter-spacing: 0.04em;
+      }
+      .wfcard li {
+        font-size: 13px;
+        padding: 3px 0;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .wfcard li:last-child {
+        border-bottom: none;
+      }
+      .wfcard .wf-base {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .wfcard .wf-form {
+        font-family: "Fira Code", monospace;
+        font-size: 12px;
+        color: var(--teal);
+      }
+
+      /* IRR TABLE */
+      .irr-wrap {
+        columns: 2;
+        gap: 16px;
+        margin: 10px 0;
+      }
+      .irr-row {
+        break-inside: avoid;
+        display: flex;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 12.5px;
+        font-family: "Fira Code", monospace;
+        padding: 4px 0;
+      }
+      .irr-row span {
+        flex: 1;
+        padding: 0 4px;
+        color: var(--muted);
+      }
+      .irr-row span:first-child {
+        color: var(--accent);
+      }
+      .irr-row span.pp {
+        color: var(--teal);
+      }
+
+      /* MOBILE */
+      #menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 20px;
+        cursor: pointer;
+        padding: 8px;
+      }
+      #sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 49;
+      }
+
+      @media (max-width: 768px) {
+        #sidebar {
+          position: fixed;
+          left: -100%;
+          top: 0;
+          bottom: 0;
+          z-index: 50;
+          transition: left 0.25s;
+        }
+        #sidebar.open {
+          left: 0;
+        }
+        #sidebar-overlay.open {
+          display: block;
+        }
+        #menu-btn {
+          display: block;
+        }
+        #page-content {
+          padding: 20px 16px;
+        }
+        .home-cards {
+          grid-template-columns: 1fr 1fr;
+        }
+        .irr-wrap {
+          columns: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="sidebar-overlay" onclick="closeSidebar()"></div>
+    <div id="app">
+      <!-- ═══ SIDEBAR ═══ -->
+      <nav id="sidebar">
+        <div class="sid-header">
+          <div class="logo">English Test 3</div>
+          <div class="date">28 May 2026 · BMS</div>
+        </div>
+        <div class="sid-progress">
+          <div class="sid-progress-label">Overall practice score</div>
+          <div class="sid-progress-bar">
+            <div
+              class="sid-progress-fill"
+              id="global-bar"
+              style="width: 0%"
+            ></div>
+          </div>
+          <div class="sid-progress-val" id="global-score">0 / 0 correct</div>
+        </div>
+
+        <div class="nav-section-label">Overview</div>
+        <div
+          class="nav-item active"
+          onclick="showPage('home')"
+          data-page="home"
+        >
+          <span class="icon">⌂</span>Home
+        </div>
+        <div class="nav-item" onclick="showPage('quick')" data-page="quick">
+          <span class="icon">⚡</span>Quick Rules<span class="badge"
+            >cheatsheet</span
+          >
+        </div>
+
+        <div class="nav-section-label">Grammar</div>
+        <div class="nav-item" onclick="showPage('tenses')" data-page="tenses">
+          <span class="icon">⏱</span>Tenses<span class="badge">12q</span>
+        </div>
+        <div
+          class="nav-item"
+          onclick="showPage('conditionals')"
+          data-page="conditionals"
+        >
+          <span class="icon">◇</span>Conditionals + Wish<span class="badge"
+            >10q</span
+          >
+        </div>
+        <div class="nav-item" onclick="showPage('modals')" data-page="modals">
+          <span class="icon">⊕</span>Modal Verbs<span class="badge">6q</span>
+        </div>
+        <div
+          class="nav-item"
+          onclick="showPage('verbpatterns')"
+          data-page="verbpatterns"
+        >
+          <span class="icon">∞</span>Verb Patterns<span class="badge">10q</span>
+        </div>
+        <div
+          class="nav-item"
+          onclick="showPage('passives')"
+          data-page="passives"
+        >
+          <span class="icon">↺</span>Passives<span class="badge">8q</span>
+        </div>
+        <div
+          class="nav-item"
+          onclick="showPage('questions')"
+          data-page="questions"
+        >
+          <span class="icon">?</span>Questions + Tags<span class="badge"
+            >10q</span
+          >
+        </div>
+
+        <div class="nav-section-label">Vocabulary</div>
+        <div
+          class="nav-item"
+          onclick="showPage('wordformation')"
+          data-page="wordformation"
+        >
+          <span class="icon">◈</span>Word Formation<span class="badge"
+            >24q</span
+          >
+        </div>
+
+        <div class="sid-footer">Click any topic to study it</div>
+      </nav>
+
+      <!-- ═══ MAIN ═══ -->
+      <div id="main">
+        <div id="page-header">
+          <button id="menu-btn" onclick="toggleSidebar()">☰</button>
+          <div>
+            <div class="page-title" id="hdr-title">Home</div>
+            <div class="page-subtitle" id="hdr-sub">
+              English Test 3 · 28 May 2026
+            </div>
+          </div>
+          <div class="header-score" id="hdr-score">
+            Score: <span id="hdr-score-val">0/0</span>
+          </div>
+        </div>
+
+        <div id="page-content">
+          <!-- ══ HOME ══ -->
+          <div class="page active" id="pg-home">
+            <div class="home-hero">
+              <h1>English <em>Test 3</em><br />Study Guide</h1>
+              <p>
+                Complete theory, signal words, tables, and interactive exercises
+                across all topics. Pick a section from the sidebar to start.
+              </p>
+            </div>
+            <div class="stats-row">
+              <div class="stat-pill">
+                <div class="sp-val">7</div>
+                <div class="sp-label">Topics</div>
+              </div>
+              <div class="stat-pill">
+                <div class="sp-val">80+</div>
+                <div class="sp-label">Practice questions</div>
+              </div>
+              <div class="stat-pill">
+                <div class="sp-val">4</div>
+                <div class="sp-label">Exercise types</div>
+              </div>
+              <div class="stat-pill">
+                <div class="sp-val">28/5</div>
+                <div class="sp-label">Test date</div>
+              </div>
+            </div>
+            <div class="home-cards">
+              <div class="home-card c-accent" onclick="showPage('tenses')">
+                <div class="hc-num">01</div>
+                <h3>Tenses</h3>
+                <p>
+                  All 10+ tenses, signal words, state vs action, irregular verbs
+                </p>
+              </div>
+              <div class="home-card c-green" onclick="showPage('conditionals')">
+                <div class="hc-num">02</div>
+                <h3>Conditionals + Wish</h3>
+                <p>Zero→Third, mixed conditionals, wish, hope</p>
+              </div>
+              <div class="home-card c-amber" onclick="showPage('modals')">
+                <div class="hc-num">03</div>
+                <h3>Modal Verbs</h3>
+                <p>can, must, should, might + modal perfects</p>
+              </div>
+              <div
+                class="home-card c-purple"
+                onclick="showPage('verbpatterns')"
+              >
+                <div class="hc-num">04</div>
+                <h3>Verb Patterns</h3>
+                <p>Gerunds vs infinitives, meaning-change pairs</p>
+              </div>
+              <div class="home-card c-teal" onclick="showPage('passives')">
+                <div class="hc-num">05</div>
+                <h3>Passives</h3>
+                <p>All tenses in passive, reporting passives</p>
+              </div>
+              <div class="home-card c-red" onclick="showPage('questions')">
+                <div class="hc-num">06</div>
+                <h3>Questions + Tags</h3>
+                <p>Subject/object, embedded, tag questions, short answers</p>
+              </div>
+              <div class="home-card c-dim" onclick="showPage('wordformation')">
+                <div class="hc-num">07</div>
+                <h3>Word Formation</h3>
+                <p>Suffixes, prefixes, negatives, 50+ word families</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══ QUICK RULES ══ -->
+          <div class="page" id="pg-quick">
+            <div class="callout info">
+              <strong>⚡ Last-minute cheat sheet.</strong> Use this right before
+              the exam. All the most common traps in one place.
+            </div>
+
+            <div class="sec-h2">Tense Signals</div>
+            <div class="t-wrap">
+              <table class="t">
+                <tr>
+                  <th>Tense</th>
+                  <th>Key signal words</th>
+                </tr>
+                <tr>
+                  <td>Present Simple</td>
+                  <td>
+                    always, usually, often, sometimes, every day/week/year,
+                    never
+                  </td>
+                </tr>
+                <tr>
+                  <td>Present Continuous</td>
+                  <td>
+                    now, right now, at the moment, currently, today (temporary),
+                    Look!
+                  </td>
+                </tr>
+                <tr>
+                  <td>Past Simple</td>
+                  <td>
+                    yesterday, last week/month/year, ago, in 2010, then, when…
+                  </td>
+                </tr>
+                <tr>
+                  <td>Past Continuous</td>
+                  <td>
+                    while, when (interrupted action), at that moment, all
+                    morning (past)
+                  </td>
+                </tr>
+                <tr>
+                  <td>Present Perfect Simple</td>
+                  <td>
+                    just, already, yet, ever, never, so far, recently, since,
+                    for (up to now)
+                  </td>
+                </tr>
+                <tr>
+                  <td>Present Perfect Cont.</td>
+                  <td>for, since, how long, all day/morning, lately</td>
+                </tr>
+                <tr>
+                  <td>Past Perfect</td>
+                  <td>
+                    before, after, by the time, already (in past sequence)
+                  </td>
+                </tr>
+                <tr>
+                  <td>Future – will</td>
+                  <td>
+                    spontaneous decision, prediction (I think…), promise, offers
+                  </td>
+                </tr>
+                <tr>
+                  <td>Future – going to</td>
+                  <td>
+                    plan already made, evidence-based prediction (Look at those
+                    clouds!)
+                  </td>
+                </tr>
+                <tr>
+                  <td>Future – Pres. Cont.</td>
+                  <td>fixed arrangement (We're meeting at 8)</td>
+                </tr>
+                <tr>
+                  <td>Future – Pres. Simple</td>
+                  <td>scheduled/timetabled event (The train leaves at 9)</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="sec-h2">Conditional Summary</div>
+            <div class="t-wrap">
+              <table class="t">
+                <tr>
+                  <th>Type</th>
+                  <th>If-clause</th>
+                  <th>Main clause</th>
+                  <th>Use</th>
+                </tr>
+                <tr>
+                  <td>Zero</td>
+                  <td>Present Simple</td>
+                  <td>Present Simple</td>
+                  <td>General truths, laws</td>
+                </tr>
+                <tr>
+                  <td>First</td>
+                  <td>Present Simple</td>
+                  <td>will + base</td>
+                  <td>Real / likely future</td>
+                </tr>
+                <tr>
+                  <td>Second</td>
+                  <td>Past Simple</td>
+                  <td>would + base</td>
+                  <td>Unreal / unlikely present-future</td>
+                </tr>
+                <tr>
+                  <td>Third</td>
+                  <td>Past Perfect</td>
+                  <td>would have + pp</td>
+                  <td>Unreal past (regret)</td>
+                </tr>
+                <tr>
+                  <td>Mixed</td>
+                  <td>Past Perfect (3rd)</td>
+                  <td>would + base (2nd)</td>
+                  <td>Past cause → present result</td>
+                </tr>
+              </table>
+            </div>
+            <div class="callout red">
+              <strong>Never:</strong> "If it <em>will</em> rain…" → Always: "If
+              it <em>rains</em>…" — No would in the if-clause!
+            </div>
+
+            <div class="sec-h2">Common Traps</div>
+            <div class="callout green">
+              <strong>Verb patterns:</strong> enjoy/avoid/finish/suggest + -ing
+              · want/decide/hope/promise + to · After prepositions, always
+              -ing<br /><strong>remember to</strong> = future duty ·
+              <strong>remember doing</strong> = memory ·
+              <strong>stop smoking</strong> = quit ·
+              <strong>stop to smoke</strong> = pause
+            </div>
+            <div class="callout amber">
+              <strong>Passive:</strong> be + past participle. Present: is/are
+              done · Past: was/were done · Perf: has been done · Future: will be
+              done · Cont: is being done · Modal: must be done
+            </div>
+            <div class="callout purple">
+              <strong>Questions:</strong> Subject Q → no do/does/did: "Who
+              <em>called</em>?" · Object Q → use do/does/did: "Who did you
+              <em>call</em>?" · Embedded: "Do you know where <em>she is</em>?"
+              (not "where is she")
+            </div>
+            <div class="callout info">
+              <strong>Word Formation negatives:</strong> un- (unhappy) · im-
+              before m/p/b (impossible) · ir- before r (irregular) · il- before
+              l (illegal) · dis- (dishonest) · in- (insufficient)
+            </div>
+          </div>
+
+          <!-- ══ TENSES ══ -->
+          <div class="page" id="pg-tenses">
+            <div class="subtab-nav">
+              <button
+                class="stab active"
+                onclick="stab(this, 'tenses-overview')"
+              >
+                Overview
+              </button>
+              <button class="stab" onclick="stab(this, 'tenses-signals')">
+                Signal Words
+              </button>
+              <button class="stab" onclick="stab(this, 'tenses-statevaction')">
+                State vs Action
+              </button>
+              <button class="stab" onclick="stab(this, 'tenses-irreg')">
+                Irregular Verbs
+              </button>
+              <button class="stab" onclick="stab(this, 'tenses-practice')">
+                Practice
+              </button>
+            </div>
+
+            <div class="stab-panel active" id="tenses-overview">
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Tense</th>
+                    <th>Form</th>
+                    <th>Key use</th>
+                    <th>Example</th>
+                  </tr>
+                  <tr>
+                    <td>Present Simple</td>
+                    <td>V / V+s</td>
+                    <td>habits, facts, schedules</td>
+                    <td><em>She works every day.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Present Continuous</td>
+                    <td>am/is/are + V-ing</td>
+                    <td>happening now, temporary, future arrangement</td>
+                    <td><em>I am studying right now.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Past Simple</td>
+                    <td>V-ed / irreg.</td>
+                    <td>completed action at specific past time</td>
+                    <td><em>He called yesterday.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Past Continuous</td>
+                    <td>was/were + V-ing</td>
+                    <td>ongoing past action, background, interrupted</td>
+                    <td><em>She was reading when he arrived.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Present Perfect Simple</td>
+                    <td>have/has + past part.</td>
+                    <td>past→now relevance, ever/never, just/already/yet</td>
+                    <td><em>I have lost my keys.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Present Perfect Cont.</td>
+                    <td>have/has + been + V-ing</td>
+                    <td>ongoing from past until now, emphasises duration</td>
+                    <td><em>She has been working for 3 hours.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Past Perfect Simple</td>
+                    <td>had + past part.</td>
+                    <td>before another past event</td>
+                    <td><em>He had left before she arrived.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Past Perfect Continuous</td>
+                    <td>had + been + V-ing</td>
+                    <td>ongoing before another past event</td>
+                    <td><em>They had been waiting for an hour.</em></td>
+                  </tr>
+                  <tr>
+                    <td>will-future</td>
+                    <td>will + V</td>
+                    <td>spontaneous decision, prediction, promises, offers</td>
+                    <td><em>I'll help you.</em></td>
+                  </tr>
+                  <tr>
+                    <td>going-to future</td>
+                    <td>am/is/are going to + V</td>
+                    <td>plan/intention, evidence-based prediction</td>
+                    <td><em>She is going to visit him.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Present Cont. (future)</td>
+                    <td>am/is/are + V-ing</td>
+                    <td>fixed future arrangement</td>
+                    <td><em>We're meeting at 8.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Present Simple (future)</td>
+                    <td>V / V+s</td>
+                    <td>timetable / scheduled event</td>
+                    <td><em>The train leaves at 9.</em></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout amber">
+                <strong>will vs. going-to:</strong> "I'll get the door!"
+                (spontaneous) vs "I'm going to see the dentist on Friday."
+                (planned). Going-to also for predictions with evidence: "Look at
+                those clouds – it's going to rain!"
+              </div>
+            </div>
+
+            <div class="stab-panel" id="tenses-signals">
+              <div class="signal-grid">
+                <div class="sgcard">
+                  <h4>Present Simple</h4>
+                  <ul>
+                    <li>always, usually</li>
+                    <li>often, sometimes</li>
+                    <li>every day/week</li>
+                    <li>never, rarely</li>
+                  </ul>
+                </div>
+                <div class="sgcard">
+                  <h4>Present Continuous</h4>
+                  <ul>
+                    <li>now, right now</li>
+                    <li>at the moment</li>
+                    <li>currently</li>
+                    <li>Look! / Listen!</li>
+                  </ul>
+                </div>
+                <div class="sgcard">
+                  <h4>Past Simple</h4>
+                  <ul>
+                    <li>yesterday, last…</li>
+                    <li>… ago, in 2010</li>
+                    <li>when (+ clause)</li>
+                    <li>then, after that</li>
+                  </ul>
+                </div>
+                <div class="sgcard">
+                  <h4>Past Continuous</h4>
+                  <ul>
+                    <li>while, when</li>
+                    <li>as, at that time</li>
+                    <li>at 5 o'clock (past)</li>
+                    <li>all morning/day</li>
+                  </ul>
+                </div>
+                <div class="sgcard">
+                  <h4>Pres. Perfect Simple</h4>
+                  <ul>
+                    <li>just, already, yet</li>
+                    <li>ever, never</li>
+                    <li>so far, recently</li>
+                    <li>since, for (→ now)</li>
+                  </ul>
+                </div>
+                <div class="sgcard">
+                  <h4>Pres. Perfect Cont.</h4>
+                  <ul>
+                    <li>for, since</li>
+                    <li>how long…?</li>
+                    <li>all day/morning</li>
+                    <li>lately, recently</li>
+                  </ul>
+                </div>
+                <div class="sgcard">
+                  <h4>Past Perfect</h4>
+                  <ul>
+                    <li>before, after</li>
+                    <li>by the time</li>
+                    <li>already (past seq.)</li>
+                    <li>when (sequence)</li>
+                  </ul>
+                </div>
+                <div class="sgcard">
+                  <h4>Future – will</h4>
+                  <ul>
+                    <li>I think / probably</li>
+                    <li>I'm sure / maybe</li>
+                    <li>I promise / I'll…</li>
+                  </ul>
+                </div>
+                <div class="sgcard">
+                  <h4>Future – going to</h4>
+                  <ul>
+                    <li>I've decided to…</li>
+                    <li>I'm planning to…</li>
+                    <li>Look! (evidence)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="stab-panel" id="tenses-statevaction">
+              <div class="callout green">
+                <strong>State verbs</strong> describe conditions/states — NOT
+                normally used in continuous tenses.
+              </div>
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Category</th>
+                    <th>Verbs</th>
+                  </tr>
+                  <tr>
+                    <td>Mental states</td>
+                    <td>
+                      know, believe, think*, understand, remember, forget, mean
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Emotions</td>
+                    <td>love, hate, like, dislike, prefer, want, wish, need</td>
+                  </tr>
+                  <tr>
+                    <td>Senses</td>
+                    <td>see, hear, smell*, taste*, feel* (involuntary)</td>
+                  </tr>
+                  <tr>
+                    <td>Possession</td>
+                    <td>have*, own, belong, contain, consist</td>
+                  </tr>
+                  <tr>
+                    <td>Appearance</td>
+                    <td>seem, appear, look (= seem), sound</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout amber">
+                <strong>* Dual-use verbs</strong> — can be state or action:<br />
+                <code>think</code>: "I think you're right." (opinion = state) vs
+                "I'm thinking about it." (considering = action)<br />
+                <code>have</code>: "I have a car." (possession) vs "I'm having
+                lunch." (activity)<br />
+                <code>smell/taste</code>: "It smells nice." (state) vs "She's
+                smelling the roses." (active)<br />
+                <code>see</code>: "I see you." (involuntary) vs "I'm seeing the
+                doctor." (appointment)
+              </div>
+              <div class="ex wrong">I am knowing the answer.</div>
+              <div class="ex right">I know the answer.</div>
+            </div>
+
+            <div class="stab-panel" id="tenses-irreg">
+              <div class="sec-h3">
+                Common Irregular Verbs (Base / Past Simple / Past Participle)
+              </div>
+              <div class="irr-wrap" id="irr-list"></div>
+            </div>
+
+            <div class="stab-panel" id="tenses-practice">
+              <div class="quiz-score-bar">
+                <div>
+                  <div class="qsb-label">Tenses Practice</div>
+                  <div class="qsb-val" id="s-tenses">0 / 0</div>
+                </div>
+                <button
+                  class="qsb-reset"
+                  onclick="resetQuiz('tenses-practice', 's-tenses')"
+                >
+                  Reset
+                </button>
+              </div>
+              <div id="tenses-practice-qs"></div>
+            </div>
+          </div>
+
+          <!-- ══ CONDITIONALS ══ -->
+          <div class="page" id="pg-conditionals">
+            <div class="subtab-nav">
+              <button class="stab active" onclick="stab(this, 'cond-overview')">
+                Overview
+              </button>
+              <button class="stab" onclick="stab(this, 'cond-wish')">
+                Wish
+              </button>
+              <button class="stab" onclick="stab(this, 'cond-mixed')">
+                Mixed
+              </button>
+              <button class="stab" onclick="stab(this, 'cond-practice')">
+                Practice
+              </button>
+            </div>
+            <div class="stab-panel active" id="cond-overview">
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Type</th>
+                    <th>Use</th>
+                    <th>If-clause</th>
+                    <th>Main clause</th>
+                    <th>Example</th>
+                  </tr>
+                  <tr>
+                    <td>Zero</td>
+                    <td>general truths</td>
+                    <td>Present Simple</td>
+                    <td>Present Simple</td>
+                    <td><em>If you heat water, it boils.</em></td>
+                  </tr>
+                  <tr>
+                    <td>First</td>
+                    <td>real / possible future</td>
+                    <td>Present Simple</td>
+                    <td>will + infinitive</td>
+                    <td><em>If it rains, I will stay home.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Second</td>
+                    <td>unreal / unlikely present or future</td>
+                    <td>Past Simple</td>
+                    <td>would + infinitive</td>
+                    <td><em>If I won the lottery, I would travel.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Third</td>
+                    <td>unreal past (regret)</td>
+                    <td>Past Perfect</td>
+                    <td>would have + past participle</td>
+                    <td><em>If I had studied, I would have passed.</em></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout red">
+                <strong>⚠ Never use "would" in the if-clause!</strong><br />
+                <span style="color: var(--red)"
+                  >✗ If I would know, I would tell you.</span
+                ><br />
+                <span style="color: var(--green)"
+                  >✓ If I knew, I would tell you.</span
+                >
+              </div>
+              <div class="callout info">
+                <strong>could / might</strong> can replace <em>would</em> in the
+                main clause:<br />
+                If it stopped raining, we <strong>could</strong> go out. (=
+                would be able to)<br />
+                If I had more time, I <strong>might</strong> learn Italian. (=
+                maybe would)
+              </div>
+            </div>
+            <div class="stab-panel" id="cond-wish">
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Structure</th>
+                    <th>Meaning</th>
+                    <th>Example</th>
+                  </tr>
+                  <tr>
+                    <td>I wish + Past Simple</td>
+                    <td>regret about present (can't change now)</td>
+                    <td><em>I wish I knew the answer.</em> (= I don't know)</td>
+                  </tr>
+                  <tr>
+                    <td>I wish + Past Perfect</td>
+                    <td>regret about past (can't change)</td>
+                    <td><em>I wish I had studied harder.</em></td>
+                  </tr>
+                  <tr>
+                    <td>I wish + would</td>
+                    <td>
+                      want sth to change / complain about ongoing situation
+                    </td>
+                    <td><em>I wish it would stop raining.</em></td>
+                  </tr>
+                  <tr>
+                    <td>I wish + could</td>
+                    <td>regret inability (present)</td>
+                    <td><em>I wish I could fly.</em></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout amber">
+                <strong>was vs. were:</strong> After <em>if</em> and
+                <em>wish</em>, both "was" and "were" are accepted, but "were" is
+                more formal:<br /><em
+                  >I wish I <strong>were</strong> taller.</em
+                >
+                / <em>I wish I <strong>was</strong> taller.</em> (both ✓)
+              </div>
+              <div class="callout red">
+                <strong>wish vs. hope:</strong> Use <em>hope</em> (not wish) for
+                real, possible situations:<br />
+                <span style="color: var(--red)"
+                  >✗ I wish you feel better soon.</span
+                ><br />
+                <span style="color: var(--green)"
+                  >✓ I hope you feel better soon.</span
+                ><br /><br />
+                <span style="color: var(--red)"
+                  >✗ I wish I would have a car.</span
+                ><br />
+                <span style="color: var(--green)">✓ I wish I had a car.</span>
+              </div>
+            </div>
+            <div class="stab-panel" id="cond-mixed">
+              <div class="callout purple">
+                <strong>Mixed Conditionals</strong> combine clauses from
+                different conditional types to express complex time
+                relationships.
+              </div>
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Type</th>
+                    <th>If-clause</th>
+                    <th>Main clause</th>
+                    <th>Example</th>
+                  </tr>
+                  <tr>
+                    <td>Past → Present</td>
+                    <td>Past Perfect (3rd type)</td>
+                    <td>would + inf. (2nd type)</td>
+                    <td>
+                      <em
+                        >If I had studied medicine, I would be a doctor now.</em
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Present → Past</td>
+                    <td>Past Simple (2nd type)</td>
+                    <td>would have + pp (3rd type)</td>
+                    <td>
+                      <em
+                        >If I weren't so lazy, I would have finished by now.</em
+                      >
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout info">
+                <strong>Past → Present:</strong> Unreal past cause, present
+                result.<br /><em
+                  >If she had taken the job (she didn't), she would be rich now
+                  (she isn't).</em
+                ><br /><br /><strong>Present → Past:</strong> Unreal present
+                state, effect on the past.<br /><em
+                  >If he were more careful (he isn't), he wouldn't have crashed
+                  the car (he did).</em
+                >
+              </div>
+            </div>
+            <div class="stab-panel" id="cond-practice">
+              <div class="quiz-score-bar">
+                <div>
+                  <div class="qsb-label">Conditionals Practice</div>
+                  <div class="qsb-val" id="s-conditionals">0 / 0</div>
+                </div>
+                <button
+                  class="qsb-reset"
+                  onclick="resetQuiz('cond-practice', 's-conditionals')"
+                >
+                  Reset
+                </button>
+              </div>
+              <div id="cond-practice-qs"></div>
+            </div>
+          </div>
+
+          <!-- ══ MODALS ══ -->
+          <div class="page" id="pg-modals">
+            <div class="subtab-nav">
+              <button class="stab active" onclick="stab(this, 'mod-overview')">
+                Overview
+              </button>
+              <button class="stab" onclick="stab(this, 'mod-perfects')">
+                Modal Perfects
+              </button>
+              <button class="stab" onclick="stab(this, 'mod-practice')">
+                Practice
+              </button>
+            </div>
+            <div class="stab-panel active" id="mod-overview">
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Modal</th>
+                    <th>Main uses</th>
+                    <th>Example</th>
+                  </tr>
+                  <tr>
+                    <td>can</td>
+                    <td>
+                      ability (present), permission (informal), possibility
+                    </td>
+                    <td><em>She can swim. Can I leave?</em></td>
+                  </tr>
+                  <tr>
+                    <td>could</td>
+                    <td>
+                      ability (past), polite request, possibility, conditional
+                    </td>
+                    <td><em>He could run fast. Could you help?</em></td>
+                  </tr>
+                  <tr>
+                    <td>must</td>
+                    <td>strong obligation, logical deduction (+)</td>
+                    <td><em>You must stop. She must be tired.</em></td>
+                  </tr>
+                  <tr>
+                    <td>mustn't</td>
+                    <td>prohibition (strong – forbidden)</td>
+                    <td><em>You mustn't smoke here.</em></td>
+                  </tr>
+                  <tr>
+                    <td>don't have to</td>
+                    <td>no obligation (optional – not necessary)</td>
+                    <td><em>You don't have to come.</em></td>
+                  </tr>
+                  <tr>
+                    <td>should / ought to</td>
+                    <td>advice, recommendation, mild obligation</td>
+                    <td><em>You should see a doctor.</em></td>
+                  </tr>
+                  <tr>
+                    <td>may</td>
+                    <td>permission (formal), possibility</td>
+                    <td><em>May I sit here? It may rain.</em></td>
+                  </tr>
+                  <tr>
+                    <td>might</td>
+                    <td>weak / uncertain possibility</td>
+                    <td><em>She might come later.</em></td>
+                  </tr>
+                  <tr>
+                    <td>will</td>
+                    <td>future, prediction, willingness, requests</td>
+                    <td><em>I will help you.</em></td>
+                  </tr>
+                  <tr>
+                    <td>would</td>
+                    <td>conditional, polite request, past habit</td>
+                    <td><em>Would you mind? He would walk to school.</em></td>
+                  </tr>
+                  <tr>
+                    <td>shall</td>
+                    <td>offers / suggestions (Br. Eng.)</td>
+                    <td><em>Shall I open the window?</em></td>
+                  </tr>
+                  <tr>
+                    <td>need (to)</td>
+                    <td>necessity / needn't = no obligation</td>
+                    <td>
+                      <em>You needn't hurry. You don't need to hurry.</em>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout red">
+                <strong>mustn't vs. don't have to</strong> — these are very
+                different!<br />
+                <em>You <strong>mustn't</strong> tell anyone.</em> = it is
+                forbidden / prohibited<br />
+                <em>You <strong>don't have to</strong> tell anyone.</em> = it's
+                optional, no obligation
+              </div>
+            </div>
+            <div class="stab-panel" id="mod-perfects">
+              <div class="callout info">
+                Modal perfects refer to past situations and express different
+                degrees of certainty or criticism.
+              </div>
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Form</th>
+                    <th>Meaning</th>
+                    <th>Example</th>
+                  </tr>
+                  <tr>
+                    <td>must have + pp</td>
+                    <td>logical deduction about the past (certain)</td>
+                    <td><em>She must have left already.</em></td>
+                  </tr>
+                  <tr>
+                    <td>can't have + pp</td>
+                    <td>logical impossibility about the past</td>
+                    <td><em>He can't have done that.</em></td>
+                  </tr>
+                  <tr>
+                    <td>should have + pp</td>
+                    <td>past criticism / advice (but they didn't do it)</td>
+                    <td><em>You should have called me.</em></td>
+                  </tr>
+                  <tr>
+                    <td>shouldn't have + pp</td>
+                    <td>past criticism (but they did it)</td>
+                    <td><em>You shouldn't have eaten so much.</em></td>
+                  </tr>
+                  <tr>
+                    <td>could have + pp</td>
+                    <td>past possibility that didn't happen</td>
+                    <td><em>She could have won.</em></td>
+                  </tr>
+                  <tr>
+                    <td>might have + pp</td>
+                    <td>weak past possibility</td>
+                    <td><em>He might have missed the bus.</em></td>
+                  </tr>
+                  <tr>
+                    <td>needn't have + pp</td>
+                    <td>did it but it wasn't necessary</td>
+                    <td><em>You needn't have bought flowers.</em></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="stab-panel" id="mod-practice">
+              <div class="quiz-score-bar">
+                <div>
+                  <div class="qsb-label">Modal Verbs Practice</div>
+                  <div class="qsb-val" id="s-modals">0 / 0</div>
+                </div>
+                <button
+                  class="qsb-reset"
+                  onclick="resetQuiz('mod-practice', 's-modals')"
+                >
+                  Reset
+                </button>
+              </div>
+              <div id="mod-practice-qs"></div>
+            </div>
+          </div>
+
+          <!-- ══ VERB PATTERNS ══ -->
+          <div class="page" id="pg-verbpatterns">
+            <div class="subtab-nav">
+              <button class="stab active" onclick="stab(this, 'vp-overview')">
+                Rules
+              </button>
+              <button class="stab" onclick="stab(this, 'vp-changes')">
+                Meaning Changes
+              </button>
+              <button class="stab" onclick="stab(this, 'vp-practice')">
+                Practice
+              </button>
+            </div>
+            <div class="stab-panel active" id="vp-overview">
+              <div class="callout green">
+                <strong>Infinitive (to + V)</strong> — after these verbs:<br />want,
+                need, decide, hope, expect, plan, agree, refuse, manage,
+                promise, seem, appear, afford, learn, fail, tend, offer, choose,
+                would like, deserve, pretend, ask (sb)
+              </div>
+              <div class="ex">
+                She wants <strong>to leave</strong>. / He decided
+                <strong>to study</strong>. / I hope <strong>to see</strong> you.
+              </div>
+              <div class="callout info" style="margin-top: 10px">
+                <strong>Gerund (V-ing)</strong> — after these verbs:<br />enjoy,
+                avoid, finish, mind, suggest, consider, keep, miss, practice,
+                imagine, admit, deny, risk, involve, can't help, it's worth,
+                give up, put off, carry on
+              </div>
+              <div class="ex">
+                I enjoy <strong>swimming</strong>. / She avoided
+                <strong>talking</strong> to him. / I don't mind
+                <strong>waiting</strong>.
+              </div>
+              <div class="callout purple" style="margin-top: 10px">
+                <strong>Gerund after prepositions</strong> — always use -ing
+                after any preposition:<br />in, at, on, of, for, to (when it's a
+                preposition), without, after, before, by
+              </div>
+              <div class="ex">
+                I'm interested <strong>in learning</strong> Spanish. / She left
+                without <strong>saying</strong> goodbye.
+              </div>
+              <div class="ex">
+                I'm good <strong>at cooking</strong>. / He's tired
+                <strong>of waiting</strong>. / I look forward
+                <strong>to hearing</strong> from you.
+              </div>
+              <div class="callout amber" style="margin-top: 10px">
+                <strong>Special structures:</strong><br />
+                make / let + object + <strong>base verb</strong>:
+                <em>She made him apologise.</em> / <em>Let me help.</em><br />
+                help + object + <strong>base verb or to</strong>:
+                <em>He helped me (to) carry it.</em><br />
+                see / hear / watch + object +
+                <strong>base verb or -ing</strong>:
+                <em>I saw her cross / crossing the road.</em>
+              </div>
+            </div>
+            <div class="stab-panel" id="vp-changes">
+              <div class="callout red">
+                <strong
+                  >These verbs change meaning depending on whether they take
+                  -ing or to!</strong
+                >
+              </div>
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Verb</th>
+                    <th>+ Gerund (-ing)</th>
+                    <th>+ Infinitive (to)</th>
+                  </tr>
+                  <tr>
+                    <td>stop</td>
+                    <td><em>stopped smoking</em> = quit permanently</td>
+                    <td>
+                      <em>stopped to smoke</em> = paused another action in order
+                      to smoke
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>remember</td>
+                    <td>
+                      <em>I remember seeing her</em> = I have a memory of a past
+                      event
+                    </td>
+                    <td>
+                      <em>Remember to call</em> = don't forget (task in the
+                      future)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>forget</td>
+                    <td>
+                      <em>I forgot telling him</em> = I don't recall that I told
+                      him
+                    </td>
+                    <td><em>I forgot to tell him</em> = I didn't do it</td>
+                  </tr>
+                  <tr>
+                    <td>try</td>
+                    <td>
+                      <em>Try adding salt</em> = experiment to see if it works
+                    </td>
+                    <td><em>Try to open it</em> = make an effort / attempt</td>
+                  </tr>
+                  <tr>
+                    <td>regret</td>
+                    <td>
+                      <em>I regret saying that</em> = I'm sorry about a past
+                      action
+                    </td>
+                    <td>
+                      <em>I regret to inform you</em> = formal, polite
+                      announcement
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>mean</td>
+                    <td>
+                      <em>This means working harder</em> = involves / entails
+                    </td>
+                    <td><em>I mean to finish</em> = intend</td>
+                  </tr>
+                  <tr>
+                    <td>go on</td>
+                    <td>
+                      <em>She went on talking</em> = continued the same thing
+                    </td>
+                    <td>
+                      <em>She went on to talk</em> = then moved on to a new
+                      action
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="stab-panel" id="vp-practice">
+              <div class="quiz-score-bar">
+                <div>
+                  <div class="qsb-label">Verb Patterns Practice</div>
+                  <div class="qsb-val" id="s-verbpatterns">0 / 0</div>
+                </div>
+                <button
+                  class="qsb-reset"
+                  onclick="resetQuiz('vp-practice', 's-verbpatterns')"
+                >
+                  Reset
+                </button>
+              </div>
+              <div id="vp-practice-qs"></div>
+            </div>
+          </div>
+
+          <!-- ══ PASSIVES ══ -->
+          <div class="page" id="pg-passives">
+            <div class="subtab-nav">
+              <button class="stab active" onclick="stab(this, 'pass-overview')">
+                Forms
+              </button>
+              <button class="stab" onclick="stab(this, 'pass-reporting')">
+                Reporting Passives
+              </button>
+              <button class="stab" onclick="stab(this, 'pass-practice')">
+                Practice
+              </button>
+            </div>
+            <div class="stab-panel active" id="pass-overview">
+              <div class="callout info">
+                <strong>Formula:</strong> <code>be</code> (conjugated to correct
+                tense) + <strong>past participle</strong><br />Use when: the
+                agent is unknown, unimportant, or obvious from context. Focus is
+                on the action, not the doer.
+              </div>
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Tense</th>
+                    <th>Active example</th>
+                    <th>Passive form</th>
+                  </tr>
+                  <tr>
+                    <td>Present Simple</td>
+                    <td>They make cars here.</td>
+                    <td>Cars <strong>are made</strong> here.</td>
+                  </tr>
+                  <tr>
+                    <td>Present Continuous</td>
+                    <td>They are building a bridge.</td>
+                    <td>A bridge <strong>is being built</strong>.</td>
+                  </tr>
+                  <tr>
+                    <td>Past Simple</td>
+                    <td>Someone stole my bag.</td>
+                    <td>My bag <strong>was stolen</strong>.</td>
+                  </tr>
+                  <tr>
+                    <td>Past Continuous</td>
+                    <td>They were filming a movie.</td>
+                    <td>A movie <strong>was being filmed</strong>.</td>
+                  </tr>
+                  <tr>
+                    <td>Present Perfect</td>
+                    <td>They have cancelled the flight.</td>
+                    <td>The flight <strong>has been cancelled</strong>.</td>
+                  </tr>
+                  <tr>
+                    <td>Past Perfect</td>
+                    <td>Someone had eaten all the cake.</td>
+                    <td>All the cake <strong>had been eaten</strong>.</td>
+                  </tr>
+                  <tr>
+                    <td>Future (will)</td>
+                    <td>They will announce the results.</td>
+                    <td>The results <strong>will be announced</strong>.</td>
+                  </tr>
+                  <tr>
+                    <td>Going-to future</td>
+                    <td>They are going to demolish the building.</td>
+                    <td>
+                      The building <strong>is going to be demolished</strong>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Modal</td>
+                    <td>You must submit the form.</td>
+                    <td>The form <strong>must be submitted</strong>.</td>
+                  </tr>
+                  <tr>
+                    <td>Infinitive</td>
+                    <td>Someone needs to check this.</td>
+                    <td>This <strong>needs to be checked</strong>.</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout amber">
+                The agent (doer) follows <strong>by</strong>: "The cake was
+                eaten <em>by the dog</em>." Only include it when it's important
+                or surprising — don't add it just to be complete.
+              </div>
+            </div>
+            <div class="stab-panel" id="pass-reporting">
+              <div class="callout purple">
+                <strong>Reporting passives</strong> allow two equivalent
+                structures. Common verbs: said, believed, thought, known,
+                reported, considered, expected, claimed, alleged.
+              </div>
+              <div class="formula">
+                It <span class="hl">is said</span> that he is rich. = He
+                <span class="hl">is said to be</span> rich.
+              </div>
+              <div class="formula">
+                It <span class="hl">is believed</span> that they left. = They
+                <span class="hl">are believed to have left</span>.
+              </div>
+              <div class="formula">
+                It <span class="hl">is reported</span> that she will resign. =
+                She <span class="hl">is reported to be going to</span> resign.
+              </div>
+              <div class="t-wrap" style="margin-top: 12px">
+                <table class="t">
+                  <tr>
+                    <th>Time relation</th>
+                    <th>Structure after subject</th>
+                    <th>Example</th>
+                  </tr>
+                  <tr>
+                    <td>Same time</td>
+                    <td>is said <strong>to be</strong></td>
+                    <td><em>He is said to be very talented.</em></td>
+                  </tr>
+                  <tr>
+                    <td>Before reporting</td>
+                    <td>is said <strong>to have + pp</strong></td>
+                    <td><em>They are believed to have escaped.</em></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="stab-panel" id="pass-practice">
+              <div class="quiz-score-bar">
+                <div>
+                  <div class="qsb-label">Passives Practice</div>
+                  <div class="qsb-val" id="s-passives">0 / 0</div>
+                </div>
+                <button
+                  class="qsb-reset"
+                  onclick="resetQuiz('pass-practice', 's-passives')"
+                >
+                  Reset
+                </button>
+              </div>
+              <div id="pass-practice-qs"></div>
+            </div>
+          </div>
+
+          <!-- ══ QUESTIONS ══ -->
+          <div class="page" id="pg-questions">
+            <div class="subtab-nav">
+              <button class="stab active" onclick="stab(this, 'q-forms')">
+                Question Forms
+              </button>
+              <button class="stab" onclick="stab(this, 'q-subobj')">
+                Subject vs Object
+              </button>
+              <button class="stab" onclick="stab(this, 'q-tags')">
+                Tag Questions
+              </button>
+              <button class="stab" onclick="stab(this, 'q-embedded')">
+                Embedded
+              </button>
+              <button class="stab" onclick="stab(this, 'q-practice')">
+                Practice
+              </button>
+            </div>
+            <div class="stab-panel active" id="q-forms">
+              <div class="formula">
+                (Question word) + <span class="hl">auxiliary</span> +
+                <span class="hl2">subject</span> +
+                <span class="hl3">main verb</span> ?
+              </div>
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Tense</th>
+                    <th>Structure</th>
+                    <th>Example</th>
+                  </tr>
+                  <tr>
+                    <td>Present Simple</td>
+                    <td>Do/Does + S + V?</td>
+                    <td><em>Does he work here?</em></td>
+                  </tr>
+                  <tr>
+                    <td>Past Simple</td>
+                    <td>Did + S + V?</td>
+                    <td><em>Did they leave early?</em></td>
+                  </tr>
+                  <tr>
+                    <td>Present Continuous</td>
+                    <td>Am/Is/Are + S + V-ing?</td>
+                    <td><em>Is she coming?</em></td>
+                  </tr>
+                  <tr>
+                    <td>Present Perfect</td>
+                    <td>Have/Has + S + pp?</td>
+                    <td><em>Have you eaten?</em></td>
+                  </tr>
+                  <tr>
+                    <td>Past Perfect</td>
+                    <td>Had + S + pp?</td>
+                    <td><em>Had she left?</em></td>
+                  </tr>
+                  <tr>
+                    <td>Future</td>
+                    <td>Will + S + V?</td>
+                    <td><em>Will they arrive on time?</em></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout info">
+                Prepositions go at the <strong>end</strong> in informal
+                English:<br />
+                <em
+                  >Who did you speak <strong>to</strong>? / What are you looking
+                  <strong>for</strong>? / Which job has she applied
+                  <strong>for</strong>?</em
+                ><br />
+                Formal: <em>To whom did you speak?</em>
+              </div>
+            </div>
+            <div class="stab-panel" id="q-subobj">
+              <div class="callout red">
+                <strong>This is one of the most common exam mistakes!</strong>
+              </div>
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th></th>
+                    <th>Who/What = Object</th>
+                    <th>Who/What = Subject</th>
+                  </tr>
+                  <tr>
+                    <td>Rule</td>
+                    <td>Use do/does/did + inversion</td>
+                    <td>NO do/does/did — normal word order</td>
+                  </tr>
+                  <tr>
+                    <td>Example sentence</td>
+                    <td>Emma phoned <em>somebody</em>.</td>
+                    <td><em>Somebody</em> phoned Emma.</td>
+                  </tr>
+                  <tr>
+                    <td>Question</td>
+                    <td><strong>Who did</strong> Emma phone?</td>
+                    <td><strong>Who</strong> phoned Emma?</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout green">
+                More subject question examples (no do/does/did):<br />
+                <em>What <strong>happened</strong> to you?</em> (not "What did
+                happen")<br />
+                <em>Who <strong>broke</strong> the window?</em> (not "Who did
+                break")<br />
+                <em>How many people <strong>came</strong> to the party?</em>
+                (not "did come")<br />
+                <em>Which bus <strong>goes</strong> to the centre?</em> (not
+                "does go")
+              </div>
+            </div>
+            <div class="stab-panel" id="q-tags">
+              <div class="callout info">
+                <strong>Rule:</strong> Positive sentence → negative tag
+                &nbsp;|&nbsp; Negative sentence → positive tag
+              </div>
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Main clause</th>
+                    <th>Tag</th>
+                    <th>Main clause</th>
+                    <th>Tag</th>
+                  </tr>
+                  <tr>
+                    <td>She will come,</td>
+                    <td>won't she?</td>
+                    <td>Kate won't be late,</td>
+                    <td>will she?</td>
+                  </tr>
+                  <tr>
+                    <td>He is working,</td>
+                    <td>isn't he?</td>
+                    <td>They don't like us,</td>
+                    <td>do they?</td>
+                  </tr>
+                  <tr>
+                    <td>They have eaten,</td>
+                    <td>haven't they?</td>
+                    <td>You haven't eaten yet,</td>
+                    <td>have you?</td>
+                  </tr>
+                  <tr>
+                    <td>You can drive,</td>
+                    <td>can't you?</td>
+                    <td>She can't come,</td>
+                    <td>can she?</td>
+                  </tr>
+                  <tr>
+                    <td>She was there,</td>
+                    <td>wasn't she?</td>
+                    <td>He wasn't home,</td>
+                    <td>was he?</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout amber">
+                <strong>Special cases:</strong><br />
+                <em>I'm right, <strong>aren't I</strong>?</em> (NOT amn't I)<br />
+                <em>Let's go, <strong>shall we</strong>?</em><br />
+                <em>Don't forget, <strong>will you</strong>?</em><br />
+                <em>There is a problem, <strong>isn't there</strong>?</em
+                ><br /><br />
+                <strong>Intonation:</strong> Voice ↘ falls = you expect
+                agreement &nbsp;·&nbsp; Voice ↗ rises = genuine question
+              </div>
+              <div class="callout purple">
+                <strong>Yes/No with negative questions:</strong><br />
+                "You're <em>not</em> going out, are you?" → "Yes." = Yes, I am
+                going out. / "No." = No, I'm not going out.
+              </div>
+            </div>
+            <div class="stab-panel" id="q-embedded">
+              <div class="callout info">
+                <strong>Embedded (indirect) questions</strong> use NORMAL word
+                order — not question word order.
+              </div>
+              <div class="ex wrong">
+                Do you know where <u>is the station</u>?
+              </div>
+              <div class="ex right">
+                Do you know where <u>the station is</u>?
+              </div>
+              <div class="ex wrong">
+                I don't know what <u>does she want</u>.
+              </div>
+              <div class="ex right">I don't know what <u>she wants</u>.</div>
+              <div class="ex wrong">
+                Can you tell me when <u>did he arrive</u>?
+              </div>
+              <div class="ex right">
+                Can you tell me when <u>he arrived</u>?
+              </div>
+              <div class="callout green" style="margin-top: 10px">
+                Use <strong>if / whether</strong> when there is no question
+                word:<br />
+                <em>I don't know <strong>if/whether</strong> she is coming.</em
+                ><br />
+                <em
+                  >He asked <strong>whether</strong> anyone had seen his
+                  keys.</em
+                >
+              </div>
+              <div class="callout amber" style="margin-top: 10px">
+                <strong>Common intro phrases:</strong><br />
+                Do you know…? / Could you tell me…? / I wonder… / I don't know…
+                / I'm not sure… / Can you tell me…? / Do you have any idea…?
+              </div>
+            </div>
+            <div class="stab-panel" id="q-practice">
+              <div class="quiz-score-bar">
+                <div>
+                  <div class="qsb-label">Questions Practice</div>
+                  <div class="qsb-val" id="s-questions">0 / 0</div>
+                </div>
+                <button
+                  class="qsb-reset"
+                  onclick="resetQuiz('q-practice', 's-questions')"
+                >
+                  Reset
+                </button>
+              </div>
+              <div id="q-practice-qs"></div>
+            </div>
+          </div>
+
+          <!-- ══ WORD FORMATION ══ -->
+          <div class="page" id="pg-wordformation">
+            <div class="subtab-nav">
+              <button class="stab active" onclick="stab(this, 'wf-suffixes')">
+                Suffixes
+              </button>
+              <button class="stab" onclick="stab(this, 'wf-families')">
+                Word Families
+              </button>
+              <button class="stab" onclick="stab(this, 'wf-negatives')">
+                Negatives
+              </button>
+              <button class="stab" onclick="stab(this, 'wf-practice')">
+                Practice
+              </button>
+            </div>
+            <div class="stab-panel active" id="wf-suffixes">
+              <div class="wf-grid">
+                <div class="wfcard">
+                  <h4>Noun suffixes</h4>
+                  <ul>
+                    <li>
+                      <span class="wf-base">-tion/-sion</span
+                      ><span class="wf-form">education, decision</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ment</span
+                      ><span class="wf-form">government, improvement</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ness</span
+                      ><span class="wf-form">happiness, kindness</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ity/-ty</span
+                      ><span class="wf-form">equality, beauty</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ance/-ence</span
+                      ><span class="wf-form">importance, difference</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-er/-or/-ist</span
+                      ><span class="wf-form">teacher, actor, scientist</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ship</span
+                      ><span class="wf-form">friendship, leadership</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-hood</span
+                      ><span class="wf-form">childhood, neighbourhood</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="wfcard">
+                  <h4>Adjective suffixes</h4>
+                  <ul>
+                    <li>
+                      <span class="wf-base">-ful</span
+                      ><span class="wf-form">careful, successful</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-less</span
+                      ><span class="wf-form">careless, useless</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ous/-ious</span
+                      ><span class="wf-form">dangerous, ambitious</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-al/-ial</span
+                      ><span class="wf-form">cultural, financial</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ic</span
+                      ><span class="wf-form">scientific, energetic</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ive</span
+                      ><span class="wf-form">creative, effective</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-able/-ible</span
+                      ><span class="wf-form">comfortable, possible</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ed / -ing</span
+                      ><span class="wf-form">interested / interesting</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="wfcard">
+                  <h4>Verb suffixes / prefixes</h4>
+                  <ul>
+                    <li>
+                      <span class="wf-base">-ise/-ize</span
+                      ><span class="wf-form">modernise, realise</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ify</span
+                      ><span class="wf-form">simplify, qualify</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-en</span
+                      ><span class="wf-form">strengthen, widen</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">re-</span
+                      ><span class="wf-form">rearrange, revise</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">de-</span
+                      ><span class="wf-form">decrease, decide</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="wfcard">
+                  <h4>Adverb suffix</h4>
+                  <ul>
+                    <li>
+                      <span class="wf-base">-ly</span
+                      ><span class="wf-form">quickly, carefully</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ally</span
+                      ><span class="wf-form">basically, dramatically</span>
+                    </li>
+                    <li>
+                      <span class="wf-base">-ically</span
+                      ><span class="wf-form">scientifically</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="stab-panel" id="wf-families">
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Base</th>
+                    <th>Verb</th>
+                    <th>Noun</th>
+                    <th>Adjective</th>
+                    <th>Negative</th>
+                  </tr>
+                  <tr>
+                    <td>accept</td>
+                    <td>accept</td>
+                    <td>acceptance</td>
+                    <td>acceptable</td>
+                    <td>unacceptable</td>
+                  </tr>
+                  <tr>
+                    <td>compete</td>
+                    <td>compete</td>
+                    <td>competition / competitor</td>
+                    <td>competitive</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>confuse</td>
+                    <td>confuse</td>
+                    <td>confusion</td>
+                    <td>confused / confusing</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>create</td>
+                    <td>create</td>
+                    <td>creation / creativity / creator</td>
+                    <td>creative</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>decide</td>
+                    <td>decide</td>
+                    <td>decision</td>
+                    <td>decisive</td>
+                    <td>indecisive</td>
+                  </tr>
+                  <tr>
+                    <td>determine</td>
+                    <td>determine</td>
+                    <td>determination</td>
+                    <td>determined</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>effect</td>
+                    <td>affect / effect</td>
+                    <td>effect</td>
+                    <td>effective</td>
+                    <td>ineffective</td>
+                  </tr>
+                  <tr>
+                    <td>employ</td>
+                    <td>employ</td>
+                    <td>employment / employer / employee</td>
+                    <td>employed</td>
+                    <td>unemployed</td>
+                  </tr>
+                  <tr>
+                    <td>equal</td>
+                    <td>equal</td>
+                    <td>equality / inequality</td>
+                    <td>equal</td>
+                    <td>unequal</td>
+                  </tr>
+                  <tr>
+                    <td>except</td>
+                    <td>—</td>
+                    <td>exception</td>
+                    <td>exceptional</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>fame</td>
+                    <td>—</td>
+                    <td>fame</td>
+                    <td>famous</td>
+                    <td>infamous</td>
+                  </tr>
+                  <tr>
+                    <td>fortune</td>
+                    <td>—</td>
+                    <td>fortune / misfortune</td>
+                    <td>fortunate</td>
+                    <td>unfortunate</td>
+                  </tr>
+                  <tr>
+                    <td>honest</td>
+                    <td>—</td>
+                    <td>honesty</td>
+                    <td>honest</td>
+                    <td>dishonest</td>
+                  </tr>
+                  <tr>
+                    <td>improve</td>
+                    <td>improve</td>
+                    <td>improvement</td>
+                    <td>improved</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>innovate</td>
+                    <td>innovate</td>
+                    <td>innovation</td>
+                    <td>innovative</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>inspire</td>
+                    <td>inspire</td>
+                    <td>inspiration</td>
+                    <td>inspiring / inspired</td>
+                    <td>uninspiring</td>
+                  </tr>
+                  <tr>
+                    <td>introduce</td>
+                    <td>introduce</td>
+                    <td>introduction</td>
+                    <td>introductory</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>manage</td>
+                    <td>manage</td>
+                    <td>management / manager</td>
+                    <td>manageable</td>
+                    <td>unmanageable</td>
+                  </tr>
+                  <tr>
+                    <td>moral</td>
+                    <td>—</td>
+                    <td>morality</td>
+                    <td>moral</td>
+                    <td>immoral</td>
+                  </tr>
+                  <tr>
+                    <td>motivate</td>
+                    <td>motivate</td>
+                    <td>motivation</td>
+                    <td>motivated</td>
+                    <td>unmotivated</td>
+                  </tr>
+                  <tr>
+                    <td>origin</td>
+                    <td>originate</td>
+                    <td>origin / originality</td>
+                    <td>original</td>
+                    <td>unoriginal</td>
+                  </tr>
+                  <tr>
+                    <td>produce</td>
+                    <td>produce</td>
+                    <td>production / product / producer</td>
+                    <td>productive</td>
+                    <td>unproductive</td>
+                  </tr>
+                  <tr>
+                    <td>revolution</td>
+                    <td>revolutionise</td>
+                    <td>revolution</td>
+                    <td>revolutionary</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>signify</td>
+                    <td>signify</td>
+                    <td>significance</td>
+                    <td>significant</td>
+                    <td>insignificant</td>
+                  </tr>
+                  <tr>
+                    <td>simple</td>
+                    <td>simplify</td>
+                    <td>simplicity</td>
+                    <td>simple</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>subject</td>
+                    <td>subject</td>
+                    <td>subjectivity</td>
+                    <td>subjective</td>
+                    <td>objective</td>
+                  </tr>
+                  <tr>
+                    <td>succeed</td>
+                    <td>succeed</td>
+                    <td>success</td>
+                    <td>successful</td>
+                    <td>unsuccessful</td>
+                  </tr>
+                  <tr>
+                    <td>sufficient</td>
+                    <td>—</td>
+                    <td>sufficiency</td>
+                    <td>sufficient</td>
+                    <td>insufficient</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="stab-panel" id="wf-negatives">
+              <div class="callout red">
+                <strong>Negative prefixes are NOT interchangeable</strong> — you
+                must learn which goes with which word.
+              </div>
+              <div class="t-wrap">
+                <table class="t">
+                  <tr>
+                    <th>Prefix</th>
+                    <th>When used</th>
+                    <th>Examples</th>
+                  </tr>
+                  <tr>
+                    <td>un-</td>
+                    <td>most common — general negation</td>
+                    <td>
+                      unhappy, unusual, unfair, uncomfortable, unknown, unable,
+                      unofficial, unacceptable
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>im-</td>
+                    <td>before m, p, b</td>
+                    <td>
+                      impossible, impatient, imperfect, immoral, impolite,
+                      impractical
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>in-</td>
+                    <td>general (esp. Latin-origin words)</td>
+                    <td>
+                      incorrect, insufficient, inefficient, inaccurate,
+                      insecure, invisible, independent
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>ir-</td>
+                    <td>before r</td>
+                    <td>irregular, irresponsible, irrelevant, irrational</td>
+                  </tr>
+                  <tr>
+                    <td>il-</td>
+                    <td>before l</td>
+                    <td>illegal, illogical, illegible</td>
+                  </tr>
+                  <tr>
+                    <td>dis-</td>
+                    <td>opposite action / reversal</td>
+                    <td>
+                      dishonest, disagree, disappear, dislike, disadvantage,
+                      disconnect
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>mis-</td>
+                    <td>wrong / incorrectly</td>
+                    <td>
+                      misunderstand, misuse, misinform, mislead, misbehave
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>non-</td>
+                    <td>not of that category</td>
+                    <td>non-fiction, non-stop, non-profit</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout info">
+                <strong>Memory trick:</strong> im- before m/p/b · ir- before r ·
+                il- before l · Everything else → usually un- or in-
+              </div>
+            </div>
+            <div class="stab-panel" id="wf-practice">
+              <div class="quiz-score-bar">
+                <div>
+                  <div class="qsb-label">Word Formation Practice</div>
+                  <div class="qsb-val" id="s-wordformation">0 / 0</div>
+                </div>
+                <button
+                  class="qsb-reset"
+                  onclick="resetQuiz('wf-practice', 's-wordformation')"
+                >
+                  Reset
+                </button>
+              </div>
+              <div id="wf-practice-qs"></div>
+            </div>
+          </div>
+        </div>
+        <!-- /page-content -->
+      </div>
+      <!-- /main -->
+    </div>
+    <!-- /app -->
+
+    <script>
+      // ═══ NAVIGATION ═══
+      const pages = {
+        home: "Home",
+        quick: "Quick Rules",
+        tenses: "Tenses",
+        conditionals: "Conditionals + Wish",
+        modals: "Modal Verbs",
+        verbpatterns: "Verb Patterns",
+        passives: "Passives",
+        questions: "Questions + Tags",
+        wordformation: "Word Formation",
+      };
+      const pageSubs = {
+        home: "English Test 3 · 28 May 2026",
+        quick: "Cheat sheet",
+        tenses: "10+ tenses, signal words, irregular verbs",
+        conditionals: "Zero through Third, Mixed, Wish",
+        modals: "can, must, should, might, etc.",
+        verbpatterns: "Gerunds vs infinitives",
+        passives: "All tenses, reporting passives",
+        questions: "Question forms, tags, embedded",
+        wordformation: "Suffixes, families, negatives",
+      };
+      const practicePages = [
+        "tenses",
+        "conditionals",
+        "modals",
+        "verbpatterns",
+        "passives",
+        "questions",
+        "wordformation",
+      ];
+
+      function showPage(id) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".nav-item")
+          .forEach((n) => n.classList.remove("active"));
+        document.getElementById("pg-" + id).classList.add("active");
+        document
+          .querySelector('[data-page="' + id + '"]')
+          .classList.add("active");
+        document.getElementById("hdr-title").textContent = pages[id] || id;
+        document.getElementById("hdr-sub").textContent = pageSubs[id] || "";
+        const scoreEl = document.getElementById("hdr-score");
+        const sv = document.getElementById("hdr-score-val");
+        const s = scores[id];
+        if (s && practicePages.includes(id)) {
+          scoreEl.classList.add("visible");
+          sv.textContent = s.c + "/" + s.t;
+        } else {
+          scoreEl.classList.remove("visible");
+        }
+        closeSidebar();
+        document.getElementById("main").scrollTop = 0;
+      }
+
+      function toggleSidebar() {
+        const s = document.getElementById("sidebar");
+        const o = document.getElementById("sidebar-overlay");
+        s.classList.toggle("open");
+        o.classList.toggle("open");
+      }
+      function closeSidebar() {
+        document.getElementById("sidebar").classList.remove("open");
+        document.getElementById("sidebar-overlay").classList.remove("open");
+      }
+
+      // ═══ SUBTABS ═══
+      function stab(btn, panelId) {
+        const nav = btn.parentElement;
+        nav
+          .querySelectorAll(".stab")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const page = btn.closest(".page");
+        page
+          .querySelectorAll(".stab-panel")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById(panelId).classList.add("active");
+      }
+
+      // ═══ SCORES ═══
+      const scores = {};
+      let globalC = 0,
+        globalT = 0;
+
+      function initScore(id) {
+        if (!scores[id]) scores[id] = { c: 0, t: 0 };
+      }
+      function updateScore(pageId) {
+        const s = scores[pageId];
+        const el = document.getElementById("s-" + pageId);
+        if (el) el.textContent = s.c + " / " + s.t;
+        const hv = document.getElementById("hdr-score-val");
+        if (
+          hv &&
+          document.getElementById("pg-" + pageId) &&
+          document.getElementById("pg-" + pageId).classList.contains("active")
+        )
+          hv.textContent = s.c + "/" + s.t;
+        globalC = globalT = 0;
+        practicePages.forEach((pid) => {
+          if (scores[pid]) {
+            globalC += scores[pid].c;
+            globalT += scores[pid].t;
+          }
+        });
+        document.getElementById("global-score").textContent =
+          globalC + " / " + globalT + " correct";
+        const pct = globalT > 0 ? Math.round((globalC / globalT) * 100) : 0;
+        document.getElementById("global-bar").style.width = pct + "%";
+      }
+
+      // ═══ QUIZ BUILDERS ═══
+      function buildMC(containerId, pageId, questions) {
+        const c = document.getElementById(containerId);
+        if (!c) return;
+        initScore(pageId);
+        c.innerHTML = "";
+        const letters = ["A", "B", "C", "D"];
+        questions.forEach((q, qi) => {
+          const div = document.createElement("div");
+          div.className = "qcard";
+          div.innerHTML = `<div class="q-num">Question ${qi + 1} of ${questions.length}</div>
+      <div class="q-prompt">${q.q}</div>
+      ${q.hint ? `<div class="q-hint">${q.hint}</div>` : ""}
+      <div class="opts" id="opts-${containerId}-${qi}"></div>
+      <div class="q-feedback" id="fb-${containerId}-${qi}"></div>`;
+          const optsDiv = div.querySelector(".opts");
+          q.opts.forEach((opt, oi) => {
+            const btn = document.createElement("button");
+            btn.className = "opt-btn";
+            btn.innerHTML = `<span class="opt-letter">${letters[oi]}</span>${opt}`;
+            btn.onclick = () => {
+              if (btn.classList.contains("locked")) return;
+              scores[pageId].t++;
+              const fb = div.querySelector(".q-feedback");
+              if (opt === q.answer) {
+                btn.classList.add("correct");
+                fb.textContent = "✓ Correct!";
+                fb.className = "q-feedback show ok";
+                scores[pageId].c++;
+              } else {
+                btn.classList.add("wrong");
+                fb.innerHTML = `✗ Incorrect. Correct answer: <strong>${q.answer}</strong>${q.exp ? '<br><span style="opacity:.8;font-size:12px">' + q.exp + "</span>" : ""}`;
+                fb.className = "q-feedback show bad";
+                optsDiv.querySelectorAll(".opt-btn").forEach((b) => {
+                  if (b.textContent.includes(q.answer))
+                    b.classList.add("correct");
+                });
+              }
+              optsDiv
+                .querySelectorAll(".opt-btn")
+                .forEach((b) => b.classList.add("locked"));
+              div.classList.add("answered");
+              updateScore(pageId);
+            };
+            optsDiv.appendChild(btn);
+          });
+          c.appendChild(div);
+        });
+      }
+
+      function buildFill(containerId, pageId, questions) {
+        const c = document.getElementById(containerId);
+        if (!c) return;
+        initScore(pageId);
+        c.innerHTML = "";
+        questions.forEach((q, qi) => {
+          const answers = Array.isArray(q.answer) ? q.answer : [q.answer];
+          const div = document.createElement("div");
+          div.className = "qcard";
+          const iid = `fi-${containerId}-${qi}`;
+          div.innerHTML = `<div class="q-num">Question ${qi + 1} of ${questions.length}</div>
+      <div class="q-prompt">${q.q.replace("___", `<input class="fill-input" id="${iid}" type="text" placeholder="type here…" autocomplete="off" data-ans="${answers.join("||").toLowerCase()}" onkeydown="if(event.key==='Enter')checkFill('${iid}','${pageId}')">`)}</div>
+      ${q.hint ? `<div class="q-hint">${q.hint}</div>` : ""}
+      <div style="display:flex;gap:6px;margin-top:8px">
+        <button class="btn-check" id="chk-${iid}" onclick="checkFill('${iid}','${pageId}')">Check</button>
+        <button class="btn-reset-q" onclick="resetFill('${iid}')">Reset</button>
+      </div>
+      <div class="q-feedback" id="fb-${iid}"></div>`;
+          c.appendChild(div);
+        });
+      }
+
+      function checkFill(iid, pageId) {
+        const inp = document.getElementById(iid);
+        if (!inp || inp.disabled) return;
+        const answers = inp.dataset.ans.split("||");
+        const userVal = inp.value.trim().toLowerCase().replace(/'/g, "'");
+        const fb = document.getElementById("fb-" + iid);
+        scores[pageId].t++;
+        const ok = answers.some(
+          (a) => userVal === a || userVal === a.replace(/'/g, "'"),
+        );
+        if (ok) {
+          inp.classList.add("correct");
+          fb.textContent = "✓ Correct!";
+          fb.className = "q-feedback show ok";
+          scores[pageId].c++;
+        } else {
+          inp.classList.add("wrong");
+          fb.innerHTML = `✗ Incorrect. Correct: <strong>${inp.dataset.ans.split("||")[0]}</strong>`;
+          fb.className = "q-feedback show bad";
+        }
+        inp.disabled = true;
+        document.getElementById("chk-" + iid).disabled = true;
+        inp.closest(".qcard").classList.add("answered");
+        updateScore(pageId);
+      }
+
+      function resetFill(iid) {
+        const inp = document.getElementById(iid);
+        if (!inp) return;
+        inp.classList.remove("correct", "wrong");
+        inp.disabled = false;
+        inp.value = "";
+        const fb = document.getElementById("fb-" + iid);
+        if (fb) fb.className = "q-feedback";
+        const chk = document.getElementById("chk-" + iid);
+        if (chk) chk.disabled = false;
+        inp.closest(".qcard").classList.remove("answered");
+      }
+
+      function resetQuiz(containerId, scoreId) {
+        const pageId = scoreId.replace("s-", "");
+        if (scores[pageId]) {
+          scores[pageId] = { c: 0, t: 0 };
+        }
+        const qs = document.getElementById(containerId + "-qs");
+        if (qs) {
+          qs.querySelectorAll(".fill-input").forEach((i) => {
+            resetFill(i.id);
+          });
+        }
+        qs &&
+          qs.querySelectorAll(".opt-btn").forEach((b) => {
+            b.classList.remove("correct", "wrong", "locked");
+          });
+        qs &&
+          qs.querySelectorAll(".q-feedback").forEach((f) => {
+            f.className = "q-feedback";
+          });
+        qs &&
+          qs
+            .querySelectorAll(".qcard")
+            .forEach((c) => c.classList.remove("answered"));
+        updateScore(pageId);
+      }
+
+      // ═══ IRREGULAR VERBS ═══
+      const irr = [
+        ["be", "was/were", "been"],
+        ["become", "became", "become"],
+        ["begin", "began", "begun"],
+        ["break", "broke", "broken"],
+        ["bring", "brought", "brought"],
+        ["build", "built", "built"],
+        ["buy", "bought", "bought"],
+        ["catch", "caught", "caught"],
+        ["choose", "chose", "chosen"],
+        ["come", "came", "come"],
+        ["do", "did", "done"],
+        ["drink", "drank", "drunk"],
+        ["drive", "drove", "driven"],
+        ["eat", "ate", "eaten"],
+        ["fall", "fell", "fallen"],
+        ["feel", "felt", "felt"],
+        ["find", "found", "found"],
+        ["fly", "flew", "flown"],
+        ["forget", "forgot", "forgotten"],
+        ["get", "got", "got"],
+        ["give", "gave", "given"],
+        ["go", "went", "gone"],
+        ["grow", "grew", "grown"],
+        ["have", "had", "had"],
+        ["hear", "heard", "heard"],
+        ["hold", "held", "held"],
+        ["keep", "kept", "kept"],
+        ["know", "knew", "known"],
+        ["leave", "left", "left"],
+        ["lose", "lost", "lost"],
+        ["make", "made", "made"],
+        ["meet", "met", "met"],
+        ["pay", "paid", "paid"],
+        ["put", "put", "put"],
+        ["read", "read /red/", "read /red/"],
+        ["run", "ran", "run"],
+        ["say", "said", "said"],
+        ["see", "saw", "seen"],
+        ["sell", "sold", "sold"],
+        ["send", "sent", "sent"],
+        ["show", "showed", "shown"],
+        ["sing", "sang", "sung"],
+        ["sit", "sat", "sat"],
+        ["sleep", "slept", "slept"],
+        ["speak", "spoke", "spoken"],
+        ["spend", "spent", "spent"],
+        ["stand", "stood", "stood"],
+        ["steal", "stole", "stolen"],
+        ["swim", "swam", "swum"],
+        ["take", "took", "taken"],
+        ["teach", "taught", "taught"],
+        ["tell", "told", "told"],
+        ["think", "thought", "thought"],
+        ["throw", "threw", "thrown"],
+        ["understand", "understood", "understood"],
+        ["win", "won", "won"],
+        ["write", "wrote", "written"],
+      ];
+      const irrList = document.getElementById("irr-list");
+      if (irrList) {
+        irr.forEach((v) => {
+          const d = document.createElement("div");
+          d.className = "irr-row";
+          d.innerHTML = `<span>${v[0]}</span><span>${v[1]}</span><span class="pp">${v[2]}</span>`;
+          irrList.appendChild(d);
+        });
+      }
+
+      // ═══ QUIZ DATA ═══
+
+      // TENSES fill-in
+      buildFill("tenses-practice", "tenses", [
+        {
+          q: "She ___ (work) every day from 9 to 5.",
+          answer: "works",
+          hint: "Habit → Present Simple",
+        },
+        {
+          q: "I ___ (study) for two hours when she called.",
+          answer: "had been studying",
+          hint: "Ongoing action before another past action",
+        },
+        {
+          q: "Look! It ___ (rain). We should take an umbrella.",
+          answer: "is raining",
+          hint: "Happening right now (Look!)",
+        },
+        {
+          q: "By the time he arrived, the party ___ (finish).",
+          answer: "had finished",
+          hint: "Completed before another past event",
+        },
+        {
+          q: "I ___ (never / visit) Tokyo before this trip.",
+          answer: ["had never visited"],
+          hint: "Before another past event",
+        },
+        {
+          q: "She ___ (live) in Paris for ten years now.",
+          answer: "has been living",
+          hint: "Ongoing from past until now",
+        },
+        {
+          q: "The train ___ (leave) at 7:30 tomorrow morning — it's on the timetable.",
+          answer: "leaves",
+          hint: "Scheduled timetable → Present Simple for future",
+        },
+        {
+          q: "I ___ (just / finish) my homework. I can come now.",
+          answer: "have just finished",
+          hint: '"just" → Present Perfect',
+        },
+        {
+          q: "He ___ (not / know) the answer — don't ask him.",
+          answer: ["doesn't know"],
+          hint: "State verb → Present Simple",
+        },
+        {
+          q: "When I was a child, I ___ (walk) to school every day.",
+          answer: ["walked", "used to walk"],
+          hint: "Past habit",
+        },
+        {
+          q: "She ___ (go) to the concert tonight — she bought tickets last week.",
+          answer: "is going",
+          hint: "Fixed future arrangement",
+        },
+        {
+          q: "I ___ (probably / help) you tomorrow if I have time.",
+          answer: ["will probably help"],
+          hint: "Prediction + spontaneous future → will",
+        },
+      ]);
+
+      // CONDITIONALS MC
+      buildMC("cond-practice", "conditionals", [
+        {
+          q: "If I ___ the lottery, I would buy a house.",
+          opts: ["win", "won", "would win", "have won"],
+          answer: "won",
+          hint: "Second Conditional → Past Simple in if-clause",
+        },
+        {
+          q: "If he ___ harder, he would have passed the exam.",
+          opts: ["studies", "studied", "had studied", "has studied"],
+          answer: "had studied",
+          hint: "Third Conditional → Past Perfect in if-clause",
+        },
+        {
+          q: "I wish I ___ a better job right now.",
+          opts: ["have", "had", "would have", "will have"],
+          answer: "had",
+          hint: "Wish + Past Simple = present regret",
+        },
+        {
+          q: "If water reaches 100°C, it ___.",
+          opts: ["would boil", "boils", "boiled", "will boil"],
+          answer: "boils",
+          hint: "Zero Conditional → both Present Simple",
+        },
+        {
+          q: "She wishes she ___ to the party last night.",
+          opts: ["went", "goes", "had gone", "would go"],
+          answer: "had gone",
+          hint: "Wish + Past Perfect = past regret",
+        },
+        {
+          q: "If it rains tomorrow, we ___ cancel the picnic.",
+          opts: ["would", "would have", "will", "are going to"],
+          answer: "will",
+          hint: "First Conditional → will in main clause",
+        },
+        {
+          q: "I wish it ___ stop raining! (complaining about now)",
+          opts: ["would", "could", "had", "was"],
+          answer: "would",
+          hint: "I wish + would = want change in current situation",
+        },
+        {
+          q: "If I ___ you, I would apologise immediately.",
+          opts: ["am", "was", "were", "had been"],
+          answer: "were",
+          hint: 'Second Conditional — "If I were you" is a fixed expression',
+        },
+        {
+          q: "If she had left earlier, she ___ the train.",
+          opts: ["catches", "caught", "had caught", "would have caught"],
+          answer: "would have caught",
+          hint: "Third Conditional → would have + past participle",
+        },
+        {
+          q: "MIXED: If he hadn't studied medicine, he ___ a doctor now.",
+          opts: [
+            "wouldn't be",
+            "won't be",
+            "wouldn't have been",
+            "hadn't been",
+          ],
+          answer: "wouldn't be",
+          hint: "Past cause → present result = Past Perfect if-clause + would + inf. main clause",
+        },
+      ]);
+
+      // MODALS MC
+      buildMC("mod-practice", "modals", [
+        {
+          q: "You ___ be tired after that long journey! (logical deduction — certain)",
+          opts: ["must", "should", "can", "would"],
+          answer: "must",
+          exp: "must + base verb = logical deduction about the present",
+        },
+        {
+          q: "She ___ have taken the keys – I can't find them anywhere.",
+          opts: ["must", "could", "should", "might"],
+          answer: "might",
+          exp: "might have + pp = weak past possibility",
+        },
+        {
+          q: "You ___ smoke in this area. It's strictly forbidden.",
+          opts: ["mustn't", "don't have to", "shouldn't", "needn't"],
+          answer: "mustn't",
+          exp: "mustn't = prohibition (forbidden)",
+        },
+        {
+          q: "You ___ show your ID to enter. It's completely optional.",
+          opts: ["don't have to", "mustn't", "can't", "shouldn't"],
+          answer: "don't have to",
+          exp: "don't have to = no obligation (optional, not forbidden)",
+        },
+        {
+          q: "You ___ have told me earlier! I would have helped. (past criticism)",
+          opts: ["must", "could", "should", "might"],
+          answer: "should",
+          exp: "should have + pp = past criticism (they didn't do the right thing)",
+        },
+        {
+          q: "___ you open the window, please? (polite request)",
+          opts: ["Can", "Could", "Will", "Shall"],
+          answer: "Could",
+          exp: "Could is more polite than Can for requests",
+        },
+      ]);
+
+      // VERB PATTERNS MC
+      buildMC("vp-practice", "verbpatterns", [
+        {
+          q: "She enjoys ___ to music in the morning.",
+          opts: ["listen", "to listen", "listening", "listened"],
+          answer: "listening",
+          exp: "enjoy + gerund (-ing)",
+        },
+        {
+          q: "He decided ___ a new laptop.",
+          opts: ["buying", "to buy", "buy", "bought"],
+          answer: "to buy",
+          exp: "decide + infinitive (to)",
+        },
+        {
+          q: "I remember ___ her at the party last year. (memory of past event)",
+          opts: ["seeing", "to see", "see", "to seeing"],
+          answer: "seeing",
+          exp: "remember + -ing = memory of a past event",
+        },
+        {
+          q: "Don't forget ___ the door when you leave! (task for the future)",
+          opts: ["locking", "lock", "to lock", "locked"],
+          answer: "to lock",
+          exp: "forget + to = instruction to not forget a future task",
+        },
+        {
+          q: "She stopped ___ when the teacher entered. (she quit talking)",
+          opts: ["to talk", "talk", "talked", "talking"],
+          answer: "talking",
+          exp: "stop + -ing = quit/cease the action",
+        },
+        {
+          q: "He stopped ___ the notice on the board. (he paused another activity)",
+          opts: ["read", "reading", "to read", "to reading"],
+          answer: "to read",
+          exp: "stop + to = paused in order to do something else",
+        },
+        {
+          q: "I'm interested ___ learning Spanish.",
+          opts: ["to", "in", "at", "for"],
+          answer: "in",
+          exp: "interested in + -ing (preposition → gerund)",
+        },
+        {
+          q: "They avoided ___ eye contact during the argument.",
+          opts: ["make", "to make", "making", "made"],
+          answer: "making",
+          exp: "avoid + gerund (-ing)",
+        },
+        {
+          q: "He managed ___ the problem in just five minutes.",
+          opts: ["solving", "to solve", "solve", "solved"],
+          answer: "to solve",
+          exp: "manage + infinitive (to)",
+        },
+        {
+          q: "Would you mind ___ the window?",
+          opts: ["close", "to close", "closing", "closed"],
+          answer: "closing",
+          exp: "mind + gerund (-ing)",
+        },
+      ]);
+
+      // PASSIVES fill-in
+      buildFill("pass-practice", "passives", [
+        {
+          q: "The Eiffel Tower ___ (build) in 1889.",
+          answer: "was built",
+          hint: "Past Simple Passive",
+        },
+        {
+          q: "This report ___ (must / submit) by Friday.",
+          answer: "must be submitted",
+          hint: "Modal Passive: modal + be + past participle",
+        },
+        {
+          q: "The results ___ (announce) next week.",
+          answer: "will be announced",
+          hint: "Future Passive with will",
+        },
+        {
+          q: "A new hospital ___ (construct) at the moment.",
+          answer: "is being constructed",
+          hint: "Present Continuous Passive",
+        },
+        {
+          q: "The package ___ (already / deliver) by the time I arrived.",
+          answer: "had already been delivered",
+          hint: "Past Perfect Passive",
+        },
+        {
+          q: "It ___ (say) that she is very talented.",
+          answer: "is said",
+          hint: "Reporting Passive",
+        },
+        {
+          q: "Three people ___ (injure) in the accident yesterday.",
+          answer: "were injured",
+          hint: "Past Simple Passive",
+        },
+        {
+          q: "The letter ___ (not / post) yet.",
+          answer: ["hasn't been posted"],
+          hint: "Present Perfect Passive (negative)",
+        },
+      ]);
+
+      // QUESTIONS MC
+      buildMC("q-practice", "questions", [
+        {
+          q: "Do you know where ___? (embedded question)",
+          opts: [
+            "is the station",
+            "the station is",
+            "the station does be",
+            "does the station is",
+          ],
+          answer: "the station is",
+          exp: "Embedded questions use normal word order (no inversion)",
+        },
+        {
+          q: "She works here, ___? (tag question)",
+          opts: ["doesn't she?", "does she?", "isn't she?", "does not she?"],
+          answer: "doesn't she?",
+          exp: "Positive sentence → negative tag. Works = Present Simple → does",
+        },
+        {
+          q: "Somebody broke the window. → Who ___ the window? (subject question)",
+          opts: ["did break", "broke", "has broken", "does break"],
+          answer: "broke",
+          exp: "Subject question: who/what is the subject → no do/does/did",
+        },
+        {
+          q: "He hasn't finished, ___? (tag)",
+          opts: ["has he?", "hasn't he?", "does he?", "is he?"],
+          answer: "has he?",
+          exp: "Negative sentence → positive tag",
+        },
+        {
+          q: "Let's go, ___? (tag after let's)",
+          opts: ["will we?", "shall we?", "do we?", "won't we?"],
+          answer: "shall we?",
+          exp: 'After let\'s, the tag is always "shall we?"',
+        },
+        {
+          q: "___ does Amy get up so early? (question form)",
+          opts: ["Why Amy", "Why does Amy", "Why Amy does", "Why is Amy"],
+          answer: "Why does Amy",
+          exp: "Present Simple question: Why does + subject + base verb",
+        },
+        {
+          q: "I'm right, ___? (tag after I'm)",
+          opts: ["am I?", "aren't I?", "isn't I?", "don't I?"],
+          answer: "aren't I?",
+          exp: 'After I\'m, the negative tag is "aren\'t I?" (not "amn\'t I?")',
+        },
+        {
+          q: "Can you tell me what time ___? (embedded)",
+          opts: [
+            "does the film start",
+            "is the film starting",
+            "the film starts",
+            "start the film",
+          ],
+          answer: "the film starts",
+          exp: "Embedded question: normal word order, no do/does",
+        },
+        {
+          q: "You didn't call last night, ___? (tag)",
+          opts: ["didn't you?", "did you?", "don't you?", "weren't you?"],
+          answer: "did you?",
+          exp: "Negative sentence (didn't) → positive tag (did you?)",
+        },
+        {
+          q: "Don't forget to call, ___? (tag after imperative Don't)",
+          opts: ["do you?", "shall we?", "will you?", "won't you?"],
+          answer: "will you?",
+          exp: 'After Don\'t…, the question tag is "will you?"',
+        },
+      ]);
+
+      // WORD FORMATION fill-in
+      buildFill("wf-practice", "wordformation", [
+        {
+          q: "The judge's decision was highly ___ (SUBJECT), based on personal opinions.",
+          answer: "subjective",
+          hint: "-ive suffix → adjective",
+        },
+        {
+          q: "The new law will bring ___ (SIGNIFY) benefits to small businesses.",
+          answer: "significant",
+          hint: "-ant/-ance family",
+        },
+        {
+          q: "The teacher found his behaviour completely ___ (ACCEPT).",
+          answer: "unacceptable",
+          hint: "un- + accept + -able",
+        },
+        {
+          q: "The company's main goal is to improve the ___ (EFFICIENT) of its supply chain.",
+          answer: "efficiency",
+          hint: "-cy suffix → noun",
+        },
+        {
+          q: "He soon became a ___ (FAME) pianist.",
+          answer: "famous",
+          hint: "-ous suffix → adjective",
+        },
+        {
+          q: "The manager gave an ___ (INSPIRE) speech that motivated everyone.",
+          answer: "inspirational",
+          hint: "-ation + -al suffix",
+        },
+        {
+          q: "The government announced new measures to reduce ___ (INEQUAL) in education.",
+          answer: "inequality",
+          hint: "in- + equal + -ity",
+        },
+        {
+          q: "The documentary was highly ___ (INFORM) and provided many useful insights.",
+          answer: "informative",
+          hint: "-ive suffix → adjective",
+        },
+        {
+          q: "The project was cancelled due to the ___ (SUFFICIENT) of funds.",
+          answer: "insufficiency",
+          hint: "in- + suffici + -ency",
+        },
+        {
+          q: "There was a lot of ___ (CONFUSE) about the changes to the exam system.",
+          answer: "confusion",
+          hint: "-ion suffix → noun",
+        },
+        {
+          q: "His poor performance was due to a complete lack of ___ (MOTIVATE).",
+          answer: "motivation",
+          hint: "-ation suffix → noun",
+        },
+        {
+          q: "She was praised for her ___ (EFFECT) in handling the crisis.",
+          answer: "effectiveness",
+          hint: "-ive + -ness → noun",
+        },
+        {
+          q: "Many people question the ___ (MORAL) of animal testing.",
+          answer: "morality",
+          hint: "-ality suffix → noun",
+        },
+        {
+          q: "The athlete's ___ (DETERMINE) led her to break the world record.",
+          answer: "determination",
+          hint: "-ation suffix → noun",
+        },
+        {
+          q: "It was an ___ (FORTUNE) mistake that could have been avoided.",
+          answer: "unfortunate",
+          hint: "un- + fortune → adjective",
+        },
+        {
+          q: "The ___ (COMPLETE) of the project took longer than expected.",
+          answer: "completion",
+          hint: "-ion suffix → noun",
+        },
+        {
+          q: "His ___ (ARGUE) attitude makes him difficult to work with.",
+          answer: "argumentative",
+          hint: "-ative suffix → adjective",
+        },
+        {
+          q: "The ___ (MODERN) of the city's transport system made commuting easier.",
+          answer: ["modernisation", "modernization"],
+          hint: "-isation/-ization suffix → noun",
+        },
+        {
+          q: "The film's ___ (ORIGIN) storyline made it one of the best movies of the year.",
+          answer: "original",
+          hint: "-al suffix → adjective",
+        },
+        {
+          q: "His constant ___ (FAIL) to follow instructions annoyed the manager.",
+          answer: "failure",
+          hint: "-ure suffix → noun",
+        },
+        {
+          q: "Many people question the ___ (HONEST) of politicians.",
+          answer: "honesty",
+          hint: "-y suffix → noun (dis- not needed here)",
+        },
+        {
+          q: "The ___ (INTRODUCE) of the new policy led to a significant increase in productivity.",
+          answer: "introduction",
+          hint: "-tion suffix → noun",
+        },
+        {
+          q: "The scientist's ___ (INNOVATE) led to a groundbreaking discovery.",
+          answer: "innovation",
+          hint: "-ation suffix → noun",
+        },
+        {
+          q: "She showed great ___ (MATURE) in the way she handled the situation.",
+          answer: "maturity",
+          hint: "-ity suffix → noun",
+        },
+      ]);
+    </script>
+  </body>
+</html>
+

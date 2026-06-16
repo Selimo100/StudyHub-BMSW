@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Französisch Prüfungstraining: Hypothèse, Conseils, Pronoms relatifs</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --ink: #172033;
+      --muted: #5f6b7a;
+      --line: #dce3ef;
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --soft-blue: #eaf1ff;
+      --green: #15803d;
+      --green-bg: #e9f8ef;
+      --red: #b91c1c;
+      --red-bg: #fdecec;
+      --amber: #92400e;
+      --amber-bg: #fff4d8;
+      --purple: #6d28d9;
+      --purple-bg: #f1e9ff;
+      --radius: 18px;
+      --shadow: 0 16px 40px rgba(25, 43, 80, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #eaf1ff 0, transparent 32%), var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 42px 18px 28px;
+      background: linear-gradient(135deg, #1d4ed8, #4f46e5);
+      color: white;
+    }
+
+    .wrap { max-width: 1180px; margin: 0 auto; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr;
+      gap: 24px;
+      align-items: end;
+    }
+
+    h1, h2, h3 { line-height: 1.2; margin: 0; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -0.04em; }
+    h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); margin-bottom: 14px; }
+    h3 { font-size: 1.15rem; margin-bottom: 10px; }
+
+    .subtitle { max-width: 800px; color: rgba(255,255,255,0.88); font-size: 1.08rem; margin-top: 14px; }
+
+    .quick-card {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.24);
+      border-radius: var(--radius);
+      padding: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(245,247,251,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 18px;
+    }
+
+    .nav-inner a {
+      white-space: nowrap;
+      text-decoration: none;
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 0.92rem;
+    }
+
+    main { padding: 28px 18px 70px; }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: clamp(18px, 3vw, 30px);
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .box {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: #fbfdff;
+    }
+
+    .rule {
+      background: var(--soft-blue);
+      border-color: #bfdbfe;
+    }
+
+    .warning {
+      background: var(--amber-bg);
+      border-color: #f6d77a;
+      color: #503007;
+    }
+
+    .success {
+      background: var(--green-bg);
+      border-color: #b7ebc7;
+    }
+
+    .purple {
+      background: var(--purple-bg);
+      border-color: #d8c4ff;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      font-weight: 700;
+      padding: 4px 10px;
+      font-size: 0.82rem;
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 14px;
+      font-size: 0.95rem;
+    }
+
+    th, td { border: 1px solid var(--line); padding: 10px 12px; vertical-align: top; }
+    th { background: #edf4ff; text-align: left; }
+
+    code, .formula {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: #eef3ff;
+      color: #12327a;
+      border-radius: 8px;
+      padding: 2px 7px;
+      font-weight: 700;
+    }
+
+    .exercise {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-top: 14px;
+      background: #fbfdff;
+    }
+
+    .task {
+      display: grid;
+      grid-template-columns: 1fr minmax(170px, 280px);
+      gap: 12px;
+      align-items: center;
+      margin: 12px 0;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed #dbe3ef;
+    }
+
+    .task:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #cdd6e4;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 0.96rem;
+      background: white;
+    }
+
+    textarea { min-height: 86px; resize: vertical; }
+
+    input.correct, textarea.correct { border-color: #22c55e; background: #f0fdf4; }
+    input.wrong, textarea.wrong { border-color: #ef4444; background: #fef2f2; }
+
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-weight: 800;
+      cursor: pointer;
+      background: var(--blue);
+      color: white;
+      margin-top: 12px;
+    }
+
+    button.secondary { background: #334155; }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: 700;
+    }
+
+    .solution {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      background: #f7f9fc;
+      border: 1px solid var(--line);
+    }
+
+    .solution.open { display: block; }
+
+    .mini { color: var(--muted); font-size: 0.92rem; }
+
+    .checklist li { margin-bottom: 8px; }
+
+    .kbd {
+      display: inline-block;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      padding: 1px 7px;
+      border-radius: 7px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 850px) {
+      .hero, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .task { grid-template-columns: 1fr; }
+      header { padding-top: 30px; }
+      section { border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <div>
+        <p class="tag" style="background:rgba(255,255,255,0.18);color:white">Französisch Prüfungsvorbereitung</p>
+        <h1>Hypothèses, conseils et pronoms relatifs</h1>
+        <p class="subtitle">Umfassende Lernseite mit Theorie, Beispielen, Fehlerfallen, interaktiven Übungen und Lösungen. Fokus: B1-Niveau, Prüfungsvorbereitung und sicheres Anwenden.</p>
+      </div>
+      <div class="quick-card">
+        <strong>Du musst können:</strong>
+        <ul>
+          <li>si-Sätze richtig bilden</li>
+          <li>conditionnel présent bilden</li>
+          <li>conseils formulieren</li>
+          <li>qui, que, où, dont unterscheiden</li>
+          <li>Sätze verbinden und begründen</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#hypothese">Hypothèse</a>
+      <a href="#conditionnel">Conditionnel</a>
+      <a href="#conseils">Conseils</a>
+      <a href="#relatifs">Pronoms relatifs</a>
+      <a href="#strategies">Strategie</a>
+      <a href="#exercices">Übungen</a>
+      <a href="#solutions-finales">Lösungen</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="hypothese">
+      <h2>1. La phrase hypothétique: si-Sätze</h2>
+      <p>Mit einer <strong>phrase hypothétique</strong> beschreibst du eine Bedingung: Wenn etwas passiert oder passiert wäre, hat es eine Folge.</p>
+
+      <div class="grid grid-3">
+        <div class="box rule">
+          <span class="tag">réel / futur</span>
+          <h3>Si + présent → futur simple</h3>
+          <p><span class="formula">Si + présent, futur simple</span></p>
+          <p><strong>Si j’apprends régulièrement, je réussirai.</strong></p>
+          <p class="mini">Bedeutung: Es ist realistisch und möglich.</p>
+        </div>
+        <div class="box purple">
+          <span class="tag">irréel / présent</span>
+          <h3>Si + imparfait → conditionnel présent</h3>
+          <p><span class="formula">Si + imparfait, conditionnel présent</span></p>
+          <p><strong>Si j’avais de l’argent, je voyagerais.</strong></p>
+          <p class="mini">Bedeutung: Es ist im Moment nicht real.</p>
+        </div>
+        <div class="box warning">
+          <span class="tag">passé / regret</span>
+          <h3>Si + plus-que-parfait → conditionnel passé</h3>
+          <p><span class="formula">Si + plus-que-parfait, conditionnel passé</span></p>
+          <p><strong>Si j’avais appris, j’aurais réussi.</strong></p>
+          <p class="mini">Bedeutung: Es ist zu spät, man kann es nicht mehr ändern.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:24px">Wichtigste Regel</h3>
+      <div class="box warning">
+        <strong>Nach si steht nie futur simple und nie conditionnel.</strong><br />
+        Falsch: <span class="formula">Si j’aurais le temps...</span><br />
+        Richtig: <span class="formula">Si j’avais le temps, je sortirais.</span>
+      </div>
+
+      <h3 style="margin-top:24px">Vergleich Deutsch - Französisch</h3>
+      <table>
+        <thead><tr><th>Deutsch</th><th>Französisch</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Wenn ich lerne, werde ich bestehen.</td><td>Si + présent → futur simple</td><td>Si j’apprends, je réussirai.</td></tr>
+          <tr><td>Wenn ich Geld hätte, würde ich reisen.</td><td>Si + imparfait → conditionnel présent</td><td>Si j’avais de l’argent, je voyagerais.</td></tr>
+          <tr><td>Wenn ich gelernt hätte, hätte ich bestanden.</td><td>Si + plus-que-parfait → conditionnel passé</td><td>Si j’avais appris, j’aurais réussi.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="conditionnel">
+      <h2>2. Le conditionnel présent</h2>
+      <p>Der <strong>conditionnel présent</strong> entspricht oft dem deutschen <strong>würde + Infinitiv</strong> oder Formen wie <strong>hätte, wäre, könnte, müsste</strong>.</p>
+
+      <div class="box rule">
+        <h3>Bildung</h3>
+        <p><span class="formula">futur-Stamm + imparfait-Endungen</span></p>
+        <table>
+          <thead><tr><th>Person</th><th>Endung</th><th>parler</th><th>avoir</th><th>être</th></tr></thead>
+          <tbody>
+            <tr><td>je</td><td>-ais</td><td>je parlerais</td><td>j’aurais</td><td>je serais</td></tr>
+            <tr><td>tu</td><td>-ais</td><td>tu parlerais</td><td>tu aurais</td><td>tu serais</td></tr>
+            <tr><td>il / elle / on</td><td>-ait</td><td>il parlerait</td><td>il aurait</td><td>il serait</td></tr>
+            <tr><td>nous</td><td>-ions</td><td>nous parlerions</td><td>nous aurions</td><td>nous serions</td></tr>
+            <tr><td>vous</td><td>-iez</td><td>vous parleriez</td><td>vous auriez</td><td>vous seriez</td></tr>
+            <tr><td>ils / elles</td><td>-aient</td><td>ils parleraient</td><td>ils auraient</td><td>ils seraient</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:16px">
+        <div class="box">
+          <h3>Regelmässige Verben</h3>
+          <p>Infinitiv als Stamm:</p>
+          <ul>
+            <li>voyager → je voyagerais</li>
+            <li>finir → je finirais</li>
+            <li>prendre → je prendrais</li>
+          </ul>
+          <p class="mini">Bei -re-Verben fällt das letzte e weg: prendre → prendr-</p>
+        </div>
+        <div class="box">
+          <h3>Wichtige unregelmässige Stämme</h3>
+          <table>
+            <tbody>
+              <tr><td>être</td><td>ser-</td><td>je serais</td></tr>
+              <tr><td>avoir</td><td>aur-</td><td>j’aurais</td></tr>
+              <tr><td>faire</td><td>fer-</td><td>je ferais</td></tr>
+              <tr><td>aller</td><td>ir-</td><td>j’irais</td></tr>
+              <tr><td>pouvoir</td><td>pourr-</td><td>je pourrais</td></tr>
+              <tr><td>vouloir</td><td>voudr-</td><td>je voudrais</td></tr>
+              <tr><td>devoir</td><td>devr-</td><td>je devrais</td></tr>
+              <tr><td>falloir</td><td>faudr-</td><td>il faudrait</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 style="margin-top:24px">Le conditionnel passé</h3>
+      <div class="box warning">
+        <p><span class="formula">avoir / être au conditionnel présent + participe passé</span></p>
+        <ul>
+          <li>j’aurais raté = ich hätte verpasst / wäre durchgefallen</li>
+          <li>je serais parti(e) = ich wäre gegangen / abgereist</li>
+          <li>nous aurions réussi = wir hätten bestanden</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="conseils">
+      <h2>3. Donner des conseils</h2>
+      <p>In der Prüfung musst du oft Ratschläge geben. Dafür brauchst du passende Strukturen.</p>
+
+      <div class="grid grid-2">
+        <div class="box success">
+          <h3>Mit conditionnel</h3>
+          <ul>
+            <li>Tu devrais réviser régulièrement.</li>
+            <li>Vous devriez dormir plus.</li>
+            <li>Il faudrait demander de l’aide.</li>
+            <li>À ta place, je parlerais au professeur.</li>
+          </ul>
+        </div>
+        <div class="box rule">
+          <h3>Mit impératif</h3>
+          <ul>
+            <li>Révise chaque jour.</li>
+            <li>Fais une pause.</li>
+            <li>Ne panique pas.</li>
+            <li>Organise ton temps.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:24px">Nützliche Satzstarter</h3>
+      <table>
+        <thead><tr><th>Situation</th><th>Formulierung</th></tr></thead>
+        <tbody>
+          <tr><td>sanfter Rat</td><td>Tu pourrais..., Tu devrais..., Il faudrait...</td></tr>
+          <tr><td>persönliche Meinung</td><td>À mon avis..., Selon moi..., Je pense que...</td></tr>
+          <tr><td>Begründung</td><td>parce que..., car..., comme...</td></tr>
+          <tr><td>Folge</td><td>ainsi..., donc..., de cette manière...</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="relatifs">
+      <h2>4. Les pronoms relatifs simples: qui, que, où, dont</h2>
+      <p>Relativpronomen verbinden zwei Sätze und vermeiden Wiederholungen.</p>
+
+      <div class="grid grid-2">
+        <div class="box rule">
+          <span class="tag">qui</span>
+          <h3>qui = Subjekt</h3>
+          <p><strong>Qui</strong> ersetzt eine Person oder Sache, die im Relativsatz die Handlung macht.</p>
+          <p>J’aime les jeux. Les jeux demandent de l’imagination.<br />→ J’aime les jeux <strong>qui</strong> demandent de l’imagination.</p>
+          <p class="mini">Test: Nach qui kommt meistens direkt ein Verb.</p>
+        </div>
+        <div class="box rule">
+          <span class="tag">que / qu’</span>
+          <h3>que = direktes Objekt</h3>
+          <p><strong>Que</strong> ersetzt eine Person oder Sache, die Objekt des Verbs ist.</p>
+          <p>J’adore cette robe. Tu portes cette robe.<br />→ J’adore la robe <strong>que</strong> tu portes.</p>
+          <p class="mini">Vor Vokal: que → qu’.</p>
+        </div>
+        <div class="box purple">
+          <span class="tag">où</span>
+          <h3>où = Ort oder Zeit</h3>
+          <p><strong>Où</strong> ersetzt einen Ort oder einen Zeitpunkt.</p>
+          <ul>
+            <li>La boutique où j’ai acheté cette veste...</li>
+            <li>Le jour où je suis arrivée...</li>
+            <li>L’année où j’ai commencé mon apprentissage...</li>
+          </ul>
+        </div>
+        <div class="box warning">
+          <span class="tag">dont</span>
+          <h3>dont = de + etwas</h3>
+          <p><strong>Dont</strong> ersetzt Ergänzungen mit <strong>de</strong>.</p>
+          <ul>
+            <li>parler de → l’ami dont je parle</li>
+            <li>rêver de → le métier dont je rêve</li>
+            <li>avoir besoin de → le livre dont j’ai besoin</li>
+            <li>être fier de → le projet dont je suis fière</li>
+            <li>se souvenir de → le jour dont je me souviens</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:24px">Entscheidungshilfe</h3>
+      <table>
+        <thead><tr><th>Frage</th><th>Pronomen</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>Wer oder was macht die Handlung?</td><td>qui</td><td>La fille qui parle...</td></tr>
+          <tr><td>Wen oder was sieht/mag/kauft man?</td><td>que</td><td>Le pull que j’achète...</td></tr>
+          <tr><td>Wo? Wann?</td><td>où</td><td>Le magasin où je vais...</td></tr>
+          <tr><td>Von wem? Wovon? Über wen? Worüber?</td><td>dont</td><td>Le film dont je parle...</td></tr>
+        </tbody>
+      </table>
+
+      <div class="box warning" style="margin-top:16px">
+        <strong>Typische Fehler:</strong>
+        <ul>
+          <li>Falsch: La robe <span class="formula">qui</span> tu portes. Richtig: La robe <span class="formula">que</span> tu portes.</li>
+          <li>Falsch: Le magasin <span class="formula">que</span> j’ai acheté la veste. Richtig: Le magasin <span class="formula">où</span> j’ai acheté la veste.</li>
+          <li>Falsch: L’ami <span class="formula">que</span> je parle. Richtig: L’ami <span class="formula">dont</span> je parle.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="strategies">
+      <h2>5. Prüfungsstrategie</h2>
+      <div class="grid grid-2">
+        <div class="box">
+          <h3>Bei si-Sätzen</h3>
+          <ol>
+            <li>Ist die Situation real, unrealistisch oder vergangen?</li>
+            <li>Suche den si-Teil.</li>
+            <li>Nach si nie futur oder conditionnel verwenden.</li>
+            <li>Setze die Folge in futur simple, conditionnel présent oder conditionnel passé.</li>
+          </ol>
+        </div>
+        <div class="box">
+          <h3>Bei Relativpronomen</h3>
+          <ol>
+            <li>Markiere das wiederholte Wort.</li>
+            <li>Frage: Subjekt, Objekt, Ort/Zeit oder de-Ergänzung?</li>
+            <li>Wähle qui, que, où oder dont.</li>
+            <li>Kontrolliere die Wortstellung.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="box success" style="margin-top:16px">
+        <h3>Mini-Spick</h3>
+        <ul class="checklist">
+          <li><span class="kbd">si + présent</span> → futur simple: Si tu viens, je serai contente.</li>
+          <li><span class="kbd">si + imparfait</span> → conditionnel présent: Si tu venais, je serais contente.</li>
+          <li><span class="kbd">si + plus-que-parfait</span> → conditionnel passé: Si tu étais venu, j’aurais été contente.</li>
+          <li><span class="kbd">qui</span> = Subjekt, <span class="kbd">que</span> = Objekt, <span class="kbd">où</span> = Ort/Zeit, <span class="kbd">dont</span> = de.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="exercices">
+      <h2>6. Interaktive Übungen</h2>
+      <p class="mini">Schreibe die Lösung in die Felder. Akzente werden möglichst tolerant geprüft, aber versuche sie korrekt zu setzen.</p>
+
+      <div class="exercise" data-exercise="conditionnel">
+        <h3>Übung 1: Conditionnel présent</h3>
+        <div class="task"><label>1. Que (faire) ____-tu si tu étais riche ?</label><input data-answer="ferais" /></div>
+        <div class="task"><label>2. Je m’(acheter) ____ une maison.</label><input data-answer="achèterais|acheterais" /></div>
+        <div class="task"><label>3. Elle (avoir) ____ au moins quatre chambres.</label><input data-answer="aurait" /></div>
+        <div class="task"><label>4. Je (pouvoir) ____ avoir un jardin potager.</label><input data-answer="pourrais" /></div>
+        <div class="task"><label>5. Je (voyager) ____ en Asie.</label><input data-answer="voyagerais" /></div>
+        <div class="task"><label>6. J’(aller) ____ au Japon.</label><input data-answer="irais" /></div>
+        <div class="task"><label>7. Je (devoir) ____ être plus raisonnable.</label><input data-answer="devrais" /></div>
+        <div class="task"><label>8. Une grande maison (être) ____ chère à entretenir.</label><input data-answer="serait" /></div>
+        <button onclick="checkExercise(this)">Korrigieren</button>
+        <button class="secondary" onclick="toggleSolution(this)">Lösung anzeigen</button>
+        <div class="feedback"></div>
+        <div class="solution">1 ferais, 2 achèterais, 3 aurait, 4 pourrais, 5 voyagerais, 6 irais, 7 devrais, 8 serait.</div>
+      </div>
+
+      <div class="exercise" data-exercise="hypothese">
+        <h3>Übung 2: Hypothèse</h3>
+        <div class="task"><label>1. Si j’avais son mail, je lui (écrire) ____.</label><input data-answer="écrirais|ecrirais" /></div>
+        <div class="task"><label>2. Nous (aller) ____ au cinéma si nous n’avions pas autant d’examens.</label><input data-answer="irions" /></div>
+        <div class="task"><label>3. Si tu (venir) ____ demain, je te ferai goûter mon gâteau.</label><input data-answer="viens" /></div>
+        <div class="task"><label>4. Si nous (avoir) ____ le temps, nous irons au musée.</label><input data-answer="avons" /></div>
+        <div class="task"><label>5. Si je (devenir) ____ riche, je ne changerais rien.</label><input data-answer="devenais" /></div>
+        <div class="task"><label>6. Si j’avais appris, j’(réussir) ____.</label><input data-answer="aurais réussi|aurais reussi" /></div>
+        <div class="task"><label>7. Si elle avait eu plus de temps, elle (finir) ____ le projet.</label><input data-answer="aurait fini" /></div>
+        <div class="task"><label>8. Si vous voulez, nous vous (aider) ____.</label><input data-answer="aiderons|aidons" /></div>
+        <button onclick="checkExercise(this)">Korrigieren</button>
+        <button class="secondary" onclick="toggleSolution(this)">Lösung anzeigen</button>
+        <div class="feedback"></div>
+        <div class="solution">1 écrirais, 2 irions, 3 viens, 4 avons, 5 devenais, 6 aurais réussi, 7 aurait fini, 8 aiderons oder aidons.</div>
+      </div>
+
+      <div class="exercise" data-exercise="relatifs1">
+        <h3>Übung 3: qui, que, où, dont</h3>
+        <div class="task"><label>1. La boutique ____ j’ai acheté cette veste est très connue.</label><input data-answer="où|ou" /></div>
+        <div class="task"><label>2. Le styliste ____ je t’ai parlé a lancé une collection.</label><input data-answer="dont" /></div>
+        <div class="task"><label>3. La marque ____ tu rêves est très chère.</label><input data-answer="dont" /></div>
+        <div class="task"><label>4. Ce magasin est l’endroit ____ je trouve toujours des habits.</label><input data-answer="où|ou" /></div>
+        <div class="task"><label>5. Le vêtement ____ tu portes est tendance.</label><input data-answer="que|qu’|qu'" /></div>
+        <div class="task"><label>6. C’est une robe ____ plaît à tout le monde.</label><input data-answer="qui" /></div>
+        <div class="task"><label>7. Le défilé ____ j’ai assisté était impressionnant.</label><input data-answer="auquel|où|ou" /></div>
+        <div class="task"><label>8. Le jour ____ les élèves peuvent porter ce qu’ils veulent est spécial.</label><input data-answer="où|ou" /></div>
+        <button onclick="checkExercise(this)">Korrigieren</button>
+        <button class="secondary" onclick="toggleSolution(this)">Lösung anzeigen</button>
+        <div class="feedback"></div>
+        <div class="solution">1 où, 2 dont, 3 dont, 4 où, 5 que, 6 qui, 7 auquel oder où je suis allé(e), 8 où.</div>
+      </div>
+
+      <div class="exercise" data-exercise="transformation">
+        <h3>Übung 4: Sätze verbinden</h3>
+        <p>Verbinde die zwei Sätze mit dem passenden Relativpronomen.</p>
+        <div class="task"><label>1. J’ai un ami. Je parle souvent de cet ami.</label><textarea data-answer="j’ai un ami dont je parle souvent|j'ai un ami dont je parle souvent"></textarea></div>
+        <div class="task"><label>2. C’est un jeu. Les enfants aiment ce jeu.</label><textarea data-answer="c’est un jeu que les enfants aiment|c'est un jeu que les enfants aiment"></textarea></div>
+        <div class="task"><label>3. C’est une ville. Je suis née dans cette ville.</label><textarea data-answer="c’est une ville où je suis née|c'est une ville ou je suis nee|c'est une ville où je suis née"></textarea></div>
+        <div class="task"><label>4. C’est une personne. Elle parle trop.</label><textarea data-answer="c’est une personne qui parle trop|c'est une personne qui parle trop"></textarea></div>
+        <button onclick="checkExercise(this)">Korrigieren</button>
+        <button class="secondary" onclick="toggleSolution(this)">Lösung anzeigen</button>
+        <div class="feedback"></div>
+        <div class="solution">1 J’ai un ami dont je parle souvent. 2 C’est un jeu que les enfants aiment. 3 C’est une ville où je suis née. 4 C’est une personne qui parle trop.</div>
+      </div>
+
+      <div class="exercise" data-exercise="conseils">
+        <h3>Übung 5: Donner des conseils</h3>
+        <p>Formuliere je einen Rat auf Französisch. Mögliche Lösung wird angezeigt.</p>
+        <div class="task"><label>1. Ton ami est stressé avant un examen.</label><input data-answer="tu devrais réviser régulièrement|tu devrais reviser regulierement|il faudrait réviser régulièrement|il faudrait reviser regulierement" /></div>
+        <div class="task"><label>2. Ta soeur dort trop peu.</label><input data-answer="elle devrait dormir plus|tu devrais dormir plus|il faudrait dormir plus" /></div>
+        <div class="task"><label>3. Un camarade ne comprend pas la grammaire.</label><input data-answer="il devrait demander de l’aide|il devrait demander de l'aide|tu devrais demander de l’aide|tu devrais demander de l'aide" /></div>
+        <button onclick="checkExercise(this)">Korrigieren</button>
+        <button class="secondary" onclick="toggleSolution(this)">Lösung anzeigen</button>
+        <div class="feedback"></div>
+        <div class="solution">Mögliche Lösungen: Tu devrais réviser régulièrement. / Elle devrait dormir plus. / Il devrait demander de l’aide. Eigene sinnvolle Antworten sind auch möglich.</div>
+      </div>
+    </section>
+
+    <section id="solutions-finales">
+      <h2>7. Schlusscheck vor der Prüfung</h2>
+      <div class="grid grid-2">
+        <div class="box success">
+          <h3>Ich bin bereit, wenn ich...</h3>
+          <ul>
+            <li>die drei si-Strukturen auswendig kann.</li>
+            <li>conditionnel présent sicher bilden kann.</li>
+            <li>conditionnel passé erkenne und bilde.</li>
+            <li>Ratschläge mit devrais, pourrais, il faudrait formulieren kann.</li>
+            <li>qui, que, où, dont begründen kann.</li>
+          </ul>
+        </div>
+        <div class="box warning">
+          <h3>Letzte Fehlerkontrolle</h3>
+          <ul>
+            <li>Nach <strong>si</strong> kein <strong>futur</strong> und kein <strong>conditionnel</strong>.</li>
+            <li><strong>dont</strong> nur, wenn ein <strong>de</strong> dahintersteckt.</li>
+            <li><strong>qui</strong> macht die Handlung, <strong>que</strong> bekommt die Handlung.</li>
+            <li><strong>où</strong> kann Ort und Zeit bedeuten.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function normalize(str) {
+      return (str || "")
+        .toLowerCase()
+        .trim()
+        .replace(/[’]/g, "'")
+        .replace(/\s+/g, " ")
+        .replace(/[.!?]+$/g, "");
+    }
+
+    function checkExercise(button) {
+      const exercise = button.closest('.exercise');
+      const fields = exercise.querySelectorAll('input[data-answer], textarea[data-answer]');
+      let correct = 0;
+      fields.forEach(field => {
+        const value = normalize(field.value);
+        const answers = field.dataset.answer.split('|').map(normalize);
+        const isCorrect = answers.includes(value);
+        field.classList.remove('correct', 'wrong');
+        field.classList.add(isCorrect ? 'correct' : 'wrong');
+        if (isCorrect) correct++;
+      });
+      const feedback = exercise.querySelector('.feedback');
+      feedback.textContent = `${correct} von ${fields.length} richtig.`;
+      feedback.style.color = correct === fields.length ? 'var(--green)' : 'var(--red)';
+    }
+
+    function toggleSolution(button) {
+      const solution = button.closest('.exercise').querySelector('.solution');
+      solution.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,2283 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kleider machen Leute – Prüfungslernguide</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #1a1209;
+        --parchment: #f5f0e8;
+        --warm: #f9f4ea;
+        --gold: #c8972a;
+        --gold-l: #e8c97a;
+        --rust: #8b3a1a;
+        --sage: #3d6b36;
+        --blue: #2c4a7a;
+        --night: #1e1610;
+        --muted: #6b5c44;
+        --border: #d4c5a9;
+        --shad: rgba(30, 20, 10, 0.12);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Source Serif 4", Georgia, serif;
+        background: var(--parchment);
+        color: var(--ink);
+      }
+      .hero {
+        background: var(--night);
+        color: var(--parchment);
+        padding: 3rem 2rem 2.2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 40px,
+          rgba(200, 151, 42, 0.04) 40px,
+          rgba(200, 151, 42, 0.04) 80px
+        );
+      }
+      .hero-lbl {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold-l);
+        margin-bottom: 0.7rem;
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.9rem, 5vw, 3.3rem);
+        font-weight: 700;
+        line-height: 1.1;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--gold-l);
+      }
+      .hero-sub {
+        font-size: 0.9rem;
+        color: rgba(245, 240, 232, 0.6);
+        margin-top: 0.5rem;
+      }
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.4rem;
+        margin-top: 1.1rem;
+      }
+      .ht {
+        background: rgba(200, 151, 42, 0.18);
+        border: 1px solid rgba(200, 151, 42, 0.35);
+        color: var(--gold-l);
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.22rem 0.65rem;
+        border-radius: 2px;
+      }
+      /* NAV */
+      .nav {
+        background: var(--night);
+        border-bottom: 2px solid var(--gold);
+        padding: 0 0.4rem;
+        display: flex;
+        overflow-x: auto;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .nav::-webkit-scrollbar {
+        height: 3px;
+      }
+      .nav::-webkit-scrollbar-thumb {
+        background: var(--gold);
+      }
+      .nb {
+        background: none;
+        border: none;
+        color: rgba(245, 240, 232, 0.52);
+        font-family: "Source Serif 4", serif;
+        font-size: 0.73rem;
+        padding: 0.7rem 0.85rem;
+        cursor: pointer;
+        white-space: nowrap;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+        margin-bottom: -2px;
+      }
+      .nb:hover {
+        color: var(--parchment);
+      }
+      .nb.active {
+        color: var(--gold-l);
+        border-bottom-color: var(--gold);
+      }
+      /* LAYOUT */
+      main {
+        max-width: 940px;
+        margin: 0 auto;
+        padding: 1.8rem 1.4rem 4rem;
+      }
+      .sec {
+        display: none;
+        animation: fi 0.35s ease;
+      }
+      .sec.active {
+        display: block;
+      }
+      @keyframes fi {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* SECTION HEADER */
+      .sh {
+        border-left: 4px solid var(--gold);
+        padding-left: 1.1rem;
+        margin-bottom: 1.6rem;
+      }
+      .sh .num {
+        font-size: 0.66rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.22rem;
+      }
+      .sh h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--night);
+      }
+      .sh p {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-top: 0.3rem;
+        font-style: italic;
+      }
+      /* CARDS */
+      .card {
+        background: var(--warm);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1.3rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 8px var(--shad);
+      }
+      .ct {
+        font-family: "Playfair Display", serif;
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: var(--rust);
+        margin-bottom: 0.55rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem;
+      }
+      .card p,
+      .card li {
+        font-size: 0.88rem;
+        line-height: 1.75;
+      }
+      .card ul {
+        padding-left: 1.15rem;
+      }
+      .card ul li {
+        margin-bottom: 0.28rem;
+      }
+      /* HIGHLIGHT BOXES */
+      .hl {
+        background: linear-gradient(135deg, #fdf6e3, #faf0d0);
+        border: 1px solid var(--gold-l);
+        border-left: 4px solid var(--gold);
+        border-radius: 4px;
+        padding: 1rem 1.3rem;
+        margin-bottom: 1rem;
+        font-size: 0.88rem;
+        line-height: 1.75;
+      }
+      .hl strong {
+        color: var(--rust);
+      }
+      .ib {
+        background: #eef2f8;
+        border: 1px solid #b0bfd4;
+        border-left: 4px solid var(--blue);
+        border-radius: 4px;
+        padding: 1rem 1.3rem;
+        margin-bottom: 1rem;
+        font-size: 0.88rem;
+        line-height: 1.75;
+      }
+      .ib strong {
+        color: var(--blue);
+      }
+      .gb {
+        background: #eef5ee;
+        border: 1px solid #b0cfb0;
+        border-left: 4px solid var(--sage);
+        border-radius: 4px;
+        padding: 1rem 1.3rem;
+        margin-bottom: 1rem;
+        font-size: 0.88rem;
+        line-height: 1.75;
+      }
+      .gb strong {
+        color: var(--sage);
+      }
+      /* QUOTE */
+      .qb {
+        border-left: 3px solid var(--gold);
+        margin: 0.7rem 0;
+        padding: 0.45rem 0.9rem;
+        background: rgba(200, 151, 42, 0.06);
+        font-style: italic;
+        font-size: 0.88rem;
+        color: var(--muted);
+        border-radius: 0 4px 4px 0;
+      }
+      .qb cite {
+        display: block;
+        margin-top: 0.28rem;
+        font-size: 0.74rem;
+        font-style: normal;
+        letter-spacing: 0.04em;
+        color: var(--gold);
+      }
+      /* TOGGLE FAQ */
+      .qi {
+        background: var(--warm);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        margin-bottom: 0.7rem;
+        overflow: hidden;
+        box-shadow: 0 1px 4px var(--shad);
+      }
+      .qq {
+        padding: 0.8rem 1rem;
+        font-weight: 600;
+        font-size: 0.88rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.5rem;
+        transition: background 0.2s;
+      }
+      .qq:hover {
+        background: rgba(200, 151, 42, 0.07);
+      }
+      .qq .arr {
+        font-size: 0.62rem;
+        transition: transform 0.3s;
+        color: var(--gold);
+        flex-shrink: 0;
+        margin-top: 0.18rem;
+      }
+      .qi.open .arr {
+        transform: rotate(180deg);
+      }
+      .qa {
+        display: none;
+        padding: 0.7rem 1rem 0.85rem;
+        font-size: 0.86rem;
+        line-height: 1.75;
+        border-top: 1px solid var(--border);
+        background: white;
+      }
+      .qi.open .qa {
+        display: block;
+      }
+      /* EXERCISE */
+      .ex {
+        background: #f0f4f0;
+        border: 1px solid #b4ccb4;
+        border-left: 4px solid var(--sage);
+        border-radius: 4px;
+        padding: 1.1rem 1.3rem;
+        margin-bottom: 1rem;
+      }
+      .ex h4 {
+        font-family: "Playfair Display", serif;
+        color: var(--sage);
+        margin-bottom: 0.6rem;
+        font-size: 0.96rem;
+      }
+      .ex p,
+      .ex li {
+        font-size: 0.86rem;
+        line-height: 1.7;
+      }
+      .ex ul {
+        padding-left: 1.1rem;
+      }
+      .sol-btn {
+        background: var(--sage);
+        color: white;
+        border: none;
+        padding: 0.4rem 0.9rem;
+        border-radius: 3px;
+        font-size: 0.78rem;
+        cursor: pointer;
+        margin-top: 0.7rem;
+        font-family: "Source Serif 4", serif;
+        letter-spacing: 0.04em;
+        transition: background 0.2s;
+      }
+      .sol-btn:hover {
+        background: #2d5228;
+      }
+      .sol {
+        display: none;
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid #b4ccb4;
+        font-size: 0.86rem;
+        line-height: 1.75;
+      }
+      .sol.vis {
+        display: block;
+      }
+      .sol-lbl {
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--sage);
+        margin-bottom: 0.35rem;
+      }
+      /* TABLE */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.84rem;
+        margin-bottom: 1rem;
+        background: var(--warm);
+        border: 1px solid var(--border);
+        box-shadow: 0 2px 8px var(--shad);
+      }
+      th {
+        background: var(--night);
+        color: var(--gold-l);
+        padding: 0.6rem 0.85rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.78rem;
+        letter-spacing: 0.05em;
+      }
+      td {
+        padding: 0.58rem 0.85rem;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+        line-height: 1.6;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      tr:hover td {
+        background: rgba(200, 151, 42, 0.04);
+      }
+      td strong {
+        color: var(--rust);
+      }
+      /* BADGE */
+      .bd {
+        display: inline-block;
+        padding: 0.17rem 0.52rem;
+        border-radius: 2px;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-right: 0.28rem;
+      }
+      .bd-g {
+        background: var(--gold);
+        color: white;
+      }
+      .bd-r {
+        background: var(--rust);
+        color: white;
+      }
+      .bd-s {
+        background: var(--sage);
+        color: white;
+      }
+      .bd-b {
+        background: var(--blue);
+        color: white;
+      }
+      .bd-n {
+        background: var(--night);
+        color: var(--gold-l);
+      }
+      /* TWO COL */
+      .tc {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      @media (max-width: 620px) {
+        .tc {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* FIGURENKONSTELLATION */
+      .fk {
+        background: var(--warm);
+        border: 1px solid var(--border);
+        padding: 1.3rem;
+        border-radius: 4px;
+        text-align: center;
+        margin-bottom: 1.2rem;
+        box-shadow: 0 2px 8px var(--shad);
+      }
+      .fc {
+        display: inline-block;
+        background: var(--night);
+        color: var(--gold-l);
+        font-family: "Playfair Display", serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        padding: 0.65rem 1.2rem;
+        border: 2px solid var(--gold);
+        border-radius: 4px;
+        margin-bottom: 0.8rem;
+      }
+      .fr {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 0.35rem;
+      }
+      .fn {
+        display: inline-block;
+        padding: 0.32rem 0.75rem;
+        border: 1px solid;
+        border-radius: 3px;
+        font-size: 0.78rem;
+        font-weight: 600;
+      }
+      .fa {
+        border-color: var(--rust);
+        color: var(--rust);
+        background: rgba(139, 58, 26, 0.07);
+      }
+      .fs {
+        border-color: var(--sage);
+        color: var(--sage);
+        background: rgba(61, 107, 54, 0.07);
+      }
+      .fnu {
+        border-color: var(--muted);
+        color: var(--muted);
+        background: rgba(107, 92, 68, 0.07);
+      }
+      .farr {
+        font-size: 0.7rem;
+        color: var(--muted);
+        margin: 0.12rem 0;
+        line-height: 1.4;
+      }
+      /* DRAMA AUFBAU */
+      .dr {
+        display: flex;
+        align-items: stretch;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+      .ds {
+        flex: 1;
+        padding: 0.75rem 0.5rem;
+        text-align: center;
+        font-size: 0.72rem;
+        line-height: 1.4;
+      }
+      .ds .dn {
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+      .ds .dd {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 0.82rem;
+        margin: 0.18rem 0;
+      }
+      .ds .dk {
+        font-style: italic;
+        font-size: 0.7rem;
+      }
+      .d1 {
+        background: #e8f4e8;
+        color: #2d5a2d;
+      }
+      .d2 {
+        background: #e8f0f8;
+        color: #1a3a6a;
+      }
+      .d3 {
+        background: #fdf0d0;
+        color: #6b4500;
+        border-left: 3px solid var(--gold);
+        border-right: 3px solid var(--gold);
+      }
+      .d4 {
+        background: #f5e8e8;
+        color: #6b1a1a;
+      }
+      .d5 {
+        background: #e8f4e8;
+        color: #2d5a2d;
+      }
+      /* TIMELINE */
+      .tl {
+        position: relative;
+        padding-left: 1.7rem;
+      }
+      .tl::before {
+        content: "";
+        position: absolute;
+        left: 0.38rem;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--gold-l);
+      }
+      .tli {
+        position: relative;
+        margin-bottom: 1rem;
+      }
+      .tli::before {
+        content: "";
+        position: absolute;
+        left: -1.45rem;
+        top: 0.2rem;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--gold);
+        border: 2px solid var(--parchment);
+      }
+      .tly {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+      .tlt {
+        font-size: 0.86rem;
+        line-height: 1.65;
+      }
+      /* MERKMALE GRID */
+      .mg {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+        gap: 0.7rem;
+        margin-bottom: 1rem;
+      }
+      .mc {
+        background: var(--warm);
+        border: 1px solid var(--border);
+        border-top: 3px solid var(--gold);
+        padding: 0.85rem;
+        border-radius: 4px;
+        font-size: 0.84rem;
+      }
+      .mc h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 0.9rem;
+        color: var(--rust);
+        margin-bottom: 0.32rem;
+      }
+      /* ZOPEF */
+      .zg {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.45rem;
+        margin-bottom: 1rem;
+      }
+      @media (max-width: 580px) {
+        .zg {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .zc {
+        border-radius: 4px;
+        padding: 0.8rem 0.6rem;
+        text-align: center;
+      }
+      .zc .zl {
+        font-family: "Playfair Display", serif;
+        font-size: 1.9rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .zc .zw {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin: 0.18rem 0 0.35rem;
+      }
+      .zc p {
+        font-size: 0.73rem;
+        line-height: 1.5;
+      }
+      .zz {
+        background: #fff8e8;
+        border: 1px solid var(--gold-l);
+        color: #6b4500;
+      }
+      .zo {
+        background: #f0f4ff;
+        border: 1px solid #b0bfe0;
+        color: #1a3a6a;
+      }
+      .zp {
+        background: #f5eef8;
+        border: 1px solid #d0b8e0;
+        color: #4a2070;
+      }
+      .ze {
+        background: #f0f8f0;
+        border: 1px solid #b8d4b8;
+        color: #2d5a2d;
+      }
+      .zf {
+        background: #fef0f0;
+        border: 1px solid #e0b8b8;
+        color: #6b1a1a;
+      }
+      /* ALLEGORIE TABLE */
+      .al-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0.7rem;
+        margin-bottom: 1rem;
+      }
+      @media (max-width: 600px) {
+        .al-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .al-card {
+        background: var(--warm);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 0.9rem;
+        font-size: 0.84rem;
+      }
+      .al-card .ac-top {
+        background: var(--night);
+        color: var(--gold-l);
+        padding: 0.35rem 0.6rem;
+        border-radius: 3px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+      .al-card .ac-symbol {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        color: var(--rust);
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 0.2rem;
+      }
+      .al-card .ac-arrow {
+        text-align: center;
+        color: var(--gold);
+        margin: 0.2rem 0;
+        font-size: 0.9rem;
+      }
+      .al-card .ac-meaning {
+        font-size: 0.82rem;
+        color: var(--muted);
+        text-align: center;
+        font-style: italic;
+      }
+      hr.dv {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 1.2rem 0;
+      }
+      @media print {
+        .nav {
+          display: none;
+        }
+        .sec {
+          display: block !important;
+        }
+        .qa,
+        .sol {
+          display: block !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="hero-lbl">Gottfried Keller · 1874 · BMS Winterthur · Lehrperson L. Wihler</div>
+      <h1><em>Kleider machen Leute</em></h1>
+      <div class="hero-sub">Vollständiger Prüfungslernguide · Alle Materialien integriert · Mit Lösungen</div>
+      <div class="hero-tags">
+        <span class="ht">Inhalt & ZOPEF</span><span class="ht">Erzählanalyse</span><span class="ht">Allegorie</span>
+        <span class="ht">Figuren & Nettchen</span><span class="ht">Novelle</span
+        ><span class="ht">Realismus & Fontane</span> <span class="ht">Autor Keller</span
+        ><span class="ht">Prüfungsübungen</span><span class="ht">Lektürekontrolle</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nb active" onclick="show('inhalt', this)">📖 Inhalt</button>
+      <button class="nb" onclick="show('zopef', this)">🗂 ZOPEF</button>
+      <button class="nb" onclick="show('erzaehlung', this)">📐 Erzählanalyse</button>
+      <button class="nb" onclick="show('allegorie', this)">🎭 Allegorie & Symbole</button>
+      <button class="nb" onclick="show('figuren', this)">👤 Figuren</button>
+      <button class="nb" onclick="show('novelle', this)">📜 Novelle</button>
+      <button class="nb" onclick="show('realismus', this)">🏛 Realismus</button>
+      <button class="nb" onclick="show('autor', this)">✍️ Autor</button>
+      <button class="nb" onclick="show('uebungen', this)">✏️ Übungen</button>
+      <button class="nb" onclick="show('kontrolle', this)">✅ Lektürekontrolle</button>
+    </nav>
+
+    <main>
+      <!-- =================== 01 INHALT =================== -->
+      <div id="inhalt" class="sec active">
+        <div class="sh">
+          <div class="num">01 — Inhalt</div>
+          <h2>Handlungsübersicht</h2>
+          <p>Vollständige Inhaltsangabe mit Seitenangaben (Reclam)</p>
+        </div>
+
+        <div class="hl">
+          <strong>Kernthema:</strong> Der mittellose Schneider Wenzel Strapinski wird durch seinen eleganten Mantel für
+          einen polnischen Grafen gehalten. Das Missverständnis wächst zur schweigend geduldeten Lüge – bis zur
+          öffentlichen Entlarvung. Am Ende siegt echte Liebe über gesellschaftlichen Schein.
+        </div>
+
+        <div class="card">
+          <div class="ct">📐 Aufbau – Einem Drama ähnlich (5 Akte)</div>
+          <div class="dr">
+            <div class="ds d1">
+              <div class="dn">Akt 1</div>
+              <div class="dd">Exposition</div>
+              <div class="dk">Strapinski verlässt Seldwyla, Kutsche, Ankunft Goldach (S.3–5)</div>
+            </div>
+            <div class="ds d2">
+              <div class="dn">Akt 2</div>
+              <div class="dd">Steigerung</div>
+              <div class="dk">Nimmt Grafenrolle an, verliebt sich in Nettchen, innerer Konflikt (S.5–31)</div>
+            </div>
+            <div class="ds d3">
+              <div class="dn">Akt 3</div>
+              <div class="dd">Peripetie</div>
+              <div class="dk">Entlarvung beim Schlittenfest durch Seldwyler (S.37–40)</div>
+            </div>
+            <div class="ds d4">
+              <div class="dn">Akt 4</div>
+              <div class="dd">Retard. Moment</div>
+              <div class="dk">Flucht in Schneesturm – man denkt, es kommt nicht gut (S.40–42)</div>
+            </div>
+            <div class="ds d5">
+              <div class="dn">Akt 5</div>
+              <div class="dd">Happy End</div>
+              <div class="dk">Nettchens Entscheidung, Heirat, Schneideratelier in Seldwyla (S.42–58)</div>
+            </div>
+          </div>
+          <div class="ib" style="margin-bottom: 0">
+            <strong>Innerer Konflikt (Strapinski):</strong> Identitätskrise – soll er die Täuschung aufklären?
+            Schlechtes Gewissen vs. Geltungssucht. <strong>Äusserer Konflikt:</strong> Strapinski vs. Böhni (beide
+            lieben Nettchen) / Seldwyler vs. Goldacher (Arm vs. Reich).
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">🚶 Akt 1: Exposition (S. 3–5)</div>
+          <ul>
+            <li>
+              Wenzel Strapinski, armer Schneider aus <strong>Seldwyla</strong>, verlässt die Stadt ohne Stelle und ohne
+              Geld
+            </li>
+            <li>
+              Setzt sich erschöpft in eine herrschaftliche Kutsche – die fährt <em>ohne sein Zutun</em> ab (Passivität
+              als Grundmotiv)
+            </li>
+            <li>
+              Erscheint in Goldach elegant gekleidet (Mantel, Pelzkragen, Pelzmütze) → wird sofort für
+              <strong>polnischen Grafen</strong> gehalten
+            </li>
+            <li>Ankunft im <strong>Gasthof zur Waage</strong> in Goldach (kleine, reiche Stadt)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="ct">🎭 Akt 2: Steigerung – Das Spiel geht weiter (S. 5–31)</div>
+          <ul>
+            <li>
+              <strong>S.5–12:</strong> Wirt und Köchin halten ihn für Grafen → fürstliche Bewirtung. Kutscher (S.11
+              unten) behauptet: «Er ist ein Graf» → verstärkt Täuschung
+            </li>
+            <li><strong>S.12–18:</strong> Amtsherr lädt ihn ein. Gesellschaftlicher Aufstieg; er trifft Nettchen</li>
+            <li>
+              <strong>S.18–27:</strong> Verliebt sich in Nettchen (und sie in ihn). Überlegt mehrfach zu fliehen –
+              bleibt aber wegen ihr. Innerer Konflikt verschärft sich.
+            </li>
+            <li>
+              <strong>S.27–31:</strong> Verlobungsfest wird geplant. Schlittenzug von Goldach und Seldwyla begegnen sich
+            </li>
+            <li>
+              <strong>Böhni (S.16–17):</strong> Zweifelt als Einziger, testet ihn, verrät ihn aber nicht → macht sich
+              mitschuldig
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="ct">🌨 Akt 3: Peripetie – Entlarvung (S. 37–40)</div>
+          <ul>
+            <li>Beim <strong>Schlittenfest / Verlobungsfest</strong> erscheinen Seldwyler, die Strapinski kennen</li>
+            <li>Sie entlarven ihn öffentlich als Schneider – grosser Skandal</li>
+            <li>Nettchen ist entsetzt; Strapinski flüchtet zu Fuss in den Schneesturm</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="ct">❄️ Akt 4 + 5: Auflösung (S. 40–58)</div>
+          <ul>
+            <li>Nettchen hält Kutsche an, sucht Strapinski im Schnee, fordert vollständige Wahrheit</li>
+            <li>Strapinski gesteht alles. Nettchen realisiert (S.50/51): Sie liebt ihn als Person</li>
+            <li><strong>Gegenüber Wenzel (S.51):</strong> vergibt ihm, liebt ihn trotz allem</li>
+            <li><strong>Gegenüber dem Vater (S.53, Z.26–S.54):</strong> setzt sich durch, standfest</li>
+            <li>
+              <strong>Gegenüber den Seldwylern (S.52, S.55, Z.23ff.):</strong> kühl, plant Rache, übt sie später aus
+            </li>
+            <li>
+              <strong>Letzte Zeile S.58:</strong> «Undank/Rache» bezieht sich auf die Rache an den Seldwylern – Nettchen
+              plant vorausschauend (vgl. S.52) und zeigt damit ihren starken Willen
+            </li>
+            <li>Sie heiraten; leben glücklich in Seldwyla, ziehen später nach Goldach zurück</li>
+          </ul>
+          <div class="ib" style="margin-bottom: 0">
+            <strong>Was realisiert Strapinski S.50/51?</strong> Er erkennt, dass er Nettchen wirklich liebt und dass er
+            sie durch seine Feigheit/Passivität beinahe für immer verloren hätte. Die Erkenntnis: Echter Charakter zählt
+            mehr als gesellschaftliche Rolle.
+          </div>
+        </div>
+
+        <div class="tc">
+          <div class="card" style="margin-bottom: 0">
+            <div class="ct">📍 Schauplätze</div>
+            <ul>
+              <li><strong>Seldwyla</strong> – Herkunft Strapinskis; träge, abgeschottete Kleinstadt</li>
+              <li><strong>Landstrasse</strong> – Aufbruch und Zufallsort</li>
+              <li><strong>Gasthof zur Waage, Goldach</strong> – erste Täuschungsszene</li>
+              <li><strong>Gut des Amtsherrn</strong> – gesellschaftlicher Aufstieg</li>
+              <li><strong>Schlittenzug / Feststrasse</strong> – Peripetie, Entlarvung</li>
+              <li><strong>Schneesturm / Feld</strong> – retardierendes Moment</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-bottom: 0">
+            <div class="ct">❓ 5 Konkrete Textfragen (Folien S.9)</div>
+            <ul>
+              <li>
+                <strong>Wirt + Kälte (S.8, Z.11):</strong> Strapinski zieht Mantel nicht aus → Wirt denkt, ihm sei kalt
+              </li>
+              <li><strong>Warum isst er (S.8ff.):</strong> Hunger überwindet Scham</li>
+              <li><strong>Kutscher = Graf (S.11 unten):</strong> Will sich/seinen Herrn nicht blamieren</li>
+              <li><strong>Pferde lenken (S.14):</strong> Als Handwerker hatte er früher Umgang mit Pferden</li>
+              <li>
+                <strong>Böhni zweifelt (S.16–17, Z.27):</strong> Verrät ihn nicht – testet ihn, eigene Interessen
+                (Nettchen), macht sich mitschuldig
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /inhalt -->
+
+      <!-- =================== 02 ZOPEF =================== -->
+      <div id="zopef" class="sec">
+        <div class="sh">
+          <div class="num">02 — ZOPEF</div>
+          <h2>ZOPEF als Lesestrategie</h2>
+          <p>Zeit – Ort – Personen – Ereignisse – Fazit/Fragen · Aus den Unterrichtsfolien</p>
+        </div>
+
+        <div class="ib">
+          <strong>Was ist ZOPEF?</strong> Eine Lesestrategie: Beim Lesen markierst du systematisch fünf Kategorien. So
+          behältst du den Überblick und kannst gezielt nach Infos suchen (= Scanning). Verwandt mit Skimming (erste
+          Übersicht) und Close Reading (genaue Analyse).
+        </div>
+
+        <div class="zg">
+          <div class="zc zz">
+            <div class="zl">Z</div>
+            <div class="zw">Zeit</div>
+            <p>November (Herbst/Winter). Schlittenfest = Fasnacht. Handlung mehrere Monate.</p>
+          </div>
+          <div class="zc zo">
+            <div class="zl">O</div>
+            <div class="zw">Ort</div>
+            <p>Seldwyla → Landstrasse → Goldach (kleine, reiche Stadt) → Gasthof «Zur Waage» → Gut des Amtsherrn</p>
+          </div>
+          <div class="zc zp">
+            <div class="zl">P</div>
+            <div class="zw">Personen</div>
+            <p>Strapinski (armer Schneider), Nettchen, Amtsherr, Kutscher, Wirt & Köchin, Böhni, Seldwyler</p>
+          </div>
+          <div class="zc ze">
+            <div class="zl">E</div>
+            <div class="zw">Ereignisse</div>
+            <p>
+              Ankunft Goldach → für Grafen gehalten → verliebt sich in Nettchen → Verlobung → Entlarvung → Flucht →
+              Heirat
+            </p>
+          </div>
+          <div class="zc zf">
+            <div class="zl">F</div>
+            <div class="zw">Fazit</div>
+            <p>
+              Ist Strapinski schuldig? Was sagt die Geschichte über die Gesellschaft? Warum liebt Nettchen ihn wirklich?
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">👤 Strapinski – Personenbeschreibung S. 3–5, Z. 18</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Aussehen</th>
+                <th>Allgemeine Merkmale / Soziale Stellung</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Schwarzer Radmantel mit Pelzkragen</td>
+                <td>Armer Schneider – besitzt nur einen <strong>Fingerhut</strong></td>
+              </tr>
+              <tr>
+                <td>Polnische Pelzmütze</td>
+                <td>Handwerklich begabt; reist auf Stellensuche</td>
+              </tr>
+              <tr>
+                <td>Lange schwarze Haare</td>
+                <td>Passiv, träumerisch, introvertiert</td>
+              </tr>
+              <tr>
+                <td>Sorgfältig gepflegtes Schnurrbärtchen</td>
+                <td>Gepflegtes Äusseres <em>trotz</em> tiefer Armut</td>
+              </tr>
+              <tr>
+                <td>Stiller, würdevoller Auftritt</td>
+                <td>Polnisch → «fremdländisch», wirkt exotisch auf Goldacher</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <strong>Fazit:</strong> Sein Äusseres entspricht <em>nicht</em> seiner sozialen Stellung. Der Mantel
+                  und sein Auftreten täuschen über seine Armut hinweg. Genau das ist der Kern des Konflikts: Schein ≠
+                  Sein.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="ct">🎭 Verwechslung – S. 5–12: Wie entsteht die Täuschung?</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Strapinski: Verhalten & Handlungen</th>
+                <th>Wirt & Köchin: Reaktion & Interpretation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Zieht Mantel <em>nicht</em> aus (Scham: hat nichts darunter)</td>
+                <td>Denken, ihm sei kalt → hoher Gast braucht Wärme (S.8, Z.11)</td>
+              </tr>
+              <tr>
+                <td>Schweigt würdevoll – sagt kaum etwas</td>
+                <td>Interpretieren Schweigen als adlige Zurückhaltung</td>
+              </tr>
+              <tr>
+                <td>Isst aus Hunger zögernd und langsam</td>
+                <td>Halten zögerliches Essen für aristokratische Bescheidenheit</td>
+              </tr>
+              <tr>
+                <td>Widerspricht der Bezeichnung «Graf» nicht</td>
+                <td>Bestätigen einander gegenseitig das «Offensichtliche»</td>
+              </tr>
+              <tr>
+                <td>Kutscher behauptet von sich aus: «Er ist ein Graf» (S.11)</td>
+                <td>Wirt glaubt dem Kutscher unhinterfragt</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <strong>Schlüsseleinsicht:</strong> Strapinski lügt nicht aktiv – er schweigt. Die Goldacher
+                  <em>wollen</em> glauben. Die Täuschung entsteht gemeinsam: Strapinski (Passivität + Feigheit) +
+                  Goldacher (Naivität + Eitelkeit).
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /zopef -->
+
+      <!-- =================== 03 ERZÄHLANALYSE =================== -->
+      <div id="erzaehlung" class="sec">
+        <div class="sh">
+          <div class="num">03 — Erzählanalyse</div>
+          <h2>Erzähltheorie nach Petersen</h2>
+          <p>Alle Kategorien mit Seitenangaben aus «KmL» – prüfungsfertig</p>
+        </div>
+
+        <div class="ib">
+          <strong>Aufbau der Erzählanalyse nach Petersen:</strong> Erzählform → Räumlich-zeitlicher Standort →
+          Erzählperspektive → Erzählhaltung → Erzählverhalten → Darbietungsformen
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 22%">Kategorie</th>
+              <th style="width: 28%">Begriff + Definition</th>
+              <th>Nachweis in «KmL» (mit Seitenzahl)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Erzählform</strong></td>
+              <td>Er-/Sie-Form (heterodiegt. Erzähler)</td>
+              <td>«Er zog seinen Mantel fester…» – durchgehend Er-Form. Erzähler ≠ Figur.</td>
+            </tr>
+            <tr>
+              <td><strong>Räuml.-zeitl. Standort</strong></td>
+              <td><strong>Olympischer Standort:</strong> ausserhalb des Geschehens, Überblick über Raum und Zeit</td>
+              <td>
+                Ganz zu Beginn: Vogelperspektive auf Seldwyla / Goldach. Erzähler zoomt dann näher ran (Wirthausszene =
+                personaler Blick)
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Erzählperspektive</strong></td>
+              <td><strong>Aussensicht:</strong> äussere Beschreibungen von Figuren und Orten</td>
+              <td>S.3–5: Strapinskis Äusseres; S.26, Z.23: Beschreibung der Stadt Goldach</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><strong>Innensicht:</strong> Kenntnis der Gedanken/Gefühle der Figuren</td>
+              <td>Wenzels schlechtes Gewissen (S.27); Melchiors Gedanken (S.16/17); Nettchens Gefühle (S.19)</td>
+            </tr>
+            <tr>
+              <td><strong>Erzählhaltung</strong></td>
+              <td><strong>Humorvoll-ironisch:</strong> Erzähler lacht über Figuren mit Distanz</td>
+              <td>
+                S.4: Strapinski als «Märtyrer» – ironische Übertreibung. Erzähler macht sich über naive Goldacher
+                lustig.
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><strong>Urteilend / moralisch:</strong> Erzähler bewertet Verhalten direkt</td>
+              <td>S.8, Z.10: «abschüssiger Weg des Bösen» – klare moralische Wertung des Erzählers</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><strong>Verständnisvoll</strong> gegenüber Strapinski</td>
+              <td>Erzähler erklärt Strapinskis Passivität mit Verständnis; nennt ihn «kein Betrüger von Natur»</td>
+            </tr>
+            <tr>
+              <td><strong>Erzählverhalten</strong></td>
+              <td><strong>Auktorial:</strong> allwissend, kommentierend, über den Figuren stehend</td>
+              <td>S.27: Erzähler kennt Gedanken aller Figuren gleichzeitig; kommentiert und wertet</td>
+            </tr>
+            <tr>
+              <td><strong>Darbietungsformen</strong></td>
+              <td><strong>Direkte Rede</strong></td>
+              <td>S.18, Z.26: wörtliche Gespräche zwischen Figuren (in Anführungszeichen)</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><strong>Erlebte Rede:</strong> Gedanken der Figur in Er/Sie-Form, ohne «sie dachte»</td>
+              <td>S.19, Z.5–9: Nettchens Gedanken ohne Erzählermarkierung</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><strong>Erzählerbericht / Beschreibung</strong></td>
+              <td>
+                S.26, Z.23: Stadtbeschreibung; S.26, Z.27–S.27, Z.10: Erzählerkommentar zu Strapinskis innerem Zustand
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="hl">
+          <strong>Merksatz:</strong> Der Erzähler in «KmL» ist <em>auktorial</em> – er weiss alles, kommentiert und
+          ironisiert. Seine Ironie richtet sich vor allem gegen die <strong>Goldacher</strong> (Adelsvergötterung,
+          Naivität), während er Strapinski mit Verständnis und milder Ironie behandelt. Das ist typisch für den
+          <strong>Poetischen Realismus</strong>.
+        </div>
+
+        <div class="card">
+          <div class="ct">🔎 Textstelle S. 26, Z. 27 – S. 27, Z. 10 (Schlüsselstelle Erzählanalyse)</div>
+          <p style="margin-bottom: 0.6rem">Diese Textstelle zeigt das auktoriale Erzählverhalten besonders deutlich:</p>
+          <ul>
+            <li>Der Erzähler schildert Strapinskis <strong>innere Gedanken und Gewissensbisse</strong> (Innensicht)</li>
+            <li>Gleichzeitig kommentiert er die Situation aus der Aussenperspektive (Wechsel Innen-/Aussensicht)</li>
+            <li>Erlebte Rede: Strapinskis Gedanken ohne Erzählermarkierung</li>
+            <li>
+              Typisch auktorial: Der Erzähler weiss mehr als alle Figuren – er weiss sogar, wie Strapinski «wirklich»
+              ist
+            </li>
+          </ul>
+          <div class="qb">
+            Schlüsselwörter in dieser Textstelle: Scham, Selbstbetrug, Liebe, Feigheit, innere Zerrissenheit → der
+            Erzähler macht den moralischen Konflikt sichtbar, ohne ihn zu verurteilen
+          </div>
+        </div>
+      </div>
+      <!-- /erzaehlung -->
+
+      <!-- =================== 04 ALLEGORIE & SYMBOLE =================== -->
+      <div id="allegorie" class="sec">
+        <div class="sh">
+          <div class="num">04 — Allegorie & Symbole</div>
+          <h2>Symbolik, Metaphern, Allegorien</h2>
+          <p>Schlittenfahrt, Tanz, Mantel, Fortuna – prüfungsrelevante Stellen</p>
+        </div>
+
+        <div class="ib">
+          <strong>Allegorie (Folie 23):</strong> Kommt aus dem Griechischen: «bildlich reden, anders sagen». Ein
+          Sprachbild: Abstrakte Begriffe und Gedankengänge (= das Gemeinte) werden sinnbildlich dargestellt (= das
+          Gesagte).<br /><br />
+          <strong>Unterschied:</strong> Metapher = kurzes Bild («der Löwe» = Mut). Allegorie = ausgedehnte Bildlichkeit,
+          die über längere Strecke durchgehalten wird. Symbol = ein Gegenstand/Bild, das wiederkehrt und tiefere
+          Bedeutung trägt (z.B. Mantel).
+        </div>
+
+        <div class="card">
+          <div class="ct">📊 Allegorie-Tabelle (aus Unterricht Folie 24)</div>
+          <div class="al-grid">
+            <div class="al-card">
+              <div class="ac-top">Gesagtes → Gemeintes</div>
+              <div class="ac-symbol">Sensenmann</div>
+              <div class="ac-arrow">↓</div>
+              <div class="ac-meaning">Tod</div>
+            </div>
+            <div class="al-card">
+              <div class="ac-top">Gesagtes → Gemeintes</div>
+              <div class="ac-symbol">Justitia (Waage + Schwert)</div>
+              <div class="ac-arrow">↓</div>
+              <div class="ac-meaning">Gerechtigkeit</div>
+            </div>
+            <div class="al-card">
+              <div class="ac-top">Gesagtes → Gemeintes (KmL)</div>
+              <div class="ac-symbol">Fortuna am Schlitten</div>
+              <div class="ac-arrow">↓</div>
+              <div class="ac-meaning">Glück/Schicksal – das Rad des Schicksals dreht sich</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">🛷 Allegorie-Fragen zum Schlittenfest (Folie 26) – Prüfungsrelevant!</div>
+          <p style="margin-bottom: 0.7rem">Die Lehrperson hat explizit folgende vier Fragen gestellt:</p>
+
+          <div class="qi">
+            <div class="qq" onclick="tq(this)">
+              <strong
+                >a) Warum hat Melchior Böhni eine Figur am Schlitten, die fast 30 Jahre auf ihr Glück wartete?</strong
+              ><span class="arr">▼</span>
+            </div>
+            <div class="qa">
+              Böhni liebt Nettchen schon seit langer Zeit – er wartet geduldig auf sein «Glück» (= Nettchen). Die Figur
+              am Schlitten ist eine <strong>Allegorie auf sein eigenes Schicksal</strong>: Er ist derjenige, der
+              jahrzehntelang wartet und hofft. Die Szene zeigt auch seine Selbstgefälligkeit: Er inszeniert sich selbst
+              als geduldiger Verehrer. Die Figur macht seinen Anspruch auf Nettchen sichtbar, ohne es direkt
+              auszusprechen.
+            </div>
+          </div>
+
+          <div class="qi">
+            <div class="qq" onclick="tq(this)">
+              <strong>b) Warum und wie macht der Seldwyler Festzug den Goldacher lächerlich?</strong
+              ><span class="arr">▼</span>
+            </div>
+            <div class="qa">
+              Der Seldwyler Schlittenzug (S.32f., Z.30) ist eine bewusste <strong>Parodie und Satire</strong> auf den
+              pompösen Goldacher Zug. Die Seldwyler ahmen ihn nach, übertreiben ihn ins Groteske und stellen die
+              Selbstverliebtheit und den Prunk der Goldacher bloss. Das Gesagte (ein bunter Zug) bedeutet das Gemeinte:
+              die Lächerlichkeit von Statusdünkel und Aufgeblasenheit. Keller kritisiert so durch Allegorie die
+              Eitelkeit des Bürgertums.
+            </div>
+          </div>
+
+          <div class="qi">
+            <div class="qq" onclick="tq(this)">
+              <strong>c) Warum ist am Schlitten von Wenzel und Nettchen die Fortuna angebracht?</strong
+              ><span class="arr">▼</span>
+            </div>
+            <div class="qa">
+              Fortuna ist die <strong>römische Glücksgöttin</strong>, die das Schicksal dreht (Fortuna-Rad). Die
+              Allegorie ist vielschichtig: Für Strapinski ist die Fahrt mit Nettchen der Höhepunkt seines Glücks – aber
+              das Glücksrad dreht sich weiter (bald folgt die Entlarvung). Die Fortuna kündigt also schon den
+              bevorstehenden Absturz an. Gleichzeitig steht sie für die Unberechenbarkeit des Schicksals: Strapinski
+              hatte das Glück nicht verdient und kann es nicht festhalten. → Das «Gemeinte»: Schein-Glück ist
+              vergänglich; nur echtes, ehrliches Glück (am Ende mit Nettchen) ist dauerhaft.
+            </div>
+          </div>
+
+          <div class="qi">
+            <div class="qq" onclick="tq(this)">
+              <strong>d) Welche Bedeutung hat der Tanz der Schneider? (Reclam S.35, Z.1f)</strong
+              ><span class="arr">▼</span>
+            </div>
+            <div class="qa">
+              Der Tanz der Schneider ist eine <strong>doppelte Allegorie</strong>: Einerseits tanzen buchstäblich
+              Schneider – also Menschen aus Strapinskis eigentlichem Stand. Das ist eine deutliche Anspielung auf seine
+              wahre Identität, mitten in der Verlobungsfeier. Andererseits ist der Tanz eine
+              <strong>Allegorie auf das gesellschaftliche Spiel</strong>: Wer tanzt, gehört dazu – aber die Seldwyler
+              zeigen durch diesen Tanz, dass sie die «Wahrheit» kennen und sie bald enthüllen werden. Der Tanz der
+              Schneider kündigt symbolisch die Entlarvung an: Das «Gesagte» (Tanz) bedeutet das «Gemeinte» (Strapinskis
+              wahrer Stand tritt ans Licht).
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">🧥 Der Mantel – Dingsymbol (Falke nach Heyse)</div>
+          <ul>
+            <li>
+              <strong>Symbol des Scheins:</strong> Mantel → «Graf». Kleidung als sozialer Code – äusseres Zeichen für
+              innere Stellung.
+            </li>
+            <li>
+              <strong>Ironie:</strong> Ein Schneider – der Kleider <em>macht</em> – wird durch Kleidung zur falschen
+              Person. Seine Arbeit wird zu seiner Lüge.
+            </li>
+            <li>
+              <strong>Fingerhut vs. Mantel:</strong> Fingerhut = Armut (echter Strapinski), Mantel = Traum vom Reichtum
+              (falscher Graf). Beide sind Dingsymbole (aus Lösungen).
+            </li>
+            <li>
+              <strong>Dingsymbol-Probe (Heyse):</strong> «Die Geschichte des Mantels, der einen Schneider zum Grafen
+              machte» ✔ – funktioniert als Kurzzusammenfassung.
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="ct">🛷 Die Kutsche & der Schlitten – Metaphern der Passivität</div>
+          <ul>
+            <li>
+              <strong>Kutsche (Anfang):</strong> Strapinski sitzt passiv – das Schicksal trägt ihn. Er steuert sein
+              Leben nicht. Metapher: Die gesellschaftliche Erwartung fährt ihn mit, ohne dass er einwilligt.
+            </li>
+            <li>
+              <strong>Schlitten:</strong> Dasselbe Motiv wiederholt sich: der Schlitten rast unkontrollierbar voran, wie
+              sein gesellschaftlicher Aufstieg. Gleichzeitig Höhepunkt der Liebe – kurz vor dem Absturz (Ironie).
+            </li>
+            <li>
+              <strong>Strukturelles Leitmotiv:</strong> Zweimal wird er von einem Fahrzeug «mitgerissen» – er steuert
+              nie selbst. Das ist das Kernproblem seiner Passivität.
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="ct">🌨 Schnee und Kälte – Wahrheit und Reinigung</div>
+          <ul>
+            <li>
+              <strong>Entlarvung im Schnee:</strong> Die Wahrheit kommt im Schneesturm ans Licht → Schnee als Symbol der
+              Reinigung, der nichts verbergen kann
+            </li>
+            <li>
+              <strong>Todesgefahr:</strong> Strapinski droht zu erfrieren → gesellschaftliche Ächtung als existenzielle
+              Bedrohung (retardierendes Moment)
+            </li>
+            <li><strong>Neugeburt:</strong> Nettchen findet ihn im Schnee → Auferstehung zu ehrlichem, neuem Leben</li>
+          </ul>
+        </div>
+
+        <div class="hl">
+          <strong>Übergeordnete Symbolebene:</strong> Alle Symbole kreisen um <strong>Schein ↔ Sein</strong> und
+          <strong>Aussen ↔ Innen</strong>. Mantel (Schein), Fingerhut (Sein), Kutsche/Schlitten
+          (Passivität/Kontrollverlust), Fortuna (Schicksal/Glück), Schneider-Tanz (Wahrheit), Schnee (Reinigung) bilden
+          ein kohärentes Symbolnetz.
+        </div>
+      </div>
+      <!-- /allegorie -->
+
+      <!-- =================== 05 FIGUREN =================== -->
+      <div id="figuren" class="sec">
+        <div class="sh">
+          <div class="num">05 — Figuren</div>
+          <h2>Figurencharakterisierung & Konstellation</h2>
+          <p>Alle Figuren mit Textstellen · Nettchen-Analyse vollständig aus den Folien</p>
+        </div>
+
+        <div class="fk">
+          <div
+            style="
+              font-size: 0.68rem;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              color: var(--muted);
+              margin-bottom: 0.7rem;
+            "
+          >
+            Figurenkonstellation
+          </div>
+          <div class="fc">Wenzel Strapinski («Graf»)</div>
+          <div class="farr">❤️ echte Liebe / Verlobung / Heirat am Ende</div>
+          <div class="fr"><span class="fs">Nettchen Müller</span></div>
+          <div class="farr">👨 Vater von Nettchen / Amtsherr (will sie zurückholen nach Entlarvung)</div>
+          <div class="fr"><span class="fnu">Amtsherr / Stadtschreiber Müller</span></div>
+          <div class="farr">🧐 zweifelt von Anfang an – testet ihn, verrät ihn aber nicht (macht sich mitschuldig)</div>
+          <div class="fr"><span class="fnu">Melchior Böhni (Nebenbuhler, S.16–17)</span></div>
+          <div class="farr">⚔️ entlarven ihn aus Schadenfreude beim Schlittenfest</div>
+          <div class="fr"><span class="fa">Die Seldwyler (Gruppe)</span></div>
+          <div class="farr">🤝 naiv, gutgläubig, selbstgefällig – Kollektivfigur, werden am Ende blamiert</div>
+          <div class="fr">
+            <span class="fnu">Goldacher Bürger</span><span class="fnu">Wirt (Gasthof zur Waage)</span
+            ><span class="fnu">Köchin</span><span class="fnu">Kutscher</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">🧥 Wenzel Strapinski – Protagonist & Entwicklungsfigur</div>
+          <div class="tc">
+            <div>
+              <p style="font-size: 0.8rem; font-weight: 600; color: var(--sage); margin-bottom: 0.4rem">
+                ✅ Positive Eigenschaften
+              </p>
+              <ul>
+                <li>Sensitiv, träumerisch, introvertiert</li>
+                <li>Handwerklich begabt (Schneider)</li>
+                <li>Aufrichtige, tiefe Liebe zu Nettchen</li>
+                <li>Ehrenhaft – gesteht am Ende alles</li>
+                <li>Kein aktiver Betrüger: schweigt, lügt nicht</li>
+              </ul>
+            </div>
+            <div>
+              <p style="font-size: 0.8rem; font-weight: 600; color: var(--rust); margin-bottom: 0.4rem">
+                ❌ Schwächen / Fehler
+              </p>
+              <ul>
+                <li>Feige – korrigiert den Irrtum nie</li>
+                <li>Passivität als moralisches Versagen</li>
+                <li>Lässt sich gesellschaftlich mitreissen</li>
+                <li>Geltungssucht / Versuchung des Aufstiegs</li>
+                <li>Identitätsschwäche</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="dv" />
+          <p style="font-size: 0.86rem">
+            <strong>Entwicklung:</strong> Passiver, mittelloser Träumer → selbstbewusster, ehrenhafter Bürger mit
+            eigenem Atelier. Die erzwungene Entlarvung und Nettchens Liebe sind die Katalysatoren seiner Reifung.
+          </p>
+          <div class="qb">
+            «Er war kein Lügner und kein Betrüger von Natur – er hatte sich nur nicht wehren können gegen die Welle, die
+            ihn emportrug.»
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">💛 Nettchen Müller – vollständige Charakterisierung (aus Folien 32+33)</div>
+          <p style="font-size: 0.86rem; margin-bottom: 0.7rem">
+            Leitfrage aus dem Unterricht:
+            <em
+              >«Ist Nettchen ein ‹Tussi›, das einen reichen Grafen heiraten will – oder eine emanzipierte Frau, die sich
+              durchsetzen kann?»</em
+            >
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Eigenschaft</th>
+                <th>Textstelle / Begründung</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Begeisterte Romantikerin</strong></td>
+                <td>S.19, Z.5–9: träumt von einem fremden Grafen (→ erlebte Rede)</td>
+              </tr>
+              <tr>
+                <td><strong>Wohlhabend, hoher Selbstwert</strong></td>
+                <td>Tochter eines reichen Amtsherrn, ist sich dem bewusst; lehnt Böhni ab</td>
+              </tr>
+              <tr>
+                <td><strong>Vorausschauend, intelligent, planend</strong></td>
+                <td>Plant und übt Rache an den Seldwylern aus (S.52, S.55, Z.23ff.); letzte Zeile S.58</td>
+              </tr>
+              <tr>
+                <td><strong>Hat Manieren, ist gebildet</strong></td>
+                <td>S.26 (Manieren); S.20, Z.18 (gebildet, plaudert gern)</td>
+              </tr>
+              <tr>
+                <td><strong>Aufs Äussere bedacht</strong></td>
+                <td>
+                  S.18: hübsch, viel Schmuck; will fremdländischen Grafen → aber: <em>Wandel</em>: am Ende zählt das
+                  Herz
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Hilfsbereit, kümmert sich</strong></td>
+                <td>S.44: hilft Wenzel nach der Entlarvung</td>
+              </tr>
+              <tr>
+                <td><strong>Emotional, zeigt Gefühle</strong></td>
+                <td>Weint als Wenzel vor der Verlobung gehen will (S.50); Neugier und Eifersucht (S.50)</td>
+              </tr>
+              <tr>
+                <td><strong>Starker eigener Wille, standfest</strong></td>
+                <td>S.53–55: setzt sich gegen Vater und Böhni durch; S.52: «aus tief entschlossener Seele»</td>
+              </tr>
+              <tr>
+                <td><strong>Schlank, stolz</strong></td>
+                <td>S.30: «schneeweiße Gestalt»</td>
+              </tr>
+              <tr>
+                <td><strong>Reichtum ist ihr wichtig</strong></td>
+                <td>S.52: Besitz und Erbe spielen eine Rolle</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="gb" style="margin-top: 0.8rem; margin-bottom: 0">
+            <strong>Fazit Nettchen:</strong> Sie ist <em>keine Tussi</em>. Sie beginnt als verwöhnte Romantikerin, die
+            einen reichen Grafen will – entwickelt sich aber zur <strong>emanzipierten Frau</strong>, die eigenständige
+            Entscheidungen trifft, sich gegen Vater und Gesellschaft stellt und den Charakter über den Stand stellt.
+            <strong>Nettchen ist die Starke in der Beziehung</strong> – sie redet viel, weiss was sie will. Im 19.
+            Jahrhundert ist das ausserordentlich.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">🧐 Melchior Böhni – der stille Zweifler und Nebenbuhler</div>
+          <ul>
+            <li>Einzige Figur, die von Anfang an zweifelt (S.16–17, Z.27)</li>
+            <li>Liebt Nettchen selbst → hat Figur am Schlitten, die 30 Jahre auf ihr Glück wartete (= er selbst)</li>
+            <li>Verrät Strapinski <em>nicht</em> → macht sich mitschuldig; testet und beobachtet ihn</li>
+            <li>Repräsentiert dritte Position: weder blinder Gläubiger noch böswilliger Entlarver</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="ct">🏙 Die Goldacher – Satirische Kollektivfigur</div>
+          <ul>
+            <li>Repräsentieren Adelsvergötterung und Oberflächlichkeit des Schweizer Bürgertums</li>
+            <li>Sie <em>wollen</em> glauben – es schmeichelt ihrem Selbstbild, einen Grafen zu beherbergen</li>
+            <li>Werden am Ende blamiert: nicht als Opfer, sondern als <strong>Komplizen</strong></li>
+            <li>Kellers Hauptkritik gilt ihnen, nicht Strapinski</li>
+          </ul>
+        </div>
+
+        <div class="hl">
+          <strong>Haupt-Konflikte:</strong><br />
+          ① <em>Individuum vs. Gesellschaft</em> – Strapinski wird in eine Rolle gepresst; nur Nettchens individuelle
+          Entscheidung löst den Konflikt.<br />
+          ② <em>Schein vs. Sein</em> – das titelgebende Thema: Kleidung/Äusseres vs. Charakter/Inneres.<br />
+          ③ <em>Strapinski vs. Böhni</em> – beide lieben Nettchen (äusserer Liebeskonflikt).<br />
+          ④ <em>Seldwyla vs. Goldach</em> – Arm vs. Reich, Bescheidenheit vs. Hochmut.
+        </div>
+      </div>
+      <!-- /figuren -->
+
+      <!-- =================== 06 NOVELLE =================== -->
+      <div id="novelle" class="sec">
+        <div class="sh">
+          <div class="num">06 — Textsorte Novelle</div>
+          <h2>Merkmale der Novelle</h2>
+          <p>Vollständige Tabelle mit offiziellen Lösungen aus dem Unterricht</p>
+        </div>
+
+        <div class="hl">
+          <strong>Definition:</strong> Eine Novelle ist eine kürzere Erzählung in Prosaform (Epik). Sie konzentriert
+          sich auf ein <em>unerhörtes Ereignis</em>, hat straffe Handlung, wenige Figuren, Drama-ähnlichen Aufbau und
+          ein zentrales Dingsymbol. Als literarische Form in Deutschland ab 18. Jh. etabliert.
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Merkmal</th>
+              <th>Erfüllt?</th>
+              <th>Begründung in «KmL» (aus offiziellen Lösungen)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>Kürzere Erzählung, Epik</strong></td>
+              <td>✅ Ja</td>
+              <td>64 Seiten (Reclam), kürzer als ein Roman, länger als eine Kurzgeschichte. Prosaform.</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><strong>Ab 18. Jh. in Deutschland</strong></td>
+              <td>✅ Ja</td>
+              <td>1874 erschienen, Hochphase der deutschsprachigen Novellentradition (Poetischer Realismus)</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><strong>«Unerhörte Begebenheit» / Mittelpunktereignis</strong></td>
+              <td>✅ Ja</td>
+              <td>
+                Armer Schneider wird für polnischen Grafen gehalten + Enthüllung. Aussergewöhnlich, singulär. Eine
+                höhergestellte Dame heiratet einen armen Schneider → Heirat als zweite unerhörte Begebenheit.
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><strong>Wiederkehrendes Motiv / Leitmotiv</strong></td>
+              <td>✅ Ja</td>
+              <td>Mantel als Leitmotiv; Schein und Sein durchgehend als Motiv; Verwechslung / Täuschung</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><strong>Dingsymbol</strong></td>
+              <td>✅ Ja</td>
+              <td>
+                <strong>Fingerhut</strong> = Armut (echter Strapinski) / <strong>Mantel</strong> = Traum vom Reichtum,
+                Grafenleben (Dingsymbol nach Heyse)
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><strong>Schicksalswende</strong></td>
+              <td>✅ Ja</td>
+              <td>
+                ① Als er für Grafen gehalten wird (Aufstieg) ② Als die Lüge auffliegt (Enthüllung) ③ Als Nettchen sich
+                trotzdem für ihn entscheidet (Happy End)
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td><strong>Was passiert, steht im Vordergrund (nicht Psychologie)</strong></td>
+              <td>✅ Ja</td>
+              <td>
+                Verwechslung, Betrug, Lüge, Enthüllung – die Handlung dominiert. «Wenzel passieren Dinge.»
+                Charakterentwicklung spielt weniger Rolle.
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td><strong>Drama-ähnlicher Aufbau</strong></td>
+              <td>✅ Ja</td>
+              <td>
+                Akt 1: Exposition (Ankunft Goldach). Akt 2: Steigerung (Grafenrolle + innerer Konflikt). Akt 3:
+                Peripetie (Entlarvung). Akt 4: Retardierendes Moment (Flucht, Nettchen will zurückgeholt werden → fast
+                Krieg). Akt 5: Happy End (Erbe, selbstständig in Seldwyla).
+              </td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td><strong>Rahmenhandlung / Novellenzyklus</strong></td>
+              <td>✅ Ja</td>
+              <td>
+                Eingebettet in «Die Leute von Seldwyla» (10 Novellen). Seldwyla als verbindender Rahmen. «KmL» gehört zu
+                Teil II (1873–1875).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card">
+          <div class="ct">🦅 Heyses Falkentheorie – genau erklärt</div>
+          <p style="font-size: 0.86rem; margin-bottom: 0.6rem">
+            Paul Heyse formulierte: Jede Novelle braucht einen <strong>zentralen Konflikt</strong>, symbolisiert durch
+            ein Dingsymbol («Falken»). Aus Boccaccios Falkennovelle: Ein Ritter opfert seinen Falken – dieser steht am
+            Wendepunkt der Handlung.
+          </p>
+          <p style="font-size: 0.86rem">
+            <strong>In «KmL»:</strong> Der Mantel = «Falke». Probe:
+            <em>«Die Geschichte des Mantels, der einen Schneider zum Grafen machte – und was die Liebe damit tat.»</em>
+            ✔
+          </p>
+          <div class="qb">
+            Beachte: In den Lösungen werden <em>zwei</em> Dingsymbole genannt: Fingerhut (Armut, echter Strapinski) und
+            Mantel (Schein, falsche Rolle). Beide benennen!<cite>Aus offiziellen Lösungen des Dossiers</cite>
+          </div>
+        </div>
+      </div>
+      <!-- /novelle -->
+
+      <!-- =================== 07 REALISMUS =================== -->
+      <div id="realismus" class="sec">
+        <div class="sh">
+          <div class="num">07 — Epoche</div>
+          <h2>Poetischer Realismus (1848–1890)</h2>
+          <p>Fontanes Programm + Merkmale + Nachweis in «KmL» · Mit offiziellen Lösungen</p>
+        </div>
+
+        <div class="tc">
+          <div>
+            <div class="tl">
+              <div class="tli">
+                <div class="tly">ca. 1848–1890</div>
+                <div class="tlt">Epoche des <strong>Bürgerlichen / Poetischen Realismus</strong></div>
+              </div>
+              <div class="tli">
+                <div class="tly">1848</div>
+                <div class="tlt">
+                  Theodor Fontane verfasst das Programm: «Unsere lyrische und epische Poesie seit 1848»
+                </div>
+              </div>
+              <div class="tli">
+                <div class="tly">1874</div>
+                <div class="tlt">Keller: «Kleider machen Leute» (Teil II «Leute von Seldwyla»)</div>
+              </div>
+              <div class="tli">
+                <div class="tlt">
+                  Kontext: Industrialisierung, Bürgertum, Nationalstaatsbildung. Distanzierung von Romantik
+                  (Idealisierung) und Naturalismus (bloss Elend).
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="margin-bottom: 0">
+            <div class="ct">✍️ Wichtige Vertreter</div>
+            <ul>
+              <li><strong>Gottfried Keller</strong> (Schweiz) – «Leute von Seldwyla»</li>
+              <li>Theodor Fontane – «Effi Briest»</li>
+              <li>Theodor Storm – «Der Schimmelreiter»</li>
+              <li>Adalbert Stifter</li>
+              <li>Wilhelm Raabe</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">📋 Fontanes Programm – offizielle Lösungen zu den Dossier-Fragen</div>
+
+          <div class="hl" style="margin-bottom: 0.8rem">
+            <strong>a) Hauptmerkmale des Realismus nach Fontane (mind. 4 Aspekte):</strong><br /><br />
+            ① <em>Widerspiegelung alles wirklichen Lebens</em> – das Wahre, alle Kräfte und Interessen, «das Grösste wie
+            das Kleinste» (Kolumbus bis Wassertierchen).<br />
+            ② <em>Das Wahre, nicht bloss das Sinnliche</em> – «Der Realismus will das Wahre.»<br />
+            ③ <em>Künstlerische Formgebung</em> – das Leben = Marmorsteinbruch, der Künstler haut die Skulptur heraus.
+            «Greif hinein ins volle Menschenleben – aber mit künstlerischer Hand.»<br />
+            ④ <em>Das Leben je frischer, je besser</em> – Realismus liebt das Lebendige, Frische, Aktuelle.
+          </div>
+
+          <div class="hl" style="margin-bottom: 0.8rem">
+            <strong>b) Wovon distanziert sich der Realismus (nach Fontane)?</strong><br /><br />
+            ① <em>Nicht Elend und Misere</em> – «Misere ≠ Realismus!» Nicht bloss nackte Darstellung des Alltags und
+            seiner Schattenseiten (das wäre Naturalismus / Tendenzdichtung).<br />
+            ② <em>Nicht das Tote, Abgestorbene</em> – keine Rumpelkammern, keine Antiquitäten. Abstand von der Klassik,
+            die die Antike idealisierte.<br />
+            ③ Ausschluss von: <strong>Lüge, Forciertem, Nebelhaftem, Abgestorbenem</strong> (Fontanes vier
+            Ausschlussprinzipien).<br />
+            ④ Keine rückwärtsgewandte Verehrung der Klassik/Antike.
+          </div>
+
+          <div class="gb">
+            <strong>c) Was trifft bei Keller / «KmL» auch zu?</strong><br /><br />
+            ✅ <em>Widerspiegelung wirklichen Lebens:</em> Schweizer Kleinstadt, bürgerliches Milieu, glaubwürdige
+            Alltagssituation (ein Schneider, der aus der Armut ausbricht).<br />
+            ✅ <em>Künstlerische Formgebung:</em> Keller idealisiert nicht blind – er gestaltet den Stoff poetisch mit
+            Ironie und milder Satire.<br />
+            ✅ <em>Nicht bloss Elend:</em> «KmL» ist eine Komödie, kein sozialkritisches Elendsgemälde – die Probleme
+            werden gelöst, es gibt ein Happy End.<br />
+            ✅ <em>Gesellschaftskritik durch Ironie:</em> Keller kritisiert Standesdünkel und Oberflächlichkeit – aber
+            nicht verbittert, sondern mit Humor.
+          </div>
+        </div>
+
+        <div class="mg">
+          <div class="mc">
+            <h4>Wirklichkeitsnähe</h4>
+            <p>Schweizer Kleinstadt, bürgerliches Milieu, keine Überhöhung.</p>
+          </div>
+          <div class="mc">
+            <h4>Poetische Verklärung</h4>
+            <p>Realität wird poetisch gestaltet – Harmonie trotz Konflikten. Kein Naturalismus.</p>
+          </div>
+          <div class="mc">
+            <h4>Gesellschaftskritik (indirekt)</h4>
+            <p>Durch Ironie und Satire, nicht durch direkten Angriff.</p>
+          </div>
+          <div class="mc">
+            <h4>Innenleben der Figuren</h4>
+            <p>Psychologische Tiefe, erlebte Rede, glaubhafte Gefühle.</p>
+          </div>
+          <div class="mc">
+            <h4>Bürgerliches Milieu</h4>
+            <p>Handwerker, Beamte, Stadtschreiber als Protagonisten.</p>
+          </div>
+          <div class="mc">
+            <h4>Versöhnlicher Schluss</h4>
+            <p>Kein Untergang, kein Tragödie. Happy End – Moral siegt.</p>
+          </div>
+          <div class="mc">
+            <h4>Ironie und Humor</h4>
+            <p>Milde Ironie, kein Hass. Keller spottet, verurteilt nicht.</p>
+          </div>
+          <div class="mc">
+            <h4>Regionale Verankerung</h4>
+            <p>Seldwyla = satirischer Typus des Schweizer Kleinstädters.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">🔎 Prüfungsmodell: Textstelle + Realismus-Begründung (4 Punkte)</div>
+          <div class="hl" style="margin-bottom: 0.8rem">
+            <strong>Textstelle: Empfang in Goldach (S.5–12)</strong><br /><br />
+            <strong>① Gesellschaftskritik durch Ironie:</strong> Der Erzähler beschreibt die «kluge Einsicht» der
+            Goldacher ironisch → Kritik am Standesdünkel des Bürgertums.<br />
+            <strong>② Bürgerliches Milieu:</strong> Wirt, Köchin, Stadtschreiber – typische Realismus-Figuren, kein
+            Adel, kein Proletariat.<br />
+            <strong>③ Wirklichkeitsnähe:</strong> Die Szene ist zeitgenössisch und alltäglich glaubwürdig – kein
+            Märchen, keine Romantik.<br />
+            <strong>④ Poetische Verklärung:</strong> Das Elend Strapinskis (Armut, Hunger) wird nicht bitter oder
+            anklagend dargestellt, sondern mit Humor und Verständnis – «Läuterung» des rohen Stoffs.
+          </div>
+          <div class="gb" style="margin-bottom: 0">
+            <strong>Textstelle: Nettchens Entscheidung am Ende</strong><br /><br />
+            <strong>① Versöhnlicher Schluss:</strong> Kein Untergang – typisch Poetischer Realismus.<br />
+            <strong>② Innenleben:</strong> Nettchens psychologisch glaubwürdige, innere Entscheidung (keine romantische
+            Überhöhung).<br />
+            <strong>③ Moralischer Wertekodex:</strong> Tugend (echte Liebe, Ehrlichkeit) siegt – bürgerlicher
+            Wertekodex.<br />
+            <strong>④ Wirklichkeitsnähe:</strong> Arm heiratet Reich – das ist im 19. Jh. aussergewöhnlich, aber
+            glaubwürdig gestaltet.
+          </div>
+        </div>
+      </div>
+      <!-- /realismus -->
+
+      <!-- =================== 08 AUTOR =================== -->
+      <div id="autor" class="sec">
+        <div class="sh">
+          <div class="num">08 — Autor</div>
+          <h2>Gottfried Keller (1819–1890)</h2>
+          <p>Biografie, Werk, Seldwyla-Kontext</p>
+        </div>
+
+        <div class="tc">
+          <div class="card" style="margin-bottom: 0">
+            <div class="ct">📌 Steckbrief</div>
+            <ul>
+              <li><strong>Geb.:</strong> 19. Juli 1819 in Zürich</li>
+              <li><strong>Gest.:</strong> 15. Juli 1890 in Zürich</li>
+              <li>Schweizer Schriftsteller – bedeutendster des 19. Jh. der Schweiz</li>
+              <li>Staatsschreiber des Kantons Zürich (1861–1876)</li>
+              <li>Epoche: <strong>Poetischer Realismus (1848–1890)</strong></li>
+            </ul>
+          </div>
+          <div class="card" style="margin-bottom: 0">
+            <div class="ct">📚 Novellenzyklus «Die Leute von Seldwyla»</div>
+            <ul>
+              <li>Zweiteiliger Zyklus – 10 Novellen total</li>
+              <li>Teil I (5 Novellen): 1856 erschienen</li>
+              <li>Teil II (5 Novellen): 1873–1875, darunter «KmL»</li>
+              <li>Bis auf «Romeo und Julia» = Komödien mit satirischem Einschlag</li>
+              <li>«KmL» + «Romeo und Julia» = Weltliteratur, vielfach übersetzt, verfilmt</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">🏙 Was ist Seldwyla? (Offizieller Lösungstext)</div>
+          <div class="qb">
+            «Seldwyla bedeutet nach der älteren Sprache einen wonnigen und sonnigen Ort… die Gemeinde reich ist und die
+            Bürgerschaft arm, und zwar so, dass kein Mensch zu Seldwyla etwas hat und niemand weiß, wovon sie seit
+            Jahrhunderten eigentlich leben.»
+          </div>
+          <p style="font-size: 0.86rem; margin-top: 0.6rem"><strong>Offizielle Lösung aus dem Dossier:</strong></p>
+          <ul>
+            <li>Kleines Dorf – jeder kennt sich, konservativ, selbstversorgend</li>
+            <li>Hineingeboren, kein Weg hinaus – «alles bleibt wie es ist, sie hinterfragen es nicht»</li>
+            <li>Einfache Leute, kein Fortschrittsdenken, kein Drang zur Veränderung</li>
+            <li>
+              Sehr positive Darstellung des Ortes – ABER: keine Veränderung möglich, kein «rauhes Lüftchen» dringt
+              hinein → <strong>abgeschottet durch Mauer</strong>
+            </li>
+            <li>Stadt war nie zu «Höherem» bestimmt (Fluss zu weit weg)</li>
+          </ul>
+          <hr class="dv" />
+          <p style="font-size: 0.86rem">
+            <strong>Goldach – Assoziationen (offizielle Lösung):</strong> «Gold» = reiche Stadt, Menschen die Wert auf
+            Geld legen / «Ach» = ein Laut der Verzweiflung? → Goldach ist symbolisch aufgeladen: Reichtum und Aufstieg
+            (für Strapinski), aber auch Gefahr (er verliert sich dort).
+          </p>
+        </div>
+      </div>
+      <!-- /autor -->
+
+      <!-- =================== 09 ÜBUNGEN =================== -->
+      <div id="uebungen" class="sec">
+        <div class="sh">
+          <div class="num">09 — Übungen</div>
+          <h2>Prüfungsvorbereitende Übungen</h2>
+          <p>Erst selbst lösen – dann Lösung aufdecken</p>
+        </div>
+
+        <div class="ib">
+          💡 Strategie: Schreibe jede Antwort zuerst kurz auf Papier, dann aufdecken und vergleichen. Was fehlte →
+          nochmal wiederholen.
+        </div>
+
+        <div style="margin-bottom: 0.8rem">
+          <span class="bd bd-b">Übung 1</span> <strong>Erzählanalyse – Begriffe zuordnen</strong>
+        </div>
+        <div class="ex">
+          <h4>Ordne zu und erkläre kurz</h4>
+          <p>Welcher Erzählbegriff passt zu welcher Textstelle?</p>
+          <ul>
+            <li><strong>A)</strong> «Er war kein Lügner und kein Betrüger von Natur» – Erzählerkommentar</li>
+            <li><strong>B)</strong> Nettchens Gedanken werden wiedergegeben ohne «sie dachte» (S.19, Z.5–9)</li>
+            <li><strong>C)</strong> Keller beschreibt Goldach aus der Vogelperspektive zu Beginn</li>
+            <li><strong>D)</strong> Nettchen sagt direkt: «Wer sind Sie wirklich?»</li>
+            <li><strong>E)</strong> S.8, Z.10: «abschüssiger Weg des Bösen»</li>
+          </ul>
+          <p style="margin-top: 0.5rem">
+            Begriffe: auktoriales Erzählverhalten / erlebte Rede / olympischer Standort / direkte Rede / urteilende
+            Erzählhaltung
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <ul>
+              <li>
+                <strong>A)</strong> → <em>Auktoriales Erzählverhalten:</em> Allwissender Erzähler kommentiert
+                Strapinskis Charakter, gibt moralische Wertung ab.
+              </li>
+              <li>
+                <strong>B)</strong> → <em>Erlebte Rede:</em> Gedanken einer Figur in Er/Sie-Form, ohne explizite
+                Erzählermarkierung.
+              </li>
+              <li>
+                <strong>C)</strong> → <em>Olympischer Standort:</em> Erzähler ausserhalb des Geschehens, Überblick über
+                Raum und Zeit.
+              </li>
+              <li><strong>D)</strong> → <em>Direkte Rede:</em> Wörtlich wiedergegebene Aussage einer Figur.</li>
+              <li>
+                <strong>E)</strong> → <em>Urteilende Erzählhaltung:</em> Erzähler bewertet Strapinskis Verhalten direkt
+                moralisch.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-r">Übung 2</span> <strong>Allegorie – Gesagtes und Gemeintes</strong>
+        </div>
+        <div class="ex">
+          <h4>Erkläre das Gemeinte hinter dem Gesagten</h4>
+          <ul>
+            <li><strong>1.</strong> Der Tanz der Schneider beim Verlobungsfest (S.35)</li>
+            <li><strong>2.</strong> Die Fortuna am Schlitten von Nettchen und Wenzel</li>
+            <li><strong>3.</strong> Der Seldwyler Schlittenzug, der den Goldacher nachahmt</li>
+          </ul>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <p>
+              <strong>1. Schneider-Tanz:</strong> Gesagt: Schneider tanzen auf dem Fest. Gemeint: Strapinskis wahrer
+              Stand wird sichtbar – ein Schneider tanzt unter Grafen. Die Seldwyler kündigen symbolisch die Enthüllung
+              an. Der Tanz = Allegorie auf die kommende Entlarvung und auf Strapinskis wirkliche Zugehörigkeit.
+            </p>
+            <p>
+              <strong>2. Fortuna:</strong> Gesagt: Glücksgöttin am Schlitten. Gemeint: Das Schicksal (Fortuna-Rad) dreht
+              sich – das aktuelle Glück (Verlobung) ist vergänglich. Die Allegorie kündigt den Absturz an. Erst am Ende:
+              echtes, dauerhaftes Glück durch Ehrlichkeit.
+            </p>
+            <p>
+              <strong>3. Seldwyler Festzug:</strong> Gesagt: bunter, übertriebener Zug. Gemeint: Satire auf die
+              Selbstgefälligkeit der Goldacher. Seldwyler machen die Goldacher lächerlich durch Parodie → Kellers
+              Gesellschaftskritik durch Allegorie.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-s">Übung 3</span> <strong>Nettchen-Charakterisierung</strong>
+        </div>
+        <div class="ex">
+          <h4>Ist Nettchen «Tussi» oder emanzipierte Frau? – Argumente sammeln</h4>
+          <p>Nenne je 3 Argumente mit Textstellen.</p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung (aus Folien)</div>
+            <strong style="color: var(--rust)">Argumente «Tussi»:</strong>
+            <ul>
+              <li>Will unbedingt einen fremden, reichen Grafen heiraten – lehnt Böhni ab (S.18ff.)</li>
+              <li>Aufs Äussere bedacht, viel Schmuck (S.18); Reichtum und Besitz wichtig (S.52)</li>
+              <li>Begeisterte Romantikerin, träumt von grosser Liebe (S.19, Z.5–9)</li>
+            </ul>
+            <strong style="color: var(--sage); margin-top: 0.5rem; display: block">Argumente emanzipierte Frau:</strong>
+            <ul>
+              <li>Entscheidet sich bewusst für Strapinski trotz Entlarvung – gegen alle Konventionen (S.51)</li>
+              <li>Starker eigener Wille: setzt sich gegen Vater und Böhni durch (S.53–55)</li>
+              <li>Plant Rache an den Seldwylern – vorausschauend und intelligent (S.52, S.55, Z.23ff.)</li>
+            </ul>
+            <strong style="color: var(--sage)">Fazit:</strong> Sie entwickelt sich. Beginn =
+            Romantikerin/Äusserlichkeit. Ende = emanzipierte Frau, die Innerlichkeit (Charakter) über Schein stellt.
+            <em>Nettchen ist die Starke in der Beziehung.</em>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-g">Übung 4</span> <strong>Novellen-Merkmale</strong>
+        </div>
+        <div class="ex">
+          <h4>Wahr oder falsch? – Korrigiere und begründe</h4>
+          <ul>
+            <li><strong>1.</strong> Das einzige Dingsymbol in «KmL» ist der Mantel.</li>
+            <li><strong>2.</strong> Die Peripetie ist der Moment, als Strapinski Nettchen kennenlernt.</li>
+            <li><strong>3.</strong> «KmL» hat einen Drama-ähnlichen Aufbau mit 5 Phasen.</li>
+            <li><strong>4.</strong> Die «unerhörte Begebenheit» ist die Verlobung von Strapinski und Nettchen.</li>
+          </ul>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <ul>
+              <li>
+                <strong>1. FALSCH.</strong> Es gibt zwei Dingsymbole: <em>Fingerhut</em> (Armut, echter Strapinski) und
+                <em>Mantel</em> (Schein, Grafenrolle). Beide nennen!
+              </li>
+              <li>
+                <strong>2. FALSCH.</strong> Die Peripetie = Entlarvung beim Schlittenfest (S.37–40). Begegnung mit
+                Nettchen = Steigerung (Akt 2).
+              </li>
+              <li>
+                <strong>3. RICHTIG.</strong> Exposition → Steigerung → Peripetie → Retardierendes Moment → Happy End.
+              </li>
+              <li>
+                <strong>4. FALSCH.</strong> Die unerhörte Begebenheit ist doppelt: ① Armer Schneider wird für Grafen
+                gehalten ② Eine wohlhabende Bürgerstochter heiratet einen armen Schneider.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-n">Übung 5</span> <strong>Realismus-Textstellen-Analyse</strong>
+        </div>
+        <div class="ex">
+          <h4>Begründe mit 4 Epochenmerkmalen</h4>
+          <p>
+            Wähle die Textstelle «Empfang von Strapinski im Gasthof zur Waage (S.5–12)» und begründe in 4 Sätzen, warum
+            diese Textstelle zum <strong>Poetischen Realismus</strong> gehört. Verwende Fontanes Begriffe.
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung (Vorlage für Prüfung)</div>
+            <p>
+              <strong>① Gesellschaftskritik durch Ironie:</strong> Der auktoriale Erzähler beschreibt die «kluge
+              Einsicht» der Goldacher mit feiner Ironie und kritisiert damit die Adelsvergötterung des Bürgertums – ein
+              zentrales Thema des Poetischen Realismus.
+            </p>
+            <p>
+              <strong>② Bürgerliches Milieu:</strong> Wirt, Köchin und Stadtschreiber gehören dem Bürgertum an – typisch
+              für den Realismus, der das mittlere Bürgertum in den Mittelpunkt stellt (nicht Adel, nicht Proletariat).
+            </p>
+            <p>
+              <strong>③ Wirklichkeitsnähe / «das Wahre»:</strong> Die Szene ist alltäglich und glaubwürdig – keine
+              romantischen Überhöhungen. Fontanes Grundsatz: «Greif hinein ins volle Menschenleben» – Keller zeigt
+              menschliche Schwächen (Eitelkeit, Naivität) realitätsnah.
+            </p>
+            <p>
+              <strong>④ Poetische Verklärung / Läuterung:</strong> Strapinski Armut und Hunger werden nicht verbittert
+              oder anklagend dargestellt («Misere ≠ Realismus»), sondern mit Humor und Verständnis – der rohe Stoff wird
+              «gelautert» durch künstlerische Formgebung.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-r">Übung 6</span> <strong>Anklage vs. Verteidigung</strong>
+        </div>
+        <div class="ex">
+          <h4>Ist Strapinski schuldig? – Je 3 Argumente mit Textstelle</h4>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Aus offiziellen Lösungen des Dossiers</div>
+            <strong style="color: var(--rust)">Anklageschrift (Gruppe Fenster):</strong>
+            <ul>
+              <li>
+                Strapinski klärt die Goldacher nie über seine wahre Identität auf – geniesst seine Rolle bewusst
+                (durchgehend S.5–37)
+              </li>
+              <li>Er nimmt Bewirtung, Unterkunft und gesellschaftliche Privilegien des «Grafen» entgegen (S.8ff.)</li>
+              <li>Überlegt mehrfach zu fliehen (S.18–27) – bleibt aber aus Eigeninteresse (Nettchen, Aufstieg)</li>
+            </ul>
+            <strong style="color: var(--sage); margin-top: 0.5rem; display: block"
+              >Verteidigungsschrift (Gruppe Türe):</strong
+            >
+            <ul>
+              <li>
+                Die Goldacher sind zu gutgläubig – holen sich keine Hintergrundinfos, nehmen einfach an, dass es stimmt
+              </li>
+              <li>Böhni hat auch nichts gesagt → macht sich mitschuldig (S.16–17)</li>
+              <li>Der Kutscher hat das Gerücht in die Welt gesetzt (S.11) – Hauptverursacher der Täuschung</li>
+              <li>Strapinski hat nie aktiv behauptet, ein Graf zu sein – er schwieg nur</li>
+              <li>Er gesteht Nettchen am Ende freiwillig alles → Ehrenhaftigkeit</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-b">Übung 7</span> <strong>Letzte Seite S.58 – Erklärung</strong>
+        </div>
+        <div class="ex">
+          <h4>Erkläre die letzte Zeile auf S.58: «Undank/Rache» – Wieso?</h4>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Aus Folien (Slide 31)</div>
+            <p>
+              Die letzte Zeile bezieht sich auf <strong>Nettchens Rache an den Seldwylern</strong>. Nettchen hatte schon
+              früh angekündigt, sich zu rächen (S.52). Sie ist vorausschauend und intelligent – sie plant aktiv ihre
+              Gegenmassnahme. Nachdem sie und Wenzel zunächst in Seldwyla leben, ziehen sie später erfolgreich nach
+              Goldach zurück – was als Rache an den Seldwylern gilt, die Wenzel blossgestellt haben. Der «Undank»
+              bezieht sich auch auf die Seldwyler selbst: Sie glaubten, durch die Entlarvung zu «siegen» – aber am Ende
+              sind Wenzel und Nettchen die Gewinner. Keller schliesst die Novelle damit ab, dass gesellschaftliche
+              Schadenfreude bestraft wird.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- /uebungen -->
+
+      <!-- =================== 10 LEKTÜREKONTROLLE =================== -->
+      <div id="kontrolle" class="sec">
+        <div class="sh">
+          <div class="num">10 — Lektürekontrolle</div>
+          <h2>Alle Prüfungsfragen auf einen Blick</h2>
+          <p>Klicke zum Aufdecken der Antwort</p>
+        </div>
+
+        <div style="margin-bottom: 1rem"><span class="bd bd-g">Inhalt</span></div>
+
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Wie kommt Strapinski nach Goldach? Warum gilt er dort als Graf?<span class="arr">▼</span>
+          </div>
+          <div class="qa">
+            Er setzt sich erschöpft in eine herrschaftliche Kutsche, die ohne sein Zutun losfährt (Passivität!). In
+            Goldach steigt er aus – elegant gekleidet (Mantel, Pelzkragen, Pelzmütze). Da er nichts sagt und würdevoll
+            wirkt, halten ihn die Goldacher für einen polnischen Grafen. Der Kutscher bestätigt das Gerücht (S.11).
+            Strapinski widerspricht nie aktiv.
+          </div>
+        </div>
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Warum denkt der Wirt, dem Schneider sei kalt? (S.8, Z.11)<span class="arr">▼</span>
+          </div>
+          <div class="qa">
+            Weil Strapinski seinen Mantel nicht auszieht – aus Scham, denn er hat nichts Standesgemässes darunter. Der
+            Wirt interpretiert das Nichtausziehen als «vornehmer Gast braucht Wärme». Ein klassisches Beispiel: Schein
+            (Mantel bleibt an) erzeugt falsche Schlussfolgerung.
+          </div>
+        </div>
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Wer zweifelt Strapinski von Beginn an an – und warum verrät er ihn nicht? (S.16–17)<span class="arr"
+              >▼</span
+            >
+          </div>
+          <div class="qa">
+            Melchior Böhni zweifelt. Er liebt Nettchen selbst und beobachtet Strapinski genau. Er verrät ihn nicht –
+            macht sich damit mitschuldig. Er testet ihn weiter und wartet ab (eigene Interessen: hofft, dass Strapinski
+            sich selbst enttarnt oder scheitert). Böhni hat selbst eine Figur am Schlitten, die «30 Jahre auf ihr Glück
+            wartete» = Allegorie auf sich selbst.
+          </div>
+        </div>
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Was sind die drei Schicksalswenden in «KmL»?<span class="arr">▼</span>
+          </div>
+          <div class="qa">
+            ① Als Strapinski für einen Grafen gehalten wird (Aufstieg). ② Als die Lüge beim Schlittenfest auffliegt
+            (Enthüllung/Peripetie). ③ Als Nettchen sich trotzdem für ihn entscheidet (Happy End / zweite Wende).
+          </div>
+        </div>
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Wie verhält sich Nettchen gegenüber Wenzel / Vater / Seldwylern nach dem Geständnis?<span class="arr"
+              >▼</span
+            >
+          </div>
+          <div class="qa">
+            <strong>Wenzel (S.51):</strong> Vergibt ihm, liebt ihn als Person – «aus tief entschlossener Seele».
+            <strong>Vater (S.53, Z.26–S.54):</strong> Setzt sich durch, standfest, entscheidet selbst.
+            <strong>Seldwyler (S.52, S.55, Z.23ff.):</strong> Kühl, distanziert – plant Rache und übt sie aus (letzte
+            Zeile S.58).
+          </div>
+        </div>
+
+        <div style="margin: 1.2rem 0 0.8rem"><span class="bd bd-r">Interpretation</span></div>
+
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Was symbolisieren Fingerhut und Mantel (Dingsymbole)?<span class="arr">▼</span>
+          </div>
+          <div class="qa">
+            <strong>Fingerhut:</strong> Symbol der Armut – Strapinskis echter Stand als Schneider. Der Fingerhut ist
+            sein einziger Besitz und verweist auf seine wahre Identität. <strong>Mantel:</strong> Symbol des Scheins –
+            der Grafenrolle, die ihm aufgezwungen wird. Er ist das zentrale Dingsymbol nach Heyse: Auslöser des
+            Konflikts, Leitmotiv, symbolisiert Schein vs. Sein.
+          </div>
+        </div>
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Was bedeutet die Allegorie der Fortuna am Schlitten?<span class="arr">▼</span>
+          </div>
+          <div class="qa">
+            Fortuna = römische Glücksgöttin mit dem Rad des Schicksals. Gesagt: Figur am Schlitten. Gemeint: Das Glück
+            dreht sich – Strapinskis aktuelles Glück (Verlobung, Aufstieg) ist vergänglich, das Rad dreht sich bald
+            weiter (Entlarvung). Die Allegorie kündigt den Absturz an. Erst das ehrliche Glück am Ende ist dauerhaft.
+          </div>
+        </div>
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Welche Bedeutung hat der Tanz der Schneider? (S.35, Z.1f)<span class="arr">▼</span>
+          </div>
+          <div class="qa">
+            Doppelte Allegorie: ① Schneider tanzen mitten auf Strapinskis Verlobungsfest = Verweis auf seinen wahren
+            Stand, den er verleugnet. ② Die Seldwyler kündigen durch diesen Tanz symbolisch die bevorstehende Enthüllung
+            an. Gesagt (Tanz) = Gemeint (Wahrheit tritt ans Licht). Der Tanz ist gesellschaftliche Bühnenmetapher: Wer
+            tanzt, gehört dazu – Strapinski wird bald nicht mehr «mitspielen» können.
+          </div>
+        </div>
+
+        <div style="margin: 1.2rem 0 0.8rem"><span class="bd bd-b">Erzähltheorie</span></div>
+
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Erkläre den Unterschied zwischen auktorialem Erzählverhalten und olympischem Standort.<span class="arr"
+              >▼</span
+            >
+          </div>
+          <div class="qa">
+            <strong>Olympischer Standort</strong> = räumlich-zeitliche Position: Der Erzähler steht ausserhalb des
+            Geschehens, hat Überblick über Raum und Zeit (z.B. Vogelperspektive auf Seldwyla).
+            <strong>Auktoriales Erzählverhalten</strong> = Art des Erzählens: allwissend, kommentierend, wertend. Der
+            Erzähler kennt die Gedanken aller Figuren gleichzeitig und kommentiert. Beide zusammen → typisch für den
+            poetischen Realismus.
+          </div>
+        </div>
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Was ist erlebte Rede? Gib ein Beispiel aus «KmL».<span class="arr">▼</span>
+          </div>
+          <div class="qa">
+            Erlebte Rede: Gedanken oder Gefühle einer Figur werden in der Er/Sie-Form wiedergegeben, ohne explizite
+            Erzählermarkierung («sie dachte», «er fragte sich»). Die Grenze zwischen Erzählertext und Figurengedanken
+            verschwimmt. Beispiel: S.19, Z.5–9 (Nettchens romantische Träume werden ohne «sie dachte» dargestellt).
+          </div>
+        </div>
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Wie steht der Erzähler zu Strapinski vs. zu den Goldachern?<span class="arr">▼</span>
+          </div>
+          <div class="qa">
+            Gegenüber Strapinski: verständnisvoll, mild, erklärt seine Passivität mit Mitgefühl. S.4: nennt ihn
+            «Märtyrer» – ironisch, aber auch verständnisvoll. Gegenüber Goldachern: ironisch, spottet über ihre Naivität
+            und Adelsvergötterung. Sie halten sich für klug, werden aber vom Erzähler subtil lächerlich gemacht.
+          </div>
+        </div>
+
+        <div style="margin: 1.2rem 0 0.8rem"><span class="bd bd-s">Novelle & Realismus</span></div>
+
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Nenne die 4 Ausschlussprinzipien des Realismus nach Fontane.<span class="arr">▼</span>
+          </div>
+          <div class="qa">
+            Fontane schreibt: «Er schliesst nichts aus als die Lüge, das Forcierte, das Nebelhafte, das Abgestorbene.» →
+            ① Lüge (Unwahrheit) ② Forciertes (Erzwungenes, Übertriebenes) ③ Nebelhaftes (Unklares, Schwärmerisches) ④
+            Abgestorbenes (Veraltetes, totes Kulturgut, rückwärtsgewandte Antikenverehrung der Klassik).
+          </div>
+        </div>
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Was bedeutet «Misere ≠ Realismus» nach Fontane? Was ist der Unterschied zum Naturalismus?<span class="arr"
+              >▼</span
+            >
+          </div>
+          <div class="qa">
+            Fontane: Realismus ist nicht das «nackte Wiedergeben alltäglichen Lebens, am wenigsten seines Elends». Die
+            blosse Darstellung von Armut und Leid ist noch kein Realismus – «das rohe Erz, nicht das Metall; die
+            Läuterung fehlt». → Poetischer Realismus = Wirklichkeit + künstlerische Formgebung, Ironie, poetische
+            Verklärung. Naturalismus (Hauptmann etc.) = rohe, ungefilterte Darstellung von Elend und sozialer Not.
+          </div>
+        </div>
+        <div class="qi">
+          <div class="qq" onclick="tq(this)">
+            Begründe mit einer Textstelle aus KmL, warum es zur Epoche «Poetischer Realismus» gehört.<span class="arr"
+              >▼</span
+            >
+          </div>
+          <div class="qa">
+            <strong>Beispiel: Empfang in Goldach (S.5–12)</strong> – ① Gesellschaftskritik durch Ironie: Erzähler
+            spottet über Goldacher (Realismus-Merkmal: Kritik ohne bittere Verurteilung). ② Bürgerliches Milieu: Wirt,
+            Stadtschreiber als Hauptfiguren. ③ Wirklichkeitsnähe: alltäglich, zeitgenössisch, kein Märchen. ④ Poetische
+            Verklärung: Strapinskis Elend wird mit Humor dargestellt, nicht mit Anklage («Misere ≠ Realismus»).
+          </div>
+        </div>
+      </div>
+      <!-- /kontrolle -->
+    </main>
+
+    <script>
+      function show(id, btn) {
+        document.querySelectorAll(".sec").forEach((s) => s.classList.remove("active"));
+        document.querySelectorAll(".nb").forEach((b) => b.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        btn.classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      function tq(el) {
+        el.parentElement.classList.toggle("open");
+      }
+      function ts(btn) {
+        const s = btn.nextElementSibling;
+        s.classList.toggle("vis");
+        btn.textContent = s.classList.contains("vis") ? "▼ Lösung verbergen" : "▶ Lösung";
+      }
+    </script>
+  </body>
+</html>

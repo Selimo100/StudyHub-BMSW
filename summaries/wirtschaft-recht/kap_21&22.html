@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recht Kap. 21 + 22 · Familienrecht &amp; Erbrecht · Prüfung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:wght@400;500;600&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4eff0;
+  --paper:#fffcfb;
+  --ink:#1d1620;
+  --ink-soft:#4d4047;
+  --line:#e2d6da;
+  /* Kapitel-Akzente */
+  --plum:#9c2456; --plum-soft:#f8e6ee;     /* Kap 21 Familienrecht */
+  --red:#b5121b;  --red-soft:#fbe9e9;        /* Kap 22 Erbrecht */
+  --teal:#0f7d7a; --teal-bg:#dcefee;
+  --gold:#a8791a; --gold-bg:#f7ecd0;
+  /* Güterstände / Parentelen */
+  --eb:#7f8c1f; --eb-bg:#eef0d8;
+  --gg:#2f6db2; --gg-bg:#e1ecf7;
+  --gt:#d9760f; --gt-bg:#fbeed9;
+  --eigen:#0f7d7a; --eigen-bg:#dcefee;
+  --errung:#9c2456; --errung-bg:#f8e6ee;
+  --gesamt:#7d5a9c; --gesamt-bg:#eee3f5;
+  --p1:#d9760f; --p1-bg:#fbeed9;
+  --p2:#7f8c1f; --p2-bg:#eef0d8;
+  --p3:#2f6db2; --p3-bg:#e1ecf7;
+  --gem:#8e4a8c; --gem-bg:#f1e3f0;
+  --spouse:#0f7d7a; --spouse-bg:#dcefee;
+  --shadow:0 1px 2px rgba(40,20,30,.04),0 10px 30px rgba(60,30,45,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Spectral",Georgia,serif;font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 8% 5%,rgba(156,36,86,.04),transparent 42%),radial-gradient(circle at 94% 96%,rgba(181,18,27,.04),transparent 46%);}
+h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;line-height:1.12;color:var(--ink);font-weight:600}
+.ui{font-family:"Archivo",system-ui,sans-serif}
+
+/* top bar with chapter switch */
+header.top{position:sticky;top:0;z-index:60;background:rgba(244,239,240,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-inner{max-width:1180px;margin:0 auto;padding:9px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{font-family:"Archivo";font-weight:800;letter-spacing:-.5px;font-size:14px;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;background:var(--ink);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:13px;transform:rotate(-4deg)}
+.chap-switch{display:flex;gap:6px;margin-left:auto}
+.chap-switch a{font-family:"Archivo";font-weight:800;font-size:13px;text-decoration:none;padding:7px 15px;border-radius:9px;border:1.5px solid var(--line);color:var(--ink-soft);transition:.18s}
+.chap-switch a.k21:hover,.chap-switch a.k21.on{background:var(--plum);border-color:var(--plum);color:#fff}
+.chap-switch a.k22:hover,.chap-switch a.k22.on{background:var(--red);border-color:var(--red);color:#fff}
+nav.subnav{border-top:1px solid var(--line);background:rgba(244,239,240,.96)}
+.subnav-inner{max-width:1180px;margin:0 auto;padding:7px 22px;display:flex;gap:3px;flex-wrap:wrap;overflow-x:auto}
+nav.subnav a{font-family:"Archivo";font-size:12.5px;font-weight:600;color:var(--ink-soft);text-decoration:none;padding:5px 10px;border-radius:7px;white-space:nowrap;transition:.15s}
+nav.subnav a:hover{background:var(--plum-soft);color:var(--plum)}
+
+/* hero / chapter banners */
+.hero{max-width:1180px;margin:0 auto;padding:46px 22px 18px}
+.hero .kicker{font-family:"Archivo";font-weight:700;letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--ink-soft)}
+.hero h1{font-size:clamp(38px,6.5vw,74px);font-weight:900;margin:.16em 0 .12em;letter-spacing:-1.5px}
+.hero .lead{font-size:20px;color:var(--ink-soft);max-width:720px}
+.exam-strip{display:flex;gap:13px;flex-wrap:wrap;margin-top:24px}
+.exam-card{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:12px 17px;box-shadow:var(--shadow)}
+.exam-card .l{font-family:"Archivo";font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);opacity:.7}
+.exam-card .v{font-family:"Fraunces";font-size:19px;font-weight:600;margin-top:2px}
+
+main{max-width:1180px;margin:0 auto;padding:0 22px 80px}
+
+/* big chapter divider */
+.chapter-banner{scroll-margin-top:120px;margin:60px 0 10px;border-radius:20px;padding:34px 32px;position:relative;overflow:hidden;color:#fff}
+.chapter-banner.b21{background:linear-gradient(120deg,#7c1442,#b8336a)}
+.chapter-banner.b22{background:linear-gradient(120deg,#8c0d14,#cc3a30)}
+.chapter-banner .cnum{font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:.85}
+.chapter-banner h2{font-size:clamp(32px,5vw,52px);font-weight:900;margin:.1em 0 .1em;color:#fff;letter-spacing:-1px}
+.chapter-banner p{margin:0;font-size:17px;opacity:.92;max-width:640px}
+.chapter-banner .ghost{position:absolute;right:24px;top:50%;transform:translateY(-50%);font-family:"Fraunces";font-weight:900;font-size:120px;opacity:.13;line-height:1}
+
+section{scroll-margin-top:120px;margin-top:46px}
+.sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:3px solid var(--ink);padding-bottom:10px;margin-bottom:24px}
+.sec-num{font-family:"Archivo";font-weight:800;font-size:15px;color:#fff;background:var(--ink);padding:4px 11px;border-radius:8px;letter-spacing:.5px}
+.k21 .sec-num{background:var(--plum)} .k22 .sec-num{background:var(--red)}
+.sec-head h2{font-size:clamp(26px,3.8vw,38px);font-weight:700;letter-spacing:-.8px;margin:0}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:25px 28px;box-shadow:var(--shadow);margin:18px 0}
+.card h3{font-size:24px;margin:0 0 8px}
+.card h4{font-size:19px;margin:22px 0 6px;font-weight:600}
+p{margin:0 0 14px}
+.note{background:var(--gold-bg);border-left:4px solid var(--gold);border-radius:0 11px 11px 0;padding:14px 18px;margin:18px 0;font-size:16.5px}
+.note strong{color:var(--gold)}
+.warn{background:var(--plum-soft);border-left:4px solid var(--plum);border-radius:0 11px 11px 0;padding:14px 18px;margin:18px 0;font-size:16.5px}
+.warn strong{color:var(--plum)}
+.k22 .warn{background:var(--red-soft);border-color:var(--red)} .k22 .warn strong{color:var(--red)}
+.tip{background:var(--teal-bg);border-left:4px solid var(--teal);border-radius:0 11px 11px 0;padding:14px 18px;margin:18px 0;font-size:16.5px}
+.tip strong{color:var(--teal)}
+.reform{background:linear-gradient(180deg,#fff8ec,#fdf0d8);border:1.5px solid var(--gold);border-radius:14px;padding:18px 22px;margin:20px 0}
+.reform .tag{font-family:"Archivo";font-weight:800;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:6px}
+
+.art{font-family:"Archivo";font-weight:700;font-size:13px;background:var(--ink);color:#fff;padding:2px 9px;border-radius:6px;white-space:nowrap;display:inline-block;line-height:1.5}
+.art.p{background:var(--plum)} .art.r{background:var(--red)}
+.term{font-weight:600;font-style:italic}
+.k21 .term{color:var(--plum)} .k22 .term{color:var(--red)}
+
+ul.clean{list-style:none;padding:0;margin:14px 0}
+ul.clean li{padding:7px 0 7px 30px;position:relative;border-bottom:1px dashed var(--line)}
+ul.clean li:last-child{border-bottom:none}
+ul.clean li::before{content:"§";font-family:"Fraunces";font-weight:700;position:absolute;left:4px;top:6px;font-size:19px}
+.k21 ul.clean li::before{color:var(--plum)} .k22 ul.clean li::before{color:var(--red)}
+ul.check li::before{content:"✓";color:var(--eb);font-family:"Archivo";font-weight:800}
+ul.cross li::before{content:"✕";color:var(--plum);font-family:"Archivo";font-weight:800}
+ul.arrow li::before{content:"→";color:var(--teal);font-family:"Archivo";font-weight:800}
+
+.steps{counter-reset:s;list-style:none;padding:0;margin:16px 0}
+.steps li{counter-increment:s;position:relative;padding:10px 0 10px 46px;border-bottom:1px dashed var(--line);font-size:16.5px}
+.steps li:last-child{border-bottom:none}
+.steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:30px;height:30px;color:#fff;border-radius:9px;font-family:"Archivo";font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;background:var(--plum)}
+.k22 .steps li::before{background:var(--red)}
+
+.tbl-wrap{overflow-x:auto;margin:20px 0;border-radius:13px;border:1px solid var(--line);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:16px;background:var(--paper);min-width:560px}
+th,td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:"Archivo";font-weight:700;font-size:13px;letter-spacing:.4px;background:var(--ink);color:#fff;text-transform:uppercase}
+tbody tr:nth-child(even){background:rgba(226,214,218,.28)}
+td.frac{font-family:"Fraunces";font-weight:700;font-size:18px}
+.pill{font-family:"Archivo";font-weight:700;font-size:12px;padding:2px 9px;border-radius:20px;display:inline-block}
+.pill.r{background:#fde9ec;color:#b01040}.pill.f{background:#e8f0d2;color:#5a6612}
+.pill.free{background:var(--p2-bg);color:#454d0c}.pill.none{background:#eee;color:#777}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.compare .col{border-radius:14px;padding:20px;border:1.5px solid}
+.compare h4{margin:0 0 12px;font-size:21px}
+.compare ul{margin:0;padding-left:20px}.compare li{margin-bottom:8px;font-size:16px}
+.c-pro{background:var(--eb-bg);border-color:var(--eb)} .c-pro h4{color:var(--eb)}
+.c-con{background:var(--plum-soft);border-color:var(--plum)} .c-con h4{color:var(--plum)}
+.c-test{background:var(--gg-bg);border-color:var(--gg)} .c-test h4{color:var(--gg)}
+.c-vert{background:var(--gt-bg);border-color:var(--gt)} .c-vert h4{color:var(--gt)}
+
+.gs-stack,.par-stack{display:flex;flex-direction:column;gap:10px;margin:18px 0}
+.gs,.par{border-radius:13px;padding:16px 20px;border:1.5px solid;position:relative;overflow:hidden}
+.gs .ord,.par .ord{font-family:"Archivo";font-weight:800;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.gs h4,.par h4{margin:3px 0 4px;font-size:21px}
+.gs p,.par p{margin:0;font-size:16px}
+.gs.eb{background:var(--eb-bg);border-color:var(--eb);color:#454d0c}.gs.eb .ord{color:var(--eb)}
+.gs.gg{background:var(--gg-bg);border-color:var(--gg);color:#1c4675}.gs.gg .ord{color:var(--gg)}
+.gs.gt{background:var(--gt-bg);border-color:var(--gt);color:#6b3a05}.gs.gt .ord{color:var(--gt)}
+.par.one{background:var(--p1-bg);border-color:var(--p1);color:#6b3a05}.par.one .ord{color:var(--p1)}
+.par.two{background:var(--p2-bg);border-color:var(--p2);color:#454d0c}.par.two .ord{color:var(--p2)}
+.par.three{background:var(--p3-bg);border-color:var(--p3);color:#1c4675}.par.three .ord{color:var(--p3)}
+.par.gem{background:var(--gem-bg);border-color:var(--gem);color:#5b2e59}.par.gem .ord{color:var(--gem)}
+.par .big{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:"Fraunces";font-weight:900;font-size:46px;opacity:.16}
+
+.quota-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:18px 0}
+.quota{background:var(--spouse-bg);border:1.5px solid var(--spouse);border-radius:13px;padding:18px;text-align:center}
+.quota .frac{font-family:"Fraunces";font-weight:900;font-size:42px;color:var(--spouse);line-height:1}
+.quota .who{font-family:"Archivo";font-weight:700;font-size:14px;margin-top:8px;color:#0a5654}
+.quota .desc{font-size:14.5px;color:var(--ink-soft);margin-top:4px}
+
+.mass-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.mass{border-radius:13px;padding:18px;border:1.5px solid}
+.mass h4{margin:0 0 8px;font-size:19px}
+.mass.eigen{background:var(--eigen-bg);border-color:var(--eigen)}.mass.eigen h4{color:var(--eigen)}
+.mass.errung{background:var(--errung-bg);border-color:var(--errung)}.mass.errung h4{color:var(--errung)}
+.mass.gesamt{background:var(--gesamt-bg);border-color:var(--gesamt)}.mass.gesamt h4{color:var(--gesamt)}
+.mass ul{margin:0;padding-left:20px;font-size:15.5px}.mass li{margin-bottom:5px}
+
+/* worked examples */
+.ex{background:var(--paper);border:1px solid var(--line);border-radius:16px;margin:18px 0;box-shadow:var(--shadow);overflow:hidden}
+.ex-head{padding:17px 24px;border-bottom:1px solid var(--line)}
+.k21 .ex-head{background:linear-gradient(180deg,#fcf2f6,#f8e9ef)} .k22 .ex-head{background:linear-gradient(180deg,#fdf3f2,#f9e7e6)}
+.ex-head .label{font-family:"Archivo";font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+.k21 .ex-head .label{color:var(--plum)} .k22 .ex-head .label{color:var(--red)}
+.ex-head h3{margin:4px 0 0;font-size:22px}
+.ex-body{padding:22px 24px}
+.case{background:var(--bg);border-radius:11px;padding:14px 18px;font-size:16.5px;margin-bottom:16px}
+.case .sum{font-family:"Archivo";font-weight:700;font-size:13px;letter-spacing:.5px}
+.k21 .case .sum{color:var(--plum)} .k22 .case .sum{color:var(--red)}
+.q{font-weight:600;margin:18px 0 8px;display:flex;gap:10px;align-items:baseline}
+.q .letter{font-family:"Archivo";font-weight:800;background:var(--ink);color:#fff;width:24px;height:24px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.reveal-btn{font-family:"Archivo";font-weight:700;font-size:13px;cursor:pointer;background:var(--ink);color:#fff;border:none;padding:8px 16px;border-radius:8px;transition:.18s;display:inline-flex;align-items:center;gap:7px}
+.k21 .reveal-btn:hover{background:var(--plum)} .k22 .reveal-btn:hover{background:var(--red)}
+.reveal-btn .ic{transition:transform .25s}
+.sol{max-height:0;overflow:hidden;transition:max-height .45s ease;border-left:3px solid var(--teal);margin-top:0}
+.sol.open{max-height:2600px;margin-top:14px}
+.sol-inner{padding:6px 0 6px 18px;font-size:16.5px}
+.sol-inner .res{font-family:"Archivo";font-weight:700;background:var(--teal-bg);color:#0a5654;padding:3px 10px;border-radius:7px;display:inline-block;margin:2px 0}
+.sol-inner .art-ref{margin-top:10px}
+
+.gtbl{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px;margin:14px 0;border-radius:11px;overflow:hidden;border:1px solid var(--line);font-family:"Archivo";font-size:14px}
+.gtbl div{padding:10px 12px;background:var(--paper)}
+.gtbl .h{background:var(--ink);color:#fff;font-weight:700;text-align:center}
+.gtbl .person{background:#efe7ea;font-weight:700;text-align:center;grid-column:span 2}
+.gtbl .eigen{background:var(--eigen-bg)}.gtbl .errung{background:var(--errung-bg)}.gtbl .total{background:var(--gold-bg);font-weight:700}
+
+.tree{background:#181219;color:#e8dfe4;border-radius:13px;padding:22px;margin:16px 0;font-family:"Archivo";font-size:14px}
+.tree .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:8px 0}
+.tnode{border:1.5px solid #524852;border-radius:9px;padding:8px 14px;text-align:center;background:#241d25;min-width:90px}
+.tnode.dead{opacity:.5;text-decoration:line-through}
+.tnode.heir{border-color:var(--p1);background:#3a2a12}
+.tnode .amt{display:block;font-weight:800;color:#f0b56a;margin-top:3px;font-size:13px}
+.tnode.spouse{border-color:var(--spouse);background:#11302f}.tnode.spouse .amt{color:#5fd0cd}
+
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:18px 0}
+.fc{perspective:1000px;height:118px;cursor:pointer}
+.fc-in{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-family:"Archivo";font-weight:700}
+.fc-front{background:var(--ink);color:#fff;font-size:14.5px}
+.fc-back{background:var(--gold-bg);color:var(--gold);transform:rotateY(180deg);font-size:14px;border:1.5px solid var(--gold)}
+
+.quiz-q{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:16px 0;box-shadow:var(--shadow)}
+.quiz-q .qn{font-family:"Archivo";font-weight:800;font-size:13px;letter-spacing:1px}
+.k21 .quiz-q .qn{color:var(--plum)} .k22 .quiz-q .qn{color:var(--red)}
+.quiz-q p.qt{font-weight:600;font-size:18px;margin:6px 0 14px}
+.opt{display:block;width:100%;text-align:left;font-family:"Spectral";font-size:16.5px;padding:11px 16px;margin:7px 0;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);cursor:pointer;transition:.15s}
+.opt:hover{border-color:var(--ink-soft)}
+.opt.correct{background:var(--eb-bg);border-color:var(--eb);color:#3a4209;font-weight:600}
+.opt.wrong{background:var(--plum-soft);border-color:var(--plum);color:var(--plum)}
+.opt.disabled{cursor:default;opacity:.85}
+.feedback{margin-top:10px;font-size:15.5px;padding:10px 14px;border-radius:9px;display:none}
+.feedback.show{display:block}.feedback.ok{background:var(--eb-bg);color:#3a4209}.feedback.no{background:var(--plum-soft);color:var(--plum)}
+.scorebox{text-align:center;display:none;border:2px solid var(--eb)}
+.scorebox .big{font-size:42px;font-family:'Fraunces';font-weight:900;margin:6px 0}
+
+.tf-item{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:10px 0;box-shadow:var(--shadow)}
+.tf-item .stmt{font-size:16.5px;margin-bottom:10px}
+.tf-btns{display:flex;gap:8px}
+.tf-btns button{font-family:"Archivo";font-weight:700;font-size:14px;padding:7px 18px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer;transition:.15s}
+.tf-btns button:hover{border-color:var(--ink-soft)}
+.tf-btns button.ok{background:var(--eb-bg);border-color:var(--eb);color:#3a4209}
+.tf-btns button.no{background:var(--plum-soft);border-color:var(--plum);color:var(--plum)}
+.tf-exp{display:none;margin-top:10px;font-size:15px;color:var(--ink-soft);padding-left:14px;border-left:3px solid var(--teal)}
+.tf-exp.show{display:block}
+
+.backtop{position:fixed;right:18px;bottom:18px;z-index:40;background:var(--ink);color:#fff;border:none;width:46px;height:46px;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:var(--shadow);opacity:.85}
+.backtop:hover{opacity:1}
+
+footer{text-align:center;padding:40px 22px;color:var(--ink-soft);font-size:14px;font-family:"Archivo";border-top:1px solid var(--line);max-width:1180px;margin:0 auto}
+
+@media(max-width:680px){
+  body{font-size:17px}
+  .compare,.mass-grid{grid-template-columns:1fr}
+  .gtbl{grid-template-columns:1fr 1fr}.gtbl .person{grid-column:span 1}
+  .card{padding:20px}
+  .chapter-banner .ghost{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="logo"><span class="mark">§</span> RECHT · KAP. 21 + 22</div>
+    <div class="chap-switch">
+      <a class="k21" href="#kap21">21 · Familienrecht</a>
+      <a class="k22" href="#kap22">22 · Erbrecht</a>
+    </div>
+  </div>
+  <nav class="subnav"><div class="subnav-inner ui">
+    <a href="#formen">Zusammenleben</a>
+    <a href="#ehe">Ehe</a>
+    <a href="#wirkungen">Wirkungen</a>
+    <a href="#scheidung">Scheidung</a>
+    <a href="#guterrecht">Güterrecht</a>
+    <a href="#konkubinat">Konkubinat</a>
+    <a href="#kind">Kindesverhältnis</a>
+    <span style="width:14px"></span>
+    <a href="#grund">Erbrecht-Grundlagen</a>
+    <a href="#gesetzlich">Erbfolge</a>
+    <a href="#pflicht">Pflichtteile</a>
+    <a href="#verfuegung">Testament</a>
+    <a href="#erbgang">Erbgang</a>
+    <a href="#beispiele">Erb-Beispiele</a>
+    <a href="#quiz22">Quiz</a>
+  </div></nav>
+</header>
+
+<div class="hero">
+  <div class="kicker ui">Wirtschaft &amp; Recht · BMS Samuel Obrecht Winterthur 25/26</div>
+  <h1>Familienrecht <span style="color:var(--ink-soft);font-weight:400">&amp;</span> Erbrecht</h1>
+  <p class="lead">Die komplette Prüfungsvorbereitung zu Kapitel 21 + 22 in einer Datei – Theorie, gelöste Fälle, Übungen zum Selbsttesten und Quiz für beide Kapitel.</p>
+  <div class="exam-strip">
+    <div class="exam-card"><div class="l ui">Prüfung</div><div class="v">04.06.2026</div></div>
+    <div class="exam-card"><div class="l ui">Stoff</div><div class="v">Kap. 21 + 22</div></div>
+    <div class="exam-card"><div class="l ui">Themen</div><div class="v">Familie · Erbe</div></div>
+    <div class="exam-card"><div class="l ui">Hilfsmittel</div><div class="v">Gesetzestexte (ZGB)</div></div>
+  </div>
+  <div class="note" style="margin-top:24px"><strong>Hilfsmittel-Tipp:</strong> Im Gesetzestext sind keine Notizen erlaubt – nur Leuchtstift. Post-its dürfen <em>nur</em> die Artikelnummer tragen (z.&nbsp;B. «Art. 462»), keine Wörter. Die Flashcards in beiden Kapiteln zeigen dir genau, was du markieren solltest.</div>
+</div>
+
+<main>
+
+<!-- ================= KAPITEL 21 ================= -->
+<div class="chapter-banner b21" id="kap21">
+  <div class="cnum ui">Kapitel 21</div>
+  <h2>Familienrecht</h2>
+  <p>Ehe · Wirkungen · Scheidung · Güterrecht · Konkubinat · Kindesverhältnis</p>
+  <span class="ghost">21</span>
+</div>
+
+<div class="k21">
+
+<section id="ziele21">
+  <div class="card" style="border:2px solid var(--plum)">
+    <h3 style="display:flex;align-items:center;gap:10px"><span class="art p">Lernziele 21</span></h3>
+    <ul class="clean check" style="font-size:16px">
+      <li><strong>Ehe:</strong> Beurteilen, ob die Voraussetzungen erfüllt sind, und den Ablauf der Eheschliessung kennen.</li>
+      <li><strong>Wirkungen der Ehe</strong> erläutern und auf Fälle anwenden.</li>
+      <li><strong>Scheidung:</strong> Verfahren und Folgen erläutern.</li>
+      <li><strong>Güterstände:</strong> Die drei unterscheiden und Vermögenswerte zuordnen.</li>
+      <li><strong>Güterrechtliche Auseinandersetzung</strong> berechnen.</li>
+      <li><strong>Konkubinat:</strong> Wirkungen und Unterschiede zur Ehe.</li>
+      <li><strong>Kindesverhältnis:</strong> Entstehung und Wirkungen.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="formen">
+  <div class="sec-head"><span class="sec-num ui">21.1</span><h2>Formen des Zusammenlebens</h2></div>
+  <div class="card">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Form</th><th>Regelung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ehe</strong></td><td>Gesetzlich stark geregelt, viele Rechte und Pflichten</td></tr>
+        <tr><td><strong>Eingetragene Partnerschaft</strong></td><td>Seit der «Ehe für alle» (2022) <em>nicht mehr neu</em> schliessbar</td></tr>
+        <tr><td><strong>Konkubinat</strong></td><td>Zusammenleben ohne Ehe, kaum gesetzlich geregelt</td></tr>
+      </tbody>
+    </table></div>
+    <h4>Ehe im Wandel</h4>
+    <div class="compare">
+      <div class="col c-pro" style="background:var(--teal-bg);border-color:var(--teal)"><h4 style="color:var(--teal)">Gesellschaftlich</h4><ul><li>Andere Lebensformen akzeptiert</li><li>Gleichstellung &amp; neue Rollen</li><li>Individualisierung</li></ul></div>
+      <div class="col c-vert"><h4>Wirtschaftlich</h4><ul><li>Finanziell unabhängiger</li><li>Heiraten kostet</li><li>«Heiratsstrafe» bei Steuern</li></ul></div>
+      <div class="col c-test"><h4>Rechtlich</h4><ul><li><strong>1988</strong>: Gleichstellung im Eherecht</li><li><strong>2022</strong>: Ehe für alle</li></ul></div>
+      <div class="col c-con"><h4>Hohe Scheidungsrate</h4><ul><li>Macht zurückhaltender beim Heiraten</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="ehe">
+  <div class="sec-head"><span class="sec-num ui">21.2</span><h2>Voraussetzungen &amp; Eheschliessung</h2></div>
+  <div class="card">
+    <h3>Voraussetzungen <span class="art p">Art. 94–96</span></h3>
+    <ul class="clean check">
+      <li><strong>Ehefähigkeit / Handlungsfähigkeit:</strong> beide urteilsfähig und volljährig.</li>
+      <li><strong>Keine verbotene Verwandtschaft:</strong> Eltern–Kind, Geschwister, Halbgeschwister – auch bei <em>Adoption</em>.</li>
+      <li><strong>Keine bestehende Ehe / Partnerschaft:</strong> frühere Bindung zuerst auflösen.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Ablauf der Eheschliessung</h3>
+    <ol class="steps">
+      <li><strong>Verlobung</strong> – Eheversprechen</li>
+      <li><strong>Vorbereitungsverfahren</strong> beim Zivilstandsamt</li>
+      <li><strong>Trauung</strong> auf dem Zivilstandsamt (zwei Trauzeugen)</li>
+      <li>evtl. <strong>religiöse Eheschliessung</strong></li>
+    </ol>
+    <div class="warn"><strong>Wichtig:</strong> Nur die zivile Trauung ist rechtlich gültig; sie kann <em>nicht formlos</em> erfolgen. Es gibt keine Mindest-Verlobungszeit. Die Auflösung der Verlobung kann rechtliche Folgen haben (z.&nbsp;B. Rückgabe des Rings).</div>
+  </div>
+</section>
+
+<section id="wirkungen">
+  <div class="sec-head"><span class="sec-num ui">21.2</span><h2>Wirkungen der Ehe</h2></div>
+  <div class="card">
+    <p>Grundprinzip seit 1988: <strong>gemeinsam entscheiden, aufeinander Rücksicht nehmen</strong>.</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Wirkung</th><th>Inhalt</th><th>Art.</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Eheliche Gemeinschaft</strong></td><td>Gemeinsames Wohl, Rücksicht, Unterstützung</td><td><span class="art">159</span></td></tr>
+        <tr><td><strong>Name</strong></td><td>Bisherige Namen behalten oder gemeinsamen bestimmen</td><td><span class="art">160</span></td></tr>
+        <tr><td><strong>Eheliche Wohnung</strong></td><td>Gemeinsam bestimmen – kein Alleingang</td><td><span class="art">162</span></td></tr>
+        <tr><td><strong>Unterhalt der Familie</strong></td><td>Geld, Haushalt, Kinderbetreuung, Mithilfe</td><td><span class="art">163</span></td></tr>
+        <tr><td><strong>Betrag zur freien Verfügung</strong></td><td>Für den, der den Haushalt führt, ohne Einkommen</td><td><span class="art">164</span></td></tr>
+        <tr><td><strong>Beruf und Gewerbe</strong></td><td>Beide dürfen arbeiten, mit Rücksicht</td><td><span class="art">167</span></td></tr>
+        <tr><td><strong>Familienwohnung</strong></td><td>Kündigung/Verkauf nur mit Zustimmung beider</td><td><span class="art">169</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><div class="label ui">Aufgabe 5 · gelöst</div><h3>Roger &amp; Luzia</h3></div>
+    <div class="ex-body">
+      <div class="q"><span class="letter ui">a</span> Roger will, dass Luzia die Arbeit aufgibt, und beschliesst allein den Umzug ins Haus seiner Eltern.</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><p><strong>Nicht zulässig</strong> – weder Wohnsitz noch Erwerbstätigkeit darf einer allein bestimmen.</p><span class="res ui">Art. 162 · Art. 163 · Art. 167</span></div></div>
+
+      <div class="q"><span class="letter ui">b</span> Roger kündigt die Wohnung telefonisch allein; Luzia ist nicht einverstanden.</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><p><strong>Unwirksam</strong> – beide müssen die Kündigung der Familienwohnung unterschreiben.</p><span class="res ui">Art. 169</span></div></div>
+
+      <div class="q"><span class="letter ui">c</span> Luzia bekommt nur Haushaltsgeld, nichts für persönliche Bedürfnisse.</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><p>Sie hat Anspruch auf einen <strong>Betrag zur freien Verfügung</strong>.</p><span class="res ui">Art. 164</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="scheidung">
+  <div class="sec-head"><span class="sec-num ui">21.3</span><h2>Scheidung &amp; Folgen</h2></div>
+  <div class="compare">
+    <div class="col c-test"><h4>Gemeinsames Begehren <span class="art">111/112</span></h4><ul><li>Beide wollen scheiden → gemeinsames Begehren</li><li>Oft mit <strong>Scheidungsvereinbarung</strong> (Vermögen, Unterhalt, Kinder, Wohnung, Vorsorge)</li><li>Bei Teileinigung entscheidet das Gericht über offene Punkte</li></ul></div>
+    <div class="col c-vert"><h4>Scheidungsklage <span class="art">114/115</span></h4><ul><li>Nur einer will scheiden → Klage</li><li><strong>Getrenntleben:</strong> mind. <strong>2 Jahre</strong> (echte Trennung)</li><li><strong>Unzumutbarkeit:</strong> schwere Gründe (z.&nbsp;B. Gewalt) umgehen die Frist</li></ul></div>
+  </div>
+  <div class="card">
+    <h3>Folgen der Scheidung</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Bereich</th><th>Folge</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Name</strong></td><td>Bleibt grundsätzlich bestehen</td></tr>
+        <tr><td><strong>Vermögen</strong></td><td>Güterrechtliche Auseinandersetzung</td></tr>
+        <tr><td><strong>Wohnung</strong></td><td>Gericht kann entscheiden, wer bleibt</td></tr>
+        <tr><td><strong>Unterhalt</strong></td><td>Eventuell Unterhaltszahlungen</td></tr>
+        <tr><td><strong>Kinder</strong></td><td>Sorgerecht, Obhut, Besuchsrecht</td></tr>
+        <tr><td><strong>Berufliche Vorsorge</strong></td><td>Pensionskasse wird grundsätzlich geteilt</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="guterrecht">
+  <div class="sec-head"><span class="sec-num ui">21.2</span><h2>Güterrecht – die drei Güterstände</h2></div>
+  <div class="card">
+    <p>Das <span class="term">Güterrecht</span> regelt, wem welches Vermögen gehört und wie es bei Scheidung oder Tod geteilt wird.</p>
+    <div class="gs-stack">
+      <div class="gs eb"><div class="ord ui">Gesetzlich · ordentlich · ohne Ehevertrag</div><h4>Errungenschaftsbeteiligung <span class="art">181, 196 ff.</span></h4><p>Automatisch, wenn kein Ehevertrag. Vier Massen: Eigengut 1+2, Errungenschaft 1+2.</p></div>
+      <div class="gs gg"><div class="ord ui">Vertraglich · mit Ehevertrag</div><h4>Gütergemeinschaft <span class="art">221 ff.</span></h4><p>Eigengut 1, Eigengut 2 und gemeinsames <strong>Gesamtgut</strong> – fast alles ins Gesamtgut.</p></div>
+      <div class="gs gt"><div class="ord ui">Vertraglich · mit Ehevertrag</div><h4>Gütertrennung <span class="art">247 ff.</span></h4><p>Vermögen bleiben getrennt – <strong>keine</strong> hälftige Teilung.</p></div>
+    </div>
+    <div class="note"><strong>Ehevertrag</strong> <span class="art">184</span>: Abweichung von der Errungenschaftsbeteiligung braucht öffentliche Beurkundung.</div>
+  </div>
+
+  <div class="card">
+    <h3>Errungenschaftsbeteiligung – welche Masse?</h3>
+    <div class="mass-grid">
+      <div class="mass eigen"><h4>Eigengut <span class="art">198</span></h4><ul><li>Vermögen <strong>vor der Ehe</strong></li><li><strong>Erbschaften</strong> während der Ehe</li><li><strong>Schenkungen</strong> während der Ehe</li><li><strong>Persönlicher Gebrauch</strong> (Schmuck, Kleidung, Uhr)</li></ul></div>
+      <div class="mass errung"><h4>Errungenschaft <span class="art">197</span></h4><ul><li><strong>Lohn</strong> / Arbeitserwerb</li><li><strong>Sozialversicherungen</strong> (AHV/IV)</li><li><strong>Pensionskasse</strong> (2. Säule)</li><li><strong>Erträge</strong> aus Eigengut (Zinsen, Dividenden)</li><li>Mit Lohn Gekauftes</li></ul></div>
+    </div>
+    <div class="tip"><strong>Trick:</strong> «Woher kommt es?» Vor der Ehe / geerbt / geschenkt / persönlich → <strong>Eigengut</strong>. Während der Ehe erarbeitet oder Ertrag daraus → <strong>Errungenschaft</strong>.</div>
+    <h4>Vorgehen bei der Auseinandersetzung</h4>
+    <ol class="steps">
+      <li>Eigengut Ehegatte 1</li><li>Eigengut Ehegatte 2</li>
+      <li>Errungenschaft Ehegatte 1</li><li>Errungenschaft Ehegatte 2</li>
+      <li>Errungenschaften <strong>zusammenzählen</strong></li><li><strong>Halbieren</strong></li>
+      <li>Jeder: <strong>Eigengut + halbe Gesamt-Errungenschaft</strong></li>
+    </ol>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><div class="label ui">Aufgabe 8 · gelöst</div><h3>Eigengut oder Errungenschaft? (kein Ehevertrag)</h3></div>
+    <div class="ex-body">
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Vermögenswert</th><th>Masse</th><th>warum</th></tr></thead>
+        <tbody>
+          <tr><td>a) Goldene Armbanduhr (Geschenk)</td><td><span class="pill r">Eigengut</span></td><td>persönlicher Gebrauch</td></tr>
+          <tr><td>b) Geerbte Ohrringe</td><td><span class="pill r">Eigengut</span></td><td>Erbschaft + persönlich</td></tr>
+          <tr><td>c) Arbeitserwerb</td><td><span class="pill f">Errungenschaft</span></td><td>Lohn während der Ehe</td></tr>
+          <tr><td>d) Pensionskasse (2. Säule)</td><td><span class="pill f">Errungenschaft</span></td><td>während der Ehe</td></tr>
+          <tr><td>e) Waschmaschine (vor Ehe)</td><td><span class="pill r">Eigengut</span></td><td>vor der Ehe vorhanden</td></tr>
+          <tr><td>f) Auto (mit Lohn gekauft)</td><td><span class="pill f">Errungenschaft</span></td><td>mit Errungenschaft erworben</td></tr>
+          <tr><td>g) Motorrad (vor Ehe)</td><td><span class="pill r">Eigengut</span></td><td>vor der Ehe vorhanden</td></tr>
+          <tr><td>h) Schuhsammlung</td><td><span class="pill r">Eigengut</span></td><td>persönlicher Gebrauch</td></tr>
+          <tr><td>i) Zinsen während der Ehe</td><td><span class="pill f">Errungenschaft</span></td><td>Ertrag aus Eigengut</td></tr>
+          <tr><td>j) Snowboard (Geschenk zum Hochzeitstag)</td><td><span class="pill r">Eigengut</span></td><td>persönlicher Gebrauch</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><strong>Stolperfalle:</strong> <em>Erträge</em> aus Eigengut (Zinsen, Dividenden, Mietzins) sind <strong>Errungenschaft</strong>.</div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><div class="label ui">Aufgabe 9 · gelöst · Errungenschaftsbeteiligung</div><h3>Samira &amp; Luca</h3></div>
+    <div class="ex-body">
+      <div class="case"><span class="sum ui">Sachverhalt</span><br>Samira bringt 37'000 ein, Luca 26'000. Samira erbt 16'000. Luca spart 93'000, Samira 57'000. Nach 20 Jahren Errungenschaftsbeteiligung folgt die Scheidung.</div>
+      <div class="q"><span class="letter ui">a</span> Eigengut &amp; Errungenschaft bestimmen, Ansprüche berechnen.</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner">
+        <div class="gtbl">
+          <div class="person">Samira</div><div class="person">Luca</div>
+          <div class="h">Eigengut</div><div class="h">Errungenschaft</div><div class="h">Errungenschaft</div><div class="h">Eigengut</div>
+          <div class="eigen">37'000 + 16'000<br>= <strong>53'000</strong></div><div class="errung"><strong>57'000</strong></div><div class="errung"><strong>93'000</strong></div><div class="eigen"><strong>26'000</strong></div>
+        </div>
+        <p>Errungenschaften: 57'000 + 93'000 = 150'000 → je 75'000.</p>
+        <span class="res ui">Samira: 53'000 + 75'000 = 128'000</span><br><span class="res ui">Luca: 26'000 + 75'000 = 101'000</span>
+      </div></div>
+      <div class="q"><span class="letter ui">b</span> Wer schuldet wem wie viel?</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><span class="res ui">Luca zahlt Samira 18'000</span><p class="art-ref">75'000 − 57'000 = 18'000</p></div></div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><div class="label ui">Aufgabe 11 · gelöst</div><h3>Gütertrennung &amp; Gütergemeinschaft</h3></div>
+    <div class="ex-body">
+      <div class="q"><span class="letter ui">a</span> Neu <strong>Gütertrennung</strong> – wer bekommt was bei der Scheidung?</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><p>Jeder behält sein Vermögen, keine Teilung.</p><span class="res ui">Samira: 110'000</span> &nbsp; <span class="res ui">Luca: 119'000</span><p class="art-ref"><span class="art">247 ff.</span></p></div></div>
+      <div class="q"><span class="letter ui">b</span> Tod statt Scheidung, <strong>Gütergemeinschaft</strong> – Luca stirbt.</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner">
+        <p>Fast alles ins Gesamtgut, dann halbieren.</p>
+        <span class="res ui">Gesamtgut: 110'000 + 119'000 = 229'000 → je 114'500</span>
+        <p style="margin-top:10px">→ Samira erhält <strong>114'500</strong> aus dem Güterrecht. Die anderen <strong>114'500</strong> sind Lucas <strong>Erbmasse</strong> (Brücke zu Kapitel 22!).</p>
+        <p class="art-ref"><span class="art">221 ff.</span></p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Gütergemeinschaft – Zuordnung (Aufgabe 10)</h3>
+    <div class="mass-grid">
+      <div class="mass eigen"><h4>Eigengut</h4><ul><li>Kleidung</li><li>Schmuck</li><li>nur persönliche Gegenstände</li></ul></div>
+      <div class="mass gesamt"><h4>Gesamtgut</h4><ul><li>Lohn · AHV · Pensionskasse</li><li>Dividenden · Mietzins</li><li>vererbtes Haus · geschenktes Auto</li></ul></div>
+    </div>
+    <div class="warn"><strong>Unterschied merken:</strong> Erbschaften/Schenkungen sind bei der <em>Errungenschaftsbeteiligung</em> Eigengut, bei der <em>Gütergemeinschaft</em> Gesamtgut.</div>
+  </div>
+</section>
+
+<section id="konkubinat">
+  <div class="sec-head"><span class="sec-num ui">21.3</span><h2>Konkubinat</h2></div>
+  <div class="card">
+    <p><span class="term">Konkubinat</span> = Zusammenleben ohne Ehe, kaum geregelt.</p>
+    <div class="compare">
+      <div class="col c-pro"><h4>Vorteile</h4><ul><li>Unkompliziert, flexibel (kein Verfahren)</li><li>Keine Trauungskosten</li><li>Oft tiefere Steuern (keine «Heiratsstrafe»)</li><li>Höhere Rente möglich (2× bis 100&nbsp;%)</li></ul></div>
+      <div class="col c-con"><h4>Nachteile</h4><ul><li>Kein gesetzlicher Schutz</li><li>Kein med. Auskunfts-/Vertretungsrecht</li><li><strong>Kein gesetzliches Erbrecht</strong></li><li>Keine Witwen-/Witwerrente</li><li>Kein Unterhaltsanspruch</li><li>Pensionskasse/AHV nicht geteilt</li><li>Kein gemeinsamer Name</li></ul></div>
+    </div>
+    <div class="tip"><strong>Absicherung:</strong> Konkubinatsvertrag · <strong>Testament</strong> (fürs Erbrecht!) · Patientenverfügung · Pensionskassen-Regelung.</div>
+    <div class="warn"><strong>Wichtig:</strong> Ein Konkubinatsvertrag ersetzt kein Testament. Für ein Erbrecht braucht es eine erbrechtliche Regelung (→ Kap. 22).</div>
+  </div>
+</section>
+
+<section id="kind">
+  <div class="sec-head"><span class="sec-num ui">21.4</span><h2>Das Kindesverhältnis</h2></div>
+  <div class="card">
+    <p>Das <span class="term">Kindesverhältnis</span> ist die rechtliche Beziehung zwischen Kind und Eltern.</p>
+    <h4>Zur Mutter</h4>
+    <p>Entsteht <strong>durch die Geburt</strong> – Mutter ist die Frau, die das Kind geboren hat.</p>
+    <h4>Zum Vater – vier Wege</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Fall</th><th>Erklärung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Vaterschaftsvermutung</strong></td><td>Mutter <em>verheiratet</em> → Ehemann gilt automatisch als Vater</td></tr>
+        <tr><td><strong>Vaterschaftsanerkennung</strong></td><td>Mutter <em>unverheiratet</em> → Vater kann anerkennen</td></tr>
+        <tr><td><strong>Vaterschaftsklage</strong></td><td>Bei Weigerung → gerichtliche Feststellung</td></tr>
+        <tr><td><strong>Adoption</strong></td><td>Rechtliches Kindesverhältnis durch Adoption</td></tr>
+      </tbody>
+    </table></div>
+    <h4>Wirkungen</h4>
+    <ul class="clean arrow">
+      <li>Eltern haben <strong>Unterhaltspflicht</strong> und Sorgepflicht</li>
+      <li>Kind hat rechtliche Ansprüche gegenüber den Eltern</li>
+      <li>Kind kann <strong>erbrechtliche Ansprüche</strong> haben (1. Parentel → Kap. 22)</li>
+    </ul>
+    <div class="note"><strong>Unterhaltspflicht:</strong> bis zur <strong>Volljährigkeit</strong>, ggf. bis zum Abschluss der Erstausbildung (z.&nbsp;B. 18-Jähriger in der Lehre).</div>
+  </div>
+</section>
+
+<section id="ueben21">
+  <div class="sec-head"><span class="sec-num ui">✎</span><h2>Üben – Kapitel 21</h2></div>
+  <div class="card">
+    <h3>Aufgabe 3 – Eheschliessung: richtig oder falsch?</h3>
+    <div id="tf-list"></div>
+  </div>
+  <div class="ex"><div class="ex-body">
+    <h3 style="margin-top:0">Weitere Übungsfragen</h3>
+    <div class="q"><span class="letter ui">1</span> Ein Ehegatte will allein den Umzug bestimmen. Erlaubt?</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner"><span class="res ui">Nein</span> – gemeinsam bestimmen. <span class="art">162</span></div></div>
+    <div class="q"><span class="letter ui">2</span> Sie erbt während der Ehe ein Auto. Welche Masse (Errungenschaftsbeteiligung)?</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner"><span class="res ui">Eigengut</span> – Erbschaft. <span class="art">198</span></div></div>
+    <div class="q"><span class="letter ui">3</span> Wie lange getrennt für eine Scheidungsklage – und Ausnahme?</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner"><span class="res ui">2 Jahre</span>; Ausnahme: schwere Gründe (Gewalt). <span class="art">114/115</span></div></div>
+    <div class="q"><span class="letter ui">4</span> Eigengut A=20'000, Errung. A=60'000, Eigengut B=0, Errung. B=40'000. Was erhält jeder?</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner"><p>Errung. 100'000 → je 50'000.</p><span class="res ui">A: 70'000</span> &nbsp; <span class="res ui">B: 50'000</span><p class="art-ref">A zahlt B 10'000.</p></div></div>
+    <div class="q"><span class="letter ui">5</span> Konkubinatspartner stirbt ohne Testament – was erbt sie?</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner"><span class="res ui">Nichts</span> – kein gesetzliches Erbrecht im Konkubinat.</div></div>
+  </div></div>
+</section>
+
+<section id="cards21">
+  <div class="sec-head"><span class="sec-num ui">⚡</span><h2>Artikel-Schnellabfrage 21</h2></div>
+  <div class="fc-grid">
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Ehevoraussetzungen</div><div class="fc-face fc-back">Art. 94–96</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Name</div><div class="fc-face fc-back">Art. 160</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Eheliche Wohnung</div><div class="fc-face fc-back">Art. 162</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Unterhalt Familie</div><div class="fc-face fc-back">Art. 163</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Betrag freie Verfügung</div><div class="fc-face fc-back">Art. 164</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Beruf &amp; Gewerbe</div><div class="fc-face fc-back">Art. 167</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Familienwohnung</div><div class="fc-face fc-back">Art. 169</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Scheidung gemeins.</div><div class="fc-face fc-back">Art. 111/112</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Scheidungsklage</div><div class="fc-face fc-back">Art. 114/115</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Ehevertrag</div><div class="fc-face fc-back">Art. 181/184</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Errungenschaft</div><div class="fc-face fc-back">Art. 197</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Eigengut</div><div class="fc-face fc-back">Art. 198</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Gütergemeinschaft</div><div class="fc-face fc-back">Art. 221 ff.</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Gütertrennung</div><div class="fc-face fc-back">Art. 247 ff.</div></div></div>
+  </div>
+</section>
+
+<section id="quiz21">
+  <div class="sec-head"><span class="sec-num ui">?</span><h2>Quiz – Familienrecht</h2></div>
+  <div data-quiz="q21" data-total="6">
+    <div class="quiz-q"><div class="qn ui">Frage 1</div><p class="qt">Was kann seit 2022 nicht mehr neu geschlossen werden?</p>
+      <button class="opt" onclick="ans(this,0)">Die Ehe</button><button class="opt" onclick="ans(this,1)">Die eingetragene Partnerschaft</button><button class="opt" onclick="ans(this,0)">Das Konkubinat</button>
+      <div class="feedback" data-ok="Richtig! Seit der «Ehe für alle» keine neue eingetragene Partnerschaft mehr."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 2</div><p class="qt">Roger will die Familienwohnung allein kündigen.</p>
+      <button class="opt" onclick="ans(this,1)">Beide müssen unterschreiben (Art. 169)</button><button class="opt" onclick="ans(this,0)">Wer unterschrieben hat, darf allein</button><button class="opt" onclick="ans(this,0)">Das Gericht muss zustimmen</button>
+      <div class="feedback" data-ok="Korrekt – die Familienwohnung ist besonders geschützt."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 3</div><p class="qt">Was ist Eigengut (Errungenschaftsbeteiligung)?</p>
+      <button class="opt" onclick="ans(this,0)">Lohn während der Ehe</button><button class="opt" onclick="ans(this,1)">Eine geerbte Halskette</button><button class="opt" onclick="ans(this,0)">Dividenden während der Ehe</button>
+      <div class="feedback" data-ok="Richtig – Erbschaften sind Eigengut (Art. 198)."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 4</div><p class="qt">Errung. A=80'000, B=20'000. Wie viel Errungenschaft je?</p>
+      <button class="opt" onclick="ans(this,1)">Je 50'000</button><button class="opt" onclick="ans(this,0)">A 80'000, B 20'000</button><button class="opt" onclick="ans(this,0)">A 60'000, B 40'000</button>
+      <div class="feedback" data-ok="Korrekt – zusammen 100'000, halbiert je 50'000. A zahlt B 30'000."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 5</div><p class="qt">Konkubinatspartner stirbt ohne Testament. Was erbt sie?</p>
+      <button class="opt" onclick="ans(this,1)">Nichts</button><button class="opt" onclick="ans(this,0)">Die Hälfte</button><button class="opt" onclick="ans(this,0)">Alles</button>
+      <div class="feedback" data-ok="Korrekt – kein gesetzliches Erbrecht im Konkubinat."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 6</div><p class="qt">Unverheiratete Mutter – wie entsteht die Vaterschaft NICHT?</p>
+      <button class="opt" onclick="ans(this,1)">Durch Vaterschaftsvermutung</button><button class="opt" onclick="ans(this,0)">Durch Anerkennung</button><button class="opt" onclick="ans(this,0)">Durch Klage</button>
+      <div class="feedback" data-ok="Richtig – die Vermutung gilt nur bei verheirateter Mutter."></div></div>
+    <div class="card scorebox" data-score="q21" style="border-color:var(--plum)"><h3 style="color:var(--plum)">Ergebnis Kapitel 21</h3><p class="big">0 / 6</p><p class="msg"></p></div>
+  </div>
+</section>
+</div><!-- /k21 -->
+
+<!-- ================= KAPITEL 22 ================= -->
+<div class="chapter-banner b22" id="kap22">
+  <div class="cnum ui">Kapitel 22</div>
+  <h2>Erbrecht</h2>
+  <p>Gesetzliche Erbfolge · Parentelen · Pflichtteile · Testament &amp; Erbvertrag · Erbgang</p>
+  <span class="ghost">22</span>
+</div>
+
+<div class="k22">
+
+<section id="ziele22">
+  <div class="card" style="border:2px solid var(--red)">
+    <h3 style="display:flex;align-items:center;gap:10px"><span class="art r">Lernziele 22</span></h3>
+    <ul class="clean check" style="font-size:16px">
+      <li><strong>Gesetzliche Erben</strong> bestimmen und Anteile berechnen.</li>
+      <li><strong>Verfügungsformen &amp; Pflichtteile:</strong> Ansprüche beurteilen.</li>
+      <li><strong>Wahlmöglichkeiten</strong> der Erben anwenden.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="grund">
+  <div class="sec-head"><span class="sec-num ui">22.1</span><h2>Grundlagen des Erbrechts</h2></div>
+  <div class="card">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Erblasser/in</strong></td><td>verstorbene Person</td></tr>
+        <tr><td><strong>Nachlass / Erbschaft</strong></td><td>Vermögen, das vererbt wird</td></tr>
+        <tr><td><strong>Erben</strong></td><td>Personen, die etwas aus dem Nachlass erhalten</td></tr>
+      </tbody>
+    </table></div>
+    <div class="compare">
+      <div class="col" style="background:var(--p2-bg);border-color:var(--p2)"><h4 style="color:var(--p2)">① Gesetzliche Erbfolge</h4><p style="font-size:16px;margin:0 0 8px"><strong>Wenn nichts geregelt wurde.</strong></p><ul style="margin:0;padding-left:20px;font-size:15.5px"><li>Verwandte <span class="art">457–460</span></li><li>Ehegatte/eingetr. Partner/in <span class="art">462</span></li><li>Gemeinwesen <span class="art">466</span></li></ul></div>
+      <div class="col" style="background:var(--p3-bg);border-color:var(--p3)"><h4 style="color:var(--p3)">② Verfügung von Todes wegen</h4><p style="font-size:16px;margin:0 0 8px"><strong>Erblasser regelt selbst.</strong></p><ul style="margin:0;padding-left:20px;font-size:15.5px"><li>Testament <span class="art">498 ff.</span> – einseitig</li><li>Erbvertrag <span class="art">512 ff.</span> – mehrseitig</li></ul></div>
+    </div>
+    <div class="note"><strong>Merksatz:</strong> Gibt es eine gültige Verfügung, gilt diese – die Pflichtteile müssen aber eingehalten werden. Sonst: gesetzliche Erbfolge.</div>
+  </div>
+</section>
+
+<section id="gesetzlich">
+  <div class="sec-head"><span class="sec-num ui">22.2</span><h2>Die gesetzliche Erbfolge</h2></div>
+  <div class="card">
+    <h3>Parentelsystem – «Das Erbe folgt dem Blut»</h3>
+    <p><strong>Eine nähere Parentel schliesst die ferneren komplett aus.</strong></p>
+    <div class="par-stack">
+      <div class="par one"><div class="ord ui">1. Parentel <span class="art">457</span></div><h4>Nachkommen</h4><p>Kinder, Enkel, Urenkel</p><span class="big">I</span></div>
+      <div class="par two"><div class="ord ui">2. Parentel <span class="art">458</span></div><h4>Elterlicher Stamm</h4><p>Eltern und deren Nachkommen → Geschwister, Nichten/Neffen</p><span class="big">II</span></div>
+      <div class="par three"><div class="ord ui">3. Parentel <span class="art">459</span></div><h4>Grosselterlicher Stamm</h4><p>Grosseltern und deren Nachkommen → Onkel/Tanten, Cousins</p><span class="big">III</span></div>
+      <div class="par gem"><div class="ord ui">Auffangstufe <span class="art">466</span></div><h4>Gemeinwesen</h4><p>Kanton/Gemeinde – nur wenn niemand sonst da ist</p><span class="big">CH</span></div>
+    </div>
+    <div class="warn"><strong>Grenze:</strong> Verwandtschaft erbt höchstens bis zur 3. Parentel. Ein <em>Grossonkel/Grosstante</em> erbt <strong>nicht</strong> (stammt von den Urgrosseltern ab) → dann Gemeinwesen.</div>
+    <h4>Zwei Prinzipien</h4>
+    <ul class="clean">
+      <li><strong>Eintrittsprinzip</strong> <span class="art">457 Abs. 3</span>: Ist ein Erbe verstorben, treten seine Nachkommen an seine Stelle.</li>
+      <li><strong>Das Erbe folgt dem Blut:</strong> Angeheiratete (Schwiegerkinder, Witwe/r eines Geschwisters) erben gesetzlich <strong>nichts</strong>.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Erbteil des Ehegatten <span class="art r">Art. 462</span></h3>
+    <div class="quota-grid">
+      <div class="quota"><div class="frac">½</div><div class="who ui">neben 1. Parentel</div><div class="desc">teilt mit Nachkommen</div></div>
+      <div class="quota"><div class="frac">¾</div><div class="who ui">neben 2. Parentel</div><div class="desc">elterlicher Stamm bekommt ¼</div></div>
+      <div class="quota"><div class="frac">Alles</div><div class="who ui">neben 3. Parentel / allein</div><div class="desc">ganzer Nachlass</div></div>
+    </div>
+    <div class="note"><strong>Wichtig:</strong> Neben der 3. Parentel bekommt der Ehegatte <em>alles</em> – die entfernten Verwandten gehen leer aus.</div>
+  </div>
+</section>
+
+<section id="pflicht">
+  <div class="sec-head"><span class="sec-num ui">22.3</span><h2>Verfügungen &amp; Pflichtteile</h2></div>
+  <div class="card">
+    <h3>Pflichtteil und freie Quote</h3>
+    <p>Der <span class="term">Pflichtteil</span> ist der geschützte Mindestanteil. Der Rest ist die <span class="term">freie Quote</span>.</p>
+    <div class="reform">
+      <span class="tag ui">⚠ Erbrechtsreform – seit 1.1.2023</span>
+      <ul class="clean" style="margin:0">
+        <li><strong>Nachkommen:</strong> Pflichtteil = <strong>½</strong> des Erbanspruchs <span style="color:var(--ink-soft)">(früher ¾)</span></li>
+        <li><strong>Ehegatte:</strong> Pflichtteil = <strong>½</strong></li>
+        <li><strong>Eltern:</strong> <strong>KEIN</strong> Pflichtteil mehr <span style="color:var(--ink-soft)">(früher ½)</span></li>
+        <li><strong>Geschwister/Onkel/Tanten:</strong> nie ein Pflichtteil</li>
+      </ul>
+    </div>
+    <p><strong>Pflichtteil (CHF) = gesetzlicher Erbteil × Pflichtteilsquote.</strong> Freie Quote = 1 − Summe aller Pflichtteile.</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Konstellation</th><th>gesetzl. Erbteil</th><th>Pflichtteil</th><th>Mindestanspruch</th><th>freie Quote</th></tr></thead>
+      <tbody>
+        <tr><td>Nachkommen allein</td><td class="frac">1/1</td><td class="frac">½</td><td class="frac">½</td><td><span class="pill free">½</span></td></tr>
+        <tr><td>Ehegatte allein</td><td class="frac">1/1</td><td class="frac">½</td><td class="frac">½</td><td><span class="pill free">½</span></td></tr>
+        <tr><td>Eltern allein</td><td class="frac">1/1</td><td><span class="pill none">keiner</span></td><td class="frac">0</td><td><span class="pill free">alles</span></td></tr>
+        <tr><td>Nachkommen + Ehegatte<br><span style="font-size:13px;color:var(--ink-soft)">Nachk. / Ehe</span></td><td class="frac">½ / ½</td><td class="frac">½ / ½</td><td class="frac">¼ / ¼</td><td><span class="pill free">½</span></td></tr>
+        <tr><td>Eltern + Ehegatte<br><span style="font-size:13px;color:var(--ink-soft)">Eltern / Ehe</span></td><td class="frac">¼ / ¾</td><td class="frac">– / ½</td><td class="frac">0 / 3/8</td><td><span class="pill free">5/8</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><strong>Letzte Zeile:</strong> Ehegatte neben Eltern = ¾, Pflichtteil ¾ × ½ = 3/8. Eltern 0. Freie Quote = 1 − 3/8 = 5/8.</div>
+  </div>
+  <div class="card">
+    <h3>Enterbung <span class="art r">Art. 477 ff.</span></h3>
+    <p>Pflichtteil nur entziehbar bei gesetzlichem Grund:</p>
+    <ul class="clean cross"><li>Schweres Verbrechen gegen die erblassende Person oder ihr Nahestehende.</li><li>Schwere Verletzung familienrechtlicher Pflichten.</li></ul>
+    <div class="warn"><strong>Achtung:</strong> Blosser Streit reicht nicht. Pflichtteile umgehen geht sonst nur über einen <strong>Erbvertrag</strong> (Erbverzicht).</div>
+  </div>
+</section>
+
+<section id="verfuegung">
+  <div class="sec-head"><span class="sec-num ui">22.3b</span><h2>Testament vs. Erbvertrag</h2></div>
+  <div class="compare">
+    <div class="col c-test"><h4>📄 Testament <span class="art">498 ff.</span></h4><ul><li><strong>Einseitig</strong>, keine Zustimmung nötig</li><li>Jederzeit <strong>änderbar/widerrufbar</strong></li><li><strong>Handlungsfähig</strong> sein</li><li>Pflichtteile <strong>beachten</strong></li><li>Formen: öffentlich <span class="art">499–504</span> · eigenhändig <span class="art">505</span> · mündlich <span class="art">506–508</span></li></ul></div>
+    <div class="col c-vert"><h4>🤝 Erbvertrag <span class="art">512 ff.</span></h4><ul><li><strong>Mehrseitig</strong>, mehrere Beteiligte</li><li><strong>Bindend</strong> – nur gemeinsam änderbar</li><li>Pflichtteile umgehbar (<strong>Erbverzicht</strong> <span class="art">495</span>)</li><li>Form: öffentl. Beurkundung + <strong>2 Zeugen</strong> <span class="art">512</span></li></ul></div>
+  </div>
+  <div class="card">
+    <h4>Eigenhändiges Testament – 3 Voraussetzungen <span class="art r">Art. 505</span></h4>
+    <ul class="clean check"><li>Von <strong>Hand</strong> geschrieben (nicht am Computer)</li><li>Mit <strong>Datum</strong></li><li><strong>Unterschrieben</strong></li></ul>
+    <div class="note"><strong>Wann Erbvertrag?</strong> Wenn Pflichtteile abgeändert werden sollen – z.&nbsp;B. Immobilie soll nicht verkauft werden, Ehegatte/Konkubinatspartner soll abgesichert werden.</div>
+  </div>
+</section>
+
+<section id="erbgang">
+  <div class="sec-head"><span class="sec-num ui">22.4</span><h2>Erbgang – Wahlmöglichkeiten</h2></div>
+  <div class="card">
+    <p>Erben übernehmen auch <strong>Schulden</strong>. Darum gibt es Wahlmöglichkeiten:</p>
+    <div class="par-stack">
+      <div class="par three"><div class="ord ui">Wahl 1 <span class="art">580 ff.</span></div><h4>Öffentliches Inventar</h4><p>Behörde listet Vermögen und Schulden auf → Total sehen, bevor man entscheidet.</p></div>
+      <div class="par two"><div class="ord ui">Wahl 2 <span class="art">566 ff.</span></div><h4>Erbausschlagung</h4><p>Innert <strong>3 Monaten</strong> ablehnen – sinnvoll bei Überschuldung; man übernimmt die Schulden nicht.</p></div>
+      <div class="par one"><div class="ord ui">Wahl 3 <span class="art">593 ff.</span></div><h4>Amtliche Liquidation</h4><p>Behörde zahlt Schulden, Erben erhalten nur den Überschuss; keine Privathaftung.</p></div>
+      <div class="par gem"><div class="ord ui">Mehrere Erben <span class="art">602/603</span></div><h4>Erbengemeinschaft</h4><p>Verfügen gemeinsam; Aufteilung erst, wenn alle einverstanden sind.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="beispiele">
+  <div class="sec-head"><span class="sec-num ui">★</span><h2>Gelöste Erbfälle</h2></div>
+
+  <div class="ex">
+    <div class="ex-head"><div class="label ui">Beispiel 1 · Lernziel 1</div><h3>Astrid Moser</h3></div>
+    <div class="ex-body">
+      <div class="case"><span class="sum ui">Sachverhalt</span><br>Astrid stirbt, hinterlässt CHF 800'000.</div>
+      <div class="q"><span class="letter ui">a</span> Verheiratet, zwei Kinder.</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><span class="res ui">Ehegatte ½ = 400'000</span><br><span class="res ui">Kinder je ¼ = 200'000</span><p class="art-ref"><span class="art">462</span> · <span class="art">457</span></p></div></div>
+      <div class="q"><span class="letter ui">b</span> Geschieden, zwei Kinder.</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><span class="res ui">Ex-Ehegatte 0</span><br><span class="res ui">Kinder je ½ = 400'000</span></div></div>
+      <div class="q"><span class="letter ui">c</span> Ledig, kinderlos, Eltern tot. Schwester Sophia (lebt); Bruder Hans (tot) mit zwei Töchtern Emily &amp; Tonya.</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner">
+        <div class="tree"><div class="row"><div class="tnode dead">Vater †</div><div class="tnode dead">Mutter †</div></div><div class="row"><div class="tnode dead">Astrid</div><div class="tnode heir">Sophia<span class="amt">½ = 400'000</span></div><div class="tnode dead">Hans †</div></div><div class="row"><div class="tnode heir">Emily<span class="amt">¼ = 200'000</span></div><div class="tnode heir">Tonya<span class="amt">¼ = 200'000</span></div></div></div>
+        <span class="res ui">Sophia ½ · Emily ¼ · Tonya ¼</span><p class="art-ref"><span class="art">458</span> · <span class="art">457 Abs. 3</span></p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><div class="label ui">Beispiel 2 · Lernziel 2</div><h3>Anna Müller</h3></div>
+    <div class="ex-body">
+      <div class="case"><span class="sum ui">Sachverhalt</span><br>Ehemann Robert, Eltern Barbara &amp; Josef, zwei Söhne Thomas &amp; Sandro. Nachlass 1'000'000.</div>
+      <div class="q"><span class="letter ui">a</span> Ohne Testament?</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><span class="res ui">Robert ½ = 500'000</span><br><span class="res ui">Söhne je ¼ = 250'000</span><br><span class="res ui">Eltern 0 (ausgeschlossen)</span></div></div>
+      <div class="q"><span class="letter ui">b</span> Pflichtteile &amp; freie Quote?</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><span class="res ui">Robert ¼ = 250'000</span><br><span class="res ui">Söhne je ⅛ = 125'000</span><br><span class="res ui">freie Quote ½ = 500'000</span></div></div>
+      <div class="q"><span class="letter ui">c</span> Eigenhändiges Testament: Söhne auf Pflichtteil; Schuhe an Tekla, 20'000 an Krebshilfe, Rest an Robert. Gültig &amp; Verteilung?</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><p><strong>Gültig</strong> (handgeschrieben, datiert, unterschrieben – Art. 505).</p><span class="res ui">Söhne ¼ = 250'000 (je 125'000)</span><br><span class="res ui">Krebshilfe 20'000 · Tekla Schuhe</span><br><span class="res ui">Robert Rest = 730'000</span><p class="art-ref">250'000 + 20'000 + 730'000 = 1'000'000 ✓</p></div></div>
+      <div class="q"><span class="letter ui">d</span> Anna will die Söhne ganz übergehen. Erlaubt?</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><p><strong>Nein</strong> – Söhne sind pflichtteilsgeschützt. Enterbung (Art. 477) nur bei schwerem Grund, Streit reicht nicht.</p></div></div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><div class="label ui">Beispiel 3 · Lernziel 1+2</div><h3>Paul Bühler</h3></div>
+    <div class="ex-body">
+      <div class="case"><span class="sum ui">Sachverhalt</span><br>Ehefrau Margrith, Sohn Heiri, Tochter Cornelia (tot) mit Kindern Sonja &amp; Boris. Erbschaft 240'000.</div>
+      <div class="q"><span class="letter ui">a</span> Ohne Verfügung?</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><div class="tree"><div class="row"><div class="tnode dead">Paul</div><div class="tnode spouse">Margrith<span class="amt">½ = 120'000</span></div></div><div class="row"><div class="tnode heir">Heiri<span class="amt">¼ = 60'000</span></div><div class="tnode dead">Cornelia †</div></div><div class="row"><div class="tnode heir">Sonja<span class="amt">⅛ = 30'000</span></div><div class="tnode heir">Boris<span class="amt">⅛ = 30'000</span></div></div></div><span class="res ui">Walter (Schwiegersohn): 0</span></div></div>
+      <div class="q"><span class="letter ui">b</span> Margrith, wenn alle anderen zu ihren Gunsten auf den Pflichtteil gesetzt sind?</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><p>Nachkommen nur Pflichtteil ¼ = 60'000. Margrith ¼ + freie Quote ½ = ¾.</p><span class="res ui">Margrith ¾ = 180'000</span> &nbsp; <span class="res ui">Nachkommen ¼ = 60'000</span></div></div>
+    </div>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><div class="label ui">Beispiel 4 · Lernziel 1+2</div><h3>Franziska Schindler</h3></div>
+    <div class="ex-body">
+      <div class="case"><span class="sum ui">Sachverhalt</span><br>Ehemann Adrian, Mutter Doris (Vater Daniel tot), Schwester Nathalie, Bruder Markus + Kinder. Erbschaft 400'000.</div>
+      <div class="q"><span class="letter ui">a</span> Ohne Testament?</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><p>2. Parentel. Ehegatte ¾, elterl. Stamm ¼ (je ⅛ mütterl./väterl.). Vater tot → sein ⅛ an Nathalie &amp; Markus (je 1/16).</p><span class="res ui">Adrian ¾ = 300'000</span><br><span class="res ui">Doris ⅛ = 50'000</span><br><span class="res ui">Nathalie 1/16 = 25'000 · Markus 1/16 = 25'000</span></div></div>
+      <div class="q"><span class="letter ui">b</span> Testament: freie Quote an «Vier Pfoten». Wie viel?</div>
+      <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+      <div class="sol"><div class="sol-inner"><p>Nur Adrian hat Pflichtteil. Doris/Nathalie/Markus → 0 möglich (Reform 2023).</p><span class="res ui">Adrian 3/8 = 150'000</span><br><span class="res ui">Vier Pfoten = 250'000</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ueben22">
+  <div class="sec-head"><span class="sec-num ui">✎</span><h2>Üben – Erbfolge</h2></div>
+  <div class="ex"><div class="ex-body">
+    <div class="q"><span class="letter ui">1</span> Ehegatte + zwei Kinder. Erbe 60'000.</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner"><span class="res ui">Ehegatte ½ = 30'000</span> &nbsp; <span class="res ui">je Kind ¼ = 15'000</span></div></div>
+    <div class="q"><span class="letter ui">2</span> Ehegatte, keine Kinder, 2 Schwestern + Sohn eines toten Bruders. 100'000.</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner"><span class="res ui">Ehegatte ¾ = 75'000</span><br><span class="res ui">je Schwester 1/12 ≈ 8'333 · Sohn 1/12 ≈ 8'333</span></div></div>
+    <div class="q"><span class="letter ui">3</span> Ledig, Eltern + Bruder + Grosseltern + 2 Tanten. 20'000.</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner"><p>Beide Eltern leben → ganze 2. Parentel, schliesst Bruder und 3. Parentel aus.</p><span class="res ui">Vater ½ = 10'000 · Mutter ½ = 10'000</span></div></div>
+    <div class="q"><span class="letter ui">4</span> Nur ein Grossonkel. Villa + 150'000.</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner"><span class="res ui">Gemeinwesen erbt alles</span> – Grossonkel zählt nicht mehr. <span class="art">466</span></div></div>
+    <div class="q"><span class="letter ui">5</span> Nichte und Cousin, Ehefrau tot. 20'000.</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner"><span class="res ui">Nichte alles = 20'000 · Cousin 0</span> (2. schlägt 3. Parentel)</div></div>
+    <div class="q"><span class="letter ui">6</span> Knacknuss 3. Parentel (siehe Skript) – a) Ehefrau tot, b) Ehefrau lebt. 100'000.</div>
+    <button class="reveal-btn ui" onclick="rev(this)"><span class="ic">▸</span> Lösung zeigen</button>
+    <div class="sol"><div class="sol-inner">
+      <p><strong>a)</strong> Väterlich: Grossvater 25'000; Grossmutter † → Onkel &amp; Tante je 12'500. Mütterlich: beide Grosseltern † → Onkel 25'000 + Sohn der toten Tante 25'000.</p>
+      <p><strong>b) Ehefrau lebt</strong> → erbt <strong>alles</strong> (neben 3. Parentel). <span class="art">462</span></p>
+    </div></div>
+  </div></div>
+</section>
+
+<section id="cards22">
+  <div class="sec-head"><span class="sec-num ui">⚡</span><h2>Artikel-Schnellabfrage 22</h2></div>
+  <div class="fc-grid">
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Ehegatte (Erbteil)</div><div class="fc-face fc-back">Art. 462</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">1. Parentel</div><div class="fc-face fc-back">Art. 457</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">2. Parentel</div><div class="fc-face fc-back">Art. 458</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">3. Parentel</div><div class="fc-face fc-back">Art. 459</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Gemeinwesen</div><div class="fc-face fc-back">Art. 466</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Enterbung</div><div class="fc-face fc-back">Art. 477 ff.</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Eigenh. Testament</div><div class="fc-face fc-back">Art. 505</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Öffentl. Testament</div><div class="fc-face fc-back">Art. 499–504</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Erbverzicht</div><div class="fc-face fc-back">Art. 495</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Erbvertrag</div><div class="fc-face fc-back">Art. 512 ff.</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Öffentl. Inventar</div><div class="fc-face fc-back">Art. 580 ff.</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Erbausschlagung</div><div class="fc-face fc-back">Art. 566 ff.</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Amtl. Liquidation</div><div class="fc-face fc-back">Art. 593 ff.</div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-in"><div class="fc-face fc-front">Erbengemeinschaft</div><div class="fc-face fc-back">Art. 602/603</div></div></div>
+  </div>
+</section>
+
+<section id="quiz22">
+  <div class="sec-head"><span class="sec-num ui">?</span><h2>Quiz – Erbrecht</h2></div>
+  <div data-quiz="q22" data-total="7">
+    <div class="quiz-q"><div class="qn ui">Frage 1</div><p class="qt">Ledig, kinderlos: beide Eltern + ein Bruder leben. Wer erbt?</p>
+      <button class="opt" onclick="ans(this,0)">Eltern und Bruder je ⅓</button><button class="opt" onclick="ans(this,1)">Vater ½, Mutter ½ – Bruder nichts</button><button class="opt" onclick="ans(this,0)">Nur der Bruder</button>
+      <div class="feedback" data-ok="Richtig! Solange beide Eltern leben, nehmen sie die ganze 2. Parentel."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 2</div><p class="qt">Ehegatte neben Eltern (keine Kinder) – Erbteil des Ehegatten?</p>
+      <button class="opt" onclick="ans(this,0)">½</button><button class="opt" onclick="ans(this,1)">¾</button><button class="opt" onclick="ans(this,0)">alles</button>
+      <div class="feedback" data-ok="Genau! Neben der 2. Parentel ¾."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 3</div><p class="qt">Pflichtteil der Nachkommen seit 2023?</p>
+      <button class="opt" onclick="ans(this,0)">¾</button><button class="opt" onclick="ans(this,1)">½</button><button class="opt" onclick="ans(this,0)">keiner</button>
+      <div class="feedback" data-ok="Korrekt – seit 1.1.2023 nur noch ½ (vorher ¾)."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 4</div><p class="qt">Was gilt für Eltern nach der Reform 2023?</p>
+      <button class="opt" onclick="ans(this,1)">Kein Pflichtteil mehr</button><button class="opt" onclick="ans(this,0)">Pflichtteil ½</button><button class="opt" onclick="ans(this,0)">Erben immer vor dem Ehegatten</button>
+      <div class="feedback" data-ok="Richtig – der Pflichtteil der Eltern wurde abgeschafft."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 5</div><p class="qt">Was gehört NICHT zum gültigen eigenhändigen Testament?</p>
+      <button class="opt" onclick="ans(this,0)">Von Hand geschrieben</button><button class="opt" onclick="ans(this,0)">Datum</button><button class="opt" onclick="ans(this,1)">Zwei Zeugen</button>
+      <div class="feedback" data-ok="Richtig – zwei Zeugen braucht der Erbvertrag, nicht das eigenhändige Testament."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 6</div><p class="qt">Nachlass überschuldet – was schützt am direktesten?</p>
+      <button class="opt" onclick="ans(this,1)">Erbausschlagung (3 Monate)</button><button class="opt" onclick="ans(this,0)">Erbengemeinschaft gründen</button><button class="opt" onclick="ans(this,0)">Öffentliches Testament</button>
+      <div class="feedback" data-ok="Korrekt – Ausschlagung innert 3 Monaten (Art. 566 ff.)."></div></div>
+    <div class="quiz-q"><div class="qn ui">Frage 7</div><p class="qt">Witwer, Tochter Lea + 2 Kinder des toten Sohnes Tim. 120'000. Tims Kinder zusammen?</p>
+      <button class="opt" onclick="ans(this,1)">60'000 (je 30'000)</button><button class="opt" onclick="ans(this,0)">40'000</button><button class="opt" onclick="ans(this,0)">Nichts</button>
+      <div class="feedback" data-ok="Richtig – Eintrittsprinzip: Tims ½ an seine zwei Kinder."></div></div>
+    <div class="card scorebox" data-score="q22" style="border-color:var(--red)"><h3 style="color:var(--red)">Ergebnis Kapitel 22</h3><p class="big">0 / 7</p><p class="msg"></p></div>
+  </div>
+</section>
+</div><!-- /k22 -->
+
+<footer>
+  Wirtschaft &amp; Recht · Kapitel 21 Familienrecht + Kapitel 22 Erbrecht · BMS Samuel Obrecht Winterthur 25/26 · Prüfung 04.06.2026<br>
+  <span style="opacity:.7">Pflichtteile nach geltendem Recht (Reform seit 1.1.2023). Eigengut = Art. 198, Enterbung = Art. 477 ff. Bei Abweichungen gilt der Gesetzestext (ZGB).</span>
+</footer>
+
+</main>
+
+<button class="backtop ui" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Nach oben">↑</button>
+
+<script>
+function rev(btn){
+  const sol=btn.nextElementSibling;const open=sol.classList.toggle('open');
+  const ic=btn.querySelector('.ic');ic.style.transform=open?'rotate(90deg)':'rotate(0)';
+  btn.childNodes[1].textContent=open?' Lösung verbergen':' Lösung zeigen';
+}
+
+/* true/false (Aufgabe 3) */
+const tfData=[
+ {t:'a) Die Verlobung hat heute keine rechtliche, sondern nur symbolische Bedeutung.',correct:false,exp:'Falsch – ihre Auflösung kann rechtliche Folgen haben (Geschenke, Ring).'},
+ {t:'b) Um heiraten zu können, muss man beim Zivilstandsamt ein Gesuch stellen.',correct:true,exp:'Richtig – Vorbereitungsverfahren über das Zivilstandsamt.'},
+ {t:'c) Die Ehe ist ein Vertrag, der formlos abgeschlossen werden kann.',correct:false,exp:'Falsch – es braucht zwingend die zivile Trauung.'},
+ {t:'d) Die Auflösung der Verlobung kann rechtliche Konsequenzen haben.',correct:true,exp:'Richtig – z.B. bei Geschenken oder Kosten.'},
+ {t:'e) Paare können nur heiraten, wenn sie vorher mind. ein Jahr verlobt waren.',correct:false,exp:'Falsch – keine Mindest-Verlobungszeit.'},
+ {t:'f) Heirat von Geschwistern ist auch bei Adoption verboten.',correct:true,exp:'Richtig – das Verwandtschaftshindernis gilt auch bei Adoption.'},
+ {t:'g) Wer noch verheiratet ist, aber 2 Jahre getrennt lebt, darf wieder heiraten.',correct:false,exp:'Falsch – die bestehende Ehe muss zuerst geschieden sein.'},
+ {t:'h) Paare können frei wählen: Standesamt oder Kirche.',correct:false,exp:'Falsch – nur die zivile Trauung ist gültig.'},
+ {t:'i) Einig genügt auch ein Trauzeuge statt zwei.',correct:false,exp:'Falsch – es braucht zwei Trauzeugen.'}
+];
+const tfList=document.getElementById('tf-list');
+if(tfList){tfData.forEach((it)=>{
+  const d=document.createElement('div');d.className='tf-item';
+  d.innerHTML=`<div class="stmt">${it.t}</div><div class="tf-btns"><button data-v="true">Richtig</button><button data-v="false">Falsch</button><button data-exp="1" style="margin-left:auto;border-style:dashed">Begründung</button></div><div class="tf-exp">${it.exp}</div>`;
+  const exp=d.querySelector('.tf-exp');
+  d.querySelectorAll('.tf-btns button').forEach(b=>{b.addEventListener('click',()=>{
+    if(b.dataset.exp){exp.classList.toggle('show');return;}
+    const chose=(b.dataset.v==='true');
+    d.querySelectorAll('.tf-btns button[data-v]').forEach(x=>x.classList.remove('ok','no'));
+    b.classList.add(chose===it.correct?'ok':'no');exp.classList.add('show');
+  });});
+  tfList.appendChild(d);
+});}
+
+/* quiz – scoped per container */
+const state={};
+function ans(el,correct){
+  const wrap=el.closest('[data-quiz]');const id=wrap.dataset.quiz;const total=+wrap.dataset.total;
+  if(!state[id])state[id]={ans:{},score:0};
+  const q=el.closest('.quiz-q');const key=q.querySelector('.qn').textContent;
+  if(state[id].ans[key])return;state[id].ans[key]=true;
+  const fb=q.querySelector('.feedback');
+  q.querySelectorAll('.opt').forEach(o=>o.classList.add('disabled'));
+  if(correct){el.classList.add('correct');state[id].score++;fb.textContent=fb.dataset.ok;fb.className='feedback show ok';}
+  else{el.classList.add('wrong');q.querySelectorAll('.opt').forEach(o=>{if(o.getAttribute('onclick').includes(',1)'))o.classList.add('correct');});fb.textContent='Nicht ganz. '+fb.dataset.ok;fb.className='feedback show no';}
+  if(Object.keys(state[id].ans).length===total){
+    const box=wrap.querySelector('.scorebox');box.style.display='block';
+    box.querySelector('.big').textContent=state[id].score+' / '+total;
+    const s=state[id].score,r=s/total;let m;
+    if(r===1)m='Perfekt – sitzt! 🎓';else if(r>=.7)m='Sehr gut! Verpasste Fragen nochmals anschauen.';else if(r>=.5)m='Solide Basis – wiederhole die Theorie.';else m='Geh die Beispiele nochmals durch.';
+    box.querySelector('.msg').textContent=m;box.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+}
+</script>
+</body>
+</html>
