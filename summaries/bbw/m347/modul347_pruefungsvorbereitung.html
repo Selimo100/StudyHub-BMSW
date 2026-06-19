@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul 347 – Prüfungsvorbereitung</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #0e1117;
+    --surface: #161b27;
+    --surface2: #1e2535;
+    --border: #2a3447;
+    --accent: #4f9cf9;
+    --accent2: #38e09a;
+    --accent3: #f4a94a;
+    --danger: #f06c6c;
+    --text: #d4dae8;
+    --text-muted: #6b7a99;
+    --easy: #38e09a;
+    --medium: #f4a94a;
+    --hard: #f06c6c;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto;
+  }
+  .topbar-brand {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent);
+    padding: 0 20px;
+    white-space: nowrap;
+    border-right: 1px solid var(--border);
+    line-height: 52px;
+  }
+  .tab-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-muted);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0 18px;
+    line-height: 52px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* CONTENT */
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .page { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--surface) 0%, #1a2340 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(79,156,249,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .hero p { color: var(--text-muted); font-size: 14px; }
+  .hero .badge { display: inline-block; background: rgba(79,156,249,0.15); color: var(--accent); border: 1px solid rgba(79,156,249,0.3); border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 600; margin-top: 12px; }
+
+  /* SECTION HEADERS */
+  .section-label {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 36px 0 16px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* KOMPETENZ CARDS */
+  .kompetenz-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  @media(max-width: 700px) { .kompetenz-grid { grid-template-columns: 1fr; } }
+  .kcard {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .kcard-level {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .kcard-level.g { color: var(--easy); }
+  .kcard-level.f { color: var(--medium); }
+  .kcard-level.e { color: var(--hard); }
+  .kcard p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* CONTENT BLOCKS */
+  .content-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .content-block h3 {
+    font-size: 15px; font-weight: 600; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .content-block h3 .tag {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    background: rgba(79,156,249,0.15); color: var(--accent);
+    border-radius: 4px; padding: 2px 7px;
+  }
+  .content-block ul { padding-left: 20px; }
+  .content-block ul li { margin-bottom: 6px; font-size: 14px; color: var(--text-muted); }
+  .content-block ul li strong { color: var(--text); }
+  .content-block p { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
+  .content-block p:last-child { margin-bottom: 0; }
+
+  /* COMPARISON TABLE */
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--surface2); color: var(--accent); font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .check { color: var(--easy); }
+  .cross { color: var(--danger); }
+
+  /* CODE BLOCK */
+  .code-block {
+    background: #0a0d14;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: auto;
+    margin: 10px 0;
+  }
+  .code-block .kw { color: #c678dd; }
+  .code-block .str { color: #98c379; }
+  .code-block .cm { color: #5c6370; font-style: italic; }
+  .code-block .nm { color: #e5c07b; }
+  .code-block .val { color: #56b6c2; }
+
+  /* CALLOUT */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: rgba(79,156,249,0.07);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .callout.warn { border-color: var(--medium); background: rgba(244,169,74,0.07); }
+  .callout.ok { border-color: var(--easy); background: rgba(56,224,154,0.07); }
+  .callout.danger { border-color: var(--danger); background: rgba(240,108,108,0.07); }
+  .callout strong { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .callout.warn strong { color: var(--medium); }
+  .callout.ok strong { color: var(--easy); }
+  .callout.danger strong { color: var(--danger); }
+
+  /* PRÜFUNGSFRAGEN TAB */
+  .qcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .qcard-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 20px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .qid {
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 5px; padding: 2px 8px; color: var(--accent);
+  }
+  .diff-badge {
+    font-size: 11px; font-weight: 600; border-radius: 20px;
+    padding: 2px 10px;
+  }
+  .diff-badge.easy { background: rgba(56,224,154,0.15); color: var(--easy); }
+  .diff-badge.medium { background: rgba(244,169,74,0.15); color: var(--medium); }
+  .diff-badge.hard { background: rgba(240,108,108,0.15); color: var(--hard); }
+  .qtype { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+  .qbody { padding: 20px; }
+  .qquestion {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .qoptions { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+  .qoptions li {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 6px; padding: 9px 14px; font-size: 13px;
+    transition: border-color 0.2s;
+  }
+  .qoptions li .opt-key {
+    font-family: var(--mono); font-weight: 700; font-size: 12px;
+    color: var(--text-muted); min-width: 16px;
+  }
+  .qoptions li.correct { border-color: var(--easy); background: rgba(56,224,154,0.06); }
+  .qoptions li.correct .opt-key { color: var(--easy); }
+
+  .solution-toggle {
+    background: none; border: 1px solid var(--border);
+    color: var(--text-muted); font-size: 12px; font-family: var(--sans);
+    cursor: pointer; border-radius: 6px; padding: 6px 14px;
+    transition: all 0.2s; margin-top: 12px;
+  }
+  .solution-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .solution-box {
+    display: none;
+    background: rgba(56,224,154,0.05);
+    border: 1px solid rgba(56,224,154,0.2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .solution-box.visible { display: block; }
+  .solution-box strong { color: var(--easy); display: block; margin-bottom: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ÜBUNGEN */
+  .exercise {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent3);
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .exercise-header {
+    background: rgba(244,169,74,0.06);
+    padding: 12px 20px;
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .exercise-header span { font-size: 12px; font-weight: 700; color: var(--accent3); letter-spacing: 0.06em; text-transform: uppercase; }
+  .exercise-header .ex-diff { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+  .exercise-body { padding: 18px 20px; }
+  .exercise-body .prompt { font-size: 14px; margin-bottom: 14px; }
+  .ex-solution-btn {
+    background: none; border: 1px solid var(--accent3);
+    color: var(--accent3); font-size: 12px; font-family: var(--sans);
+    cursor: pointer; border-radius: 6px; padding: 6px 14px;
+    transition: all 0.2s;
+  }
+  .ex-solution-btn:hover { background: rgba(244,169,74,0.1); }
+  .ex-solution {
+    display: none;
+    margin-top: 14px;
+    background: rgba(244,169,74,0.05);
+    border: 1px solid rgba(244,169,74,0.2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .ex-solution.visible { display: block; }
+  .ex-solution strong { color: var(--accent3); display: block; margin-bottom: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* OVERVIEW TABLE */
+  .kompetenz-section { margin-bottom: 8px; }
+  .kompetenz-section summary {
+    cursor: pointer;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 14px; font-weight: 600;
+    list-style: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: background 0.15s;
+  }
+  .kompetenz-section summary:hover { background: var(--surface); }
+  .kompetenz-section summary::marker { display: none; }
+  .kompetenz-section summary::-webkit-details-marker { display: none; }
+  .kompetenz-section summary .arrow { color: var(--text-muted); font-size: 12px; margin-left: auto; transition: transform 0.2s; }
+  details[open] .arrow { transform: rotate(90deg); }
+  .kompetenz-section-body { padding: 4px 0 4px 12px; }
+
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .filter-btn {
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text-muted); font-size: 12px; font-family: var(--sans);
+    cursor: pointer; border-radius: 20px; padding: 5px 14px;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active { background: rgba(79,156,249,0.12); border-color: var(--accent); color: var(--accent); }
+  .filter-btn.f-easy.active { background: rgba(56,224,154,0.12); border-color: var(--easy); color: var(--easy); }
+  .filter-btn.f-medium.active { background: rgba(244,169,74,0.12); border-color: var(--medium); color: var(--medium); }
+  .filter-btn.f-hard.active { background: rgba(240,108,108,0.12); border-color: var(--hard); color: var(--hard); }
+
+  .network-diagram {
+    background: #0a0d14;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    text-align: center;
+    margin: 10px 0;
+  }
+  .network-diagram .node {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 16px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .network-diagram .arrow-down { display: block; color: var(--accent); font-size: 16px; }
+
+  .score-table td:nth-child(3), .score-table td:nth-child(4), .score-table td:nth-child(5) { text-align: center; }
+  .score-table td.winner { color: var(--easy); font-weight: 600; }
+  .total-row td { font-weight: 700; color: var(--text); border-top: 2px solid var(--border); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">M347 🐳</div>
+  <button class="tab-btn active" onclick="showTab('zusammenfassung')">📚 Zusammenfassung</button>
+  <button class="tab-btn" onclick="showTab('pruefungsfragen')">📋 Prüfungsfragen</button>
+  <button class="tab-btn" onclick="showTab('uebungen')">🎯 Übungen</button>
+  <button class="tab-btn" onclick="showTab('cheatsheet')">⚡ Cheatsheet</button>
+</div>
+
+<!-- =================== ZUSAMMENFASSUNG =================== -->
+<div id="tab-zusammenfassung" class="tab-content active">
+<div class="page">
+
+  <div class="hero">
+    <h1>Modul 347 – Container & Cloud</h1>
+    <p>Vollständige Prüfungsvorbereitung · 30 Kompetenzen · Alle Kapitel</p>
+    <span class="badge">6 Kompetenzbänder · A bis F</span>
+  </div>
+
+  <!-- A - GRUNDLAGEN -->
+  <div class="section-label">A – Grundlagen</div>
+
+  <div class="kompetenz-grid">
+    <div class="kcard">
+      <div class="kcard-level g">A1G – Grundlegend</div>
+      <p>Container vs. VMs unterscheiden, Vor- und Nachteile aufzählen</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level f">A1F – Fortgeschritten</div>
+      <p>Anforderungen für containerisierte Dienste strukturiert erfassen</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level e">A1E – Erweitert</div>
+      <p>Anforderungen analysieren, Verbesserungen und Optimierungen vorschlagen</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">Container vs. VM</span> Kernunterschiede</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Merkmal</th><th>Container</th><th>Virtuelle Maschine</th></tr>
+        <tr><td>Betriebssystem</td><td>Teilt Kernel des Hosts</td><td>Eigenes vollständiges OS</td></tr>
+        <tr><td>Startzeit</td><td>Sekunden (sehr schnell)</td><td>Minuten</td></tr>
+        <tr><td>Ressourcen</td><td>Leichtgewichtig</td><td>Schwergewichtig</td></tr>
+        <tr><td>Isolation</td><td>Prozess-Level (OS-Ebene)</td><td>Hardware-Level</td></tr>
+        <tr><td>Portabilität</td><td>Sehr hoch</td><td>Mittel</td></tr>
+        <tr><td>Sicherheit</td><td>Weniger isoliert</td><td>Stärkere Isolation</td></tr>
+        <tr><td>Beispiele</td><td>Docker, Podman</td><td>VMware, VirtualBox, Hyper-V</td></tr>
+      </table>
+    </div>
+    <div class="callout ok">
+      <strong>Prüfungs-Merksatz A1G</strong>
+      Container virtualisieren auf <strong>Betriebssystem-Ebene</strong> (teilen den Host-Kernel). VMs virtualisieren auf Hardware-Ebene und brauchen ein eigenes OS.
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">A1F</span> Anforderungen für containerisierte Dienste</h3>
+    <p>Typische Anforderungen, die <strong>für den Einsatz von Containern sprechen</strong>:</p>
+    <ul>
+      <li><strong>Konsistente Laufzeitumgebungen</strong> – „Works on my machine" Problem lösen</li>
+      <li><strong>Schnelle Bereitstellung und Startzeit</strong> – Services schnell deployen</li>
+      <li><strong>Einfache Skalierung mehrerer Instanzen</strong> – Horizontal skalieren</li>
+      <li>Microservice-Architektur gewünscht</li>
+      <li>CI/CD-Pipeline Integration nötig</li>
+    </ul>
+    <div class="callout warn">
+      <strong>Nicht für Container</strong>
+      Vollständige Virtualisierung eines Betriebssystems pro Dienst → das ist VMs, nicht Container. Direkter Zugriff auf physische Hardware ohne Isolation → kein Container.
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">A1E</span> Schwachstellen analysieren & Verbesserungen vorschlagen</h3>
+    <p><strong>Problem:</strong> Frontend + Backend gemeinsam in einem Container</p>
+    <ul>
+      <li><strong>Schwachstelle 1:</strong> Wartbarkeit erschwert – jede Änderung betrifft den gesamten Container</li>
+      <li><strong>Schwachstelle 2:</strong> Skalierung eingeschränkt – keine separate Skalierung von Komponenten möglich</li>
+    </ul>
+    <p><strong>Lösung:</strong> Container aufteilen → unabhängige Aktualisierung & gezielte Skalierung</p>
+  </div>
+
+  <!-- B - CONTAINERKOMPOSITION -->
+  <div class="section-label">B – Containerkomposition (Architektur)</div>
+
+  <div class="kompetenz-grid">
+    <div class="kcard">
+      <div class="kcard-level g">B1G – Grundlegend</div>
+      <p>Monolith vs. Microservice-Architekturen beschreiben</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level f">B1F – Fortgeschritten</div>
+      <p>Sinnvolle Container-Komposition vorschlagen und begründen</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level e">B1E – Erweitert</div>
+      <p>Mehrere Varianten vorschlagen und Vor-/Nachteile begründen</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">B1G</span> Monolith vs. Microservice-Architektur</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Merkmal</th><th>Monolith</th><th>Microservices</th></tr>
+        <tr><td>Deployment</td><td>Gesamte Anwendung in einem Container</td><td>Jeder Service separat deployed</td></tr>
+        <tr><td>Skalierung</td><td>Nur als Ganzes skalierbar</td><td>Jeder Service separat skalierbar</td></tr>
+        <tr><td>Komplexität</td><td>Einfacher Betrieb</td><td>Höherer Betriebs-/Konfigurationsaufwand</td></tr>
+        <tr><td>Wartung</td><td>Änderung betrifft alles</td><td>Unabhängige Updates möglich</td></tr>
+        <tr><td>Zusatzdienste</td><td>Integriert</td><td>Auth-Service, API-Gateway etc. möglich</td></tr>
+      </table>
+    </div>
+    <div class="callout ok">
+      <strong>Prüfungs-Merksatz B1G</strong>
+      Monolith = die gesamte Anwendung läuft in <strong>einem einzigen Container</strong>. Microservice = jeder Service läuft in einem eigenen Container, kann separat skaliert werden.
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">B1F / B1E</span> Warum Frontend / Backend / Datenbank trennen?</h3>
+    <ul>
+      <li>Frontend und Backend können <strong>unabhängig</strong> voneinander gewartet und aktualisiert werden</li>
+      <li>Backend kann bei hoher Last <strong>separat skaliert</strong> werden, ohne das Frontend zu vervielfältigen</li>
+      <li>Datenbank bleibt <strong>isoliert</strong> → erhöht Stabilität und Sicherheit</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">B2G</span> Bestandteile der Container-Technologie</h3>
+    <ul>
+      <li><strong>Docker Engine</strong> – Laufzeitumgebung für Container</li>
+      <li><strong>Dockerfile</strong> – Bauplan/Rezept für ein Container Image</li>
+      <li><strong>Container Image</strong> – unveränderliches Paket mit App + Abhängigkeiten</li>
+      <li><strong>Container Registry</strong> – Speicher für Images (z. B. Docker Hub, GHCR)</li>
+      <li><strong>Docker Compose</strong> – Multi-Container-Konfiguration via YAML</li>
+      <li>❌ Kein Bestandteil: Hypervisor (gehört zur VM-Technologie!)</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">B2F</span> Entwicklungs- und Betriebsablauf</h3>
+    <ol style="padding-left:20px; color: var(--text-muted); font-size:14px;">
+      <li style="margin-bottom:6px;"><strong style="color:var(--text)">Anwendung entwickeln</strong> + Dockerfile erstellen</li>
+      <li style="margin-bottom:6px;"><strong style="color:var(--text)">Container Image bauen</strong> – <code style="font-family:var(--mono); color:var(--accent)">docker build -t my-app .</code></li>
+      <li style="margin-bottom:6px;"><strong style="color:var(--text)">Mit docker compose</strong> mehrere Services lokal gemeinsam starten und testen</li>
+      <li style="margin-bottom:6px;"><strong style="color:var(--text)">In Cloud oder Server deployen</strong> – produktiver Betrieb</li>
+    </ol>
+    <div class="callout warn">
+      <strong>Warum docker compose für lokale Entwicklung?</strong>
+      Ermöglicht gemeinsames lokales Starten von Frontend, Backend und Datenbank → Zusammenspiel wird früh getestet. Ohne dies: Probleme wie falsche Ports, fehlende DB-Verbindungen treten erst im Betrieb auf.
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">B2E</span> Reverse Proxy – Netzwerkarchitektur</h3>
+    <div class="network-diagram">
+      <span class="node">🌐 Internet</span><br>
+      <span class="arrow-down">↓</span><br>
+      <span class="node" style="border-color:var(--accent); color:var(--accent)">🔀 Reverse Proxy (Port 80/443 öffentlich)</span><br>
+      <span class="arrow-down">↓</span><br>
+      <span class="node">⚙️ Backend (nur intern)</span><br>
+      <span class="arrow-down">↓</span><br>
+      <span class="node">🗄️ Datenbank (nur intern)</span>
+    </div>
+    <p><strong>Warum nur der Reverse Proxy öffentlich?</strong></p>
+    <p>Damit nur <strong>notwendige Ports öffentlich erreichbar</strong> sind und interne Services geschützt bleiben. Backend und Datenbank sind nicht direkt aus dem Internet erreichbar → erhöhte Sicherheit.</p>
+  </div>
+
+  <!-- C - CONTAINERDIENSTLEISTER -->
+  <div class="section-label">C – Containerdienstleister auswählen</div>
+
+  <div class="kompetenz-grid">
+    <div class="kcard">
+      <div class="kcard-level g">C1G – Grundlegend</div>
+      <p>Benötigte Dienste des Containerdienstleisters für Zielapplikation beschreiben</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level f">C1F – Fortgeschritten</div>
+      <p>Vor-/Nachteile von Public Cloud Anbietern beschreiben und gegenüberstellen</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level e">C1E – Erweitert</div>
+      <p>Entscheidungsmatrix mit relevanten Kriterien erstellen</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">C1G</span> Benötigte Dienste für produktiven Containerbetrieb</h3>
+    <ul>
+      <li><strong>Load Balancer</strong> → verteilt Anfragen auf mehrere Instanzen (bessere Verfügbarkeit, Performance)</li>
+      <li><strong>Container Registry</strong> → speichert und verteilt Images zentral</li>
+      <li><strong>Orchestrierung (z. B. Kubernetes)</strong> → automatisches Deployment und Skalierung (optional, aber empfohlen)</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">C1F</span> Public Cloud Anbieter – Merkmale</h3>
+    <ul>
+      <li><strong class="check">✓</strong> Ressourcen können <strong>dynamisch skaliert</strong> werden</li>
+      <li><strong class="cross">✗</strong> Man hat <strong>keine</strong> vollständige physische Kontrolle über Server (das ist On-Premise/Private Cloud)</li>
+      <li><strong class="check">✓</strong> Dienste sind meist <strong>weltweit verfügbar</strong></li>
+      <li><strong class="check">✓</strong> Kosten entstehen oft <strong>nutzungsabhängig</strong> (Pay-as-you-go)</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">C1E</span> Entscheidungsmatrix – GKE vs. Azure vs. AWS</h3>
+    <div class="table-wrap">
+      <table class="score-table">
+        <tr>
+          <th>Kriterium</th><th>Gewichtung</th>
+          <th>GKE (Score)</th><th>Azure (Score)</th><th>AWS (Score)</th>
+        </tr>
+        <tr><td>Security</td><td>5</td><td>5 → 25</td><td>3 → 15</td><td class="winner">5 → 25</td></tr>
+        <tr><td>Monitoring</td><td>4</td><td>5 → 20</td><td>4 → 16</td><td class="winner">5 → 20</td></tr>
+        <tr><td>DevOps Tool Integration</td><td>4</td><td>5 → 20</td><td>4 → 16</td><td class="winner">5 → 20</td></tr>
+        <tr><td>Pricing</td><td>2</td><td>4 → 8</td><td>4 → 8</td><td>4 → 8</td></tr>
+        <tr><td>Service Discovery</td><td>3</td><td>4 → 12</td><td>4 → 12</td><td class="winner">5 → 15</td></tr>
+        <tr class="total-row"><td>Total</td><td>18</td><td>85</td><td>67</td><td class="winner">88 🏆</td></tr>
+      </table>
+    </div>
+    <div class="callout ok">
+      <strong>Ergebnis</strong>
+      AWS ECS erreicht mit 88 Punkten die höchste Gesamtpunktzahl und eignet sich am besten für ein Unternehmen, das grossen Wert auf Sicherheit, Monitoring und DevOps-Integration legt.
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">C2G</span> Container Registry</h3>
+    <p><strong>Hauptaufgabe:</strong> Container Images speichern und versioniert bereitstellen</p>
+    <ul>
+      <li><strong>Public Registry</strong> – frei zugänglich, kein Login nötig (z.B. Docker Hub)</li>
+      <li><strong>Private Registry</strong> – Zugriff nur mit Authentifizierung (z.B. GHCR, AWS ECR)</li>
+    </ul>
+    <p>Private Registry bietet mehr <strong>Sicherheit und Kontrolle</strong> → besser für interne Projekte</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">C2F</span> Orchestrierungstechnologien</h3>
+    <ul>
+      <li><strong>Docker Compose</strong> – Lokale Multi-Container-Orchestrierung</li>
+      <li><strong>Kubernetes</strong> – Produktions-Orchestrierung, Autoscaling, Self-Healing</li>
+      <li><strong>Docker Swarm</strong> – Einfachere Alternative zu Kubernetes</li>
+      <li>❌ NGINX = Webserver/Reverse Proxy, kein Orchestrierungs-Tool</li>
+      <li>❌ GitHub Actions = CI/CD, kein Orchestrierungs-Tool</li>
+    </ul>
+  </div>
+
+  <!-- D - PRAXIS ENTWICKLUNG -->
+  <div class="section-label">D – Praxis mit Containern in der Entwicklung</div>
+
+  <div class="kompetenz-grid">
+    <div class="kcard">
+      <div class="kcard-level g">D1G – Grundlegend</div>
+      <p>Schritte zur Containerisierung aufzeigen, Docker-Befehle kennen</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level f">D1F – Fortgeschritten</div>
+      <p>docker-compose.yml erstellen und anpassen</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level e">D1E – Erweitert</div>
+      <p>Fehler in Konfigurationen erkennen und beheben</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">D1G</span> Wichtigste Docker-Befehle</h3>
+    <div class="code-block">
+<span class="cm"># Image herunterladen</span>
+docker pull nginx
+
+<span class="cm"># Container starten (detached, Port-Mapping, Name)</span>
+docker run -d --name web-demo -p 8080:80 nginx
+
+<span class="cm"># Laufende Container anzeigen</span>
+docker ps
+
+<span class="cm"># Logs anzeigen</span>
+docker logs web-demo
+
+<span class="cm"># Container stoppen</span>
+docker stop web-demo
+
+<span class="cm"># Container löschen</span>
+docker rm web-demo
+    </div>
+    <div class="callout ok">
+      <strong>Port-Mapping Merksatz</strong>
+      <code style="font-family:var(--mono)">-p HOST:CONTAINER</code> → z. B. <code style="font-family:var(--mono)">-p 8080:80</code> = Port 8080 vom Host wird auf Port 80 im Container gemappt
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">D2G</span> docker run erklärt</h3>
+    <div class="code-block">docker run -d -p 5000:80 --name web nginx</div>
+    <ul>
+      <li><strong>-d</strong> → Container läuft im Hintergrund (detached) → Terminal bleibt frei</li>
+      <li><strong>-p 5000:80</strong> → Port 5000 (Host) auf Port 80 (Container) gemappt → Anwendung erreichbar</li>
+      <li><strong>--name web</strong> → Container erhält den Namen "web" → einfachere Verwaltung</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">D1F</span> docker-compose.yml – Korrekte Struktur</h3>
+    <div class="code-block">
+services:
+  web:
+    image: <span class="str">nginx:alpine</span>
+    container_name: <span class="str">d1f-web</span>
+    ports:
+      - <span class="str">"8080:80"</span>
+    restart: <span class="val">unless-stopped</span>
+    </div>
+    <div class="callout danger">
+      <strong>Häufige Fehler in docker-compose.yml</strong>
+      <strong>port</strong> (falsch) → muss <strong>ports</strong> heissen (Plural!) | Port muss als String in Quotes: <code>"8080:80"</code> | <strong>enviroment</strong> → korrekt ist <strong>environment</strong> | Volume-Pfad muss existieren
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">D2F</span> Image in Registry publizieren</h3>
+    <div class="code-block">
+<span class="cm"># 1. Image bauen</span>
+docker build -t my-webapp .
+
+<span class="cm"># 2. Image taggen für Registry</span>
+docker tag my-webapp ghcr.io/user/my-webapp:<span class="val">latest</span>
+
+<span class="cm"># 3. Login bei Registry</span>
+docker login ghcr.io
+
+<span class="cm"># 4. Image publizieren</span>
+docker push ghcr.io/user/my-webapp:<span class="val">latest</span>
+    </div>
+  </div>
+
+  <!-- E - PRAXIS CLOUD -->
+  <div class="section-label">E – Praxis mit Containern beim Public-Cloud-Anbieter</div>
+
+  <div class="kompetenz-grid">
+    <div class="kcard">
+      <div class="kcard-level g">E1G – Grundlegend</div>
+      <p>Sicherer Zugriff auf PCA, Storage-Varianten konfigurieren</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level f">E1F – Fortgeschritten</div>
+      <p>Cloud-Instanz konfigurieren, Skalierungsvarianten kennen</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level e">E1E – Erweitert</div>
+      <p>Netzwerk sicher konfigurieren, Cloud-Metadaten auslesen</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">E1G</span> Sicherheit beim Cloud-Zugriff</h3>
+    <ul>
+      <li><strong>MFA (Multi-Faktor-Authentifizierung)</strong> → erhöht Sicherheit am meisten ✅</li>
+      <li>Langes Passwort allein → nicht ausreichend</li>
+      <li>HTTPS → wichtig, aber allein nicht die stärkste Massnahme</li>
+    </ul>
+    <p><strong>Port 22 (SSH)</strong> – sicherer Remote-Zugriff zur Administration</p>
+    <p><strong>Port 80 (HTTP)</strong> – Webdienst über den Browser erreichbar</p>
+    <p><strong>Storage:</strong> <strong>Persistent Volume</strong> (nicht temporärer Container-Speicher!) für Datenbankdaten verwenden</p>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">E1F</span> Skalierungsmöglichkeiten in der Cloud</h3>
+    <ul>
+      <li><strong>Vertikale Skalierung</strong> – Mehr CPU/RAM für bestehende Instanz (größer machen)</li>
+      <li><strong>Horizontale Skalierung</strong> – Mehr Instanzen hinzufügen (breiter machen)</li>
+      <li><strong>Auto-Scaling</strong> – Automatische Anpassung der Instanzanzahl nach Last</li>
+      <li>❌ "Löschen von Instanzen" ist keine Skalierungsstrategie</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">E1E</span> Netzwerk-Sicherheitsmassnahmen</h3>
+    <ul>
+      <li>Nur der <strong>Reverse Proxy</strong> sollte öffentliche Ports (80/443) besitzen</li>
+      <li>Backend und Datenbank dürfen <strong>keine öffentlichen Ports</strong> freigeben</li>
+      <li>Kommunikation zwischen Backend und Datenbank über <strong>internes Docker-Netzwerk</strong></li>
+      <li>Datenbank akzeptiert ausschliesslich Verbindungen vom <strong>Backend</strong></li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">E2E</span> Cloud-Instanz Metadaten</h3>
+    <div class="code-block">
+{
+  <span class="nm">"instance-id"</span>: <span class="str">"vm-01"</span>,
+  <span class="nm">"region"</span>: <span class="str">"europe-west6"</span>,
+  <span class="nm">"public-ip"</span>: <span class="str">"34.65.10.20"</span>
+}
+    </div>
+    <p>Diese Metadaten werden für folgendes verwendet:</p>
+    <ul>
+      <li><strong>instance-id</strong> → Identifikation der Instanz</li>
+      <li><strong>region</strong> → Standort der VM</li>
+      <li><strong>public-ip</strong> → Netzwerkzugriff von aussen</li>
+    </ul>
+    <p>Helfen bei Verwaltung, Monitoring und automatisierter Konfiguration.</p>
+  </div>
+
+  <!-- F - QUALITÄT -->
+  <div class="section-label">F – Qualitätskontrollen planen und umsetzen</div>
+
+  <div class="kompetenz-grid">
+    <div class="kcard">
+      <div class="kcard-level g">F1G – Grundlegend</div>
+      <p>Methoden zur Qualitätssicherung von Containern kennen</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level f">F1F – Fortgeschritten</div>
+      <p>Sicherheitsindikatoren für den Containerbetrieb beschreiben</p>
+    </div>
+    <div class="kcard">
+      <div class="kcard-level e">F1E – Erweitert</div>
+      <p>Sicherheitslücken in Dockerfiles erkennen und beseitigen</p>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">F1G</span> Qualitätssicherung von Container Images</h3>
+    <ul>
+      <li><strong>Image Scanning (z. B. Trivy)</strong> → überprüft Images auf Sicherheitslücken und veraltete Pakete</li>
+      <li>Regelmässige Updates der Base Images</li>
+      <li>Minimale Images verwenden (alpine, slim)</li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">F1F</span> Wichtige Sicherheitsindikatoren</h3>
+    <ul>
+      <li><strong class="check">✓ A</strong> Verwendung <strong>aktueller Base Images</strong></li>
+      <li><strong class="cross">✗ B</strong> Container läuft als <strong>root</strong> → Sicherheitsrisiko! (nicht empfohlen)</li>
+      <li><strong class="check">✓ C</strong> <strong>Minimale Anzahl offener Ports</strong></li>
+      <li><strong class="check">✓ D</strong> Verwendung von <strong>Secrets statt Klartext-Passwörtern</strong></li>
+    </ul>
+  </div>
+
+  <div class="content-block">
+    <h3><span class="tag">F1E</span> Sicherheitslücken in Dockerfiles erkennen</h3>
+    <div class="code-block">
+FROM <span class="val">node:latest</span>    <span class="cm"># ⚠️ PROBLEM: latest = unsicher, nicht reproduzierbar</span>
+WORKDIR /app
+COPY . .
+RUN npm install    <span class="cm"># ⚠️ PROBLEM: ohne package-lock = keine Kontrolle über Abhängigkeiten</span>
+CMD ["node", "server.js"]  <span class="cm"># ⚠️ PROBLEM: läuft als root!</span>
+    </div>
+    <div class="callout danger">
+      <strong>3 Sicherheitsprobleme</strong>
+      1. <code>node:latest</code> → unsicher, nicht reproduzierbar → besser: <code>node:20-alpine</code><br>
+      2. Container läuft als root → USER-Direktive hinzufügen: <code>USER node</code><br>
+      3. npm install ohne Lockfile → keine Kontrolle über Abhängigkeiten → <code>npm ci</code> verwenden
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- =================== PRÜFUNGSFRAGEN =================== -->
+<div id="tab-pruefungsfragen" class="tab-content">
+<div class="page">
+
+  <div class="hero">
+    <h1>Alle Prüfungsfragen</h1>
+    <p>Eingereichte Fragen 1:1 aus dem PDF – mit Lösungen</p>
+    <span class="badge">30 Fragen · A bis F</span>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterQ('all', this)">Alle</button>
+    <button class="filter-btn f-easy" onclick="filterQ('easy', this)">Easy</button>
+    <button class="filter-btn f-medium" onclick="filterQ('medium', this)">Medium</button>
+    <button class="filter-btn f-hard" onclick="filterQ('hard', this)">Hard</button>
+  </div>
+
+  <!-- A1G -->
+  <div class="qcard" data-diff="easy">
+    <div class="qcard-header">
+      <span class="qid">A1G</span>
+      <span class="diff-badge easy">Easy</span>
+      <span style="font-size:12px; color:var(--text-muted)">A – Grundlagen</span>
+      <span class="qtype">Single Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Was ist ein zentraler Unterschied zwischen Containern und virtuellen Maschinen?
+        <ul class="qoptions">
+          <li><span class="opt-key">A</span> Container benötigen immer ein eigenes Betriebssystem</li>
+          <li><span class="opt-key">B</span> Virtuelle Maschinen teilen sich den Kernel des Host-Systems</li>
+          <li class="correct"><span class="opt-key">C</span> Container virtualisieren auf Betriebssystem-Ebene ✓</li>
+          <li><span class="opt-key">D</span> Virtuelle Maschinen starten schneller als Container</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: C</strong>
+        Container virtualisieren auf Betriebssystem-Ebene – sie teilen den Kernel des Host-Systems. VMs hingegen virtualisieren auf Hardware-Ebene und brauchen ein eigenes vollständiges Betriebssystem. Container sind deshalb leichter und starten schneller.
+      </div>
+    </div>
+  </div>
+
+  <!-- A1F -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">A1F</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">A – Grundlagen</span>
+      <span class="qtype">Multiple Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Welche Anforderungen sprechen typischerweise für den Einsatz von Containern bei einem IT-Dienst?
+        <ul class="qoptions">
+          <li class="correct"><span class="opt-key">A</span> Konsistente Laufzeitumgebungen ✓</li>
+          <li class="correct"><span class="opt-key">B</span> Schnelle Bereitstellung und Startzeit ✓</li>
+          <li><span class="opt-key">C</span> Vollständige Virtualisierung eines Betriebssystems pro Dienst</li>
+          <li class="correct"><span class="opt-key">D</span> Einfache Skalierung mehrerer Instanzen ✓</li>
+          <li><span class="opt-key">E</span> Direkter Zugriff auf physische Hardware ohne Isolation</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: A, B, D</strong>
+        Container bieten konsistente Laufzeitumgebungen (kein "works on my machine"), starten sehr schnell, und lassen sich einfach horizontal skalieren. C beschreibt VMs, E beschreibt Bare-Metal – beides keine Container-Merkmale.
+      </div>
+    </div>
+  </div>
+
+  <!-- A1E -->
+  <div class="qcard" data-diff="hard">
+    <div class="qcard-header">
+      <span class="qid">A1E</span>
+      <span class="diff-badge hard">Hard</span>
+      <span style="font-size:12px; color:var(--text-muted)">A – Grundlagen</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Nenne zwei Schwachstellen eines Dienstes, bei dem Frontend und Backend gemeinsam in einem Container betrieben werden, und erkläre kurz, wie diese durch eine Container-Aufteilung verbessert werden können.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>Schwachstelle 1 – Wartbarkeit:</strong> Durch die gemeinsame Ausführung wird die Wartbarkeit erschwert, da jede Änderung den gesamten Container betrifft.<br><br>
+        <strong>Schwachstelle 2 – Skalierung:</strong> Die Skalierung ist eingeschränkt, da nicht einzelne Komponenten separat skaliert werden können.<br><br>
+        <strong>Verbesserung:</strong> Durch eine Aufteilung in mehrere Container können Komponenten unabhängig aktualisiert und gezielt skaliert werden.
+      </div>
+    </div>
+  </div>
+
+  <!-- B1G -->
+  <div class="qcard" data-diff="easy">
+    <div class="qcard-header">
+      <span class="qid">B1G</span>
+      <span class="diff-badge easy">Easy</span>
+      <span style="font-size:12px; color:var(--text-muted)">B1 – Containerkomposition (Architektur)</span>
+      <span class="qtype">Single Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Welche Aussage beschreibt eine monolithische Architektur korrekt?
+        <ul class="qoptions">
+          <li><span class="opt-key">A</span> Frontend, Backend und Datenbank laufen in getrennten Containern</li>
+          <li><span class="opt-key">B</span> Jeder Service wird unabhängig deployed</li>
+          <li class="correct"><span class="opt-key">C</span> Die gesamte Anwendung läuft in einem einzigen Container ✓</li>
+          <li><span class="opt-key">D</span> Ein Auth-Service wird separat betrieben</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: C</strong>
+        Bei einer monolithischen Architektur läuft die gesamte Anwendung in einem einzigen Container (oder Prozess). A, B und D beschreiben Merkmale von Microservice-Architekturen.
+      </div>
+    </div>
+  </div>
+
+  <!-- B1F -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">B1F</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">B1 – Containerkomposition (Architektur)</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Warum ist bei einer Web-Applikation die Trennung in Frontend-, Backend- und Datenbank-Container sinnvoll? Nenne zwei Gründe und erkläre sie kurz.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>Grund 1 – Unabhängige Wartung:</strong> Durch die Trennung der Komponenten können Frontend und Backend unabhängig voneinander gewartet und aktualisiert werden.<br><br>
+        <strong>Grund 2 – Gezielte Skalierung:</strong> Das Backend kann bei hoher Last separat skaliert werden, ohne das Frontend zu vervielfältigen. Die Datenbank bleibt isoliert, was Stabilität und Sicherheit erhöht.
+      </div>
+    </div>
+  </div>
+
+  <!-- B1E -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">B1E</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">B1 – Containerkomposition</span>
+      <span class="qtype">Multiple Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Welche Aussagen treffen auf eine erweiterte Microservice-Architektur zu?
+        <ul class="qoptions">
+          <li class="correct"><span class="opt-key">A</span> Jeder Service kann separat skaliert werden ✓</li>
+          <li><span class="opt-key">B</span> Die Architektur ist weniger komplex als ein Monolith</li>
+          <li class="correct"><span class="opt-key">C</span> Zusätzliche Services wie ein Auth-Service sind möglich ✓</li>
+          <li class="correct"><span class="opt-key">D</span> Der Betriebs- und Konfigurationsaufwand ist höher ✓</li>
+          <li><span class="opt-key">E</span> Es wird immer nur ein Container verwendet</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: A, C, D</strong>
+        Microservices ermöglichen separate Skalierung (A) und zusätzliche Services wie Auth (C). Der Betriebsaufwand ist jedoch höher (D) – das ist ein Nachteil. Die Architektur ist komplexer (nicht einfacher wie B suggeriert), und es werden mehrere Container verwendet (E falsch).
+      </div>
+    </div>
+  </div>
+
+  <!-- B2G -->
+  <div class="qcard" data-diff="easy">
+    <div class="qcard-header">
+      <span class="qid">B2G</span>
+      <span class="diff-badge easy">Easy</span>
+      <span style="font-size:12px; color:var(--text-muted)">B2 – Bestandteile Container-Technologie</span>
+      <span class="qtype">Multiple Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Welche der folgenden Bestandteile gehören zur Container-Technologie und werden beim Arbeiten mit Docker verwendet?
+        <ul class="qoptions">
+          <li class="correct"><span class="opt-key">A</span> Docker Engine ✓</li>
+          <li class="correct"><span class="opt-key">B</span> Dockerfile ✓</li>
+          <li class="correct"><span class="opt-key">C</span> Container Image ✓</li>
+          <li><span class="opt-key">D</span> Hypervisor</li>
+          <li class="correct"><span class="opt-key">E</span> Container Registry ✓</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: A, B, C, E</strong>
+        Docker Engine (Laufzeit), Dockerfile (Bauplan), Container Image (Paket) und Container Registry (Speicher) sind alle Bestandteile der Docker/Container-Technologie. Der Hypervisor gehört zur VM-Technologie (z. B. VMware, VirtualBox) – nicht zu Containern.
+      </div>
+    </div>
+  </div>
+
+  <!-- B2F -->
+  <div class="qcard" data-diff="hard">
+    <div class="qcard-header">
+      <span class="qid">B2F</span>
+      <span class="diff-badge hard">Hard</span>
+      <span style="font-size:12px; color:var(--text-muted)">B2 – Entwicklung containerisierter Dienste</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Ein Entwickler erstellt eine containerisierte Webanwendung mit Frontend, Backend und Datenbank. Beschreibe:<br>
+        1. in welcher Reihenfolge die Anwendung typischerweise entwickelt und betrieben wird<br>
+        2. warum docker compose für die lokale Entwicklung sinnvoll ist<br>
+        3. welche Probleme ohne gemeinsames lokales Testen auftreten könnten
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>1. Reihenfolge:</strong> Zuerst wird die Anwendung entwickelt und ein Dockerfile erstellt. Danach wird ein Container Image gebaut. Anschliessend werden mehrere Services mit docker compose gemeinsam gestartet und getestet. Danach kann die Anwendung auf einem Server oder in der Cloud betrieben werden.<br><br>
+        <strong>2. Warum docker compose?</strong> docker compose ermöglicht das gemeinsame lokale Starten mehrerer Services wie Frontend, Backend und Datenbank. Dadurch kann das Zusammenspiel früh getestet werden.<br><br>
+        <strong>3. Probleme ohne lokales Testen:</strong> Ohne gemeinsames lokales Testen können Probleme zwischen den Services erst später im Betrieb auffallen, z. B. falsche Ports, Netzwerkprobleme oder fehlende Verbindungen zur Datenbank.
+      </div>
+    </div>
+  </div>
+
+  <!-- B2E -->
+  <div class="qcard" data-diff="easy">
+    <div class="qcard-header">
+      <span class="qid">B2E</span>
+      <span class="diff-badge easy">Easy</span>
+      <span style="font-size:12px; color:var(--text-muted)">B2 – Netzwerkdiagramm</span>
+      <span class="qtype">Single Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        In einem Netzwerkaufbau ist Internet → Reverse Proxy → Backend → Datenbank angeordnet. Warum sollte in diesem Aufbau nur der Reverse Proxy direkt aus dem Internet erreichbar sein?
+        <ul class="qoptions">
+          <li><span class="opt-key">A</span> Damit Backend und Datenbank schneller laufen</li>
+          <li class="correct"><span class="opt-key">B</span> Damit nur notwendige Ports öffentlich erreichbar sind und interne Services geschützt bleiben ✓</li>
+          <li><span class="opt-key">C</span> Damit alle Container dieselbe IP-Adresse nutzen</li>
+          <li><span class="opt-key">D</span> Damit keine Kommunikation zwischen den Containern möglich ist</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: B</strong>
+        Der Reverse Proxy dient als einziger Eintrittspunkt aus dem Internet. Dadurch sind nur die notwendigen Ports (80/443) öffentlich erreichbar. Backend und Datenbank sind intern und damit besser geschützt vor direkten Angriffen aus dem Internet.
+      </div>
+    </div>
+  </div>
+
+  <!-- C1G -->
+  <div class="qcard" data-diff="hard">
+    <div class="qcard-header">
+      <span class="qid">C1G</span>
+      <span class="diff-badge hard">Hard</span>
+      <span style="font-size:12px; color:var(--text-muted)">C1 – Containerdienstleister auswählen</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Betrachte eine docker-compose.yml mit services: web (nginx), api (node-app), db (postgres). Welche zwei zusätzlichen Dienste sollte ein Containerdienstleister bereitstellen, damit diese Anwendung produktiv betrieben werden kann? Begründe kurz.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>Load Balancer</strong> → verteilt Anfragen auf mehrere Instanzen (bessere Verfügbarkeit und Performance)<br><br>
+        <strong>Container Registry</strong> → speichert und verteilt Images zentral<br><br>
+        <em>(Optional)</em> <strong>Orchestrierung (z. B. Kubernetes)</strong> → automatisches Deployment und Skalierung
+      </div>
+    </div>
+  </div>
+
+  <!-- C1F -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">C1F</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">C1 – Public Cloud Anbieter</span>
+      <span class="qtype">Multiple Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Welche Aussagen über Public Cloud Anbieter sind korrekt?
+        <ul class="qoptions">
+          <li class="correct"><span class="opt-key">A</span> Ressourcen können dynamisch skaliert werden ✓</li>
+          <li><span class="opt-key">B</span> Man hat vollständige physische Kontrolle über Server</li>
+          <li class="correct"><span class="opt-key">C</span> Dienste sind meist weltweit verfügbar ✓</li>
+          <li class="correct"><span class="opt-key">D</span> Kosten entstehen oft nutzungsabhängig ✓</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: A, C, D</strong>
+        Public Cloud Anbieter bieten dynamische Skalierung, weltweite Verfügbarkeit und nutzungsabhängige Kosten (Pay-as-you-go). B ist falsch – vollständige physische Kontrolle hat man nur bei eigener Hardware (On-Premise). Der Anbieter verwaltet die physische Infrastruktur.
+      </div>
+    </div>
+  </div>
+
+  <!-- C1E -->
+  <div class="qcard" data-diff="hard">
+    <div class="qcard-header">
+      <span class="qid">C1E</span>
+      <span class="diff-badge hard">Hard</span>
+      <span style="font-size:12px; color:var(--text-muted)">C1 – Entscheidungsmatrix</span>
+      <span class="qtype">Offene Frage (Berechnung)</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Erstelle anhand der folgenden Gewichtung eine Entscheidungsmatrix und bestimme den geeignetsten Containerdienstleister für ein Unternehmen, das grossen Wert auf Sicherheit, Monitoring und DevOps-Integration legt.<br><br>
+        Gewichtung: Security=5, Monitoring=4, DevOps=4, Pricing=2, Service Discovery=3<br><br>
+        Bewerte jeden Anbieter (GKE, Azure, AWS) pro Kriterium mit 1–5 Punkten und berechne die Gesamtpunktzahl.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <div class="table-wrap">
+          <table class="score-table">
+            <tr><th>Kriterium</th><th>Gewicht</th><th>GKE</th><th>Azure</th><th>AWS</th></tr>
+            <tr><td>Security</td><td>5</td><td>5×5=25</td><td>3×5=15</td><td>5×5=25</td></tr>
+            <tr><td>Monitoring</td><td>4</td><td>5×4=20</td><td>4×4=16</td><td>5×4=20</td></tr>
+            <tr><td>DevOps</td><td>4</td><td>5×4=20</td><td>4×4=16</td><td>5×4=20</td></tr>
+            <tr><td>Pricing</td><td>2</td><td>4×2=8</td><td>4×2=8</td><td>4×2=8</td></tr>
+            <tr><td>Service Discovery</td><td>3</td><td>4×3=12</td><td>4×3=12</td><td>5×3=15</td></tr>
+            <tr class="total-row"><td>Total</td><td>18</td><td>85</td><td>67</td><td class="winner">88 🏆</td></tr>
+          </table>
+        </div>
+        <strong>Ergebnis: AWS ECS mit 88 Punkten gewinnt.</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- C2G -->
+  <div class="qcard" data-diff="easy">
+    <div class="qcard-header">
+      <span class="qid">C2G</span>
+      <span class="diff-badge easy">Easy</span>
+      <span style="font-size:12px; color:var(--text-muted)">C2 – Container Registry</span>
+      <span class="qtype">Single Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Was ist die Hauptaufgabe einer Container Registry?
+        <ul class="qoptions">
+          <li><span class="opt-key">A</span> Container direkt auszuführen</li>
+          <li><span class="opt-key">B</span> Container automatisch zu skalieren</li>
+          <li><span class="opt-key">C</span> Netzwerke zwischen Containern zu konfigurieren</li>
+          <li class="correct"><span class="opt-key">D</span> Container Images zu speichern und versioniert bereitzustellen ✓</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: D</strong>
+        Eine Container Registry ist ein zentrales Repository zum Speichern, Verwalten und Verteilen von Container Images in verschiedenen Versionen (Tags). Beispiele: Docker Hub, GitHub Container Registry (GHCR), AWS ECR.
+      </div>
+    </div>
+  </div>
+
+  <!-- C2F -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">C2F</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">C2 – Orchestrierung</span>
+      <span class="qtype">Multiple Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Welche Technologien dienen der Orchestrierung von Containern?
+        <ul class="qoptions">
+          <li class="correct"><span class="opt-key">A</span> Docker Compose ✓</li>
+          <li class="correct"><span class="opt-key">B</span> Kubernetes ✓</li>
+          <li class="correct"><span class="opt-key">C</span> Docker Swarm ✓</li>
+          <li><span class="opt-key">D</span> NGINX</li>
+          <li><span class="opt-key">E</span> GitHub Actions</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: A, B, C</strong>
+        Docker Compose (lokale Multi-Container-Orchestrierung), Kubernetes (Produktions-Orchestrierung) und Docker Swarm (einfachere Alternative zu K8s) sind Orchestrierungs-Tools. NGINX ist ein Webserver/Reverse Proxy. GitHub Actions ist ein CI/CD-Tool.
+      </div>
+    </div>
+  </div>
+
+  <!-- C2E -->
+  <div class="qcard" data-diff="hard">
+    <div class="qcard-header">
+      <span class="qid">C2E</span>
+      <span class="diff-badge hard">Hard</span>
+      <span style="font-size:12px; color:var(--text-muted)">C2 – Public vs. Private Registry</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Beschreibe in eigenen Worten zwei Unterschiede zwischen einer public und einer private Container Registry und erkläre, warum eine private Registry für interne Projekte besser geeignet ist.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>Unterschied 1:</strong> Public Registry: frei zugänglich, kein Login nötig<br>
+        <strong>Unterschied 2:</strong> Private Registry: Zugriff nur mit Authentifizierung<br><br>
+        <strong>Warum private für interne Projekte:</strong> Private Registry bietet mehr Sicherheit und Kontrolle über die eigenen Images. Interne Projekte enthalten oft proprietären Code oder sensible Konfigurationen, die nicht öffentlich zugänglich sein sollen.
+      </div>
+    </div>
+  </div>
+
+  <!-- D1G -->
+  <div class="qcard" data-diff="hard">
+    <div class="qcard-header">
+      <span class="qid">D1G</span>
+      <span class="diff-badge hard">Hard</span>
+      <span style="font-size:12px; color:var(--text-muted)">D1 – Praxis Entwicklung</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Du möchtest mit Docker Desktop einen NGINX-Webdienst als Container starten und im Browser auf Port 80 testen. Der Container soll den Namen "web-demo" heissen und von Port 8080 gemappt werden. Nenne die wichtigsten Docker-Befehle in der richtigen Reihenfolge.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <div class="code-block">
+docker pull nginx
+<span class="cm">// Lädt das NGINX-Image aus der Registry herunter</span>
+
+docker run -d --name web-demo -p 8080:80 nginx
+<span class="cm">// Startet Container im Hintergrund, Name "web-demo", Port 8080→80</span>
+
+docker ps
+<span class="cm">// Zeigt ob der Container läuft</span>
+
+docker logs web-demo
+<span class="cm">// Zeigt die Logs des Containers</span>
+
+docker stop web-demo
+<span class="cm">// Stoppt den Container</span>
+
+docker rm web-demo
+<span class="cm">// Löscht den Container</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D1F -->
+  <div class="qcard" data-diff="hard">
+    <div class="qcard-header">
+      <span class="qid">D1F</span>
+      <span class="diff-badge hard">Hard</span>
+      <span style="font-size:12px; color:var(--text-muted)">D1 – docker-compose.yml erstellen</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Erstelle eine einfache docker-compose.yml für einen Webdienst mit NGINX. Anforderungen:<br>
+        – Service heisst "web" | Image: nginx:alpine | Containername: d1f-web<br>
+        – Port 8080 vom Host auf Port 80 im Container | Automatisch neu starten (ausser manuell gestoppt)
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <div class="code-block">
+services:
+  web:
+    image: nginx:alpine
+    container_name: d1f-web
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D1E -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">D1E</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">D1 – Fehler erkennen</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        In der folgenden docker-compose.yml startet der Webdienst nicht korrekt. Finde mindestens drei Fehler:
+        <div class="code-block">
+services:
+  web:
+    image: nginx:alpine
+    container_name: d1e-web
+    port:
+      - "8080"
+    volumes:
+      - ./wrong-index.html:/usr/share/nginx/html/index.html
+    enviroment:
+      - APP_ENV=dev
+        </div>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Fehler 1:</strong> <code>port</code> ist falsch → korrekt ist <code>ports</code><br>
+        <strong>Fehler 2:</strong> Port-Mapping ist unvollständig → korrekt z. B. <code>"8080:80"</code><br>
+        <strong>Fehler 3:</strong> <code>enviroment</code> ist falsch geschrieben → korrekt ist <code>environment</code><br>
+        <strong>Fehler 4:</strong> Der Volume-Pfad <code>./wrong-index.html</code> kann falsch sein, falls die Datei nicht existiert
+      </div>
+    </div>
+  </div>
+
+  <!-- D2G -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">D2G</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">D2 – Docker Befehle</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Gegeben ist folgender Befehl:<br>
+        <code style="font-family:var(--mono); color:var(--accent)">docker run -d -p 5000:80 --name web nginx</code><br><br>
+        Nenne zwei Dinge, die dieser Befehl bewirkt, und erkläre kurz deren Zweck.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>-d (detached):</strong> Container läuft im Hintergrund → Terminal bleibt frei<br>
+        <strong>-p 5000:80:</strong> Port 5000 (Host) wird auf Port 80 (Container) gemappt → Anwendung ist unter localhost:5000 erreichbar<br>
+        <strong>--name web:</strong> Container erhält den Namen "web" → einfachere Verwaltung
+      </div>
+    </div>
+  </div>
+
+  <!-- D2F -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">D2F</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">D2 – Image publizieren</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Ein Entwickler möchte eine Webanwendung (Dockerfile: FROM nginx:alpine, COPY ./website ..., EXPOSE 80) containerisieren und in eine Registry publizieren. Beschreibe die notwendigen Schritte und Docker-Befehle.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>1. Dockerfile erstellen</strong> – Das Dockerfile beschreibt, wie das Image aufgebaut wird.<br><br>
+        <strong>2. Image bauen</strong><br>
+        <code style="font-family:var(--mono)">docker build -t my-webapp .</code><br><br>
+        <strong>3. Image für Registry taggen</strong><br>
+        <code style="font-family:var(--mono)">docker tag my-webapp ghcr.io/user/my-webapp:latest</code><br><br>
+        <strong>4. Login bei der Registry</strong><br>
+        <code style="font-family:var(--mono)">docker login ghcr.io</code><br><br>
+        <strong>5. Image publizieren</strong><br>
+        <code style="font-family:var(--mono)">docker push ghcr.io/user/my-webapp:latest</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- D2E -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">D2E</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">D2 – Mehrere Registries</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Warum kann es sinnvoll sein, ein Container-Image in mehrere Registries zu publizieren? Nenne einen Vorteil.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>Höhere Verfügbarkeit</strong> → Falls eine Registry ausfällt, ist das Image weiterhin verfügbar<br>
+        <strong>Flexibilität</strong> → Bessere Integration mit verschiedenen Plattformen und Cloud-Anbietern
+      </div>
+    </div>
+  </div>
+
+  <!-- E1G -->
+  <div class="qcard" data-diff="easy">
+    <div class="qcard-header">
+      <span class="qid">E1G</span>
+      <span class="diff-badge easy">Easy</span>
+      <span style="font-size:12px; color:var(--text-muted)">E1 – Sicherer Cloud-Zugriff</span>
+      <span class="qtype">Single Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Welche Massnahme erhöht die Sicherheit beim Zugriff auf einen Cloud-Anbieter am meisten?
+        <ul class="qoptions">
+          <li><span class="opt-key">A</span> Langes Passwort verwenden</li>
+          <li><span class="opt-key">B</span> Zugriff ohne Login ermöglichen</li>
+          <li class="correct"><span class="opt-key">C</span> Multi-Faktor-Authentifizierung (MFA) aktivieren ✓</li>
+          <li><span class="opt-key">D</span> Zugriff über HTTPS statt HTTP</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: C</strong>
+        MFA (Multi-Faktor-Authentifizierung) schützt am stärksten, da selbst bei gestohlenen Zugangsdaten ein zweiter Faktor (z. B. Handy-Code) benötigt wird. Ein langes Passwort allein kann kompromittiert werden. HTTPS schützt die Übertragung, aber nicht den Account selbst.
+      </div>
+    </div>
+  </div>
+
+  <!-- E1F -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">E1F</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">E1 – Cloud-Instanz konfigurieren</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Eine Cloud-Instanz wurde konfiguriert: Name: web-server-01, Ubuntu 24.04, öffentliche IP aktiviert, Firewall: Port 22 offen, Port 80 offen.<br>
+        Erkläre die Funktion von Port 22 und Port 80 und beschreibe, warum diese Konfiguration für einen Webserver sinnvoll ist.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>Port 22 (SSH):</strong> Wird für SSH verwendet und ermöglicht sicheren Remote-Zugriff auf die Cloud-Instanz zur Administration.<br><br>
+        <strong>Port 80 (HTTP):</strong> Wird für HTTP verwendet und ermöglicht den Zugriff auf den Webdienst über den Browser.<br><br>
+        <strong>Warum sinnvoll:</strong> Die öffentliche IP erlaubt den externen Zugriff auf den Server. Die Firewall erlaubt nur die benötigten Ports und erhöht dadurch die Sicherheit.
+      </div>
+    </div>
+  </div>
+
+  <!-- E1E -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">E1E</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">E1 – Netzwerk-Sicherheitsmassnahmen</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Eine containerisierte Anwendung soll gemäss folgenden Vorgaben betrieben werden:<br>
+        – Nur der Reverse Proxy darf öffentlich erreichbar sein<br>
+        – Das Backend darf nur intern erreichbar sein<br>
+        – Die Datenbank darf ausschliesslich mit dem Backend kommunizieren<br><br>
+        Beschreibe zwei Sicherheitsmassnahmen, die bei der Netzwerk-Konfiguration umgesetzt werden sollten.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>Massnahme 1:</strong> Nur der Reverse Proxy sollte öffentliche Ports (80/443) besitzen. Backend und Datenbank dürfen keine öffentlichen Ports freigeben.<br><br>
+        <strong>Massnahme 2:</strong> Die Kommunikation zwischen Backend und Datenbank sollte über ein internes Docker-Netzwerk erfolgen. Die Datenbank sollte ausschliesslich Verbindungen vom Backend akzeptieren.
+      </div>
+    </div>
+  </div>
+
+  <!-- E2G -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">E2G</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">E2 – Storage</span>
+      <span class="qtype">Single Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Welche Storage-Variante eignet sich für persistente Daten einer Datenbank?
+        <ul class="qoptions">
+          <li><span class="opt-key">A</span> Temporärer Container-Speicher</li>
+          <li class="correct"><span class="opt-key">B</span> Persistent Volume ✓</li>
+          <li><span class="opt-key">C</span> RAM</li>
+          <li><span class="opt-key">D</span> Log-Datei</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: B</strong>
+        Ein Persistent Volume speichert Daten dauerhaft, auch wenn der Container neu gestartet oder gelöscht wird. Temporärer Container-Speicher (A) geht beim Neustart verloren. RAM (C) ist flüchtig. Log-Dateien (D) sind nicht für Datenbankdaten geeignet.
+      </div>
+    </div>
+  </div>
+
+  <!-- E2F -->
+  <div class="qcard" data-diff="easy">
+    <div class="qcard-header">
+      <span class="qid">E2F</span>
+      <span class="diff-badge easy">Easy</span>
+      <span style="font-size:12px; color:var(--text-muted)">E2 – Skalierung Cloud</span>
+      <span class="qtype">Multiple Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Welche Möglichkeiten zur Skalierung gibt es in der Cloud?
+        <ul class="qoptions">
+          <li class="correct"><span class="opt-key">A</span> Vertikale Skalierung ✓</li>
+          <li class="correct"><span class="opt-key">B</span> Horizontale Skalierung ✓</li>
+          <li><span class="opt-key">C</span> Löschen von Instanzen</li>
+          <li class="correct"><span class="opt-key">D</span> Auto-Scaling ✓</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: A, B, D</strong>
+        Vertikale Skalierung = mehr Ressourcen für bestehende Instanz; Horizontale Skalierung = mehr Instanzen; Auto-Scaling = automatische Anpassung. Das Löschen von Instanzen (C) ist keine Skalierungsstrategie.
+      </div>
+    </div>
+  </div>
+
+  <!-- E2E -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">E2E</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">E2 – Cloud Metadaten</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Ein Entwickler liest auf einer Cloud-Instanz folgende Informationen aus:<br>
+        <code style="font-family:var(--mono)">{"instance-id": "vm-01", "region": "europe-west6", "public-ip": "34.65.10.20"}</code><br><br>
+        Welche Art von Informationen werden hier angezeigt und wofür können sie verwendet werden?
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        Es handelt sich um <strong>Metadaten der Cloud-Instanz</strong>.<br><br>
+        Diese Informationen können verwendet werden für:<br>
+        – <strong>instance-id</strong>: Identifikation der Instanz<br>
+        – <strong>region</strong>: Standort / Region der VM<br>
+        – <strong>public-ip</strong>: Netzwerkzugriff über die öffentliche IP<br><br>
+        Metadaten helfen bei Verwaltung, Monitoring und automatisierter Konfiguration von Cloud-Instanzen.
+      </div>
+    </div>
+  </div>
+
+  <!-- F1G -->
+  <div class="qcard" data-diff="easy">
+    <div class="qcard-header">
+      <span class="qid">F1G</span>
+      <span class="diff-badge easy">Easy</span>
+      <span style="font-size:12px; color:var(--text-muted)">F – Qualitätssicherung</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Nenne eine Methode zur Qualitätssicherung von Container-Images und erkläre kurz.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>Image Scanning (z. B. Trivy)</strong> → überprüft Images auf Sicherheitslücken und veraltete Pakete. Das Tool analysiert das Image und meldet bekannte CVEs (Common Vulnerabilities and Exposures) in verwendeten Bibliotheken.
+      </div>
+    </div>
+  </div>
+
+  <!-- F1F -->
+  <div class="qcard" data-diff="easy">
+    <div class="qcard-header">
+      <span class="qid">F1F</span>
+      <span class="diff-badge easy">Easy</span>
+      <span style="font-size:12px; color:var(--text-muted)">F – Sicherheitsindikatoren</span>
+      <span class="qtype">Multiple Choice</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Welche Punkte sind wichtige Sicherheitsindikatoren für Container? (Mehrere Antworten möglich)
+        <ul class="qoptions">
+          <li class="correct"><span class="opt-key">A</span> Verwendung aktueller Base Images ✓</li>
+          <li><span class="opt-key">B</span> Container läuft als root</li>
+          <li class="correct"><span class="opt-key">C</span> Minimale Anzahl offener Ports ✓</li>
+          <li class="correct"><span class="opt-key">D</span> Verwendung von Secrets statt Klartext-Passwörtern ✓</li>
+        </ul>
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung: A, C, D</strong>
+        B (Container als root) ist ein Sicherheitsrisiko, nicht ein positiver Indikator! Container sollten niemals als root laufen. A, C und D sind echte Sicherheitsbestpraktiken.
+      </div>
+    </div>
+  </div>
+
+  <!-- F1E -->
+  <div class="qcard" data-diff="medium">
+    <div class="qcard-header">
+      <span class="qid">F1E</span>
+      <span class="diff-badge medium">Medium</span>
+      <span style="font-size:12px; color:var(--text-muted)">F – Sicherheitslücken in Dockerfile</span>
+      <span class="qtype">Offene Frage</span>
+    </div>
+    <div class="qbody">
+      <div class="qquestion">
+        Gegebenes Dockerfile (FROM node:latest / WORKDIR /app / COPY . . / RUN npm install / CMD ["node", "server.js"])<br>
+        Nenne zwei Sicherheitsprobleme.
+      </div>
+      <button class="solution-toggle" onclick="toggleSolution(this)">Lösung anzeigen</button>
+      <div class="solution-box">
+        <strong>Lösung</strong>
+        <strong>Problem 1:</strong> Verwendung von <code>latest</code> → unsicher / nicht reproduzierbar → besser spezifische Version wie <code>node:20-alpine</code> verwenden<br><br>
+        <strong>Problem 2:</strong> Container läuft als root → Sicherheitsrisiko → USER-Direktive hinzufügen<br><br>
+        <strong>Problem 3 (Bonus):</strong> Keine Kontrolle über Abhängigkeiten (npm install ohne Lockfile) → besser <code>npm ci</code> verwenden
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- =================== ÜBUNGEN =================== -->
+<div id="tab-uebungen" class="tab-content">
+<div class="page">
+
+  <div class="hero">
+    <h1>Schwierige Übungsaufgaben</h1>
+    <p>Tiefgründige Aufgaben zur optimalen Prüfungsvorbereitung</p>
+    <span class="badge">Prüfungsrelevante Schwerpunkte</span>
+  </div>
+
+  <div class="section-label">Architektur & Konzepte</div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>Übung 1 – Architektur entscheiden</span>
+      <span class="ex-diff">Schwierigkeit: ⭐⭐⭐</span>
+    </div>
+    <div class="exercise-body">
+      <p class="prompt">Ein Startup betreibt eine E-Commerce-Plattform mit Produktkatalog, Warenkorb, Authentifizierung und Zahlungsabwicklung.<br><br>
+      a) Skizziere die Container-Komposition für eine Microservice-Architektur (welche Services, wie kommunizieren sie?)<br>
+      b) Nenne je zwei Vor- und Nachteile gegenüber einem Monolithen<br>
+      c) Welcher Service wäre am wichtigsten separat zu skalieren und warum?</p>
+      <button class="ex-solution-btn" onclick="toggleExSolution(this)">Musterlösung anzeigen</button>
+      <div class="ex-solution">
+        <strong>Musterlösung</strong>
+        <strong>a) Container-Komposition:</strong><br>
+        – <code>nginx</code> (Reverse Proxy) → leitet Anfragen weiter<br>
+        – <code>frontend</code> (React/Vue) → UI<br>
+        – <code>auth-service</code> → Login, JWT Tokens<br>
+        – <code>product-service</code> → Produktkatalog<br>
+        – <code>cart-service</code> → Warenkorb<br>
+        – <code>payment-service</code> → Zahlungsabwicklung<br>
+        – <code>postgres</code> oder mehrere DBs → Datenspeicherung<br>
+        Kommunikation: Intern über Docker-Netzwerk (REST/HTTP)<br><br>
+        <strong>b) Microservice vs. Monolith:</strong><br>
+        Vorteile: 1) Services separat skalierbar 2) Unabhängige Deployments ohne Downtime<br>
+        Nachteile: 1) Höherer Betriebsaufwand 2) Komplexeres Debugging über Services hinweg<br><br>
+        <strong>c) Produktkatalog-Service</strong> → wird am häufigsten aufgerufen (Browsing), sollte separat skaliert werden ohne Bezahlung oder Auth zu beeinflussen.
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>Übung 2 – docker-compose.yml debuggen</span>
+      <span class="ex-diff">Schwierigkeit: ⭐⭐⭐</span>
+    </div>
+    <div class="exercise-body">
+      <p class="prompt">Folgende docker-compose.yml soll ein Node.js Backend mit PostgreSQL-Datenbank starten. Finde alle 5 Fehler und korrigiere sie:
+      <div class="code-block">
+version: "3"
+services:
+  backend:
+    build: ./backend
+    port:
+      - 3000
+    enviroment:
+      - DB_HOST=database
+      - DB_PASS=secret
+    depends: db
+
+  database:
+    image: postgres:14
+    volumes:
+      - db_data:/var/lib/postgres/data
+    enviroment:
+      - POSTGRES_PASSWORD=secret
+      </div>
+      </p>
+      <button class="ex-solution-btn" onclick="toggleExSolution(this)">Musterlösung anzeigen</button>
+      <div class="ex-solution">
+        <strong>5 Fehler + Korrekturen:</strong><br><br>
+        <strong>Fehler 1:</strong> <code>port</code> → korrekt: <code>ports</code><br>
+        <strong>Fehler 2:</strong> Port-Mapping unvollständig: <code>"3000"</code> → korrekt: <code>"3000:3000"</code><br>
+        <strong>Fehler 3:</strong> <code>enviroment</code> (2x) → korrekt: <code>environment</code><br>
+        <strong>Fehler 4:</strong> <code>depends: db</code> → korrekt: <code>depends_on: - db</code> (und Service heisst "database")<br>
+        <strong>Fehler 5:</strong> <code>/var/lib/postgres/data</code> → korrekt: <code>/var/lib/postgresql/data</code> (doppel-l!)<br><br>
+        <strong>Bonus:</strong> Das <code>volume db_data</code> muss unten als Top-Level deklariert werden:<br>
+        <code>volumes:<br>&nbsp;&nbsp;db_data:</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>Übung 3 – Entscheidungsmatrix erstellen</span>
+      <span class="ex-diff">Schwierigkeit: ⭐⭐⭐</span>
+    </div>
+    <div class="exercise-body">
+      <p class="prompt">Eine Schweizer Bundesbehörde sucht einen Cloud-Anbieter für eine containerisierte Anwendung mit sensiblen Bürgerdaten.<br><br>
+      a) Definiere 4 relevante Kriterien mit Gewichtung (Total = 12 Punkte), begründe jede Gewichtung<br>
+      b) Bewerte GKE und AWS mit je 1–5 Punkten und berechne die Gewichteten Scores<br>
+      c) Welcher Anbieter gewinnt? Begründe kurz.</p>
+      <button class="ex-solution-btn" onclick="toggleExSolution(this)">Musterlösung anzeigen</button>
+      <div class="ex-solution">
+        <strong>Musterlösung</strong><br><br>
+        <strong>a) Kriterien (Beispiel):</strong><br>
+        – Datenschutz/DSGVO (5) – Bundesbehörde = höchste Priorität<br>
+        – Datenresidenz Schweiz/EU (4) – Bürgerdaten dürfen nicht ins Ausland<br>
+        – Monitoring & Audit Logs (2) – Nachvollziehbarkeit wichtig<br>
+        – Kosten (1) – Bundesbudget vorhanden, Sicherheit wichtiger<br><br>
+        <strong>b) Bewertung (Beispiel):</strong><br>
+        GKE: Datenschutz=4(×5=20), Datenresidenz=3(×4=12), Monitoring=5(×2=10), Kosten=4(×1=4) = 46<br>
+        AWS: Datenschutz=4(×5=20), Datenresidenz=4(×4=16), Monitoring=5(×2=10), Kosten=3(×1=3) = 49<br><br>
+        <strong>c) AWS gewinnt</strong> durch bessere Datenresidenz-Optionen in der EU/Schweiz (Frankfurt, Zürich Region). Für Bundesbehörden wäre aber auch ein On-Premise oder Swiss-Cloud zu prüfen.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Docker Praxis</div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>Übung 4 – Dockerfile sicher machen</span>
+      <span class="ex-diff">Schwierigkeit: ⭐⭐⭐</span>
+    </div>
+    <div class="exercise-body">
+      <p class="prompt">Verbessere dieses unsichere Dockerfile. Es soll eine Python Flask App (app.py) sicher containerisieren. Benenne mindestens 4 Sicherheitsverbesserungen:
+      <div class="code-block">
+FROM python:latest
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]
+      </div>
+      </p>
+      <button class="ex-solution-btn" onclick="toggleExSolution(this)">Musterlösung anzeigen</button>
+      <div class="ex-solution">
+        <strong>Verbessertes Dockerfile:</strong>
+        <div class="code-block">
+FROM python:3.12-slim          <span class="cm"># ✓ spezifische Version statt latest</span>
+
+WORKDIR /app
+
+COPY requirements.txt .        <span class="cm"># ✓ erst requirements, dann Code (Layer caching)</span>
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+RUN useradd -r -s /bin/false appuser  <span class="cm"># ✓ eigener User, kein root</span>
+USER appuser
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+        </div>
+        <strong>4 Verbesserungen:</strong><br>
+        1. <code>python:3.12-slim</code> statt <code>latest</code> → reproduzierbar, kleiner<br>
+        2. Eigener User <code>appuser</code> statt root → Sicherheitsrisiko vermieden<br>
+        3. <code>pip install --no-cache-dir</code> → kleineres Image<br>
+        4. requirements.txt zuerst kopieren → besseres Layer-Caching
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>Übung 5 – Netzwerkarchitektur planen</span>
+      <span class="ex-diff">Schwierigkeit: ⭐⭐⭐</span>
+    </div>
+    <div class="exercise-body">
+      <p class="prompt">Plane eine sichere docker-compose.yml für eine Web-App mit:<br>
+      – NGINX als Reverse Proxy (Port 80 öffentlich)<br>
+      – Node.js Backend (nur intern, Port 3000)<br>
+      – PostgreSQL DB (nur intern, Port 5432)<br><br>
+      a) Schreibe die docker-compose.yml mit korrekten Netzwerken<br>
+      b) Erkläre, warum die DB keinen externen Port-Mapping braucht</p>
+      <button class="ex-solution-btn" onclick="toggleExSolution(this)">Musterlösung anzeigen</button>
+      <div class="ex-solution">
+        <strong>a) docker-compose.yml:</strong>
+        <div class="code-block">
+services:
+  proxy:
+    image: nginx:alpine
+    ports:
+      - "80:80"        <span class="cm"># Einziger öffentlicher Port!</span>
+    networks:
+      - frontend
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    networks:
+      - frontend       <span class="cm"># Verbindung zu Proxy</span>
+      - backend-db     <span class="cm"># Verbindung zur DB</span>
+    environment:
+      - DB_HOST=db
+    <span class="cm"># KEIN ports: Mapping! Intern erreichbar via Servicename</span>
+
+  db:
+    image: postgres:15-alpine
+    networks:
+      - backend-db     <span class="cm"># Nur im internen Netz</span>
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=secret
+    <span class="cm"># KEIN ports: Mapping!</span>
+
+networks:
+  frontend:
+  backend-db:
+
+volumes:
+  db_data:
+        </div>
+        <strong>b) Warum kein externes Port-Mapping für DB?</strong><br>
+        Die DB ist nur intern über das <code>backend-db</code> Netzwerk erreichbar. Ein externes Port-Mapping würde die DB direkt aus dem Internet zugänglich machen – grosses Sicherheitsrisiko. Das Backend erreicht die DB via Servicename <code>db</code> intern.
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>Übung 6 – Vollständiges Szenario</span>
+      <span class="ex-diff">Schwierigkeit: ⭐⭐⭐⭐</span>
+    </div>
+    <div class="exercise-body">
+      <p class="prompt">Du wirst als Entwickler engagiert, um die Infrastruktur einer Arztpraxis-Software zu containerisieren. Die Software hat:<br>
+      – React Frontend (Port 3000)<br>
+      – Python Backend API (Port 8000)<br>
+      – PostgreSQL Patientendaten (Port 5432)<br>
+      – Redis für Session-Cache (Port 6379)<br><br>
+      1. Entscheide: Monolith oder Microservices? Begründe.<br>
+      2. Welche Sicherheitsanforderungen gelten speziell für Patientendaten?<br>
+      3. Welche Storage-Variante für die DB? Warum?<br>
+      4. Wie sieht die Netzwerkarchitektur aus (wer kann mit wem kommunizieren)?<br>
+      5. Welchen Cloud-Anbieter würdest du empfehlen und warum?</p>
+      <button class="ex-solution-btn" onclick="toggleExSolution(this)">Musterlösung anzeigen</button>
+      <div class="ex-solution">
+        <strong>Vollständige Musterlösung</strong><br><br>
+        <strong>1. Microservices</strong> – da jede Komponente unabhängig skaliert werden kann (z. B. API bei vielen Anfragen). Ausserdem: separate Sicherheit pro Service möglich (Patientendaten isoliert).<br><br>
+        <strong>2. Sicherheitsanforderungen (Patientendaten):</strong><br>
+        – Verschlüsselung der Daten (at rest + in transit)<br>
+        – Strikte Zugriffskontrollen (nur Backend hat DB-Zugriff)<br>
+        – Secrets-Management (keine Passwörter in docker-compose.yml)<br>
+        – Audit Logs (wer greift wann auf Daten zu)<br>
+        – DSGVO-Konformität (Daten in der EU/Schweiz)<br><br>
+        <strong>3. Persistent Volume</strong> – Patientendaten müssen permanent gespeichert sein. Temporärer Speicher würde alle Daten beim Neustart verlieren!<br><br>
+        <strong>4. Netzwerkarchitektur:</strong><br>
+        Internet → Reverse Proxy (öffentlich) → Frontend & Backend (intern)<br>
+        Backend ↔ PostgreSQL (internes Netz, nur Backend)<br>
+        Backend ↔ Redis (internes Netz, nur Backend)<br>
+        Frontend → Backend (über Reverse Proxy)<br><br>
+        <strong>5. AWS oder Azure</strong> – Beide bieten DSGVO-konforme Regionen in der EU, starkes Secrets-Management, Audit Logs und Compliance-Zertifizierungen für Gesundheitsdaten. Für Schweiz: Swiss-Cloud (EXOSCALE) wäre ideal wegen CH-Datenschutzgesetz.
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- =================== CHEATSHEET =================== -->
+<div id="tab-cheatsheet" class="tab-content">
+<div class="page">
+
+  <div class="hero">
+    <h1>⚡ Cheatsheet</h1>
+    <p>Die wichtigsten Befehle und Konzepte auf einen Blick</p>
+    <span class="badge">Prüfungs-Schnellreferenz</span>
+  </div>
+
+  <div class="section-label">Docker Befehle</div>
+
+  <div class="content-block">
+    <div class="code-block">
+<span class="cm">### IMAGE MANAGEMENT ###</span>
+docker pull &lt;image&gt;                  <span class="cm"># Image herunterladen</span>
+docker build -t &lt;name&gt; .            <span class="cm"># Image aus Dockerfile bauen</span>
+docker tag &lt;image&gt; &lt;registry/name&gt;  <span class="cm"># Image taggen</span>
+docker push &lt;registry/name&gt;         <span class="cm"># Image in Registry hochladen</span>
+docker images                        <span class="cm"># Alle lokalen Images</span>
+docker rmi &lt;image&gt;                   <span class="cm"># Image löschen</span>
+
+<span class="cm">### CONTAINER MANAGEMENT ###</span>
+docker run -d --name &lt;n&gt; -p HOST:CONT &lt;image&gt;  <span class="cm"># Starten</span>
+docker ps                            <span class="cm"># Laufende Container</span>
+docker ps -a                         <span class="cm"># Alle Container (auch gestoppt)</span>
+docker logs &lt;name&gt;                   <span class="cm"># Logs anzeigen</span>
+docker stop &lt;name&gt;                   <span class="cm"># Stoppen</span>
+docker rm &lt;name&gt;                     <span class="cm"># Löschen</span>
+docker exec -it &lt;name&gt; /bin/sh      <span class="cm"># In Container einsteigen</span>
+
+<span class="cm">### DOCKER COMPOSE ###</span>
+docker compose up -d                 <span class="cm"># Services starten</span>
+docker compose down                  <span class="cm"># Services stoppen + entfernen</span>
+docker compose logs                  <span class="cm"># Logs aller Services</span>
+docker compose ps                    <span class="cm"># Status der Services</span>
+    </div>
+  </div>
+
+  <div class="section-label">Dockerfile Referenz</div>
+
+  <div class="content-block">
+    <div class="code-block">
+FROM node:20-alpine     <span class="cm"># Basis-Image (spezifische Version!)</span>
+WORKDIR /app            <span class="cm"># Arbeitsverzeichnis im Container</span>
+COPY . .                <span class="cm"># Dateien ins Image kopieren</span>
+RUN npm ci              <span class="cm"># Befehle beim Build ausführen</span>
+EXPOSE 3000             <span class="cm"># Port dokumentieren (nur Doku!)</span>
+USER node               <span class="cm"># User setzen (nicht root!)</span>
+CMD ["node", "server"]  <span class="cm"># Startbefehl</span>
+ENV NODE_ENV=production <span class="cm"># Umgebungsvariable</span>
+    </div>
+  </div>
+
+  <div class="section-label">Prüfungs-Schlüsselbegriffe</div>
+
+  <div class="content-block">
+    <div class="table-wrap">
+      <table>
+        <tr><th>Begriff</th><th>Bedeutung</th></tr>
+        <tr><td>Container</td><td>Isolierter Prozess der den Host-Kernel teilt (OS-Level Virtualisierung)</td></tr>
+        <tr><td>VM</td><td>Vollständige Hardware-Virtualisierung mit eigenem OS</td></tr>
+        <tr><td>Dockerfile</td><td>Bauplan für ein Container Image (Rezept)</td></tr>
+        <tr><td>Image</td><td>Unveränderliches Paket (Snapshot)</td></tr>
+        <tr><td>Container</td><td>Laufende Instanz eines Images</td></tr>
+        <tr><td>Registry</td><td>Speicher für Images (Docker Hub, GHCR, ECR)</td></tr>
+        <tr><td>Monolith</td><td>Gesamte App in einem Container/Prozess</td></tr>
+        <tr><td>Microservice</td><td>Jeder Service in eigenem Container, separat skalierbar</td></tr>
+        <tr><td>Reverse Proxy</td><td>Eintrittspunkt, leitet Anfragen intern weiter (NGINX, Traefik)</td></tr>
+        <tr><td>Orchestrierung</td><td>Verwaltung mehrerer Container (Kubernetes, Docker Compose)</td></tr>
+        <tr><td>Persistent Volume</td><td>Permanenter Speicher der Container-Neustarts überlebt</td></tr>
+        <tr><td>MFA</td><td>Multi-Faktor-Authentifizierung – stärkste Zugangssicherung</td></tr>
+        <tr><td>Image Scanning</td><td>Trivy etc. – prüft auf Sicherheitslücken (CVEs)</td></tr>
+        <tr><td>Horizontale Skalierung</td><td>Mehr Instanzen hinzufügen</td></tr>
+        <tr><td>Vertikale Skalierung</td><td>Mehr Ressourcen für bestehende Instanz</td></tr>
+        <tr><td>Auto-Scaling</td><td>Automatische Skalierung nach Last</td></tr>
+        <tr><td>Load Balancer</td><td>Verteilt Anfragen auf mehrere Instanzen</td></tr>
+        <tr><td>Port 22</td><td>SSH – Administrationszugriff</td></tr>
+        <tr><td>Port 80</td><td>HTTP – Webdienst</td></tr>
+        <tr><td>Port 443</td><td>HTTPS – verschlüsselter Webdienst</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-label">Häufige Fehlerquellen</div>
+
+  <div class="content-block">
+    <div class="callout danger">
+      <strong>docker-compose.yml Fehler</strong>
+      <code>port</code> → <code>ports</code> | <code>enviroment</code> → <code>environment</code> | <code>depends</code> → <code>depends_on</code> | Port muss String sein: <code>"8080:80"</code> | Volume-Pfad muss existieren
+    </div>
+    <div class="callout danger">
+      <strong>Dockerfile Sicherheitsfehler</strong>
+      <code>FROM node:latest</code> → unsicher, nicht reproduzierbar | Kein USER → läuft als root | <code>npm install</code> ohne Lockfile → <code>npm ci</code> verwenden | Secrets im Dockerfile hardcoded
+    </div>
+    <div class="callout warn">
+      <strong>Architektur-Verwechslungen</strong>
+      Hypervisor → VM-Technologie, NICHT Container | NGINX = Webserver, NICHT Orchestrierung | GitHub Actions = CI/CD, NICHT Orchestrierung | Public Cloud = kein physischer Serverzugriff
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  function toggleSolution(btn) {
+    const box = btn.nextElementSibling;
+    box.classList.toggle('visible');
+    btn.textContent = box.classList.contains('visible') ? 'Lösung verbergen' : 'Lösung anzeigen';
+  }
+
+  function toggleExSolution(btn) {
+    const box = btn.nextElementSibling;
+    box.classList.toggle('visible');
+    btn.textContent = box.classList.contains('visible') ? 'Musterlösung verbergen' : 'Musterlösung anzeigen';
+  }
+
+  function filterQ(diff, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.qcard').forEach(card => {
+      if (diff === 'all' || card.dataset.diff === diff) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
