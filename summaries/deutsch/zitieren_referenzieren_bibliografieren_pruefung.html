@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prüfungszusammenfassung: Zitieren, Referenzieren, Bibliografieren</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --surface: #ffffff;
+      --surface-soft: #f3f6f9;
+      --text: #182230;
+      --muted: #667085;
+      --border: #d8dee8;
+      --primary: #354f73;
+      --primary-soft: #e7eef8;
+      --green: #dff3e4;
+      --green-text: #17633a;
+      --amber: #fff3d6;
+      --amber-text: #8a5a00;
+      --red: #ffe3e0;
+      --red-text: #a82317;
+      --blue: #e8f1ff;
+      --blue-text: #174a8b;
+      --shadow: 0 18px 45px rgba(17, 24, 39, 0.08);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(53, 79, 115, 0.14), transparent 30%),
+        linear-gradient(180deg, #fbfcff 0%, var(--bg) 40%, #eef2f7 100%);
+      line-height: 1.55;
+    }
+
+    header {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 48px 22px 28px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f1f6ff 58%, #fff7ea 100%);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(53, 79, 115, 0.08);
+      right: -90px;
+      top: -120px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 16px 0 12px;
+      max-width: 870px;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+    }
+
+    .lead {
+      max-width: 840px;
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .kpi {
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(216, 222, 232, 0.9);
+      border-radius: 18px;
+      padding: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .kpi strong {
+      display: block;
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .kpi span { color: var(--muted); font-size: 13px; }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto 64px;
+      padding: 0 22px;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    nav {
+      position: sticky;
+      top: 18px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 30px rgba(17, 24, 39, 0.06);
+      padding: 16px;
+      backdrop-filter: blur(12px);
+    }
+
+    nav h2 {
+      font-size: 15px;
+      margin: 0 0 10px;
+      color: var(--primary);
+    }
+
+    nav a {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 11px;
+      color: #344054;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover { background: var(--surface-soft); color: var(--primary); }
+
+    .content { display: grid; gap: 22px; }
+
+    section, .card {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 32px rgba(17, 24, 39, 0.05);
+      padding: 26px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 24px 0 10px;
+      font-size: 19px;
+      color: #243b5a;
+    }
+
+    h4 {
+      margin: 18px 0 8px;
+      font-size: 16px;
+    }
+
+    p { margin: 0 0 12px; }
+
+    ul, ol { margin-top: 8px; padding-left: 22px; }
+
+    li { margin: 6px 0; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .b-blue { background: var(--blue); color: var(--blue-text); border-color: #c8dcff; }
+    .b-green { background: var(--green); color: var(--green-text); border-color: #b8e7c5; }
+    .b-amber { background: var(--amber); color: var(--amber-text); border-color: #f2d58c; }
+    .b-red { background: var(--red); color: var(--red-text); border-color: #ffc2bb; }
+
+    .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .three-col { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+
+    .mini-card {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .mini-card h3, .mini-card h4 { margin-top: 0; }
+
+    code, pre {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    code {
+      background: #eef2f7;
+      padding: 2px 6px;
+      border-radius: 7px;
+      font-size: 0.92em;
+    }
+
+    pre {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 16px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 14px;
+      line-height: 1.6;
+      border: 1px solid #253044;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin: 14px 0;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 12px 13px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #243b5a;
+      font-weight: 800;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .callout {
+      border-radius: 16px;
+      padding: 16px;
+      margin: 16px 0;
+      border: 1px solid var(--border);
+    }
+
+    .callout.info { background: var(--blue); border-color: #c8dcff; }
+    .callout.warn { background: var(--amber); border-color: #f2d58c; }
+    .callout.danger { background: var(--red); border-color: #ffc2bb; }
+    .callout.success { background: var(--green); border-color: #b8e7c5; }
+
+    .checklist li { list-style: none; margin-left: -20px; }
+    .checklist li::before { content: "✓"; font-weight: 900; color: var(--green-text); margin-right: 8px; }
+
+    details {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin: 12px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+      color: #243b5a;
+    }
+
+    .exercise {
+      border: 1px solid #cfd8e6;
+      border-radius: 18px;
+      padding: 18px;
+      background: #ffffff;
+      margin: 16px 0;
+    }
+
+    .exercise h3 { margin-top: 0; }
+
+    .solution {
+      margin-top: 12px;
+      background: #ecfdf3;
+      border: 1px solid #b8e7c5;
+      border-radius: 14px;
+      padding: 13px;
+    }
+
+    .wrong { color: var(--red-text); font-weight: 800; }
+    .right { color: var(--green-text); font-weight: 800; }
+    .muted { color: var(--muted); }
+
+    .page-break { break-before: page; }
+
+    footer {
+      max-width: 1180px;
+      margin: 0 auto 40px;
+      padding: 0 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 930px) {
+      main { grid-template-columns: 1fr; }
+      nav { position: relative; top: auto; }
+      .hero-grid, .three-col, .two-col { grid-template-columns: 1fr; }
+      section, .hero { padding: 22px; }
+    }
+
+    @media print {
+      body { background: white; }
+      header, main, footer { max-width: none; }
+      nav { display: none; }
+      main { display: block; }
+      section, .card, .hero { box-shadow: none; break-inside: avoid; }
+      details { break-inside: avoid; }
+      details:not([open]) > *:not(summary) { display: block; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <span class="eyebrow">Kurzprüfung 25.6. · Zitieren · Referenzieren · Bibliografieren</span>
+      <h1>Komplette Lernzusammenfassung mit Übungen und Lösungen</h1>
+      <p class="lead">Diese Zusammenfassung ist so aufgebaut, dass du sie direkt in dein Heftchen übertragen, markieren oder als Lernblatt verwenden kannst. Sie deckt die Theorie, die wichtigsten Regeln, typische Fehler und schwierige Prüfungsübungen ab.</p>
+      <div class="hero-grid">
+        <div class="kpi"><strong>3</strong><span>Kernbegriffe sauber unterscheiden</span></div>
+        <div class="kpi"><strong>2</strong><span>Zitatarten: direkt und indirekt</span></div>
+        <div class="kpi"><strong>15+</strong><span>Quellenarten mit Mustern</span></div>
+        <div class="kpi"><strong>30+</strong><span>Prüfungsnahe Übungen</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <nav>
+      <h2>Navigation</h2>
+      <a href="#kernidee">1. Kernidee</a>
+      <a href="#begriffe">2. Begriffe</a>
+      <a href="#zitatarten">3. Direkte und indirekte Zitate</a>
+      <a href="#referenzieren">4. Kurzbelege</a>
+      <a href="#literaturverzeichnis">5. Literaturverzeichnis</a>
+      <a href="#quellenarten">6. Quellenarten</a>
+      <a href="#internet">7. Internetquellen</a>
+      <a href="#muendlich">8. Mündliche Quellen</a>
+      <a href="#ki">9. KI und Übersetzung</a>
+      <a href="#abbtab">10. Abbildungen und Tabellen</a>
+      <a href="#abkuerzungen">11. Abkürzungen</a>
+      <a href="#word">12. Word</a>
+      <a href="#uebungen">13. Übungen</a>
+      <a href="#spickzettel">14. Mini-Spickzettel</a>
+    </nav>
+
+    <div class="content">
+      <section id="kernidee">
+        <h2>1. Die Kernidee: Warum zitiert man überhaupt?</h2>
+        <p>Zitieren bedeutet nicht nur, eine Regel zu erfüllen. Es zeigt, welche Gedanken von dir stammen und welche Informationen von anderen Personen, Webseiten, Büchern, Videos oder KI-Systemen übernommen wurden.</p>
+        <div class="callout success">
+          <strong>Wichtigstes Prinzip:</strong> Transparenz, Nachvollziehbarkeit und Einheitlichkeit. Eine lesende Person muss jederzeit erkennen können, woher eine Information kommt und wo sie die Quelle überprüfen kann.
+        </div>
+        <div class="three-col">
+          <div class="mini-card">
+            <h3>Transparenz</h3>
+            <p>Du machst sichtbar, was von dir und was von anderen stammt.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Nachvollziehbarkeit</h3>
+            <p>Andere Personen können deine Quelle finden und prüfen.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Einheitlichkeit</h3>
+            <p>Du verwendest innerhalb einer Arbeit konsequent denselben Zitierstil.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="begriffe">
+        <h2>2. Die drei wichtigsten Begriffe</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Begriff</th>
+              <th>Bedeutung</th>
+              <th>Prüfungs-Merksatz</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Zitieren</strong></td>
+              <td>Du übernimmst eine fremde Aussage direkt oder sinngemäss.</td>
+              <td>Zitat = fremde Leistung im Text verwenden.</td>
+            </tr>
+            <tr>
+              <td><strong>Referenzieren</strong></td>
+              <td>Du gibst im Text oder in der Fussnote an, woher die Information kommt.</td>
+              <td>Kurzbeleg = schnelle Quellenangabe direkt bei der Aussage.</td>
+            </tr>
+            <tr>
+              <td><strong>Bibliografieren</strong></td>
+              <td>Du gibst am Schluss die vollständige Quelle im Literaturverzeichnis an.</td>
+              <td>Literaturverzeichnis = vollständige Quellenliste.</td>
+            </tr>
+          </tbody>
+        </table>
+        <pre>Merkschema:
+Zitieren = fremde Information verwenden
+Referenzieren = Kurzbeleg im Text / in Fussnote
+Bibliografieren = vollständige Quelle am Schluss</pre>
+      </section>
+
+      <section id="zitatarten">
+        <h2>3. Direkte und indirekte Zitate</h2>
+        <div class="two-col">
+          <div class="mini-card">
+            <h3>Direktes / wörtliches Zitat</h3>
+            <p>Du übernimmst den Originaltext Wort für Wort.</p>
+            <ul class="checklist">
+              <li>immer mit Anführungszeichen</li>
+              <li>wortgetreu übernehmen</li>
+              <li>Änderungen mit eckigen Klammern markieren</li>
+              <li>Auslassungen mit <code>[…]</code></li>
+              <li>Fehler im Original mit <code>[sic]</code></li>
+              <li>Quelle mit Seitenzahl angeben</li>
+            </ul>
+            <pre>„Originaltext genau übernehmen“ (Autor, Jahr, S. 25).</pre>
+          </div>
+          <div class="mini-card">
+            <h3>Indirektes / sinngemässes Zitat</h3>
+            <p>Du fasst die Aussage in eigenen Worten zusammen.</p>
+            <ul class="checklist">
+              <li>keine Anführungszeichen</li>
+              <li>eigene Formulierung</li>
+              <li>bei Klammerbelegen mit <code>vgl.</code></li>
+              <li>bei Fussnoten mit <code>Vgl.</code></li>
+              <li>Quelle trotzdem angeben</li>
+            </ul>
+            <pre>Die Autorin betont, dass ... (vgl. Autor, Jahr, S. 25).</pre>
+          </div>
+        </div>
+
+        <h3>Typische Formulierungen für indirekte Zitate</h3>
+        <table>
+          <thead><tr><th>Formulierung</th><th>Beispiel</th></tr></thead>
+          <tbody>
+            <tr><td>Gemäss Autor/in ...</td><td>Gemäss Musterling ist Transparenz beim Zitieren zentral (vgl. Musterling, 2019, S. 25).</td></tr>
+            <tr><td>Die Autorin betont ...</td><td>Die Autorin betont, dass Quellen korrekt angegeben werden müssen (vgl. Musterling, 2019, S. 25).</td></tr>
+            <tr><td>Der Autor legt dar ...</td><td>Der Autor legt dar, dass indirekte Zitate ebenfalls belegt werden müssen (vgl. Musterling, 2019, S. 25).</td></tr>
+            <tr><td>Die Studie zeigt ...</td><td>Die Studie zeigt einen Zusammenhang zwischen X und Y (vgl. Musterling, 2019, S. 25).</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout danger">
+          <strong>Prüfungsfalle:</strong> Nur weil du etwas in eigenen Worten schreibst, ist es nicht automatisch deine eigene Idee. Wenn die Information aus einer Quelle stammt, brauchst du trotzdem einen Beleg.
+        </div>
+      </section>
+
+      <section id="referenzieren">
+        <h2>4. Referenzieren: Kurzbelege im Text oder in Fussnoten</h2>
+        <h3>A) Kurzbeleg im Fliesstext</h3>
+        <p>Der Kurzbeleg steht direkt nach der übernommenen Information. Der Punkt kommt nach der Klammer.</p>
+        <pre>Direktes Zitat:
+„Text aus der Quelle“ (Musterling, 2019, S. 25).
+
+Indirektes Zitat:
+Die Aussage wird in eigenen Worten wiedergegeben (vgl. Musterling, 2019, S. 25).</pre>
+        <div class="two-col">
+          <div class="callout danger">
+            <strong>Falsch:</strong><br>
+            Die Aussage steht hier. (Musterling, 2019, S. 25)
+          </div>
+          <div class="callout success">
+            <strong>Richtig:</strong><br>
+            Die Aussage steht hier (Musterling, 2019, S. 25).
+          </div>
+        </div>
+
+        <h3>B) Kurzbeleg in der Fussnote</h3>
+        <pre>Direktes Zitat:
+1 Musterling, 2019, S. 25.
+
+Indirektes Zitat:
+2 Vgl. Musterling, 2019, S. 25.</pre>
+        <div class="callout info">
+          Im Fliesstext schreibt man <code>vgl.</code> klein. In der Fussnote schreibt man <code>Vgl.</code> gross.
+        </div>
+
+        <h3>C) ebd. / Ebd.</h3>
+        <p><code>ebd.</code> bedeutet „eben da“. Es wird verwendet, wenn direkt hintereinander auf dieselbe Quelle verwiesen wird.</p>
+        <pre>Erster Beleg:
+(Musterling, 2019, S. 25)
+
+Direkt danach dieselbe Quelle:
+(ebd., S. 26)</pre>
+        <div class="callout warn">
+          <strong>Wichtig:</strong> Sobald zwischen zwei Belegen eine andere Quelle steht, darfst du nicht mehr <code>ebd.</code> verwenden. Dann musst du den Kurzbeleg wieder ausschreiben.
+        </div>
+      </section>
+
+      <section id="literaturverzeichnis">
+        <h2>5. Bibliografieren: Literaturverzeichnis</h2>
+        <p>Im Literaturverzeichnis stehen die vollständigen Angaben zu allen verwendeten Quellen. Es wird alphabetisch nach dem Nachnamen oder nach der Institution geordnet.</p>
+        <div class="callout success">
+          <strong>Grundregel:</strong> Alles, was im Text als Quelle verwendet wird, muss im Literaturverzeichnis auffindbar sein. Umgekehrt gehören keine Quellen hinein, die du gar nicht verwendet hast.
+        </div>
+        <h3>Grundform Buch / Monografie</h3>
+        <pre>Nachname, V. (Jahr). Titel. Verlag.</pre>
+        <h3>Beispiel</h3>
+        <pre>Kappeler, A. (2008). Russland als Vielvölkerreich. C.H. Beck.</pre>
+        <h3>Was gehört meistens in eine vollständige Quellenangabe?</h3>
+        <table>
+          <thead><tr><th>Angabe</th><th>Wozu?</th><th>Beispiel</th></tr></thead>
+          <tbody>
+            <tr><td>Autor/in oder Institution</td><td>Wer hat die Quelle erstellt?</td><td>Musterling, A. / Bundesamt für Statistik</td></tr>
+            <tr><td>Jahr oder Datum</td><td>Wann wurde die Quelle veröffentlicht?</td><td>(2023) / (2023, 2. März)</td></tr>
+            <tr><td>Titel</td><td>Wie heisst die Quelle?</td><td>Naturalismus Epoche</td></tr>
+            <tr><td>Zusatzinfos</td><td>Auflage, Herausgeberschaft, Regie, Medienart</td><td>(2. Aufl.) / [Infovideo]</td></tr>
+            <tr><td>Verlag / Website / Plattform</td><td>Wo wurde es veröffentlicht?</td><td>C.H. Beck / YouTube / SRF</td></tr>
+            <tr><td>URL oder DOI</td><td>Wo ist die Quelle online auffindbar?</td><td>https://... / https://doi.org/...</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="quellenarten">
+        <h2>6. Quellenarten mit Mustern</h2>
+        <h3>Buch / Monografie</h3>
+        <pre>Literaturverzeichnis:
+Nachname, V. (Jahr). Titel. Verlag.
+
+Kurzbeleg:
+(Autor, Jahr, S. xx)</pre>
+
+        <h3>Literarische Werkausgabe</h3>
+        <pre>Nachname, V. (Jahr). Titel. Hg. von Vorname Nachname. Verlag.
+
+Wichtig:
+Beim Datum das Erscheinungsjahr der verwendeten Ausgabe angeben, nicht zwingend das Originaljahr.</pre>
+
+        <h3>Beitrag in einem Sammelband</h3>
+        <pre>Nachname, V. (Jahr). Titel des Beitrags. In Herausgeber, V. (Hrsg.), Buchtitel (S. xx-xx). Verlag.</pre>
+        <p>Wichtig: Zuerst kommt die Person, die den Beitrag geschrieben hat. Nach <code>In</code> kommt die Herausgeberschaft des Buches.</p>
+
+        <h3>Fachzeitschrift / Paper</h3>
+        <pre>Nachname, V. (Jahr). Titel des Artikels. Name der Zeitschrift, Jahrgang(Ausgabe), Seiten.</pre>
+
+        <h3>Online-Fachzeitschrift mit DOI</h3>
+        <pre>Nachname, V. (Jahr). Titel des Artikels. Name der Zeitschrift, Jahrgang(Ausgabe), Seiten. https://doi.org/...</pre>
+        <div class="callout info">
+          <strong>DOI:</strong> Ein DOI ist ein dauerhafter digitaler Identifikator. Er wird wie eine URL am Schluss angegeben.
+        </div>
+
+        <h3>Mehrere Autorinnen und Autoren</h3>
+        <table>
+          <thead><tr><th>Situation</th><th>Regel</th><th>Beispiel</th></tr></thead>
+          <tbody>
+            <tr><td>2 Autor:innen</td><td>Beide nennen</td><td>Kesting & Treiber (2010)</td></tr>
+            <tr><td>3 oder mehr Autor:innen</td><td>Im Kurzbeleg mit <code>et al.</code> abkürzen</td><td>(Musterling et al., 2019)</td></tr>
+            <tr><td>Literaturverzeichnis</td><td>Autor:innen möglichst vollständig nennen, je nach Vorgabe bis 20</td><td>Nachname, V., Nachname, V. & Nachname, V.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="internet">
+        <h2>7. Internetquellen und digitale Medien</h2>
+        <div class="callout warn">
+          Bei Internetquellen zuerst klären: Ist es eine Webseite, ein Online-Zeitungsartikel, eine Online-Publikation, ein Lexikonartikel, ein Video, ein Social-Media-Beitrag oder etwas anderes? Die Quellenart entscheidet über die Form.
+        </div>
+
+        <h3>Informationswebseite</h3>
+        <pre>Autor/Institution. (Jahr). Titel. Name der Website. URL</pre>
+        <p>Wenn kein klares Datum vorhanden ist, verwendet man <code>o. D.</code> oder <code>o. J.</code>.</p>
+        <pre>Autor/Institution. (o. D.). Titel. Name der Website. URL</pre>
+
+        <h3>Institution als Autor</h3>
+        <pre>Bundesamt für Statistik. (2023). Titel der Seite. URL</pre>
+        <p>Wenn du mehrere Seiten derselben Institution aus demselben Jahr verwendest, markierst du sie unterscheidbar.</p>
+        <pre>Bundesamt für Statistik (1). (2023). Titel A. URL
+Bundesamt für Statistik (2). (2023). Titel B. URL</pre>
+
+        <h3>Wikipedia</h3>
+        <pre>Artikeltitel. (Jahr, Datum). In Wikipedia. URL</pre>
+        <div class="callout info">
+          Tipp: Bei Wikipedia gibt es meist die Funktion „Artikel zitieren“. Dort findest du wichtige Angaben wie den Artikeltitel, das Datum und eine genaue Version.
+        </div>
+
+        <h3>YouTube-Video</h3>
+        <pre>Kanalname. (Jahr, Datum). Titel [Infovideo]. YouTube. URL
+
+Bei genauer Stelle:
+(vgl. Kanalname, Jahr, 05:30-10:00).</pre>
+        <p>Wenn der echte Name der erstellenden Person bekannt ist, kann er vor dem Kanalnamen stehen. Der Kanalname kommt dann in eckige Klammern.</p>
+        <pre>Nachname, V. [Kanalname]. (Jahr, Datum). Titel [Infovideo]. YouTube. URL</pre>
+
+        <h3>Film / Netflix</h3>
+        <pre>Nachname, V. (Regie). (Jahr). Titel [Dokumentarfilm]. Plattform.
+
+Kurzbeleg mit Zeit:
+(Nachname, Jahr, 00:49:20-01:05:20)</pre>
+
+        <h3>Fernseh- oder Radiobeitrag</h3>
+        <pre>Nachname, V. (Moderation). (Jahr, Datum). Titel des Beitrags. In Sendungsreihe. Sender.</pre>
+
+        <h3>Podcast</h3>
+        <pre>Nachname, V. & Nachname, V. (Moderation). (Jahr, Datum). Episodentitel [Podcast]. In Podcasttitel. URL</pre>
+        <p>Bei direktem Bezug auf eine Aussage im Podcast Minuten angeben.</p>
+
+        <h3>Social Media: Twitter/X, Instagram, TikTok</h3>
+        <pre>Name, V. [username]. (Jahr, Datum). Erste bis zu 20 Wörter des Beitrags [Art des Beitrags]. Plattform. URL</pre>
+        <p>Da Social-Media-Beiträge oft keinen Titel haben, nimmt man die ersten Wörter des Beitrags als Titel.</p>
+      </section>
+
+      <section id="muendlich">
+        <h2>8. Interviews, persönliche Kommunikation und Vorträge</h2>
+        <table>
+          <thead><tr><th>Quellenart</th><th>Wohin?</th><th>Regel</th><th>Kurzbeleg</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Veröffentlichtes Interview</td>
+              <td>Literaturverzeichnis</td>
+              <td>Wie die Quelle zitieren, in der es erschienen ist, z.B. Online-Zeitungsartikel.</td>
+              <td>(vgl. Journalist/in, Jahr)</td>
+            </tr>
+            <tr>
+              <td>Eigenes Interview mit Transkript</td>
+              <td>Anhang / Mündliche Quellen</td>
+              <td>Transkript als Anhang aufführen.</td>
+              <td>(vgl. Anhang 1, Abschnitt XY)</td>
+            </tr>
+            <tr>
+              <td>Telefonat / Gesprächsprotokoll</td>
+              <td>Anhang / Mündliche Quellen</td>
+              <td>Gesprächsprotokoll aufführen.</td>
+              <td>Vgl. Anhang 5.</td>
+            </tr>
+            <tr>
+              <td>Vortrag / eigene Notizen</td>
+              <td>Anhang, falls nicht öffentlich zugänglich</td>
+              <td>Wenn Handout online öffentlich ist, wie Internetquelle zitieren.</td>
+              <td>(vgl. Anhang 10, Abschnitt XY)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout success">
+          Bei mündlichen Quellen zählt besonders: transparent, nachvollziehbar und einheitlich arbeiten.
+        </div>
+      </section>
+
+      <section id="ki">
+        <h2>9. KI-Systeme und Übersetzungstools</h2>
+        <h3>Generative KI, z.B. ChatGPT</h3>
+        <p>Wenn du KI verwendest, bist du trotzdem verantwortlich für die Richtigkeit der Informationen und für korrekte Quellenangaben.</p>
+        <ul class="checklist">
+          <li>Fakten überprüfen</li>
+          <li>Originalquellen angeben</li>
+          <li>KI-Nutzung transparent deklarieren</li>
+          <li>Tool, Prompt und Datum notieren</li>
+          <li>Vorgaben der Schule beachten</li>
+        </ul>
+        <pre>Beispiel Fussnote:
+Dieser Abschnitt wurde mithilfe von ChatGPT formuliert und von der Verfasserin überarbeitet. Prompt: „Fasse die Ergebnisse zusammen“, 24.06.2026.</pre>
+        <div class="callout danger">
+          <strong>Prüfungsfalle:</strong> KI ersetzt keine Quellen. Wenn ChatGPT eine Information liefert, musst du diese überprüfen und die eigentliche Originalquelle angeben, falls du sie verwendest.
+        </div>
+
+        <h3>Übersetzungstools, z.B. DeepL</h3>
+        <p>Wenn du eine Quelle mithilfe eines Tools übersetzt, muss dies transparent angegeben werden.</p>
+        <pre>Quelle normal angeben + Zusatz:
+(Übers. mit deepl.com)</pre>
+        <div class="callout warn">
+          <strong>Übersetzungsplagiat:</strong> Wenn du fremde Texte nur übersetzt und nicht angibst, dass sie aus einer Quelle stammen, ist das problematisch. Auch übersetzte fremde Gedanken müssen belegt werden.
+        </div>
+      </section>
+
+      <section id="abbtab">
+        <h2>10. Abbildungen und Tabellen</h2>
+        <div class="two-col">
+          <div class="mini-card">
+            <h3>Abbildungen / Grafiken</h3>
+            <ul class="checklist">
+              <li>fortlaufend nummerieren: Abb. 1, Abb. 2 ...</li>
+              <li>Beschriftung unterhalb der Abbildung</li>
+              <li>passender Titel</li>
+              <li>Punkt nach Titel</li>
+              <li>Quelle im Abbildungsverzeichnis</li>
+            </ul>
+            <pre>Abb. 1 Stiftsbibliothek in St. Gallen.</pre>
+          </div>
+          <div class="mini-card">
+            <h3>Tabellen</h3>
+            <ul class="checklist">
+              <li>fortlaufend nummerieren: Tab. 1, Tab. 2 ...</li>
+              <li>Beschriftung oberhalb der Tabelle</li>
+              <li>passender Titel</li>
+              <li>Punkt nach Titel</li>
+              <li>Quelle im Tabellenverzeichnis</li>
+            </ul>
+            <pre>Tab. 1: Treffer pro Kind mit unterschiedlichen Wurfgeschossen.</pre>
+          </div>
+        </div>
+        <h3>Verzeichnisse</h3>
+        <pre>Abbildungsverzeichnis:
+Abb. 1 Stiftsbibliothek in St. Gallen.
+URL
+[Stand: 08.10.2018].
+
+Abb. 2 Elektroschaltplan.
+Eigene Darstellung.
+
+Tabellenverzeichnis:
+Tab. 1 Treffer pro Kind mit unterschiedlichen Wurfgeschossen.
+Eigene Darstellung.</pre>
+        <div class="callout info">
+          Selbst erstellte Abbildungen und Tabellen bekommen als Quelle: <strong>Eigene Darstellung.</strong>
+        </div>
+      </section>
+
+      <section id="abkuerzungen">
+        <h2>11. Wichtige Abkürzungen</h2>
+        <table>
+          <thead><tr><th>Abkürzung</th><th>Bedeutung</th><th>Verwendung</th></tr></thead>
+          <tbody>
+            <tr><td><code>vgl. / Vgl.</code></td><td>vergleiche</td><td>Bei indirekten Zitaten. Im Text klein, in Fussnoten gross.</td></tr>
+            <tr><td><code>ebd. / Ebd.</code></td><td>eben da</td><td>Nur direkt danach bei derselben Quelle.</td></tr>
+            <tr><td><code>et al.</code></td><td>und andere</td><td>Bei drei oder mehr Autor:innen im Kurzbeleg.</td></tr>
+            <tr><td><code>S.</code></td><td>Seite</td><td>Für Seitenangaben.</td></tr>
+            <tr><td><code>f.</code></td><td>folgende Seite</td><td>S. 25f. = Seite 25 und 26.</td></tr>
+            <tr><td><code>o. D. / o. J.</code></td><td>ohne Datum / ohne Jahr</td><td>Wenn kein Erscheinungsdatum auffindbar ist.</td></tr>
+            <tr><td><code>Hrsg.</code></td><td>Herausgeberschaft</td><td>Bei Sammelbänden.</td></tr>
+            <tr><td><code>Hg. von</code></td><td>herausgegeben von</td><td>Bei Werkausgaben oder älteren Texten.</td></tr>
+            <tr><td><code>zit. n.</code></td><td>zitiert nach</td><td>Wenn du die Originalquelle nicht selbst gesehen hast.</td></tr>
+            <tr><td><code>[…]</code></td><td>Auslassung</td><td>Wenn du in einem direkten Zitat etwas weglässt.</td></tr>
+            <tr><td><code>[sic]</code></td><td>so steht es im Original</td><td>Bei Fehlern oder auffälliger Schreibweise im Original.</td></tr>
+            <tr><td><code>[Anm. d. Verf.]</code></td><td>Anmerkung der Verfasserin / des Verfassers</td><td>Wenn du im direkten Zitat etwas erklärst.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="word">
+        <h2>12. Zitieren mit Word</h2>
+        <ol>
+          <li>Register <strong>Referenzen</strong> öffnen.</li>
+          <li>Bei Formatvorlage <strong>APA</strong> auswählen.</li>
+          <li>Cursor direkt nach dem Zitat oder der Information setzen.</li>
+          <li><strong>Zitat einfügen</strong> wählen.</li>
+          <li><strong>Neue Quelle hinzufügen</strong>.</li>
+          <li>Quellenart auswählen und alle nötigen Felder ausfüllen.</li>
+          <li>Für Seitenzahl: Kurzbeleg anklicken, <strong>Zitat bearbeiten</strong>, Seite eintragen.</li>
+          <li>Am Schluss: <strong>Literaturverzeichnis</strong> einfügen.</li>
+          <li>Bei Änderungen: Literaturverzeichnis per Rechtsklick aktualisieren.</li>
+        </ol>
+        <div class="callout warn">
+          Word kann bei <code>vgl.</code> für indirekte Zitate schwierig sein. Oft muss man den Kurzbeleg am Ende in statischen Text umwandeln und <code>vgl.</code> von Hand ergänzen. Das am besten erst ganz am Schluss machen, weil statische Zitate nicht mehr automatisch aktualisiert werden.
+        </div>
+      </section>
+
+      <section id="uebungen" class="page-break">
+        <h2>13. Schwierige Prüfungsübungen mit Lösungen</h2>
+        <p>Die Übungen sind absichtlich gemischt: Wahr/Falsch, Fehler finden, Lücken, Quellenart erkennen und korrekte Belege bilden.</p>
+
+        <div class="exercise">
+          <h3>Übung 1: Wahr oder falsch?</h3>
+          <ol>
+            <li>Wenn ich eine Aussage in eigenen Worten schreibe, brauche ich keine Quelle.</li>
+            <li>Direkte Zitate müssen in Anführungszeichen stehen.</li>
+            <li><code>ebd.</code> darf nur verwendet werden, wenn direkt vorher dieselbe Quelle verwendet wurde.</li>
+            <li>Bei indirekten Zitaten im Fliesstext schreibt man <code>Vgl.</code> gross.</li>
+            <li>Alle im Text verwendeten Quellen müssen im Literaturverzeichnis stehen.</li>
+            <li>Selbst erstellte Grafiken brauchen keine Beschriftung.</li>
+            <li>Bei YouTube-Videos können Zeitangaben sinnvoll sein.</li>
+            <li>KI-Antworten müssen nicht überprüft werden, wenn sie logisch klingen.</li>
+          </ol>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <ol>
+                <li><span class="wrong">Falsch</span> – auch sinngemässe Zitate brauchen eine Quelle.</li>
+                <li><span class="right">Richtig</span>.</li>
+                <li><span class="right">Richtig</span>.</li>
+                <li><span class="wrong">Falsch</span> – im Fliesstext: <code>vgl.</code>, in Fussnoten: <code>Vgl.</code>.</li>
+                <li><span class="right">Richtig</span>.</li>
+                <li><span class="wrong">Falsch</span> – auch eigene Darstellungen werden nummeriert und im Verzeichnis mit „Eigene Darstellung“ angegeben.</li>
+                <li><span class="right">Richtig</span>.</li>
+                <li><span class="wrong">Falsch</span> – KI muss immer geprüft werden.</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 2: Direkt oder indirekt?</h3>
+          <p>Ordne zu: direktes Zitat oder indirektes Zitat.</p>
+          <ol>
+            <li>Die Autorin betont, dass Quellen nachvollziehbar angegeben werden müssen (vgl. Berger, 2020, S. 18).</li>
+            <li>„Quellen müssen korrekt angegeben werden“ (Berger, 2020, S. 18).</li>
+            <li>Gemäss Berger ist die Einheitlichkeit beim Zitieren besonders wichtig (vgl. Berger, 2020, S. 20).</li>
+            <li>„Die wichtigste Regel ist Transparenz“ (Berger, 2020, S. 21).</li>
+          </ol>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <ol>
+                <li>Indirekt, weil eigene Formulierung + <code>vgl.</code>.</li>
+                <li>Direkt, weil Anführungszeichen + wortgetreu.</li>
+                <li>Indirekt, weil eigene Formulierung + <code>vgl.</code>.</li>
+                <li>Direkt, weil Anführungszeichen + wortgetreu.</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 3: Fehler im Kurzbeleg finden</h3>
+          <p>Verbessere die folgenden Belege.</p>
+          <ol>
+            <li>Die Autorin zeigt die Bedeutung von Quellen. (Müller, 2021, S. 12)</li>
+            <li>Die Autorin zeigt die Bedeutung von Quellen (Vgl. Müller, 2021, S. 12).</li>
+            <li>„Die Quelle muss auffindbar sein“ (vgl. Müller, 2021, S. 12).</li>
+            <li>1 vgl. Müller, 2021, S. 12.</li>
+            <li>„Dies ist ein Zitat (Müller, 2021, S. 12).“</li>
+          </ol>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <ol>
+                <li>Die Autorin zeigt die Bedeutung von Quellen <strong>(vgl. Müller, 2021, S. 12).</strong> Punkt nach der Klammer.</li>
+                <li>Die Autorin zeigt die Bedeutung von Quellen <strong>(vgl. Müller, 2021, S. 12).</strong> Im Fliesstext klein.</li>
+                <li><strong>„Die Quelle muss auffindbar sein“ (Müller, 2021, S. 12).</strong> Bei direktem Zitat kein <code>vgl.</code>.</li>
+                <li><strong>1 Vgl. Müller, 2021, S. 12.</strong> In Fussnoten gross.</li>
+                <li><strong>„Dies ist ein Zitat“ (Müller, 2021, S. 12).</strong> Der Kurzbeleg steht ausserhalb der Anführungszeichen.</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 4: ebd. richtig einsetzen</h3>
+          <p>Entscheide, ob <code>ebd.</code> korrekt ist.</p>
+          <pre>Abschnitt A:
+1 Vgl. Keller, 2020, S. 12.
+2 Vgl. ebd., S. 13.
+
+Abschnitt B:
+1 Vgl. Keller, 2020, S. 12.
+2 Vgl. Meier, 2021, S. 8.
+3 Vgl. ebd., S. 13.
+
+Abschnitt C:
+1 Vgl. Keller, 2020, S. 12.
+2 Vgl. Meier, 2021, S. 8.
+3 Vgl. Keller, 2020, S. 13.</pre>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <p><strong>Abschnitt A:</strong> korrekt. Fussnote 2 verweist direkt wieder auf Keller.</p>
+              <p><strong>Abschnitt B:</strong> formal korrekt, aber <code>ebd.</code> in Fussnote 3 bezieht sich auf Meier, nicht auf Keller. Wenn Keller gemeint wäre, wäre es falsch.</p>
+              <p><strong>Abschnitt C:</strong> korrekt. Da Meier dazwischen steht, muss Keller wieder ausgeschrieben werden.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 5: Quellenart erkennen</h3>
+          <p>Welche Quellenart ist es?</p>
+          <ol>
+            <li>Ein Kapitel von Lara Meier in einem Buch, das von Tim Keller herausgegeben wurde.</li>
+            <li>Ein Artikel auf der Webseite des Bundesamts für Statistik.</li>
+            <li>Ein Video von SRF Dok auf YouTube.</li>
+            <li>Ein selbst geführtes Interview mit Transkript.</li>
+            <li>Ein wissenschaftlicher Artikel mit DOI.</li>
+            <li>Ein Tweet ohne richtigen Titel.</li>
+          </ol>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <ol>
+                <li>Beitrag in Sammelband.</li>
+                <li>Internetquelle / Institution als Autor.</li>
+                <li>Eigentlich prüfen: Wenn es ursprünglich SRF ist, besser Originalquelle/SRF-Beitrag zitieren, nicht nur YouTube.</li>
+                <li>Eigene mündliche Quelle im Anhang / Mündliche Quellen.</li>
+                <li>Online-Fachzeitschrift / Online-Paper mit DOI.</li>
+                <li>Social-Media-Beitrag; erste bis zu 20 Wörter als Titel verwenden.</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 6: Literaturverzeichnis bilden</h3>
+          <p>Erstelle aus den Angaben eine korrekte Quelle.</p>
+          <pre>Autorin: Anna Keller
+Jahr: 2022
+Titel: Wissenschaftliches Schreiben in der Schule
+Verlag: Lernwerk Verlag</pre>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <pre>Keller, A. (2022). Wissenschaftliches Schreiben in der Schule. Lernwerk Verlag.</pre>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 7: Webseite ohne Datum</h3>
+          <p>Erstelle die Quelle für das Literaturverzeichnis.</p>
+          <pre>Institution: Universität Zürich
+Titel: Angststörungen
+Datum: nicht erkennbar
+Website: Universität Zürich
+URL: https://www.usz.ch/krankheit/angststoerungen/</pre>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <pre>Universität Zürich. (o. D.). Angststörungen. Universität Zürich. https://www.usz.ch/krankheit/angststoerungen/</pre>
+              <p>Je nach Word-Erfassung kann die Darstellung leicht anders aussehen. Wichtig ist: Institution, o. D., Titel, Website/Institution, URL, einheitlich.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 8: YouTube mit Zeitangabe</h3>
+          <p>Du verwendest eine Aussage aus Minute 05:30 bis 10:00 aus folgendem Video:</p>
+          <pre>Kanal: Geschichte einfach erklärt
+Datum: 2021, 3. Mai
+Titel: Die Französische Revolution einfach erklärt
+Plattform: YouTube
+URL: https://youtube.com/beispiel</pre>
+          <p>Erstelle Literaturverzeichnis und Kurzbeleg.</p>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <pre>Literaturverzeichnis:
+Geschichte einfach erklärt. (2021, 3. Mai). Die Französische Revolution einfach erklärt [Infovideo]. YouTube. https://youtube.com/beispiel
+
+Kurzbeleg:
+(vgl. Geschichte einfach erklärt, 2021, 05:30-10:00).</pre>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 9: KI-Nutzung dokumentieren</h3>
+          <p>Du hast ChatGPT verwendet, um ein Fazit zu formulieren. Der Prompt war: „Fasse die wichtigsten Ergebnisse dieses Textes in einem kurzen Fazit zusammen.“ Datum: 24.06.2026. Schreibe eine passende Fussnote.</p>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <pre>Dieses Fazit wurde mithilfe von ChatGPT formuliert und von der Verfasserin überarbeitet und ergänzt. Prompt: „Fasse die wichtigsten Ergebnisse dieses Textes in einem kurzen Fazit zusammen“, 24.06.2026.</pre>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 10: Übersetzungstool</h3>
+          <p>Du zitierst einen finnischen Tweet und übersetzt den Titel mit DeepL. Was musst du zusätzlich angeben?</p>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <p>Du gibst die Quelle normal an und ergänzt, dass die Übersetzung mit DeepL gemacht wurde, z.B. <code>(Übers. mit deepl.com)</code>. Ausserdem sollte der übersetzte Titel in eckigen Klammern angegeben werden.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 11: Abbildung oder Tabelle?</h3>
+          <p>Korrigiere die Aussagen.</p>
+          <ol>
+            <li>Abbildungen werden oberhalb beschriftet.</li>
+            <li>Tabellen werden unterhalb beschriftet.</li>
+            <li>Eigene Tabellen brauchen keine Quellenangabe.</li>
+            <li>Abbildungen und Tabellen werden fortlaufend nummeriert.</li>
+          </ol>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <ol>
+                <li>Falsch: Abbildungen werden unterhalb beschriftet.</li>
+                <li>Falsch: Tabellen werden oberhalb beschriftet.</li>
+                <li>Falsch: Eigene Tabellen bekommen im Tabellenverzeichnis „Eigene Darstellung“.</li>
+                <li>Richtig.</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 12: Lückentext</h3>
+          <p>Fülle die Lücken.</p>
+          <pre>Ein direktes Zitat steht immer in ____________.
+Ein indirektes Zitat wird in ____________ Worten formuliert.
+Bei indirekten Zitaten im Fliesstext schreibt man ____________.
+Der Kurzbeleg verweist auf das ____________.
+Das Literaturverzeichnis wird meistens ____________ geordnet.
+Wenn direkt danach dieselbe Quelle verwendet wird, kann man ____________ schreiben.</pre>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <pre>Ein direktes Zitat steht immer in Anführungszeichen.
+Ein indirektes Zitat wird in eigenen Worten formuliert.
+Bei indirekten Zitaten im Fliesstext schreibt man vgl.
+Der Kurzbeleg verweist auf das Literaturverzeichnis.
+Das Literaturverzeichnis wird meistens alphabetisch geordnet.
+Wenn direkt danach dieselbe Quelle verwendet wird, kann man ebd. schreiben.</pre>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 13: Schwierige Entscheidungssituationen</h3>
+          <p>Was würdest du tun?</p>
+          <ol>
+            <li>Du findest ein Zitat in einem Buch, aber das Buch zitiert eine andere Originalquelle. Du hast die Originalquelle nicht angeschaut.</li>
+            <li>Du findest auf einer Webseite kein Datum.</li>
+            <li>Du zitierst einen Fehler aus dem Originaltext.</li>
+            <li>Du lässt in einem direkten Zitat einen Satzteil weg.</li>
+            <li>Du änderst in einem direkten Zitat ein Wort grammatisch, damit es in deinen Satz passt.</li>
+          </ol>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <ol>
+                <li>Mit <code>zit. n.</code> arbeiten, weil du die Originalquelle nicht selbst gesehen hast.</li>
+                <li><code>o. D.</code> oder <code>o. J.</code> verwenden.</li>
+                <li>Den Fehler übernehmen und mit <code>[sic]</code> markieren.</li>
+                <li>Auslassung mit <code>[…]</code> markieren.</li>
+                <li>Änderung mit eckigen Klammern markieren, z.B. <code>besondere[s]</code>.</li>
+              </ol>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 14: Drag-and-Drop mental</h3>
+          <p>Ordne die Begriffe den Definitionen zu.</p>
+          <table>
+            <thead><tr><th>Begriffe</th><th>Definitionen</th></tr></thead>
+            <tbody>
+              <tr><td>A Zitieren</td><td>1 Vollständige Quellenangabe am Schluss</td></tr>
+              <tr><td>B Referenzieren</td><td>2 Fremde Aussage direkt oder sinngemäss verwenden</td></tr>
+              <tr><td>C Bibliografieren</td><td>3 Kurzbeleg im Text oder in der Fussnote angeben</td></tr>
+            </tbody>
+          </table>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <p>A = 2, B = 3, C = 1</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="exercise">
+          <h3>Übung 15: Komplettfall</h3>
+          <p>Du schreibst diesen Satz:</p>
+          <pre>Laut einer Studie essen Jugendliche häufiger Snacks, wenn diese in der Schule einfach verfügbar sind.</pre>
+          <p>Die Information stammt aus:</p>
+          <pre>Autorinnen: Lara Baumann, Julia Frei, Nora Meier
+Jahr: 2020
+Titel Artikel: Ernährung im Schulalltag
+Zeitschrift: Schweizer Journal für Bildung
+Jahrgang: 12
+Ausgabe: 2
+Seiten: 44-60
+Konkrete Stelle: Seite 51</pre>
+          <p>Aufgaben: Erstelle den Kurzbeleg und den Eintrag im Literaturverzeichnis.</p>
+          <details><summary>Lösung anzeigen</summary>
+            <div class="solution">
+              <pre>Kurzbeleg:
+Laut einer Studie essen Jugendliche häufiger Snacks, wenn diese in der Schule einfach verfügbar sind (vgl. Baumann et al., 2020, S. 51).
+
+Literaturverzeichnis:
+Baumann, L., Frei, J. & Meier, N. (2020). Ernährung im Schulalltag. Schweizer Journal für Bildung, 12(2), 44-60.</pre>
+              <p>Im Kurzbeleg wird wegen drei Autorinnen <code>et al.</code> verwendet.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section id="spickzettel" class="page-break">
+        <h2>14. Kompakter Mini-Spickzettel</h2>
+        <pre>GRUNDIDEE
+Fremde Gedanken sichtbar machen = kein Plagiat.
+Wichtig: Transparenz + Nachvollziehbarkeit + Einheitlichkeit.
+
+BEGRIFFE
+Zitieren = fremde Aussage direkt/indirekt übernehmen.
+Referenzieren = Kurzbeleg im Text/Fussnote.
+Bibliografieren = vollständige Quelle im Literaturverzeichnis.
+
+DIREKTES ZITAT
+„Originaltext“ (Autor, Jahr, S. xx).
+- mit Anführungszeichen
+- wortgetreu
+- Änderungen: [ ]
+- Auslassung: […]
+- Fehler im Original: [sic]
+
+INDIREKTES ZITAT
+Eigene Worte (vgl. Autor, Jahr, S. xx).
+- keine Anführungszeichen
+- eigene Formulierung
+- trotzdem Quelle
+
+FUSSNOTE
+Direkt: Autor, Jahr, S. xx.
+Indirekt: Vgl. Autor, Jahr, S. xx.
+
+PUNKTREGEL
+Der Punkt kommt nach dem Kurzbeleg.
+Richtig: ... Aussage (Autor, Jahr, S. xx).
+
+EBD.
+ebd. = dieselbe Quelle direkt vorher.
+Nicht verwenden, wenn eine andere Quelle dazwischen steht.
+
+LITERATURVERZEICHNIS
+Buch: Nachname, V. (Jahr). Titel. Verlag.
+Webseite: Autor/Institution. (Jahr/o. D.). Titel. Website. URL
+DOI: wie URL am Schluss.
+Alphabetisch ordnen.
+
+MEHRERE AUTOR:INNEN
+2 Autor:innen: beide nennen.
+3+ Autor:innen im Kurzbeleg: et al.
+
+KI
+Fakten prüfen, Originalquellen nennen, Tool + Prompt + Datum dokumentieren.
+
+ÜBERSETZUNG
+Tool angeben, z.B. (Übers. mit deepl.com).
+
+ABBILDUNG
+Unterhalb beschriften: Abb. 1 Titel.
+Quelle ins Abbildungsverzeichnis.
+
+TABELLE
+Oberhalb beschriften: Tab. 1: Titel.
+Quelle ins Tabellenverzeichnis.
+
+WICHTIGE ABKÜRZUNGEN
+vgl. = vergleiche
+Ebd. / ebd. = eben da
+et al. = und andere
+S. = Seite
+f. = folgende Seite
+o. D. / o. J. = ohne Datum/Jahr
+Hrsg. = Herausgeberschaft
+Hg. von = herausgegeben von
+zit. n. = zitiert nach
+[sic] = steht so im Original
+[…] = Auslassung</pre>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>Zusammenfassung basierend auf der BBW-Wegleitung „Teil 1: Zitieren, Referenzieren und Bibliographieren“ und „Teil 2: Anleitung Zitieren und Bibliographieren in Word“, Version Oktober 2023.</p>
+  </footer>
+</body>
+</html>

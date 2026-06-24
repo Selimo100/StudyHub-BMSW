@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul 347 – Prüfung</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f1f5f9;--white:#fff;--border:#e2e8f0;--border2:#cbd5e1;
+  --text:#1e293b;--muted:#64748b;
+  --blue:#3b82f6;--blue-l:#eff6ff;
+  --green:#16a34a;--green-l:#f0fdf4;--green-b:#bbf7d0;
+  --red:#dc2626;--red-l:#fef2f2;--red-b:#fecaca;
+  --yellow:#d97706;--yellow-l:#fffbeb;--yellow-b:#fde68a;
+  --easy-bg:#dcfce7;--medium-bg:#fef3c7;--hard-bg:#fee2e2;
+  --mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif;
+  --r:10px;--s:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.6}
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:99;background:var(--white);border-bottom:1px solid var(--border);box-shadow:var(--s)}
+.topbar-inner{max-width:820px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px}
+.logo{background:var(--blue);color:#fff;font-weight:700;font-size:13px;border-radius:6px;padding:3px 9px;white-space:nowrap}
+.topbar-title{font-weight:600;font-size:14px}
+.prog-wrap{flex:1;height:6px;background:var(--border);border-radius:99px;overflow:hidden}
+.prog-bar{height:100%;background:var(--blue);border-radius:99px;width:0%;transition:width .35s ease}
+.prog-label{font-size:12px;color:var(--muted);white-space:nowrap}
+/* PAGE */
+.page{max-width:820px;margin:0 auto;padding:28px 20px 80px}
+/* INTRO */
+.intro{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;margin-bottom:24px;box-shadow:var(--s)}
+.intro h1{font-size:20px;font-weight:700;margin-bottom:6px}
+.intro p{font-size:13px;color:var(--muted);margin-bottom:14px}
+.intro-pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{background:var(--bg);border:1px solid var(--border);border-radius:99px;padding:3px 12px;font-size:12px;color:var(--muted)}
+/* SECTION */
+.sec{display:flex;align-items:center;gap:10px;margin:28px 0 12px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sec::before,.sec::after{content:'';flex:1;height:1px;background:var(--border2)}
+/* CARD */
+.qcard{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);margin-bottom:14px;box-shadow:var(--s);overflow:hidden;transition:border-color .2s}
+.qcard.ok{border-color:var(--green-b)}
+.qcard.err{border-color:var(--red-b)}
+.qhead{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#f8fafc;border-bottom:1px solid var(--border)}
+.qid{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--white);border:1px solid var(--border2);border-radius:4px;padding:2px 7px;color:var(--blue)}
+.diff{font-size:10px;font-weight:700;border-radius:99px;padding:2px 8px;letter-spacing:.03em}
+.diff.easy{background:var(--easy-bg);color:var(--green)}
+.diff.medium{background:var(--medium-bg);color:var(--yellow)}
+.diff.hard{background:var(--hard-bg);color:var(--red)}
+.qtype{font-size:11px;color:var(--muted);margin-left:auto}
+.qbody{padding:18px 18px 16px}
+.qtext{font-size:14px;font-weight:500;line-height:1.65;margin-bottom:14px}
+em{color:var(--muted);font-style:italic}
+code{font-family:var(--mono);font-size:12px;background:#f1f5f9;border-radius:3px;padding:1px 5px;color:#1e293b}
+pre.code-block{background:#1e293b;color:#e2e8f0;font-family:var(--mono);font-size:12px;line-height:1.75;border-radius:7px;padding:14px 16px;overflow-x:auto;margin:0 0 14px;white-space:pre}
+/* OPTIONS */
+.options{display:flex;flex-direction:column;gap:6px}
+.opt{display:flex;align-items:flex-start;gap:10px;border:1.5px solid var(--border2);border-radius:7px;padding:9px 13px;cursor:pointer;background:var(--white);transition:border-color .15s,background .15s;user-select:none;-webkit-user-select:none}
+.opt:hover:not(.locked){border-color:var(--blue);background:var(--blue-l)}
+.opt.sel{border-color:var(--blue);background:var(--blue-l)}
+.opt.right{border-color:var(--green);background:var(--green-l)}
+.opt.wrong{border-color:var(--red);background:var(--red-l)}
+.opt.miss{border-color:var(--green);background:var(--green-l);opacity:.5}
+.opt.locked{cursor:default}
+.opt-dot{width:18px;height:18px;min-width:18px;border:2px solid var(--border2);border-radius:50%;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;transition:border-color .15s,background .15s,color .15s;color:transparent}
+.opt.checkbox .opt-dot{border-radius:4px}
+.opt.sel .opt-dot{border-color:var(--blue);background:var(--blue);color:#fff}
+.opt.right .opt-dot{border-color:var(--green);background:var(--green);color:#fff}
+.opt.wrong .opt-dot{border-color:var(--red);background:var(--red);color:#fff}
+.opt.miss .opt-dot{border-color:var(--green);color:var(--green)}
+.opt-text{font-size:13px;line-height:1.5}
+.opt-key{font-weight:600;margin-right:4px}
+/* TEXTAREA */
+textarea{width:100%;resize:vertical;min-height:88px;border:1.5px solid var(--border2);border-radius:7px;padding:11px 13px;font-family:var(--sans);font-size:13px;line-height:1.6;color:var(--text);background:var(--white);transition:border-color .15s}
+textarea:focus{outline:none;border-color:var(--blue)}
+textarea.mono{font-family:var(--mono);font-size:12px}
+.char-c{font-size:11px;color:var(--muted);text-align:right;margin-top:3px}
+/* BUTTONS */
+.btn-check{margin-top:11px;background:var(--blue);color:#fff;border:none;border-radius:7px;padding:8px 18px;font-size:13px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:background .15s,opacity .15s}
+.btn-check:hover:not(:disabled){background:#2563eb}
+.btn-check:disabled{opacity:.4;cursor:not-allowed}
+.btn-sol{margin-top:11px;background:transparent;color:var(--yellow);border:1.5px solid var(--yellow);border-radius:7px;padding:7px 16px;font-size:13px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:background .15s}
+.btn-sol:hover:not(:disabled){background:var(--yellow-l)}
+.btn-sol:disabled{opacity:.4;cursor:not-allowed}
+/* FEEDBACK */
+.fb{display:none;margin-top:11px;border-radius:7px;padding:11px 14px;font-size:13px;line-height:1.65;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.fb.ok{display:block;background:var(--green-l);border:1px solid var(--green-b);color:#166534}
+.fb.err{display:block;background:var(--red-l);border:1px solid var(--red-b);color:#991b1b}
+.fb.sol{background:var(--yellow-l);border:1px solid var(--yellow-b);color:#78350f}
+.fb-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.fb.ok .fb-title{color:var(--green)}
+.fb.err .fb-title{color:var(--red)}
+.fb.sol .fb-title{color:var(--yellow)}
+/* FINAL */
+.final-box{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:28px;margin-top:28px;box-shadow:var(--s);text-align:center}
+.final-box h2{font-size:17px;margin-bottom:6px}
+.final-box p{color:var(--muted);font-size:13px;margin-bottom:18px}
+.btn-final{background:#1e293b;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:15px;font-weight:700;font-family:var(--sans);cursor:pointer;transition:background .15s}
+.btn-final:hover{background:#334155}
+/* RESULT */
+.result{display:none;background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:36px 28px;margin-top:24px;box-shadow:var(--s);text-align:center}
+.result.show{display:block;animation:fadeIn .3s ease}
+.res-score{font-size:60px;font-weight:800;line-height:1}
+.res-score.g1{color:#16a34a}.res-score.g2{color:#65a30d}.res-score.g3{color:#d97706}.res-score.g4{color:#ea580c}.res-score.g5{color:#dc2626}
+.res-sub{font-size:14px;color:var(--muted);margin:8px 0 20px}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.res-stat{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 8px}
+.res-stat .n{font-size:26px;font-weight:700}
+.res-stat .l{font-size:11px;color:var(--muted);margin-top:2px}
+.res-stat.g .n{color:var(--green)}.res-stat.r .n{color:var(--red)}.res-stat.b .n{color:var(--blue)}
+.res-msg{font-size:14px;color:var(--muted)}
+.btn-retry{margin-top:18px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:10px 26px;font-size:14px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:background .15s}
+.btn-retry:hover{background:#2563eb}
+pre.sol-code{background:var(--yellow-l);border-radius:5px;padding:10px 12px;margin-top:6px;font-family:var(--mono);font-size:11px;line-height:1.7;white-space:pre;overflow-x:auto;color:#78350f}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="logo">M347 🐳</span>
+    <span class="topbar-title">Prüfungssimulation</span>
+    <div class="prog-wrap"><div class="prog-bar" id="bar"></div></div>
+    <span class="prog-label" id="plabel">0 / 30</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="intro">
+  <h1>Modul 347 – Prüfungssimulation</h1>
+  <p>Beantworte alle 30 Fragen. Multiple-Choice wird automatisch korrigiert. Bei offenen Fragen erscheint die Musterlösung zum Selbstvergleich.</p>
+  <div class="intro-pills">
+    <span class="pill">30 Fragen</span><span class="pill">Single Choice</span><span class="pill">Multiple Choice</span><span class="pill">Offene Fragen</span><span class="pill">Auto-Korrektur (MC)</span>
+  </div>
+</div>
+
+<!-- A -->
+<div class="sec">A – Grundlagen</div>
+
+<div class="qcard" id="q1">
+  <div class="qhead"><span class="qid">A1G</span><span class="diff easy">Easy</span><span class="qtype">Single Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Was ist ein zentraler Unterschied zwischen Containern und virtuellen Maschinen?</div>
+    <div class="options" data-type="single" data-correct="C">
+      <div class="opt radio" data-val="A"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">A</span>Container benötigen immer ein eigenes Betriebssystem</span></div>
+      <div class="opt radio" data-val="B"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">B</span>Virtuelle Maschinen teilen sich den Kernel des Host-Systems</span></div>
+      <div class="opt radio" data-val="C"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">C</span>Container virtualisieren auf Betriebssystem-Ebene</span></div>
+      <div class="opt radio" data-val="D"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">D</span>Virtuelle Maschinen starten schneller als Container</span></div>
+    </div>
+    <button class="btn-check" onclick="checkSingle('q1')">Prüfen</button>
+    <div class="fb" id="q1-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q2">
+  <div class="qhead"><span class="qid">A1F</span><span class="diff medium">Medium</span><span class="qtype">Multiple Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Welche Anforderungen sprechen typischerweise für den Einsatz von Containern? <em>(Mehrere Antworten möglich)</em></div>
+    <div class="options" data-type="multi" data-correct="A,B,D">
+      <div class="opt checkbox" data-val="A"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">A</span>Konsistente Laufzeitumgebungen</span></div>
+      <div class="opt checkbox" data-val="B"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">B</span>Schnelle Bereitstellung und Startzeit</span></div>
+      <div class="opt checkbox" data-val="C"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">C</span>Vollständige Virtualisierung eines Betriebssystems pro Dienst</span></div>
+      <div class="opt checkbox" data-val="D"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">D</span>Einfache Skalierung mehrerer Instanzen</span></div>
+      <div class="opt checkbox" data-val="E"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">E</span>Direkter Zugriff auf physische Hardware ohne Isolation</span></div>
+    </div>
+    <button class="btn-check" onclick="checkMulti('q2')">Prüfen</button>
+    <div class="fb" id="q2-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q3">
+  <div class="qhead"><span class="qid">A1E</span><span class="diff hard">Hard</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Nenne zwei Schwachstellen eines Dienstes, bei dem Frontend und Backend gemeinsam in einem Container betrieben werden, und erkläre kurz, wie diese durch eine Container-Aufteilung verbessert werden können.</div>
+    <textarea id="q3-ta" placeholder="Deine Antwort…" oninput="ch('q3')"></textarea>
+    <div class="char-c" id="q3-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q3')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q3-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>Schwachstelle 1 – Wartbarkeit:</b> Jede Änderung betrifft den gesamten Container → erschwerter Betrieb.<br>
+      <b>Schwachstelle 2 – Skalierung:</b> Keine separate Skalierung einzelner Komponenten möglich.<br><br>
+      <b>Verbesserung:</b> Durch Aufteilung können Komponenten unabhängig aktualisiert und gezielt skaliert werden.
+    </div>
+  </div>
+</div>
+
+<!-- B1 -->
+<div class="sec">B1 – Containerkomposition (Architektur)</div>
+
+<div class="qcard" id="q4">
+  <div class="qhead"><span class="qid">B1G</span><span class="diff easy">Easy</span><span class="qtype">Single Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Welche Aussage beschreibt eine monolithische Architektur korrekt?</div>
+    <div class="options" data-type="single" data-correct="C">
+      <div class="opt radio" data-val="A"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">A</span>Frontend, Backend und Datenbank laufen in getrennten Containern</span></div>
+      <div class="opt radio" data-val="B"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">B</span>Jeder Service wird unabhängig deployed</span></div>
+      <div class="opt radio" data-val="C"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">C</span>Die gesamte Anwendung läuft in einem einzigen Container</span></div>
+      <div class="opt radio" data-val="D"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">D</span>Ein Auth-Service wird separat betrieben</span></div>
+    </div>
+    <button class="btn-check" onclick="checkSingle('q4')">Prüfen</button>
+    <div class="fb" id="q4-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q5">
+  <div class="qhead"><span class="qid">B1F</span><span class="diff medium">Medium</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Warum ist die Trennung in Frontend-, Backend- und Datenbank-Container sinnvoll? Nenne zwei Gründe und erkläre sie kurz.</div>
+    <textarea id="q5-ta" placeholder="Deine Antwort…" oninput="ch('q5')"></textarea>
+    <div class="char-c" id="q5-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q5')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q5-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>Grund 1 – Unabhängige Wartung:</b> Frontend und Backend können unabhängig voneinander gewartet und aktualisiert werden.<br><br>
+      <b>Grund 2 – Separate Skalierung:</b> Das Backend kann bei hoher Last separat skaliert werden. Die Datenbank bleibt isoliert → erhöhte Stabilität und Sicherheit.
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="q6">
+  <div class="qhead"><span class="qid">B1E</span><span class="diff medium">Medium</span><span class="qtype">Multiple Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Welche Aussagen treffen auf eine erweiterte Microservice-Architektur zu? <em>(Mehrere Antworten möglich)</em></div>
+    <div class="options" data-type="multi" data-correct="A,C,D">
+      <div class="opt checkbox" data-val="A"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">A</span>Jeder Service kann separat skaliert werden</span></div>
+      <div class="opt checkbox" data-val="B"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">B</span>Die Architektur ist weniger komplex als ein Monolith</span></div>
+      <div class="opt checkbox" data-val="C"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">C</span>Zusätzliche Services wie ein Auth-Service sind möglich</span></div>
+      <div class="opt checkbox" data-val="D"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">D</span>Der Betriebs- und Konfigurationsaufwand ist höher</span></div>
+      <div class="opt checkbox" data-val="E"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">E</span>Es wird immer nur ein Container verwendet</span></div>
+    </div>
+    <button class="btn-check" onclick="checkMulti('q6')">Prüfen</button>
+    <div class="fb" id="q6-fb"></div>
+  </div>
+</div>
+
+<!-- B2 -->
+<div class="sec">B2 – Bestandteile &amp; Entwicklung</div>
+
+<div class="qcard" id="q7">
+  <div class="qhead"><span class="qid">B2G</span><span class="diff easy">Easy</span><span class="qtype">Multiple Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Welche Bestandteile gehören zur Container-Technologie (Docker)? <em>(Mehrere Antworten möglich)</em></div>
+    <div class="options" data-type="multi" data-correct="A,B,C,E">
+      <div class="opt checkbox" data-val="A"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">A</span>Docker Engine</span></div>
+      <div class="opt checkbox" data-val="B"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">B</span>Dockerfile</span></div>
+      <div class="opt checkbox" data-val="C"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">C</span>Container Image</span></div>
+      <div class="opt checkbox" data-val="D"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">D</span>Hypervisor</span></div>
+      <div class="opt checkbox" data-val="E"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">E</span>Container Registry</span></div>
+    </div>
+    <button class="btn-check" onclick="checkMulti('q7')">Prüfen</button>
+    <div class="fb" id="q7-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q8">
+  <div class="qhead"><span class="qid">B2F</span><span class="diff hard">Hard</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Ein Entwickler erstellt eine containerisierte Webanwendung mit Frontend, Backend und Datenbank. Beschreibe:<br>1. Die typische Entwicklungs-/Betriebsreihenfolge<br>2. Warum docker compose für lokale Entwicklung sinnvoll ist<br>3. Welche Probleme ohne lokales Testen auftreten können</div>
+    <textarea id="q8-ta" placeholder="Alle 3 Punkte beantworten…" oninput="ch('q8')" style="min-height:110px"></textarea>
+    <div class="char-c" id="q8-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q8')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q8-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>1. Reihenfolge:</b> Anwendung entwickeln → Dockerfile erstellen → Image bauen → Mit docker compose lokal testen → In Cloud deployen.<br><br>
+      <b>2. docker compose:</b> Startet alle Services gemeinsam (Frontend, Backend, DB) → Zusammenspiel wird früh getestet.<br><br>
+      <b>3. Probleme:</b> Falsche Ports, Netzwerkprobleme oder fehlende DB-Verbindungen fallen erst im Betrieb auf.
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="q9">
+  <div class="qhead"><span class="qid">B2E</span><span class="diff easy">Easy</span><span class="qtype">Single Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Warum sollte in einem Aufbau (Internet → Reverse Proxy → Backend → DB) nur der Reverse Proxy öffentlich erreichbar sein?</div>
+    <div class="options" data-type="single" data-correct="B">
+      <div class="opt radio" data-val="A"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">A</span>Damit Backend und Datenbank schneller laufen</span></div>
+      <div class="opt radio" data-val="B"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">B</span>Damit nur notwendige Ports öffentlich erreichbar sind und interne Services geschützt bleiben</span></div>
+      <div class="opt radio" data-val="C"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">C</span>Damit alle Container dieselbe IP-Adresse nutzen</span></div>
+      <div class="opt radio" data-val="D"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">D</span>Damit keine Kommunikation zwischen den Containern möglich ist</span></div>
+    </div>
+    <button class="btn-check" onclick="checkSingle('q9')">Prüfen</button>
+    <div class="fb" id="q9-fb"></div>
+  </div>
+</div>
+
+<!-- C1 -->
+<div class="sec">C1 – Containerdienstleister auswählen</div>
+
+<div class="qcard" id="q10">
+  <div class="qhead"><span class="qid">C1G</span><span class="diff hard">Hard</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Betrachte eine <code>docker-compose.yml</code> mit Services: web (nginx), api (node-app), db (postgres). Welche zwei zusätzlichen Dienste sollte ein Containerdienstleister bereitstellen, damit die Anwendung produktiv betrieben werden kann? Begründe kurz.</div>
+    <textarea id="q10-ta" placeholder="Deine Antwort…" oninput="ch('q10')"></textarea>
+    <div class="char-c" id="q10-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q10')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q10-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>Load Balancer</b> → verteilt Anfragen auf mehrere Instanzen (bessere Verfügbarkeit und Performance)<br><br>
+      <b>Container Registry</b> → speichert und verteilt Images zentral<br><br>
+      <em>(Optional)</em> <b>Orchestrierung (z.B. Kubernetes)</b> → automatisches Deployment und Skalierung
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="q11">
+  <div class="qhead"><span class="qid">C1F</span><span class="diff medium">Medium</span><span class="qtype">Multiple Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Welche Aussagen über Public Cloud Anbieter sind korrekt? <em>(Mehrere Antworten möglich)</em></div>
+    <div class="options" data-type="multi" data-correct="A,C,D">
+      <div class="opt checkbox" data-val="A"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">A</span>Ressourcen können dynamisch skaliert werden</span></div>
+      <div class="opt checkbox" data-val="B"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">B</span>Man hat vollständige physische Kontrolle über Server</span></div>
+      <div class="opt checkbox" data-val="C"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">C</span>Dienste sind meist weltweit verfügbar</span></div>
+      <div class="opt checkbox" data-val="D"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">D</span>Kosten entstehen oft nutzungsabhängig</span></div>
+    </div>
+    <button class="btn-check" onclick="checkMulti('q11')">Prüfen</button>
+    <div class="fb" id="q11-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q12">
+  <div class="qhead"><span class="qid">C1E</span><span class="diff hard">Hard</span><span class="qtype">Offene Frage – Berechnung</span></div>
+  <div class="qbody">
+    <div class="qtext">Erstelle eine Entscheidungsmatrix für GKE, Azure und AWS. Bewerte jeden Anbieter pro Kriterium mit 1–5 und berechne die gewichtete Gesamtpunktzahl. Wer gewinnt?<br><br>Gewichtung: Security=5 · Monitoring=4 · DevOps=4 · Pricing=2 · Service Discovery=3</div>
+    <textarea id="q12-ta" placeholder="Bewertungen und Berechnungen…" oninput="ch('q12')" style="min-height:120px"></textarea>
+    <div class="char-c" id="q12-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q12')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q12-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>GKE:</b> (5×5)+(5×4)+(5×4)+(4×2)+(4×3) = 25+20+20+8+12 = <b>85 Punkte</b><br>
+      <b>Azure:</b> (3×5)+(4×4)+(4×4)+(4×2)+(4×3) = 15+16+16+8+12 = <b>67 Punkte</b><br>
+      <b>AWS:</b> (5×5)+(5×4)+(5×4)+(4×2)+(5×3) = 25+20+20+8+15 = <b>88 Punkte 🏆</b><br><br>
+      <b>Gewinner: AWS ECS</b> – beste Kombination aus Security, Monitoring und DevOps-Integration.
+    </div>
+  </div>
+</div>
+
+<!-- C2 -->
+<div class="sec">C2 – Registry &amp; Orchestrierung</div>
+
+<div class="qcard" id="q13">
+  <div class="qhead"><span class="qid">C2G</span><span class="diff easy">Easy</span><span class="qtype">Single Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Was ist die Hauptaufgabe einer Container Registry?</div>
+    <div class="options" data-type="single" data-correct="D">
+      <div class="opt radio" data-val="A"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">A</span>Container direkt auszuführen</span></div>
+      <div class="opt radio" data-val="B"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">B</span>Container automatisch zu skalieren</span></div>
+      <div class="opt radio" data-val="C"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">C</span>Netzwerke zwischen Containern zu konfigurieren</span></div>
+      <div class="opt radio" data-val="D"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">D</span>Container Images zu speichern und versioniert bereitzustellen</span></div>
+    </div>
+    <button class="btn-check" onclick="checkSingle('q13')">Prüfen</button>
+    <div class="fb" id="q13-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q14">
+  <div class="qhead"><span class="qid">C2F</span><span class="diff medium">Medium</span><span class="qtype">Multiple Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Welche Technologien dienen der Orchestrierung von Containern? <em>(Mehrere Antworten möglich)</em></div>
+    <div class="options" data-type="multi" data-correct="A,B,C">
+      <div class="opt checkbox" data-val="A"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">A</span>Docker Compose</span></div>
+      <div class="opt checkbox" data-val="B"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">B</span>Kubernetes</span></div>
+      <div class="opt checkbox" data-val="C"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">C</span>Docker Swarm</span></div>
+      <div class="opt checkbox" data-val="D"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">D</span>NGINX</span></div>
+      <div class="opt checkbox" data-val="E"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">E</span>GitHub Actions</span></div>
+    </div>
+    <button class="btn-check" onclick="checkMulti('q14')">Prüfen</button>
+    <div class="fb" id="q14-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q15">
+  <div class="qhead"><span class="qid">C2E</span><span class="diff hard">Hard</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Beschreibe zwei Unterschiede zwischen einer public und einer private Container Registry und erkläre, warum eine private Registry für interne Projekte besser geeignet ist.</div>
+    <textarea id="q15-ta" placeholder="Deine Antwort…" oninput="ch('q15')"></textarea>
+    <div class="char-c" id="q15-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q15')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q15-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>Public Registry:</b> Frei zugänglich, kein Login nötig (z.B. Docker Hub)<br>
+      <b>Private Registry:</b> Zugriff nur mit Authentifizierung (z.B. GHCR, AWS ECR)<br><br>
+      <b>Warum privat besser:</b> Mehr Sicherheit und Kontrolle – interner Code ist nicht öffentlich zugänglich.
+    </div>
+  </div>
+</div>
+
+<!-- D1 -->
+<div class="sec">D1 – Praxis: Entwicklung</div>
+
+<div class="qcard" id="q16">
+  <div class="qhead"><span class="qid">D1G</span><span class="diff hard">Hard</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Du möchtest einen NGINX-Webdienst starten. Name: <code>web-demo</code>, Port 8080→80. Nenne alle Docker-Befehle in der richtigen Reihenfolge (laden, starten, prüfen, logs, stoppen, löschen) und erkläre kurz was sie tun.</div>
+    <textarea id="q16-ta" placeholder="Befehle und Erklärungen…" oninput="ch('q16')" style="min-height:110px" class="mono"></textarea>
+    <div class="char-c" id="q16-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q16')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q16-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <code>docker pull nginx</code> → Image herunterladen<br>
+      <code>docker run -d --name web-demo -p 8080:80 nginx</code> → starten (detached, Name, Port-Mapping)<br>
+      <code>docker ps</code> → prüfen ob Container läuft<br>
+      <code>docker logs web-demo</code> → Logs anzeigen<br>
+      <code>docker stop web-demo</code> → Container stoppen<br>
+      <code>docker rm web-demo</code> → Container löschen
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="q17">
+  <div class="qhead"><span class="qid">D1F</span><span class="diff hard">Hard</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Erstelle eine <code>docker-compose.yml</code> für NGINX mit: Service <code>web</code> · Image <code>nginx:alpine</code> · Containername <code>d1f-web</code> · Port 8080→80 · Automatischer Neustart (ausser manuell gestoppt)</div>
+    <textarea id="q17-ta" placeholder="docker-compose.yml…" oninput="ch('q17')" style="min-height:110px" class="mono"></textarea>
+    <div class="char-c" id="q17-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q17')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q17-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <pre class="sol-code">services:
+  web:
+    image: nginx:alpine
+    container_name: d1f-web
+    ports:
+      - "8080:80"
+    restart: unless-stopped</pre>
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="q18">
+  <div class="qhead"><span class="qid">D1E</span><span class="diff medium">Medium</span><span class="qtype">Fehler finden</span></div>
+  <div class="qbody">
+    <div class="qtext">Diese <code>docker-compose.yml</code> enthält Fehler – finde mindestens drei und erkläre die Korrekturen:</div>
+    <pre class="code-block">services:
+  web:
+    image: nginx:alpine
+    container_name: d1e-web
+    port:
+      - "8080"
+    volumes:
+      - ./wrong-index.html:/usr/share/nginx/html/index.html
+    enviroment:
+      - APP_ENV=dev</pre>
+    <textarea id="q18-ta" placeholder="Fehler 1: …&#10;Fehler 2: …&#10;Fehler 3: …" oninput="ch('q18')"></textarea>
+    <div class="char-c" id="q18-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q18')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q18-fb">
+      <div class="fb-title">✏️ Musterlösung – 4 Fehler</div>
+      <b>Fehler 1:</b> <code>port</code> → korrekt: <code>ports</code> (Plural!)<br>
+      <b>Fehler 2:</b> <code>"8080"</code> → korrekt: <code>"8080:80"</code> (Port-Mapping unvollständig)<br>
+      <b>Fehler 3:</b> <code>enviroment</code> → korrekt: <code>environment</code> (Tippfehler)<br>
+      <b>Fehler 4:</b> Volume-Pfad <code>./wrong-index.html</code> existiert möglicherweise nicht
+    </div>
+  </div>
+</div>
+
+<!-- D2 -->
+<div class="sec">D2 – Images &amp; Registry</div>
+
+<div class="qcard" id="q19">
+  <div class="qhead"><span class="qid">D2G</span><span class="diff medium">Medium</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Gegeben: <code>docker run -d -p 5000:80 --name web nginx</code><br>Nenne zwei Dinge, die dieser Befehl bewirkt, und erkläre kurz deren Zweck.</div>
+    <textarea id="q19-ta" placeholder="Deine Antwort…" oninput="ch('q19')"></textarea>
+    <div class="char-c" id="q19-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q19')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q19-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>-d (detached):</b> Container läuft im Hintergrund → Terminal bleibt frei<br>
+      <b>-p 5000:80:</b> Port 5000 (Host) → Port 80 (Container) → App unter localhost:5000 erreichbar<br>
+      <b>--name web:</b> Container heisst "web" → einfachere Verwaltung
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="q20">
+  <div class="qhead"><span class="qid">D2F</span><span class="diff medium">Medium</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Gegeben ist dieses Dockerfile:</div>
+    <pre class="code-block">FROM nginx:alpine
+COPY ./website /usr/share/nginx/html
+EXPOSE 80</pre>
+    <div class="qtext">Beschreibe alle Schritte und Befehle, um ein eigenes Image zu erstellen und in eine Registry hochzuladen.</div>
+    <textarea id="q20-ta" placeholder="Schritte und Befehle…" oninput="ch('q20')" style="min-height:100px" class="mono"></textarea>
+    <div class="char-c" id="q20-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q20')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q20-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <code>docker build -t my-webapp .</code> → Image bauen<br>
+      <code>docker tag my-webapp ghcr.io/user/my-webapp:latest</code> → für Registry taggen<br>
+      <code>docker login ghcr.io</code> → Authentifizierung<br>
+      <code>docker push ghcr.io/user/my-webapp:latest</code> → Image publizieren
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="q21">
+  <div class="qhead"><span class="qid">D2E</span><span class="diff medium">Medium</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Warum kann es sinnvoll sein, ein Container-Image in mehrere Registries zu publizieren? Nenne einen Vorteil.</div>
+    <textarea id="q21-ta" placeholder="Deine Antwort…" oninput="ch('q21')"></textarea>
+    <div class="char-c" id="q21-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q21')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q21-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>Höhere Verfügbarkeit:</b> Falls eine Registry ausfällt, ist das Image weiterhin verfügbar.<br>
+      <b>Flexibilität:</b> Bessere Integration mit verschiedenen Plattformen und Cloud-Anbietern.
+    </div>
+  </div>
+</div>
+
+<!-- E1 -->
+<div class="sec">E1 – Praxis: Public Cloud (Betrieb)</div>
+
+<div class="qcard" id="q22">
+  <div class="qhead"><span class="qid">E1G</span><span class="diff easy">Easy</span><span class="qtype">Single Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Welche Massnahme erhöht die Sicherheit beim Zugriff auf einen Cloud-Anbieter am meisten?</div>
+    <div class="options" data-type="single" data-correct="C">
+      <div class="opt radio" data-val="A"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">A</span>Langes Passwort verwenden</span></div>
+      <div class="opt radio" data-val="B"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">B</span>Zugriff ohne Login ermöglichen</span></div>
+      <div class="opt radio" data-val="C"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">C</span>Multi-Faktor-Authentifizierung (MFA) aktivieren</span></div>
+      <div class="opt radio" data-val="D"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">D</span>Zugriff über HTTPS statt HTTP</span></div>
+    </div>
+    <button class="btn-check" onclick="checkSingle('q22')">Prüfen</button>
+    <div class="fb" id="q22-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q23">
+  <div class="qhead"><span class="qid">E1F</span><span class="diff medium">Medium</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Cloud-Instanz: Ubuntu 24.04, öffentliche IP, Firewall: Port 22 und 80 offen.<br>Erkläre die Funktion von Port 22 und Port 80 und warum diese Konfiguration für einen Webserver sinnvoll ist.</div>
+    <textarea id="q23-ta" placeholder="Deine Antwort…" oninput="ch('q23')"></textarea>
+    <div class="char-c" id="q23-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q23')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q23-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>Port 22 (SSH):</b> Sicherer Remote-Zugriff zur Administration der Cloud-Instanz.<br>
+      <b>Port 80 (HTTP):</b> Zugriff auf den Webdienst über den Browser.<br><br>
+      <b>Warum sinnvoll:</b> Die öffentliche IP erlaubt externen Zugriff. Die Firewall öffnet nur die benötigten Ports → erhöhte Sicherheit.
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="q24">
+  <div class="qhead"><span class="qid">E1E</span><span class="diff medium">Medium</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Vorgaben: Nur Reverse Proxy öffentlich · Backend nur intern · DB kommuniziert ausschliesslich mit Backend.<br>Beschreibe zwei Sicherheitsmassnahmen für die Netzwerk-Konfiguration.</div>
+    <textarea id="q24-ta" placeholder="Massnahme 1: …&#10;Massnahme 2: …" oninput="ch('q24')"></textarea>
+    <div class="char-c" id="q24-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q24')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q24-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>Massnahme 1:</b> Nur der Reverse Proxy hat öffentliche Ports (80/443). Backend und DB geben keine Ports frei.<br><br>
+      <b>Massnahme 2:</b> Backend und DB kommunizieren über ein internes Docker-Netzwerk. Die DB akzeptiert ausschliesslich Verbindungen vom Backend.
+    </div>
+  </div>
+</div>
+
+<!-- E2 -->
+<div class="sec">E2 – Storage &amp; Skalierung</div>
+
+<div class="qcard" id="q25">
+  <div class="qhead"><span class="qid">E2G</span><span class="diff medium">Medium</span><span class="qtype">Single Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Welche Storage-Variante eignet sich für persistente Daten einer Datenbank?</div>
+    <div class="options" data-type="single" data-correct="B">
+      <div class="opt radio" data-val="A"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">A</span>Temporärer Container-Speicher</span></div>
+      <div class="opt radio" data-val="B"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">B</span>Persistent Volume</span></div>
+      <div class="opt radio" data-val="C"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">C</span>RAM</span></div>
+      <div class="opt radio" data-val="D"><div class="opt-dot">●</div><span class="opt-text"><span class="opt-key">D</span>Log-Datei</span></div>
+    </div>
+    <button class="btn-check" onclick="checkSingle('q25')">Prüfen</button>
+    <div class="fb" id="q25-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q26">
+  <div class="qhead"><span class="qid">E2F</span><span class="diff easy">Easy</span><span class="qtype">Multiple Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Welche Möglichkeiten zur Skalierung gibt es in der Cloud? <em>(Mehrere Antworten möglich)</em></div>
+    <div class="options" data-type="multi" data-correct="A,B,D">
+      <div class="opt checkbox" data-val="A"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">A</span>Vertikale Skalierung</span></div>
+      <div class="opt checkbox" data-val="B"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">B</span>Horizontale Skalierung</span></div>
+      <div class="opt checkbox" data-val="C"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">C</span>Löschen von Instanzen</span></div>
+      <div class="opt checkbox" data-val="D"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">D</span>Auto-Scaling</span></div>
+    </div>
+    <button class="btn-check" onclick="checkMulti('q26')">Prüfen</button>
+    <div class="fb" id="q26-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q27">
+  <div class="qhead"><span class="qid">E2E</span><span class="diff medium">Medium</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Ein Entwickler liest folgende Informationen aus:<br><code>{"instance-id": "vm-01", "region": "europe-west6", "public-ip": "34.65.10.20"}</code><br><br>Was für Informationen sind das und wofür können sie verwendet werden?</div>
+    <textarea id="q27-ta" placeholder="Deine Antwort…" oninput="ch('q27')"></textarea>
+    <div class="char-c" id="q27-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q27')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q27-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      Es handelt sich um <b>Metadaten der Cloud-Instanz</b>.<br><br>
+      <b>instance-id:</b> Identifikation der Instanz · <b>region:</b> Standort der VM · <b>public-ip:</b> Netzwerkzugriff von aussen<br><br>
+      Metadaten helfen bei Verwaltung, Monitoring und automatisierter Konfiguration.
+    </div>
+  </div>
+</div>
+
+<!-- F -->
+<div class="sec">F – Qualitätskontrollen</div>
+
+<div class="qcard" id="q28">
+  <div class="qhead"><span class="qid">F1G</span><span class="diff easy">Easy</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Nenne eine Methode zur Qualitätssicherung von Container-Images und erkläre kurz, was sie überprüft.</div>
+    <textarea id="q28-ta" placeholder="Deine Antwort…" oninput="ch('q28')"></textarea>
+    <div class="char-c" id="q28-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q28')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q28-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>Image Scanning (z.B. Trivy)</b> → überprüft Images auf Sicherheitslücken (CVEs) und veraltete Pakete. Analysiert alle enthaltenen Bibliotheken und meldet bekannte Schwachstellen.
+    </div>
+  </div>
+</div>
+
+<div class="qcard" id="q29">
+  <div class="qhead"><span class="qid">F1F</span><span class="diff easy">Easy</span><span class="qtype">Multiple Choice</span></div>
+  <div class="qbody">
+    <div class="qtext">Welche Punkte sind wichtige Sicherheitsindikatoren für Container? <em>(Mehrere Antworten möglich)</em></div>
+    <div class="options" data-type="multi" data-correct="A,C,D">
+      <div class="opt checkbox" data-val="A"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">A</span>Verwendung aktueller Base Images</span></div>
+      <div class="opt checkbox" data-val="B"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">B</span>Container läuft als root</span></div>
+      <div class="opt checkbox" data-val="C"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">C</span>Minimale Anzahl offener Ports</span></div>
+      <div class="opt checkbox" data-val="D"><div class="opt-dot">✓</div><span class="opt-text"><span class="opt-key">D</span>Verwendung von Secrets statt Klartext-Passwörtern</span></div>
+    </div>
+    <button class="btn-check" onclick="checkMulti('q29')">Prüfen</button>
+    <div class="fb" id="q29-fb"></div>
+  </div>
+</div>
+
+<div class="qcard" id="q30">
+  <div class="qhead"><span class="qid">F1E</span><span class="diff medium">Medium</span><span class="qtype">Offene Frage</span></div>
+  <div class="qbody">
+    <div class="qtext">Gegeben ist dieses Dockerfile:</div>
+    <pre class="code-block">FROM node:latest
+WORKDIR /app
+COPY . .
+RUN npm install
+CMD ["node", "server.js"]</pre>
+    <div class="qtext">Nenne zwei Sicherheitsprobleme und erkläre sie kurz.</div>
+    <textarea id="q30-ta" placeholder="Problem 1: …&#10;Problem 2: …" oninput="ch('q30')"></textarea>
+    <div class="char-c" id="q30-ch">0 Zeichen</div>
+    <button class="btn-sol" onclick="showSol('q30')">Musterlösung anzeigen</button>
+    <div class="fb sol" id="q30-fb">
+      <div class="fb-title">✏️ Musterlösung</div>
+      <b>Problem 1 – <code>node:latest</code>:</b> Unsicher und nicht reproduzierbar. Besser: <code>node:20-alpine</code><br><br>
+      <b>Problem 2 – kein USER:</b> Container läuft als root → Sicherheitsrisiko. Besser: <code>USER node</code> hinzufügen.<br><br>
+      <b>Bonus:</b> <code>npm install</code> ohne Lockfile → keine Kontrolle. Besser: <code>npm ci</code>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL -->
+<div class="final-box">
+  <h2>🏁 Prüfung abschliessen</h2>
+  <p>Wenn du alle Fragen beantwortet hast, klicke auf Auswerten. MC-Fragen werden automatisch benotet, alle Musterlösungen werden aufgedeckt.</p>
+  <button class="btn-final" onclick="finalize()">Prüfung auswerten</button>
+</div>
+
+<div class="result" id="result">
+  <div class="res-score" id="res-pct"></div>
+  <div class="res-sub" id="res-sub"></div>
+  <div class="res-grid">
+    <div class="res-stat g"><div class="n" id="res-ok">–</div><div class="l">Richtig (MC)</div></div>
+    <div class="res-stat r"><div class="n" id="res-err">–</div><div class="l">Falsch (MC)</div></div>
+    <div class="res-stat b"><div class="n" id="res-open">–</div><div class="l">Offen</div></div>
+  </div>
+  <div class="res-msg" id="res-msg"></div>
+  <button class="btn-retry" onclick="location.reload()">🔄 Nochmals versuchen</button>
+</div>
+
+</div>
+
+<script>
+const answered = new Set();
+let mcOk = 0, mcTotal = 0;
+const TOTAL = 30;
+const openIds = ['q3','q5','q8','q10','q12','q15','q16','q17','q18','q19','q20','q21','q23','q24','q27','q28','q30'];
+
+// Hide all open solution boxes on load
+openIds.forEach(id => {
+  const fb = document.getElementById(id + '-fb');
+  if (fb) fb.style.display = 'none';
+});
+
+// Option click handlers
+document.querySelectorAll('.options').forEach(opts => {
+  const type = opts.dataset.type;
+  opts.querySelectorAll('.opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      if (opt.classList.contains('locked')) return;
+      if (type === 'single') {
+        opts.querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
+        opt.classList.add('sel');
+      } else {
+        opt.classList.toggle('sel');
+      }
+    });
+  });
+});
+
+function ch(id) {
+  const v = (document.getElementById(id + '-ta') || {value:''}).value.length;
+  const el = document.getElementById(id + '-ch');
+  if (el) el.textContent = v + ' Zeichen';
+}
+
+function prog() {
+  const pct = (answered.size / TOTAL) * 100;
+  document.getElementById('bar').style.width = pct + '%';
+  document.getElementById('plabel').textContent = answered.size + ' / ' + TOTAL;
+}
+
+function lockOpts(opts) {
+  opts.querySelectorAll('.opt').forEach(o => o.classList.add('locked'));
+}
+
+function checkSingle(id) {
+  const card = document.getElementById(id);
+  const opts = card.querySelector('.options');
+  const correct = opts.dataset.correct;
+  const sel = opts.querySelector('.opt.sel');
+  const fb = document.getElementById(id + '-fb');
+  const btn = card.querySelector('.btn-check');
+
+  if (!sel) {
+    fb.className = 'fb err';
+    fb.innerHTML = '<div class="fb-title">Keine Antwort</div>Bitte wähle eine Option aus.';
+    return;
+  }
+
+  btn.disabled = true;
+  lockOpts(opts);
+  mcTotal++;
+
+  const val = sel.dataset.val;
+  opts.querySelectorAll('.opt').forEach(o => {
+    const v = o.dataset.val;
+    o.classList.remove('sel');
+    if (v === correct) o.classList.add('right');
+    else if (v === val) o.classList.add('wrong');
+  });
+
+  if (val === correct) {
+    mcOk++;
+    fb.className = 'fb ok';
+    fb.innerHTML = '<div class="fb-title">✅ Richtig!</div>Korrekte Antwort: <b>' + correct + '</b>';
+    card.classList.add('ok');
+  } else {
+    fb.className = 'fb err';
+    fb.innerHTML = '<div class="fb-title">❌ Falsch</div>Richtige Antwort: <b>' + correct + '</b>';
+    card.classList.add('err');
+  }
+  answered.add(id);
+  prog();
+}
+
+function checkMulti(id) {
+  const card = document.getElementById(id);
+  const opts = card.querySelector('.options');
+  const correctArr = opts.dataset.correct.split(',');
+  const fb = document.getElementById(id + '-fb');
+  const btn = card.querySelector('.btn-check');
+
+  const selArr = [...opts.querySelectorAll('.opt.sel')].map(o => o.dataset.val);
+  if (selArr.length === 0) {
+    fb.className = 'fb err';
+    fb.innerHTML = '<div class="fb-title">Keine Antwort</div>Bitte wähle mindestens eine Option.';
+    return;
+  }
+
+  btn.disabled = true;
+  lockOpts(opts);
+  mcTotal++;
+
+  const isCorrect = correctArr.length === selArr.length && correctArr.every(c => selArr.includes(c));
+
+  opts.querySelectorAll('.opt').forEach(o => {
+    const v = o.dataset.val;
+    const isC = correctArr.includes(v);
+    const isS = selArr.includes(v);
+    o.classList.remove('sel');
+    if      (isC && isS)  o.classList.add('right');
+    else if (!isC && isS) o.classList.add('wrong');
+    else if (isC && !isS) o.classList.add('miss');
+  });
+
+  if (isCorrect) {
+    mcOk++;
+    fb.className = 'fb ok';
+    fb.innerHTML = '<div class="fb-title">✅ Richtig!</div>Korrekte Antworten: <b>' + correctArr.join(', ') + '</b>';
+    card.classList.add('ok');
+  } else {
+    fb.className = 'fb err';
+    fb.innerHTML = '<div class="fb-title">❌ Nicht ganz</div>Richtige Antworten: <b>' + correctArr.join(', ') + '</b> &nbsp;·&nbsp; <small>Grün = richtig · Rot = falsch · Ausgegraut = vergessen</small>';
+    card.classList.add('err');
+  }
+  answered.add(id);
+  prog();
+}
+
+function showSol(id) {
+  const fb = document.getElementById(id + '-fb');
+  const ta = document.getElementById(id + '-ta');
+  const btn = ta ? ta.parentElement.querySelector('.btn-sol') : null;
+  if (fb) fb.style.display = 'block';
+  if (btn) { btn.disabled = true; btn.textContent = '✓ Angezeigt'; }
+  const card = document.getElementById(id);
+  if (card) card.classList.add('ok');
+  answered.add(id);
+  prog();
+}
+
+function finalize() {
+  openIds.forEach(id => {
+    const fb = document.getElementById(id + '-fb');
+    if (fb && fb.style.display === 'none') showSol(id);
+  });
+
+  const pct = mcTotal > 0 ? Math.round((mcOk / mcTotal) * 100) : 0;
+  document.getElementById('res-ok').textContent   = mcOk + ' / ' + mcTotal;
+  document.getElementById('res-err').textContent  = (mcTotal - mcOk) + ' / ' + mcTotal;
+  document.getElementById('res-open').textContent = openIds.length + ' Fragen';
+  document.getElementById('res-pct').textContent  = pct + '%';
+
+  let cls, note, msg;
+  if      (pct >= 90) { cls='g1'; note='6.0'; msg='🏆 Ausgezeichnet – bestens vorbereitet!'; }
+  else if (pct >= 75) { cls='g2'; note='5.0'; msg='👍 Sehr gut – offene Fragen nochmals üben.'; }
+  else if (pct >= 60) { cls='g3'; note='4.5'; msg='📚 Gut – schwierige Themen wiederholen.'; }
+  else if (pct >= 45) { cls='g4'; note='4.0'; msg='⚠️ Knapp – wichtige Konzepte vertiefen.'; }
+  else                { cls='g5'; note='< 4'; msg='❗ Mehr Übung nötig – Zusammenfassung nochmals lesen!'; }
+
+  document.getElementById('res-pct').className = 'res-score ' + cls;
+  document.getElementById('res-sub').textContent = 'MC-Ergebnis · Note ca. ' + note;
+  document.getElementById('res-msg').textContent = msg;
+
+  const r = document.getElementById('result');
+  r.classList.add('show');
+  r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

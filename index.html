@@ -233,6 +233,128 @@
       font-size: 0.95rem;
     }
 
+    .search-wrap {
+      margin: 0 0 22px;
+    }
+
+    .search-field {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-field .search-icon {
+      position: absolute;
+      left: 18px;
+      width: 20px;
+      height: 20px;
+      color: var(--muted);
+      pointer-events: none;
+      transition: color 0.15s ease;
+    }
+
+    .search-field:focus-within .search-icon {
+      color: var(--accent);
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 14px;
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: rgba(0, 0, 0, 0.06);
+      color: var(--muted);
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .search-clear:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .search-clear.visible {
+      display: inline-flex;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 15px 48px 15px 50px;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    }
+
+    .search-bar::placeholder {
+      color: var(--muted);
+    }
+
+    .search-bar:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(180, 38, 47, 0.18), var(--shadow);
+    }
+
+    .search-results {
+      margin-top: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 10px;
+      display: none;
+    }
+
+    .search-results.active {
+      display: block;
+    }
+
+    .search-results ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .search-results a {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 10px;
+      transition: background 0.15s ease;
+    }
+
+    .search-results a:hover {
+      background: rgba(180, 38, 47, 0.08);
+    }
+
+    .search-results .meta {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .search-results .empty {
+      padding: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+
     code {
       background: rgba(0, 0, 0, 0.05);
       padding: 2px 6px;
@@ -251,6 +373,24 @@
   </section>
 
   <main class="wrap">
+    <div class="search-wrap">
+      <div class="search-field">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          type="search"
+          id="searchInput"
+          class="search-bar"
+          placeholder="Themen suchen … (z. B. Recht, Trigonometrie, NoSQL)"
+          autocomplete="off"
+        />
+        <button type="button" id="searchClear" class="search-clear" aria-label="Suche zurücksetzen">×</button>
+      </div>
+      <div id="searchResults" class="search-results" role="listbox"></div>
+    </div>
+
     <section class="intro-card">
       <h2>Fächerübersicht</h2>
       <p>
@@ -289,6 +429,9 @@
           <h3>Deutsch</h3>
           <ul class="link-list">
             <li><a href="./summaries/deutsch/KleiderMachenLeute.html" target="_blank" rel="noopener">Kleider machen Leute</a></li>
+          </ul>
+                    <ul class="link-list">
+            <li><a href="./summaries/deutsch/KleiderMachenLeute.html" target="_blank" rel="noopener">Zitieren, Referenzieren, Bibliographieren</a></li>
           </ul>
         </article>
 
@@ -358,6 +501,9 @@
           <ul class="link-list">
             <li><a href="./summaries/bbw/m347/modul347_pruefungsvorbereitung.html" target="_blank" rel="noopener">Prüfungsvorbereitung</a></li>
           </ul>
+            <ul class="link-list">
+            <li><a href="./summaries/bbw/m347/modul347_pruefung.html" target="_blank" rel="noopener">Prüfung interaktiv</a></li>
+          </ul>
         </article>
       </section> 
     </section>
@@ -367,5 +513,75 @@
       z. B. <code>href="./mathe/algebra.html"</code> oder <code>href="https://..."</code>.
     </p>
   </main>
+
+  <script>
+    (function () {
+      const input = document.getElementById("searchInput");
+      const resultsBox = document.getElementById("searchResults");
+      const clearBtn = document.getElementById("searchClear");
+
+      const entries = [];
+      document.querySelectorAll(".school-block").forEach((block) => {
+        const school = block.querySelector(".school-name")?.textContent.trim() || "";
+        block.querySelectorAll(".subject-card").forEach((card) => {
+          const subject = card.querySelector("h3")?.textContent.trim() || "";
+          card.querySelectorAll(".link-list a").forEach((a) => {
+            entries.push({
+              title: a.textContent.trim(),
+              href: a.getAttribute("href"),
+              subject,
+              school,
+            });
+          });
+        });
+      });
+
+      function render(query) {
+        const q = query.trim().toLowerCase();
+        clearBtn.classList.toggle("visible", q.length > 0);
+        if (!q) {
+          resultsBox.classList.remove("active");
+          resultsBox.innerHTML = "";
+          return;
+        }
+        const matches = entries.filter((e) =>
+          (e.title + " " + e.subject + " " + e.school).toLowerCase().includes(q)
+        );
+        resultsBox.classList.add("active");
+        if (!matches.length) {
+          resultsBox.innerHTML = '<p class="empty">Keine Treffer</p>';
+          return;
+        }
+        const list = document.createElement("ul");
+        matches.forEach((m) => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = m.href;
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.innerHTML =
+            '<span>' + m.title + '</span>' +
+            '<span class="meta">' + m.subject + ' · ' + m.school + '</span>';
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+        resultsBox.innerHTML = "";
+        resultsBox.appendChild(list);
+      }
+
+      input.addEventListener("input", (e) => render(e.target.value));
+      clearBtn.addEventListener("click", () => {
+        input.value = "";
+        render("");
+        input.focus();
+      });
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          input.value = "";
+          render("");
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
