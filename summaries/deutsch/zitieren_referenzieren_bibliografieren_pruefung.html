@@ -38,6 +38,7 @@
         radial-gradient(circle at top left, rgba(53, 79, 115, 0.14), transparent 30%),
         linear-gradient(180deg, #fbfcff 0%, var(--bg) 40%, #eef2f7 100%);
       line-height: 1.55;
+      overflow-wrap: break-word;
     }
 
     header {
@@ -85,8 +86,7 @@
       margin: 16px 0 12px;
       max-width: 870px;
       font-size: clamp(32px, 5vw, 56px);
-      line-height: 1.03;
-      letter-spacing: -0.04em;
+      line-height: 1.08;
     }
 
     .lead {
@@ -125,7 +125,7 @@
       margin: 0 auto 64px;
       padding: 0 22px;
       display: grid;
-      grid-template-columns: 280px minmax(0, 1fr);
+      grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
       gap: 24px;
       align-items: start;
     }
@@ -133,6 +133,8 @@
     nav {
       position: sticky;
       top: 18px;
+      max-height: calc(100vh - 36px);
+      overflow: auto;
       background: rgba(255,255,255,0.88);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -154,11 +156,16 @@
       color: #344054;
       text-decoration: none;
       font-size: 14px;
+      line-height: 1.35;
     }
 
     nav a:hover { background: var(--surface-soft); color: var(--primary); }
 
-    .content { display: grid; gap: 22px; }
+    .content {
+      display: grid;
+      gap: 22px;
+      min-width: 0;
+    }
 
     section, .card {
       background: rgba(255,255,255,0.92);
@@ -166,6 +173,8 @@
       border-radius: var(--radius);
       box-shadow: 0 12px 32px rgba(17, 24, 39, 0.05);
       padding: 26px;
+      min-width: 0;
+      scroll-margin-top: 24px;
     }
 
     h2 {
@@ -237,15 +246,19 @@
       border-radius: 16px;
       padding: 16px;
       overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
       font-size: 14px;
       line-height: 1.6;
       border: 1px solid #253044;
     }
 
     table {
+      display: block;
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
+      overflow-x: auto;
       overflow: hidden;
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -259,6 +272,7 @@
       text-align: left;
       vertical-align: top;
       font-size: 14px;
+      overflow-wrap: anywhere;
     }
 
     th {
@@ -290,6 +304,7 @@
       border-radius: 16px;
       padding: 14px 16px;
       margin: 12px 0;
+      min-width: 0;
     }
 
     summary {
@@ -331,10 +346,43 @@
     }
 
     @media (max-width: 930px) {
+      header {
+        padding: 28px 16px 20px;
+      }
+
       main { grid-template-columns: 1fr; }
-      nav { position: relative; top: auto; }
+      nav {
+        position: relative;
+        top: auto;
+        max-height: none;
+      }
       .hero-grid, .three-col, .two-col { grid-template-columns: 1fr; }
+      main, footer { padding-left: 16px; padding-right: 16px; }
       section, .hero { padding: 22px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        border-radius: 24px;
+        padding: 22px 18px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      section, .card {
+        padding: 20px 18px;
+      }
+
+      th, td {
+        padding: 10px 11px;
+        font-size: 13px;
+      }
     }
 
     @media print {
