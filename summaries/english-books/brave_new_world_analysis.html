@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brave New World - English Oral Matura Study Website</title>
+<style>
+:root{
+  --bg:#fff8ef; --paper:#fffdf9; --ink:#243036; --muted:#687178; --brand:#9b3d2e; --brand2:#d98756; --gold:#c89a3c; --sage:#677d63; --blue:#536b7d; --line:#ead8c5; --soft:#f7eadc; --soft2:#f1dfcc; --shadow:0 18px 50px rgba(67,42,25,.12); --radius:22px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif;background:radial-gradient(circle at top left,#fff1dc,transparent 32rem),linear-gradient(135deg,#fff8ef,#f9efe4 55%,#fffaf4);color:var(--ink);line-height:1.65}
+a{color:inherit} .layout{display:grid;grid-template-columns:290px 1fr;min-height:100vh} aside{position:sticky;top:0;height:100vh;padding:26px 20px;background:rgba(255,253,249,.86);backdrop-filter:blur(16px);border-right:1px solid var(--line);overflow:auto} .logo{display:flex;gap:12px;align-items:center;margin-bottom:20px} .mark{width:45px;height:45px;border-radius:15px;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:var(--shadow)} .logo strong{display:block;font-size:1rem} .logo span{font-size:.82rem;color:var(--muted)} nav a{display:block;text-decoration:none;padding:10px 12px;margin:4px 0;border-radius:14px;color:#3d464b;font-weight:650;font-size:.92rem} nav a:hover{background:var(--soft);color:var(--brand)} .main{min-width:0} header.hero{padding:72px 7vw 44px;border-bottom:1px solid var(--line);background:linear-gradient(120deg,rgba(155,61,46,.10),rgba(216,135,86,.12),rgba(103,125,99,.10))} .eyebrow{letter-spacing:.16em;text-transform:uppercase;color:var(--brand);font-weight:800;font-size:.8rem} h1{font-family:Georgia,serif;font-size:clamp(2.8rem,6vw,6.6rem);line-height:.9;margin:14px 0 18px;color:#2c2019} .subtitle{font-size:1.25rem;max-width:900px;color:#445057} .hero-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:34px} .fact{background:rgba(255,253,249,.78);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 12px 28px rgba(67,42,25,.07)} .fact b{display:block;color:var(--brand);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em} .fact span{font-weight:750} section{padding:46px 7vw} h2{font-family:Georgia,serif;font-size:clamp(2rem,3vw,3.4rem);line-height:1.05;margin:0 0 20px;color:#2c2019} h3{font-size:1.25rem;margin:0 0 10px} h4{margin:0 0 6px;color:var(--brand)} .section-intro{max-width:980px;color:#4d575d;font-size:1.08rem} .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px} .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px} .card,.highlight,.quote-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)} .highlight{background:linear-gradient(135deg,#fff7ed,#f5e1cd);border-left:7px solid var(--brand)} .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0} .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-weight:750;color:#4d575d} .toc-chapters{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:22px 0} .toc-chapters a{text-decoration:none;text-align:center;background:#fff;border:1px solid var(--line);padding:8px;border-radius:12px;font-weight:800;color:var(--brand)} .chapter-card{display:grid;grid-template-columns:105px 1fr;gap:20px;background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:22px;margin:16px 0;box-shadow:0 12px 34px rgba(67,42,25,.08)} .chapter-num{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:18px;padding:14px;text-align:center;font-weight:900;align-self:start} .chapter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px} .chapter-grid div{background:#fff8f0;border:1px solid #efddcb;border-radius:16px;padding:14px} .analysis-note{margin-top:14px;background:#f5f7f1;border-left:5px solid var(--sage);padding:14px;border-radius:12px} table{width:100%;border-collapse:collapse;background:var(--paper);border-radius:18px;overflow:hidden;box-shadow:0 10px 26px rgba(67,42,25,.06)} th,td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top} th{background:#f1dfcc;color:#4b2a20;text-align:left} tr:last-child td,tr:last-child th{border-bottom:0} .mini-table{box-shadow:none;border:1px solid var(--line);margin-top:14px} .character,.qa,.worksheet-item{background:var(--paper);border:1px solid var(--line);border-radius:18px;margin:12px 0;box-shadow:0 8px 24px rgba(67,42,25,.06);overflow:hidden} summary{cursor:pointer;padding:18px 20px;font-weight:850;display:flex;gap:12px;align-items:center;justify-content:space-between} summary em{font-style:normal;color:var(--muted);font-weight:600;font-size:.92rem} details[open] summary{border-bottom:1px solid var(--line);background:#fff7ed} .character p,.qa p,.worksheet-item p{padding:0 20px 18px;margin:0} .relationship-map{display:grid;grid-template-columns:repeat(3,1fr);gap:14px} .rel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;text-align:center} .rel strong{display:block;color:var(--brand)} .arrow{font-weight:900;color:var(--gold)} .pyramid{display:grid;gap:10px;max-width:900px;margin:25px auto} .pyramid div{margin:auto;text-align:center;background:linear-gradient(135deg,#fff,#fff1e4);border:1px solid var(--line);padding:14px 18px;border-radius:16px;box-shadow:0 9px 24px rgba(67,42,25,.06)} .pyramid .p1{width:35%} .pyramid .p2{width:52%} .pyramid .p3{width:70%;background:linear-gradient(135deg,#9b3d2e,#d98756);color:#fff} .pyramid .p4{width:82%} .pyramid .p5{width:96%} .device-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px} .device{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px} .device b{color:var(--brand)} .theme-card{border-left:7px solid var(--brand);background:var(--paper);border-radius:20px;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px;margin:16px 0;box-shadow:0 10px 28px rgba(67,42,25,.07)} .quote-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px} .quote-card .quote{font-family:Georgia,serif;font-size:1.25rem;color:var(--brand);margin-bottom:10px} .badge{display:inline-block;border-radius:999px;background:#f1dfcc;color:var(--brand);padding:4px 10px;font-size:.78rem;margin-right:10px} .checklist{columns:2;column-gap:34px} .checklist li{break-inside:avoid;margin:0 0 10px} .footer{padding:40px 7vw 70px;color:var(--muted);border-top:1px solid var(--line)} .print-note{font-size:.9rem;color:var(--muted)} @media(max-width:980px){.layout{display:block} aside{position:relative;height:auto} .hero-grid,.grid,.grid-3,.chapter-grid,.device-grid,.quote-grid,.relationship-map{grid-template-columns:1fr} .chapter-card{grid-template-columns:1fr} .toc-chapters{grid-template-columns:repeat(3,1fr)} .checklist{columns:1}} @media print{aside{display:none}.layout{display:block}section,header.hero{padding:28px}.card,.chapter-card,.highlight{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div class="logo"><div class="mark"></div><div><strong>Brave New World</strong><span>Matura oral exam guide</span></div></div>
+  <nav>
+    <a href="#overview">Overview</a><a href="#plot">Detailed plot</a><a href="#characters">Characters</a><a href="#narrator">Narrator + POV</a><a href="#structure">Structure</a><a href="#genre">Genre + Form</a><a href="#style">Language + Style</a><a href="#devices">Literary Devices</a><a href="#themes">Themes</a><a href="#setting">Setting + Context</a><a href="#passages">Key Passages</a><a href="#worksheet">Worksheet Answers</a><a href="#oral">Oral Exam Prep</a><a href="#checklist">Revision Checklist</a>
+  </nav>
+  <p class="print-note">Tip: Use your browser search to revise names, themes or chapters quickly.</p>
+</aside>
+<main class="main">
+<header class="hero">
+  <div class="eyebrow">English Oral Matura Preparation</div>
+  <h1>Brave New World</h1>
+  <p class="subtitle">A complete, exam-ready study website for understanding, summarising, analysing and discussing Aldous Huxley’s dystopian novel with confidence.</p>
+  <div class="hero-grid">
+    <div class="fact"><b>Author</b><span>Aldous Huxley</span></div>
+    <div class="fact"><b>Publication</b><span>1932</span></div>
+    <div class="fact"><b>Genre</b><span>Dystopian satirical novel</span></div>
+    <div class="fact"><b>Setting</b><span>World State, A.F. 632</span></div>
+  </div>
+</header>
+
+<section id="overview">
+<h2>1. Book overview</h2>
+<p class="section-intro"><em>Brave New World</em> imagines a future society that has solved war, poverty and emotional instability by sacrificing freedom, family, art, religion, individuality and deep feeling. People are genetically produced, socially conditioned, entertained constantly and drugged with soma whenever reality becomes uncomfortable.</p>
+<div class="grid">
+<div class="card "><h3>Basic story in simple English</h3><p>The World State seems peaceful and happy, but this happiness is manufactured. Bernard Marx, an insecure Alpha, takes Lenina Crowne to a Savage Reservation, where they meet John, the naturally born son of Linda and the Director. John is brought to London and at first sees it as wonderful. Soon he realises that this “civilised” world is shallow and inhuman. His conflict with Lenina, soma, public spectacle and Mustapha Mond leads to a tragic ending.</p></div>
+<div class="card "><h3>What this book is really about</h3><p>The novel asks whether a society can call itself successful if it removes everything painful but also everything meaningful. Huxley is not only warning against technology; he is warning against comfort becoming more important than truth, freedom, love, art and moral responsibility.</p></div>
+</div>
+<div class="highlight"><strong>Core interpretation for the exam:</strong> The World State has created stability by reducing human beings to predictable consumers. John’s tragedy shows that a life without suffering may also become a life without dignity, but his own extreme rejection of pleasure is not presented as an easy solution.</div>
+<div class="pill-row"><span class="pill">Community</span><span class="pill">Identity</span><span class="pill">Stability</span><span class="pill">Soma</span><span class="pill">Conditioning</span><span class="pill">Shakespeare</span><span class="pill">Consumerism</span><span class="pill">Freedom vs Happiness</span></div>
+<table><tr><th>Caste</th><th>Colour</th><th>Role / meaning</th></tr><tr><td>Alpha</td><td>Grey</td><td>Highest caste; intellectual, administrative and leadership roles.</td></tr><tr><td>Beta</td><td>Mulberry / sometimes described with green clothing for Lenina’s outfit, but caste colour is generally mulberry.</td><td>High caste below Alphas; skilled work, attractive social life, less intellectual burden.</td></tr><tr><td>Gamma</td><td>Green</td><td>Middle caste; conditioned to accept their place.</td></tr><tr><td>Delta</td><td>Khaki</td><td>Lower caste; often mass-produced and used for simple work.</td></tr><tr><td>Epsilon</td><td>Black</td><td>Lowest caste; deliberately limited intelligence for menial labour.</td></tr></table>
+</section>
+
+<section id="plot">
+<h2>2. Detailed plot summary by chapter</h2>
+<p class="section-intro">Use these chapter cards to revise what happens, why it matters and how each chapter connects to character development and themes.</p>
+<div class="toc-chapters"><a href="#chapter-1">1</a><a href="#chapter-2">2</a><a href="#chapter-3">3</a><a href="#chapter-4">4</a><a href="#chapter-5">5</a><a href="#chapter-6">6</a><a href="#chapter-7">7</a><a href="#chapter-8">8</a><a href="#chapter-9">9</a><a href="#chapter-10">10</a><a href="#chapter-11">11</a><a href="#chapter-12">12</a><a href="#chapter-13">13</a><a href="#chapter-14">14</a><a href="#chapter-15">15</a><a href="#chapter-16">16</a><a href="#chapter-17">17</a><a href="#chapter-18">18</a></div>
+
+<article class="chapter-card" id="chapter-1">
+  <div class="chapter-num">Chapter 1</div>
+  <div>
+    <h3>The Hatchery and biological control</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>The novel opens in the Central London Hatchery and Conditioning Centre. Students are guided through artificial reproduction, Bokanovsky’s Process, caste predestination and embryo conditioning. Human beings are produced like factory goods.</p></div>
+      <div><h4>Why it matters</h4><p>This chapter immediately shows that the World State controls people before birth. It replaces family, nature and individuality with industrial planning.</p></div>
+      <div><h4>Character development</h4><p>The Director and Henry Foster appear as confident servants of the system; Lenina is introduced at work; no rebel voice is central yet.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Technology, social stability, caste, dehumanisation, Fordism, artificial reproduction.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> The chapter is almost a guided tour rather than traditional action. Huxley makes the reader learn the world before judging individual characters.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-2">
+  <div class="chapter-num">Chapter 2</div>
+  <div>
+    <h3>Infant conditioning and hypnopædia</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>The Director shows how babies are conditioned to fear books and flowers through noise and electric shock. He also explains sleep-teaching, which repeats moral slogans until they become automatic beliefs.</p></div>
+      <div><h4>Why it matters</h4><p>It explains how the State keeps people obedient without needing constant violence. People are trained to desire what society needs.</p></div>
+      <div><h4>Character development</h4><p>The students accept the process; the Director becomes a symbol of institutional power.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Conditioning, education as control, consumerism, class consciousness, fear of nature.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> The chapter is disturbing because cruelty is presented calmly as normal science. Huxley criticises systems that call manipulation “education”.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-3">
+  <div class="chapter-num">Chapter 3</div>
+  <div>
+    <h3>The World State ideology</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>In a complex, interrupted chapter, Mustapha Mond explains history, family, sexuality, consumerism, war and soma. At the same time, Lenina talks with Fanny and Bernard reacts angrily to how men talk about Lenina.</p></div>
+      <div><h4>Why it matters</h4><p>This chapter gives the political and historical foundation of the World State. It also introduces Bernard as an outsider who feels ashamed, lonely and angry.</p></div>
+      <div><h4>Character development</h4><p>Bernard is shown as dissatisfied but also insecure. Lenina is slightly unconventional because she has been seeing one man for too long, but she is still deeply conditioned. Mustapha Mond appears as intelligent and dangerous.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Stability, consumerism, sexuality, history, soma, alienation, mass culture.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> The rapid shifts between conversations create a collage effect. The form mirrors a society full of noise, slogans and distractions.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-4">
+  <div class="chapter-num">Chapter 4</div>
+  <div>
+    <h3>Bernard, Lenina and Helmholtz</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>Lenina publicly accepts Bernard’s invitation to the Savage Reservation, embarrassing him because he wants privacy and romantic seriousness. Bernard then meets Helmholtz Watson, another Alpha who feels that something is missing in his life.</p></div>
+      <div><h4>Why it matters</h4><p>The chapter contrasts different kinds of dissatisfaction: Bernard’s social resentment and Helmholtz’s deeper intellectual frustration.</p></div>
+      <div><h4>Character development</h4><p>Bernard is not heroic yet; he wants to be special but also wants approval. Helmholtz appears stronger and more sincere. Lenina cannot understand Bernard’s wish for solitude.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Alienation, individuality, friendship, sexuality, social performance.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> Huxley begins to move from world-building to personal conflict. The “outsider” theme becomes emotional, not only political.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-5">
+  <div class="chapter-num">Chapter 5</div>
+  <div>
+    <h3>Entertainment and the Solidarity Service</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>Henry and Lenina spend an evening playing Obstacle Golf and using soma. Bernard attends a Solidarity Service but fails to feel true unity with the group.</p></div>
+      <div><h4>Why it matters</h4><p>The chapter shows how pleasure, ritual and drugs replace religion and genuine community. The society offers emotional experiences that feel empty to outsiders.</p></div>
+      <div><h4>Character development</h4><p>Lenina and Henry are comfortable consumers. Bernard feels more isolated because he cannot lose himself in the ritual.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Soma, false religion, mass entertainment, loneliness, manufactured happiness.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> The Solidarity Service looks religious but is shallow and mechanical. Huxley satirises group rituals that promise unity without truth.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-6">
+  <div class="chapter-num">Chapter 6</div>
+  <div>
+    <h3>Bernard’s conflict and the trip to New Mexico</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>Bernard and Lenina go on dates, but he dislikes shallow pleasure and wants intense feeling. He gets permission from the Director to visit the Reservation. The Director remembers a past visit there with a woman who disappeared. Later he threatens to send Bernard to Iceland because of his antisocial behaviour.</p></div>
+      <div><h4>Why it matters</h4><p>The Director’s story secretly prepares the revelation of Linda and John. Bernard’s possible exile raises the stakes.</p></div>
+      <div><h4>Character development</h4><p>Bernard seems braver for a moment but is also afraid of punishment. Lenina remains confused by his emotional seriousness.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Freedom, fear of exile, social conformity, nature, sexuality, foreshadowing.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> The chapter shows that Bernard’s rebellion is fragile: he criticises the system but still fears losing his position inside it.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-7">
+  <div class="chapter-num">Chapter 7</div>
+  <div>
+    <h3>The Savage Reservation</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>Bernard and Lenina arrive at the Reservation and are shocked by poverty, ageing, illness, religion, motherhood and natural birth. They meet John and Linda. Linda was once a Beta from London but was lost on the Reservation and gave birth to John.</p></div>
+      <div><h4>Why it matters</h4><p>The Reservation introduces a second flawed world. It is not a simple paradise; it contains suffering, exclusion and violence too.</p></div>
+      <div><h4>Character development</h4><p>Lenina is horrified by old age and dirt. Bernard realises that Linda may be the Director’s lost woman and that John is his son. John is introduced as intelligent, lonely and passionate.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Civilisation versus savagery, motherhood, shame, cultural conflict, birth, ageing.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> Huxley prevents a simple contrast between a bad modern world and a good natural world. Both societies damage people in different ways.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-8">
+  <div class="chapter-num">Chapter 8</div>
+  <div>
+    <h3>John’s childhood story</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>John tells Bernard about growing up as Linda’s son. He was rejected by the pueblo because Linda was sexually available according to World State habits. He learned Shakespeare and longed for beauty, heroism and belonging.</p></div>
+      <div><h4>Why it matters</h4><p>John’s inner world is formed by Shakespeare, rejection and spiritual hunger. This explains his later idealism and his inability to fit anywhere.</p></div>
+      <div><h4>Character development</h4><p>John becomes the emotional centre of the novel. Bernard sees him as a way to attack the Director and save himself. Linda is shown as both victim and damaged parent.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Literature, exclusion, identity, mother-son relationship, violence, longing.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> John’s story is a coming-of-age story inside the dystopian novel. His education through Shakespeare gives him language but also unrealistic expectations.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-9">
+  <div class="chapter-num">Chapter 9</div>
+  <div>
+    <h3>Bernard’s plan</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>Lenina takes soma because the Reservation overwhelms her. Bernard contacts Mustapha Mond and receives permission to bring John and Linda to London. John enters Lenina’s room while she is asleep and idealises her beauty but does not touch her.</p></div>
+      <div><h4>Why it matters</h4><p>Bernard turns John into a social weapon. John’s attitude to Lenina shows his romantic idealism and sexual repression.</p></div>
+      <div><h4>Character development</h4><p>Bernard becomes opportunistic. John is innocent but already divided between desire and moral purity. Lenina avoids reality through soma.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Soma, idealisation, desire, manipulation, Shakespearean romance.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> The chapter quietly prepares the tragic misunderstanding between John and Lenina: they desire each other, but their ideas of love are completely different.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-10">
+  <div class="chapter-num">Chapter 10</div>
+  <div>
+    <h3>The Director is humiliated</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>Back in London, the Director publicly tries to condemn Bernard. Bernard brings in Linda and John. John calls the Director his father, a word that is obscene in the World State. The Director is publicly shamed and resigns.</p></div>
+      <div><h4>Why it matters</h4><p>The scene exposes the hypocrisy and vulnerability of authority. A single biological family relationship destroys the Director’s social dignity.</p></div>
+      <div><h4>Character development</h4><p>Bernard suddenly gains power and fame through John. John enters London with hope and wonder. Linda returns to a world that sees her as disgusting.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Family, shame, public image, power reversal, social taboo.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> This is one of the novel’s strongest ironic reversals: the Director, who teaches controlled reproduction, is ruined by natural reproduction.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-11">
+  <div class="chapter-num">Chapter 11</div>
+  <div>
+    <h3>John becomes a spectacle</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>John becomes fashionable in London. Important people visit Bernard because they want to see “the Savage”. Linda is placed on heavy soma and begins to fade away. John visits schools, factories, games and feelies, and becomes increasingly disgusted.</p></div>
+      <div><h4>Why it matters</h4><p>The World State turns even rebellion and otherness into entertainment. John is not accepted as a person; he is consumed as a novelty.</p></div>
+      <div><h4>Character development</h4><p>Bernard becomes arrogant and dependent on his popularity. John grows more critical. Lenina becomes strongly attracted to John. Helmholtz is interested in John’s language and depth.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Spectacle, exploitation, consumerism, death denial, art, desire.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> Huxley shows how society neutralises threats by making them fashionable. John’s presence does not awaken London; London commodifies him.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-12">
+  <div class="chapter-num">Chapter 12</div>
+  <div>
+    <h3>Bernard’s humiliation and Helmholtz’s friendship with John</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>Bernard invites important guests to meet John, but John refuses to appear. Bernard’s social status collapses. John and Helmholtz become friends through Shakespeare, although Helmholtz laughs at some parts because family and romance seem absurd to him.</p></div>
+      <div><h4>Why it matters</h4><p>The chapter separates shallow rebellion from genuine dissatisfaction. Bernard’s courage disappears when he loses popularity, while Helmholtz is honestly drawn to powerful language.</p></div>
+      <div><h4>Character development</h4><p>Bernard is exposed as vain and weak. Helmholtz and John form a deeper intellectual bond, though they still misunderstand each other.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Friendship, art, language, social status, authenticity.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> The chapter is important because it shows John is not merely a curiosity: he can connect with Helmholtz, but even this connection has limits.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-13">
+  <div class="chapter-num">Chapter 13</div>
+  <div>
+    <h3>Lenina and John misunderstand love</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>Lenina visits John and tries to begin a sexual relationship. John declares romantic love and wants marriage-like devotion. When Lenina undresses, he panics, insults her and becomes violent.</p></div>
+      <div><h4>Why it matters</h4><p>This is the central personal conflict between World State sexuality and John’s Shakespearean ideals. Neither can understand the other’s moral language.</p></div>
+      <div><h4>Character development</h4><p>Lenina is vulnerable and confused, not simply shallow. John’s idealism turns cruel because he cannot accept his own desire.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Love versus sex, repression, shame, gender expectations, violence.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> Huxley does not present John as perfectly noble. His rejection of the World State is powerful, but his treatment of Lenina shows his own psychological damage.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-14">
+  <div class="chapter-num">Chapter 14</div>
+  <div>
+    <h3>Linda’s death</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>John visits Linda at the Park Lane Hospital for the Dying. Children are being conditioned to see death as normal entertainment. Linda is drugged, confused and dies while calling for Popé. John is devastated.</p></div>
+      <div><h4>Why it matters</h4><p>The chapter contrasts real grief with a society that has removed grief by removing deep attachment. It also shows the cost of soma.</p></div>
+      <div><h4>Character development</h4><p>John’s grief becomes rage. Linda is reduced by society to an ugly, inconvenient object, even though for John she is his mother.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Death, motherhood, grief, soma, conditioning, dehumanisation.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> This is one of the most emotionally powerful scenes. The society’s calmness around death is not wisdom; it is emotional emptiness.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-15">
+  <div class="chapter-num">Chapter 15</div>
+  <div>
+    <h3>The soma riot</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>After Linda’s death, John sees Delta workers receiving soma. He calls soma poison and throws the tablets away, trying to free them. The Deltas panic. Helmholtz joins John; Bernard hesitates and tries to avoid blame. Police end the riot with soma vapour and calming technology.</p></div>
+      <div><h4>Why it matters</h4><p>John directly attacks the system for the first time, but the masses do not want freedom. The State controls rebellion efficiently and gently.</p></div>
+      <div><h4>Character development</h4><p>John becomes active but naive. Helmholtz shows courage. Bernard reveals cowardice.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Freedom, drugged happiness, mass control, rebellion, cowardice and courage.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> The scene demonstrates Huxley’s key dystopian idea: oppression works best when people love the things that enslave them.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-16">
+  <div class="chapter-num">Chapter 16</div>
+  <div>
+    <h3>Mustapha Mond’s explanation</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>John, Helmholtz and Bernard are taken to Mustapha Mond. Mond explains why art, science, religion and truth are sacrificed for stability. Helmholtz accepts exile as a chance for freedom. Bernard begs not to be sent away.</p></div>
+      <div><h4>Why it matters</h4><p>This chapter gives the intellectual debate behind the novel. Mond is not stupid or evil in a simple way; he understands what has been sacrificed.</p></div>
+      <div><h4>Character development</h4><p>Mond becomes the strongest defender of the system. Helmholtz appears mature. Bernard is again pathetic. John becomes Mond’s serious opponent.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Truth versus happiness, censorship, exile, art, stability, political power.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> The chapter is powerful because the antagonist has intelligent arguments. The reader must decide whether comfort is worth the loss of freedom and depth.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-17">
+  <div class="chapter-num">Chapter 17</div>
+  <div>
+    <h3>John and Mond debate suffering, God and humanity</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>John and Mond continue their debate. Mond says the modern world has no need for God, tragic art or intense suffering. John insists that he wants real danger, pain, freedom, goodness and sin instead of controlled comfort.</p></div>
+      <div><h4>Why it matters</h4><p>This is the philosophical climax of the novel. John clearly rejects the World State’s bargain.</p></div>
+      <div><h4>Character development</h4><p>John defines himself through refusal. Mond reveals the full cost of stability and the loneliness of power.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Religion, suffering, moral freedom, human dignity, happiness, tragedy.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> John’s demand is noble but extreme. The novel asks whether a fully human life requires suffering, limits and moral struggle.</div>
+  </div>
+</article>
+<article class="chapter-card" id="chapter-18">
+  <div class="chapter-num">Chapter 18</div>
+  <div>
+    <h3>The lighthouse and John’s death</h3>
+    <div class="chapter-grid">
+      <div><h4>What happens</h4><p>John is not allowed to go into exile with Helmholtz and Bernard. He retreats to an abandoned lighthouse, tries to purify himself through labour, prayer and self-punishment, but journalists and crowds turn him into a spectacle. After a mass orgy and his own shame, he hangs himself.</p></div>
+      <div><h4>Why it matters</h4><p>The ending shows that the World State cannot allow true solitude or tragic seriousness. Even John’s resistance becomes entertainment.</p></div>
+      <div><h4>Character development</h4><p>John is destroyed by the conflict between desire, guilt and public spectacle. Bernard and Helmholtz disappear into exile; Mond’s society continues.</p></div>
+      <div><h4>Themes / symbols / conflicts</h4><p>Isolation, spectacle, guilt, tragedy, failure of resistance, dehumanisation.</p></div>
+    </div>
+    <div class="analysis-note"><strong>Short analysis:</strong> The ending is bleak and ironic. The novel begins with manufactured bodies and ends with John’s body as a final spectacle, showing that the system absorbs almost everything.</div>
+  </div>
+</article>
+</section>
+
+<section id="characters">
+<h2>3. Characters and relationships</h2>
+<p class="section-intro">The novel does not have only one simple protagonist. Bernard dominates the early London chapters, but John becomes the central tragic figure after the Reservation. Lenina, Helmholtz and Mustapha Mond are essential for understanding the main conflicts.</p>
+<div class="relationship-map">
+  <div class="rel"><strong>Bernard <span class="arrow">→</span> John</strong>Uses him for social revenge; later loses control.</div>
+  <div class="rel"><strong>John <span class="arrow">↔</span> Lenina</strong>Mutual desire, completely different ideas of love.</div>
+  <div class="rel"><strong>John <span class="arrow">↔</span> Mond</strong>Philosophical conflict: freedom and suffering versus stability and comfort.</div>
+  <div class="rel"><strong>John <span class="arrow">↔</span> Linda</strong>Deep mother-son bond mixed with shame, pain and neglect.</div>
+  <div class="rel"><strong>Bernard <span class="arrow">↔</span> Helmholtz</strong>Both outsiders, but Helmholtz is more courageous and authentic.</div>
+  <div class="rel"><strong>Director <span class="arrow">→</span> John</strong>His hidden fatherhood destroys his public authority.</div>
+</div>
+
+<details class="character"><summary><span>John “the Savage”</span><em>The son of Linda and the Director, born naturally on the Reservation. He becomes the emotional and philosophical centre of the second half.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He exposes the World State by reacting to it with Shakespearean ideals, religious guilt and a longing for real love.</td></tr><tr><th>Relationships</th><td>Connected to Bernard as a discovery, to Lenina as an impossible romantic ideal, to Linda as his mother, to Mond as ideological opponent.</td></tr><tr><th>Traits</th><td>Passionate, intelligent, lonely, idealistic, morally intense, but also rigid and sometimes violent.</td></tr><tr><th>Development / function</th><td>He moves from wonder to disgust, then to rebellion, isolation and suicide.</td></tr><tr><th>Themes represented</th><td>Human dignity, art, suffering, outsiderhood, tragic idealism.</td></tr><tr><th>Possible exam point</th><td>Strong point: John is not simply the hero; he is also damaged by shame and impossible ideals.</td></tr></table>
+</details>
+<details class="character"><summary><span>Bernard Marx</span><em>An Alpha Plus psychologist who feels socially inferior because he is physically small and disliked.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He brings Lenina to the Reservation and brings John to London, which changes the plot.</td></tr><tr><th>Relationships</th><td>Initially seems like a rebel; later uses John for popularity and collapses under pressure.</td></tr><tr><th>Traits</th><td>Insecure, resentful, intelligent, jealous, often hypocritical.</td></tr><tr><th>Development / function</th><td>He changes from outsider to celebrity to cowardly exile.</td></tr><tr><th>Themes represented</th><td>Alienation, social approval, false rebellion, insecurity.</td></tr><tr><th>Possible exam point</th><td>Strong point: Bernard criticises the system mostly because it rejects him, not because he has stable moral courage.</td></tr></table>
+</details>
+<details class="character"><summary><span>Lenina Crowne</span><em>A Beta worker at the Hatchery; attractive, popular and mostly well-conditioned.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>Her relationship with Bernard takes the plot to the Reservation; her attraction to John creates the central love conflict.</td></tr><tr><th>Relationships</th><td>Object of desire for Henry, Bernard and John, but she also has her own confusion and vulnerability.</td></tr><tr><th>Traits</th><td>Kind, conventional, sensual, emotionally limited, sometimes curious.</td></tr><tr><th>Development / function</th><td>She never fully breaks free, but John’s rejection shows that she can suffer emotionally.</td></tr><tr><th>Themes represented</th><td>Conditioning, sexuality, consumer pleasure, limits of empathy.</td></tr><tr><th>Possible exam point</th><td>Strong point: Lenina is not evil; she is a product of her society and cannot understand John’s language of love.</td></tr></table>
+</details>
+<details class="character"><summary><span>Mustapha Mond</span><em>Resident World Controller for Western Europe, one of the ten Controllers.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He explains and defends the World State’s sacrifices: truth, art, religion and freedom for stability.</td></tr><tr><th>Relationships</th><td>Opponent to John, authority over Bernard and Helmholtz, intellectually above the Director.</td></tr><tr><th>Traits</th><td>Calm, intelligent, ironic, cultured, controlled.</td></tr><tr><th>Development / function</th><td>He does not develop much; his function is to reveal the system’s logic.</td></tr><tr><th>Themes represented</th><td>Power, censorship, political philosophy, happiness versus truth.</td></tr><tr><th>Possible exam point</th><td>Strong point: Mond is frightening because he understands the value of what he suppresses.</td></tr></table>
+</details>
+<details class="character"><summary><span>Helmholtz Watson</span><em>An Alpha Plus lecturer and emotional engineer who feels his writing could mean more.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He becomes John’s real friend and joins the soma riot.</td></tr><tr><th>Relationships</th><td>Friend to Bernard and John; contrast to Bernard because he is brave and talented.</td></tr><tr><th>Traits</th><td>Strong, intelligent, sincere, creative, dissatisfied.</td></tr><tr><th>Development / function</th><td>He accepts exile positively as a chance to write freely.</td></tr><tr><th>Themes represented</th><td>Art, language, authentic individuality, courage.</td></tr><tr><th>Possible exam point</th><td>Strong point: Helmholtz is the healthiest rebel in the novel, but even he cannot fully understand Shakespearean family emotions.</td></tr></table>
+</details>
+<details class="character"><summary><span>Linda</span><em>A Beta woman from London who was lost on the Reservation and gave birth to John.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>Her return humiliates the Director and brings the taboo of motherhood into London.</td></tr><tr><th>Relationships</th><td>Mother of John; former lover of the Director; despised by Reservation society and London society.</td></tr><tr><th>Traits</th><td>Needy, damaged, nostalgic, addicted to comfort, loving but weak as a parent.</td></tr><tr><th>Development / function</th><td>She declines into soma-induced death after returning to London.</td></tr><tr><th>Themes represented</th><td>Motherhood, shame, addiction, cultural displacement.</td></tr><tr><th>Possible exam point</th><td>Strong point: Linda is tragic because she belongs nowhere.</td></tr></table>
+</details>
+<details class="character"><summary><span>The Director / D.H.C.</span><em>Director of Hatcheries and Conditioning in London.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He introduces the system and later tries to punish Bernard, but is ruined when John calls him father.</td></tr><tr><th>Relationships</th><td>Biological father of John; former partner of Linda; boss and enemy of Bernard.</td></tr><tr><th>Traits</th><td>Authoritarian, conventional, hypocritical, proud.</td></tr><tr><th>Development / function</th><td>Falls from authority to shame and resignation.</td></tr><tr><th>Themes represented</th><td>Institutional power, hypocrisy, taboo, controlled reproduction.</td></tr><tr><th>Possible exam point</th><td>Strong point: His downfall is ironic because he is destroyed by the natural family system he despises.</td></tr></table>
+</details>
+<details class="character"><summary><span>Henry Foster</span><em>A confident Alpha who dates Lenina and works at the Hatchery.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He represents the normal, successful World State citizen.</td></tr><tr><th>Relationships</th><td>Sexual partner of Lenina; colleague of Bernard; admired by the system.</td></tr><tr><th>Traits</th><td>Efficient, cheerful, superficial, scientifically enthusiastic.</td></tr><tr><th>Development / function</th><td>He does not change.</td></tr><tr><th>Themes represented</th><td>Conformity, consumer sexuality, scientific dehumanisation.</td></tr><tr><th>Possible exam point</th><td>Strong point: Henry shows how normal people can be morally blind in an immoral system.</td></tr></table>
+</details>
+<details class="character"><summary><span>Fanny Crowne</span><em>Lenina’s friend and coworker.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>She explains social norms to Lenina, especially promiscuity and conventional behaviour.</td></tr><tr><th>Relationships</th><td>Friend and social guide for Lenina.</td></tr><tr><th>Traits</th><td>Practical, conventional, caring in a limited way.</td></tr><tr><th>Development / function</th><td>No major development.</td></tr><tr><th>Themes represented</th><td>Social pressure, conditioning, peer control.</td></tr><tr><th>Possible exam point</th><td>Strong point: Fanny shows that control does not only come from the State; friends also police each other.</td></tr></table>
+</details>
+<details class="character"><summary><span>Benito Hoover</span><em>A cheerful Alpha who offers Bernard soma.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>Minor character who shows normal social cheerfulness and the reflex to medicate sadness.</td></tr><tr><th>Relationships</th><td>Acquaintance of Lenina and Bernard.</td></tr><tr><th>Traits</th><td>Good-natured, shallow, constantly positive.</td></tr><tr><th>Development / function</th><td>No development.</td></tr><tr><th>Themes represented</th><td>Soma, emotional avoidance, normality.</td></tr><tr><th>Possible exam point</th><td>Strong point: He is a small example of how sadness is treated as a chemical problem.</td></tr></table>
+</details>
+<details class="character"><summary><span>Mr Foster</span><em>A Hatchery expert who proudly explains technical details.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He helps introduce the biological production system.</td></tr><tr><th>Relationships</th><td>Colleague of Lenina and the Director.</td></tr><tr><th>Traits</th><td>Energetic, precise, proud of numbers and efficiency.</td></tr><tr><th>Development / function</th><td>No development.</td></tr><tr><th>Themes represented</th><td>Science without ethics, mass production.</td></tr><tr><th>Possible exam point</th><td>Strong point: His enthusiasm makes the horror more disturbing.</td></tr></table>
+</details>
+<details class="character"><summary><span>Popé</span><em>A man on the Reservation who has a sexual relationship with Linda.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He contributes to John’s jealousy and hatred during childhood.</td></tr><tr><th>Relationships</th><td>Connected to Linda and John.</td></tr><tr><th>Traits</th><td>Casual, physically present, associated with mescal and John’s resentment.</td></tr><tr><th>Development / function</th><td>No major development.</td></tr><tr><th>Themes represented</th><td>Sexual jealousy, cultural conflict, John’s shame.</td></tr><tr><th>Possible exam point</th><td>Strong point: Popé matters because John learns violence, jealousy and moral disgust through him.</td></tr></table>
+</details>
+<details class="character"><summary><span>Mitsima</span><em>An older man on the Reservation who teaches John practical skills.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He gives John one of his few positive male connections.</td></tr><tr><th>Relationships</th><td>Mentor figure for John.</td></tr><tr><th>Traits</th><td>Patient, practical, traditional.</td></tr><tr><th>Development / function</th><td>No major development.</td></tr><tr><th>Themes represented</th><td>Craft, tradition, belonging.</td></tr><tr><th>Possible exam point</th><td>Strong point: He shows that the Reservation also contains meaningful skills and rituals.</td></tr></table>
+</details>
+<details class="character"><summary><span>The Arch-Community-Songster</span><em>A high-ranking religious-style figure in London.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He represents the World State’s empty replacement for religion.</td></tr><tr><th>Relationships</th><td>Social contact of Bernard and Lenina; part of elite London.</td></tr><tr><th>Traits</th><td>Ceremonial, conventional, status-conscious.</td></tr><tr><th>Development / function</th><td>No major development.</td></tr><tr><th>Themes represented</th><td>Pseudo-religion, social rank, spectacle.</td></tr><tr><th>Possible exam point</th><td>Strong point: His title itself is satirical: spirituality has become organised entertainment.</td></tr></table>
+</details>
+<details class="character"><summary><span>Dr Shaw</span><em>Linda’s doctor in London.</em></summary>
+<table class="mini-table"><tr><th>Role in the plot</th><td>He gives Linda enough soma to keep her permanently drugged, knowing it will shorten her life.</td></tr><tr><th>Relationships</th><td>Doctor treating Linda; indirectly affects John.</td></tr><tr><th>Traits</th><td>Professionally calm, pragmatic, emotionally detached.</td></tr><tr><th>Development / function</th><td>No development.</td></tr><tr><th>Themes represented</th><td>Medical control, drugged comfort, death denial.</td></tr><tr><th>Possible exam point</th><td>Strong point: He shows the moral danger of choosing comfort over life.</td></tr></table>
+</details>
+</section>
+
+<section id="narrator">
+<h2>4. Narrator and point of view</h2>
+<div class="grid">
+<div class="card "><h3>Who is the narrator?</h3><p>The narrator is an external third-person narrator, not a character in the story. The narrator stands outside the events and can move between places, characters and social levels.</p></div>
+<div class="card "><h3>Point of view</h3><p>The novel mainly uses third-person omniscient narration. The narrator can describe the Hatchery, the Reservation, John’s memories, Bernard’s insecurity, Lenina’s conditioned thoughts and Mond’s political reasoning.</p></div>
+<div class="card "><h3>Effect on the reader</h3><p>The wide perspective makes the World State feel like a whole system, not just one person’s problem. It also allows irony: the narrator often describes horrifying things in calm, official language, so the reader notices the moral gap.</p></div>
+<div class="card "><h3>Reliability</h3><p>The narrator is basically reliable about events. This is not a first-person narrator who misremembers or hides things. However, the narration often enters the limited understanding of conditioned characters, so readers must recognise when a character’s view is shallow or distorted.</p></div>
+</div>
+<div class="highlight"><strong>Exam formulation:</strong> I would say the narrator is reliable in terms of facts, but the novel uses irony and shifting focalisation. The “unreliability” is not in the narrator but in the society’s slogans and in characters who misunderstand their own conditioning.</div>
+</section>
+
+<section id="structure">
+<h2>5. Structure and Freytag’s Pyramid</h2>
+<div class="pyramid"><div class="p1"><strong>Resolution</strong><br>Ch. 18: John’s suicide; the system continues.</div><div class="p2"><strong>Falling action</strong><br>John retreats to the lighthouse; media and crowds follow.</div><div class="p3"><strong>Climax</strong><br>Ch. 15-17: soma riot and debate with Mond.</div><div class="p4"><strong>Rising action</strong><br>Ch. 4-14: Reservation, John’s arrival, fame, love conflict, Linda’s death.</div><div class="p5"><strong>Exposition</strong><br>Ch. 1-3: Hatchery, conditioning, ideology of the World State.</div></div>
+<div class="grid">
+<div class="card "><h3>Chronology</h3><p>The main plot is mostly linear: London, Reservation, return to London, conflict, ending. There are important retrospective sections, especially the Director’s memory of losing Linda and John’s account of his childhood.</p></div>
+<div class="card "><h3>Stories within the story</h3><p>John’s childhood narrative is a story within the story. It slows the plot down and allows readers to understand his loneliness, his Shakespearean language and his intense moral imagination.</p></div>
+<div class="card "><h3>Important interruptions</h3><p>Chapter 3 is structurally experimental. It cuts between Mond’s lecture, Lenina and Fanny’s conversation, Bernard’s thoughts and hypnopædic slogans. This creates a noisy social collage.</p></div>
+<div class="card "><h3>Ending and beginning</h3><p>The novel begins with humans manufactured in bottles and ends with John’s body turned into a public spectacle. The beginning shows social control before birth; the ending shows that even rebellion and death are consumed by the crowd.</p></div>
+</div>
+</section>
+
+<section id="genre">
+<h2>6. Genre and form</h2>
+<div class="grid-3">
+<div class="card "><h3>Dystopian novel</h3><p>It presents a future society that looks successful but is morally terrifying. Typical conventions include state control, propaganda, loss of individuality and a central outsider who reveals the system’s cost.</p></div>
+<div class="card "><h3>Satire</h3><p>Huxley exaggerates real tendencies: mass production, consumerism, entertainment, chemical happiness and shallow sexuality. The humour is often dark because the society’s “solutions” are disturbing.</p></div>
+<div class="card "><h3>Philosophical novel</h3><p>The final debate between John and Mond turns the novel into an argument about happiness, truth, freedom, art, religion and suffering.</p></div>
+</div>
+<div class="highlight"><strong>Genre conventions challenged:</strong> Unlike some dystopias, the World State does not mainly rule through visible terror. It rules through pleasure, conditioning and convenience. This makes the novel especially unsettling because many citizens genuinely like their oppression.</div>
+</section>
+
+<section id="style">
+<h2>7. Language and style</h2>
+<div class="grid">
+<div class="card "><h3>Overall style</h3><p>Huxley’s style is satirical, intellectual and highly controlled. He mixes scientific jargon, advertising-like slogans, lyrical description, comedy and philosophical dialogue.</p></div>
+<div class="card "><h3>Sentence structure and pace</h3><p>The Hatchery chapters often use long technical lists and precise vocabulary, creating a mechanical mood. Chapter 3 uses fast cross-cutting, which makes the reader feel surrounded by propaganda and social noise.</p></div>
+<div class="card "><h3>Tone</h3><p>The tone shifts from clinical and ironic in the London chapters to more emotional and tragic in John’s story, Linda’s death and the ending. This contrast makes the World State look even colder.</p></div>
+<div class="card "><h3>Humour and irony</h3><p>Many names and slogans are ironic. “Civilised” people behave childishly, while the so-called Savage often has the deepest moral vocabulary. The comedy makes the criticism sharper.</p></div>
+</div>
+</section>
+
+<section id="devices">
+<h2>8. Literary devices</h2>
+<div class="device-grid">
+<div class="device"><b>Soma as symbol:</b> Soma represents artificial happiness and the refusal to face pain, grief or truth. It appears whenever society needs to prevent strong feeling.</div>
+<div class="device"><b>Ford as allusion:</b> Henry Ford symbolises mass production, consumerism and a machine-like worldview. Religious language is redirected toward industrial efficiency.</div>
+<div class="device"><b>Shakespeare as motif:</b> Shakespeare represents complex language, tragedy, love, jealousy, beauty and moral conflict - everything the World State removes.</div>
+<div class="device"><b>Bottles and factories:</b> The Hatchery symbolises the industrialisation of human life. People are literally produced for predetermined social functions.</div>
+<div class="device"><b>Irony:</b> The “brave new world” is not brave in the positive sense; it is comfortable, controlled and spiritually small.</div>
+<div class="device"><b>Contrast:</b> London and the Reservation contrast artificial stability with natural suffering, but neither place is presented as perfect.</div>
+<div class="device"><b>Repetition:</b> Hypnopædic slogans show how repeated language becomes thought. Repetition replaces reasoning.</div>
+<div class="device"><b>Foreshadowing:</b> The Director’s story about losing a woman on the Reservation prepares the revelation of Linda and John.</div>
+<div class="device"><b>Biblical / religious allusions:</b> The novel replaces crosses with T-shapes and religious rituals with Fordist ceremonies. John’s self-punishment echoes religious ideas of sin and purification.</div>
+<div class="device"><b>Names as allusions:</b> Names like Marx, Lenina, Darwin Bonaparte and Ford connect the future world to political, scientific and historical ideas.</div>
+</div>
+</section>
+
+<section id="themes">
+<h2>9. Themes and message</h2>
+<div class="theme-card"><h3>Central theme as a full sentence</h3><p>A society that removes suffering by controlling truth, freedom, love and individuality may become stable, but it also becomes less human.</p></div>
+<div class="theme-card"><h3>Happiness versus freedom</h3><p><strong>Explanation:</strong> The World State gives people pleasure and comfort but removes meaningful choice. <strong>Where it appears:</strong> conditioning, soma, Mond’s debate, John’s refusal. <strong>Characters:</strong> Mond, John, Bernard, Helmholtz. <strong>Exam point:</strong> The novel does not deny that happiness matters; it asks what kind of happiness is worth the price.</p></div>
+<div class="theme-card"><h3>Technology and social control</h3><p>Technology is not evil by itself, but in the World State it is used to predetermine identity and limit thought. The Hatchery, conditioning, feelies and soma all show technology serving political stability.</p></div>
+<div class="theme-card"><h3>Consumerism and distraction</h3><p>People are conditioned to consume, replace, travel, play and avoid solitude. The economy depends on shallow desires. This remains relevant in modern debates about advertising, entertainment, social media and constant distraction.</p></div>
+<div class="theme-card"><h3>Love, sex and family</h3><p>The World State separates sex from emotional commitment and treats family as obscene. John, however, idealises love so strongly that he cannot handle real desire. The novel criticises both emotional emptiness and destructive repression.</p></div>
+<div class="theme-card"><h3>Art, language and truth</h3><p>Shakespeare gives John a language for feelings that London cannot express. Mond suppresses old art because it would destabilise society. The theme matters because language shapes what people are able to feel and imagine.</p></div>
+<div class="theme-card"><h3>Ambiguous moral message</h3><p>The novel clearly criticises the World State, but it does not offer a simple alternative. The Reservation is cruel too, and John’s idealism becomes self-destructive. The message is therefore critical but not simplistic.</p></div>
+</section>
+
+<section id="setting">
+<h2>10. Setting and context</h2>
+<div class="grid">
+<div class="card "><h3>Place and time</h3><p>The main setting is London in the World State, in the year A.F. 632. The “A.F.” calendar begins after Ford, showing that industry has replaced traditional religion. The Reservation in New Mexico is the major contrast setting.</p></div>
+<div class="card "><h3>Social environment</h3><p>Society is divided into castes from Alpha to Epsilon. People are conditioned to accept their caste, enjoy their work and consume constantly. Family, old age, monogamy and religion are treated as shameful or primitive.</p></div>
+<div class="card "><h3>Atmosphere</h3><p>London feels clean, efficient, bright and controlled, but also emotionally cold. The Reservation feels vivid, painful, dirty, religious and human, but also harsh and exclusionary.</p></div>
+<div class="card "><h3>Historical context</h3><p>Written in the early 1930s, the novel reflects fears about mass production, Fordism, behaviourist psychology, eugenics, consumer culture, totalitarian control and the aftermath of modern war.</p></div>
+</div>
+<div class="highlight"><strong>Symbolic setting:</strong> London symbolises artificial order and emotional emptiness. The Reservation symbolises natural human life with birth, death, religion and suffering. The lighthouse symbolises John’s impossible search for purity and solitude.</div>
+</section>
+
+<section id="passages">
+<h2>11. Important passages and short quotations</h2>
+<p class="section-intro">Use these moments for oral exam evidence. The quotations are deliberately short so you can remember them easily.</p>
+<div class="quote-grid">
+<div class="quote-card"><div class="quote">“Community, Identity, Stability”</div><p><strong>Scene:</strong> The motto at the Hatchery. <strong>Use:</strong> Introduce the World State’s values and explain how stability is placed above freedom.</p></div>
+<div class="quote-card"><div class="quote">“History is bunk”</div><p><strong>Scene:</strong> Mond’s lecture. <strong>Use:</strong> Discuss control of the past and why memory threatens the present system.</p></div>
+<div class="quote-card"><div class="quote">“Everyone belongs to everyone else”</div><p><strong>Scene:</strong> Hypnopædic sexual morality. <strong>Use:</strong> Discuss how slogans replace personal relationships and private commitment.</p></div>
+<div class="quote-card"><div class="quote">“O brave new world”</div><p><strong>Scene:</strong> John’s Shakespearean reaction to London. <strong>Use:</strong> Explain dramatic irony: John’s hope becomes disgust.</p></div>
+<div class="quote-card"><div class="quote">“I claim them all”</div><p><strong>Scene:</strong> John’s debate with Mond. <strong>Use:</strong> Discuss John’s choice of suffering, danger and moral freedom.</p></div>
+<div class="quote-card"><div class="quote">“Ending is better than mending”</div><p><strong>Scene:</strong> Consumerist conditioning. <strong>Use:</strong> Analyse the economic logic behind shallow desire.</p></div>
+</div>
+</section>
+
+<section id="worksheet">
+<h2>12. Teacher worksheet - exam-ready answers</h2>
+<details class="worksheet-item" open><summary>Narrator + Point of View</summary><p>Third-person omniscient external narrator. The narrator is not involved in the events and is reliable about facts. The effect is broad social criticism: the reader sees the whole system, not only one character’s experience. Irony is central because shocking practices are often described in calm, official language.</p></details>
+<details class="worksheet-item"><summary>Structure + Freytag’s Pyramid</summary><p>Exposition: Chapters 1-3 introduce the World State. Rising action: Bernard and Lenina’s trip, John’s discovery, the return to London, fame and conflict. Climax: the soma riot and John’s debate with Mond. Falling action: John retreats to the lighthouse. Resolution: John dies and the World State remains unchanged. The structure is mostly linear with important flashbacks and inserted life stories.</p></details>
+<details class="worksheet-item"><summary>Genre + Form</summary><p>The work is a dystopian, satirical and philosophical novel. It follows dystopian conventions such as social control, propaganda and an outsider figure, but it challenges the genre because the society rules through pleasure rather than open terror.</p></details>
+<details class="worksheet-item"><summary>Language + Style</summary><p>Huxley mixes scientific language, slogans, satire, lyrical description and Shakespearean allusions. Long technical lists make the World State feel mechanical; rapid cuts in Chapter 3 create a collage of propaganda; John’s language introduces emotional and tragic intensity.</p></details>
+<details class="worksheet-item"><summary>Literary Devices</summary><p>Important devices include soma as a symbol of artificial happiness, Ford as an allusion to mass production, Shakespeare as a motif of art and human depth, repeated slogans as propaganda, irony in the title and strong contrast between London and the Reservation.</p></details>
+<details class="worksheet-item"><summary>Theme + Message</summary><p>The central theme is that a society can become stable by removing suffering, but it may lose freedom, truth, love and human dignity. Secondary themes include consumerism, technology, sexuality, family, art, religion, death and social conformity. The message is critical but ambiguous because John’s alternative is also extreme and tragic.</p></details>
+<details class="worksheet-item"><summary>Characters + Relationships</summary><p>John is the central tragic figure, Bernard is an insecure outsider, Lenina represents ordinary conditioning, Helmholtz represents authentic creative dissatisfaction and Mond represents intelligent authoritarian power. The key relationships are John-Lenina, John-Mond, Bernard-John and John-Linda.</p></details>
+<details class="worksheet-item"><summary>Setting + Context</summary><p>The setting is a future World State in A.F. 632 and the Savage Reservation in New Mexico. London symbolises artificial stability; the Reservation symbolises natural life with pain and ritual; the lighthouse symbolises John’s failed attempt to escape society. The context includes 1930s fears about Fordism, mass production, behaviourism, eugenics and consumer culture.</p></details>
+<details class="worksheet-item"><summary>Personal Reception + Opinion</summary><p>A strong personal answer could say: I found John the most compelling character because he sees the emptiness of the World State, but he is also not a perfect solution. The most emotional moment for me is Linda’s death because John’s real grief is surrounded by children who have been trained not to understand death emotionally.</p></details>
+<details class="worksheet-item"><summary>Broader Significance</summary><p>The novel is significant because it is one of the most influential dystopias of the twentieth century and because its warning is different from a simple dictatorship story. It remains relevant whenever comfort, entertainment, consumption or technology make people less willing to think critically.</p></details>
+<details class="worksheet-item"><summary>Final Reflection</summary><p>In one or two sentences: <em>Brave New World</em> is about a future society that creates happiness and stability by controlling people from birth. Its deeper meaning is a warning that comfort without freedom, truth, love and moral struggle may make life less human.</p></details>
+</section>
+
+<section id="oral">
+<h2>13. Oral exam preparation</h2>
+<div class="highlight"><strong>How to talk about the book:</strong> Start with the concrete scene, then connect it to a character, then explain the theme. A good answer sounds like this: “In the Hatchery scene, Huxley shows... This matters because... The scene connects to the theme of... Therefore, I would argue that...”</div>
+<h3>Useful sentence starters</h3>
+<div class="grid-3">
+<div class="card "><h3>Analysis</h3><p>The scene suggests that...<br>The contrast between ... and ... shows...<br>Huxley uses irony to make the reader question...</p></div>
+<div class="card "><h3>Characters</h3><p>At first, this character seems..., but later...<br>This relationship is important because...<br>The character represents...</p></div>
+<div class="card "><h3>Personal opinion</h3><p>What I found most striking was...<br>I would not describe the message as simple because...<br>For a modern reader, this is relevant because...</p></div>
+</div>
+<h3>Possible oral exam questions with sample answers</h3>
+
+<details class="qa easy"><summary><span class="badge">Easy</span>What is the World State’s main goal?</summary><p>The World State’s main goal is stability. It achieves this by controlling reproduction, conditioning people from infancy, limiting deep emotions and using soma to remove pain or conflict. I would connect this to the motto and to the Hatchery scenes, where human beings are produced for social roles instead of allowed to develop freely.</p></details>
+<details class="qa easy"><summary><span class="badge">Easy</span>Why is John called “the Savage”?</summary><p>John is called “the Savage” because he was born and raised on the Savage Reservation, outside the World State. The label is ironic because he often seems more emotionally and morally serious than the supposedly civilised people in London.</p></details>
+<details class="qa medium"><summary><span class="badge">Medium</span>How does Huxley criticise consumerism?</summary><p>Huxley shows a society where consumption is treated as a moral duty. People are conditioned to buy new things, play equipment-heavy games and avoid repairing old objects. This criticises a culture that values economic activity more than thought, nature or authentic human relationships.</p></details>
+<details class="qa medium"><summary><span class="badge">Medium</span>Is Bernard Marx a real rebel?</summary><p>Only partly. Bernard dislikes the World State, but much of his rebellion comes from personal insecurity and social rejection. When John makes him popular, Bernard enjoys the same shallow society he had criticised. Helmholtz and John are more convincing rebels because they are willing to lose comfort for truth or freedom.</p></details>
+<details class="qa medium"><summary><span class="badge">Medium</span>What role does Lenina play in the novel?</summary><p>Lenina is important because she shows how conditioning works in an ordinary person. She is not cruel, and she can feel attraction and confusion, but she usually thinks in World State slogans. Her relationship with John reveals the conflict between casual sexuality and romantic or spiritual love.</p></details>
+<details class="qa difficult"><summary><span class="badge">Difficult</span>Does the novel present the Reservation as better than the World State?</summary><p>No, not simply. The Reservation has family, religion, birth, ageing and suffering, which the World State has removed. However, it also contains cruelty, exclusion and poverty. Huxley uses the contrast to show that neither world is ideal. The central question is not “Which society is perfect?” but “What makes a life fully human?”</p></details>
+<details class="qa difficult"><summary><span class="badge">Difficult</span>Why is Mustapha Mond such an effective antagonist?</summary><p>Mond is effective because he is not ignorant. He knows Shakespeare, religion and science, but chooses to suppress them for social stability. This makes the debate more complex: he can explain the logic of the World State, even though the reader sees the moral cost.</p></details>
+<details class="qa difficult"><summary><span class="badge">Difficult</span>What is tragic about John’s ending?</summary><p>John wants purity, solitude and moral freedom, but he cannot escape either his own desire or society’s hunger for spectacle. His death is tragic because he understands that the World State is empty, but he cannot build a liveable alternative. The system survives him.</p></details>
+<details class="qa difficult"><summary><span class="badge">Difficult</span>What does the novel suggest about happiness?</summary><p>The novel suggests that happiness without freedom, truth, love or suffering may be too shallow to be fully human. The World State produces comfort, but it removes depth. John’s position is also extreme, so the message is not simple; Huxley forces readers to ask what kind of happiness is worth having.</p></details>
+<details class="qa difficult"><summary><span class="badge">Difficult</span>How does the narrative style support the themes?</summary><p>The style often shifts between scientific explanation, satire, slogans and lyrical or Shakespearean language. This contrast supports the themes because the World State speaks in efficiency and repetition, while John’s language reaches for beauty, tragedy and moral depth.</p></details>
+</section>
+
+<section id="checklist">
+<h2>14. Final compact revision checklist</h2>
+<div class="card"><ul class="checklist">
+<li>I can explain the World State motto and why it matters.</li>
+<li>I can summarise the whole plot from the Hatchery to John’s death.</li>
+<li>I can explain why John, Bernard, Lenina, Helmholtz and Mond are important.</li>
+<li>I can compare London and the Reservation without saying one is simply perfect.</li>
+<li>I can explain soma as a symbol.</li>
+<li>I can explain Shakespeare’s role in John’s identity.</li>
+<li>I can apply Freytag’s Pyramid to the novel.</li>
+<li>I can describe the narrator and point of view accurately.</li>
+<li>I can discuss genre: dystopia, satire and philosophical novel.</li>
+<li>I can analyse style: scientific language, slogans, irony and tonal shifts.</li>
+<li>I can give at least three short textual references in the exam.</li>
+<li>I can answer whether the moral message is clear or ambiguous.</li>
+<li>I can connect the novel to modern consumerism, technology and distraction.</li>
+<li>I can give a personal opinion with evidence from the text.</li>
+</ul></div>
+</section>
+
+<div class="footer"><strong>Study guide created for English Oral Matura revision.</strong><br>Based on the uploaded full text of <em>Brave New World</em> and the teacher’s literary analysis worksheet categories. Open this file in any browser and use it as a standalone revision website.</div>
+</main>
+</div>
+</body>
+</html>
