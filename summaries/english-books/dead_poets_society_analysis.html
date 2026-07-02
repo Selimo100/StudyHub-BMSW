@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dead Poets Society - English Oral Matura Study Guide</title>
+<style>
+:root {
+  --bg:#fff8ef; --paper:#fffdf8; --ink:#28231e; --muted:#6f6257; --gold:#c78b3a; --wine:#7b1f28; --forest:#213d34; --sage:#e4eddf; --cream:#fff4dd; --line:#ead8bf; --shadow:0 18px 45px rgba(67,42,21,.13);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;background:radial-gradient(circle at top left,#fff1d3 0,#fff8ef 34%,#f7ead8 100%);color:var(--ink);line-height:1.65}
+a{color:inherit}
+.hero{min-height:74vh;padding:32px 6vw 70px;background:linear-gradient(135deg,rgba(33,61,52,.94),rgba(123,31,40,.86)), radial-gradient(circle at 70% 20%,rgba(255,221,157,.42),transparent 28%);color:#fff;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:auto -10% -35% -10%;height:55%;background:radial-gradient(ellipse at center,rgba(255,255,255,.13),transparent 65%);transform:rotate(-3deg)}
+.topbar{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(255,248,239,.82);border-bottom:1px solid var(--line);display:flex;gap:16px;align-items:center;justify-content:space-between;padding:10px 5vw;box-shadow:0 8px 30px rgba(42,31,20,.06)}
+.brand{font-weight:800;color:var(--forest);letter-spacing:.02em}
+.nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{font-size:.86rem;text-decoration:none;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid rgba(199,139,58,.22);color:#4b392d}
+.nav a:hover{background:#fff;color:var(--wine)}
+.hero-inner{position:relative;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:42px;align-items:center;padding-top:52px}
+.kicker{display:inline-flex;padding:8px 13px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(255,255,255,.12);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
+h1{font-family:Georgia, 'Times New Roman', serif;font-size:clamp(3.2rem,8vw,7rem);line-height:.92;margin:22px 0 20px}
+.subtitle{font-size:1.25rem;max-width:760px;color:#fff2df}
+.hero-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.26);border-radius:30px;padding:26px;box-shadow:var(--shadow)}
+.hero-card h2{margin-top:0;font-family:Georgia,serif}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.meta{background:rgba(255,255,255,.12);border-radius:18px;padding:14px}
+.meta span{display:block;color:#ffe4b5;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}
+.meta strong{font-size:1rem}
+main{max-width:1180px;margin:0 auto;padding:42px 5vw 80px}
+section{margin:38px 0;padding:34px;background:rgba(255,253,248,.84);border:1px solid var(--line);border-radius:32px;box-shadow:var(--shadow)}
+.section-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:24px}
+.number{min-width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--wine),#b14932);color:#fff;display:grid;place-items:center;font-weight:900}
+h2{font-family:Georgia,'Times New Roman',serif;font-size:2.1rem;line-height:1.1;margin:0 0 8px;color:var(--forest)}
+h3{font-size:1.2rem;margin:0 0 10px;color:var(--wine)}
+h4{margin:0 0 8px;color:var(--forest)}
+p{margin:0 0 12px} .muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px} .grid.two{grid-template-columns:repeat(2,1fr)}
+.card,.theme-card,.character-card,.chapter-card,.quote-box{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 10px 24px rgba(67,42,21,.07)}
+.highlight{background:linear-gradient(135deg,#fff1d0,#f8dfc8);border-left:6px solid var(--gold);padding:20px;border-radius:20px;margin:18px 0}
+.tag-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.tag{padding:7px 11px;border-radius:999px;background:var(--sage);color:#244436;font-weight:700;font-size:.86rem}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 22px}.chapter-nav a{text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px 10px;color:var(--wine);font-weight:700}
+.chapter-card{margin:18px 0;position:relative;overflow:hidden}.chapter-num{font-size:.82rem;font-weight:900;color:#fff;background:var(--forest);display:inline-block;padding:6px 10px;border-radius:999px;margin-bottom:10px}
+.chapter-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.chapter-grid>div{background:#fffaf2;border-radius:18px;padding:16px;border:1px solid #efdfc8}.analysis-line{margin-top:16px;padding:15px 16px;background:#f1eadf;border-radius:18px}
+.character-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px} .role{font-weight:800;color:var(--forest)}
+dl{margin:0}dt{font-weight:900;color:#4d3527;margin-top:10px}dd{margin:2px 0 0;color:#463e37}
+.relationships{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.rel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;text-align:center}.arrow{display:block;font-size:1.4rem;color:var(--gold);font-weight:900}
+.pyramid{display:grid;gap:10px;max-width:760px;margin:auto}.pyr{padding:14px 18px;border-radius:16px;color:#fff;text-align:center;font-weight:800}.p1{background:#7b1f28;width:44%;margin:auto}.p2{background:#994235;width:58%;margin:auto}.p3{background:#b9603a;width:72%;margin:auto}.p4{background:#c78b3a;width:86%;margin:auto}.p5{background:#213d34;width:100%;margin:auto}
+table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:18px;background:#fff}th,td{padding:14px;border-bottom:1px solid var(--line);vertical-align:top}th{text-align:left;background:#f1e3cf;color:var(--forest)}tr:last-child td{border-bottom:0}td span{color:var(--wine);font-weight:800}
+.device-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.device{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}
+.qa{background:#fff;border:1px solid var(--line);border-radius:18px;margin:12px 0;padding:14px 18px}.qa summary{cursor:pointer;font-weight:900;color:var(--forest)}
+.checklist{columns:2;column-gap:34px}.checklist li{break-inside:avoid;margin:8px 0}
+.footer{text-align:center;color:var(--muted);padding:32px 5vw 50px}
+@media(max-width:900px){.hero-inner,.grid,.grid.two,.chapter-grid,.character-grid,.relationships,.device-list{grid-template-columns:1fr}.hero{padding-top:20px}section{padding:24px}.topbar{position:static;align-items:flex-start;flex-direction:column}.checklist{columns:1}}
+@media print{.topbar{display:none}body{background:white}section{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">English Oral Matura · Study Guide</div>
+  <nav class="nav">
+    <a href="#overview">Overview</a><a href="#plot">Plot</a><a href="#characters">Characters</a><a href="#pov">Narrator</a><a href="#structure">Structure</a><a href="#themes">Themes</a><a href="#worksheet">Worksheet</a><a href="#exam">Exam Prep</a>
+  </nav>
+</header>
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="kicker">Complete exam-ready guide</span>
+      <h1>Dead Poets Society</h1>
+      <p class="subtitle">A detailed, visually structured revision website for understanding, summarising, analysing and discussing N. H. Kleinbaum's novelisation with confidence in an English oral Matura exam.</p>
+      <div class="tag-row"><span class="tag">Carpe Diem</span><span class="tag">Coming-of-age</span><span class="tag">Education</span><span class="tag">Conformity</span><span class="tag">Tragedy</span><span class="tag">Finding your voice</span></div>
+    </div>
+    <aside class="hero-card">
+      <h2>Quick facts</h2>
+      <div class="meta-grid">
+        <div class="meta"><span>Author</span><strong>N. H. Kleinbaum</strong></div>
+        <div class="meta"><span>Publication</span><strong>1989</strong></div>
+        <div class="meta"><span>Form</span><strong>Novelisation</strong></div>
+        <div class="meta"><span>Based on</span><strong>Film written by Tom Schulman</strong></div>
+        <div class="meta"><span>Setting</span><strong>Welton Academy, Vermont, 1959</strong></div>
+        <div class="meta"><span>Genre</span><strong>Coming-of-age school tragedy</strong></div>
+      </div>
+    </aside>
+  </div>
+</div>
+<main>
+<section id="overview"><div class="section-head"><div class="number">1</div><div><h2>Book overview</h2><p class="muted">The essential foundation for the oral exam.</p></div></div>
+<div class="grid two">
+  <div class="card"><h3>Basic story in simple English</h3><p>At Welton Academy, an elite boys' boarding school, students are expected to become successful, disciplined and obedient. A new English teacher, John Keating, encourages them to think independently, love poetry and seize the day. Inspired by him, a group of boys revives the secret Dead Poets Society. The lessons awaken courage, friendship, love and artistic desire, especially in Neil Perry and Todd Anderson. However, the school and parents are not ready for this freedom. Neil's conflict with his controlling father ends tragically, and Keating is blamed.</p></div>
+  <div class="card"><h3>What this book is really about</h3><p>The novel asks what happens when young people are trained for success but not allowed to become themselves. It is about the need for a personal voice, the power of literature, and the danger of confusing obedience with virtue. Its deeper message is not simply 'break the rules'. It is that education should help people live thoughtfully and authentically, while families and institutions must listen before pressure becomes destructive.</p></div>
+</div>
+<div class="highlight"><strong>Core interpretation for the exam:</strong> <em>Dead Poets Society</em> presents education as a conflict between conformity and self-discovery. Keating's teaching gives the boys language and courage, but the tragedy of Neil shows that inspiration alone is not enough when authority refuses honest dialogue.</div>
+</section>
+
+<section id="plot"><div class="section-head"><div class="number">2</div><div><h2>Detailed plot summary by chapter</h2><p class="muted">Each chapter includes what happens, why it matters, character development and analysis.</p></div></div>
+<div class="chapter-nav"><a href="#chapter-1">1</a><a href="#chapter-2">2</a><a href="#chapter-3">3</a><a href="#chapter-4">4</a><a href="#chapter-5">5</a><a href="#chapter-6">6</a><a href="#chapter-7">7</a><a href="#chapter-8">8</a><a href="#chapter-9">9</a><a href="#chapter-10">10</a><a href="#chapter-11">11</a><a href="#chapter-12">12</a><a href="#chapter-13">13</a><a href="#chapter-14">14</a><a href="#chapter-15">15</a></div>
+
+<article class="chapter-card" id="chapter-1">
+  <div class="chapter-num">Chapter 1</div>
+  <h3>Welton is introduced: tradition, pressure and expectations</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>The novel opens in the stone chapel of Welton Academy in Vermont during the school&#x27;s centennial year, 1959. Headmaster Nolan celebrates the school through its four pillars: Tradition, Honor, Discipline and Excellence. The parents are proud, but the boys are tense and controlled. Todd Anderson is introduced as a shy transfer student living in the shadow of his successful brother Jeffrey. Neil Perry is presented as gifted and ambitious, but his father&#x27;s cold control is already visible.</p></div>
+    <div><h4>Why it matters</h4><p>This chapter establishes Welton as a place of prestige, discipline and emotional pressure. It also introduces the central conflict between institutional success and individual identity.</p></div>
+    <div><h4>Character development</h4><p>Todd is insecure and almost invisible; Neil looks successful but is trapped by family expectations; Nolan represents the system.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Ritual, conformity, parental expectations, success, public image.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> The ceremonial candle and banners make education look noble, but the boys&#x27; fear reveals the darker side of the system.</div>
+</article>
+
+<article class="chapter-card" id="chapter-2">
+  <div class="chapter-num">Chapter 2</div>
+  <h3>Roommates, activities and the first signs of friendship</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>The boys meet in the Honor Room and receive their assigned extracurricular activities. Todd tries to ask for rowing instead of soccer, but he cannot speak confidently and Nolan dismisses his wish. Neil becomes Todd&#x27;s roommate and introduces him to Charlie Dalton, Knox Overstreet, Steven Meeks and Richard Cameron. Todd&#x27;s famous brother is mentioned again, increasing his anxiety.</p></div>
+    <div><h4>Why it matters</h4><p>The chapter shows how little personal choice the students have. Even hobbies are assigned by authority. It also begins the friendship group that later becomes the Dead Poets Society.</p></div>
+    <div><h4>Character development</h4><p>Neil is friendly and socially confident; Todd is painfully shy; Cameron is shown as rule-bound and insensitive.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Choice versus obedience, social belonging, hierarchy among boys.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> Todd&#x27;s failed attempt to choose rowing is a small but important symbol of his inability to claim his own voice.</div>
+</article>
+
+<article class="chapter-card" id="chapter-3">
+  <div class="chapter-num">Chapter 3</div>
+  <h3>Mr Perry controls Neil</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>Mr Perry arrives unexpectedly and orders Neil to drop the school annual, even though Neil is assistant editor. Neil tries to protest, but his father silences him and reminds him that he must obey until he has finished medical school. Neil returns angry and humiliated. Todd notices Neil&#x27;s pain, and the two boys begin to understand each other.</p></div>
+    <div><h4>Why it matters</h4><p>This is the first clear example of authoritarian parenting. Neil&#x27;s tragedy begins here: he has talent and desire, but no real power over his life.</p></div>
+    <div><h4>Character development</h4><p>Neil&#x27;s public confidence collapses in front of his father; Todd shows quiet empathy; Charlie and Knox talk bravely but also admit they obey their own parents.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Father-son conflict, guilt, silence, power, emotional repression.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> The achievement pin Neil throws away becomes a small image of success turning into pain.</div>
+</article>
+
+<article class="chapter-card" id="chapter-4">
+  <div class="chapter-num">Chapter 4</div>
+  <h3>Keating&#x27;s first lesson: Carpe Diem</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>The boys experience strict Chemistry, Latin and Math lessons before entering English class. John Keating behaves differently from the other teachers: he jumps on his desk, asks to be called &#x27;O Captain! My Captain!&#x27;, takes the class to the Honor Room and has Pitts read Herrick&#x27;s poem. Keating introduces the idea of Carpe Diem and tells the boys to make their lives extraordinary while they still can.</p></div>
+    <div><h4>Why it matters</h4><p>This is the novel&#x27;s turning point in education. Keating introduces a new way of learning: not memorising for exams only, but connecting literature to life.</p></div>
+    <div><h4>Character development</h4><p>Neil is inspired immediately; Todd is intrigued but unsure; Cameron worries about tests; Keating becomes the catalyst.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Mortality, individuality, poetry, education, awakening.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> The old class photos work as memento mori: they remind the boys that success means little if they never truly live.</div>
+</article>
+
+<article class="chapter-card" id="chapter-5">
+  <div class="chapter-num">Chapter 5</div>
+  <h3>Knox meets Chris and Keating destroys mechanical poetry</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>After gym class, Knox has dinner at the Danburrys&#x27; house and sees Chris Noel. He falls in love immediately, but discovers that she is dating Chet Danburry. Back at Welton, Keating asks Neil to read J. Evans Pritchard&#x27;s method for measuring poetry and then commands the boys to rip the page out. He argues that poetry, love, beauty and ideas are what people stay alive for.</p></div>
+    <div><h4>Why it matters</h4><p>The chapter connects two kinds of awakening: Knox&#x27;s romantic desire and the boys&#x27; intellectual rebellion against lifeless analysis.</p></div>
+    <div><h4>Character development</h4><p>Knox becomes driven by romantic longing; Keating becomes more radical; the class begins to trust him.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Love, passion, anti-conformity, poetry versus formula, courage.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> Ripping out the page is symbolic rebellion against reducing art to numbers.</div>
+</article>
+
+<article class="chapter-card" id="chapter-6">
+  <div class="chapter-num">Chapter 6</div>
+  <h3>The Dead Poets Society is rediscovered</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>McAllister warns Keating that encouraging free thinking can be dangerous. Neil finds Keating&#x27;s old annual and discovers the phrase Dead Poets Society. The boys ask Keating about it. He explains that it was a secret group that met in a cave, read poetry and tried to &#x27;suck the marrow out of life&#x27;. Neil decides they should revive it that night.</p></div>
+    <div><h4>Why it matters</h4><p>The boys move from listening to Keating to acting on his ideas. The secret society becomes their attempt to create a space outside Welton&#x27;s rules.</p></div>
+    <div><h4>Character development</h4><p>Neil takes leadership; Charlie is excited by rebellion; Cameron is nervous; Todd is invited but fears having to read aloud.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Secret spaces, youth rebellion, poetry, risk, peer pressure.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> The cave becomes the opposite of Welton: informal, emotional, dark, free and dangerous.</div>
+</article>
+
+<article class="chapter-card" id="chapter-7">
+  <div class="chapter-num">Chapter 7</div>
+  <h3>The first cave meeting and the birth of the group</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>Neil receives Keating&#x27;s old poetry anthology. Late at night the boys sneak out, avoid the school dog and find the cave. They begin the revived Dead Poets Society. They read poetry, joke, smoke and create a ritual that feels exciting and forbidden. Todd comes but does not read. The group begins to bond more deeply.</p></div>
+    <div><h4>Why it matters</h4><p>The boys experience freedom together for the first time. The society is not only about poetry; it is about friendship, risk and identity.</p></div>
+    <div><h4>Character development</h4><p>Todd participates quietly; Neil becomes the group&#x27;s main organiser; Charlie starts turning rebellion into performance.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Friendship, secrecy, adolescence, performance, escape from authority.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> The cave&#x27;s darkness and fire create a Romantic atmosphere: it feels primitive, intimate and alive compared with Welton&#x27;s cold order.</div>
+</article>
+
+<article class="chapter-card" id="chapter-8">
+  <div class="chapter-num">Chapter 8</div>
+  <h3>Neil chooses acting and Todd finds a voice</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>At another meeting, Neil announces he is going to try out for A Midsummer Night&#x27;s Dream at Henley Hall. He forges his father&#x27;s permission and wins the role of Puck. In class, Keating tells the boys to stand on his desk to see differently. He also forces Todd through the &#x27;barbaric yawp&#x27; exercise. Todd improvises a surprisingly powerful poem and the class applauds.</p></div>
+    <div><h4>Why it matters</h4><p>Neil&#x27;s desire becomes action, but also deception. Todd&#x27;s scene is one of the most important moments of growth: he discovers that he has something worth saying.</p></div>
+    <div><h4>Character development</h4><p>Neil becomes brave but reckless; Todd begins changing from silent observer to speaker; Keating&#x27;s teaching has visible effects.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Finding one&#x27;s voice, perspective, self-confidence, art, disobedience.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> Standing on the desk symbolises a new perspective; Todd&#x27;s poem shows that hidden inner life can be released through trust.</div>
+</article>
+
+<article class="chapter-card" id="chapter-9">
+  <div class="chapter-num">Chapter 9</div>
+  <h3>Knox calls Chris and Neil commits to the play</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>Neil begins rehearsing as Puck and feels alive on stage. Knox is encouraged by the Dead Poets to call Chris. He panics, hangs up, then calls again and speaks to her. The boys continue to treat Keating&#x27;s message as permission to act. Todd&#x27;s birthday reveals his parents&#x27; neglect when they send him the same desk set as the year before.</p></div>
+    <div><h4>Why it matters</h4><p>The chapter shows how Carpe Diem affects different boys differently: Neil pursues art, Knox pursues love, and Todd confronts emotional invisibility.</p></div>
+    <div><h4>Character development</h4><p>Neil grows more passionate; Knox becomes bolder; Todd&#x27;s pain becomes clearer; the group supports him.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Courage, romantic risk, parental neglect, identity, friendship.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> The repeated desk set is a quiet but powerful symbol of Todd not being truly seen by his family.</div>
+</article>
+
+<article class="chapter-card" id="chapter-10">
+  <div class="chapter-num">Chapter 10</div>
+  <h3>Charlie becomes Nuwanda and the school strikes back</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>Charlie brings two girls to a Dead Poets meeting and renames himself Nuwanda. Later he publishes an article demanding that girls be admitted to Welton and pretends it was a divine message by making a phone ring during assembly. Nolan punishes him with paddling. Keating privately warns the boys that Carpe Diem does not mean stupidity and that they must not simply rebel for attention.</p></div>
+    <div><h4>Why it matters</h4><p>The chapter complicates Keating&#x27;s message. Freedom without judgement becomes reckless. Charlie&#x27;s rebellion is brave but also immature.</p></div>
+    <div><h4>Character development</h4><p>Charlie becomes the clearest rebel; Keating shows responsibility; Cameron becomes more anxious about consequences.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Rebellion, performance, limits of freedom, authority, masculinity.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> Charlie&#x27;s name change shows his wish to invent himself, but his actions also reveal the danger of confusing individuality with spectacle.</div>
+</article>
+
+<article class="chapter-card" id="chapter-11">
+  <div class="chapter-num">Chapter 11</div>
+  <h3>Neil&#x27;s passion and his father&#x27;s discovery</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>Winter arrives. Neil tells Todd that acting lets him live many lives and that he finally feels alive. Keating advises Neil to talk honestly with his father. Mr Perry discovers Neil&#x27;s role and orders him to quit the play. Neil tells Keating that his father is allowing him to continue, but this is a lie. Knox invites Chris to Neil&#x27;s performance, and she eventually attends with the group.</p></div>
+    <div><h4>Why it matters</h4><p>This chapter brings Neil&#x27;s conflict to crisis point. Keating&#x27;s advice is reasonable, but Neil is too afraid and too desperate to follow it honestly.</p></div>
+    <div><h4>Character development</h4><p>Neil is joyful on stage but trapped at home; Todd becomes a closer friend; Keating tries to help but cannot replace Neil&#x27;s father.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Truth, self-deception, art as liberation, parental authority, fear.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> Neil&#x27;s lie to Keating is tragic foreshadowing: he wants freedom but cannot face the real confrontation required.</div>
+</article>
+
+<article class="chapter-card" id="chapter-12">
+  <div class="chapter-num">Chapter 12</div>
+  <h3>The play, Neil&#x27;s triumph and the trap closes</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>Neil performs as Puck in A Midsummer Night&#x27;s Dream and is brilliant. The audience and his friends celebrate him. Mr Perry appears and sees the performance. Afterward, he takes Neil home and refuses to discuss his son&#x27;s feelings. He announces that Neil will leave Welton, attend military school, go to Harvard and become a doctor.</p></div>
+    <div><h4>Why it matters</h4><p>Neil achieves his most authentic moment and loses it almost immediately. The emotional contrast between applause and punishment makes the tragedy intense.</p></div>
+    <div><h4>Character development</h4><p>Neil proves his talent; Mr Perry becomes more rigid; the boys see Neil&#x27;s happiness but cannot protect him.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Art, repression, success versus fulfilment, family control, tragedy.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> Puck is important because Neil briefly becomes a mischievous free spirit on stage, exactly what his real life denies him.</div>
+</article>
+
+<article class="chapter-card" id="chapter-13">
+  <div class="chapter-num">Chapter 13</div>
+  <h3>Neil&#x27;s despair</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>At home, Neil is left alone after his father&#x27;s decision. His mother does not intervene. Neil sits at his father&#x27;s desk, wears his Puck crown and takes his own life with his father&#x27;s gun. The scene is written quietly, with winter imagery and silence, which makes the moment even more devastating.</p></div>
+    <div><h4>Why it matters</h4><p>This is the tragic climax of the novel. Neil&#x27;s death shows the destructive consequences of a world where obedience matters more than emotional truth.</p></div>
+    <div><h4>Character development</h4><p>Neil&#x27;s arc ends in despair; Mr and Mrs Perry&#x27;s inability to listen becomes unbearable; the reader sees the failure of both family and school.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Tragedy, silence, despair, authoritarianism, failed communication.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> The Puck crown beside the father&#x27;s desk symbolically joins Neil&#x27;s true self with the authority that crushes it.</div>
+</article>
+
+<article class="chapter-card" id="chapter-14">
+  <div class="chapter-num">Chapter 14</div>
+  <h3>Investigation and scapegoating</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>After Neil&#x27;s death, the school begins an investigation. The boys are questioned. Cameron tells Nolan about the Dead Poets Society and helps shift blame toward Keating. Charlie attacks Cameron and is expelled. The administration needs a clear explanation that protects Welton and the parents, so Keating becomes the convenient scapegoat.</p></div>
+    <div><h4>Why it matters</h4><p>The chapter shows institutional self-protection. Instead of asking why Neil felt trapped, the adults focus on blame and reputation.</p></div>
+    <div><h4>Character development</h4><p>Cameron chooses safety over loyalty; Charlie remains loyal but self-destructive; Todd is pressured but resists more than before.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Scapegoating, loyalty, betrayal, institutional power, reputation.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> Cameron&#x27;s betrayal contrasts sharply with Todd&#x27;s growing courage and prepares the final classroom scene.</div>
+</article>
+
+<article class="chapter-card" id="chapter-15">
+  <div class="chapter-num">Chapter 15</div>
+  <h3>The final salute: Todd stands up</h3>
+  <div class="chapter-grid">
+    <div><h4>What happens</h4><p>Nolan takes over the English class and makes the boys return to Pritchard&#x27;s mechanical poetry method. Keating enters to collect his belongings. Todd calls out that the boys were forced to sign the statement against him. Keating says he believes Todd. As Keating leaves, Todd stands on his desk and calls &#x27;O Captain! My Captain!&#x27; Knox, Meeks, Pitts and others follow. Keating thanks them and leaves.</p></div>
+    <div><h4>Why it matters</h4><p>The ending is both sad and hopeful. Keating loses his job, Neil is dead, and Welton remains powerful. But Todd finally finds the courage to speak and act publicly.</p></div>
+    <div><h4>Character development</h4><p>Todd completes his development from silence to moral courage; the group partially redeems itself; Keating&#x27;s influence survives.</p></div>
+    <div><h4>Themes / symbols / conflicts</h4><p>Moral courage, voice, loyalty, education, symbolic resistance.</p></div>
+  </div>
+  <div class="analysis-line"><strong>Short analysis:</strong> The final desk-standing repeats Keating&#x27;s earlier lesson and proves that the boys have learned to see differently.</div>
+</article>
+</section>
+
+<section id="characters"><div class="section-head"><div class="number">3</div><div><h2>Characters and relationships</h2><p class="muted">All relevant characters with exam-ready analysis points.</p></div></div>
+<div class="highlight"><strong>Who is the protagonist?</strong> The novel is best understood as an ensemble story. Neil is the tragic protagonist of the central conflict, Todd is the coming-of-age protagonist because he changes most clearly, and Keating is the catalyst who makes change possible.</div>
+<div class="relationships">
+  <div class="rel"><strong>Keating</strong><span class="arrow">→</span>inspires the boys to think differently</div>
+  <div class="rel"><strong>Neil ↔ Todd</strong><span class="arrow">↔</span>roommates; confidence and quiet empathy</div>
+  <div class="rel"><strong>Neil ↔ Mr Perry</strong><span class="arrow">↔</span>dream of acting versus imposed future</div>
+  <div class="rel"><strong>Todd ↔ Keating</strong><span class="arrow">↔</span>voice, confidence and final courage</div>
+  <div class="rel"><strong>Charlie ↔ Cameron</strong><span class="arrow">↔</span>rebellion versus conformity</div>
+  <div class="rel"><strong>Knox ↔ Chris</strong><span class="arrow">↔</span>romantic Carpe Diem subplot</div>
+</div>
+<div class="character-grid">
+<div class="character-card">
+  <h3>John Keating</h3>
+  <p class="role">English teacher and former Welton student</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Catalyst and mentor</dd>
+    <dt>Relationships</dt><dd>Not the protagonist in a traditional sense, but he changes the boys&#x27; lives by challenging Welton&#x27;s values.</dd>
+    <dt>Traits</dt><dd>Imaginative, humorous, charismatic, compassionate, sometimes provocative.</dd>
+    <dt>Development / function</dt><dd>He remains quite consistent, but his influence develops through the boys. He teaches freedom, but also warns against foolish rebellion.</dd>
+    <dt>Themes represented</dt><dd>Individuality, poetry, education, perspective, moral courage.</dd>
+    <dt>Possible exam point</dt><dd>Do not present him as simply irresponsible. His advice to Neil is to speak to his father, not to lie or rebel blindly.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Todd Anderson</h3>
+  <p class="role">New transfer student and Neil&#x27;s roommate</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Emotional centre of the ending; often the clearest coming-of-age character</dd>
+    <dt>Relationships</dt><dd>He is Neil&#x27;s roommate, friend and witness. His relationship with Keating helps him find his voice.</dd>
+    <dt>Traits</dt><dd>Shy, anxious, observant, sensitive, intelligent, deeply insecure.</dd>
+    <dt>Development / function</dt><dd>He changes from a silent boy who cannot ask for rowing into the first student to stand on his desk for Keating.</dd>
+    <dt>Themes represented</dt><dd>Voice, self-worth, courage, emotional repression.</dd>
+    <dt>Possible exam point</dt><dd>Todd&#x27;s final act proves Keating&#x27;s influence most clearly; he becomes the one who speaks when it matters.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Neil Perry</h3>
+  <p class="role">Brilliant Welton student controlled by his father</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Tragic protagonist / central victim of the conflict</dd>
+    <dt>Relationships</dt><dd>He is Todd&#x27;s roommate and the leader of the Dead Poets. Keating inspires him to pursue acting.</dd>
+    <dt>Traits</dt><dd>Warm, talented, energetic, idealistic, dutiful, desperate for approval.</dd>
+    <dt>Development / function</dt><dd>He moves from obedience to creative self-expression, but he cannot survive the conflict between his dream and his father&#x27;s control.</dd>
+    <dt>Themes represented</dt><dd>Art, parental pressure, identity, tragedy.</dd>
+    <dt>Possible exam point</dt><dd>Neil&#x27;s death should not be blamed simplistically on Keating. It results from a whole system of silence, pressure and authoritarian control.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Charlie Dalton / Nuwanda</h3>
+  <p class="role">Confident and rebellious student</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Comic rebel and loyal friend</dd>
+    <dt>Relationships</dt><dd>Friend of Neil, Todd, Knox, Meeks and Pitts; enemy of Cameron after the investigation.</dd>
+    <dt>Traits</dt><dd>Bold, funny, impulsive, attention-seeking, loyal, provocative.</dd>
+    <dt>Development / function</dt><dd>He embraces rebellion more theatrically than thoughtfully. He is expelled after attacking Cameron.</dd>
+    <dt>Themes represented</dt><dd>Rebellion, masculinity, performance, loyalty.</dd>
+    <dt>Possible exam point</dt><dd>Charlie shows both the appeal and the danger of Carpe Diem when it becomes reckless performance.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Knox Overstreet</h3>
+  <p class="role">Welton student who falls in love with Chris Noel</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Romantic subplot</dd>
+    <dt>Relationships</dt><dd>Friend of the Dead Poets; connected to Chris through the Danburry family.</dd>
+    <dt>Traits</dt><dd>Earnest, romantic, nervous but determined, sometimes naive.</dd>
+    <dt>Development / function</dt><dd>He becomes braver by calling and approaching Chris, though his behaviour can be seen as pushy by modern readers.</dd>
+    <dt>Themes represented</dt><dd>Romantic idealism, risk, youthful desire.</dd>
+    <dt>Possible exam point</dt><dd>Knox shows a personal, romantic version of seizing the day, less tragic than Neil&#x27;s but still risky.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Richard Cameron</h3>
+  <p class="role">Rule-following Welton student</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Foil and betrayer</dd>
+    <dt>Relationships</dt><dd>Member of the Dead Poets but never truly comfortable with the group&#x27;s risks.</dd>
+    <dt>Traits</dt><dd>Ambitious, cautious, conventional, self-protective, obedient.</dd>
+    <dt>Development / function</dt><dd>He moves from nervous participant to informer, helping the school blame Keating.</dd>
+    <dt>Themes represented</dt><dd>Conformity, self-preservation, institutional loyalty.</dd>
+    <dt>Possible exam point</dt><dd>Cameron is not just &#x27;evil&#x27;; he represents how fear and ambition make people cooperate with authority.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Steven Meeks</h3>
+  <p class="role">Intelligent student, strong in Latin and academics</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Supportive group member</dd>
+    <dt>Relationships</dt><dd>Friend of Pitts and the Dead Poets; often helps with study sessions.</dd>
+    <dt>Traits</dt><dd>Clever, kind, practical, humorous, less rebellious than Charlie.</dd>
+    <dt>Development / function</dt><dd>He becomes braver in the final scene, standing on his desk after Todd and Knox.</dd>
+    <dt>Themes represented</dt><dd>Friendship, academic pressure, quiet loyalty.</dd>
+    <dt>Possible exam point</dt><dd>Meeks shows that not every act of courage is loud; his final stand matters because he is usually cautious.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Gerard Pitts</h3>
+  <p class="role">Welton student and Meeks&#x27;s close friend</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Group member and comic presence</dd>
+    <dt>Relationships</dt><dd>Part of the Dead Poets; often paired with Meeks.</dd>
+    <dt>Traits</dt><dd>Awkward, funny, anxious, good-natured.</dd>
+    <dt>Development / function</dt><dd>He remains a secondary character but participates in the final salute.</dd>
+    <dt>Themes represented</dt><dd>Group identity, loyalty, adolescence.</dd>
+    <dt>Possible exam point</dt><dd>Pitts helps show the group as a community, not only a set of main characters.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Headmaster Gale Nolan</h3>
+  <p class="role">Headmaster of Welton Academy</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Institutional antagonist</dd>
+    <dt>Relationships</dt><dd>Authority figure over all the boys and teachers.</dd>
+    <dt>Traits</dt><dd>Strict, proud, controlled, reputation-focused, traditional.</dd>
+    <dt>Development / function</dt><dd>He does not develop; he represents the school system&#x27;s resistance to change.</dd>
+    <dt>Themes represented</dt><dd>Tradition, discipline, institutional power, conformity.</dd>
+    <dt>Possible exam point</dt><dd>Nolan is not simply a villain; he believes order creates success, but the novel exposes the human cost of that belief.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Mr Perry</h3>
+  <p class="role">Neil&#x27;s father</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Family antagonist</dd>
+    <dt>Relationships</dt><dd>He controls Neil&#x27;s future and expects unquestioned obedience.</dd>
+    <dt>Traits</dt><dd>Authoritarian, ambitious, emotionally cold, convinced he is helping his son.</dd>
+    <dt>Development / function</dt><dd>He stays rigid until tragedy. His inability to listen is central to Neil&#x27;s death.</dd>
+    <dt>Themes represented</dt><dd>Parental pressure, social mobility, control, silence.</dd>
+    <dt>Possible exam point</dt><dd>A strong exam point is that Mr Perry probably thinks he is protecting Neil&#x27;s future, which makes him more realistic and disturbing.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Mrs Perry</h3>
+  <p class="role">Neil&#x27;s mother</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Silent witness</dd>
+    <dt>Relationships</dt><dd>She loves Neil but does not defend him against his father.</dd>
+    <dt>Traits</dt><dd>Anxious, passive, emotionally weak in the conflict.</dd>
+    <dt>Development / function</dt><dd>She does not change and her silence becomes part of the tragedy.</dd>
+    <dt>Themes represented</dt><dd>Silence, complicity, family power.</dd>
+    <dt>Possible exam point</dt><dd>Her passivity shows that harm can come not only from strict authority but also from failing to intervene.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Chris Noel</h3>
+  <p class="role">Girl from Ridgeway High and Chet&#x27;s girlfriend</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Object of Knox&#x27;s romantic plot</dd>
+    <dt>Relationships</dt><dd>Knox falls in love with her; she is connected to Chet and the Danburys.</dd>
+    <dt>Traits</dt><dd>Kind, attractive, socially confident, sometimes confused by Knox.</dd>
+    <dt>Development / function</dt><dd>She slowly becomes more open to Knox, especially at the play.</dd>
+    <dt>Themes represented</dt><dd>Romance, idealisation, adolescent desire.</dd>
+    <dt>Possible exam point</dt><dd>Discuss Chris carefully: she is not only a prize for Knox; she is also a person caught between Chet and Knox&#x27;s romantic pressure.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Chet Danburry</h3>
+  <p class="role">Chris&#x27;s boyfriend and Danburry son</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Romantic rival</dd>
+    <dt>Relationships</dt><dd>Threatens Knox and represents athletic social dominance outside Welton.</dd>
+    <dt>Traits</dt><dd>Aggressive, possessive, popular, physical.</dd>
+    <dt>Development / function</dt><dd>He mainly functions as an obstacle in Knox&#x27;s subplot.</dd>
+    <dt>Themes represented</dt><dd>Masculine competition, jealousy, social status.</dd>
+    <dt>Possible exam point</dt><dd>Chet helps show that conformity and pressure exist outside Welton too.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Ginny Danburry</h3>
+  <p class="role">Chet&#x27;s sister, Henley Hall student</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Secondary link to the play</dd>
+    <dt>Relationships</dt><dd>Appears in the Danburry household and in A Midsummer Night&#x27;s Dream.</dd>
+    <dt>Traits</dt><dd>Shy, polite, less glamorous than Chris.</dd>
+    <dt>Development / function</dt><dd>She remains secondary but helps connect Knox&#x27;s subplot with Neil&#x27;s play world.</dd>
+    <dt>Themes represented</dt><dd>Youth, performance, social connection.</dd>
+    <dt>Possible exam point</dt><dd>Ginny is relevant mainly because she appears in both the social and theatrical worlds of the novel.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Mr McAllister</h3>
+  <p class="role">Latin teacher</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Traditional teacher who debates Keating</dd>
+    <dt>Relationships</dt><dd>Colleague of Keating and representative of cautious realism.</dd>
+    <dt>Traits</dt><dd>Strict, dry, sceptical but not cruel.</dd>
+    <dt>Development / function</dt><dd>He remains cautious but seems to recognise Keating&#x27;s value by the end.</dd>
+    <dt>Themes represented</dt><dd>Traditional education versus free thinking.</dd>
+    <dt>Possible exam point</dt><dd>His conversation with Keating gives a balanced counterargument: young idealism can be risky.</dd>
+  </dl>
+</div>
+
+<div class="character-card">
+  <h3>Dr Hager</h3>
+  <p class="role">Strict teacher and dorm authority</p>
+  <dl>
+    <dt>Role in the plot</dt><dd>Disciplinary presence</dd>
+    <dt>Relationships</dt><dd>Controls dorm life, gives demerits, escorts boys to questioning.</dd>
+    <dt>Traits</dt><dd>Sharp, severe, rule-focused.</dd>
+    <dt>Development / function</dt><dd>No major development.</dd>
+    <dt>Themes represented</dt><dd>Surveillance, discipline, fear.</dd>
+    <dt>Possible exam point</dt><dd>He strengthens the atmosphere of Welton as a controlled institution.</dd>
+  </dl>
+</div></div>
+</section>
+
+<section id="pov"><div class="section-head"><div class="number">4</div><div><h2>Narrator and point of view</h2><p class="muted">Direct answers to the worksheet questions.</p></div></div>
+<div class="grid two">
+  <div class="card"><h3>Who is the narrator?</h3><p>The story is told by an external third-person narrator. The narrator is not a character in the plot and does not participate in the events. This creates distance from the boys while still allowing emotional closeness in key scenes.</p></div>
+  <div class="card"><h3>Point of view and effect</h3><p>The narration is mainly third-person limited with moments that move between characters. We often see scenes through Todd, Neil, Knox or the group, but the narrator can also describe Welton from the outside. This lets the reader understand the pressure of the institution and the private feelings of different boys.</p></div>
+  <div class="card"><h3>Reliability</h3><p>The narrator is generally reliable: events are presented clearly and realistically. However, because the narration often follows teenagers, some feelings are intense, romanticised or incomplete. For example, Knox idealises Chris, and Neil underestimates the danger of lying to his father.</p></div>
+  <div class="card"><h3>What might be simplified?</h3><p>The novelisation is based on a film, so some inner conflicts are shown through strong scenes and symbols rather than long psychological explanation. The narrator may simplify adult motives, especially Nolan's and Mr Perry's, but the text still gives enough evidence to discuss them as realistic authority figures.</p></div>
+</div></section>
+
+<section id="structure"><div class="section-head"><div class="number">5</div><div><h2>Structure and Freytag's Pyramid</h2><p class="muted">How the story is built and why the ending matters.</p></div></div>
+<div class="pyramid">
+  <div class="pyr p1">Climax: Neil's death after his father's final decision</div>
+  <div class="pyr p2">Rising action: Keating's lessons, cave meetings, acting, Knox and Chris, Charlie's rebellion</div>
+  <div class="pyr p3">Exposition: Welton's ceremony, four pillars, boys and parents introduced</div>
+  <div class="pyr p4">Falling action: investigation, Cameron's betrayal, Keating is blamed</div>
+  <div class="pyr p5">Resolution: Todd's final desk salute; Keating leaves, but his influence remains</div>
+</div>
+<div class="grid two" style="margin-top:24px">
+  <div class="card"><h3>Chronology</h3><p>The chronology is mostly linear. The story follows one school year from the opening ceremony through autumn, winter, Neil's play and the final investigation. There are no major flashbacks, but Keating's old annual and his memories of the original Dead Poets Society connect the present to the past.</p></div>
+  <div class="card"><h3>Ending and beginning</h3><p>The beginning shows boys standing for Welton's pillars in obedience. The ending shows boys standing on desks in moral resistance. This creates a powerful structural echo: the same physical act of standing changes from conformity to courage.</p></div>
+</div></section>
+
+<section id="genre"><div class="section-head"><div class="number">6</div><div><h2>Genre and form</h2><p class="muted">How the type of text shapes the reading experience.</p></div></div>
+<div class="grid">
+  <div class="card"><h3>Novelisation</h3><p>The book is a novelisation of the 1989 film. This explains its scene-based structure, clear dialogue and cinematic imagery. The story often feels visual, as if the reader is watching scenes unfold.</p></div>
+  <div class="card"><h3>Coming-of-age story</h3><p>The boys move from obedience and uncertainty toward identity, risk and moral choice. Todd is the clearest coming-of-age figure because he learns to speak publicly.</p></div>
+  <div class="card"><h3>School story</h3><p>It uses the boarding-school setting, strict teachers, friendships, secret meetings and pressure to succeed. But it challenges the genre by turning school achievement into a source of emotional danger.</p></div>
+  <div class="card"><h3>Tragedy</h3><p>Neil's story follows a tragic pattern: he discovers his true passion, faces an impossible conflict with authority, and is destroyed by pressure and silence.</p></div>
+  <div class="card"><h3>Inspirational drama</h3><p>Keating's lessons are uplifting and memorable, but the tragic ending prevents the book from becoming a simple motivational story.</p></div>
+  <div class="card"><h3>Form and effect</h3><p>Short scenes, dialogue and dramatic contrasts make the novel easy to follow and emotionally direct, which is useful for oral discussion.</p></div>
+</div></section>
+
+<section id="style"><div class="section-head"><div class="number">7</div><div><h2>Language and style</h2><p class="muted">Tone, syntax, imagery and shifts.</p></div></div>
+<div class="grid two">
+  <div class="card"><h3>Overall style</h3><p>The style is clear, accessible and dramatic. Because the novel is based on a film, many scenes are built around dialogue, gestures and visual contrasts: the stone chapel, old photographs, the cave fire, the snowy campus, the stage and the classroom desks.</p></div>
+  <div class="card"><h3>Sentence structure and pace</h3><p>School scenes often use orderly description and quick commands, which creates pressure and discipline. Keating's scenes are more energetic, with exclamations, questions and sudden actions. The tragic scenes slow down and become quieter, creating dread.</p></div>
+  <div class="card"><h3>Tone</h3><p>The tone shifts from formal and ceremonial at the beginning to humorous and rebellious in the middle, then tragic and serious after Neil's death. The final scene combines grief with hope.</p></div>
+  <div class="card"><h3>Register</h3><p>Welton's adults use formal, institutional language about excellence and discipline. The boys use casual, adolescent speech. Keating mixes scholarly references with jokes, theatrical performance and emotional directness.</p></div>
+</div>
+<div class="highlight"><strong>Style effect:</strong> The contrast between rigid school language and lively poetic language makes the reader feel why Keating's lessons are so liberating.</div>
+</section>
+
+<section id="devices"><div class="section-head"><div class="number">8</div><div><h2>Literary devices</h2><p class="muted">Symbols, motifs, irony, foreshadowing and allusions.</p></div></div>
+<div class="device-list">
+  <div class="device"><h3>Symbol: the desk</h3><p>Keating stands on his desk to change perspective; later the boys stand on their desks to honour him. The desk changes from school furniture into a symbol of independent thought.</p></div>
+  <div class="device"><h3>Symbol: the cave</h3><p>The cave is hidden, natural and dark. It represents freedom, secrecy, poetry and a space outside Welton's control.</p></div>
+  <div class="device"><h3>Symbol: Puck's crown</h3><p>Neil's crown represents his artistic self and his brief freedom. Its presence near his father's desk makes the tragedy visual.</p></div>
+  <div class="device"><h3>Motif: voices</h3><p>Todd cannot speak, Keating teaches voice, poetry is read aloud, and the final scene depends on Todd calling out. Voice equals identity.</p></div>
+  <div class="device"><h3>Irony</h3><p>Welton claims to pass on the 'light of knowledge', but it often teaches fear and obedience. Nolan later teaches Pritchard, the exact approach Keating rejected.</p></div>
+  <div class="device"><h3>Foreshadowing</h3><p>Keating's first lesson about death prepares the reader for tragedy. Neil's fear of his father and his inability to tell the truth foreshadow the climax.</p></div>
+  <div class="device"><h3>Allusions</h3><p>The text refers to Whitman, Thoreau, Herrick and Shakespeare. These allusions connect the boys' lives to larger literary ideas about freedom, mortality and self-expression.</p></div>
+  <div class="device"><h3>Contrast</h3><p>Welton versus the cave, Nolan versus Keating, Cameron versus Charlie, Todd at the beginning versus Todd at the end.</p></div>
+</div></section>
+
+<section id="themes"><div class="section-head"><div class="number">9</div><div><h2>Themes and message</h2><p class="muted">Central and secondary themes as full exam-ready interpretations.</p></div></div>
+
+<div class="theme-card">
+  <h3>The central theme</h3>
+  <p class="theme-sentence">A young person needs the courage and support to find their own voice, but self-expression becomes dangerous when family and institutions demand total obedience.</p>
+  <p><strong>Where it appears:</strong> Todd&#x27;s growth, Neil&#x27;s acting, Keating&#x27;s lessons, the final desk scene.</p>
+  <p><strong>Connected characters:</strong> Todd, Neil, Keating, Nolan, Mr Perry.</p>
+  <p><strong>Why it matters:</strong> It connects the personal story with the school system: the novel is not only about poetry but about who gets to decide the meaning of a life.</p>
+  <p><strong>Oral exam interpretation:</strong> In an oral exam, argue that the novel supports individuality, but it also asks how freedom can be lived responsibly.</p>
+</div>
+
+<div class="theme-card">
+  <h3>Education should awaken thought, not only produce success</h3>
+  <p class="theme-sentence">Welton educates boys for prestige and obedience, while Keating tries to teach them to think, feel and see differently.</p>
+  <p><strong>Where it appears:</strong> The contrast between Nolan&#x27;s four pillars and Keating&#x27;s poetry lessons.</p>
+  <p><strong>Connected characters:</strong> Keating, Nolan, McAllister, Todd.</p>
+  <p><strong>Why it matters:</strong> It makes the school setting symbolic of wider social expectations.</p>
+  <p><strong>Oral exam interpretation:</strong> Compare rote learning in Chemistry/Latin/Math with Keating&#x27;s active, emotional lessons.</p>
+</div>
+
+<div class="theme-card">
+  <h3>Carpe Diem is inspiring but easily misunderstood</h3>
+  <p class="theme-sentence">Keating&#x27;s message means living authentically, not acting without consequences.</p>
+  <p><strong>Where it appears:</strong> Neil&#x27;s acting, Knox&#x27;s pursuit of Chris, Charlie&#x27;s article and phone prank.</p>
+  <p><strong>Connected characters:</strong> Keating, Neil, Charlie, Knox.</p>
+  <p><strong>Why it matters:</strong> It prevents a simplistic interpretation of the book as &#x27;just do whatever you want&#x27;.</p>
+  <p><strong>Oral exam interpretation:</strong> Use Charlie as evidence that the novel distinguishes meaningful courage from reckless attention-seeking.</p>
+</div>
+
+<div class="theme-card">
+  <h3>Authoritarian pressure can destroy identity</h3>
+  <p class="theme-sentence">Parents and institutions may believe they are helping young people, but control without listening can become emotionally violent.</p>
+  <p><strong>Where it appears:</strong> Mr Perry&#x27;s decisions, Todd&#x27;s parents, Welton&#x27;s investigation.</p>
+  <p><strong>Connected characters:</strong> Neil, Todd, Mr Perry, Nolan.</p>
+  <p><strong>Why it matters:</strong> This theme explains why the ending is tragic rather than merely rebellious.</p>
+  <p><strong>Oral exam interpretation:</strong> Focus on silence: Neil cannot speak truthfully to his father, and Mrs Perry cannot speak against him.</p>
+</div>
+
+<div class="theme-card">
+  <h3>Friendship creates courage</h3>
+  <p class="theme-sentence">The boys become braver together than they are alone, even when the group also pressures them.</p>
+  <p><strong>Where it appears:</strong> The cave meetings, Todd&#x27;s birthday, Knox&#x27;s phone call, final salute.</p>
+  <p><strong>Connected characters:</strong> Todd, Neil, Charlie, Meeks, Pitts, Knox.</p>
+  <p><strong>Why it matters:</strong> The Dead Poets Society is both a literary club and an emotional support system.</p>
+  <p><strong>Oral exam interpretation:</strong> A balanced answer should mention that the group creates freedom but also risk.</p>
+</div>
+
+<div class="theme-card">
+  <h3>Art gives language to inner life</h3>
+  <p class="theme-sentence">Poetry and drama allow the boys to express feelings that Welton normally suppresses.</p>
+  <p><strong>Where it appears:</strong> Todd&#x27;s spontaneous poem, Neil as Puck, Whitman, Thoreau, Herrick.</p>
+  <p><strong>Connected characters:</strong> Neil, Todd, Keating, the Dead Poets Society.</p>
+  <p><strong>Why it matters:</strong> It explains why literature matters in the story: art is not decoration, it changes people.</p>
+  <p><strong>Oral exam interpretation:</strong> Link this to the exam itself: the novel argues that literature teaches perspective and empathy.</p>
+</div>
+<div class="highlight"><strong>Moral message:</strong> The novel has a clear sympathy for individuality, literature and emotional honesty. However, it is not completely one-sided: it also shows that inspiration must be paired with responsibility, communication and support.</div>
+</section>
+
+<section id="setting"><div class="section-head"><div class="number">10</div><div><h2>Setting and context</h2><p class="muted">Place, time, atmosphere and symbolic meaning.</p></div></div>
+<div class="grid two">
+  <div class="card"><h3>Place</h3><p>Welton Academy is an elite private boarding school in the remote hills of Vermont. Its stone buildings, chapel, Honor Room and strict dormitory rules create an atmosphere of age, prestige and control.</p></div>
+  <div class="card"><h3>Time period</h3><p>The story is set in 1959, a period connected with conservative social expectations, strong parental authority, male career pressure and traditional ideas of success.</p></div>
+  <div class="card"><h3>Social environment</h3><p>The students are mostly from privileged families. They are expected to enter elite universities and become doctors, lawyers, bankers or other socially respected professionals.</p></div>
+  <div class="card"><h3>Symbolic setting</h3><p>Welton symbolises institutional tradition and conformity. The cave symbolises private freedom. The theatre symbolises self-expression. The snowy winter landscape around Neil's death symbolises coldness, silence and emotional isolation.</p></div>
+</div></section>
+
+<section id="passages"><div class="section-head"><div class="number">11</div><div><h2>Important passages and quotations</h2><p class="muted">Short useful references for the oral exam. Quotations are kept brief.</p></div></div>
+<table><thead><tr><th>Passage / short reference</th><th>What happens</th><th>Theme or character</th><th>How to discuss it</th></tr></thead><tbody>
+<tr><td><strong>Opening ceremony and four pillars</strong><br><span>Four pillars: Tradition, Honor, Discipline, Excellence.</span></td><td>Welton&#x27;s ritual introduces the school as proud, traditional and intimidating.</td><td>Setting, conformity, institutional values.</td><td>Use it to show how the novel immediately links education with performance and pressure.</td></tr>
+
+<tr><td><strong>Carpe Diem in the Honor Room</strong><br><span>Carpe Diem.</span></td><td>Keating uses old photographs and Herrick&#x27;s poem to make the boys think about mortality.</td><td>Mortality, individuality, awakening.</td><td>This is the best passage for explaining the title&#x27;s central message about living deliberately.</td></tr>
+
+<tr><td><strong>Ripping out Pritchard</strong><br><span>Poetry, love, beauty.</span></td><td>Keating rejects a mechanical method of measuring poetry.</td><td>Art versus formula, education, rebellion.</td><td>Discuss it as a symbolic break with Welton&#x27;s exam-driven thinking.</td></tr>
+
+<tr><td><strong>Standing on the desk</strong><br><span>Look at things differently.</span></td><td>Keating asks the boys to see the room from another angle.</td><td>Perspective, independent thought.</td><td>Excellent for explaining how physical action becomes a symbol for mental change.</td></tr>
+
+<tr><td><strong>Todd&#x27;s barbaric yawp</strong><br><span>Barbaric yawp.</span></td><td>Keating pushes Todd to make a loud cry and then improvise poetry.</td><td>Voice, self-confidence, hidden inner life.</td><td>Use this as evidence that Keating&#x27;s teaching genuinely helps Todd.</td></tr>
+
+<tr><td><strong>Neil as Puck</strong><br><span>Puck&#x27;s final speech.</span></td><td>Neil performs brilliantly and feels fully alive.</td><td>Art, freedom, identity.</td><td>Discuss the tragic contrast between public applause and private punishment.</td></tr>
+
+<tr><td><strong>Neil at his father&#x27;s desk</strong><br><span>Puck crown / father&#x27;s desk.</span></td><td>Neil wears his Puck crown and takes his life after his father&#x27;s decision.</td><td>Tragedy, silence, destroyed identity.</td><td>This passage should be handled sensitively: focus on causes in the text, not simple blame.</td></tr>
+
+<tr><td><strong>Final desk salute</strong><br><span>O Captain! My Captain!</span></td><td>Todd and other boys stand on their desks to honour Keating.</td><td>Moral courage, loyalty, education.</td><td>This is the strongest ending passage: Todd&#x27;s voice proves that Keating&#x27;s influence survives.</td></tr></tbody></table></section>
+
+<section id="worksheet"><div class="section-head"><div class="number">12</div><div><h2>Worksheet answers</h2><p class="muted">Every category from the literary analysis worksheet, answered in exam-ready form.</p></div></div>
+<div class="grid two">
+  <div class="card"><h3>1 Narrator + Point of View</h3><p>External third-person narrator; mainly limited focus moving between students. Reliable overall. Effect: the reader sees both institutional pressure and private emotions.</p><p><strong>Key reference:</strong> Todd's inner fear, Neil's anger, Knox's romantic obsession and the final classroom scene.</p></div>
+  <div class="card"><h3>2 Structure + Freytag</h3><p>Exposition: Welton ceremony. Rising action: Keating, society, acting. Climax: Neil's death. Falling action: investigation. Resolution: final salute. Linear chronology with small references to Keating's past.</p><p><strong>Key reference:</strong> the final desk scene echoes the earlier desk lesson.</p></div>
+  <div class="card"><h3>3 Genre + Form</h3><p>Novelisation, school story, coming-of-age story and tragedy. It follows school-story conventions but challenges them by showing that elite education can silence individuality.</p><p><strong>Key reference:</strong> contrast between Welton's four pillars and Keating's poetry lessons.</p></div>
+  <div class="card"><h3>4 Language + Style</h3><p>Clear, dramatic, dialogue-based and visual. Formal school language contrasts with poetic, energetic Keating scenes. Tone shifts from ceremonial to comic/rebellious to tragic.</p><p><strong>Key reference:</strong> Pritchard page scene and the quiet description around Neil's death.</p></div>
+  <div class="card"><h3>5 Literary Devices</h3><p>Symbols: desk, cave, Puck crown, old photos. Motifs: voice, poetry, performance, discipline. Irony: a school of knowledge creates silence; Nolan later returns to Pritchard.</p><p><strong>Key reference:</strong> Todd's 'barbaric yawp' and final desk salute.</p></div>
+  <div class="card"><h3>6 Theme + Message</h3><p>Central theme: Young people need courage and support to find their own voice, but self-expression can be crushed by authoritarian systems. The message supports individuality but warns that courage needs truth and responsibility.</p><p><strong>Key reference:</strong> Neil's tragedy and Todd's final courage.</p></div>
+  <div class="card"><h3>7 Characters + Relationships</h3><p>Todd changes most clearly; Neil is the tragic centre; Keating is catalyst; Nolan and Mr Perry represent authority; Cameron and Charlie show opposite reactions to rules.</p><p><strong>Key reference:</strong> Neil and Mr Perry; Todd and Keating.</p></div>
+  <div class="card"><h3>8 Setting + Context</h3><p>Welton, Vermont, 1959. Conservative, elite, male, success-focused environment. The setting creates pressure and makes the cave and theatre feel like spaces of freedom.</p><p><strong>Key reference:</strong> the chapel ceremony and the cave meetings.</p></div>
+  <div class="card"><h3>9 Personal Reception + Opinion</h3><p>A strong personal answer: Todd is compelling because his growth is quiet but powerful. The most emotional moment is Neil's death because it is prepared through pressure, silence and contrast with his stage triumph.</p><p><strong>Possible criticism:</strong> Knox's pursuit of Chris may feel uncomfortable to modern readers because his romantic courage sometimes ignores her situation.</p></div>
+  <div class="card"><h3>10 Broader Significance</h3><p>The text stands out because it connects school, literature and personal freedom in a memorable way. Its questions remain relevant: How much pressure should schools and parents put on success? What is education for?</p><p><strong>Recommendation:</strong> It is readable, emotional and useful for discussing identity, education and courage.</p></div>
+  <div class="card"><h3>Final Reflection</h3><p>In one or two sentences: The book tells the story of boys at a strict academy whose new teacher inspires them to live more authentically. Its deeper meaning is about the beauty and danger of finding your own voice in a world that values obedience.</p><p><strong>Best passage to discuss:</strong> The final desk salute, because it brings together Todd, Keating, voice, perspective, courage and the ending's bittersweet hope.</p></div>
+  <div class="card"><h3>Key terms to use</h3><p>Third-person narration, coming-of-age, tragedy, symbol, motif, foreshadowing, irony, contrast, allusion, scapegoat, catalyst, conformity, self-expression.</p></div>
+</div></section>
+
+<section id="exam"><div class="section-head"><div class="number">13</div><div><h2>Oral exam preparation</h2><p class="muted">Questions, sample answers, sentence starters and checklist.</p></div></div>
+<h3>Possible oral exam questions with strong sample answers</h3>
+<details class="qa"><summary>Who is the real protagonist of Dead Poets Society?</summary><p>A strong answer is that the novel has a shared focus, but Todd and Neil are the most important student figures. Neil is the tragic protagonist because his desire for acting drives the central tragedy. Todd is the coming-of-age protagonist because he changes the most: he begins almost voiceless and ends by publicly defending Keating.</p></details>
+
+<details class="qa"><summary>Is Mr Keating responsible for Neil&#x27;s death?</summary><p>No, not directly. Keating inspires Neil, but he also tells Neil to speak honestly with his father. The tragedy comes from Neil&#x27;s fear, Mr Perry&#x27;s control, Mrs Perry&#x27;s silence and Welton&#x27;s culture of obedience. A balanced answer should admit that Keating&#x27;s message is powerful and risky, but the text does not present him as the simple cause.</p></details>
+
+<details class="qa"><summary>What does Carpe Diem mean in the novel?</summary><p>It means more than having fun. It means recognising that life is short and trying to live with authenticity and courage. However, the novel also shows that the idea can be misunderstood: Charlie turns it into provocation, Knox into romantic pursuit, and Neil into secret rebellion without honest confrontation.</p></details>
+
+<details class="qa"><summary>How does the setting shape the conflict?</summary><p>Welton is isolated, old, male and rule-bound. Its atmosphere creates pressure, competition and emotional silence. Because the boys live away from home inside a strict institution, Keating&#x27;s lessons and the secret cave feel especially powerful.</p></details>
+
+<details class="qa"><summary>Why is Todd&#x27;s final action important?</summary><p>Todd&#x27;s final desk salute completes his character development. Earlier, he cannot even ask for rowing or read in the cave. At the end, he risks punishment to speak the truth and honour Keating. This proves that Keating&#x27;s teaching has changed him deeply.</p></details>
+
+<details class="qa"><summary>How is Neil connected to Shakespeare&#x27;s Puck?</summary><p>Puck is playful, imaginative and free. Neil&#x27;s role allows him to express a version of himself that Welton and his father suppress. The Puck crown at the end becomes tragic because it represents the life Neil wanted but was not allowed to live.</p></details>
+
+<details class="qa"><summary>Does the novel have a clear moral message?</summary><p>The novel clearly criticises authoritarian pressure and empty success, but it is not completely simplistic. It supports individuality and art, yet it also shows that freedom needs honesty, responsibility and support. Keating&#x27;s ideas are valuable, but they cannot protect the boys from every consequence.</p></details>
+
+<details class="qa"><summary>How are Cameron and Charlie different?</summary><p>Cameron represents conformity and self-protection. He follows rules and later betrays the group to save himself. Charlie represents open rebellion and loyalty, but he is impulsive. Together they show two extreme responses to authority: submission and reckless defiance.</p></details>
+<div class="grid two" style="margin-top:24px">
+  <div class="card"><h3>How to talk about this book in the exam</h3><p>Start with the conflict: Welton teaches obedience and success, while Keating teaches individuality and perspective. Then choose one character as evidence. For example, Neil shows the tragic danger of suppressed identity, while Todd shows that Keating's teaching can create real moral courage. Always connect your point to a specific scene.</p></div>
+  <div class="card"><h3>Useful sentence starters</h3><ul><li>The scene suggests that...</li><li>This is important because it reveals...</li><li>The contrast between ... and ... shows...</li><li>Keating can be interpreted as...</li><li>Neil's tragedy is not caused by one person only, but by...</li><li>The symbol of ... represents...</li><li>From a modern perspective, one could criticise...</li></ul></div>
+</div>
+<h3 style="margin-top:24px">Compact revision checklist</h3>
+<ul class="checklist">
+  <li>I can explain Welton's four pillars and why they matter.</li>
+  <li>I can summarise all 15 chapters in order.</li>
+  <li>I can explain Carpe Diem in a balanced way.</li>
+  <li>I can analyse Todd's development from silence to courage.</li>
+  <li>I can discuss Neil's tragedy without blaming only one person.</li>
+  <li>I can compare Keating and Nolan.</li>
+  <li>I can explain the symbols: desk, cave, Puck crown, old photos.</li>
+  <li>I can apply Freytag's Pyramid.</li>
+  <li>I can name the genre and explain the novelisation form.</li>
+  <li>I can give a personal opinion supported by a scene.</li>
+</ul>
+<h3>Literary terms & vocabulary</h3><table><thead><tr><th>Term</th><th>Definition / use for this book</th></tr></thead><tbody><tr><td>Third-person narration</td><td>A narrator outside the story tells the events, moving between several characters&#x27; experiences.</td></tr>
+<tr><td>Coming-of-age</td><td>A story about young people developing identity, courage and self-understanding.</td></tr>
+<tr><td>Tragedy</td><td>A serious story in which a central character is destroyed by conflict, pressure or fatal choices.</td></tr>
+<tr><td>Symbol</td><td>An object or action that has a deeper meaning, such as the desk, cave or Puck crown.</td></tr>
+<tr><td>Motif</td><td>A repeated idea or image, such as voices, performance, poetry and authority.</td></tr>
+<tr><td>Foreshadowing</td><td>Early hints of later tragedy, such as Neil&#x27;s fear of his father and the repeated stress on mortality.</td></tr>
+<tr><td>Irony</td><td>A contrast between appearance and reality, for example Welton&#x27;s &#x27;light of knowledge&#x27; producing fear and silence.</td></tr>
+<tr><td>Foil</td><td>A character who contrasts with another, such as Cameron and Charlie or Nolan and Keating.</td></tr>
+<tr><td>Memento mori</td><td>A reminder of death; the old photos in Keating&#x27;s first lesson serve this function.</td></tr>
+<tr><td>Scapegoat</td><td>Someone blamed to protect others; Keating becomes the scapegoat after Neil&#x27;s death.</td></tr></tbody></table>
+</section>
+</main>
+<footer class="footer">Created as a standalone English Oral Matura revision website for <em>Dead Poets Society</em>.</footer>
+</body></html>
