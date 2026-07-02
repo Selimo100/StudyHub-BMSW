@@ -1,0 +1,1862 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brave New World — Reading Companion</title>
+    <style>
+      :root {
+        --bg: #f6f1e7;
+        --panel: #fffdf8;
+        --ink: #2b2620;
+        --ink-soft: #5c554a;
+        --accent: #8a3b2e;
+        --accent-soft: #c98a63;
+        --line: #e3d9c6;
+        --green: #4d6b53;
+        --chip: #efe4cd;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Georgia", "Iowan Old Style", serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      #app {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* Sidebar */
+      #sidebar {
+        width: 260px;
+        flex-shrink: 0;
+        background: #2b2620;
+        color: #eee3cf;
+        padding: 20px 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+      }
+      #sidebar h1 {
+        font-size: 17px;
+        margin: 0 0 2px 4px;
+        color: #fff;
+        line-height: 1.3;
+      }
+      #sidebar .subtitle {
+        font-size: 11px;
+        color: #c9b998;
+        margin: 0 0 16px 4px;
+        font-style: italic;
+      }
+      .progress-wrap {
+        margin: 0 4px 18px 4px;
+      }
+      .progress-bar-outer {
+        background: #463f34;
+        border-radius: 8px;
+        height: 8px;
+        overflow: hidden;
+      }
+      .progress-bar-inner {
+        background: var(--accent-soft);
+        height: 100%;
+        transition: width 0.3s ease;
+      }
+      .progress-label {
+        font-size: 11px;
+        color: #c9b998;
+        margin-top: 5px;
+      }
+      .nav-section-title {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #8a8069;
+        margin: 14px 8px 4px 8px;
+      }
+      .nav-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        background: none;
+        border: none;
+        color: #eee3cf;
+        text-align: left;
+        font-family: inherit;
+        font-size: 13.5px;
+        padding: 7px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+      }
+      .nav-btn:hover {
+        background: #3a3327;
+      }
+      .nav-btn.active {
+        background: var(--accent);
+        color: #fff;
+      }
+      .nav-btn .tick {
+        font-size: 11px;
+        color: #8bb894;
+        flex-shrink: 0;
+      }
+      .nav-btn.active .tick {
+        color: #d7ffe0;
+      }
+      #sidebar .footer-btns {
+        margin-top: auto;
+        padding-top: 14px;
+        border-top: 1px solid #463f34;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      #sidebar .footer-btns button {
+        background: #3a3327;
+        color: #eee3cf;
+        border: 1px solid #55493a;
+        border-radius: 6px;
+        padding: 7px 8px;
+        font-family: inherit;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      #sidebar .footer-btns button:hover {
+        background: #463f34;
+      }
+      #save-indicator {
+        font-size: 10px;
+        color: #8bb894;
+        text-align: center;
+        margin-top: 4px;
+        min-height: 14px;
+      }
+
+      /* Main content */
+      #content {
+        flex: 1;
+        padding: 36px 44px 80px 44px;
+        max-width: 900px;
+      }
+      h2.page-title {
+        font-size: 26px;
+        margin: 0 0 4px 0;
+        color: var(--ink);
+      }
+      .page-sub {
+        color: var(--ink-soft);
+        font-size: 14px;
+        margin: 0 0 26px 0;
+        font-style: italic;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 20px 22px;
+        margin-bottom: 18px;
+      }
+      .card h3 {
+        margin: 0 0 10px 0;
+        font-size: 15px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      details.recap {
+        background: #fbf6ea;
+        border: 1px dashed var(--accent-soft);
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 18px;
+      }
+      details.recap summary {
+        cursor: pointer;
+        font-weight: bold;
+        color: var(--accent);
+        font-size: 14px;
+      }
+      details.recap p {
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: var(--ink-soft);
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 0 0 18px 0;
+      }
+      .tag {
+        background: var(--chip);
+        color: #5a4a2f;
+        font-size: 11.5px;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-family: Arial, sans-serif;
+      }
+      .tag.char {
+        background: #e6ecdf;
+        color: var(--green);
+      }
+      .q-block {
+        margin-bottom: 20px;
+      }
+      .q-block label {
+        display: block;
+        font-size: 14.5px;
+        line-height: 1.5;
+        margin-bottom: 6px;
+        color: var(--ink);
+      }
+      .q-hint {
+        font-size: 12px;
+        color: #a0906f;
+        font-style: italic;
+        margin-bottom: 6px;
+      }
+      textarea,
+      input[type="text"] {
+        width: 100%;
+        font-family: "Iowan Old Style", Georgia, serif;
+        font-size: 14px;
+        padding: 9px 11px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fffefb;
+        color: var(--ink);
+        resize: vertical;
+      }
+      textarea {
+        min-height: 64px;
+      }
+      .quote-row {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 10px;
+        background: #fffefb;
+      }
+      .quote-row textarea {
+        min-height: 44px;
+        margin-bottom: 6px;
+      }
+      .quote-row .meta-row {
+        display: flex;
+        gap: 8px;
+      }
+      .quote-row .meta-row input {
+        flex: 1;
+      }
+      .vocab-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .vocab-row input {
+        flex: 1;
+      }
+      .small-btn {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        background: var(--chip);
+        color: #5a4a2f;
+        border: none;
+        border-radius: 6px;
+        padding: 7px 12px;
+        cursor: pointer;
+      }
+      .small-btn:hover {
+        background: #e3d3ac;
+      }
+      .remove-btn {
+        background: #f3e0dc;
+        color: var(--accent);
+        border: none;
+        border-radius: 6px;
+        padding: 0 10px;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+      }
+      .chapter-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 26px;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .done-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        background: #eef4ec;
+        border: 1px solid #cfe0cc;
+        padding: 9px 16px;
+        border-radius: 8px;
+        color: var(--green);
+        font-family: Arial, sans-serif;
+      }
+      .done-toggle input {
+        transform: scale(1.2);
+      }
+      .nav-buttons {
+        display: flex;
+        gap: 8px;
+      }
+      .nav-buttons button {
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        padding: 9px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: #fff;
+        cursor: pointer;
+        color: var(--ink);
+      }
+      .nav-buttons button:hover {
+        background: #f1e9d8;
+      }
+      .nav-buttons button:disabled {
+        opacity: 0.35;
+        cursor: default;
+      }
+
+      /* Dashboard */
+      .stats-grid {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 22px;
+      }
+      .stat-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 16px 20px;
+        min-width: 140px;
+        flex: 1;
+      }
+      .stat-box .num {
+        font-size: 28px;
+        color: var(--accent);
+        font-weight: bold;
+      }
+      .stat-box .lab {
+        font-size: 12px;
+        color: var(--ink-soft);
+        font-family: Arial, sans-serif;
+        margin-top: 2px;
+      }
+      .chapter-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+      }
+      .chapter-tile {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: 8px;
+        padding: 10px 12px;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+      }
+      .chapter-tile:hover {
+        border-color: var(--accent-soft);
+      }
+      .chapter-tile.done {
+        background: #eef4ec;
+        border-color: #cfe0cc;
+      }
+      .chapter-tile .num {
+        font-size: 11px;
+        color: var(--ink-soft);
+      }
+      .chapter-tile .title {
+        font-size: 13px;
+        margin-top: 2px;
+        line-height: 1.3;
+      }
+      .howto {
+        font-size: 14px;
+        line-height: 1.7;
+        color: var(--ink-soft);
+      }
+      .glossary-item {
+        margin-bottom: 12px;
+      }
+      .glossary-item .term {
+        color: var(--accent);
+        font-weight: bold;
+        font-size: 14px;
+      }
+      table.caste-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13.5px;
+        font-family: Arial, sans-serif;
+      }
+      table.caste-table th,
+      table.caste-table td {
+        border: 1px solid var(--line);
+        padding: 8px 10px;
+        text-align: left;
+      }
+      table.caste-table th {
+        background: #f1e9d8;
+      }
+      .quote-example {
+        border-left: 3px solid var(--accent-soft);
+        padding-left: 12px;
+        margin-bottom: 14px;
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+      .quote-example .q {
+        font-style: italic;
+        color: var(--ink);
+        font-size: 15px;
+      }
+      .char-card {
+        margin-bottom: 20px;
+      }
+      .char-card .intro {
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        margin-bottom: 8px;
+      }
+      .char-card .chap-tag {
+        font-size: 11px;
+        color: #a0906f;
+        font-family: Arial, sans-serif;
+        margin-bottom: 8px;
+        display: inline-block;
+      }
+      @media (max-width: 760px) {
+        #app {
+          flex-direction: column;
+        }
+        #sidebar {
+          position: relative;
+          height: auto;
+          width: 100%;
+        }
+        #content {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <nav id="sidebar">
+        <h1>Brave New World</h1>
+        <p class="subtitle">Your reading companion</p>
+        <div class="progress-wrap">
+          <div class="progress-bar-outer">
+            <div class="progress-bar-inner" id="progress-bar" style="width: 0%"></div>
+          </div>
+          <div class="progress-label" id="progress-label">0 / 18 chapters</div>
+        </div>
+        <button class="nav-btn" data-view="dashboard">📖 Dashboard</button>
+        <button class="nav-btn" data-view="reference">🔍 Quick reference</button>
+        <div class="nav-section-title">Chapters</div>
+        <div id="chapter-nav"></div>
+        <div class="nav-section-title">My revision material</div>
+        <button class="nav-btn" data-view="quotes">📝 My quotes</button>
+        <button class="nav-btn" data-view="vocab">📚 My vocabulary</button>
+        <button class="nav-btn" data-view="characters">👥 Character tracker</button>
+        <div class="footer-btns">
+          <button id="export-btn">⬇ Export my notes</button>
+          <button id="import-btn">⬆ Import notes</button>
+          <input type="file" id="import-file" accept="application/json" style="display: none" />
+          <div id="save-indicator"></div>
+        </div>
+      </nav>
+      <main id="content"></main>
+    </div>
+
+    <script>
+      /* ---------------- DATA ---------------- */
+
+      const chapterData = [
+        {
+          num: 1,
+          title: "The Hatchery and Conditioning Centre",
+          recap:
+            "You're taken on a tour of the Central London Hatchery, where humans are grown in bottles, sorted into castes from Alpha to Epsilon, and shaped before birth by Bokanovsky's Process. There's no personal conflict yet — this chapter is world-building, almost like a guided tour.",
+          themes: ["Technology", "Social stability", "Caste system", "Dehumanisation", "Fordism"],
+          characters: ["The Director", "Henry Foster", "Lenina Crowne"],
+          concepts: [
+            {
+              term: "Bokanovsky's Process",
+              explain:
+                "One fertilised egg is treated so it splits into up to 96 identical embryos. This is how the lower castes (Gamma, Delta, Epsilon) are mass-produced as identical 'twins' — it's cheaper and it makes those groups easier to manage because they're all the same.",
+            },
+            {
+              term: "Decanting",
+              explain:
+                "This society doesn't say a baby is 'born' — it's 'decanted', meaning taken out of its bottle. There are no mothers here; every human starts life in a bottle on a factory conveyor belt.",
+            },
+            {
+              term: "Caste predestination",
+              explain:
+                "Long before 'decanting', embryos are treated with different chemicals and oxygen levels depending on which caste (Alpha to Epsilon) they're destined for. Your future social class is decided while you're still in the bottle, not earned later.",
+            },
+            {
+              term: "'A.F.' (the Ford calendar)",
+              explain:
+                "Time is counted from Henry Ford's birth ('After Ford') instead of from a religious calendar. Ford, the inventor of the assembly line, is treated almost like a god — a first hint that mass production has replaced religion in this world.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "Which detail from the Hatchery tour shocked or surprised you the most, and what does it show about what this society values?",
+              hint: "The scene suggests that... / Huxley uses irony to make the reader question...",
+            },
+            {
+              label:
+                "This chapter reads more like a factory tour than a story — no real 'main character' yet. How did that style make you feel as a reader?",
+              hint: "The effect on me was...",
+            },
+            {
+              label: "Personal opinion: what stood out to you most, and why?",
+              hint: "What I found most striking was...",
+            },
+          ],
+        },
+        {
+          num: 2,
+          title: "Learning to Obey: Infant Conditioning",
+          recap:
+            "The Director shows how infants are conditioned to fear books and flowers using noise and electric shocks, and explains hypnopaedia — sleep-teaching that repeats moral slogans until people believe them automatically.",
+          themes: ["Conditioning", "Education as control", "Consumerism", "Fear of nature"],
+          characters: ["The Director", "students on the tour"],
+          concepts: [
+            {
+              term: "Hypnopaedia (sleep-teaching)",
+              explain:
+                "Recorded sentences are played to children thousands of times while they sleep. They never consciously 'learn' them — the phrases just become things they feel are true, without ever thinking about why. It's belief installed as a habit, not as a reasoned idea.",
+            },
+            {
+              term: "Neo-Pavlovian conditioning",
+              explain:
+                "Named after Pavlov's dogs (who learned to associate a bell with food). Here, babies are shown books and flowers at the same time as loud noises and electric shocks, so their bodies learn to panic around them — pure physical fear, with no 'thinking' involved.",
+            },
+            {
+              term: "Why nature and books are feared",
+              explain:
+                "It's economic: enjoying a flower or reading a book is free and doesn't require buying transport or gadgets. A society built on constant consumption can't allow people to enjoy things that cost nothing.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "How does conditioning infants let the World State control people without needing violence or punishment later on?",
+              hint: "The scene suggests that...",
+            },
+            {
+              label:
+                "The narrator describes this cruelty calmly, like normal science. What effect did that flat, clinical tone have on you?",
+              hint: "Huxley uses irony to make the reader question...",
+            },
+            {
+              label:
+                "Personal opinion: do you think 'conditioning' and 'education' are really different here — or just the same thing with a nicer name?",
+              hint: "I would not describe this as simple education because...",
+            },
+          ],
+        },
+        {
+          num: 3,
+          title: "The Ideology of the World State",
+          recap:
+            "In a chapter that jumps rapidly between scenes, Mustapha Mond lectures on history, family, sexuality and soma, while Lenina talks with Fanny and Bernard reacts angrily to gossip about Lenina. Bernard emerges as an insecure outsider.",
+          themes: ["Stability", "Consumerism", "Sexuality", "History", "Soma", "Alienation"],
+          characters: ["Mustapha Mond", "Bernard Marx", "Lenina Crowne", "Fanny Crowne"],
+          concepts: [
+            {
+              term: "Why the chapter feels confusing on purpose",
+              explain:
+                "Huxley cuts between three conversations without warning — no 'meanwhile' or scene break markers. This is deliberate: it makes you feel the same information-overload the citizens live in. Tip: when the topic suddenly shifts mid-page, that's a new scene starting, not a mistake.",
+            },
+            {
+              term: "Why family and history were abolished",
+              explain:
+                "Mond explains that the old world's families created intense feelings — love, jealousy, grief — which made people unstable and hard to control. Removing biological family (and monogamy) removes those intense private loyalties.",
+            },
+            {
+              term: "Soma (first full introduction)",
+              explain:
+                "A drug with 'all of the advantages of Christianity and alcohol, none of their defects' — it removes bad feelings instantly with no hangover (officially). Citizens take it for anything from mild boredom to real grief.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "This chapter cuts quickly between Mond's lecture, Lenina and Fanny's chat, and Bernard's anger. What mood does this fast cross-cutting create for you as a reader?",
+              hint: "The contrast between ... and ... shows...",
+            },
+            {
+              label: "At first, Bernard seems..., but by the end of the chapter...",
+              hint: "Finish this sentence in your own words.",
+            },
+            {
+              label:
+                "What did Mond's comments about history, family and soma tell you about what the World State is afraid of?",
+              hint: "The scene suggests that...",
+            },
+          ],
+        },
+        {
+          num: 4,
+          title: "Bernard, Lenina and Helmholtz",
+          recap:
+            "Lenina publicly and enthusiastically accepts Bernard's invitation to the Reservation, embarrassing him — he wanted something more private and serious. Bernard then meets Helmholtz Watson, another Alpha who senses something missing in his life.",
+          themes: ["Alienation", "Individuality", "Friendship", "Social performance"],
+          characters: ["Bernard Marx", "Lenina Crowne", "Helmholtz Watson"],
+          concepts: [
+            {
+              term: "'Pneumatic'",
+              explain:
+                "A word used repeatedly to describe Lenina's body — it literally means 'filled with air', like a cushion. Men use it as a compliment. Notice how it talks about a person like a product, not a human being — that's Huxley's point.",
+            },
+            {
+              term: "Unwritten Alpha social codes",
+              explain:
+                "Even at the very top caste, there are strict unspoken rules: date casually, never want just one person for long, never show strong emotion. Bernard is criticised not for breaking laws, but for breaking these invisible social habits.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "How does Lenina's reaction to the invitation reveal the gap between how she and Bernard see relationships?",
+              hint: "This relationship is important because...",
+            },
+            {
+              label:
+                "Helmholtz seems stronger and more sincere than Bernard right from this first meeting. What specific detail gives you that impression?",
+              hint: "This character represents...",
+            },
+            {
+              label: "Personal opinion: which character do you relate to more so far, Bernard or Helmholtz, and why?",
+              hint: "What I found most striking was...",
+            },
+          ],
+        },
+        {
+          num: 5,
+          title: "Soma, Games and the Solidarity Service",
+          recap:
+            "Henry and Lenina spend a soma-fuelled evening playing Obstacle Golf. Meanwhile Bernard attends a Solidarity Service, a ritual meant to create group unity, but he can't lose himself in it the way everyone else seems to.",
+          themes: ["Soma", "False religion", "Mass entertainment", "Loneliness"],
+          characters: ["Lenina Crowne", "Henry Foster", "Bernard Marx"],
+          concepts: [
+            {
+              term: "The Solidarity Service",
+              explain:
+                "A parody of a church service: twelve people sit in a circle, pass round soma tablets, sing hymns to 'Ford' and work themselves up until they're meant to feel merged into a 'Greater Being'. It copies the structure of religion (ritual, community, ecstasy) but empties out the meaning.",
+            },
+            {
+              term: "Obstacle Golf",
+              explain:
+                "A small but telling detail — new games in this society are deliberately designed to need lots of expensive equipment and travel. Even 'fun' exists to keep people consuming, not just to be enjoyable.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "Compare Lenina and Henry's evening with Bernard's experience at the Solidarity Service. What does each reveal about how 'happiness' works in this society?",
+              hint: "The contrast between ... and ... shows...",
+            },
+            {
+              label:
+                "Huxley uses irony to make the reader question the Solidarity Service. Where exactly do you see that irony?",
+              hint: "Look at the ritual's structure versus what it's supposed to achieve.",
+            },
+            {
+              label:
+                "Personal opinion: did the Solidarity Service remind you of any real event, ritual or trend you know?",
+              hint: "For a modern reader, this is relevant because...",
+            },
+          ],
+        },
+        {
+          num: 6,
+          title: "Bernard's Growing Discontent",
+          recap:
+            "Bernard dislikes the shallow pleasures Lenina enjoys and wants something more intense. He gets permission to visit the Reservation. The Director recalls losing a woman there years ago, then threatens to exile Bernard to Iceland for his 'unorthodox' behaviour.",
+          themes: ["Freedom", "Fear of exile", "Conformity", "Foreshadowing"],
+          characters: ["Bernard Marx", "Lenina Crowne", "The Director"],
+          concepts: [
+            {
+              term: "Exile to islands",
+              explain:
+                "The standard punishment for 'unorthodox' Alphas isn't prison — it's being sent to an island (like Iceland). It's framed purely as punishment here; keep this in mind, because how different characters react to this threat later says a lot about them.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "What do you think the Director's story about 'losing' a woman on the Reservation years ago might hint at? (It's fine if you're only guessing.)",
+              hint: "The scene suggests that...",
+            },
+            {
+              label:
+                "Bernard seems braver for a moment but is also afraid of punishment. What specific detail shows both sides of him?",
+              hint: "At first, this character seems..., but later...",
+            },
+            {
+              label:
+                "Personal opinion: what would you have done in Bernard's position, facing exile for being 'different'?",
+              hint: "What I found most striking was...",
+            },
+          ],
+        },
+        {
+          num: 7,
+          title: "Arrival at the Savage Reservation",
+          recap:
+            "Bernard and Lenina reach the Reservation and are shocked by poverty, old age, illness and religion. They meet Linda, a Beta who was lost there years ago, and her son John, who was born naturally.",
+          themes: ["Civilisation vs savagery", "Motherhood", "Shame", "Cultural conflict"],
+          characters: ["Bernard Marx", "Lenina Crowne", "Linda", "John"],
+          concepts: [
+            {
+              term: "The Savage Reservation",
+              explain:
+                "A fenced-off area kept outside World State control, where the 'old' way of life (families, religion, ageing, disease, birth) still exists — almost like a controlled human zoo that Alphas visit with a special permit.",
+            },
+            {
+              term: "Real-world inspiration",
+              explain:
+                "Huxley based the Reservation loosely on Native American pueblo cultures he had read about and visited. It's a fictional, exaggerated version — useful context for the exam, but not a realistic portrayal of any real culture.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "The scene suggests that neither London nor the Reservation is a simple paradise. What contrasts between the two worlds stood out to you here?",
+              hint: "The contrast between ... and ... shows...",
+            },
+            {
+              label: "At first, Linda and John seem..., but as you learn more about them...",
+              hint: "Finish this sentence about your first impression.",
+            },
+            {
+              label: "What was your emotional reaction to meeting John and Linda for the first time?",
+              hint: "What I found most striking was...",
+            },
+          ],
+        },
+        {
+          num: 8,
+          title: "John's Story",
+          recap:
+            "John tells Bernard about growing up as Linda's son on the Reservation — rejected by the pueblo, raised without a real father figure, and finding comfort and language in a book of Shakespeare.",
+          themes: ["Literature", "Exclusion", "Identity", "Longing"],
+          characters: ["John", "Bernard Marx", "Linda"],
+          concepts: [
+            {
+              term: "Why Shakespeare specifically",
+              explain:
+                "John's only book is a complete Shakespeare, given to him almost by chance. It becomes his entire education in poetry, morality and emotional language — which is why he later quotes it constantly and judges the world through it.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "How does Shakespeare seem to function for John — comfort, education, escape, or something else? Give a reason from the chapter.",
+              hint: "This character represents...",
+            },
+            {
+              label:
+                "John grew up excluded both by the pueblo (because of his mother) and, in a sense, by London (which he'd never seen). How do you think this double exclusion shaped him?",
+              hint: "The scene suggests that...",
+            },
+            {
+              label: "Personal opinion: what struck you most about John's childhood story?",
+              hint: "What I found most striking was...",
+            },
+          ],
+        },
+        {
+          num: 9,
+          title: "Bernard's Plan",
+          recap:
+            "Bernard gets permission from Mustapha Mond to bring Linda and John to London. Overwhelmed by the Reservation, Lenina takes soma. John secretly watches Lenina sleep, idealising her beauty without touching her.",
+          themes: ["Soma", "Idealisation", "Desire", "Manipulation"],
+          characters: ["Bernard Marx", "John", "Lenina Crowne", "Mustapha Mond"],
+          concepts: [
+            {
+              term: "A soma 'holiday'",
+              explain:
+                "Taking soma is described as going 'on holiday' — it mentally removes you from unpleasant reality for a while. Lenina uses it here specifically to cope with the shock of the Reservation.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "What does John's behaviour while watching Lenina sleep tell you about his ideas of love and desire?",
+              hint: "This character represents...",
+            },
+            {
+              label:
+                "Bernard's motives here contrast with John's innocence. What does this contrast suggest about what's coming?",
+              hint: "The contrast between ... and ... shows...",
+            },
+            {
+              label:
+                "Personal opinion: do you think Bernard is using John and Linda for his own benefit? Explain your reasoning.",
+              hint: "I would argue that...",
+            },
+          ],
+        },
+        {
+          num: 10,
+          title: "The Director is Publicly Shamed",
+          recap:
+            "Back in London, the Director tries to publicly punish Bernard — but Bernard reveals Linda and John. John calls the Director 'father,' a word that is obscene in the World State, and the Director resigns in humiliation.",
+          themes: ["Family", "Shame", "Public image", "Power reversal"],
+          characters: ["The Director", "Bernard Marx", "John", "Linda"],
+          concepts: [
+            {
+              term: "Why 'father' is obscene",
+              explain:
+                "Since reproduction is entirely artificial, biological parenthood feels viscerally embarrassing to World State citizens — roughly as shocking as a crude sexual insult would feel to us. That's why one word can destroy the Director's authority instantly.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "How is a single word ('father') powerful enough to destroy the Director's authority in this society?",
+              hint: "The scene suggests that...",
+            },
+            {
+              label: "This relationship (Bernard using John) is important because...",
+              hint: "Think about how it changes Bernard's social position.",
+            },
+            {
+              label: "Personal opinion: what did you find most ironic about this chapter?",
+              hint: "Huxley uses irony to make the reader question...",
+            },
+          ],
+        },
+        {
+          num: 11,
+          title: "John Becomes a Spectacle in London",
+          recap:
+            "John becomes a London celebrity — 'the Savage' everyone wants to meet. He's taken to schools, factories and feelies, and grows increasingly disgusted by what he sees. Linda, meanwhile, is placed on heavy soma.",
+          themes: ["Spectacle", "Exploitation", "Consumerism", "Death denial"],
+          characters: ["John", "Bernard Marx", "Lenina Crowne", "Helmholtz Watson"],
+          concepts: [
+            {
+              term: "The feelies",
+              explain:
+                "The evolved version of cinema: physical sensations (touch, smell) are transmitted straight to the audience through handles on their seats. It's entertainment stripped of any need to think — pure passive sensation.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "How does London 'consume' John as entertainment instead of actually listening to what he has to say?",
+              hint: "The scene suggests that...",
+            },
+            {
+              label: "At first, Bernard's new fame seems..., but later...",
+              hint: "Think about how fame changes his character.",
+            },
+            {
+              label:
+                "For a modern reader, is this relevant? Can you think of a modern example of someone being turned into a spectacle rather than being heard?",
+              hint: "For a modern reader, this is relevant because...",
+            },
+          ],
+        },
+        {
+          num: 12,
+          title: "Bernard's Fall, Helmholtz and John's Friendship",
+          recap:
+            "Bernard's social status collapses when John refuses to appear for his important guests. Meanwhile, John and Helmholtz bond over Shakespeare, though Helmholtz can't take the ideas of family and romantic devotion seriously.",
+          themes: ["Friendship", "Art", "Language", "Authenticity"],
+          characters: ["Bernard Marx", "John", "Helmholtz Watson"],
+          concepts: [
+            {
+              term: "Why Bernard's status was always fragile",
+              explain:
+                "Bernard's popularity was never really about him — it was about access to John, 'the Savage'. The moment John refuses to perform, Bernard has nothing of his own left to offer, showing how empty his elevated status always was.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "What does Bernard's collapse in popularity reveal about the difference between real conviction and shallow rebellion?",
+              hint: "This character represents...",
+            },
+            {
+              label:
+                "John and Helmholtz connect through Shakespeare, but even they misunderstand each other at times. Where do you see this in the chapter?",
+              hint: "The contrast between ... and ... shows...",
+            },
+            {
+              label: "Personal opinion: what does this genuine (if imperfect) friendship add to the story so far?",
+              hint: "What I found most striking was...",
+            },
+          ],
+        },
+        {
+          num: 13,
+          title: "Lenina and John: A Clash of Ideas about Love",
+          recap:
+            "Lenina visits John hoping to start a relationship. His Shakespeare-shaped idea of love collides violently with her casual, conditioned approach to sex, and the encounter ends badly.",
+          themes: ["Love vs sex", "Repression", "Shame", "Gender expectations"],
+          characters: ["Lenina Crowne", "John"],
+          concepts: [
+            {
+              term: "John's Shakespearean moral language",
+              explain:
+                "When John reacts with horror to Lenina's advances, his language echoes Shakespearean tragedy (about sexual 'purity' and shame). Those ideas are completely foreign to Lenina, who has been conditioned to see casual sex as normal and healthy.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "The scene suggests that John and Lenina both desire each other but define 'love' in completely different ways. How would you describe each of their definitions?",
+              hint: "The contrast between ... and ... shows...",
+            },
+            {
+              label:
+                "Is John's reaction to Lenina fair, or does it reveal his own psychological damage? Explain your view.",
+              hint: "I would argue that...",
+            },
+            {
+              label: "Personal opinion: what did you find most striking (or disturbing) about this scene?",
+              hint: "What I found most striking was...",
+            },
+          ],
+        },
+        {
+          num: 14,
+          title: "Linda's Death",
+          recap:
+            "John visits the dying Linda at the hospital, where children are being conditioned to see death as normal entertainment. Linda dies drugged and confused, and John's grief quickly turns to rage.",
+          themes: ["Death", "Motherhood", "Grief", "Dehumanisation"],
+          characters: ["John", "Linda"],
+          concepts: [
+            {
+              term: "Death conditioning",
+              explain:
+                "Children visit the hospital as a routine school activity, given sweets and toys around dying patients, so that death feels ordinary and unremarkable to them rather than sad. It shows how far conditioning goes — even our most basic grief is engineered away.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "How does this scene contrast real, painful grief with a society that has removed deep attachment altogether?",
+              hint: "The contrast between ... and ... shows...",
+            },
+            {
+              label: "This character (Linda) represents...",
+              hint: "Think about what she symbolises by the end of her life.",
+            },
+            {
+              label: "Personal opinion: was this the most emotional moment in the book so far for you? Why or why not?",
+              hint: "The most emotional moment for me was...",
+            },
+          ],
+        },
+        {
+          num: 15,
+          title: "The Soma Riot",
+          recap:
+            "After Linda's death, John tries to stop Delta workers from taking their soma ration, calling it poison. Helmholtz joins him; Bernard hesitates. Police end the riot calmly, using gas and soma.",
+          themes: ["Freedom", "Drugged happiness", "Rebellion", "Courage"],
+          characters: ["John", "Helmholtz Watson", "Bernard Marx"],
+          concepts: [
+            {
+              term: "The soma ration",
+              explain:
+                "Delta workers receive soma as a normal, expected part of their daily routine — almost like part of their wages. It shows how a chemical 'reward' can replace real rights, better pay or better conditions.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "The scene suggests that the Deltas don't actually want the freedom John is offering them. Why not, in your view?",
+              hint: "The scene suggests that...",
+            },
+            {
+              label:
+                "Compare how Helmholtz, Bernard and John each react during the riot. What does each reaction reveal about their courage?",
+              hint: "At first, this character seems..., but later...",
+            },
+            {
+              label:
+                "Huxley's key idea here seems to be that oppression works best when people love what enslaves them. Do you agree with this idea, in general?",
+              hint: "I would argue that...",
+            },
+          ],
+        },
+        {
+          num: 16,
+          title: "Mustapha Mond's Explanation",
+          recap:
+            "John, Helmholtz and Bernard are brought before Mustapha Mond, who explains why art, science, religion and truth are sacrificed for stability. Helmholtz accepts exile as a chance for freedom; Bernard begs not to be sent away.",
+          themes: ["Truth vs happiness", "Censorship", "Exile", "Art"],
+          characters: ["Mustapha Mond", "John", "Helmholtz Watson", "Bernard Marx"],
+          concepts: [
+            {
+              term: "Who the World Controllers are",
+              explain:
+                "There are only ten World Controllers globally, each governing a continent-sized region with near-absolute power. Mond himself once had scientific ambitions but chose comfort and power within the system instead of independent thought.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "Why is Mustapha Mond a frightening antagonist, even though he's intelligent and doesn't rely on open violence?",
+              hint: "This character represents...",
+            },
+            {
+              label:
+                "Helmholtz accepts exile positively; Bernard begs to stay. What does each choice tell you about their character?",
+              hint: "The contrast between ... and ... shows...",
+            },
+            {
+              label:
+                "Personal opinion: after hearing Mond's explanation, do you feel more or less sympathy for the World State's logic?",
+              hint: "I would argue that...",
+            },
+          ],
+        },
+        {
+          num: 17,
+          title: "John and Mond Debate Suffering and Freedom",
+          recap:
+            "John and Mond continue their debate. Mond argues the modern world has no need for God, tragic art or intense suffering. John insists he wants real danger, freedom, goodness and sin — not controlled comfort.",
+          themes: ["Religion", "Suffering", "Moral freedom", "Human dignity"],
+          characters: ["John", "Mustapha Mond"],
+          concepts: [
+            {
+              term: "The philosophical debate behind the scene",
+              explain:
+                "Mond's arguments echo real debates in philosophy about whether the greatest good for the greatest number (comfort, stability) should outweigh individual freedom and truth. It's Huxley distilling centuries of philosophy into a single dramatic conversation.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "Summarise John's central argument against Mond's world in your own words — what exactly is he demanding?",
+              hint: "The scene suggests that...",
+            },
+            {
+              label: "Do you find John's demand ('I claim them all') noble, extreme, or both? Explain your reasoning.",
+              hint: "I would not describe this as simple because...",
+            },
+            {
+              label:
+                "Personal opinion: what does this debate suggest about what a 'fully human' life actually requires?",
+              hint: "For a modern reader, this is relevant because...",
+            },
+          ],
+        },
+        {
+          num: 18,
+          title: "The Lighthouse",
+          recap:
+            "Denied the chance to go into exile with Helmholtz and Bernard, John retreats to an abandoned lighthouse to try to purify himself through labour and self-punishment — but journalists and crowds turn even his isolation into a spectacle.",
+          themes: ["Isolation", "Spectacle", "Guilt", "Tragedy"],
+          characters: ["John", "Bernard Marx", "Helmholtz Watson"],
+          concepts: [
+            {
+              term: "Self-punishment as protest",
+              explain:
+                "John's whip and self-punishment echo historical religious penance rituals. His extreme self-denial is a direct, physical reaction against a world of extreme comfort — one radical response answering another.",
+            },
+          ],
+          questions: [
+            {
+              label:
+                "The scene suggests that even John's attempt at total solitude gets turned into public spectacle. What does this tell you about the World State's power?",
+              hint: "The scene suggests that...",
+            },
+            {
+              label:
+                "How has John changed from Chapter 7 (his first appearance) to now? Trace his arc in a few sentences.",
+              hint: "At first, this character seems..., but by the end...",
+            },
+            {
+              label:
+                "Final reflection: what do you take away from the ending, and how would you explain its meaning if asked in your oral exam?",
+              hint: "I would argue that... / What I found most striking was...",
+            },
+          ],
+        },
+      ];
+
+      const characterList = [
+        {
+          name: "The Director (D.H.C.)",
+          first: 1,
+          intro: "Runs the Central London Hatchery and Conditioning Centre — a confident servant of the system.",
+        },
+        {
+          name: "Henry Foster",
+          first: 1,
+          intro: "A confident, cheerful Alpha who works at the Hatchery and dates Lenina.",
+        },
+        {
+          name: "Lenina Crowne",
+          first: 1,
+          intro: "A Beta worker at the Hatchery — attractive, popular, and (mostly) well-conditioned.",
+        },
+        {
+          name: "Bernard Marx",
+          first: 3,
+          intro: "An Alpha Plus psychologist who feels physically small and socially insecure.",
+        },
+        {
+          name: "Fanny Crowne",
+          first: 3,
+          intro: "Lenina's friend and coworker, who represents conventional social norms.",
+        },
+        {
+          name: "Mustapha Mond",
+          first: 3,
+          intro: "One of the ten World Controllers — calm, intelligent, and deeply in control.",
+        },
+        {
+          name: "Helmholtz Watson",
+          first: 4,
+          intro: "An Alpha Plus lecturer and 'emotional engineer' who senses something missing in his life.",
+        },
+        {
+          name: "Benito Hoover",
+          first: 6,
+          intro: "A cheerful Alpha, always ready to offer soma to lift someone's mood.",
+        },
+        { name: "Linda", first: 7, intro: "A Beta woman who was lost on the Reservation years ago — John's mother." },
+        {
+          name: 'John ("the Savage")',
+          first: 7,
+          intro: "Linda's son, born naturally on the Reservation and raised on a book of Shakespeare.",
+        },
+        { name: "Popé", first: 8, intro: "A man on the Reservation connected to Linda and to John's childhood." },
+        { name: "Mitsima", first: 8, intro: "An older Reservation man who teaches John practical skills." },
+        {
+          name: "The Arch-Community-Songster",
+          first: 5,
+          intro: "A ceremonial, high-status religious-style figure in London society.",
+        },
+        { name: "Dr Shaw", first: 14, intro: "Linda's doctor in London." },
+      ];
+
+      const themeGlossary = [
+        {
+          term: "Community, Identity, Stability",
+          note: "The World State's motto — everything is organised to keep society stable, even at the cost of individuality.",
+        },
+        {
+          term: "Soma",
+          note: "The 'perfect drug' — happiness on demand, used whenever reality becomes uncomfortable.",
+        },
+        {
+          term: "Conditioning",
+          note: "People are trained before birth and after to want exactly what society needs them to want.",
+        },
+        {
+          term: "Shakespeare",
+          note: "Represents complex language, tragedy, love and moral conflict — everything the World State has removed.",
+        },
+        {
+          term: "Consumerism",
+          note: "Citizens are conditioned to buy, discard and consume constantly ('ending is better than mending').",
+        },
+        {
+          term: "Freedom vs Happiness",
+          note: "The novel's central question: can you have both, or must a society choose one?",
+        },
+      ];
+
+      const casteTable = [
+        {
+          caste: "Alpha",
+          colour: "Grey",
+          meaning: "Highest caste — intellectual, administrative and leadership roles.",
+        },
+        {
+          caste: "Beta",
+          colour: "Mulberry",
+          meaning: "High caste below Alphas — skilled work, less intellectual burden.",
+        },
+        { caste: "Gamma", colour: "Green", meaning: "Middle caste — conditioned to accept their place." },
+        { caste: "Delta", colour: "Khaki", meaning: "Lower caste — often mass-produced, simple work." },
+        {
+          caste: "Epsilon",
+          colour: "Black",
+          meaning: "Lowest caste — deliberately limited intelligence for menial labour.",
+        },
+      ];
+
+      const hardWords = [
+        {
+          term: "Bokanovsky's Process",
+          note: "The technique that splits one egg into up to 96 identical embryos — used to mass-produce the lower castes.",
+        },
+        {
+          term: "Decanting",
+          note: "This society's word for 'being born' — taken out of a bottle rather than born from a body.",
+        },
+        {
+          term: "Hypnopaedia",
+          note: "Sleep-teaching: recorded phrases repeated during sleep until they become unquestioned beliefs.",
+        },
+        { term: "Soma", note: "The state-provided happiness drug — 'a gramme is better than a damn'." },
+        {
+          term: "Malthusian Belt",
+          note: "A contraceptive belt women wear as standard, keeping sex separate from reproduction.",
+        },
+        {
+          term: "Feelies",
+          note: "Cinema evolved: films where physical sensations are transmitted to the audience, not just images and sound.",
+        },
+        {
+          term: "Pneumatic",
+          note: "Slang used to describe an attractive, curvy body — literally 'full of air', like a cushion.",
+        },
+        {
+          term: "Viviparous",
+          note: "Giving birth from a body (the natural way) — a near-obscene, 'primitive' word in the World State.",
+        },
+        {
+          term: "Erogenous zones",
+          note: "Part of the clinical, scientific vocabulary the World State uses for sex — clinical language replacing romantic language.",
+        },
+        {
+          term: "Centrifugal Bumble-puppy",
+          note: "An invented game — another example of technology-heavy leisure that keeps the economy running.",
+        },
+        {
+          term: "Zippicamiknicks",
+          note: "A fashionable garment mentioned in passing — a small satirical detail about consumer fashion trends.",
+        },
+        {
+          term: "Ford / Our Ford",
+          note: "Henry Ford, inventor of the assembly line, is treated as a god-like figure — 'Our Ford' replaces 'Our Lord'.",
+        },
+        {
+          term: "Alpha / Beta / Gamma / Delta / Epsilon",
+          note: "The five castes, from highest (Alpha) to lowest (Epsilon) — see the caste table above.",
+        },
+        {
+          term: "World State",
+          note: "The single global government that controls nearly the entire planet in the novel.",
+        },
+        {
+          term: "Reservation",
+          note: "A fenced-off area outside World State control where the 'old' way of life still exists.",
+        },
+      ];
+
+      const examQuotes = [
+        {
+          q: "Community, Identity, Stability",
+          scene: "The motto at the Hatchery.",
+          use: "Introduce the World State's values and how stability is placed above freedom.",
+        },
+        {
+          q: "History is bunk",
+          scene: "Mond's lecture.",
+          use: "Discuss control of the past and why memory threatens the present system.",
+        },
+        {
+          q: "Everyone belongs to everyone else",
+          scene: "Hypnopædic sexual morality.",
+          use: "Discuss how slogans replace personal relationships.",
+        },
+        {
+          q: "O brave new world",
+          scene: "John's Shakespearean reaction to London (later chapters).",
+          use: "Explain dramatic irony — hope turning into disgust.",
+        },
+        {
+          q: "I claim them all",
+          scene: "John's debate with Mond (later chapters).",
+          use: "Discuss John's choice of suffering, danger and moral freedom.",
+        },
+        {
+          q: "Ending is better than mending",
+          scene: "Consumerist conditioning.",
+          use: "Analyse the economic logic behind shallow desire.",
+        },
+      ];
+
+      /* ---------------- STATE ---------------- */
+
+      const STORAGE_KEY = "bnw-reading-companion-v1";
+
+      function defaultState() {
+        const chapters = {};
+        chapterData.forEach((c) => {
+          chapters[c.num] = {
+            done: false,
+            answers: c.questions.map(() => ""),
+            quotes: [],
+            vocab: [],
+            charNotes: "",
+          };
+        });
+        const charNotes = {};
+        characterList.forEach((c) => (charNotes[c.name] = ""));
+        return { chapters, charNotes, currentView: "dashboard" };
+      }
+
+      let state = loadState();
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return defaultState();
+          const parsed = JSON.parse(raw);
+          const base = defaultState();
+          // merge, so new fields added later don't break old saves
+          Object.keys(base.chapters).forEach((k) => {
+            if (parsed.chapters && parsed.chapters[k]) {
+              base.chapters[k] = Object.assign(base.chapters[k], parsed.chapters[k]);
+            }
+          });
+          if (parsed.charNotes) {
+            Object.keys(base.charNotes).forEach((k) => {
+              if (parsed.charNotes[k] !== undefined) base.charNotes[k] = parsed.charNotes[k];
+            });
+          }
+          if (parsed.currentView) base.currentView = parsed.currentView;
+          return base;
+        } catch (e) {
+          return defaultState();
+        }
+      }
+
+      let saveTimer = null;
+      function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        const ind = document.getElementById("save-indicator");
+        if (ind) {
+          ind.textContent = "Saved ✓";
+          clearTimeout(saveTimer);
+          saveTimer = setTimeout(() => (ind.textContent = ""), 1500);
+        }
+        updateProgress();
+      }
+
+      function updateProgress() {
+        const total = chapterData.length;
+        const done = Object.values(state.chapters).filter((c) => c.done).length;
+        const pct = Math.round((done / total) * 100);
+        const bar = document.getElementById("progress-bar");
+        const lab = document.getElementById("progress-label");
+        if (bar) bar.style.width = pct + "%";
+        if (lab) lab.textContent = done + " / " + total + " chapters";
+        document.querySelectorAll(".nav-btn[data-chapter]").forEach((btn) => {
+          const n = btn.getAttribute("data-chapter");
+          const tick = btn.querySelector(".tick");
+          if (tick) tick.textContent = state.chapters[n].done ? "✓" : "";
+        });
+      }
+
+      /* ---------------- RENDER ---------------- */
+
+      const content = document.getElementById("content");
+
+      function setActiveNav(view) {
+        document.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
+        const sel = view.startsWith("chapter-")
+          ? `.nav-btn[data-chapter="${view.split("-")[1]}"]`
+          : `.nav-btn[data-view="${view}"]`;
+        const el = document.querySelector(sel);
+        if (el) el.classList.add("active");
+      }
+
+      function navigate(view) {
+        state.currentView = view;
+        saveState();
+        render(view);
+        window.scrollTo(0, 0);
+      }
+
+      function render(view) {
+        setActiveNav(view);
+        if (view === "dashboard") return renderDashboard();
+        if (view === "reference") return renderReference();
+        if (view === "quotes") return renderQuotes();
+        if (view === "vocab") return renderVocab();
+        if (view === "characters") return renderCharacters();
+        if (view.startsWith("chapter-")) return renderChapter(parseInt(view.split("-")[1]));
+        renderDashboard();
+      }
+
+      function renderDashboard() {
+        const total = chapterData.length;
+        const done = Object.values(state.chapters).filter((c) => c.done).length;
+        const totalQuotes = Object.values(state.chapters).reduce((s, c) => s + c.quotes.length, 0);
+        const totalVocab = Object.values(state.chapters).reduce((s, c) => s + c.vocab.length, 0);
+
+        content.innerHTML = `
+    <h2 class="page-title">Welcome back, Emma</h2>
+    <p class="page-sub">A place to think after every chapter of Brave New World — before you get to your ready-made summary.</p>
+
+    <div class="stats-grid">
+      <div class="stat-box"><div class="num">${done}/${total}</div><div class="lab">Chapters reflected on</div></div>
+      <div class="stat-box"><div class="num">${totalQuotes}</div><div class="lab">Quotes collected</div></div>
+      <div class="stat-box"><div class="num">${totalVocab}</div><div class="lab">Vocabulary saved</div></div>
+    </div>
+
+    <div class="card">
+      <h3>How to use this</h3>
+      <p class="howto">Read a chapter first — this page has no plot spoilers beyond the chapter you open. Then come here, open that chapter, and (1) test yourself with the hidden recap, (2) check the "tricky bits explained" box for anything confusing, (3) answer 2–3 short reflection questions in your own words, (4) save any quote that struck you, and (5) note new words. By Chapter 18 you'll already have your own material for the oral exam, in your own words, built up chapter by chapter — not just memorised from a summary.</p>
+    </div>
+
+    ${(function () {
+      const early = [1, 2, 3, 4, 5];
+      const notDone = early.filter((n) => !state.chapters[n].done);
+      if (notDone.length === 0) return "";
+      return `<div class="card" style="border-color:var(--accent-soft); background:#fbf6ea;">
+        <h3>You're already ahead — catch up quickly</h3>
+        <p class="howto">You've read up to Chapter 5. Chapters ${notDone.join(", ")} still have no notes. Open each one, skim the "tricky bits explained" box while it's fresh, and jot a quick answer or two — even a sentence per question is enough to build real revision material.</p>
+      </div>`;
+    })()}
+
+    <div class="card">
+      <h3>Jump to a chapter</h3>
+      <div class="chapter-grid">
+        ${chapterData
+          .map(
+            (c) => `
+          <div class="chapter-tile ${state.chapters[c.num].done ? "done" : ""}" data-goto="chapter-${c.num}">
+            <div class="num">Chapter ${c.num}${state.chapters[c.num].done ? " ✓" : ""}</div>
+            <div class="title">${c.title}</div>
+          </div>
+        `,
+          )
+          .join("")}
+      </div>
+    </div>
+  `;
+        content.querySelectorAll("[data-goto]").forEach((el) => {
+          el.addEventListener("click", () => navigate(el.getAttribute("data-goto")));
+        });
+      }
+
+      function renderReference() {
+        content.innerHTML = `
+    <h2 class="page-title">Quick reference</h2>
+    <p class="page-sub">Keep this open in a tab while you read — no plot spoilers here.</p>
+
+    <div class="card">
+      <h3>Caste system</h3>
+      <table class="caste-table">
+        <tr><th>Caste</th><th>Colour</th><th>Meaning</th></tr>
+        ${casteTable.map((c) => `<tr><td>${c.caste}</td><td>${c.colour}</td><td>${c.meaning}</td></tr>`).join("")}
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Themes to watch for</h3>
+      ${themeGlossary
+        .map(
+          (t) => `
+        <div class="glossary-item">
+          <div class="term">${t.term}</div>
+          <div>${t.note}</div>
+        </div>
+      `,
+        )
+        .join("")}
+    </div>
+
+    <div class="card">
+      <h3>Tricky words &amp; names glossary</h3>
+      <p style="font-size:13px; color:var(--ink-soft); margin-top:-4px;">The invented vocabulary is part of what makes this book hard. Look words up here any time — this is separate from your own personal vocabulary list.</p>
+      ${hardWords
+        .map(
+          (t) => `
+        <div class="glossary-item">
+          <div class="term">${t.term}</div>
+          <div>${t.note}</div>
+        </div>
+      `,
+        )
+        .join("")}
+    </div>
+
+    <div class="card">
+      <h3>Exam-ready quotes bank <span style="font-size:11px; color:#a0906f; font-family:Arial,sans-serif;">(a couple are from later chapters — skip if you'd rather avoid it)</span></h3>
+      ${examQuotes
+        .map(
+          (q) => `
+        <div class="quote-example">
+          <div class="q">"${q.q}"</div>
+          <div><strong>Scene:</strong> ${q.scene}</div>
+          <div><strong>Use it for:</strong> ${q.use}</div>
+        </div>
+      `,
+        )
+        .join("")}
+    </div>
+  `;
+      }
+
+      function renderChapter(n) {
+        const c = chapterData.find((x) => x.num === n);
+        const s = state.chapters[n];
+
+        content.innerHTML = `
+    <h2 class="page-title">Chapter ${c.num}: ${c.title}</h2>
+    <p class="page-sub">Read the chapter first — then come back here.</p>
+
+    <details class="recap">
+      <summary>🔎 Check your understanding (click to reveal)</summary>
+      <p>${c.recap}</p>
+    </details>
+
+    <div class="card">
+      <h3>Themes in this chapter</h3>
+      <div class="tags">${c.themes.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+      <h3>Characters in this chapter</h3>
+      <div class="tags">${c.characters.map((t) => `<span class="tag char">${t}</span>`).join("")}</div>
+    </div>
+
+    <div class="card">
+      <h3>🧩 Explained: tricky bits in this chapter</h3>
+      ${
+        (c.concepts || [])
+          .map(
+            (co) => `
+        <div class="glossary-item">
+          <div class="term">${co.term}</div>
+          <div>${co.explain}</div>
+        </div>
+      `,
+          )
+          .join("") ||
+        `<p style="color:#a0906f; font-size:13px;">Nothing extra to explain here — this chapter is fairly self-contained.</p>`
+      }
+    </div>
+
+    <div class="card">
+      <h3>💭 Reflect</h3>
+      ${c.questions
+        .map(
+          (q, i) => `
+        <div class="q-block">
+          <label>${i + 1}. ${q.label}</label>
+          <div class="q-hint">Sentence starter: ${q.hint}</div>
+          <textarea data-answer="${i}">${s.answers[i] || ""}</textarea>
+        </div>
+      `,
+        )
+        .join("")}
+    </div>
+
+    <div class="card">
+      <h3>📝 Important quotes</h3>
+      <div id="quote-list"></div>
+      <button class="small-btn" id="add-quote">+ Add a quote</button>
+    </div>
+
+    <div class="card">
+      <h3>📚 New words</h3>
+      <div id="vocab-list"></div>
+      <button class="small-btn" id="add-vocab">+ Add a word</button>
+    </div>
+
+    <div class="chapter-footer">
+      <label class="done-toggle">
+        <input type="checkbox" id="done-check" ${s.done ? "checked" : ""}>
+        Mark Chapter ${n} as read &amp; reflected
+      </label>
+      <div class="nav-buttons">
+        <button id="prev-btn" ${n <= 1 ? "disabled" : ""}>← Chapter ${n - 1}</button>
+        <button id="next-btn" ${n >= 18 ? "disabled" : ""}>Chapter ${n + 1} →</button>
+      </div>
+    </div>
+  `;
+
+        // answers
+        content.querySelectorAll("[data-answer]").forEach((ta) => {
+          ta.addEventListener("input", () => {
+            s.answers[parseInt(ta.getAttribute("data-answer"))] = ta.value;
+            saveState();
+          });
+        });
+
+        // quotes
+        function renderQuoteList() {
+          const wrap = document.getElementById("quote-list");
+          wrap.innerHTML =
+            s.quotes
+              .map(
+                (q, i) => `
+      <div class="quote-row" data-qi="${i}">
+        <textarea placeholder="Quote text...">${q.text}</textarea>
+        <div class="meta-row">
+          <input type="text" placeholder="Page / location (optional)" data-field="page" value="${q.page || ""}">
+          <input type="text" placeholder="Why does it matter?" data-field="note" value="${q.note || ""}">
+          <button class="remove-btn" data-remove="${i}">✕</button>
+        </div>
+      </div>
+    `,
+              )
+              .join("") || `<p style="color:#a0906f; font-size:13px;">No quotes saved yet.</p>`;
+
+          wrap.querySelectorAll(".quote-row").forEach((row) => {
+            const i = parseInt(row.getAttribute("data-qi"));
+            row.querySelector("textarea").addEventListener("input", (e) => {
+              s.quotes[i].text = e.target.value;
+              saveState();
+            });
+            row.querySelectorAll("input[data-field]").forEach((inp) => {
+              inp.addEventListener("input", (e) => {
+                s.quotes[i][inp.getAttribute("data-field")] = e.target.value;
+                saveState();
+              });
+            });
+          });
+          wrap.querySelectorAll("[data-remove]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              s.quotes.splice(parseInt(btn.getAttribute("data-remove")), 1);
+              saveState();
+              renderQuoteList();
+            });
+          });
+        }
+        renderQuoteList();
+        document.getElementById("add-quote").addEventListener("click", () => {
+          s.quotes.push({ text: "", page: "", note: "" });
+          saveState();
+          renderQuoteList();
+        });
+
+        // vocab
+        function renderVocabList() {
+          const wrap = document.getElementById("vocab-list");
+          wrap.innerHTML =
+            s.vocab
+              .map(
+                (v, i) => `
+      <div class="vocab-row" data-vi="${i}">
+        <input type="text" placeholder="Word / phrase" data-field="word" value="${v.word || ""}">
+        <input type="text" placeholder="Meaning / translation" data-field="meaning" value="${v.meaning || ""}">
+        <button class="remove-btn" data-remove="${i}">✕</button>
+      </div>
+    `,
+              )
+              .join("") || `<p style="color:#a0906f; font-size:13px;">No words saved yet.</p>`;
+
+          wrap.querySelectorAll(".vocab-row").forEach((row) => {
+            const i = parseInt(row.getAttribute("data-vi"));
+            row.querySelectorAll("input[data-field]").forEach((inp) => {
+              inp.addEventListener("input", (e) => {
+                s.vocab[i][inp.getAttribute("data-field")] = e.target.value;
+                saveState();
+              });
+            });
+          });
+          wrap.querySelectorAll("[data-remove]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+              s.vocab.splice(parseInt(btn.getAttribute("data-remove")), 1);
+              saveState();
+              renderVocabList();
+            });
+          });
+        }
+        renderVocabList();
+        document.getElementById("add-vocab").addEventListener("click", () => {
+          s.vocab.push({ word: "", meaning: "" });
+          saveState();
+          renderVocabList();
+        });
+
+        document.getElementById("done-check").addEventListener("change", (e) => {
+          s.done = e.target.checked;
+          saveState();
+          updateProgress();
+        });
+
+        document.getElementById("prev-btn").addEventListener("click", () => navigate(`chapter-${n - 1}`));
+        document.getElementById("next-btn").addEventListener("click", () => navigate(`chapter-${n + 1}`));
+      }
+
+      function renderQuotes() {
+        let rows = [];
+        chapterData.forEach((c) => {
+          state.chapters[c.num].quotes.forEach((q) => {
+            if (q.text && q.text.trim()) rows.push({ chapter: c.num, title: c.title, ...q });
+          });
+        });
+        content.innerHTML = `
+    <h2 class="page-title">My quotes</h2>
+    <p class="page-sub">Everything you've saved, in one place — ready for oral exam evidence.</p>
+    ${
+      rows.length === 0
+        ? `<div class="card"><p style="color:var(--ink-soft)">No quotes yet. Add some from inside a chapter page.</p></div>`
+        : rows
+            .map(
+              (r) => `
+        <div class="card">
+          <div style="font-size:11px; color:#a0906f; font-family:Arial,sans-serif; margin-bottom:6px;">Chapter ${r.chapter} — ${r.title}</div>
+          <div class="quote-example"><div class="q">"${r.text}"</div>
+          ${r.page ? `<div><strong>Page/location:</strong> ${r.page}</div>` : ""}
+          ${r.note ? `<div><strong>Why it matters:</strong> ${r.note}</div>` : ""}
+          </div>
+        </div>
+      `,
+            )
+            .join("")
+    }
+  `;
+      }
+
+      function renderVocab() {
+        let rows = [];
+        chapterData.forEach((c) => {
+          state.chapters[c.num].vocab.forEach((v) => {
+            if (v.word && v.word.trim()) rows.push({ chapter: c.num, ...v });
+          });
+        });
+        content.innerHTML = `
+    <h2 class="page-title">My vocabulary</h2>
+    <p class="page-sub">Click a word to reveal its meaning — quick self-testing.</p>
+    ${
+      rows.length === 0
+        ? `<div class="card"><p style="color:var(--ink-soft)">No words yet. Add some from inside a chapter page.</p></div>`
+        : `<div class="card"><table class="caste-table">
+        <tr><th>Chapter</th><th>Word</th><th>Meaning (click to reveal)</th></tr>
+        ${rows
+          .map(
+            (r, i) => `
+          <tr>
+            <td>${r.chapter}</td>
+            <td>${r.word}</td>
+            <td><span class="vocab-reveal" data-i="${i}" style="cursor:pointer; color:#a0906f;">tap to reveal</span></td>
+          </tr>
+        `,
+          )
+          .join("")}
+      </table></div>`
+    }
+  `;
+        content.querySelectorAll(".vocab-reveal").forEach((el) => {
+          el.addEventListener("click", () => {
+            const i = parseInt(el.getAttribute("data-i"));
+            el.textContent = rows[i].meaning || "(no meaning saved)";
+            el.style.color = "var(--ink)";
+            el.style.cursor = "default";
+          });
+        });
+      }
+
+      function renderCharacters() {
+        content.innerHTML = `
+    <h2 class="page-title">Character tracker</h2>
+    <p class="page-sub">Update these notes as each character develops through the book.</p>
+    ${characterList
+      .map(
+        (c) => `
+      <div class="card char-card">
+        <h3>${c.name}</h3>
+        <span class="chap-tag">First appears: Chapter ${c.first}</span>
+        <div class="intro">${c.intro}</div>
+        <textarea data-char="${c.name}" placeholder="Your notes on how this character develops...">${state.charNotes[c.name] || ""}</textarea>
+      </div>
+    `,
+      )
+      .join("")}
+  `;
+        content.querySelectorAll("[data-char]").forEach((ta) => {
+          ta.addEventListener("input", (e) => {
+            state.charNotes[ta.getAttribute("data-char")] = e.target.value;
+            saveState();
+          });
+        });
+      }
+
+      /* ---------------- SIDEBAR NAV BUILD ---------------- */
+
+      const chapterNavWrap = document.getElementById("chapter-nav");
+      chapterData.forEach((c) => {
+        const btn = document.createElement("button");
+        btn.className = "nav-btn";
+        btn.setAttribute("data-chapter", c.num);
+        btn.innerHTML = `<span>Ch. ${c.num}: ${c.title.length > 22 ? c.title.slice(0, 20) + "…" : c.title}</span><span class="tick"></span>`;
+        btn.addEventListener("click", () => navigate(`chapter-${c.num}`));
+        chapterNavWrap.appendChild(btn);
+      });
+
+      document.querySelectorAll(".nav-btn[data-view]").forEach((btn) => {
+        btn.addEventListener("click", () => navigate(btn.getAttribute("data-view")));
+      });
+
+      /* ---------------- EXPORT / IMPORT ---------------- */
+
+      document.getElementById("export-btn").addEventListener("click", () => {
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "brave-new-world-notes.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      document.getElementById("import-btn").addEventListener("click", () => {
+        document.getElementById("import-file").click();
+      });
+      document.getElementById("import-file").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          try {
+            const parsed = JSON.parse(evt.target.result);
+            const base = defaultState();
+            Object.keys(base.chapters).forEach((k) => {
+              if (parsed.chapters && parsed.chapters[k])
+                base.chapters[k] = Object.assign(base.chapters[k], parsed.chapters[k]);
+            });
+            if (parsed.charNotes) {
+              Object.keys(base.charNotes).forEach((k) => {
+                if (parsed.charNotes[k] !== undefined) base.charNotes[k] = parsed.charNotes[k];
+              });
+            }
+            state = base;
+            saveState();
+            render(state.currentView || "dashboard");
+            alert("Notes imported successfully.");
+          } catch (err) {
+            alert("Could not read this file. Make sure it is a JSON export from this tool.");
+          }
+        };
+        reader.readAsText(file);
+      });
+
+      /* ---------------- INIT ---------------- */
+      updateProgress();
+      render(state.currentView || "dashboard");
+    </script>
+  </body>
+</html>
