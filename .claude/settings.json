@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const m=require\\('./pdfs/manifest.json'\\);console.log\\(Object.keys\\(m.subjects\\)\\);console.log\\('chemie:',\\(m.subjects.chemie||[]\\).length,'PDFs'\\)\")",
+      "Bash(git add *)",
+      "Bash(git commit -q -m 'chore: PDF-Manifest gegen vorhandene Chemie-PDFs neu generieren [skip manifest] *)",
+      "Bash(git push *)",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{try{const m=JSON.parse\\(d\\);console.log\\('chemie:',\\(m.subjects.chemie||[]\\).length,'PDFs, generiert',m.generated\\)}catch\\(e\\){console.log\\(d.slice\\(0,200\\)\\)}}\\)\")",
+      "Bash(git reset *)"
+    ]
+  }
+}
