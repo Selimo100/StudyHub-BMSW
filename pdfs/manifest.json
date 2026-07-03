@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-03T14:22:59.698Z",
+  "generated": "2026-07-03T14:24:16.281Z",
   "subjects": {
     "chemie": [
       {
@@ -56,6 +56,29 @@
         "path": "pdfs/chemie/ChemistryKT_Kap7.pdf",
         "size": 184930,
         "sizeLabel": "181 KB",
+        "modified": "2026-07-03"
+      }
+    ],
+    "deutsch": [
+      {
+        "name": "German_exam1.pdf",
+        "path": "pdfs/deutsch/German_exam1.pdf",
+        "size": 682521,
+        "sizeLabel": "667 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "German_exam2.pdf",
+        "path": "pdfs/deutsch/German_exam2.pdf",
+        "size": 202215,
+        "sizeLabel": "197 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "German_exam3.pdf",
+        "path": "pdfs/deutsch/German_exam3.pdf",
+        "size": 309115,
+        "sizeLabel": "302 KB",
         "modified": "2026-07-03"
       }
     ],
