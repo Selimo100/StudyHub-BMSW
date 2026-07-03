@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-03T14:24:16.281Z",
+  "generated": "2026-07-03T14:25:39.770Z",
   "subjects": {
     "chemie": [
       {
@@ -79,6 +79,22 @@
         "path": "pdfs/deutsch/German_exam3.pdf",
         "size": 309115,
         "sizeLabel": "302 KB",
+        "modified": "2026-07-03"
+      }
+    ],
+    "englisch": [
+      {
+        "name": "English_exam_1.pdf",
+        "path": "pdfs/englisch/English_exam_1.pdf",
+        "size": 344208,
+        "sizeLabel": "336 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "English_exam_2.pdf",
+        "path": "pdfs/englisch/English_exam_2.pdf",
+        "size": 421507,
+        "sizeLabel": "412 KB",
         "modified": "2026-07-03"
       }
     ],
