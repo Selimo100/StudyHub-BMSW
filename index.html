@@ -4,18 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StudyHub</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="apple-touch-icon" href="./favicon.svg" />
+  <meta name="theme-color" content="#082038" />
   <style>
     :root {
-      --bg-top: #dde7ec;
-      --text: #1f2430;
-      --card: rgba(255, 255, 255, 0.88);
-      --border: rgba(0, 0, 0, 0.08);
-      --accent: #b4262f;
-      --accent-hover: #8f1f26;
-      --subject: #20242f;
-      --muted: #606776;
-      --shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
-      --radius: 18px;
+      /* --- Brand tokens, derived from the StudyHub logo --- */
+      --navy: #082038;        /* logo navy: book + "Study" wordmark */
+      --accent: #b81020;      /* logo red: dots + "Hub" wordmark */
+      --accent-hover: #8f0c18;
+      --accent-soft: rgba(184, 16, 32, 0.08);
+      --accent-ring: rgba(184, 16, 32, 0.22);
+
+      /* --- Neutrals, tinted toward navy for a cohesive feel --- */
+      --bg-top: #e2eaef;
+      --text: #16202e;
+      --subject: var(--navy);
+      --muted: #5b6675;
+      --card: rgba(255, 255, 255, 0.9);
+      --border: rgba(8, 32, 56, 0.1);
+
+      --shadow: 0 14px 34px rgba(8, 32, 56, 0.12);
+      --shadow-hover: 0 18px 40px rgba(8, 32, 56, 0.18);
+      --radius: 16px;
     }
 
     * {
@@ -31,29 +42,45 @@
     }
 
     .topbar {
-      background: var(--bg-top);
-      padding: 24px clamp(18px, 4vw, 56px);
+      background: rgba(226, 234, 239, 0.82);
+      padding: 16px clamp(18px, 4vw, 56px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 5;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(8px);
     }
 
     .brand {
-      font-size: clamp(1.2rem, 2.8vw, 2rem);
-      font-weight: 800;
-      letter-spacing: 0.2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
       margin: 0;
+      font-size: clamp(1.2rem, 2.8vw, 1.7rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: var(--navy);
+      user-select: none;
+    }
+
+    .brand-mark {
+      width: clamp(28px, 5vw, 34px);
+      height: clamp(28px, 5vw, 34px);
+      flex-shrink: 0;
+    }
+
+    .brand-name .accent {
+      color: var(--accent);
     }
 
     .hero {
       position: relative;
-      min-height: 34vh;
+      min-height: 38vh;
       display: grid;
       place-items: center;
       text-align: center;
-      padding: 48px 20px;
+      padding: 64px 20px 80px;
       overflow: hidden;
       border-bottom: 1px solid var(--border);
     }
@@ -63,9 +90,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to right, rgba(18, 24, 34, 0.55), rgba(18, 24, 34, 0.35)),
-        url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
-      transform: scale(1.03);
+        radial-gradient(120% 140% at 50% -20%, rgba(184, 16, 32, 0.3), transparent 55%),
+        linear-gradient(160deg, #0c2a49 0%, #082038 55%, #061729 100%);
       z-index: -2;
     }
 
@@ -73,23 +99,96 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2));
+      background: linear-gradient(to bottom, transparent 55%, rgba(6, 20, 34, 0.4));
       z-index: -1;
+    }
+
+    /* --- animated "knowledge network" motif (echoes the logo) --- */
+    .hero-net {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-net line {
+      stroke: rgba(226, 234, 239, 0.14);
+      stroke-width: 1;
+    }
+
+    .hero-net .node {
+      fill: rgba(226, 234, 239, 0.55);
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: nodePulse 6s ease-in-out infinite;
+    }
+
+    .hero-net .node.red {
+      fill: rgba(230, 60, 78, 0.85);
+      filter: drop-shadow(0 0 6px rgba(230, 60, 78, 0.55));
+    }
+
+    .hero-net .n2 { animation-delay: -1.2s; }
+    .hero-net .n3 { animation-delay: -2.4s; }
+    .hero-net .n4 { animation-delay: -3.6s; }
+    .hero-net .n5 { animation-delay: -4.8s; }
+    .hero-net .n6 { animation-delay: -0.6s; }
+
+    @keyframes nodePulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.85); }
+      50%      { opacity: 1;   transform: scale(1.15); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      animation: heroRise 0.6s ease both;
+    }
+
+    @keyframes heroRise {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      margin: 0 0 12px;
+      display: inline-block;
+      color: #ff8b93;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
     }
 
     .hero h1 {
       margin: 0;
       color: #f9fbff;
-      font-size: clamp(1.8rem, 5.2vw, 3.2rem);
+      font-size: clamp(1.9rem, 5.2vw, 3.2rem);
       font-weight: 800;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero h1 .accent {
+      color: #ff6d78;
     }
 
     .hero p {
-      margin: 14px 0 0;
-      color: #f2f6ff;
-      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      margin: 16px auto 0;
+      max-width: 520px;
+      color: #dbe6f0;
+      font-size: clamp(1rem, 2.2vw, 1.18rem);
+      line-height: 1.5;
       opacity: 0.95;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-net .node { animation: none; opacity: 0.7; }
+      .hero-content { animation: none; }
     }
 
     .wrap {
@@ -192,13 +291,21 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-ring);
     }
 
     .subject-card h3 {
       margin: 0;
       color: var(--subject);
       font-size: 1.15rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid var(--border);
       padding-bottom: 10px;
     }
 
@@ -215,16 +322,23 @@
       display: block;
       text-decoration: none;
       color: #f8f9fd;
-      background: linear-gradient(180deg, var(--accent), #9f2028);
+      background: linear-gradient(180deg, var(--accent), var(--accent-hover));
       border-radius: 11px;
       padding: 10px 12px;
       font-weight: 600;
-      transition: transform 0.15s ease, background 0.2s ease;
+      box-shadow: 0 2px 8px rgba(184, 16, 32, 0.18);
+      transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
     }
 
     .link-list a:hover {
-      background: linear-gradient(180deg, var(--accent-hover), #7f1a21);
+      filter: brightness(1.06);
       transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(184, 16, 32, 0.28);
+    }
+
+    .link-list a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
 
     .hint {
@@ -303,7 +417,7 @@
 
     .search-bar:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(180, 38, 47, 0.18), var(--shadow);
+      box-shadow: 0 0 0 3px var(--accent-ring), var(--shadow);
     }
 
     .search-results {
@@ -341,7 +455,7 @@
     }
 
     .search-results a:hover {
-      background: rgba(180, 38, 47, 0.08);
+      background: var(--accent-soft);
     }
 
     .search-results .meta {
@@ -397,8 +511,8 @@
     .pdf-btn:hover,
     .pdf-btn:focus-visible {
       color: var(--accent);
-      border-color: rgba(180, 38, 47, 0.4);
-      background: rgba(180, 38, 47, 0.06);
+      border-color: var(--accent-ring);
+      background: var(--accent-soft);
       outline: none;
     }
 
@@ -494,8 +608,8 @@
     }
 
     .pdf-list a:hover {
-      background: rgba(180, 38, 47, 0.06);
-      border-color: rgba(180, 38, 47, 0.3);
+      background: var(--accent-soft);
+      border-color: var(--accent-ring);
     }
 
     .pdf-list .pdf-name {
@@ -558,10 +672,55 @@
 </head>
 <body>
   <header class="topbar">
-    <h1 class="brand">StudyHub</h1>
+    <h1 class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <g stroke="#082038" stroke-width="4" stroke-linecap="round">
+          <line x1="32" y1="30" x2="32" y2="11"/>
+          <line x1="32" y1="30" x2="15" y2="16"/>
+          <line x1="32" y1="30" x2="49" y2="16"/>
+          <line x1="32" y1="30" x2="10" y2="28"/>
+          <line x1="32" y1="30" x2="54" y2="28"/>
+        </g>
+        <circle cx="32" cy="9" r="5" fill="#b81020"/>
+        <circle cx="10" cy="28" r="5" fill="#b81020"/>
+        <circle cx="54" cy="28" r="5" fill="#b81020"/>
+        <circle cx="15" cy="15" r="5" fill="#082038"/>
+        <circle cx="49" cy="15" r="5" fill="#082038"/>
+        <path d="M32 40 C24 35 15 35 8 37 L8 52 C15 50 24 50 32 53 C40 50 49 50 56 52 L56 37 C49 35 40 35 32 40 Z" fill="#082038"/>
+        <circle cx="32" cy="30" r="7" fill="#082038"/>
+        <circle cx="32" cy="30" r="3" fill="#eef2f6"/>
+      </svg>
+      <span class="brand-name">Study<span class="accent">Hub</span></span>
+    </h1>
   </header>
 
   <section class="hero">
+    <svg class="hero-net" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g>
+        <line x1="150" y1="120" x2="340" y2="80"/>
+        <line x1="340" y1="80" x2="520" y2="180"/>
+        <line x1="150" y1="120" x2="260" y2="300"/>
+        <line x1="260" y1="300" x2="520" y2="180"/>
+        <line x1="900" y1="110" x2="1050" y2="220"/>
+        <line x1="1050" y1="220" x2="880" y2="330"/>
+        <line x1="900" y1="110" x2="720" y2="150"/>
+        <line x1="720" y1="150" x2="880" y2="330"/>
+        <line x1="520" y1="180" x2="720" y2="150"/>
+      </g>
+      <circle class="node red n1" cx="340" cy="80" r="6"/>
+      <circle class="node n2" cx="150" cy="120" r="5"/>
+      <circle class="node n3" cx="520" cy="180" r="7"/>
+      <circle class="node n4" cx="260" cy="300" r="5"/>
+      <circle class="node red n5" cx="900" cy="110" r="6"/>
+      <circle class="node n6" cx="1050" cy="220" r="5"/>
+      <circle class="node red n2" cx="720" cy="150" r="6"/>
+      <circle class="node n4" cx="880" cy="330" r="5"/>
+    </svg>
+    <div class="hero-content">
+      <span class="hero-eyebrow">BMSW · BBW</span>
+      <h1>Alles zum Lernen.<br /><span class="accent">An einem Ort.</span></h1>
+      <p>Zusammenfassungen, Prüfungen und PDFs – übersichtlich gesammelt pro Fach.</p>
+    </div>
   </section>
 
   <main class="wrap">

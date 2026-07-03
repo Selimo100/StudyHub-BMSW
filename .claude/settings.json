@@ -6,7 +6,13 @@
       "Bash(git commit -q -m 'chore: PDF-Manifest gegen vorhandene Chemie-PDFs neu generieren [skip manifest] *)",
       "Bash(git push *)",
       "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{try{const m=JSON.parse\\(d\\);console.log\\('chemie:',\\(m.subjects.chemie||[]\\).length,'PDFs, generiert',m.generated\\)}catch\\(e\\){console.log\\(d.slice\\(0,200\\)\\)}}\\)\")",
-      "Bash(git reset *)"
+      "Bash(git reset *)",
+      "Bash(python3 -c ' *)",
+      "Bash(qlmanage -t -s 256 -o /private/tmp/claude-503/ favicon.svg)",
+      "Bash(perl -0pi -e ' *)",
+      "Bash([ -f \"$CHROME\" ])",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1200,1400 --screenshot=/private/tmp/claude-503/page.png --virtual-time-budget=2000 file://__TRACKED_VAR__/index.html)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1200,900 --screenshot=/private/tmp/claude-503/page2.png --virtual-time-budget=1500 file://__TRACKED_VAR__/index.html)"
     ]
   }
 }
