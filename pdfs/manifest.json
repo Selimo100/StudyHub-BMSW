@@ -1,6 +1,15 @@
 {
-  "generated": "2026-07-03T14:26:13.837Z",
+  "generated": "2026-07-03T14:27:12.165Z",
   "subjects": {
+    "GLF": [
+      {
+        "name": "GLF_Spick_2026.pdf",
+        "path": "pdfs/GLF/GLF_Spick_2026.pdf",
+        "size": 4665339,
+        "sizeLabel": "4.4 MB",
+        "modified": "2026-07-03"
+      }
+    ],
     "chemie": [
       {
         "name": "Chemistry_Sem1_p2.pdf",
