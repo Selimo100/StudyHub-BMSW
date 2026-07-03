@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-03T14:25:39.770Z",
+  "generated": "2026-07-03T14:26:13.837Z",
   "subjects": {
     "chemie": [
       {
@@ -95,6 +95,78 @@
         "path": "pdfs/englisch/English_exam_2.pdf",
         "size": 421507,
         "sizeLabel": "412 KB",
+        "modified": "2026-07-03"
+      }
+    ],
+    "mathe": [
+      {
+        "name": "4k_M_quadFunktionen-Spick.pdf",
+        "path": "pdfs/mathe/4k_M_quadFunktionen-Spick.pdf",
+        "size": 496268,
+        "sizeLabel": "485 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "4k_M_trigoIII_IV.pdf",
+        "path": "pdfs/mathe/4k_M_trigoIII_IV.pdf",
+        "size": 942512,
+        "sizeLabel": "920 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "Maths_exam_1-Spick.pdf",
+        "path": "pdfs/mathe/Maths_exam_1-Spick.pdf",
+        "size": 823443,
+        "sizeLabel": "804 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "Maths_exam_Datenanalyse.pdf",
+        "path": "pdfs/mathe/Maths_exam_Datenanalyse.pdf",
+        "size": 1489701,
+        "sizeLabel": "1.4 MB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "Maths_exam_IDAF.pdf",
+        "path": "pdfs/mathe/Maths_exam_IDAF.pdf",
+        "size": 809073,
+        "sizeLabel": "790 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "Maths_sem1_Exam1.pdf",
+        "path": "pdfs/mathe/Maths_sem1_Exam1.pdf",
+        "size": 853465,
+        "sizeLabel": "833 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "Maths_sem1_Exam3.pdf",
+        "path": "pdfs/mathe/Maths_sem1_Exam3.pdf",
+        "size": 146882,
+        "sizeLabel": "143 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "Maths_sem2_Exam1.pdf",
+        "path": "pdfs/mathe/Maths_sem2_Exam1.pdf",
+        "size": 663376,
+        "sizeLabel": "648 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "Maths_sem2_Exam2.pdf",
+        "path": "pdfs/mathe/Maths_sem2_Exam2.pdf",
+        "size": 246390,
+        "sizeLabel": "241 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "Maths_sem2_Exam3.pdf",
+        "path": "pdfs/mathe/Maths_sem2_Exam3.pdf",
+        "size": 212750,
+        "sizeLabel": "208 KB",
         "modified": "2026-07-03"
       }
     ],
