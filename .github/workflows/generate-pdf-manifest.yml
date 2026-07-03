@@ -1,0 +1,43 @@
+name: Generate PDF manifest
+
+on:
+  push:
+    paths:
+      - "pdfs/**"
+      - "generate-manifest.js"
+      - ".github/workflows/generate-pdf-manifest.yml"
+
+# Nur ein Lauf pro Branch gleichzeitig
+concurrency:
+  group: pdf-manifest-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Endlosschleife vermeiden: nicht auf den eigenen Manifest-Commit reagieren
+    if: "!contains(github.event.head_commit.message, '[skip manifest]')"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Manifest generieren
+        run: node generate-manifest.js
+
+      - name: Änderungen committen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- pdfs/manifest.json; then
+            echo "Kein Manifest-Update nötig."
+          else
+            git add pdfs/manifest.json
+            git commit -m "chore: PDF-Manifest aktualisieren [skip manifest]"
+            git push
+          fi

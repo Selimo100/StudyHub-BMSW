@@ -362,6 +362,198 @@
       font-family: Consolas, "Courier New", monospace;
       font-size: 0.9em;
     }
+
+    /* ---- PDF-Hub: dezenter Button pro Fach ---- */
+    .subject-card h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .pdf-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+      padding: 4px 9px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .pdf-btn svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .pdf-btn:hover,
+    .pdf-btn:focus-visible {
+      color: var(--accent);
+      border-color: rgba(180, 38, 47, 0.4);
+      background: rgba(180, 38, 47, 0.06);
+      outline: none;
+    }
+
+    /* ---- PDF-Hub: Modal ---- */
+    .pdf-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(to bottom, rgba(18, 24, 34, 0.5), rgba(18, 24, 34, 0.6));
+      backdrop-filter: blur(3px);
+    }
+
+    .pdf-modal.open {
+      display: flex;
+    }
+
+    .pdf-dialog {
+      width: min(520px, 100%);
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+      overflow: hidden;
+    }
+
+    .pdf-dialog-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pdf-dialog-head h3 {
+      margin: 0;
+      color: var(--subject);
+      font-size: 1.1rem;
+    }
+
+    .pdf-close {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.06);
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .pdf-close:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .pdf-body {
+      padding: 14px 20px;
+      overflow-y: auto;
+    }
+
+    .pdf-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pdf-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      padding: 11px 12px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .pdf-list a:hover {
+      background: rgba(180, 38, 47, 0.06);
+      border-color: rgba(180, 38, 47, 0.3);
+    }
+
+    .pdf-list .pdf-name {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .pdf-list .pdf-name span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pdf-list .pdf-name svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    .pdf-list .pdf-meta {
+      flex-shrink: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .pdf-empty {
+      margin: 6px 0 4px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .pdf-dialog-foot {
+      padding: 14px 20px 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .pdf-add {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.15s ease;
+    }
+
+    .pdf-add:hover {
+      color: var(--accent);
+    }
+
+    .pdf-add svg {
+      width: 15px;
+      height: 15px;
+    }
   </style>
 </head>
 <body>
@@ -410,7 +602,7 @@
 
       <section class="subjects">
         <article class="subject-card">
-          <h3>Wirtschaft &amp; Recht</h3>
+          <h3><span>Wirtschaft &amp; Recht</span><button type="button" class="pdf-btn" data-pdf-subject="wirtschaft-recht" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
           <ul class="link-list">
             <li><a href="./summaries/wirtschaft-recht/kap_17&amp;20.html" target="_blank" rel="noopener">Recht - Kapitel 17 + 20</a></li>
             <li><a href="./summaries/wirtschaft-recht/kap_21&amp;22.html" target="_blank" rel="noopener">Recht - Kapitel 21 + 22</a></li>
@@ -418,7 +610,14 @@
         </article>
 
         <article class="subject-card">
-          <h3>Englisch</h3>
+          <h3><span>Geschichte &amp; Recht</span><button type="button" class="pdf-btn" data-pdf-subject="geschichte-politik" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
+          <ul class="link-list">
+            
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <h3><span>Englisch</span><button type="button" class="pdf-btn" data-pdf-subject="englisch" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
           <ul class="link-list">
             <li><a href="./summaries/englisch/final_exam.html" target="_blank" rel="noopener">English Final Exam</a></li>
             <li><a href="./summaries/englisch/test3.html" target="_blank" rel="noopener">Test 3 (prep final exam)</a></li>
@@ -426,7 +625,7 @@
         </article>
 
         <article class="subject-card">
-          <h3>Deutsch</h3>
+          <h3><span>Deutsch</span><button type="button" class="pdf-btn" data-pdf-subject="deutsch" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
           <ul class="link-list">
             <li><a href="./summaries/deutsch/KleiderMachenLeute.html" target="_blank" rel="noopener">Kleider machen Leute</a></li>
           </ul>
@@ -436,20 +635,26 @@
         </article>
 
         <article class="subject-card">
-          <h3>Mathe</h3>
+          <h3><span>Mathe</span><button type="button" class="pdf-btn" data-pdf-subject="mathe" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
           <ul class="link-list">
             <li><a href="./summaries/mathe/trigonometrische_gleichungen.html" target="_blank" rel="noopener">Trigonometrische Gleichungen</a></li>
           </ul>
         </article>
 
         <article class="subject-card">
-          <h3>Physik</h3>
+          <h3><span>Physik</span><button type="button" class="pdf-btn" data-pdf-subject="physik" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
           <ul class="link-list">
           </ul>
         </article>
 
         <article class="subject-card">
-          <h3>Französisch</h3>
+          <h3><span>Chemie</span><button type="button" class="pdf-btn" data-pdf-subject="chemie" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
+          <ul class="link-list">
+          </ul>
+        </article>
+
+        <article class="subject-card">
+          <h3><span>Französisch</span><button type="button" class="pdf-btn" data-pdf-subject="french" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
           <ul class="link-list">
             <li><a href="./summaries/french/hypothese_pronoms.html" target="_blank" rel="noopener">Hypothèses, conseils et pronoms relatifs</a></li>
           </ul>
@@ -470,13 +675,13 @@
 
       <section class="subjects">
         <article class="subject-card">
-          <h3>GLF</h3>
+          <h3><span>GLF</span><button type="button" class="pdf-btn" data-pdf-subject="GLF" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
           <ul class="link-list">
             <li><a href="./summaries/GLF/geometrie_zusammenfassung.html" target="_blank" rel="noopener">Geometrische Formen</a></li>
           </ul>
         </article>
         <article class="subject-card">
-          <h3>English - Books</h3>
+          <h3><span>English - Books</span><button type="button" class="pdf-btn" data-pdf-subject="english-books" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
           <ul class="link-list">
             <li><a href="./summaries/english-books/brave_new_world_analysis.html" target="_blank" rel="noopener">Brave New World</a></li>
             <li><a href="./summaries/english-books/brave_new_world_reading_companion.html" target="_blank" rel="noopener">Brave New World - Reading Companion</a></li>
@@ -502,13 +707,13 @@
 
       <section class="subjects">
         <article class="subject-card">
-          <h3>Modul 165 - NoSQL</h3>
+          <h3><span>Modul 165 - NoSQL</span><button type="button" class="pdf-btn" data-pdf-subject="bbw/m165" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
           <ul class="link-list">
             <li><a href="./summaries/bbw/m165/exam_2.html" target="_blank" rel="noopener">D1G, E1G, F1G, G1G</a></li>
           </ul>
         </article>
         <article class="subject-card">
-          <h3>Modul 347 - Dienst mit Container anwenden </h3>
+          <h3><span>Modul 347 - Dienst mit Container anwenden </span><button type="button" class="pdf-btn" data-pdf-subject="bbw/m347" aria-label="PDF-Zusammenfassungen öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>PDF</button></h3>
           <ul class="link-list">
             <li><a href="./summaries/bbw/m347/modul347_pruefungsvorbereitung.html" target="_blank" rel="noopener">Prüfungsvorbereitung</a></li>
           </ul>
@@ -592,6 +797,115 @@
           input.value = "";
           render("");
         }
+      });
+    })();
+  </script>
+
+  <!-- PDF-Hub Modal (dezent, gleiche Design-Tokens wie der Rest der Seite) -->
+  <div class="pdf-modal" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+    <div class="pdf-dialog">
+      <div class="pdf-dialog-head">
+        <h3 id="pdfModalTitle">PDF-Zusammenfassungen</h3>
+        <button type="button" class="pdf-close" id="pdfClose" aria-label="Schließen">×</button>
+      </div>
+      <div class="pdf-body" id="pdfBody"></div>
+      <div class="pdf-dialog-foot">
+        <a class="pdf-add" id="pdfAdd" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          PDF hinzufügen (über GitHub)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // GitHub-Repo für Upload-Links + Manifest-Fallback
+      const GH_USER = "Selimo100";
+      const GH_REPO = "StudyHub-BMSW";
+      const GH_BRANCH = "main";
+
+      const modal = document.getElementById("pdfModal");
+      const dialogTitle = document.getElementById("pdfModalTitle");
+      const body = document.getElementById("pdfBody");
+      const addLink = document.getElementById("pdfAdd");
+      const closeBtn = document.getElementById("pdfClose");
+
+      let manifestPromise = null;
+      let lastFocused = null;
+
+      const fileIcon =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>';
+
+      function loadManifest() {
+        if (!manifestPromise) {
+          manifestPromise = fetch("pdfs/manifest.json", { cache: "no-cache" })
+            .then((r) => (r.ok ? r.json() : { subjects: {} }))
+            .catch(() => ({ subjects: {} }));
+        }
+        return manifestPromise;
+      }
+
+      function escapeHtml(s) {
+        return s.replace(/[&<>"']/g, (c) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+        }[c]));
+      }
+
+      function renderList(slug, subjectName) {
+        loadManifest().then((manifest) => {
+          const items = (manifest.subjects && manifest.subjects[slug]) || [];
+          if (!items.length) {
+            body.innerHTML =
+              '<p class="pdf-empty">Für dieses Fach sind noch keine PDFs vorhanden.</p>';
+            return;
+          }
+          const rows = items
+            .map((it) => {
+              return (
+                '<li><a href="' + encodeURI(it.path) + '" target="_blank" rel="noopener" download>' +
+                '<span class="pdf-name">' + fileIcon +
+                "<span>" + escapeHtml(it.name.replace(/\.pdf$/i, "")) + "</span></span>" +
+                '<span class="pdf-meta">' + escapeHtml(it.sizeLabel || "") +
+                (it.modified ? " · " + escapeHtml(it.modified) : "") +
+                "</span></a></li>"
+              );
+            })
+            .join("");
+          body.innerHTML = '<ul class="pdf-list">' + rows + "</ul>";
+        });
+      }
+
+      function open(btn) {
+        const slug = btn.getAttribute("data-pdf-subject");
+        const card = btn.closest(".subject-card");
+        const subjectName = (card && card.querySelector("h3 span")?.textContent.trim()) || "Fach";
+        lastFocused = btn;
+        dialogTitle.textContent = "PDFs · " + subjectName;
+        body.innerHTML = '<p class="pdf-empty">Lädt …</p>';
+        addLink.href =
+          "https://github.com/" + GH_USER + "/" + GH_REPO + "/upload/" + GH_BRANCH + "/pdfs/" + slug;
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+        closeBtn.focus();
+        renderList(slug, subjectName);
+      }
+
+      function close() {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+        if (lastFocused) lastFocused.focus();
+      }
+
+      document.querySelectorAll(".pdf-btn").forEach((btn) => {
+        btn.addEventListener("click", () => open(btn));
+      });
+      closeBtn.addEventListener("click", close);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) close();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("open")) close();
       });
     })();
   </script>

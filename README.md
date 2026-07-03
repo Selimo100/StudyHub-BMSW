@@ -46,18 +46,24 @@ zu suchen, liefert eine zentrale `index.html` eine strukturierte Fächerübersic
 
 ```
 StudyHub-BMSW/
-├── index.html          Startseite mit Fächerübersicht und Suche
+├── index.html          Startseite mit Fächerübersicht, Suche und PDF-Hub
+├── generate-manifest.js  Baut pdfs/manifest.json (reines Node, keine Deps)
 ├── logo-bmsw.png       Logo BMSW
 ├── logo-bbw.svg        Logo BBW
-└── summaries/          Zusammenfassungen, nach Fach gegliedert
-    ├── deutsch/
-    ├── englisch/
+├── summaries/          HTML-Zusammenfassungen, nach Fach gegliedert
+│   ├── deutsch/
+│   ├── englisch/
+│   ├── mathe/
+│   ├── french/
+│   ├── wirtschaft-recht/
+│   ├── GLF/
+│   ├── english-books/
+│   └── bbw/            Module der Berufsschule (m165, m347 …)
+└── pdfs/               PDF-Zusammenfassungen je Fach (+ auto-manifest.json)
+    ├── manifest.json   automatisch generiert – nicht manuell pflegen
     ├── mathe/
-    ├── french/
-    ├── wirtschaft-recht/
-    ├── GLF/
-    ├── english-books/
-    └── bbw/            Module der Berufsschule (m165, m347 …)
+    ├── deutsch/
+    └── …               ein Ordner pro Fach-Slug
 ```
 
 ## Inhalte erweitern
@@ -75,6 +81,49 @@ einen Eintrag in der jeweiligen `link-list` ergänzen:
 
 Die Suche erfasst neue Einträge automatisch, da sie die Links beim Laden direkt aus der
 Seite ausliest.
+
+---
+
+## PDF-Hub – alte Zusammenfassungs-PDFs verwalten
+
+Jede Fach-Karte hat oben rechts einen dezenten **PDF**-Button. Ein Klick öffnet ein Modal
+mit allen PDFs dieses Fachs (Download-Link, Dateigröße, Datum). Es gibt kein Backend – die
+PDFs liegen versioniert im Repo unter `pdfs/<fach>/`, der Upload läuft über GitHubs eigene
+Weboberfläche.
+
+### Ein neues PDF hochladen (der einfache Weg)
+
+1. Auf der Seite beim gewünschten Fach auf **PDF** klicken.
+2. Im Modal unten auf **„PDF hinzufügen (über GitHub)“** klicken – das öffnet direkt GitHubs
+   Upload-Seite für genau diesen Fach-Ordner (`pdfs/<fach>`).
+3. PDF per Drag & Drop hineinziehen und unten **„Commit changes“** klicken.
+
+Das war’s. Danach passiert automatisch:
+
+- Ein GitHub-Workflow (`.github/workflows/generate-pdf-manifest.yml`) läuft bei jedem Push
+  auf `pdfs/**` und generiert `pdfs/manifest.json` neu (Name, Pfad, Größe, Datum je Fach).
+- Das aktualisierte Manifest wird zurück ins Repo committet (Commit-Message endet auf
+  `[skip manifest]`, damit der Workflow sich nicht selbst erneut auslöst).
+- Netlify deployed den neuen Stand automatisch. Das PDF erscheint dann im Modal des Fachs.
+
+> Du musst **nie** manuell eine Liste pflegen – das Manifest ist die einzige Quelle und wird
+> vollautomatisch erzeugt.
+
+### Manifest lokal neu bauen (optional)
+
+```bash
+node generate-manifest.js
+```
+
+Reines Node ohne Dependencies. Nützlich, wenn du PDFs lokal statt über GitHub hinzufügst.
+
+### Neues Fach anlegen
+
+Wenn eine neue Fach-Karte in `index.html` dazukommt:
+
+1. Ordner `pdfs/<fach-slug>/` anlegen (leerer Ordner: `.gitkeep` hineinlegen).
+2. Der PDF-Button der Karte braucht `data-pdf-subject="<fach-slug>"` – der Slug muss exakt
+   dem Ordnernamen unter `pdfs/` entsprechen (verschachtelt möglich, z. B. `bbw/m165`).
 
 ---
 
