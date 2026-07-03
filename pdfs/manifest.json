@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-03T14:21:48.224Z",
+  "generated": "2026-07-03T14:22:59.698Z",
   "subjects": {
     "chemie": [
       {
@@ -56,6 +56,36 @@
         "path": "pdfs/chemie/ChemistryKT_Kap7.pdf",
         "size": 184930,
         "sizeLabel": "181 KB",
+        "modified": "2026-07-03"
+      }
+    ],
+    "wirtschaft-recht": [
+      {
+        "name": "4k_wur_kap17_20.pdf",
+        "path": "pdfs/wirtschaft-recht/4k_wur_kap17_20.pdf",
+        "size": 983737,
+        "sizeLabel": "961 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "4k_wur_kap21_22.pdf",
+        "path": "pdfs/wirtschaft-recht/4k_wur_kap21_22.pdf",
+        "size": 1866728,
+        "sizeLabel": "1.8 MB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "WuR_exam1.pdf",
+        "path": "pdfs/wirtschaft-recht/WuR_exam1.pdf",
+        "size": 1532519,
+        "sizeLabel": "1.5 MB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "WuR_exam2.pdf",
+        "path": "pdfs/wirtschaft-recht/WuR_exam2.pdf",
+        "size": 1224010,
+        "sizeLabel": "1.2 MB",
         "modified": "2026-07-03"
       }
     ]
