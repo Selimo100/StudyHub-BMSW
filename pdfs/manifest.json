@@ -1,4 +1,63 @@
 {
-  "generated": "2026-07-03T14:14:28.286Z",
-  "subjects": {}
+  "generated": "2026-07-03T14:21:48.224Z",
+  "subjects": {
+    "chemie": [
+      {
+        "name": "Chemistry_Sem1_p2.pdf",
+        "path": "pdfs/chemie/Chemistry_Sem1_p2.pdf",
+        "size": 2347769,
+        "sizeLabel": "2.2 MB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "Chemistry_Sem2_p1.pdf",
+        "path": "pdfs/chemie/Chemistry_Sem2_p1.pdf",
+        "size": 1454189,
+        "sizeLabel": "1.4 MB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "Chemistry_Sem2_p2.pdf",
+        "path": "pdfs/chemie/Chemistry_Sem2_p2.pdf",
+        "size": 276561,
+        "sizeLabel": "270 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "ChemistryKT_Kap1_Kap2 2,4-7.pdf",
+        "path": "pdfs/chemie/ChemistryKT_Kap1_Kap2 2,4-7.pdf",
+        "size": 1099162,
+        "sizeLabel": "1.0 MB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "ChemistryKT_Kap2_4,8-14.pdf",
+        "path": "pdfs/chemie/ChemistryKT_Kap2_4,8-14.pdf",
+        "size": 993089,
+        "sizeLabel": "970 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "ChemistryKT_Kap3_-5.pdf",
+        "path": "pdfs/chemie/ChemistryKT_Kap3_-5.pdf",
+        "size": 731926,
+        "sizeLabel": "715 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "ChemistryKT_Kap4.pdf",
+        "path": "pdfs/chemie/ChemistryKT_Kap4.pdf",
+        "size": 483963,
+        "sizeLabel": "473 KB",
+        "modified": "2026-07-03"
+      },
+      {
+        "name": "ChemistryKT_Kap7.pdf",
+        "path": "pdfs/chemie/ChemistryKT_Kap7.pdf",
+        "size": 184930,
+        "sizeLabel": "181 KB",
+        "modified": "2026-07-03"
+      }
+    ]
+  }
 }
