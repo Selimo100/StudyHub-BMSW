@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Brave New World — Reading Companion</title>
+    <title>Brave New World — Interactive Timeline &amp; Analysis</title>
     <style>
       :root {
         --bg: #f6f1e7;
@@ -15,6 +15,12 @@
         --line: #e3d9c6;
         --green: #4d6b53;
         --chip: #efe4cd;
+        --london: #3d5a73;
+        --london-bg: #e6ecf1;
+        --reservation: #a85f3f;
+        --reservation-bg: #f3e6dc;
+        --lighthouse: #3f7a72;
+        --lighthouse-bg: #e2efec;
       }
       * {
         box-sizing: border-box;
@@ -25,141 +31,63 @@
         background: var(--bg);
         color: var(--ink);
       }
-      #app {
-        display: flex;
-        min-height: 100vh;
+      header {
+        padding: 26px 30px 14px 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      header h1 {
+        margin: 0 0 4px 0;
+        font-size: 26px;
+      }
+      header p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-style: italic;
+        font-size: 14px;
       }
 
-      /* Sidebar */
-      #sidebar {
-        width: 260px;
-        flex-shrink: 0;
-        background: #2b2620;
-        color: #eee3cf;
-        padding: 20px 14px;
+      nav.tabs {
         display: flex;
-        flex-direction: column;
-        gap: 4px;
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        overflow-y: auto;
+        gap: 6px;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 30px;
+        border-bottom: 2px solid var(--line);
+        flex-wrap: wrap;
       }
-      #sidebar h1 {
-        font-size: 17px;
-        margin: 0 0 2px 4px;
-        color: #fff;
-        line-height: 1.3;
-      }
-      #sidebar .subtitle {
-        font-size: 11px;
-        color: #c9b998;
-        margin: 0 0 16px 4px;
-        font-style: italic;
-      }
-      .progress-wrap {
-        margin: 0 4px 18px 4px;
-      }
-      .progress-bar-outer {
-        background: #463f34;
-        border-radius: 8px;
-        height: 8px;
-        overflow: hidden;
-      }
-      .progress-bar-inner {
-        background: var(--accent-soft);
-        height: 100%;
-        transition: width 0.3s ease;
-      }
-      .progress-label {
-        font-size: 11px;
-        color: #c9b998;
-        margin-top: 5px;
-      }
-      .nav-section-title {
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: #8a8069;
-        margin: 14px 8px 4px 8px;
-      }
-      .nav-btn {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
+      nav.tabs button {
+        font-family: Arial, sans-serif;
+        font-size: 13.5px;
         background: none;
         border: none;
-        color: #eee3cf;
-        text-align: left;
-        font-family: inherit;
-        font-size: 13.5px;
-        padding: 7px 8px;
-        border-radius: 6px;
+        padding: 12px 16px;
         cursor: pointer;
-        width: 100%;
+        color: var(--ink-soft);
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
       }
-      .nav-btn:hover {
-        background: #3a3327;
+      nav.tabs button.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+        font-weight: bold;
       }
-      .nav-btn.active {
-        background: var(--accent);
-        color: #fff;
-      }
-      .nav-btn .tick {
-        font-size: 11px;
-        color: #8bb894;
-        flex-shrink: 0;
-      }
-      .nav-btn.active .tick {
-        color: #d7ffe0;
-      }
-      #sidebar .footer-btns {
-        margin-top: auto;
-        padding-top: 14px;
-        border-top: 1px solid #463f34;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-      #sidebar .footer-btns button {
-        background: #3a3327;
-        color: #eee3cf;
-        border: 1px solid #55493a;
-        border-radius: 6px;
-        padding: 7px 8px;
-        font-family: inherit;
-        font-size: 12px;
-        cursor: pointer;
-      }
-      #sidebar .footer-btns button:hover {
-        background: #463f34;
-      }
-      #save-indicator {
-        font-size: 10px;
-        color: #8bb894;
-        text-align: center;
-        margin-top: 4px;
-        min-height: 14px;
+      nav.tabs button:hover {
+        color: var(--accent);
       }
 
-      /* Main content */
-      #content {
-        flex: 1;
-        padding: 36px 44px 80px 44px;
-        max-width: 900px;
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 26px 30px 80px 30px;
       }
-      h2.page-title {
-        font-size: 26px;
-        margin: 0 0 4px 0;
-        color: var(--ink);
+      .view {
+        display: none;
       }
-      .page-sub {
-        color: var(--ink-soft);
-        font-size: 14px;
-        margin: 0 0 26px 0;
-        font-style: italic;
+      .view.active {
+        display: block;
       }
+
       .card {
         background: var(--panel);
         border: 1px solid var(--line);
@@ -173,1690 +101,1609 @@
         color: var(--accent);
         text-transform: uppercase;
         letter-spacing: 0.04em;
+        font-family: Arial, sans-serif;
       }
-      details.recap {
-        background: #fbf6ea;
-        border: 1px dashed var(--accent-soft);
-        border-radius: 8px;
-        padding: 10px 14px;
-        margin-bottom: 18px;
-      }
-      details.recap summary {
-        cursor: pointer;
-        font-weight: bold;
-        color: var(--accent);
-        font-size: 14px;
-      }
-      details.recap p {
+      .card h4 {
+        margin: 14px 0 6px 0;
         font-size: 14.5px;
-        line-height: 1.6;
+        color: var(--ink);
+      }
+      .card p {
+        font-size: 14.5px;
+        line-height: 1.65;
         color: var(--ink-soft);
+        margin: 0 0 8px 0;
       }
-      .tags {
+
+      /* Location legend / mini map */
+      .loc-map {
         display: flex;
+        gap: 12px;
         flex-wrap: wrap;
-        gap: 6px;
-        margin: 0 0 18px 0;
+        margin-bottom: 6px;
       }
-      .tag {
-        background: var(--chip);
-        color: #5a4a2f;
-        font-size: 11.5px;
-        padding: 4px 10px;
-        border-radius: 20px;
+      .loc-box {
+        flex: 1;
+        min-width: 180px;
+        border-radius: 10px;
+        padding: 14px 16px;
         font-family: Arial, sans-serif;
       }
-      .tag.char {
-        background: #e6ecdf;
-        color: var(--green);
+      .loc-box.london {
+        background: var(--london-bg);
+        border: 1px solid var(--london);
       }
-      .q-block {
-        margin-bottom: 20px;
+      .loc-box.reservation {
+        background: var(--reservation-bg);
+        border: 1px solid var(--reservation);
       }
-      .q-block label {
-        display: block;
-        font-size: 14.5px;
+      .loc-box.lighthouse {
+        background: var(--lighthouse-bg);
+        border: 1px solid var(--lighthouse);
+      }
+      .loc-box .name {
+        font-weight: bold;
+        font-size: 13.5px;
+        margin-bottom: 4px;
+      }
+      .loc-box.london .name {
+        color: var(--london);
+      }
+      .loc-box.reservation .name {
+        color: var(--reservation);
+      }
+      .loc-box.lighthouse .name {
+        color: var(--lighthouse);
+      }
+      .loc-box .desc {
+        font-size: 12px;
+        color: var(--ink-soft);
         line-height: 1.5;
-        margin-bottom: 6px;
-        color: var(--ink);
       }
-      .q-hint {
-        font-size: 12px;
-        color: #a0906f;
-        font-style: italic;
-        margin-bottom: 6px;
-      }
-      textarea,
-      input[type="text"] {
-        width: 100%;
-        font-family: "Iowan Old Style", Georgia, serif;
-        font-size: 14px;
-        padding: 9px 11px;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        background: #fffefb;
-        color: var(--ink);
-        resize: vertical;
-      }
-      textarea {
-        min-height: 64px;
-      }
-      .quote-row {
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 12px;
-        margin-bottom: 10px;
-        background: #fffefb;
-      }
-      .quote-row textarea {
-        min-height: 44px;
-        margin-bottom: 6px;
-      }
-      .quote-row .meta-row {
-        display: flex;
-        gap: 8px;
-      }
-      .quote-row .meta-row input {
-        flex: 1;
-      }
-      .vocab-row {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 8px;
-      }
-      .vocab-row input {
-        flex: 1;
-      }
-      .small-btn {
-        font-family: Arial, sans-serif;
-        font-size: 12px;
-        background: var(--chip);
-        color: #5a4a2f;
-        border: none;
-        border-radius: 6px;
-        padding: 7px 12px;
-        cursor: pointer;
-      }
-      .small-btn:hover {
-        background: #e3d3ac;
-      }
-      .remove-btn {
-        background: #f3e0dc;
-        color: var(--accent);
-        border: none;
-        border-radius: 6px;
-        padding: 0 10px;
-        cursor: pointer;
-        font-family: Arial, sans-serif;
-        font-size: 12px;
-      }
-      .chapter-footer {
+
+      /* Timeline controls */
+      .tl-controls {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 26px;
-        gap: 10px;
         flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 16px;
       }
-      .done-toggle {
+      .sort-toggle {
         display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 14px;
-        cursor: pointer;
-        background: #eef4ec;
-        border: 1px solid #cfe0cc;
-        padding: 9px 16px;
-        border-radius: 8px;
-        color: var(--green);
+        gap: 6px;
+      }
+      .sort-toggle button {
         font-family: Arial, sans-serif;
-      }
-      .done-toggle input {
-        transform: scale(1.2);
-      }
-      .nav-buttons {
-        display: flex;
-        gap: 8px;
-      }
-      .nav-buttons button {
-        font-family: Arial, sans-serif;
-        font-size: 13px;
-        padding: 9px 16px;
-        border-radius: 8px;
+        font-size: 12.5px;
+        padding: 7px 14px;
+        border-radius: 20px;
         border: 1px solid var(--line);
         background: #fff;
         cursor: pointer;
-        color: var(--ink);
       }
-      .nav-buttons button:hover {
-        background: #f1e9d8;
+      .sort-toggle button.active {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
       }
-      .nav-buttons button:disabled {
-        opacity: 0.35;
-        cursor: default;
+      .char-filter {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .char-chip {
+        font-family: Arial, sans-serif;
+        font-size: 11.5px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        background: var(--chip);
+        color: #5a4a2f;
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+      .char-chip.active {
+        background: var(--green);
+        color: #fff;
+      }
+      #clear-filter {
+        font-family: Arial, sans-serif;
+        font-size: 11.5px;
+        color: var(--accent);
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-decoration: underline;
       }
 
-      /* Dashboard */
-      .stats-grid {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-        margin-bottom: 22px;
+      /* Timeline */
+      .timeline {
+        position: relative;
+        padding-left: 28px;
       }
-      .stat-box {
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 6px;
+        bottom: 6px;
+        width: 2px;
+        background: var(--line);
+      }
+      .tl-event {
+        position: relative;
+        margin-bottom: 16px;
         background: var(--panel);
         border: 1px solid var(--line);
         border-radius: 10px;
-        padding: 16px 20px;
-        min-width: 140px;
-        flex: 1;
-      }
-      .stat-box .num {
-        font-size: 28px;
-        color: var(--accent);
-        font-weight: bold;
-      }
-      .stat-box .lab {
-        font-size: 12px;
-        color: var(--ink-soft);
-        font-family: Arial, sans-serif;
-        margin-top: 2px;
-      }
-      .chapter-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 10px;
-      }
-      .chapter-tile {
-        border: 1px solid var(--line);
-        background: var(--panel);
-        border-radius: 8px;
-        padding: 10px 12px;
+        padding: 14px 16px;
         cursor: pointer;
+        transition: opacity 0.2s;
+      }
+      .tl-event::before {
+        content: "";
+        position: absolute;
+        left: -24px;
+        top: 20px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        border: 2px solid var(--panel);
+      }
+      .tl-event.dimmed {
+        opacity: 0.25;
+      }
+      .tl-event .tl-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .tl-event .badges {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
         font-family: Arial, sans-serif;
+        font-size: 10.5px;
       }
-      .chapter-tile:hover {
-        border-color: var(--accent-soft);
+      .badge {
+        padding: 3px 9px;
+        border-radius: 10px;
+        white-space: nowrap;
       }
-      .chapter-tile.done {
-        background: #eef4ec;
-        border-color: #cfe0cc;
+      .badge.time {
+        background: #efe4cd;
+        color: #5a4a2f;
       }
-      .chapter-tile .num {
-        font-size: 11px;
-        color: var(--ink-soft);
+      .badge.chapter {
+        background: #e6e6e6;
+        color: #444;
       }
-      .chapter-tile .title {
-        font-size: 13px;
-        margin-top: 2px;
-        line-height: 1.3;
+      .badge.loc {
+        color: #fff;
       }
-      .howto {
-        font-size: 14px;
-        line-height: 1.7;
-        color: var(--ink-soft);
+      .badge.loc.london {
+        background: var(--london);
       }
-      .glossary-item {
-        margin-bottom: 12px;
+      .badge.loc.reservation {
+        background: var(--reservation);
       }
-      .glossary-item .term {
-        color: var(--accent);
-        font-weight: bold;
-        font-size: 14px;
+      .badge.loc.lighthouse {
+        background: var(--lighthouse);
       }
-      table.caste-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 13.5px;
-        font-family: Arial, sans-serif;
-      }
-      table.caste-table th,
-      table.caste-table td {
-        border: 1px solid var(--line);
-        padding: 8px 10px;
-        text-align: left;
-      }
-      table.caste-table th {
-        background: #f1e9d8;
-      }
-      .quote-example {
-        border-left: 3px solid var(--accent-soft);
-        padding-left: 12px;
-        margin-bottom: 14px;
-        font-size: 14px;
-        color: var(--ink-soft);
-      }
-      .quote-example .q {
-        font-style: italic;
+      .tl-event h4 {
+        margin: 8px 0 4px 0;
+        font-size: 15.5px;
         color: var(--ink);
-        font-size: 15px;
       }
-      .char-card {
-        margin-bottom: 20px;
-      }
-      .char-card .intro {
+      .tl-event .summary {
         font-size: 13.5px;
         color: var(--ink-soft);
+        line-height: 1.5;
+        margin-bottom: 6px;
+      }
+      .tl-event .detail {
+        display: none;
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        line-height: 1.6;
+        border-top: 1px dashed var(--line);
+        padding-top: 8px;
+        margin-top: 8px;
+      }
+      .tl-event.expanded .detail {
+        display: block;
+      }
+      .tl-event .chars {
+        margin-top: 8px;
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .tl-event .chars span {
+        font-family: Arial, sans-serif;
+        font-size: 10.5px;
+        background: #e6ecdf;
+        color: var(--green);
+        padding: 2px 8px;
+        border-radius: 10px;
+      }
+
+      /* phase header */
+      .phase-header {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin: 26px 0 10px -28px;
+        padding-left: 28px;
+        font-weight: bold;
+      }
+      .phase-header:first-child {
+        margin-top: 0;
+      }
+
+      /* Characters */
+      .char-card {
+        margin-bottom: 16px;
+      }
+      .char-card .tagline {
+        font-style: italic;
+        color: var(--ink-soft);
+        font-size: 13px;
         margin-bottom: 8px;
       }
-      .char-card .chap-tag {
+      .char-card .field {
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+      .char-card .field b {
+        color: var(--ink);
+      }
+      .rel-line {
+        font-size: 14px;
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+      .rel-line b {
+        color: var(--accent);
+      }
+      .minor-list {
+        font-size: 13.5px;
+        line-height: 1.8;
+        color: var(--ink-soft);
+      }
+
+      /* Vocab */
+      #vocab-search {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+      .vocab-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 12px;
+      }
+      .vocab-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px 14px;
+        background: var(--panel);
+        cursor: pointer;
+      }
+      .vocab-card .word {
+        font-weight: bold;
+        color: var(--accent);
+        font-size: 14.5px;
+      }
+      .vocab-card .reveal {
+        margin-top: 8px;
+        font-size: 13px;
+        color: var(--ink-soft);
+        display: none;
+        line-height: 1.5;
+      }
+      .vocab-card.flipped .reveal {
+        display: block;
+      }
+      .vocab-card .hint {
         font-size: 11px;
         color: #a0906f;
         font-family: Arial, sans-serif;
-        margin-bottom: 8px;
-        display: inline-block;
+        margin-top: 6px;
       }
-      @media (max-width: 760px) {
-        #app {
-          flex-direction: column;
-        }
-        #sidebar {
-          position: relative;
-          height: auto;
-          width: 100%;
-        }
-        #content {
-          padding: 24px;
+      .vocab-card.flipped .hint {
+        display: none;
+      }
+
+      /* Q&A */
+      .small-btn-like {
+        font-family: Arial, sans-serif;
+        font-size: 12.5px;
+        padding: 7px 14px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: #fff;
+        cursor: pointer;
+      }
+      .small-btn-like:hover {
+        background: #f1e9d8;
+      }
+      .qa-phase-header {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin: 28px 0 10px 0;
+        font-weight: bold;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 6px;
+      }
+      .qa-phase-header:first-child {
+        margin-top: 0;
+      }
+      .qa-item {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--panel);
+        margin-bottom: 10px;
+        overflow: hidden;
+      }
+      .qa-q {
+        padding: 13px 16px;
+        cursor: pointer;
+        font-size: 14.5px;
+        font-weight: bold;
+        color: var(--ink);
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+      }
+      .qa-q:hover {
+        background: #f8f2e4;
+      }
+      .qa-q .arrow {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        color: var(--accent-soft);
+        flex-shrink: 0;
+      }
+      .qa-body {
+        display: none;
+        padding: 0 16px 16px 16px;
+      }
+      .qa-item.open .qa-body {
+        display: block;
+      }
+      .qa-en {
+        font-size: 14px;
+        line-height: 1.65;
+        color: var(--ink);
+        margin-bottom: 10px;
+      }
+      .qa-de {
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--ink-soft);
+        font-style: italic;
+        border-top: 1px dashed var(--line);
+        padding-top: 10px;
+      }
+      .qa-de::before {
+        content: "DE — ";
+        font-style: normal;
+        color: #a0906f;
+        font-weight: bold;
+      }
+
+      @media (max-width: 700px) {
+        header,
+        main,
+        nav.tabs {
+          padding-left: 16px;
+          padding-right: 16px;
         }
       }
     </style>
   </head>
   <body>
-    <div id="app">
-      <nav id="sidebar">
-        <h1>Brave New World</h1>
-        <p class="subtitle">Your reading companion</p>
-        <div class="progress-wrap">
-          <div class="progress-bar-outer">
-            <div class="progress-bar-inner" id="progress-bar" style="width: 0%"></div>
+    <header>
+      <h1>Brave New World</h1>
+      <p>Interactive timeline, character map &amp; book analysis — whole-book overview (includes the ending)</p>
+    </header>
+
+    <nav class="tabs">
+      <button data-tab="timeline" class="active">🕰 Timeline</button>
+      <button data-tab="characters">👥 Characters &amp; Relationships</button>
+      <button data-tab="analysis">📘 Book Analysis</button>
+      <button data-tab="vocab">🔤 Vocabulary</button>
+      <button data-tab="qa">📔 Your Q&amp;A</button>
+    </nav>
+
+    <main>
+      <!-- TIMELINE -->
+      <div class="view active" id="view-timeline">
+        <div class="card">
+          <h3>Where things happen</h3>
+          <p>
+            The novel moves between three settings. Keep this in mind — it's a big part of what feels confusing at
+            first.
+          </p>
+          <div class="loc-map">
+            <div class="loc-box reservation">
+              <div class="name">The Savage Reservation (Malpais)</div>
+              <div class="desc">
+                New Mexico, North America. A fenced-off area outside World State control, where the "old" way of life
+                (family, religion, ageing, birth) still exists. Far from London — reached by plane.
+              </div>
+            </div>
+            <div class="loc-box london">
+              <div class="name">London</div>
+              <div class="desc">
+                The heart of the World State, year A.F. 632. Clean, controlled, and emotionally cold. Almost the entire
+                "present-day" plot happens here.
+              </div>
+            </div>
+            <div class="loc-box lighthouse">
+              <div class="name">The Lighthouse</div>
+              <div class="desc">An abandoned lighthouse on the English coast, near London. Where the story ends.</div>
+            </div>
           </div>
-          <div class="progress-label" id="progress-label">0 / 18 chapters</div>
         </div>
-        <button class="nav-btn" data-view="dashboard">📖 Dashboard</button>
-        <button class="nav-btn" data-view="reference">🔍 Quick reference</button>
-        <div class="nav-section-title">Chapters</div>
-        <div id="chapter-nav"></div>
-        <div class="nav-section-title">My revision material</div>
-        <button class="nav-btn" data-view="quotes">📝 My quotes</button>
-        <button class="nav-btn" data-view="vocab">📚 My vocabulary</button>
-        <button class="nav-btn" data-view="characters">👥 Character tracker</button>
-        <div class="footer-btns">
-          <button id="export-btn">⬇ Export my notes</button>
-          <button id="import-btn">⬆ Import notes</button>
-          <input type="file" id="import-file" accept="application/json" style="display: none" />
-          <div id="save-indicator"></div>
+
+        <div class="card">
+          <div class="tl-controls">
+            <div class="sort-toggle">
+              <button data-sort="book" class="active">📖 Book order (as narrated)</button>
+              <button data-sort="chron">🕰 Real-time order (chronological)</button>
+            </div>
+            <button id="clear-filter" style="display: none">Clear character filter</button>
+          </div>
+          <div class="char-filter" id="char-filter"></div>
         </div>
-      </nav>
-      <main id="content"></main>
-    </div>
+
+        <div class="timeline" id="timeline-container"></div>
+      </div>
+
+      <!-- CHARACTERS -->
+      <div class="view" id="view-characters">
+        <div class="card">
+          <h3>Main characters</h3>
+          <div id="char-cards"></div>
+        </div>
+        <div class="card">
+          <h3>Key relationships</h3>
+          <div id="rel-lines"></div>
+        </div>
+        <div class="card">
+          <h3>Minor characters (quick reference)</h3>
+          <div class="minor-list" id="minor-list"></div>
+        </div>
+      </div>
+
+      <!-- ANALYSIS -->
+      <div class="view" id="view-analysis">
+        <div class="card">
+          <h3>Narrator &amp; point of view</h3>
+          <p>
+            Third-person <b>omniscient</b> external narrator — not a character in the story. The narrator can move
+            freely between the Hatchery, the Reservation, John's memories, Bernard's insecurity and Mond's reasoning.
+            This wide view makes the World State feel like a whole system, not just one person's problem, and creates
+            irony: horrifying things are often described in calm, official language.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Structure — Freytag's Pyramid</h3>
+          <p>
+            <b>Exposition (Ch. 1–3):</b> the Hatchery, conditioning, and the ideology of the World State are introduced.
+          </p>
+          <p>
+            <b>Rising action (Ch. 4–14):</b> the trip to the Reservation, John's discovery and arrival in London, his
+            fame, the love conflict with Lenina, and Linda's death.
+          </p>
+          <p><b>Climax (Ch. 15–17):</b> the soma riot and John's debate with Mustapha Mond.</p>
+          <p><b>Falling action:</b> John retreats to the lighthouse.</p>
+          <p><b>Resolution (Ch. 18):</b> John's suicide — the World State continues, unchanged.</p>
+          <p>
+            The plot is mostly linear, but has two important flashback-style sections: the Director's memory of losing a
+            woman on the Reservation (Ch. 6) and John's own account of his childhood (Ch. 8) — see the Timeline tab for
+            how these fit chronologically.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Genre &amp; form</h3>
+          <p>
+            A <b>dystopian</b>, <b>satirical</b>, and <b>philosophical</b> novel. It follows dystopian conventions
+            (state control, propaganda, an outsider who reveals the system's cost) but is unusual because the World
+            State rules mainly through pleasure and conditioning rather than open terror — which makes it more
+            unsettling, since many citizens genuinely like their own oppression.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Language &amp; style</h3>
+          <p>
+            Huxley mixes scientific jargon, advertising-like slogans, lyrical description, comedy and philosophical
+            dialogue. The Hatchery chapters use long technical lists (mechanical mood); Chapter 3 uses fast
+            cross-cutting between scenes (a collage of propaganda and noise). The tone shifts from clinical and ironic
+            in the London chapters to emotional and tragic in John's story, Linda's death, and the ending.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Literary devices</h3>
+          <p>
+            <b>Soma</b> — symbol of artificial happiness and the refusal to face pain or truth.<br />
+            <b>Ford</b> — allusion to Henry Ford and mass production; religious language redirected toward industrial
+            efficiency.<br />
+            <b>Shakespeare</b> — motif representing complex language, tragedy, love and moral conflict — everything the
+            World State removed.<br />
+            <b>Bottles &amp; factories</b> — symbolise the industrialisation of human life.<br />
+            <b>Irony</b> — the title itself: this "brave new world" is not brave in a positive sense, just comfortable
+            and spiritually small.<br />
+            <b>Contrast</b> — London vs. the Reservation, though neither is presented as perfect.<br />
+            <b>Repetition</b> — hypnopaedic slogans show how repeated language replaces reasoning.<br />
+            <b>Foreshadowing</b> — the Director's story about losing a woman on the Reservation (Ch. 6) prepares the
+            reveal of Linda and John.<br />
+            <b>Names as allusions</b> — Marx, Lenina, Darwin Bonaparte, Ford connect the future world to political,
+            scientific and historical ideas.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Themes</h3>
+          <p>
+            <b>Central theme:</b> a society that removes suffering by controlling truth, freedom, love and individuality
+            may become stable — but also less human.
+          </p>
+          <p><b>Happiness vs. freedom:</b> the World State gives pleasure and comfort but removes meaningful choice.</p>
+          <p>
+            <b>Technology &amp; social control:</b> the Hatchery, conditioning, feelies and soma all show technology
+            used to predetermine identity and limit thought.
+          </p>
+          <p>
+            <b>Consumerism &amp; distraction:</b> people are conditioned to consume, replace, and avoid solitude — still
+            relevant to debates about advertising, entertainment and social media.
+          </p>
+          <p>
+            <b>Love, sex &amp; family:</b> the World State separates sex from commitment and treats family as obscene;
+            John idealises love so strongly he can't handle real desire. The novel criticises both extremes.
+          </p>
+          <p>
+            <b>Art, language &amp; truth:</b> Shakespeare gives John a language for feelings London can't express; Mond
+            suppresses old art because it would destabilise society.
+          </p>
+          <p>
+            <b>Ambiguous moral message:</b> the novel clearly criticises the World State but doesn't offer a simple
+            alternative — the Reservation is cruel too, and John's idealism becomes self-destructive.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Setting &amp; context</h3>
+          <p>
+            Main setting: London in the World State, year A.F. 632 ("After Ford" — industry has replaced religion).
+            Contrast setting: the Savage Reservation in New Mexico. Written in the early 1930s, the novel reflects fears
+            about mass production, Fordism, behaviourist psychology, eugenics, consumer culture and totalitarian
+            control.
+          </p>
+        </div>
+      </div>
+
+      <!-- VOCAB -->
+      <div class="view" id="view-vocab">
+        <div class="card">
+          <h3>Important words</h3>
+          <p>Click a card to reveal the definition and German translation. Search to filter.</p>
+          <input type="text" id="vocab-search" placeholder="Search a word..." />
+          <div class="vocab-grid" id="vocab-grid"></div>
+        </div>
+      </div>
+
+      <!-- Q&A -->
+      <div class="view" id="view-qa">
+        <div class="card">
+          <h3>Your reading notes, answered</h3>
+          <p>
+            Organised in story order, matching the phases in the Timeline tab. Each answer is in English first, with a
+            German translation underneath. A few answers also flag places where your notes seem to mix something up
+            (e.g. Linda vs. Lenina, or a detail from the Cyprus experiment) — that's normal with names this similar, and
+            it's noted so you don't repeat it in the exam.
+          </p>
+          <div class="tl-controls">
+            <button class="small-btn-like" id="qa-expand-all">Expand all</button>
+            <button class="small-btn-like" id="qa-collapse-all">Collapse all</button>
+          </div>
+        </div>
+        <div id="qa-container"></div>
+      </div>
+    </main>
 
     <script>
-      /* ---------------- DATA ---------------- */
-
-      const chapterData = [
+      /* ---------------- TIMELINE DATA ---------------- */
+      const events = [
         {
-          num: 1,
-          title: "The Hatchery and Conditioning Centre",
-          recap:
-            "You're taken on a tour of the Central London Hatchery, where humans are grown in bottles, sorted into castes from Alpha to Epsilon, and shaped before birth by Bokanovsky's Process. There's no personal conflict yet — this chapter is world-building, almost like a guided tour.",
-          themes: ["Technology", "Social stability", "Caste system", "Dehumanisation", "Fordism"],
-          characters: ["The Director", "Henry Foster", "Lenina Crowne"],
-          concepts: [
-            {
-              term: "Bokanovsky's Process",
-              explain:
-                "One fertilised egg is treated so it splits into up to 96 identical embryos. This is how the lower castes (Gamma, Delta, Epsilon) are mass-produced as identical 'twins' — it's cheaper and it makes those groups easier to manage because they're all the same.",
-            },
-            {
-              term: "Decanting",
-              explain:
-                "This society doesn't say a baby is 'born' — it's 'decanted', meaning taken out of its bottle. There are no mothers here; every human starts life in a bottle on a factory conveyor belt.",
-            },
-            {
-              term: "Caste predestination",
-              explain:
-                "Long before 'decanting', embryos are treated with different chemicals and oxygen levels depending on which caste (Alpha to Epsilon) they're destined for. Your future social class is decided while you're still in the bottle, not earned later.",
-            },
-            {
-              term: "'A.F.' (the Ford calendar)",
-              explain:
-                "Time is counted from Henry Ford's birth ('After Ford') instead of from a religious calendar. Ford, the inventor of the assembly line, is treated almost like a god — a first hint that mass production has replaced religion in this world.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "Which detail from the Hatchery tour shocked or surprised you the most, and what does it show about what this society values?",
-              hint: "The scene suggests that... / Huxley uses irony to make the reader question...",
-            },
-            {
-              label:
-                "This chapter reads more like a factory tour than a story — no real 'main character' yet. How did that style make you feel as a reader?",
-              hint: "The effect on me was...",
-            },
-            {
-              label: "Personal opinion: what stood out to you most, and why?",
-              hint: "What I found most striking was...",
-            },
-          ],
+          id: 1,
+          phase: "Backstory",
+          bookOrder: 6.1,
+          chronOrder: 1,
+          timeLabel: "~25 years before the main story",
+          chapterRef: "Revealed in Ch. 6",
+          loc: "reservation",
+          title: "The Director's Forgotten Companion",
+          summary:
+            "On a research trip to the Reservation, the Director brings a young Beta woman with him. She gets lost during a storm and is left behind.",
+          detail:
+            "He never speaks of her again publicly — but this memory quietly sets up one of the novel's strongest ironic reversals later on.",
+          chars: ["The Director"],
         },
         {
-          num: 2,
-          title: "Learning to Obey: Infant Conditioning",
-          recap:
-            "The Director shows how infants are conditioned to fear books and flowers using noise and electric shocks, and explains hypnopaedia — sleep-teaching that repeats moral slogans until people believe them automatically.",
-          themes: ["Conditioning", "Education as control", "Consumerism", "Fear of nature"],
-          characters: ["The Director", "students on the tour"],
-          concepts: [
-            {
-              term: "Hypnopaedia (sleep-teaching)",
-              explain:
-                "Recorded sentences are played to children thousands of times while they sleep. They never consciously 'learn' them — the phrases just become things they feel are true, without ever thinking about why. It's belief installed as a habit, not as a reasoned idea.",
-            },
-            {
-              term: "Neo-Pavlovian conditioning",
-              explain:
-                "Named after Pavlov's dogs (who learned to associate a bell with food). Here, babies are shown books and flowers at the same time as loud noises and electric shocks, so their bodies learn to panic around them — pure physical fear, with no 'thinking' involved.",
-            },
-            {
-              term: "Why nature and books are feared",
-              explain:
-                "It's economic: enjoying a flower or reading a book is free and doesn't require buying transport or gadgets. A society built on constant consumption can't allow people to enjoy things that cost nothing.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "How does conditioning infants let the World State control people without needing violence or punishment later on?",
-              hint: "The scene suggests that...",
-            },
-            {
-              label:
-                "The narrator describes this cruelty calmly, like normal science. What effect did that flat, clinical tone have on you?",
-              hint: "Huxley uses irony to make the reader question...",
-            },
-            {
-              label:
-                "Personal opinion: do you think 'conditioning' and 'education' are really different here — or just the same thing with a nicer name?",
-              hint: "I would not describe this as simple education because...",
-            },
-          ],
+          id: 2,
+          phase: "Backstory",
+          bookOrder: 8.1,
+          chronOrder: 2,
+          timeLabel: "~25 years before the main story, shortly after",
+          chapterRef: "Revealed in Ch. 7–8",
+          loc: "reservation",
+          title: "John is Born",
+          summary:
+            "The lost woman, Linda, gives birth to a son on the Reservation — a natural birth, which is shameful both by World State standards and unusual for the pueblo.",
+          detail:
+            "Linda is looked down on by the Reservation community for her World-State habits (promiscuity, in their eyes), and John grows up an outsider from birth.",
+          chars: ["Linda", "John"],
         },
         {
-          num: 3,
-          title: "The Ideology of the World State",
-          recap:
-            "In a chapter that jumps rapidly between scenes, Mustapha Mond lectures on history, family, sexuality and soma, while Lenina talks with Fanny and Bernard reacts angrily to gossip about Lenina. Bernard emerges as an insecure outsider.",
-          themes: ["Stability", "Consumerism", "Sexuality", "History", "Soma", "Alienation"],
-          characters: ["Mustapha Mond", "Bernard Marx", "Lenina Crowne", "Fanny Crowne"],
-          concepts: [
-            {
-              term: "Why the chapter feels confusing on purpose",
-              explain:
-                "Huxley cuts between three conversations without warning — no 'meanwhile' or scene break markers. This is deliberate: it makes you feel the same information-overload the citizens live in. Tip: when the topic suddenly shifts mid-page, that's a new scene starting, not a mistake.",
-            },
-            {
-              term: "Why family and history were abolished",
-              explain:
-                "Mond explains that the old world's families created intense feelings — love, jealousy, grief — which made people unstable and hard to control. Removing biological family (and monogamy) removes those intense private loyalties.",
-            },
-            {
-              term: "Soma (first full introduction)",
-              explain:
-                "A drug with 'all of the advantages of Christianity and alcohol, none of their defects' — it removes bad feelings instantly with no hangover (officially). Citizens take it for anything from mild boredom to real grief.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "This chapter cuts quickly between Mond's lecture, Lenina and Fanny's chat, and Bernard's anger. What mood does this fast cross-cutting create for you as a reader?",
-              hint: "The contrast between ... and ... shows...",
-            },
-            {
-              label: "At first, Bernard seems..., but by the end of the chapter...",
-              hint: "Finish this sentence in your own words.",
-            },
-            {
-              label:
-                "What did Mond's comments about history, family and soma tell you about what the World State is afraid of?",
-              hint: "The scene suggests that...",
-            },
-          ],
+          id: 3,
+          phase: "Backstory",
+          bookOrder: 8.2,
+          chronOrder: 3,
+          timeLabel: "Childhood &amp; teenage years on the Reservation",
+          chapterRef: "Revealed in Ch. 8",
+          loc: "reservation",
+          title: "Growing Up Excluded",
+          summary:
+            "John grows up rejected by the pueblo because of his mother. Mitsima teaches him practical skills; Popé causes him jealousy and shame. He discovers a copy of Shakespeare, which becomes his entire education in beauty, heroism and moral language.",
+          detail:
+            "This is a coming-of-age story inside the dystopian novel — it explains John's later idealism and his inability to fit in anywhere, London included. Note: 'the pueblo' is the village/community itself, not a person. Popé is Linda's Reservation lover (this is what fuels John's jealousy and the knife/mescal incidents); Kiakime is the girl John hopes to marry, but he's denied the chance and she marries someone else.",
+          chars: ["John", "Linda", "Popé", "Mitsima"],
         },
         {
-          num: 4,
-          title: "Bernard, Lenina and Helmholtz",
-          recap:
-            "Lenina publicly and enthusiastically accepts Bernard's invitation to the Reservation, embarrassing him — he wanted something more private and serious. Bernard then meets Helmholtz Watson, another Alpha who senses something missing in his life.",
-          themes: ["Alienation", "Individuality", "Friendship", "Social performance"],
-          characters: ["Bernard Marx", "Lenina Crowne", "Helmholtz Watson"],
-          concepts: [
-            {
-              term: "'Pneumatic'",
-              explain:
-                "A word used repeatedly to describe Lenina's body — it literally means 'filled with air', like a cushion. Men use it as a compliment. Notice how it talks about a person like a product, not a human being — that's Huxley's point.",
-            },
-            {
-              term: "Unwritten Alpha social codes",
-              explain:
-                "Even at the very top caste, there are strict unspoken rules: date casually, never want just one person for long, never show strong emotion. Bernard is criticised not for breaking laws, but for breaking these invisible social habits.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "How does Lenina's reaction to the invitation reveal the gap between how she and Bernard see relationships?",
-              hint: "This relationship is important because...",
-            },
-            {
-              label:
-                "Helmholtz seems stronger and more sincere than Bernard right from this first meeting. What specific detail gives you that impression?",
-              hint: "This character represents...",
-            },
-            {
-              label: "Personal opinion: which character do you relate to more so far, Bernard or Helmholtz, and why?",
-              hint: "What I found most striking was...",
-            },
-          ],
+          id: 4,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 1,
+          chronOrder: 4,
+          timeLabel: "Main story begins",
+          chapterRef: "Ch. 1",
+          loc: "london",
+          title: "A Tour of the Hatchery",
+          summary:
+            "Students are shown how humans are decanted from bottles, sorted into castes, and conditioned before birth.",
+          detail:
+            "Almost a guided tour rather than a story — Huxley makes the reader learn the world before judging any individual character.",
+          chars: ["The Director", "Henry Foster", "Lenina Crowne"],
         },
         {
-          num: 5,
-          title: "Soma, Games and the Solidarity Service",
-          recap:
-            "Henry and Lenina spend a soma-fuelled evening playing Obstacle Golf. Meanwhile Bernard attends a Solidarity Service, a ritual meant to create group unity, but he can't lose himself in it the way everyone else seems to.",
-          themes: ["Soma", "False religion", "Mass entertainment", "Loneliness"],
-          characters: ["Lenina Crowne", "Henry Foster", "Bernard Marx"],
-          concepts: [
-            {
-              term: "The Solidarity Service",
-              explain:
-                "A parody of a church service: twelve people sit in a circle, pass round soma tablets, sing hymns to 'Ford' and work themselves up until they're meant to feel merged into a 'Greater Being'. It copies the structure of religion (ritual, community, ecstasy) but empties out the meaning.",
-            },
-            {
-              term: "Obstacle Golf",
-              explain:
-                "A small but telling detail — new games in this society are deliberately designed to need lots of expensive equipment and travel. Even 'fun' exists to keep people consuming, not just to be enjoyable.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "Compare Lenina and Henry's evening with Bernard's experience at the Solidarity Service. What does each reveal about how 'happiness' works in this society?",
-              hint: "The contrast between ... and ... shows...",
-            },
-            {
-              label:
-                "Huxley uses irony to make the reader question the Solidarity Service. Where exactly do you see that irony?",
-              hint: "Look at the ritual's structure versus what it's supposed to achieve.",
-            },
-            {
-              label:
-                "Personal opinion: did the Solidarity Service remind you of any real event, ritual or trend you know?",
-              hint: "For a modern reader, this is relevant because...",
-            },
-          ],
+          id: 5,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 2,
+          chronOrder: 5,
+          timeLabel: "Same period",
+          chapterRef: "Ch. 2",
+          loc: "london",
+          title: "Learning to Obey",
+          summary:
+            "The Director explains infant conditioning (fear of books/flowers) and hypnopaedia — sleep-teaching that makes slogans feel like personal beliefs.",
+          detail: "Disturbing because the cruelty is presented calmly, as normal science.",
+          chars: ["The Director"],
         },
         {
-          num: 6,
-          title: "Bernard's Growing Discontent",
-          recap:
-            "Bernard dislikes the shallow pleasures Lenina enjoys and wants something more intense. He gets permission to visit the Reservation. The Director recalls losing a woman there years ago, then threatens to exile Bernard to Iceland for his 'unorthodox' behaviour.",
-          themes: ["Freedom", "Fear of exile", "Conformity", "Foreshadowing"],
-          characters: ["Bernard Marx", "Lenina Crowne", "The Director"],
-          concepts: [
-            {
-              term: "Exile to islands",
-              explain:
-                "The standard punishment for 'unorthodox' Alphas isn't prison — it's being sent to an island (like Iceland). It's framed purely as punishment here; keep this in mind, because how different characters react to this threat later says a lot about them.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "What do you think the Director's story about 'losing' a woman on the Reservation years ago might hint at? (It's fine if you're only guessing.)",
-              hint: "The scene suggests that...",
-            },
-            {
-              label:
-                "Bernard seems braver for a moment but is also afraid of punishment. What specific detail shows both sides of him?",
-              hint: "At first, this character seems..., but later...",
-            },
-            {
-              label:
-                "Personal opinion: what would you have done in Bernard's position, facing exile for being 'different'?",
-              hint: "What I found most striking was...",
-            },
-          ],
+          id: 6,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 3,
+          chronOrder: 6,
+          timeLabel: "Same period",
+          chapterRef: "Ch. 3",
+          loc: "london",
+          title: "The World State's Ideology",
+          summary:
+            "Mustapha Mond lectures on history, family and soma while Lenina talks with Fanny and Bernard reacts angrily to gossip about Lenina.",
+          detail:
+            "The fast cuts between scenes create a collage effect, mirroring a society full of noise and slogans. Bernard emerges here as an insecure outsider.",
+          chars: ["Mustapha Mond", "Bernard Marx", "Lenina Crowne", "Fanny Crowne"],
         },
         {
-          num: 7,
-          title: "Arrival at the Savage Reservation",
-          recap:
-            "Bernard and Lenina reach the Reservation and are shocked by poverty, old age, illness and religion. They meet Linda, a Beta who was lost there years ago, and her son John, who was born naturally.",
-          themes: ["Civilisation vs savagery", "Motherhood", "Shame", "Cultural conflict"],
-          characters: ["Bernard Marx", "Lenina Crowne", "Linda", "John"],
-          concepts: [
-            {
-              term: "The Savage Reservation",
-              explain:
-                "A fenced-off area kept outside World State control, where the 'old' way of life (families, religion, ageing, disease, birth) still exists — almost like a controlled human zoo that Alphas visit with a special permit.",
-            },
-            {
-              term: "Real-world inspiration",
-              explain:
-                "Huxley based the Reservation loosely on Native American pueblo cultures he had read about and visited. It's a fictional, exaggerated version — useful context for the exam, but not a realistic portrayal of any real culture.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "The scene suggests that neither London nor the Reservation is a simple paradise. What contrasts between the two worlds stood out to you here?",
-              hint: "The contrast between ... and ... shows...",
-            },
-            {
-              label: "At first, Linda and John seem..., but as you learn more about them...",
-              hint: "Finish this sentence about your first impression.",
-            },
-            {
-              label: "What was your emotional reaction to meeting John and Linda for the first time?",
-              hint: "What I found most striking was...",
-            },
-          ],
+          id: 7,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 4,
+          chronOrder: 7,
+          timeLabel: "Following days",
+          chapterRef: "Ch. 4",
+          loc: "london",
+          title: "Bernard and Helmholtz",
+          summary:
+            "Lenina embarrasses Bernard by publicly accepting his invitation to the Reservation. Bernard meets Helmholtz Watson, who senses something missing in his own life.",
+          detail: "The 'outsider' theme becomes personal and emotional, not just political.",
+          chars: ["Bernard Marx", "Lenina Crowne", "Helmholtz Watson"],
         },
         {
-          num: 8,
-          title: "John's Story",
-          recap:
-            "John tells Bernard about growing up as Linda's son on the Reservation — rejected by the pueblo, raised without a real father figure, and finding comfort and language in a book of Shakespeare.",
-          themes: ["Literature", "Exclusion", "Identity", "Longing"],
-          characters: ["John", "Bernard Marx", "Linda"],
-          concepts: [
-            {
-              term: "Why Shakespeare specifically",
-              explain:
-                "John's only book is a complete Shakespeare, given to him almost by chance. It becomes his entire education in poetry, morality and emotional language — which is why he later quotes it constantly and judges the world through it.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "How does Shakespeare seem to function for John — comfort, education, escape, or something else? Give a reason from the chapter.",
-              hint: "This character represents...",
-            },
-            {
-              label:
-                "John grew up excluded both by the pueblo (because of his mother) and, in a sense, by London (which he'd never seen). How do you think this double exclusion shaped him?",
-              hint: "The scene suggests that...",
-            },
-            {
-              label: "Personal opinion: what struck you most about John's childhood story?",
-              hint: "What I found most striking was...",
-            },
-          ],
+          id: 8,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 5,
+          chronOrder: 8,
+          timeLabel: "Following days",
+          chapterRef: "Ch. 5",
+          loc: "london",
+          title: "Soma and the Solidarity Service",
+          summary:
+            "Lenina and Henry enjoy a soma-fuelled evening. Bernard attends a Solidarity Service but can't feel the manufactured unity everyone else seems to feel.",
+          detail:
+            "The Service looks religious but is shallow and mechanical — Huxley satirising group rituals that promise unity without truth.",
+          chars: ["Lenina Crowne", "Henry Foster", "Bernard Marx"],
         },
         {
-          num: 9,
-          title: "Bernard's Plan",
-          recap:
-            "Bernard gets permission from Mustapha Mond to bring Linda and John to London. Overwhelmed by the Reservation, Lenina takes soma. John secretly watches Lenina sleep, idealising her beauty without touching her.",
-          themes: ["Soma", "Idealisation", "Desire", "Manipulation"],
-          characters: ["Bernard Marx", "John", "Lenina Crowne", "Mustapha Mond"],
-          concepts: [
-            {
-              term: "A soma 'holiday'",
-              explain:
-                "Taking soma is described as going 'on holiday' — it mentally removes you from unpleasant reality for a while. Lenina uses it here specifically to cope with the shock of the Reservation.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "What does John's behaviour while watching Lenina sleep tell you about his ideas of love and desire?",
-              hint: "This character represents...",
-            },
-            {
-              label:
-                "Bernard's motives here contrast with John's innocence. What does this contrast suggest about what's coming?",
-              hint: "The contrast between ... and ... shows...",
-            },
-            {
-              label:
-                "Personal opinion: do you think Bernard is using John and Linda for his own benefit? Explain your reasoning.",
-              hint: "I would argue that...",
-            },
-          ],
+          id: 9,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 6.5,
+          chronOrder: 9,
+          timeLabel: "Shortly after",
+          chapterRef: "Ch. 6",
+          loc: "london",
+          title: "Permission to Travel",
+          summary:
+            "Bernard gets permission from the Director to visit the Reservation. The Director recalls his own lost companion (Event 1) and threatens Bernard with exile to Iceland.",
+          detail:
+            "Bernard's rebellion is shown to be fragile: he criticises the system but still fears losing his place in it.",
+          chars: ["Bernard Marx", "Lenina Crowne", "The Director"],
         },
         {
-          num: 10,
-          title: "The Director is Publicly Shamed",
-          recap:
-            "Back in London, the Director tries to publicly punish Bernard — but Bernard reveals Linda and John. John calls the Director 'father,' a word that is obscene in the World State, and the Director resigns in humiliation.",
-          themes: ["Family", "Shame", "Public image", "Power reversal"],
-          characters: ["The Director", "Bernard Marx", "John", "Linda"],
-          concepts: [
-            {
-              term: "Why 'father' is obscene",
-              explain:
-                "Since reproduction is entirely artificial, biological parenthood feels viscerally embarrassing to World State citizens — roughly as shocking as a crude sexual insult would feel to us. That's why one word can destroy the Director's authority instantly.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "How is a single word ('father') powerful enough to destroy the Director's authority in this society?",
-              hint: "The scene suggests that...",
-            },
-            {
-              label: "This relationship (Bernard using John) is important because...",
-              hint: "Think about how it changes Bernard's social position.",
-            },
-            {
-              label: "Personal opinion: what did you find most ironic about this chapter?",
-              hint: "Huxley uses irony to make the reader question...",
-            },
-          ],
+          id: 10,
+          phase: "Part 2 — The Reservation",
+          bookOrder: 7,
+          chronOrder: 10,
+          timeLabel: "A few days later",
+          chapterRef: "Ch. 7",
+          loc: "reservation",
+          title: "Arrival at the Reservation",
+          summary:
+            "Bernard and Lenina arrive and are shocked by poverty, age, illness and religion. They meet Linda and John for the first time.",
+          detail:
+            "The Reservation isn't a simple paradise either — it contains suffering, exclusion and violence of its own.",
+          chars: ["Bernard Marx", "Lenina Crowne", "Linda", "John"],
         },
         {
-          num: 11,
-          title: "John Becomes a Spectacle in London",
-          recap:
-            "John becomes a London celebrity — 'the Savage' everyone wants to meet. He's taken to schools, factories and feelies, and grows increasingly disgusted by what he sees. Linda, meanwhile, is placed on heavy soma.",
-          themes: ["Spectacle", "Exploitation", "Consumerism", "Death denial"],
-          characters: ["John", "Bernard Marx", "Lenina Crowne", "Helmholtz Watson"],
-          concepts: [
-            {
-              term: "The feelies",
-              explain:
-                "The evolved version of cinema: physical sensations (touch, smell) are transmitted straight to the audience through handles on their seats. It's entertainment stripped of any need to think — pure passive sensation.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "How does London 'consume' John as entertainment instead of actually listening to what he has to say?",
-              hint: "The scene suggests that...",
-            },
-            {
-              label: "At first, Bernard's new fame seems..., but later...",
-              hint: "Think about how fame changes his character.",
-            },
-            {
-              label:
-                "For a modern reader, is this relevant? Can you think of a modern example of someone being turned into a spectacle rather than being heard?",
-              hint: "For a modern reader, this is relevant because...",
-            },
-          ],
+          id: 11,
+          phase: "Part 2 — The Reservation",
+          bookOrder: 9,
+          chronOrder: 11,
+          timeLabel: "Same visit",
+          chapterRef: "Ch. 9",
+          loc: "reservation",
+          title: "The Plan to Go to London",
+          summary:
+            "Bernard gets permission from Mustapha Mond to bring Linda and John to London. Overwhelmed, Lenina takes soma; John secretly watches her sleep, idealising her.",
+          detail:
+            "Quietly sets up the tragic misunderstanding between John and Lenina: they desire each other but have completely different ideas of love.",
+          chars: ["Bernard Marx", "John", "Lenina Crowne", "Mustapha Mond"],
         },
         {
-          num: 12,
-          title: "Bernard's Fall, Helmholtz and John's Friendship",
-          recap:
-            "Bernard's social status collapses when John refuses to appear for his important guests. Meanwhile, John and Helmholtz bond over Shakespeare, though Helmholtz can't take the ideas of family and romantic devotion seriously.",
-          themes: ["Friendship", "Art", "Language", "Authenticity"],
-          characters: ["Bernard Marx", "John", "Helmholtz Watson"],
-          concepts: [
-            {
-              term: "Why Bernard's status was always fragile",
-              explain:
-                "Bernard's popularity was never really about him — it was about access to John, 'the Savage'. The moment John refuses to perform, Bernard has nothing of his own left to offer, showing how empty his elevated status always was.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "What does Bernard's collapse in popularity reveal about the difference between real conviction and shallow rebellion?",
-              hint: "This character represents...",
-            },
-            {
-              label:
-                "John and Helmholtz connect through Shakespeare, but even they misunderstand each other at times. Where do you see this in the chapter?",
-              hint: "The contrast between ... and ... shows...",
-            },
-            {
-              label: "Personal opinion: what does this genuine (if imperfect) friendship add to the story so far?",
-              hint: "What I found most striking was...",
-            },
-          ],
+          id: 12,
+          phase: "Part 3 — John in London",
+          bookOrder: 10,
+          chronOrder: 12,
+          timeLabel: "Return to London",
+          chapterRef: "Ch. 10",
+          loc: "london",
+          title: "The Director is Shamed",
+          summary:
+            'Bernard reveals Linda and John publicly. John calls the Director "father" — an obscene word in the World State — and the Director resigns in humiliation.',
+          detail:
+            "One of the novel's strongest ironic reversals: the Director, who teaches controlled reproduction, is ruined by natural reproduction.",
+          chars: ["The Director", "Bernard Marx", "John", "Linda"],
         },
         {
-          num: 13,
-          title: "Lenina and John: A Clash of Ideas about Love",
-          recap:
-            "Lenina visits John hoping to start a relationship. His Shakespeare-shaped idea of love collides violently with her casual, conditioned approach to sex, and the encounter ends badly.",
-          themes: ["Love vs sex", "Repression", "Shame", "Gender expectations"],
-          characters: ["Lenina Crowne", "John"],
-          concepts: [
-            {
-              term: "John's Shakespearean moral language",
-              explain:
-                "When John reacts with horror to Lenina's advances, his language echoes Shakespearean tragedy (about sexual 'purity' and shame). Those ideas are completely foreign to Lenina, who has been conditioned to see casual sex as normal and healthy.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "The scene suggests that John and Lenina both desire each other but define 'love' in completely different ways. How would you describe each of their definitions?",
-              hint: "The contrast between ... and ... shows...",
-            },
-            {
-              label:
-                "Is John's reaction to Lenina fair, or does it reveal his own psychological damage? Explain your view.",
-              hint: "I would argue that...",
-            },
-            {
-              label: "Personal opinion: what did you find most striking (or disturbing) about this scene?",
-              hint: "What I found most striking was...",
-            },
-          ],
+          id: 13,
+          phase: "Part 3 — John in London",
+          bookOrder: 11,
+          chronOrder: 13,
+          timeLabel: "Following weeks",
+          chapterRef: "Ch. 11",
+          loc: "london",
+          title: "John, the Celebrity",
+          summary:
+            'John becomes fashionable — "the Savage" everyone wants to see. He tours schools, factories and feelies, growing more disgusted each time.',
+          detail:
+            "The World State turns even rebellion and otherness into entertainment — John is consumed as a novelty, not accepted as a person.",
+          chars: ["John", "Bernard Marx", "Lenina Crowne", "Helmholtz Watson"],
         },
         {
-          num: 14,
-          title: "Linda's Death",
-          recap:
-            "John visits the dying Linda at the hospital, where children are being conditioned to see death as normal entertainment. Linda dies drugged and confused, and John's grief quickly turns to rage.",
-          themes: ["Death", "Motherhood", "Grief", "Dehumanisation"],
-          characters: ["John", "Linda"],
-          concepts: [
-            {
-              term: "Death conditioning",
-              explain:
-                "Children visit the hospital as a routine school activity, given sweets and toys around dying patients, so that death feels ordinary and unremarkable to them rather than sad. It shows how far conditioning goes — even our most basic grief is engineered away.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "How does this scene contrast real, painful grief with a society that has removed deep attachment altogether?",
-              hint: "The contrast between ... and ... shows...",
-            },
-            {
-              label: "This character (Linda) represents...",
-              hint: "Think about what she symbolises by the end of her life.",
-            },
-            {
-              label: "Personal opinion: was this the most emotional moment in the book so far for you? Why or why not?",
-              hint: "The most emotional moment for me was...",
-            },
-          ],
+          id: 14,
+          phase: "Part 3 — John in London",
+          bookOrder: 12,
+          chronOrder: 14,
+          timeLabel: "Same period",
+          chapterRef: "Ch. 12",
+          loc: "london",
+          title: "Bernard's Fall, a Real Friendship",
+          summary:
+            "Bernard's popularity collapses when John refuses to appear for his guests. John and Helmholtz bond over Shakespeare, though Helmholtz can't take family and romance seriously.",
+          detail: "Separates shallow rebellion (Bernard) from genuine dissatisfaction (Helmholtz).",
+          chars: ["Bernard Marx", "John", "Helmholtz Watson"],
         },
         {
-          num: 15,
+          id: 15,
+          phase: "Part 3 — John in London",
+          bookOrder: 13,
+          chronOrder: 15,
+          timeLabel: "Same period",
+          chapterRef: "Ch. 13",
+          loc: "london",
+          title: "A Clash Over Love",
+          summary:
+            "Lenina tries to start a relationship with John. His Shakespeare-shaped idea of romantic love collides violently with her casual approach to sex.",
+          detail:
+            "The central personal conflict of the novel: World State sexuality vs. John's Shakespearean ideals — neither can understand the other's moral language.",
+          chars: ["Lenina Crowne", "John"],
+        },
+        {
+          id: 16,
+          phase: "Part 4 — Crisis &amp; the End",
+          bookOrder: 14,
+          chronOrder: 16,
+          timeLabel: "Shortly after",
+          chapterRef: "Ch. 14",
+          loc: "london",
+          title: "Linda Dies",
+          summary:
+            "John visits the dying Linda, surrounded by children conditioned to see death as entertainment. She dies confused, calling for Popé. John's grief turns to rage.",
+          detail: "Contrasts real grief with a society that has removed deep attachment by removing grief altogether.",
+          chars: ["John", "Linda"],
+        },
+        {
+          id: 17,
+          phase: "Part 4 — Crisis &amp; the End",
+          bookOrder: 15,
+          chronOrder: 17,
+          timeLabel: "Same day",
+          chapterRef: "Ch. 15",
+          loc: "london",
           title: "The Soma Riot",
-          recap:
-            "After Linda's death, John tries to stop Delta workers from taking their soma ration, calling it poison. Helmholtz joins him; Bernard hesitates. Police end the riot calmly, using gas and soma.",
-          themes: ["Freedom", "Drugged happiness", "Rebellion", "Courage"],
-          characters: ["John", "Helmholtz Watson", "Bernard Marx"],
-          concepts: [
-            {
-              term: "The soma ration",
-              explain:
-                "Delta workers receive soma as a normal, expected part of their daily routine — almost like part of their wages. It shows how a chemical 'reward' can replace real rights, better pay or better conditions.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "The scene suggests that the Deltas don't actually want the freedom John is offering them. Why not, in your view?",
-              hint: "The scene suggests that...",
-            },
-            {
-              label:
-                "Compare how Helmholtz, Bernard and John each react during the riot. What does each reaction reveal about their courage?",
-              hint: "At first, this character seems..., but later...",
-            },
-            {
-              label:
-                "Huxley's key idea here seems to be that oppression works best when people love what enslaves them. Do you agree with this idea, in general?",
-              hint: "I would argue that...",
-            },
-          ],
+          summary:
+            "John tries to stop Delta workers from taking their soma ration, calling it poison. Helmholtz joins him; Bernard hesitates. Police end the riot calmly with gas and soma.",
+          detail:
+            "Demonstrates Huxley's key idea: oppression works best when people love the things that enslave them.",
+          chars: ["John", "Helmholtz Watson", "Bernard Marx"],
         },
         {
-          num: 16,
-          title: "Mustapha Mond's Explanation",
-          recap:
-            "John, Helmholtz and Bernard are brought before Mustapha Mond, who explains why art, science, religion and truth are sacrificed for stability. Helmholtz accepts exile as a chance for freedom; Bernard begs not to be sent away.",
-          themes: ["Truth vs happiness", "Censorship", "Exile", "Art"],
-          characters: ["Mustapha Mond", "John", "Helmholtz Watson", "Bernard Marx"],
-          concepts: [
-            {
-              term: "Who the World Controllers are",
-              explain:
-                "There are only ten World Controllers globally, each governing a continent-sized region with near-absolute power. Mond himself once had scientific ambitions but chose comfort and power within the system instead of independent thought.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "Why is Mustapha Mond a frightening antagonist, even though he's intelligent and doesn't rely on open violence?",
-              hint: "This character represents...",
-            },
-            {
-              label:
-                "Helmholtz accepts exile positively; Bernard begs to stay. What does each choice tell you about their character?",
-              hint: "The contrast between ... and ... shows...",
-            },
-            {
-              label:
-                "Personal opinion: after hearing Mond's explanation, do you feel more or less sympathy for the World State's logic?",
-              hint: "I would argue that...",
-            },
-          ],
+          id: 18,
+          phase: "Part 4 — Crisis &amp; the End",
+          bookOrder: 16,
+          chronOrder: 18,
+          timeLabel: "Immediately after",
+          chapterRef: "Ch. 16",
+          loc: "london",
+          title: "Facing Mustapha Mond",
+          summary:
+            "John, Helmholtz and Bernard are brought before Mond, who explains why art, science, religion and truth are sacrificed for stability. Helmholtz accepts exile; Bernard begs to stay.",
+          detail:
+            "The antagonist has intelligent arguments — the reader must decide whether comfort is worth the loss of freedom and depth. Mond also explains why castes exist using the real 'Cyprus experiment': an island once repopulated entirely with Alphas collapsed into civil war within years, because nobody wanted the simple jobs a society also needs. See the Q&A tab for the full explanation.",
+          chars: ["Mustapha Mond", "John", "Helmholtz Watson", "Bernard Marx"],
         },
         {
-          num: 17,
-          title: "John and Mond Debate Suffering and Freedom",
-          recap:
-            "John and Mond continue their debate. Mond argues the modern world has no need for God, tragic art or intense suffering. John insists he wants real danger, freedom, goodness and sin — not controlled comfort.",
-          themes: ["Religion", "Suffering", "Moral freedom", "Human dignity"],
-          characters: ["John", "Mustapha Mond"],
-          concepts: [
-            {
-              term: "The philosophical debate behind the scene",
-              explain:
-                "Mond's arguments echo real debates in philosophy about whether the greatest good for the greatest number (comfort, stability) should outweigh individual freedom and truth. It's Huxley distilling centuries of philosophy into a single dramatic conversation.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "Summarise John's central argument against Mond's world in your own words — what exactly is he demanding?",
-              hint: "The scene suggests that...",
-            },
-            {
-              label: "Do you find John's demand ('I claim them all') noble, extreme, or both? Explain your reasoning.",
-              hint: "I would not describe this as simple because...",
-            },
-            {
-              label:
-                "Personal opinion: what does this debate suggest about what a 'fully human' life actually requires?",
-              hint: "For a modern reader, this is relevant because...",
-            },
-          ],
+          id: 19,
+          phase: "Part 4 — Crisis &amp; the End",
+          bookOrder: 17,
+          chronOrder: 19,
+          timeLabel: "Same conversation, continued",
+          chapterRef: "Ch. 17",
+          loc: "london",
+          title: "The Great Debate",
+          summary:
+            "John and Mond continue arguing. Mond says the modern world has no need for God, tragic art or intense suffering. John insists he wants real danger, freedom, goodness and sin.",
+          detail:
+            "The philosophical climax of the novel — John clearly rejects the World State's bargain. This is also where Mond explains 'V.P.S.' (Violent Passion Surrogate) and calls soma 'Christianity without tears' — see the Q&A tab for a full breakdown of both.",
+          chars: ["John", "Mustapha Mond"],
         },
         {
-          num: 18,
+          id: 20,
+          phase: "Part 4 — Crisis &amp; the End",
+          bookOrder: 18,
+          chronOrder: 20,
+          timeLabel: "Final days",
+          chapterRef: "Ch. 18",
+          loc: "lighthouse",
           title: "The Lighthouse",
-          recap:
-            "Denied the chance to go into exile with Helmholtz and Bernard, John retreats to an abandoned lighthouse to try to purify himself through labour and self-punishment — but journalists and crowds turn even his isolation into a spectacle.",
-          themes: ["Isolation", "Spectacle", "Guilt", "Tragedy"],
-          characters: ["John", "Bernard Marx", "Helmholtz Watson"],
-          concepts: [
-            {
-              term: "Self-punishment as protest",
-              explain:
-                "John's whip and self-punishment echo historical religious penance rituals. His extreme self-denial is a direct, physical reaction against a world of extreme comfort — one radical response answering another.",
-            },
-          ],
-          questions: [
-            {
-              label:
-                "The scene suggests that even John's attempt at total solitude gets turned into public spectacle. What does this tell you about the World State's power?",
-              hint: "The scene suggests that...",
-            },
-            {
-              label:
-                "How has John changed from Chapter 7 (his first appearance) to now? Trace his arc in a few sentences.",
-              hint: "At first, this character seems..., but by the end...",
-            },
-            {
-              label:
-                "Final reflection: what do you take away from the ending, and how would you explain its meaning if asked in your oral exam?",
-              hint: "I would argue that... / What I found most striking was...",
-            },
-          ],
+          summary:
+            "Denied exile with Helmholtz and Bernard, John retreats to an abandoned lighthouse to purify himself — but journalists and crowds turn even his isolation into a spectacle. He hangs himself.",
+          detail:
+            "The novel begins with manufactured bodies and ends with John's body as a final spectacle — the system absorbs almost everything. Note: Linda has already died by this point (Ch. 14) — any of John's romantic thoughts and guilt here are about Lenina, not Linda. See the Q&A tab for the full breakdown of this chapter.",
+          chars: ["John", "Bernard Marx", "Helmholtz Watson"],
         },
       ];
 
-      const characterList = [
+      const allChars = [
+        "The Director",
+        "Henry Foster",
+        "Lenina Crowne",
+        "Bernard Marx",
+        "Fanny Crowne",
+        "Mustapha Mond",
+        "Helmholtz Watson",
+        "Linda",
+        "John",
+        "Popé",
+        "Mitsima",
+      ];
+
+      let currentSort = "book";
+      let activeFilters = [];
+
+      function renderCharFilter() {
+        const wrap = document.getElementById("char-filter");
+        wrap.innerHTML = allChars
+          .map(
+            (c) => `<span class="char-chip ${activeFilters.includes(c) ? "active" : ""}" data-char="${c}">${c}</span>`,
+          )
+          .join("");
+        wrap.querySelectorAll(".char-chip").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            const c = chip.getAttribute("data-char");
+            if (activeFilters.includes(c)) activeFilters = activeFilters.filter((x) => x !== c);
+            else activeFilters.push(c);
+            document.getElementById("clear-filter").style.display = activeFilters.length ? "inline" : "none";
+            renderCharFilter();
+            renderTimeline();
+          });
+        });
+      }
+      document.getElementById("clear-filter").addEventListener("click", () => {
+        activeFilters = [];
+        document.getElementById("clear-filter").style.display = "none";
+        renderCharFilter();
+        renderTimeline();
+      });
+
+      function renderTimeline() {
+        const sorted = [...events].sort((a, b) =>
+          currentSort === "book" ? a.bookOrder - b.bookOrder : a.chronOrder - b.chronOrder,
+        );
+        const container = document.getElementById("timeline-container");
+        let lastPhase = null;
+        let html = "";
+        sorted.forEach((ev) => {
+          if (ev.phase !== lastPhase) {
+            html += `<div class="phase-header">${ev.phase}</div>`;
+            lastPhase = ev.phase;
+          }
+          const dimmed = activeFilters.length && !ev.chars.some((c) => activeFilters.includes(c));
+          html += `
+      <div class="tl-event ${dimmed ? "dimmed" : ""}" data-id="${ev.id}">
+        <div class="tl-top">
+          <div class="badges">
+            <span class="badge time">${ev.timeLabel}</span>
+            <span class="badge chapter">${ev.chapterRef}</span>
+            <span class="badge loc ${ev.loc}">${ev.loc === "london" ? "London" : ev.loc === "reservation" ? "Reservation" : "Lighthouse"}</span>
+          </div>
+        </div>
+        <h4>${ev.title}</h4>
+        <div class="summary">${ev.summary}</div>
+        <div class="detail">${ev.detail}</div>
+        <div class="chars">${ev.chars.map((c) => `<span>${c}</span>`).join("")}</div>
+      </div>
+    `;
+        });
+        container.innerHTML = html;
+        container.querySelectorAll(".tl-event").forEach((el) => {
+          el.addEventListener("click", () => el.classList.toggle("expanded"));
+        });
+      }
+
+      document.querySelectorAll(".sort-toggle button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          currentSort = btn.getAttribute("data-sort");
+          document.querySelectorAll(".sort-toggle button").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          renderTimeline();
+        });
+      });
+
+      renderCharFilter();
+      renderTimeline();
+
+      /* ---------------- CHARACTERS ---------------- */
+      const mainCharacters = [
         {
-          name: "The Director (D.H.C.)",
-          first: 1,
-          intro: "Runs the Central London Hatchery and Conditioning Centre — a confident servant of the system.",
-        },
-        {
-          name: "Henry Foster",
-          first: 1,
-          intro: "A confident, cheerful Alpha who works at the Hatchery and dates Lenina.",
-        },
-        {
-          name: "Lenina Crowne",
-          first: 1,
-          intro: "A Beta worker at the Hatchery — attractive, popular, and (mostly) well-conditioned.",
+          name: 'John ("the Savage")',
+          tagline: "Linda's son, born naturally on the Reservation, raised on a copy of Shakespeare.",
+          role: "Exposes the World State by reacting to it with Shakespearean ideals, religious guilt, and a longing for real love.",
+          traits:
+            "Passionate, intelligent, lonely, idealistic, morally intense — but also rigid and sometimes violent.",
+          arc: "Moves from wonder to disgust, then to rebellion, isolation, and suicide.",
+          represents: "Human dignity, art, suffering, tragic idealism.",
         },
         {
           name: "Bernard Marx",
-          first: 3,
-          intro: "An Alpha Plus psychologist who feels physically small and socially insecure.",
+          tagline: "An Alpha Plus psychologist who feels socially inferior because he's physically small and disliked.",
+          role: "Brings Lenina to the Reservation and John to London, changing the whole plot.",
+          traits: "Insecure, resentful, intelligent, jealous, often hypocritical.",
+          arc: "Outsider → celebrity → cowardly exile.",
+          represents: "Alienation, false rebellion, social insecurity.",
         },
         {
-          name: "Fanny Crowne",
-          first: 3,
-          intro: "Lenina's friend and coworker, who represents conventional social norms.",
+          name: "Lenina Crowne",
+          tagline: "A Beta worker at the Hatchery — attractive, popular, and mostly well-conditioned.",
+          role: "Her relationship with Bernard drives the plot to the Reservation; her attraction to John creates the central love conflict.",
+          traits: "Kind, conventional, sensual, emotionally limited, sometimes curious.",
+          arc: "Never fully breaks free of her conditioning, but John's rejection shows she can suffer emotionally.",
+          represents: "Conditioning, consumer sexuality, the limits of empathy.",
         },
         {
           name: "Mustapha Mond",
-          first: 3,
-          intro: "One of the ten World Controllers — calm, intelligent, and deeply in control.",
+          tagline: "Resident World Controller for Western Europe — one of only ten globally.",
+          role: "Explains and defends the World State's sacrifices: truth, art, religion and freedom, all for stability.",
+          traits: "Calm, intelligent, ironic, cultured, controlled.",
+          arc: "Doesn't change much — his function is to reveal the system's logic.",
+          represents: "Power, censorship, the trade-off between happiness and truth.",
         },
         {
           name: "Helmholtz Watson",
-          first: 4,
-          intro: "An Alpha Plus lecturer and 'emotional engineer' who senses something missing in his life.",
+          tagline: 'An Alpha Plus lecturer and "emotional engineer" who feels his writing could mean more.',
+          role: "Becomes John's real friend and joins the soma riot.",
+          traits: "Strong, intelligent, sincere, creative, dissatisfied.",
+          arc: "Accepts exile positively — a chance to write freely.",
+          represents: "Art, language, authentic individuality, courage.",
+        },
+        {
+          name: "Linda",
+          tagline: "A Beta woman lost on the Reservation years ago; John's mother.",
+          role: "Her return humiliates the Director and brings the taboo of motherhood into London.",
+          traits: "Needy, damaged, nostalgic, addicted to comfort.",
+          arc: "Declines into soma-induced death after returning to London.",
+          represents: "Motherhood, shame, addiction, cultural displacement.",
+        },
+        {
+          name: "The Director (D.H.C.)",
+          tagline: "Director of Hatcheries and Conditioning in London.",
+          role: 'Introduces the system and later tries to punish Bernard — but is ruined when John calls him "father".',
+          traits: "Authoritarian, conventional, hypocritical, proud.",
+          arc: "Falls from authority to shame and resignation.",
+          represents: "Institutional power, hypocrisy, taboo.",
+        },
+      ];
+
+      document.getElementById("char-cards").innerHTML = mainCharacters
+        .map(
+          (c) => `
+  <div class="card char-card">
+    <h4 style="margin-top:0; color:var(--accent);">${c.name}</h4>
+    <div class="tagline">${c.tagline}</div>
+    <div class="field"><b>Role in the plot:</b> ${c.role}</div>
+    <div class="field"><b>Traits:</b> ${c.traits}</div>
+    <div class="field"><b>Development:</b> ${c.arc}</div>
+    <div class="field"><b>Represents:</b> ${c.represents}</div>
+  </div>
+`,
+        )
+        .join("");
+
+      const relationships = [
+        { a: "Bernard", b: "John", note: "Uses him for social revenge; later loses control of the situation." },
+        { a: "John", b: "Lenina", note: "Mutual desire, but completely different ideas of love." },
+        { a: "John", b: "Mond", note: "Philosophical conflict: freedom and suffering vs. stability and comfort." },
+        { a: "John", b: "Linda", note: "Deep mother-son bond mixed with shame, pain and neglect." },
+        { a: "Bernard", b: "Helmholtz", note: "Both outsiders, but Helmholtz is more courageous and authentic." },
+        { a: "The Director", b: "John", note: "His hidden fatherhood destroys his public authority." },
+      ];
+      document.getElementById("rel-lines").innerHTML = relationships
+        .map(
+          (r) => `
+  <div class="rel-line"><b>${r.a}</b> ↔ <b>${r.b}</b> — ${r.note}</div>
+`,
+        )
+        .join("");
+
+      const minorCharacters = [
+        {
+          name: "Henry Foster",
+          note: "A confident Alpha who dates Lenina — represents the normal, successful, morally blind World State citizen.",
+        },
+        {
+          name: "Fanny Crowne",
+          note: "Lenina's friend — explains social norms to her; shows that peer pressure polices people, not just the State.",
+        },
+        {
+          name: "Popé",
+          note: "A man on the Reservation connected to Linda — contributes to John's jealousy and hatred in childhood.",
+        },
+        {
+          name: "Mitsima",
+          note: "An older Reservation man who teaches John practical skills — one of his few positive male role models.",
         },
         {
           name: "Benito Hoover",
-          first: 6,
-          intro: "A cheerful Alpha, always ready to offer soma to lift someone's mood.",
-        },
-        { name: "Linda", first: 7, intro: "A Beta woman who was lost on the Reservation years ago — John's mother." },
-        {
-          name: 'John ("the Savage")',
-          first: 7,
-          intro: "Linda's son, born naturally on the Reservation and raised on a book of Shakespeare.",
-        },
-        { name: "Popé", first: 8, intro: "A man on the Reservation connected to Linda and to John's childhood." },
-        { name: "Mitsima", first: 8, intro: "An older Reservation man who teaches John practical skills." },
-        {
-          name: "The Arch-Community-Songster",
-          first: 5,
-          intro: "A ceremonial, high-status religious-style figure in London society.",
-        },
-        { name: "Dr Shaw", first: 14, intro: "Linda's doctor in London." },
-      ];
-
-      const themeGlossary = [
-        {
-          term: "Community, Identity, Stability",
-          note: "The World State's motto — everything is organised to keep society stable, even at the cost of individuality.",
+          note: "A cheerful Alpha, always offering soma — a small example of sadness treated as a chemical problem.",
         },
         {
-          term: "Soma",
-          note: "The 'perfect drug' — happiness on demand, used whenever reality becomes uncomfortable.",
-        },
-        {
-          term: "Conditioning",
-          note: "People are trained before birth and after to want exactly what society needs them to want.",
-        },
-        {
-          term: "Shakespeare",
-          note: "Represents complex language, tragedy, love and moral conflict — everything the World State has removed.",
-        },
-        {
-          term: "Consumerism",
-          note: "Citizens are conditioned to buy, discard and consume constantly ('ending is better than mending').",
-        },
-        {
-          term: "Freedom vs Happiness",
-          note: "The novel's central question: can you have both, or must a society choose one?",
+          name: "Dr Shaw",
+          note: "Linda's doctor — keeps her permanently drugged, showing the moral danger of choosing comfort over life.",
         },
       ];
+      document.getElementById("minor-list").innerHTML = minorCharacters
+        .map((m) => `<div><b>${m.name}</b> — ${m.note}</div>`)
+        .join("");
 
-      const casteTable = [
+      /* ---------------- VOCAB ---------------- */
+      const vocab = [
         {
-          caste: "Alpha",
-          colour: "Grey",
-          meaning: "Highest caste — intellectual, administrative and leadership roles.",
+          word: "dystopia",
+          en: "A fictional society that seems fine at first but is actually oppressive or frightening.",
+          de: "die Dystopie",
+        },
+        { word: "satire", en: "Writing that uses exaggeration and irony to criticise society.", de: "die Satire" },
+        {
+          word: "irony",
+          en: "Saying or showing one thing while meaning something different, often to criticise.",
+          de: "die Ironie",
         },
         {
-          caste: "Beta",
-          colour: "Mulberry",
-          meaning: "High caste below Alphas — skilled work, less intellectual burden.",
+          word: "dramatic irony",
+          en: "When the reader knows something a character doesn't.",
+          de: "die dramatische Ironie",
         },
-        { caste: "Gamma", colour: "Green", meaning: "Middle caste — conditioned to accept their place." },
-        { caste: "Delta", colour: "Khaki", meaning: "Lower caste — often mass-produced, simple work." },
         {
-          caste: "Epsilon",
-          colour: "Black",
-          meaning: "Lowest caste — deliberately limited intelligence for menial labour.",
+          word: "foreshadowing",
+          en: "A hint early in the story about something that will happen later.",
+          de: "die Vorausdeutung",
         },
+        { word: "motif", en: "An idea, image or object that repeats throughout a text.", de: "das Motiv" },
+        { word: "allusion", en: "An indirect reference to another person, place, or work.", de: "die Anspielung" },
+        {
+          word: "omniscient narrator",
+          en: "A narrator who knows everything about every character.",
+          de: "der allwissende Erzähler",
+        },
+        { word: "protagonist", en: "The main character of a story.", de: "der/die Protagonist(in)" },
+        { word: "antagonist", en: "The character who opposes the protagonist.", de: "der/die Antagonist(in)" },
+        { word: "dehumanisation", en: "Treating people as if they are not fully human.", de: "die Entmenschlichung" },
+        {
+          word: "conditioning",
+          en: "Training someone, often without their awareness, to think or react a certain way.",
+          de: "die Konditionierung",
+        },
+        { word: "hypnopaedia", en: "Huxley's invented term for sleep-teaching.", de: "die Hypnopädie (Schlaflehre)" },
+        { word: "utopia", en: "An imagined perfect society.", de: "die Utopie" },
+        { word: "propaganda", en: "Biased information spread to influence people's beliefs.", de: "die Propaganda" },
+        { word: "caste", en: "A fixed social class a person is born into.", de: "die Kaste" },
+        { word: "stability", en: "The state of being unchanging and secure.", de: "die Stabilität" },
+        {
+          word: "individuality",
+          en: "The qualities that make a person different from others.",
+          de: "die Individualität",
+        },
+        {
+          word: "consumerism",
+          en: "A culture that emphasises constantly buying and using goods.",
+          de: "der Konsumismus",
+        },
+        { word: "exile", en: "Being sent away from one's home as punishment.", de: "das Exil / die Verbannung" },
+        {
+          word: "tragic hero",
+          en: "A main character whose flaws lead to their own downfall.",
+          de: "der tragische Held",
+        },
+        { word: "climax", en: "The turning point or most intense moment of a story.", de: "der Höhepunkt" },
+        { word: "resolution", en: "The part of a story where conflicts are resolved.", de: "die Auflösung" },
+        {
+          word: "tone",
+          en: "The author's attitude toward the subject, shown through style.",
+          de: "der Ton / die Tonalität",
+        },
+        {
+          word: "soma",
+          en: "The World State's happiness drug — instant relief with (officially) no side effects.",
+          de: "Soma (die Glücksdroge)",
+        },
+        {
+          word: "decanting",
+          en: 'This book\'s word for "being born" — taken out of a bottle rather than born naturally.',
+          de: "das Dekantieren",
+        },
+        {
+          word: "Bokanovsky's Process",
+          en: "The technique that splits one egg into up to 96 identical embryos.",
+          de: "der Bokanovsky-Prozess",
+        },
+        {
+          word: "viviparous",
+          en: "Giving birth from a body — the natural way, seen as almost obscene in the World State.",
+          de: "lebendgebärend",
+        },
+        {
+          word: "pneumatic",
+          en: 'Slang for an attractive, curvy body — literally "full of air".',
+          de: "(übertragen) kurvig/drall",
+        },
+        {
+          word: "feelies",
+          en: "Cinema where physical sensations are transmitted directly to the audience.",
+          de: 'die „Feelies" (Fühlkino)',
+        },
+        { word: "the Savage", en: "John's nickname once he arrives in London.", de: '„der Wilde"' },
       ];
 
-      const hardWords = [
-        {
-          term: "Bokanovsky's Process",
-          note: "The technique that splits one egg into up to 96 identical embryos — used to mass-produce the lower castes.",
-        },
-        {
-          term: "Decanting",
-          note: "This society's word for 'being born' — taken out of a bottle rather than born from a body.",
-        },
-        {
-          term: "Hypnopaedia",
-          note: "Sleep-teaching: recorded phrases repeated during sleep until they become unquestioned beliefs.",
-        },
-        { term: "Soma", note: "The state-provided happiness drug — 'a gramme is better than a damn'." },
-        {
-          term: "Malthusian Belt",
-          note: "A contraceptive belt women wear as standard, keeping sex separate from reproduction.",
-        },
-        {
-          term: "Feelies",
-          note: "Cinema evolved: films where physical sensations are transmitted to the audience, not just images and sound.",
-        },
-        {
-          term: "Pneumatic",
-          note: "Slang used to describe an attractive, curvy body — literally 'full of air', like a cushion.",
-        },
-        {
-          term: "Viviparous",
-          note: "Giving birth from a body (the natural way) — a near-obscene, 'primitive' word in the World State.",
-        },
-        {
-          term: "Erogenous zones",
-          note: "Part of the clinical, scientific vocabulary the World State uses for sex — clinical language replacing romantic language.",
-        },
-        {
-          term: "Centrifugal Bumble-puppy",
-          note: "An invented game — another example of technology-heavy leisure that keeps the economy running.",
-        },
-        {
-          term: "Zippicamiknicks",
-          note: "A fashionable garment mentioned in passing — a small satirical detail about consumer fashion trends.",
-        },
-        {
-          term: "Ford / Our Ford",
-          note: "Henry Ford, inventor of the assembly line, is treated as a god-like figure — 'Our Ford' replaces 'Our Lord'.",
-        },
-        {
-          term: "Alpha / Beta / Gamma / Delta / Epsilon",
-          note: "The five castes, from highest (Alpha) to lowest (Epsilon) — see the caste table above.",
-        },
-        {
-          term: "World State",
-          note: "The single global government that controls nearly the entire planet in the novel.",
-        },
-        {
-          term: "Reservation",
-          note: "A fenced-off area outside World State control where the 'old' way of life still exists.",
-        },
-      ];
-
-      const examQuotes = [
-        {
-          q: "Community, Identity, Stability",
-          scene: "The motto at the Hatchery.",
-          use: "Introduce the World State's values and how stability is placed above freedom.",
-        },
-        {
-          q: "History is bunk",
-          scene: "Mond's lecture.",
-          use: "Discuss control of the past and why memory threatens the present system.",
-        },
-        {
-          q: "Everyone belongs to everyone else",
-          scene: "Hypnopædic sexual morality.",
-          use: "Discuss how slogans replace personal relationships.",
-        },
-        {
-          q: "O brave new world",
-          scene: "John's Shakespearean reaction to London (later chapters).",
-          use: "Explain dramatic irony — hope turning into disgust.",
-        },
-        {
-          q: "I claim them all",
-          scene: "John's debate with Mond (later chapters).",
-          use: "Discuss John's choice of suffering, danger and moral freedom.",
-        },
-        {
-          q: "Ending is better than mending",
-          scene: "Consumerist conditioning.",
-          use: "Analyse the economic logic behind shallow desire.",
-        },
-      ];
-
-      /* ---------------- STATE ---------------- */
-
-      const STORAGE_KEY = "bnw-reading-companion-v1";
-
-      function defaultState() {
-        const chapters = {};
-        chapterData.forEach((c) => {
-          chapters[c.num] = {
-            done: false,
-            answers: c.questions.map(() => ""),
-            quotes: [],
-            vocab: [],
-            charNotes: "",
-          };
-        });
-        const charNotes = {};
-        characterList.forEach((c) => (charNotes[c.name] = ""));
-        return { chapters, charNotes, currentView: "dashboard" };
-      }
-
-      let state = loadState();
-
-      function loadState() {
-        try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return defaultState();
-          const parsed = JSON.parse(raw);
-          const base = defaultState();
-          // merge, so new fields added later don't break old saves
-          Object.keys(base.chapters).forEach((k) => {
-            if (parsed.chapters && parsed.chapters[k]) {
-              base.chapters[k] = Object.assign(base.chapters[k], parsed.chapters[k]);
-            }
-          });
-          if (parsed.charNotes) {
-            Object.keys(base.charNotes).forEach((k) => {
-              if (parsed.charNotes[k] !== undefined) base.charNotes[k] = parsed.charNotes[k];
-            });
-          }
-          if (parsed.currentView) base.currentView = parsed.currentView;
-          return base;
-        } catch (e) {
-          return defaultState();
-        }
-      }
-
-      let saveTimer = null;
-      function saveState() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-        const ind = document.getElementById("save-indicator");
-        if (ind) {
-          ind.textContent = "Saved ✓";
-          clearTimeout(saveTimer);
-          saveTimer = setTimeout(() => (ind.textContent = ""), 1500);
-        }
-        updateProgress();
-      }
-
-      function updateProgress() {
-        const total = chapterData.length;
-        const done = Object.values(state.chapters).filter((c) => c.done).length;
-        const pct = Math.round((done / total) * 100);
-        const bar = document.getElementById("progress-bar");
-        const lab = document.getElementById("progress-label");
-        if (bar) bar.style.width = pct + "%";
-        if (lab) lab.textContent = done + " / " + total + " chapters";
-        document.querySelectorAll(".nav-btn[data-chapter]").forEach((btn) => {
-          const n = btn.getAttribute("data-chapter");
-          const tick = btn.querySelector(".tick");
-          if (tick) tick.textContent = state.chapters[n].done ? "✓" : "";
-        });
-      }
-
-      /* ---------------- RENDER ---------------- */
-
-      const content = document.getElementById("content");
-
-      function setActiveNav(view) {
-        document.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
-        const sel = view.startsWith("chapter-")
-          ? `.nav-btn[data-chapter="${view.split("-")[1]}"]`
-          : `.nav-btn[data-view="${view}"]`;
-        const el = document.querySelector(sel);
-        if (el) el.classList.add("active");
-      }
-
-      function navigate(view) {
-        state.currentView = view;
-        saveState();
-        render(view);
-        window.scrollTo(0, 0);
-      }
-
-      function render(view) {
-        setActiveNav(view);
-        if (view === "dashboard") return renderDashboard();
-        if (view === "reference") return renderReference();
-        if (view === "quotes") return renderQuotes();
-        if (view === "vocab") return renderVocab();
-        if (view === "characters") return renderCharacters();
-        if (view.startsWith("chapter-")) return renderChapter(parseInt(view.split("-")[1]));
-        renderDashboard();
-      }
-
-      function renderDashboard() {
-        const total = chapterData.length;
-        const done = Object.values(state.chapters).filter((c) => c.done).length;
-        const totalQuotes = Object.values(state.chapters).reduce((s, c) => s + c.quotes.length, 0);
-        const totalVocab = Object.values(state.chapters).reduce((s, c) => s + c.vocab.length, 0);
-
-        content.innerHTML = `
-    <h2 class="page-title">Welcome back, Emma</h2>
-    <p class="page-sub">A place to think after every chapter of Brave New World — before you get to your ready-made summary.</p>
-
-    <div class="stats-grid">
-      <div class="stat-box"><div class="num">${done}/${total}</div><div class="lab">Chapters reflected on</div></div>
-      <div class="stat-box"><div class="num">${totalQuotes}</div><div class="lab">Quotes collected</div></div>
-      <div class="stat-box"><div class="num">${totalVocab}</div><div class="lab">Vocabulary saved</div></div>
-    </div>
-
-    <div class="card">
-      <h3>How to use this</h3>
-      <p class="howto">Read a chapter first — this page has no plot spoilers beyond the chapter you open. Then come here, open that chapter, and (1) test yourself with the hidden recap, (2) check the "tricky bits explained" box for anything confusing, (3) answer 2–3 short reflection questions in your own words, (4) save any quote that struck you, and (5) note new words. By Chapter 18 you'll already have your own material for the oral exam, in your own words, built up chapter by chapter — not just memorised from a summary.</p>
-    </div>
-
-    ${(function () {
-      const early = [1, 2, 3, 4, 5];
-      const notDone = early.filter((n) => !state.chapters[n].done);
-      if (notDone.length === 0) return "";
-      return `<div class="card" style="border-color:var(--accent-soft); background:#fbf6ea;">
-        <h3>You're already ahead — catch up quickly</h3>
-        <p class="howto">You've read up to Chapter 5. Chapters ${notDone.join(", ")} still have no notes. Open each one, skim the "tricky bits explained" box while it's fresh, and jot a quick answer or two — even a sentence per question is enough to build real revision material.</p>
-      </div>`;
-    })()}
-
-    <div class="card">
-      <h3>Jump to a chapter</h3>
-      <div class="chapter-grid">
-        ${chapterData
+      function renderVocab(filter = "") {
+        const grid = document.getElementById("vocab-grid");
+        const f = filter.toLowerCase();
+        grid.innerHTML = vocab
+          .filter((v) => v.word.toLowerCase().includes(f))
           .map(
-            (c) => `
-          <div class="chapter-tile ${state.chapters[c.num].done ? "done" : ""}" data-goto="chapter-${c.num}">
-            <div class="num">Chapter ${c.num}${state.chapters[c.num].done ? " ✓" : ""}</div>
-            <div class="title">${c.title}</div>
-          </div>
-        `,
+            (v) => `
+    <div class="vocab-card" data-word="${v.word}">
+      <div class="word">${v.word}</div>
+      <div class="hint">Tap to reveal definition &amp; translation</div>
+      <div class="reveal"><b>EN:</b> ${v.en}<br><b>DE:</b> ${v.de}</div>
+    </div>
+  `,
           )
-          .join("")}
-      </div>
-    </div>
-  `;
-        content.querySelectorAll("[data-goto]").forEach((el) => {
-          el.addEventListener("click", () => navigate(el.getAttribute("data-goto")));
+          .join("");
+        grid.querySelectorAll(".vocab-card").forEach((card) => {
+          card.addEventListener("click", () => card.classList.toggle("flipped"));
         });
       }
+      renderVocab();
+      document.getElementById("vocab-search").addEventListener("input", (e) => renderVocab(e.target.value));
 
-      function renderReference() {
-        content.innerHTML = `
-    <h2 class="page-title">Quick reference</h2>
-    <p class="page-sub">Keep this open in a tab while you read — no plot spoilers here.</p>
+      /* ---------------- Q&A ---------------- */
+      const qaSections = [
+        { id: "general", label: "Big recurring concepts (useful throughout the book)" },
+        { id: "part1", label: "Part 1 — London (Ch. 1–6)" },
+        { id: "part2", label: "Part 2 — The Reservation & John's backstory (Ch. 7–9)" },
+        { id: "part3", label: "Part 3 — John in London (Ch. 10–13)" },
+        { id: "part4", label: "Part 4 — Crisis & the end (Ch. 14–18)" },
+      ];
 
-    <div class="card">
-      <h3>Caste system</h3>
-      <table class="caste-table">
-        <tr><th>Caste</th><th>Colour</th><th>Meaning</th></tr>
-        ${casteTable.map((c) => `<tr><td>${c.caste}</td><td>${c.colour}</td><td>${c.meaning}</td></tr>`).join("")}
-      </table>
-    </div>
+      const qaItems = [
+        {
+          section: "general",
+          q: "Soma — what is it?",
+          en: "Soma is the World State's official happiness drug. It removes anxiety, sadness, boredom or anger almost instantly, with (officially) no hangover or long-term harm. Citizens take it recreationally (\"a gramme is better than a damn\"), it's used medically to calm crowds, and it's even given to the dying to help them feel peaceful. Meaning: soma is the clearest symbol in the novel of comfort replacing truth — instead of solving problems (loneliness, grief, injustice), the World State simply removes the ability to feel bad about them. That's why John's rebellion in Chapter 15 specifically targets soma: he's attacking the mechanism that makes people accept anything.",
+          de: 'Soma ist die offizielle Glücksdroge des Weltstaats. Sie beseitigt fast augenblicklich Angst, Traurigkeit, Langeweile oder Wut – offiziell ohne Kater oder Langzeitschäden. Bürger nehmen es zur Erholung ("ein Gramm ist besser als ein Fluch"), es wird medizinisch zur Beruhigung von Menschenmengen eingesetzt und sogar Sterbenden gegeben, damit sie sich friedlich fühlen. Bedeutung: Soma ist das deutlichste Symbol dafür, dass Komfort die Wahrheit ersetzt – anstatt Probleme (Einsamkeit, Trauer, Ungerechtigkeit) zu lösen, nimmt der Weltstaat einfach die Fähigkeit, sich deswegen schlecht zu fühlen. Deshalb ist Johns Rebellion in Kapitel 15 gezielt ein Angriff auf Soma: Er greift den Mechanismus an, der Menschen alles akzeptieren lässt.',
+        },
+        {
+          section: "general",
+          q: 'Who is Ford, and why is he worshipped like a god? ("Thank Ford")',
+          en: 'Henry Ford was a real historical figure — the American industrialist who invented the moving assembly line, making mass production (and mass consumption) possible. Huxley imagines a future where Ford\'s principles (efficiency, standardisation, endless production) have become the actual religion of society. People say "Thank Ford," "Ford\'s in his flivver," and cross themselves with a T-shape (for Model T) instead of a cross. Meaning: this is Huxley\'s sharpest joke — literally replacing God with the inventor of mass production shows that industrial efficiency and consumption have completely replaced spiritual and moral values in this society.',
+          de: 'Henry Ford war eine reale historische Person – der amerikanische Industrielle, der das Fließband erfand und damit Massenproduktion (und Massenkonsum) möglich machte. Huxley stellt sich eine Zukunft vor, in der Fords Prinzipien (Effizienz, Standardisierung, endlose Produktion) zur eigentlichen Religion der Gesellschaft geworden sind. Man sagt "Thank Ford", "Ford\'s in his flivver" und bekreuzigt sich mit einem T (für Modell T) statt mit einem Kreuz. Bedeutung: Das ist Huxleys schärfster Witz – Gott buchstäblich durch den Erfinder der Massenproduktion zu ersetzen zeigt, dass industrielle Effizienz und Konsum spirituelle und moralische Werte in dieser Gesellschaft komplett verdrängt haben.',
+        },
+        {
+          section: "general",
+          q: 'What does "queer" mean when characters use it?',
+          en: 'In 1930s British English (when Huxley wrote the book), "queer" simply meant "strange" or "odd" — it had nothing to do with sexuality, which is its main meaning today. When characters describe Bernard (or his behaviour) as "queer," they mean he\'s socially odd and doesn\'t fit World State norms — wanting privacy, feeling jealousy, preferring silence over parties. A small but useful reminder that Huxley\'s language sometimes needs a bit of historical translation.',
+          de: 'Im britischen Englisch der 1930er-Jahre (als Huxley das Buch schrieb) bedeutete "queer" einfach "seltsam" oder "eigenartig" – es hatte nichts mit Sexualität zu tun, was heute die Hauptbedeutung ist. Wenn Figuren Bernard (oder sein Verhalten) als "queer" beschreiben, meinen sie, dass er sozial seltsam ist und nicht in die Normen des Weltstaats passt – zum Beispiel weil er Privatsphäre will, Eifersucht empfindet oder Stille Partys vorzieht. Eine kleine, aber nützliche Erinnerung, dass Huxleys Sprache manchmal eine historische Übersetzung braucht.',
+        },
 
-    <div class="card">
-      <h3>Themes to watch for</h3>
-      ${themeGlossary
-        .map(
-          (t) => `
-        <div class="glossary-item">
-          <div class="term">${t.term}</div>
-          <div>${t.note}</div>
-        </div>
-      `,
-        )
-        .join("")}
-    </div>
+        {
+          section: "part1",
+          q: "Smoke-stacks & phosphorus (Slough Crematorium) — what's that about?",
+          en: "In Chapter 5, Henry Foster and Lenina fly home over the Slough Crematorium, and Henry casually mentions how efficiently the World State recovers phosphorus and other chemicals from cremated bodies (\"...ninety-eight per cent of the phosphorus recovered\"). Meaning: it shows how completely the World State has industrialised even death — a human body isn't mourned, it's recycled for its chemical value. It's presented as cheerful, practical small talk, which makes it more unsettling, not less.",
+          de: 'In Kapitel 5 fliegen Henry Foster und Lenina über das Krematorium von Slough, und Henry erwähnt beiläufig, wie effizient der Weltstaat Phosphor und andere Stoffe aus verbrannten Körpern zurückgewinnt ("...98 Prozent des Phosphors werden zurückgewonnen"). Bedeutung: Es zeigt, wie vollständig der Weltstaat sogar den Tod industrialisiert hat – ein menschlicher Körper wird nicht betrauert, sondern wegen seines chemischen Werts recycelt. Es wird als fröhlicher, praktischer Smalltalk präsentiert, was es noch beunruhigender macht, nicht weniger.',
+        },
+        {
+          section: "part1",
+          q: "The Lenina & Fanny conversation — what's it about?",
+          en: "In Chapter 3, Fanny warns Lenina that it's socially \"unhealthy\" that she's been seeing only Henry Foster for four months — everyone is expected to have multiple casual partners, and staying loyal to one person too long looks almost as strange as a committed relationship would look shocking to us. Meaning: it flips our normal moral expectations — here, monogamy (not promiscuity) is treated as the deviant, slightly shameful behaviour, showing how completely sexual norms have been re-engineered to serve social stability.",
+          de: 'In Kapitel 3 warnt Fanny Lenina, dass es sozial "ungesund" sei, seit vier Monaten nur mit Henry Foster zusammen zu sein – man erwartet mehrere lockere Partner, und zu lange treu bei einer Person zu bleiben wirkt fast so seltsam, wie uns eine feste Beziehung schockieren würde. Bedeutung: Das dreht unsere normalen moralischen Erwartungen um – hier gilt Monogamie (nicht Promiskuität) als das abweichende, leicht beschämende Verhalten, was zeigt, wie vollständig sexuelle Normen umgestaltet wurden, um sozialer Stabilität zu dienen.',
+        },
 
-    <div class="card">
-      <h3>Tricky words &amp; names glossary</h3>
-      <p style="font-size:13px; color:var(--ink-soft); margin-top:-4px;">The invented vocabulary is part of what makes this book hard. Look words up here any time — this is separate from your own personal vocabulary list.</p>
-      ${hardWords
-        .map(
-          (t) => `
-        <div class="glossary-item">
-          <div class="term">${t.term}</div>
-          <div>${t.note}</div>
-        </div>
-      `,
-        )
-        .join("")}
-    </div>
+        {
+          section: "part2",
+          q: "Mescal vs. soma — what's the comparison?",
+          en: "Mescal is a real hallucinogenic drink (from the peyote cactus) used in Reservation religious rituals — Popé drinks it and shares it with Linda. Both mescal and soma alter consciousness and dull pain, but very differently: mescal is tied to genuine (if harsh) religious tradition and real consequences (hangovers, addiction, judgement), while soma is manufactured, government-distributed, and designed to have no negative side effects at all. Meaning: even the \"primitive\" world has its own escape from reality — the difference is that the Reservation's escape is costly and real, while the World State's is frictionless and total, which is exactly what makes soma more dangerous.",
+          de: 'Mescal ist ein echtes halluzinogenes Getränk (aus dem Peyote-Kaktus), das bei religiösen Ritualen im Reservat verwendet wird – Popé trinkt es und teilt es mit Linda. Sowohl Mescal als auch Soma verändern das Bewusstsein und betäuben Schmerz, aber sehr unterschiedlich: Mescal ist an echte (wenn auch harte) religiöse Tradition und reale Konsequenzen (Kater, Sucht, Verurteilung) gebunden, während Soma künstlich hergestellt und staatlich verteilt ist und absichtlich keine negativen Nebenwirkungen hat. Bedeutung: Selbst die "primitive" Welt hat ihre eigene Flucht vor der Realität – der Unterschied ist, dass die Flucht im Reservat teuer und echt ist, während die im Weltstaat reibungslos und total ist, was Soma gerade gefährlicher macht.',
+        },
+        {
+          section: "part2",
+          q: 'What is a "pueblo"?',
+          en: '"Pueblo" isn\'t a person\'s name — it\'s the word for the type of village/community where John and Linda live on the Reservation, modelled loosely on real Native American (Zuni) pueblo communities. When the text says "the pueblo," it means the whole village and its people, not one individual.',
+          de: '"Pueblo" ist kein Personenname – es ist das Wort für die Art von Dorf/Gemeinschaft, in der John und Linda im Reservat leben, lose nach echten Zuni-Pueblo-Gemeinschaften der amerikanischen Ureinwohner gestaltet. Wenn im Text "the pueblo" steht, ist das ganze Dorf und seine Bewohner gemeint, nicht eine einzelne Person.',
+        },
+        {
+          section: "part2",
+          q: "Popé — what's his role, and what did he do with Linda?",
+          en: "Popé is a Reservation man who becomes Linda's regular lover. This deeply disturbs young John: on the Reservation, monogamy and modesty are expected, so Linda's willingness to sleep with several men (a normal World State habit for her) marks both her and John as shameful outsiders. As a boy, John once smashed Popé's mescal jug out of jealousy, and another time attacked him with a knife while he was with Linda — Popé just looked at the wound calmly, almost amused, which frightened John more than anger would have. Meaning: this relationship is the root of John's violent jealousy and his conflicted feelings about sex and love — patterns that resurface later with Lenina.",
+          de: "Popé ist ein Mann aus dem Reservat, der zu Lindas festem Liebhaber wird. Das beunruhigt den jungen John zutiefst: Im Reservat werden Monogamie und Zurückhaltung erwartet, daher machen Lindas Bereitschaft, mit mehreren Männern zu schlafen (für sie eine normale Gewohnheit aus dem Weltstaat), sowohl sie als auch John zu beschämten Außenseitern. Als Junge zerschlug John einmal aus Eifersucht Popés Mescal-Krug, ein anderes Mal griff er ihn mit einem Messer an, während dieser bei Linda war – Popé betrachtete die Wunde nur ruhig, fast amüsiert, was John mehr verstörte, als Wut es getan hätte. Bedeutung: Diese Beziehung ist die Wurzel von Johns gewalttätiger Eifersucht und seinen widersprüchlichen Gefühlen zu Sex und Liebe – Muster, die später bei Lenina wieder auftauchen.",
+        },
+        {
+          section: "part2",
+          q: 'How are John and Linda treated by the pueblo ("the savages")?',
+          en: "Both are outsiders their whole lives, but for different reasons. Linda is looked down on because her World-State habits (casual sex with multiple men) violate the pueblo's moral code. John is excluded because he's \"the son of a foreign, immoral woman\" and doesn't fully belong to either culture: he's taunted, sometimes excluded from ceremonies and rites of passage, and denied things (like formally courting Kiakime) that would be normal for a \"real\" pueblo son. Meaning: this double exclusion — not accepted at home, and not truly belonging to the World State either — is exactly what shapes John into someone with strong values but nowhere to belong.",
+          de: 'Beide sind ihr ganzes Leben lang Außenseiter, aber aus unterschiedlichen Gründen. Linda wird herabgewürdigt, weil ihre Gewohnheiten aus dem Weltstaat (lockerer Sex mit mehreren Männern) gegen den moralischen Kodex des Pueblo verstoßen. John wird ausgeschlossen, weil er "der Sohn einer fremden, unmoralischen Frau" ist und zu keiner der beiden Kulturen wirklich gehört: er wird verspottet, manchmal von Zeremonien und Übergangsriten ausgeschlossen, und ihm werden Dinge verwehrt (wie offiziell um Kiakime zu werben), die für einen "echten" Sohn des Pueblo normal wären. Bedeutung: Genau dieser doppelte Ausschluss – zu Hause nicht akzeptiert und im Weltstaat auch nicht wirklich zugehörig – formt John zu jemandem mit starken Werten, aber ohne einen Ort, an dem er wirklich dazugehört.',
+        },
+        {
+          section: "part2",
+          q: "Why doesn't Linda answer some of John's questions, while an old man from the pueblo does?",
+          en: "When John asks hard questions (where he came from, about the World State, why things are the way they are), Linda often gives vague or evasive answers — her own understanding is shaped by shallow World-State slogans that don't translate to Reservation life, and some truths (why she was \"lost\" there, details about his father) are painful for her. An old pueblo man, in contrast, shares traditional origin stories and religious explanations — not scientifically accurate, but coherent and meaningful. Meaning: John ends up building his own worldview from two incomplete sources — his mother's fragmented World State knowledge and the pueblo's mythic worldview — plus Shakespeare.",
+          de: 'Wenn John schwierige Fragen stellt (woher er kommt, über den Weltstaat, warum die Dinge so sind), gibt Linda oft vage oder ausweichende Antworten – ihr eigenes Verständnis ist von oberflächlichen Weltstaat-Slogans geprägt, die im Leben des Reservats keinen Sinn ergeben, und manche Wahrheiten (warum sie dort "verloren ging", Details über seinen Vater) sind schmerzhaft für sie. Ein alter Mann aus dem Pueblo teilt dagegen traditionelle Ursprungsgeschichten und religiöse Erklärungen – nicht wissenschaftlich korrekt, aber stimmig und bedeutungsvoll. Bedeutung: John baut sein eigenes Weltbild aus zwei unvollständigen Quellen zusammen – dem bruchstückhaften Wissen seiner Mutter und der mythischen Weltsicht des Pueblo – plus Shakespeare.',
+        },
+        {
+          section: "part2",
+          q: "Who is Kiakime, and who got married?",
+          en: "Kiakime is a young Reservation girl John falls in love with as a teenager and wants to marry according to pueblo custom (which requires completing certain tasks). Because John is considered an outsider, he's denied the chance to properly court her — and Kiakime ends up marrying another young man instead. Meaning: another painful rejection that reinforces John's lifelong pattern of wanting real love and belonging but being shut out — right before Shakespeare becomes his substitute source of romantic ideals.",
+          de: "Kiakime ist ein junges Mädchen aus dem Reservat, in das sich John als Teenager verliebt und das er nach dem Brauch des Pueblo heiraten möchte (was verlangt, bestimmte Aufgaben zu erfüllen). Da John als Außenseiter gilt, wird ihm die Möglichkeit verwehrt, offiziell um sie zu werben – und Kiakime heiratet stattdessen einen anderen jungen Mann. Bedeutung: Eine weitere schmerzhafte Zurückweisung, die Johns lebenslanges Muster verstärkt, echte Liebe und Zugehörigkeit zu wollen, aber ausgeschlossen zu werden – kurz bevor Shakespeare zu seiner Ersatzquelle für romantische Ideale wird.",
+        },
+        {
+          section: "part2",
+          q: 'What is a "mesa"?',
+          en: "A mesa is a flat-topped hill or small mountain with steep sides, very common in the American Southwest. The Reservation and its pueblo sit in this kind of high-desert landscape. It's just geography, not a symbol — but it emphasises how remote and physically harsh John and Linda's home is compared to London.",
+          de: 'Eine "Mesa" ist ein Tafelberg – ein Hügel oder kleiner Berg mit flacher Spitze und steilen Seiten, sehr typisch für den Südwesten der USA. Das Reservat und sein Pueblo liegen in genau dieser Art von Halbwüsten-Landschaft. Es ist einfach Geografie, kein Symbol – betont aber, wie abgelegen und rau Johns und Lindas Zuhause im Vergleich zu London ist.',
+        },
+        {
+          section: "part2",
+          q: "Did John ever want to commit suicide, even before the ending?",
+          en: "Yes — during one of his loneliest, most rejected moments as a teenager on the Reservation, John seriously considers ending his life. He doesn't go through with it then, but it's an important early sign of the same pattern of despair and self-punishment that ultimately kills him at the end of the novel. Meaning: John's despair isn't caused only by London — it's a long-standing part of his character, rooted in a lifetime of exclusion, which Chapter 18 tragically completes rather than creates.",
+          de: "Ja – in einem seiner einsamsten, am meisten zurückgewiesenen Momente als Teenager im Reservat denkt John ernsthaft darüber nach, sein Leben zu beenden. Er setzt es damals nicht um, aber es ist ein wichtiges frühes Zeichen für genau das Muster aus Verzweiflung und Selbstbestrafung, das ihn am Ende des Romans letztlich das Leben kostet. Bedeutung: Johns Verzweiflung wird nicht nur durch London verursacht – sie ist ein langjähriger Teil seines Charakters, verwurzelt in einem Leben voller Ausgrenzung, das Kapitel 18 tragisch vollendet, statt es zu erschaffen.",
+        },
+        {
+          section: "part2",
+          q: "Bernard's comment about John's \"crucifixion in the sun\" — what does it mean?",
+          en: "This refers to the pueblo's summer ritual where young men are whipped with arms stretched out — a pose that echoes a crucifixion. John, desperate to belong, volunteers even though he's not officially allowed to take part. Watching this, Bernard remarks that the ritual \"made sense\" to him — it seemed to create real communal meaning and intensity, unlike the World State's own manufactured rituals (like the Solidarity Service), which try to produce the same feeling of unity but only achieve something shallow and mechanical. Meaning: even Bernard can recognise that real, painful, communal ritual carries more truth than his own society's comfortable, drugged substitute.",
+          de: 'Das bezieht sich auf das Sommerritual des Pueblo, bei dem junge Männer mit ausgestreckten Armen ausgepeitscht werden – eine Haltung, die an eine Kreuzigung erinnert. John, der verzweifelt dazugehören will, meldet sich freiwillig, obwohl er offiziell nicht teilnehmen darf. Beim Zusehen bemerkt Bernard, dass das Ritual für ihn "einen Sinn ergab" – es schien echte gemeinschaftliche Bedeutung und Intensität zu erzeugen, anders als die eigenen künstlichen Rituale des Weltstaats (wie die Solidaritätsfeier), die dasselbe Gefühl von Einheit erzeugen wollen, aber nur etwas Oberflächliches erreichen. Bedeutung: Selbst Bernard erkennt, dass echtes, schmerzhaftes, gemeinschaftliches Ritual mehr Wahrheit trägt als der bequeme, betäubte Ersatz seiner eigenen Gesellschaft.',
+        },
 
-    <div class="card">
-      <h3>Exam-ready quotes bank <span style="font-size:11px; color:#a0906f; font-family:Arial,sans-serif;">(a couple are from later chapters — skip if you'd rather avoid it)</span></h3>
-      ${examQuotes
-        .map(
-          (q) => `
-        <div class="quote-example">
-          <div class="q">"${q.q}"</div>
-          <div><strong>Scene:</strong> ${q.scene}</div>
-          <div><strong>Use it for:</strong> ${q.use}</div>
-        </div>
-      `,
-        )
-        .join("")}
-    </div>
-  `;
-      }
+        {
+          section: "part3",
+          q: 'How does Mustapha Mond react to Bernard\'s reports on John, and how does John find "the brave new world"?',
+          en: "Bernard, eager to seem important, sends Mond written reports about John's reactions to civilisation, hoping to impress him — Mond reads them with mild amusement and detached interest, unimpressed, foreshadowing that Bernard's self-importance is misplaced. John's own reaction to London goes through a dramatic arc: at first he's full of wonder, quoting Miranda's line from Shakespeare's The Tempest, \"O brave new world, that has such people in't!\" — genuinely hoping civilisation will be wonderful. As he sees more (shallow entertainment, disrespect for family and death, casual sexuality), his wonder turns to disgust. Meaning: the novel's title is dramatic irony — John's hopeful exclamation becomes bitterly ironic once he understands what he's really looking at.",
+          de: 'Bernard, der wichtig wirken möchte, schickt Mond schriftliche Berichte über Johns Reaktionen auf die Zivilisation, in der Hoffnung, ihn zu beeindrucken – Mond liest sie mit milder Belustigung und distanziertem Interesse, unbeeindruckt, was schon andeutet, dass Bernards Selbstüberschätzung fehl am Platz ist. Johns eigene Reaktion auf London durchläuft einen dramatischen Bogen: Zuerst ist er voller Staunen und zitiert Mirandas Zeile aus "Der Sturm": "O brave new world, that has such people in\'t!" – er hofft wirklich, die Zivilisation werde wunderbar sein. Je mehr er sieht (oberflächliche Unterhaltung, Respektlosigkeit gegenüber Familie und Tod, beiläufige Sexualität), desto mehr wird sein Staunen zu Abscheu. Bedeutung: Der Titel des Romans ist dramatische Ironie – Johns hoffnungsvoller Ausruf wird bitter ironisch, sobald er versteht, was er wirklich vor sich hat.',
+        },
+        {
+          section: "part3",
+          q: "What does the Human Element Manager explain?",
+          en: 'The Human Element Manager is a minor official who shows John around a college in Chapter 11, explaining how students are grouped and educated. The title itself is satire: managing "the human element" like a factory resource, using bureaucratic, industrial-management language for children\'s education. Meaning: a small but sharp detail showing how thoroughly the World State applies factory-management thinking to literally everything, including raising its own citizens.',
+          de: 'Der "Human Element Manager" ist ein kleinerer Funktionär, der John in Kapitel 11 durch ein College führt und erklärt, wie Schüler gruppiert und ausgebildet werden. Der Titel selbst ist Satire: das "menschliche Element" wie eine Fabrikressource zu managen, mit bürokratischer Industriesprache für die Erziehung von Kindern. Bedeutung: Ein kleines, aber scharfes Detail, das zeigt, wie konsequent der Weltstaat fabrikartiges Management-Denken auf buchstäblich alles anwendet, auch auf die Erziehung seiner eigenen Bürger.',
+        },
+        {
+          section: "part3",
+          q: 'What is a "freemartin"?',
+          en: 'In real biology, a "freemartin" is a genetically female calf hormonally altered (in the womb) to be sterile. Huxley borrows this term: in the World State, around 70% of female embryos are deliberately treated with male hormones so they develop into sterile "freemartins." Most women can then enjoy sex freely without contraception, while a small, controlled number stay fertile to keep supplying eggs for the Hatchery. Meaning: another example of the World State treating human reproduction as a pure engineering problem, with zero regard for choice or nature.',
+          de: 'In der echten Biologie ist ein "Freemartin" ein genetisch weibliches Kalb, das (im Mutterleib) hormonell unfruchtbar gemacht wurde. Huxley übernimmt diesen Begriff: Im Weltstaat werden etwa 70 % der weiblichen Embryonen absichtlich mit männlichen Hormonen behandelt, sodass sie zu unfruchtbaren "Freemartins" werden. So können die meisten Frauen frei Sex haben, ohne Verhütung zu brauchen, während eine kleine, kontrollierte Zahl fruchtbar bleibt, um weiterhin Eizellen für die Brutstätte zu liefern. Bedeutung: Ein weiteres Beispiel dafür, dass der Weltstaat menschliche Fortpflanzung als reines Optimierungsproblem behandelt, ganz ohne Rücksicht auf Wahlfreiheit oder Natur.',
+        },
+        {
+          section: "part3",
+          q: "How does Bernard's character change because of all the attention?",
+          en: "Once John makes him famous, Bernard transforms almost overnight: the man who used to criticise parties, soma and shallow socialising now throws parties himself and basks in attention he used to claim to despise. Meaning: one of the novel's clearest character reveals — Bernard's \"rebellion\" was never really about deep principles, it was about wanting to be special and respected. The moment society respects him, his criticism evaporates, showing his outsider status was circumstantial, not moral.",
+          de: 'Sobald John ihn berühmt macht, verwandelt sich Bernard fast über Nacht: Der Mann, der früher Partys, Soma und oberflächliche Geselligkeit kritisierte, gibt jetzt selbst Partys und genießt die Aufmerksamkeit, die er früher angeblich verachtete. Bedeutung: Eine der klarsten Charakterenthüllungen des Romans – Bernards "Rebellion" ging nie wirklich um tiefe Prinzipien; es ging darum, besonders und respektiert sein zu wollen. Sobald die Gesellschaft ihn respektiert, verschwindet seine Kritik, was zeigt, dass sein Außenseiterstatus zufällig war, nicht moralisch begründet.',
+        },
+        {
+          section: "part3",
+          q: "The Arch-Community-Songster — who/what is that?",
+          en: "A high-ranking, ceremonial religious-style figure in London — basically the World State's replacement for something like an archbishop, presiding over rituals like the Solidarity Service. He later appears at one of Bernard's parties, behaving in a hypocritically indulgent way (drinking, flirting) despite his supposedly respectable position. Meaning: his title is itself satire — genuine spirituality replaced by an organised job title, and even this \"holy\" figure is shallow underneath the pomp.",
+          de: 'Eine hochrangige, zeremonielle, religiös anmutende Figur in London – im Grunde der Ersatz des Weltstaats für so etwas wie einen Erzbischof, der Rituale wie die Solidaritätsfeier leitet. Er taucht später auf einer von Bernards Partys auf und verhält sich heuchlerisch zügellos (trinkt, flirtet), trotz seiner angeblich respektablen Position. Bedeutung: Sein Titel selbst ist Satire – echte Spiritualität wurde durch einen organisierten Jobtitel ersetzt, und selbst diese "heilige" Figur ist unter dem Prunk oberflächlich.',
+        },
+        {
+          section: "part3",
+          q: "Why does Bernard want to \"take revenge\" on Helmholtz's generosity? That doesn't make sense to me.",
+          en: "It does sound illogical — and that's exactly Huxley's point about Bernard. After Helmholtz behaves generously toward him (forgiving him, being magnanimous), Bernard doesn't feel grateful — he feels resentful, because Helmholtz's kindness makes his own smallness and jealousy even more obvious to himself. His insecurity turns admiration into envy and a petty urge to get back at him. Meaning: this small, strange moment is one of the sharpest character details in the book — it shows how deep Bernard's insecurity goes: he can't even accept kindness gracefully.",
+          de: "Das klingt tatsächlich unlogisch – und genau das ist Huxleys Aussage über Bernard. Nachdem Helmholtz sich ihm gegenüber großzügig verhält (ihm verzeiht, großmütig ist), fühlt sich Bernard nicht dankbar – er fühlt sich verärgert, weil Helmholtz' Freundlichkeit ihm seine eigene Kleinlichkeit und Eifersucht noch deutlicher vor Augen führt. Seine Unsicherheit macht aus Bewunderung Neid und einen kleinlichen Racheimpuls. Bedeutung: Dieser kleine, seltsame Moment ist eines der schärfsten Charakterdetails des Buches – er zeigt, wie tief Bernards Unsicherheit geht: Er kann nicht einmal Freundlichkeit mit Anstand annehmen.",
+        },
+        {
+          section: "part3",
+          q: 'Why does Helmholtz become a "marked man" too, and why does he suddenly get along with John while Bernard is jealous?',
+          en: 'Helmholtz gets in trouble after reading his students a poem he wrote about the value of solitude — a dangerously individualistic idea in a society built on constant socialising. This makes him "marked" (flagged as suspicious), foreshadowing his eventual exile. Helmholtz and John bond over a shared love of powerful language: Helmholtz is a professional wordsmith who\'s never had anything real to write about, and John\'s Shakespeare gives him exactly that. Bernard becomes jealous because his own social status depended entirely on "owning" access to John — a real friendship between John and Helmholtz threatens Bernard\'s sense of importance.',
+          de: 'Helmholtz gerät in Schwierigkeiten, nachdem er seinen Schülern ein Gedicht über den Wert der Einsamkeit vorgelesen hat – eine gefährlich individualistische Idee in einer Gesellschaft, die auf ständigem geselligem Miteinander aufgebaut ist. Das macht ihn zu einem "markierten" (verdächtigen) Mann und deutet sein späteres Exil an. Helmholtz und John verbindet die gemeinsame Liebe zu kraftvoller Sprache: Helmholtz ist ein Wortkünstler, der nie etwas wirklich Bedeutsames zum Schreiben hatte, und Johns Shakespeare gibt ihm genau das. Bernard wird eifersüchtig, weil sein sozialer Status komplett davon abhing, den Zugang zu John zu "besitzen" – eine echte Freundschaft zwischen John und Helmholtz bedroht Bernards Gefühl der eigenen Wichtigkeit.',
+        },
+        {
+          section: "part3",
+          q: "What is Othello, and why does it matter here?",
+          en: "Othello is a Shakespeare tragedy about a general manipulated into believing his wife Desdemona has been unfaithful — in a jealous rage he kills her, only to learn too late she was innocent. John, whose moral vocabulary comes from Shakespeare, echoes Othello's jealous language directly when he attacks Lenina verbally in Chapter 13, calling her \"impudent strumpet.\" Meaning: this shows how completely John's understanding of love and jealousy is shaped by fiction — and it's a warning sign, since Othello's jealousy was tragically wrong, and John's may be just as misplaced.",
+          de: '"Othello" ist eine Shakespeare-Tragödie über einen General, dem eingeredet wird, seine Frau Desdemona sei ihm untreu – in eifersüchtiger Wut tötet er sie, nur um zu spät zu erfahren, dass sie unschuldig war. John, dessen moralisches Vokabular von Shakespeare stammt, übernimmt direkt Othellos eifersüchtige Sprache, als er Lenina in Kapitel 13 verbal angreift und "unverschämte Hure" nennt. Bedeutung: Das zeigt, wie vollständig Johns Verständnis von Liebe und Eifersucht durch Fiktion geprägt ist – und ist ein Warnsignal, denn Othellos Eifersucht war tragischerweise falsch, und Johns könnte genauso fehlgeleitet sein.',
+        },
+        {
+          section: "part3",
+          q: 'Did John hit Lenina? What exactly happened, and why did he suddenly call her a "whore"?',
+          en: "John doesn't punch her, but he grabs her wrists violently and shoves her hard enough to hurt and frighten her, forcing her to flee and lock herself in the bathroom. This happens when Lenina, hoping to start a physical relationship, undresses in front of him. John's entire idea of love comes from Shakespeare — chaste, devoted, almost religious — so her casual, confident sexuality feels to him like proof she's morally corrupt, not simply that she has different values. In shock and shame at his own desire for her, he lashes out with Shakespearean insults like \"impudent strumpet\" (echoing Othello). Meaning: this scene is the clearest collision in the book between two incompatible moral languages, and shows John's idealism has a violent, punishing side.",
+          de: 'John schlägt sie nicht, aber er packt sie heftig an den Handgelenken und stößt sie so grob, dass es wehtut und sie erschreckt, sodass sie flieht und sich im Badezimmer einschließt. Das passiert, als Lenina sich vor ihm auszieht, in der Hoffnung auf eine körperliche Beziehung. Johns gesamtes Verständnis von Liebe stammt von Shakespeare – keusch, hingebungsvoll, fast religiös –, daher wirkt ihre lockere, selbstbewusste Sexualität auf ihn wie ein Beweis, dass sie moralisch verdorben ist, statt einfach andere Werte zu haben. In Schock und Scham über sein eigenes Verlangen reagiert er mit Shakespeare-Beleidigungen wie "unverschämte Hure" (eine Anspielung auf Othello). Bedeutung: Diese Szene ist der klarste Zusammenprall zweier unvereinbarer moralischer Sprachen im Buch und zeigt, dass Johns Idealismus eine gewalttätige, strafende Seite hat.',
+        },
 
-      function renderChapter(n) {
-        const c = chapterData.find((x) => x.num === n);
-        const s = state.chapters[n];
+        {
+          section: "part4",
+          q: "What's so bad about the children witnessing John cry after his mother's death?",
+          en: "The hospital deliberately brings groups of children in as part of \"death conditioning\" — a routine activity meant to make death feel normal, using treats and toys around dying patients so children never learn to grieve. Seeing John's genuine, intense grief, they don't feel sympathy — they're confused or morbidly curious, treating his real sorrow like a strange spectacle. Meaning: a devastating illustration of how thoroughly the World State has erased natural human grief — the children aren't cruel on purpose, they've simply never been taught that grief is a normal human response.",
+          de: 'Das Krankenhaus bringt absichtlich Kindergruppen als Teil der "Tod-Konditionierung" mit – eine routinemäßige Aktivität, die den Tod normal erscheinen lassen soll, mit Süßigkeiten und Spielzeug rund um sterbende Patienten, damit Kinder nie trauern lernen. Als sie Johns echte, intensive Trauer sehen, empfinden sie kein Mitgefühl – sie sind verwirrt oder morbid neugierig und behandeln seinen echten Kummer wie ein seltsames Spektakel. Bedeutung: Eine erschütternde Illustration davon, wie vollständig der Weltstaat natürliche menschliche Trauer ausgelöscht hat – den Kindern wurde einfach nie beigebracht, dass Trauer eine normale menschliche Reaktion ist.',
+        },
+        {
+          section: "part4",
+          q: "Why does soma exist, and why is everyone (kind of) forced to take it?",
+          en: "Soma keeps the population docile and content, preventing anyone from questioning authority or feeling real, motivating suffering. It's not compulsory by law for Alphas and Betas — they take it recreationally. For lower castes like Deltas, though, it's an expected, built-in part of daily life (like a ration), so socially it's barely a free choice. This is exactly why John's rebellion in Chapter 15 (throwing away the Deltas' soma) is significant — and why the crowd's furious reaction shows how deeply people depend on this \"freedom-removing\" drug.",
+          de: 'Soma hält die Bevölkerung fügsam und zufrieden und verhindert, dass jemand Autorität infrage stellt oder echtes, motivierendes Leid empfindet. Für Alphas und Betas ist es gesetzlich nicht vorgeschrieben – sie nehmen es freiwillig. Für niedrigere Kasten wie die Deltas ist es jedoch ein erwarteter, fest eingebauter Teil des Alltags (wie eine Ration), sodass es sozial kaum eine freie Wahl ist. Genau deshalb ist Johns Rebellion in Kapitel 15 (das Wegwerfen des Soma der Deltas) bedeutsam – und die wütende Reaktion der Menge zeigt, wie sehr Menschen von dieser "freiheitsraubenden" Droge abhängig sind.',
+        },
+        {
+          section: "part4",
+          q: "Did Helmholtz help John throw out the soma tablets?",
+          en: "Yes — once the riot starts, Helmholtz arrives, immediately understands and supports what John is doing, and enthusiastically joins in, helping throw the soma boxes out of the window. His willingness to jump straight into the chaos contrasts sharply with Bernard's reaction (see next answer).",
+          de: "Ja – sobald der Aufstand beginnt, kommt Helmholtz dazu, versteht und unterstützt sofort, was John tut, und macht begeistert mit, indem er hilft, die Soma-Kartons aus dem Fenster zu werfen. Seine Bereitschaft, ohne Zögern mitten ins Chaos zu springen, steht in starkem Kontrast zu Bernards Reaktion (siehe nächste Antwort).",
+        },
+        {
+          section: "part4",
+          q: "Why does Bernard hesitate so much about whether to help the Deltas?",
+          en: "Bernard hovers nervously at the edge of the riot, torn between looking like a coward in front of John and Helmholtz, and getting in serious trouble (or being hurt) if he joins in. He doesn't genuinely care about the Deltas' freedom — his hesitation is about self-preservation and self-image, not principle. Meaning: the final, clearest proof that Bernard's \"rebellious\" identity was always more performance than conviction — when real risk is involved, he freezes.",
+          de: 'Bernard schwebt nervös am Rand des Aufstands, hin- und hergerissen zwischen der Angst, vor John und Helmholtz feige zu wirken, und ernsthaftem Ärger (oder Verletzung), falls er mitmacht. Ihm liegt nicht wirklich an der Freiheit der Deltas – sein Zögern dreht sich um Selbstschutz und Selbstbild, nicht um Prinzipien. Bedeutung: Der letzte, klarste Beweis dafür, dass Bernards "rebellische" Identität immer mehr Show als Überzeugung war – bei echtem Risiko erstarrt er.',
+        },
+        {
+          section: "part4",
+          q: 'What does the "Voice" say to calm everyone, and why isn\'t that real peace?',
+          en: "The police play a recording called the \"Synthetic Anti-Riot Speech\" over loudspeakers — a calm voice urging peace and unity — combined with soma vapour and water cannons. The crowd calms almost instantly. Meaning: this isn't real peace, because it isn't achieved through agreement, dialogue, or resolving anyone's actual grievance — it's chemically and technologically forced compliance. In our world, peace ideally comes from people choosing to understand each other; in the World State, \"peace\" is manufactured by removing people's ability to feel angry at all.",
+          de: 'Die Polizei spielt über Lautsprecher eine Aufnahme namens "Synthetische Anti-Aufstands-Rede" ab – eine ruhige Stimme, die zu Frieden und Einheit aufruft – kombiniert mit Soma-Dampf und Wasserwerfern. Die Menge beruhigt sich fast augenblicklich. Bedeutung: Das ist kein echter Frieden, weil er nicht durch Einigung, Dialog oder das Lösen tatsächlicher Beschwerden erreicht wird – es ist chemisch und technologisch erzwungene Fügsamkeit. In unserer Welt entsteht Frieden idealerweise dadurch, dass Menschen sich verstehen wollen; im Weltstaat wird "Frieden" hergestellt, indem man den Menschen die Fähigkeit nimmt, überhaupt wütend zu sein.',
+        },
+        {
+          section: "part4",
+          q: '"Fordship" instead of "Godliness" — what\'s the wordplay?',
+          en: 'Just like "Lordship" is a title of respect for a Lord, Huxley invents "Fordship" as a title of near-religious reverence for Ford — reinforcing that Ford has completely replaced God as the object of worship. Phrases like "Ford\'s in his flivver, all\'s well with the world" deliberately echo the old religious line "God\'s in his heaven, all\'s right with the world."',
+          de: 'So wie "Lordship" ein Ehrentitel für einen Lord ist, erfindet Huxley "Fordship" als Titel fast-religiöser Verehrung für Ford – das unterstreicht erneut, dass Ford Gott als Objekt der Anbetung vollständig ersetzt hat. Sätze wie "Ford\'s in his flivver, all\'s well with the world" spielen bewusst auf die alte religiöse Redewendung "God\'s in his heaven, all\'s right with the world" an.',
+        },
+        {
+          section: "part4",
+          q: '"Beauty is attractive, and we don\'t want people to get attached to old things" — what does Mond mean?',
+          en: "Mond explains that old art (like Shakespeare) is dangerous precisely because it's beautiful and emotionally powerful, usually about intense passion, tragedy and moral complexity. If people fell in love with that kind of beauty, they might start valuing depth and strong feeling over comfort and stability, threatening the whole system. So the World State keeps its own culture (feelies, slogans) deliberately shallow and forgettable, and bans old art not because it's bad, but because it's too good — too capable of making people want something more.",
+          de: "Mond erklärt, dass alte Kunst (wie Shakespeare) genau deshalb gefährlich ist, weil sie schön und emotional kraftvoll ist – meist von intensiver Leidenschaft, Tragik und moralischer Komplexität. Würden Menschen sich in diese Art von Schönheit verlieben, könnten sie anfangen, Tiefe und starke Gefühle mehr zu schätzen als Komfort und Stabilität, was das ganze System bedrohen würde. Deshalb hält der Weltstaat seine eigene Kultur (Feelies, Slogans) absichtlich oberflächlich und verbietet alte Kunst nicht, weil sie schlecht ist, sondern weil sie zu gut ist – zu fähig, Menschen mehr wollen zu lassen.",
+        },
+        {
+          section: "part4",
+          q: 'Mond\'s "bottle" example / the Cyprus experiment — can you explain again?',
+          en: "Mond uses a real event from the novel's history to argue why a mixed caste system is necessary. An island called Cyprus was once repopulated entirely with 22,000 Alphas as a social experiment. Within about six years it collapsed into civil war, because everybody wanted interesting work and nobody wanted the simple jobs a society also needs. Order returned only once the World Controllers reintroduced a proper caste system. (If your notes say \"Ireland\" or \"4 days,\" that's a small mishearing — it's Cyprus, and the collapse took years, not days.) Meaning: Mond uses this to argue that caste inequality isn't cruelty, it's (in his view) the only way to keep a large society stable.",
+          de: 'Mond nutzt ein reales Ereignis aus der Geschichte des Romans, um zu begründen, warum ein gemischtes Kastensystem notwendig ist. Eine Insel namens Zypern wurde einst als soziales Experiment komplett mit 22.000 Alphas neu besiedelt. Innerhalb von etwa sechs Jahren brach dort ein Bürgerkrieg aus, weil jeder interessante Arbeit wollte und niemand die einfachen Aufgaben übernehmen wollte, die eine Gesellschaft auch braucht. Die Ordnung kehrte erst zurück, als die Weltkontrolleure ein richtiges Kastensystem wieder einführten. (Falls in deinen Notizen "Irland" oder "4 Tage" steht, ist das ein kleines Verhören – es ist Zypern, und der Zusammenbruch dauerte Jahre, keine Tage.) Bedeutung: Mond begründet damit, dass Kasten-Ungleichheit keine Grausamkeit sei, sondern (seiner Meinung nach) der einzige Weg, eine große Gesellschaft stabil zu halten.',
+        },
+        {
+          section: "part4",
+          q: "Why would you actually want to be sent to one of those islands too?",
+          en: 'The islands are officially punishment for "unorthodox" Alphas who don\'t fit the system. But ironically, they end up gathering exactly the most interesting, independent-minded people — writers, artists, thinkers. Mond himself admits he was once given the choice to go to an island and chose comfort and power instead. Meaning: what\'s meant as exile becomes, paradoxically, more appealing than "successful" society to anyone who values depth and honesty over comfort — which says a lot about what\'s missing from World State life.',
+          de: 'Die Inseln sind offiziell die Strafe für "unorthodoxe" Alphas, die nicht ins System passen. Ironischerweise versammeln sich dort aber genau die interessantesten, unabhängigsten Menschen – Schriftsteller, Künstler, Denker. Mond selbst gibt zu, dass er einst die Wahl hatte, auf eine Insel zu gehen, sich aber für Komfort und Macht entschied. Bedeutung: Was als Verbannung gedacht ist, wird paradoxerweise attraktiver als die "erfolgreiche" Gesellschaft für jeden, der Tiefe und Ehrlichkeit mehr schätzt als Komfort – was viel darüber aussagt, was im Leben des Weltstaats fehlt.',
+        },
+        {
+          section: "part4",
+          q: "What's so important overall in the conversation with Mustapha Mond?",
+          en: "This conversation (Ch. 16–17) is the philosophical centre of the whole novel. Mond isn't a simple villain — he understands art, religion and science deeply, and argues, with real intelligence, that they must be sacrificed for stability and happiness. John argues the opposite: people have the right to real danger, freedom, truth and even suffering. Neither side is simply \"wrong.\" Meaning: for your oral exam, this is the passage to know best, since it directly poses the novel's central question: is comfortable, controlled happiness worth sacrificing freedom, truth and depth for?",
+          de: 'Dieses Gespräch (Kap. 16–17) ist das philosophische Zentrum des gesamten Romans. Mond ist kein einfacher Bösewicht – er versteht Kunst, Religion und Wissenschaft sehr genau und argumentiert mit echter Intelligenz, dass all das für Stabilität und Glück geopfert werden muss. John argumentiert das Gegenteil: Menschen haben ein Recht auf echte Gefahr, Freiheit, Wahrheit und sogar Leid. Keine Seite liegt einfach "falsch". Bedeutung: Für deine mündliche Prüfung ist das die wichtigste Textstelle, denn sie stellt direkt die zentrale Frage des Romans: Ist bequemes, kontrolliertes Glück den Verlust von Freiheit, Wahrheit und Tiefe wert?',
+        },
+        {
+          section: "part4",
+          q: 'What does Mond mean with the quote from the old religious writer (the "Edmund" question)?',
+          en: "I'm not fully sure which exact quote you mean by \"Edmund\" — it may be a small mishearing from a lecture or your notes. In this part of Chapter 17, Mond actually quotes real historical religious writers (like Cardinal Newman) to show how people used to understand self-denial and dependence on God, especially as they aged and lost independence and strength. He uses these old religious ideas to make his point: people needed God partly to cope with real hardship and ageing — and since the World State has engineered those away, it has also (in his view) made God unnecessary. If you can find the exact name in your notes or the book, I'm happy to pin down the precise reference.",
+          de: 'Ich bin mir nicht ganz sicher, welches genaue Zitat mit "Edmund" gemeint ist – das könnte ein kleines Verhören aus einem Vortrag oder deinen Notizen sein. In diesem Teil von Kapitel 17 zitiert Mond echte historische religiöse Schriftsteller (wie Kardinal Newman), um zu zeigen, wie Menschen früher Selbstverleugnung und Abhängigkeit von Gott verstanden, besonders wenn sie älter wurden und Unabhängigkeit und Kraft verloren. Er nutzt diese alten religiösen Ideen für seinen Punkt: Menschen brauchten Gott teilweise, um mit echtem Leid und Altern umzugehen – und da der Weltstaat das wegtechnisiert hat, hat er (seiner Meinung nach) auch Gott überflüssig gemacht. Wenn du den genauen Namen in deinen Notizen oder im Buch findest, ordne ich dir gerne die exakte Stelle zu.',
+        },
+        {
+          section: "part4",
+          q: 'What is "self-denial" (Selbstverleugnung) in this context?',
+          en: "Self-denial means deliberately refusing pleasure or comfort, historically tied to religious virtue — resisting your own desires to grow closer to God or moral goodness. Mond argues self-denial only made sense in a world with real scarcity and hardship to resist. Since the World State has removed all of that, there's nothing left to \"deny,\" so the concept becomes obsolete — which is also exactly why John's radical choice to punish himself at the end feels so extreme in this society.",
+          de: 'Selbstverleugnung bedeutet, bewusst auf Vergnügen oder Komfort zu verzichten – historisch mit religiöser Tugend verbunden: sich gegen die eigenen Wünsche zu stellen, um Gott oder moralischer Güte näherzukommen. Mond argumentiert, Selbstverleugnung habe nur in einer Welt mit echtem Mangel und Härte Sinn ergeben. Da der Weltstaat all das beseitigt hat, gibt es nichts mehr zu "verleugnen", weshalb das Konzept überflüssig wird – genau deshalb wirkt Johns radikale Entscheidung, sich am Ende selbst zu bestrafen, in dieser Gesellschaft so extrem.',
+        },
+        {
+          section: "part4",
+          q: "What does Mustapha Mond say afterwards about soma — why is this so important?",
+          en: "Mond makes one of the novel's most famous points here: he calls soma \"Christianity without tears\" — it gives people all the comforting, transcendent feelings religion used to provide (peace, meaning, escape from suffering) without requiring any real faith, discipline, sacrifice, or \"tears\" (suffering). Interpretation: this is Huxley's sharpest single line about the whole society — soma isn't just a fun drug, it's a complete chemical substitute for religion and meaning, stripped of everything that once made those things valuable.",
+          de: 'Mond macht hier eine der berühmtesten Aussagen des Romans: Er nennt Soma "Christentum ohne Tränen" – es gibt den Menschen all die tröstenden, transzendenten Gefühle, die früher die Religion lieferte (Frieden, Sinn, Flucht vor Leid), ohne echten Glauben, Disziplin, Opfer oder "Tränen" (Leid) zu erfordern. Interpretation: Das ist Huxleys schärfster Satz über die gesamte Gesellschaft – Soma ist nicht nur eine lustige Droge, sondern ein vollständiger chemischer Ersatz für Religion und Sinn, entkleidet von allem, was diese Dinge früher wertvoll machte.',
+        },
+        {
+          section: "part4",
+          q: 'What John says next is very interesting — Mond just "gets rid of it," no more mosquito bites, everything that doesn\'t fit gets abolished. How do I interpret this?',
+          en: 'Mond describes a world engineered to remove every source of discomfort, no matter how small ("not even a mosquito bite" is allowed to bother anyone). John hears this as horrifying: a life with zero friction, risk or imperfection. John responds with his famous declaration that he doesn\'t want comfort — he wants "God, poetry, real danger, freedom, goodness... sin." When Mond lists everything that comes with that ("the right to grow old and ugly... the right to have syphilis and cancer... the right to be tortured"), John simply replies, "I claim them all." Meaning: this exchange is the philosophical peak of the book — total comfort vs. the full, painful, meaningful range of human experience — and John chooses the second, fully aware of the cost.',
+          de: 'Mond beschreibt eine Welt, die so konstruiert ist, dass sie jede Quelle von Unbehagen beseitigt, egal wie klein ("nicht einmal ein Mückenstich" darf jemanden stören). John hört darin etwas Erschreckendes: ein Leben ganz ohne Reibung, Risiko oder Unvollkommenheit. John antwortet mit seiner berühmten Erklärung, dass er keinen Komfort will – er will "Gott, Poesie, echte Gefahr, Freiheit, Güte... Sünde." Als Mond alles aufzählt, was damit einhergeht ("das Recht, alt und hässlich zu werden... das Recht, Syphilis und Krebs zu haben... das Recht, gequält zu werden"), antwortet John schlicht: "Ich beanspruche das alles." Bedeutung: Dieser Wortwechsel ist der philosophische Höhepunkt des Buches – totaler Komfort gegen das volle, schmerzhafte, bedeutungsvolle Spektrum menschlicher Erfahrung – und John entscheidet sich bewusst für Letzteres.',
+        },
+        {
+          section: "part4",
+          q: 'Then Mond explains "V.P.S." after what John said — what is it, why, and how do I interpret it?',
+          en: 'V.P.S. stands for "Violent Passion Surrogate" — a compulsory monthly treatment that chemically mimics the physiological effects of strong emotions (fear, rage, intense jealousy) purely to keep the body\'s hormonal system "healthy," without anyone ever having to actually experience real danger, love or jealousy. Mond says it gives people all the physical benefits of something like Othello\'s tragedy "without any of the inconveniences." Interpretation: it\'s the final proof that the World State doesn\'t just remove suffering — it replaces even the good parts of intense human experience with an artificial, risk-free substitute, so nothing real is ever necessary or even possible anymore.',
+          de: 'V.P.S. steht für "Violent Passion Surrogate" (Ersatz für starke Leidenschaft) – eine verpflichtende monatliche Behandlung, die chemisch die körperlichen Effekte starker Emotionen nachahmt (Angst, Wut, intensive Eifersucht), rein um das Hormonsystem "gesund" zu halten, ohne dass jemand je echte Gefahr, Liebe oder Eifersucht erleben muss. Mond sagt, es gebe den Menschen alle körperlichen Vorteile von etwas wie Othellos Tragödie "ohne die Unannehmlichkeiten." Interpretation: Das ist der endgültige Beweis, dass der Weltstaat nicht nur Leid beseitigt – er ersetzt sogar die guten Seiten intensiver menschlicher Erfahrung durch einen künstlichen, risikofreien Ersatz, sodass nichts Echtes mehr nötig oder möglich ist.',
+        },
+        {
+          section: "part4",
+          q: "What happens to Bernard when John comes back and they say goodbye? He suddenly realises everything and apologises to John.",
+          en: "Once it's decided Helmholtz and Bernard will be exiled, Bernard has an emotional breakdown — begging Mond to reconsider, crying, completely humiliating himself, a sharp contrast to his earlier vanity. Before they part, Bernard has a rare moment of real self-awareness, apologising to Helmholtz (and effectively John too) for how badly he behaved when he was famous. Meaning: a brief, genuine moment of growth, but it comes only once he has nothing left to lose — which makes it feel more like relief and fear than true moral transformation.",
+          de: "Sobald feststeht, dass Helmholtz und Bernard verbannt werden, erleidet Bernard einen emotionalen Zusammenbruch – er bettelt Mond an, es sich anders zu überlegen, weint, demütigt sich völlig, ein starker Kontrast zu seiner früheren Eitelkeit. Bevor sie sich trennen, hat Bernard einen seltenen Moment echter Selbsterkenntnis und entschuldigt sich bei Helmholtz (und im Grunde auch bei John) dafür, wie schlecht er sich als Berühmtheit verhalten hat. Bedeutung: Ein kurzer, echter Moment des Wachstums, aber er kommt erst, als er nichts mehr zu verlieren hat – was es eher wie Erleichterung und Angst wirken lässt als wie echte moralische Wandlung.",
+        },
+        {
+          section: "part4",
+          q: "Where exactly is John then, what does he do there, and why does he pray?",
+          en: "John moves to an abandoned lighthouse near Puttenham, in the English countryside not far from London. He lives there completely alone, growing his own food, making tools by hand, and spending his time on hard labour, prayer and self-punishment. He prays (sometimes kneeling with arms outstretched, echoing a crucifixion pose) to atone for what he sees as his sins — his role in Linda's death, his temptation and violence toward Lenina, his part in the riot — and to reclaim some spiritual purity he feels the World State has stolen from everyone.",
+          de: "John zieht in einen verlassenen Leuchtturm bei Puttenham, in der englischen Landschaft nicht weit von London. Er lebt dort völlig allein, baut sein eigenes Essen an, stellt Werkzeuge von Hand her und verbringt seine Zeit mit harter Arbeit, Gebet und Selbstbestrafung. Er betet (manchmal kniend mit ausgestreckten Armen, eine Kreuzigungshaltung nachahmend), um für das zu büßen, was er als seine Sünden ansieht – seine Rolle bei Lindas Tod, seine Versuchung und Gewalt gegenüber Lenina, seine Teilnahme am Aufstand – und um eine spirituelle Reinheit zurückzugewinnen, die ihm der Weltstaat seiner Meinung nach genommen hat.",
+        },
+        {
+          section: "part4",
+          q: "Why does he think he's only earned pain, and not this lighthouse with the wonderful view?",
+          en: "John's worldview (Christian-flavoured self-denial ideas plus Reservation puritanism) equates deserving happiness with having earned it through suffering. Because he feels deeply guilty — about his desire for Lenina, about failing to save Linda, about the riot — he believes he hasn't \"earned\" the right to enjoy something beautiful. So he deliberately punishes himself instead of allowing himself any comfort, even something as simple as a nice view.",
+          de: 'Johns Weltbild (christlich gefärbte Selbstverleugnungs-Ideen plus die Puritanismus des Reservats) setzt verdientes Glück mit erlittenem Leid gleich. Weil er sich zutiefst schuldig fühlt – wegen seines Verlangens nach Lenina, wegen des Versagens, Linda zu retten, wegen des Aufstands – glaubt er, sich das Recht, etwas Schönes zu genießen, nicht "verdient" zu haben. Deshalb bestraft er sich bewusst selbst, statt sich irgendeinen Komfort zu erlauben, selbst etwas so Einfaches wie eine schöne Aussicht.',
+        },
+        {
+          section: "part4",
+          q: "Why does he find it so terrible to sing, why does he want to torment himself instead of enjoying himself, and why does he whip himself?",
+          en: "To John, any enjoyment — singing, laughing, pleasure — feels like the same shallow self-indulgence he's rejecting the World State for. To prove to himself he's genuinely repentant, he believes he must actively seek pain rather than comfort. Whipping himself is an extreme, historically religious practice (flagellation) — a physical, undeniable act of penance, since in his mind only pain feels earned and real, while pleasure feels false and corrupting.",
+          de: "Für John fühlt sich jedes Vergnügen – Singen, Lachen, Freude – wie dieselbe oberflächliche Selbstverwöhnung an, die er am Weltstaat ablehnt. Um sich zu beweisen, dass er wirklich reumütig ist, glaubt er, aktiv Schmerz suchen zu müssen statt Komfort. Sich selbst auszupeitschen ist eine extreme, historisch-religiöse Praxis (Geißelung) – ein körperlicher, unbestreitbarer Akt der Buße, denn in seinem Kopf fühlt sich nur Schmerz verdient und echt an, während Vergnügen sich falsch anfühlt.",
+        },
+        {
+          section: "part4",
+          q: "Why do the reporters keep telling him pain is just an illusion and that he should take soma, and why does he react the way he does?",
+          en: "The reporters simply repeat standard World State conditioning: whenever they see distress, their automatic response is to offer soma, because they've never learned any other way to relate to pain. They can't understand or respect what John is trying to do. He reacts with fury and violence because their intrusion and shallow \"fix\" represent exactly what he's fought against his whole life: treating a profound spiritual struggle as a technical problem solvable with a pill.",
+          de: 'Die Reporter wiederholen einfach die übliche Weltstaat-Konditionierung: Sobald sie Leid sehen, ist ihre automatische Reaktion, Soma anzubieten, weil sie nie einen anderen Umgang mit Schmerz gelernt haben. Sie können nicht verstehen oder respektieren, was John zu tun versucht. Er reagiert mit Wut und Gewalt, weil ihr Eindringen und ihre oberflächliche "Lösung" genau das darstellen, wogegen er sein ganzes Leben gekämpft hat: einen tiefen spirituellen Kampf wie ein technisches Problem zu behandeln, das man mit einer Pille löst.',
+        },
+        {
+          section: "part4",
+          q: "Why does he suddenly think of Lenina — does he still have feelings, and does he feel bad because she only wants sex with him?",
+          en: "(Small clarification: Linda has already died by this point — this is about Lenina.) John's thoughts of Lenina return because his self-punishment is tangled up with unresolved sexual guilt and desire. He still has real feelings for her, but his Shakespeare-shaped ideal of love rejects what he sees as her purely physical interest, creating painful conflict between desire and self-condemnation — the same tension that caused the violent scene in Chapter 13, now clearly still unresolved.",
+          de: "(Kleine Klärung: Linda ist an dieser Stelle bereits gestorben – hier geht es um Lenina.) Johns Gedanken an Lenina kehren zurück, weil seine Selbstbestrafung eng mit ungelöster sexueller Schuld und Verlangen verknüpft ist. Er hat noch echte Gefühle für sie, aber sein von Shakespeare geprägtes Liebesideal lehnt ab, was er als ihr rein körperliches Interesse ansieht, was einen schmerzhaften Konflikt zwischen Verlangen und Selbstverurteilung erzeugt – dieselbe Spannung, die die gewalttätige Szene in Kapitel 13 auslöste, jetzt sichtlich immer noch ungelöst.",
+        },
+        {
+          section: "part4",
+          q: "Why do so many people suddenly come and treat him like an animal in a zoo, throwing gum packets at him?",
+          en: "Once a photographer secretly captures John whipping himself and it becomes a sensational newsreel, huge crowds — some arriving by helicopter — flock to watch him as entertainment, exactly like visitors at a zoo. Some throw snacks or gum at him, as if interacting with an animal on display. Meaning: a final illustration of the World State's inability to respect genuine human suffering — it commodifies and consumes even his most private spiritual crisis as mass entertainment.",
+          de: "Sobald ein Fotograf heimlich aufnimmt, wie John sich selbst auspeitscht, und daraus eine Sensationsnachricht wird, strömen riesige Menschenmengen – manche mit dem Helikopter – herbei, um ihn wie Unterhaltung anzuschauen, genau wie Besucher in einem Zoo. Manche werfen ihm Snacks oder Kaugummi zu, als würden sie mit einem ausgestellten Tier interagieren. Bedeutung: Eine letzte Illustration der Unfähigkeit des Weltstaats, echtes menschliches Leid zu respektieren – er vermarktet sogar seine privateste spirituelle Krise als Massenunterhaltung.",
+        },
+        {
+          section: "part4",
+          q: "Why does Lenina come (no wonder she gets whipped), and isn't this exactly what Mond always wants to prevent — why do people want to see this and cheer him on to whip her?",
+          en: "Lenina comes because, in her own conditioned way, she genuinely still has feelings for John and can't stay away. When John sees her, all his unresolved rage, desire and guilt explode, and he attacks her with the whip — a violent collision of shame and lust. You're right that this is exactly the kind of intense, uncontrolled passion Mond's system is built to prevent — and that's the irony: the crowd, rather than being horrified, gets swept up in excited frenzy, chanting for more. Meaning: beneath a lifetime of conditioning, people still crave real intensity — but since they've never been taught a healthy outlet, the only thing they know how to do with that craving is turn it into cruel spectacle.",
+          de: "Lenina kommt, weil sie auf ihre eigene konditionierte Art wirklich noch Gefühle für John hat und nicht wegbleiben kann. Als John sie sieht, explodieren all seine ungelöste Wut, sein Verlangen und seine Schuld auf einmal, und er greift sie mit der Peitsche an – ein gewaltsamer Zusammenprall aus Scham und Lust. Du hast recht, dass das genau die Art von intensiver, unkontrollierter Leidenschaft ist, die Monds System verhindern soll – und genau das ist die Ironie: Statt entsetzt zu sein, gerät die Menge in erregte Raserei und feuert ihn zu mehr an. Bedeutung: Unter einem Leben voller Konditionierung sehnen sich Menschen immer noch nach echter Intensität – aber da ihnen nie ein gesunder Umgang damit beigebracht wurde, verwandeln sie dieses Verlangen nur in grausames Schauspiel.",
+        },
+        {
+          section: "part4",
+          q: 'I don\'t understand what happens next — the crowd starts hitting each other, why do they react like that, and why does it suddenly change when "orgy-porgy" is sung? What triggers that?',
+          en: "The crowd's whip-frenzy escalates, then someone starts the \"Orgy-porgy\" chant — the same hypnopaedic sex-ritual song used at Solidarity Services. Because it's deeply conditioned into everyone from childhood, hearing it triggers an almost reflexive shift: the violent frenzy dissolves into a chaotic, soma-fuelled mass orgy. Meaning: the violence and the orgy are really the same thing underneath — people craving intense, uncontrolled feeling, only knowing how to express it through their one familiar, conditioned ritual. John, horrified at himself, gets swept up and participates despite everything he believes — which is exactly what destroys him by the next morning.",
+          de: 'Die Peitsch-Raserei der Menge eskaliert, dann beginnt jemand den "Orgy-porgy"-Gesang – denselben hypnopädisch konditionierten Sex-Ritual-Song wie bei Solidaritätsfeiern. Da dieser Gesang seit der Kindheit tief einkonditioniert ist, löst er beim Hören einen fast reflexartigen Wechsel aus: Die gewalttätige Raserei löst sich in eine chaotische, Soma-befeuerte Massenorgie auf. Bedeutung: Gewalt und Orgie sind im Grunde dasselbe darunter – Menschen, die nach intensivem, unkontrolliertem Gefühl verlangen und es nur durch ihr einziges vertrautes, konditioniertes Ritual ausdrücken können. John, entsetzt über sich selbst, wird mitgerissen und macht mit, trotz allem, woran er glaubt – was ihn am nächsten Morgen genau deshalb zerstört.',
+        },
+        {
+          section: "part4",
+          q: "Did he take his own life at the end, and why?",
+          en: "Yes. The morning after the orgy, overwhelmed by shame and self-disgust at having succumbed to exactly the kind of mindless indulgence he'd fought against his whole life, John hangs himself in the lighthouse. He can't reconcile his ideals with either world — the World State's shallow hedonism, or his own discovery that he's capable of the same desires he condemned — and death becomes his only way out. Meaning: the ending is deeply ironic. The World State, built to eliminate suffering, produces the novel's only death by suicide — the person who saw its emptiness most clearly is destroyed by it, while the system continues completely unaffected.",
+          de: "Ja. Am Morgen nach der Orgie, überwältigt von Scham und Selbstekel darüber, genau der gedankenlosen Selbstverwöhnung erlegen zu sein, gegen die er sein ganzes Leben gekämpft hat, erhängt sich John im Leuchtturm. Er kann seine Ideale mit keiner der beiden Welten vereinbaren – weder mit dem oberflächlichen Hedonismus des Weltstaats, noch mit seiner eigenen Entdeckung, dass er zu denselben Trieben fähig ist, die er verurteilte – und der Tod wird sein einziger Ausweg. Bedeutung: Das Ende ist zutiefst ironisch. Der Weltstaat, gebaut, um Leid zu beseitigen, bringt den einzigen Selbstmord des Romans hervor – die Person, die seine Leere am klarsten erkannte, wird von ihr zerstört, während das System selbst völlig unberührt weiterbesteht.",
+        },
+      ];
 
-        content.innerHTML = `
-    <h2 class="page-title">Chapter ${c.num}: ${c.title}</h2>
-    <p class="page-sub">Read the chapter first — then come back here.</p>
-
-    <details class="recap">
-      <summary>🔎 Check your understanding (click to reveal)</summary>
-      <p>${c.recap}</p>
-    </details>
-
-    <div class="card">
-      <h3>Themes in this chapter</h3>
-      <div class="tags">${c.themes.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
-      <h3>Characters in this chapter</h3>
-      <div class="tags">${c.characters.map((t) => `<span class="tag char">${t}</span>`).join("")}</div>
-    </div>
-
-    <div class="card">
-      <h3>🧩 Explained: tricky bits in this chapter</h3>
-      ${
-        (c.concepts || [])
-          .map(
-            (co) => `
-        <div class="glossary-item">
-          <div class="term">${co.term}</div>
-          <div>${co.explain}</div>
-        </div>
-      `,
-          )
-          .join("") ||
-        `<p style="color:#a0906f; font-size:13px;">Nothing extra to explain here — this chapter is fairly self-contained.</p>`
-      }
-    </div>
-
-    <div class="card">
-      <h3>💭 Reflect</h3>
-      ${c.questions
-        .map(
-          (q, i) => `
-        <div class="q-block">
-          <label>${i + 1}. ${q.label}</label>
-          <div class="q-hint">Sentence starter: ${q.hint}</div>
-          <textarea data-answer="${i}">${s.answers[i] || ""}</textarea>
-        </div>
-      `,
-        )
-        .join("")}
-    </div>
-
-    <div class="card">
-      <h3>📝 Important quotes</h3>
-      <div id="quote-list"></div>
-      <button class="small-btn" id="add-quote">+ Add a quote</button>
-    </div>
-
-    <div class="card">
-      <h3>📚 New words</h3>
-      <div id="vocab-list"></div>
-      <button class="small-btn" id="add-vocab">+ Add a word</button>
-    </div>
-
-    <div class="chapter-footer">
-      <label class="done-toggle">
-        <input type="checkbox" id="done-check" ${s.done ? "checked" : ""}>
-        Mark Chapter ${n} as read &amp; reflected
-      </label>
-      <div class="nav-buttons">
-        <button id="prev-btn" ${n <= 1 ? "disabled" : ""}>← Chapter ${n - 1}</button>
-        <button id="next-btn" ${n >= 18 ? "disabled" : ""}>Chapter ${n + 1} →</button>
-      </div>
-    </div>
-  `;
-
-        // answers
-        content.querySelectorAll("[data-answer]").forEach((ta) => {
-          ta.addEventListener("input", () => {
-            s.answers[parseInt(ta.getAttribute("data-answer"))] = ta.value;
-            saveState();
-          });
-        });
-
-        // quotes
-        function renderQuoteList() {
-          const wrap = document.getElementById("quote-list");
-          wrap.innerHTML =
-            s.quotes
-              .map(
-                (q, i) => `
-      <div class="quote-row" data-qi="${i}">
-        <textarea placeholder="Quote text...">${q.text}</textarea>
-        <div class="meta-row">
-          <input type="text" placeholder="Page / location (optional)" data-field="page" value="${q.page || ""}">
-          <input type="text" placeholder="Why does it matter?" data-field="note" value="${q.note || ""}">
-          <button class="remove-btn" data-remove="${i}">✕</button>
-        </div>
-      </div>
-    `,
-              )
-              .join("") || `<p style="color:#a0906f; font-size:13px;">No quotes saved yet.</p>`;
-
-          wrap.querySelectorAll(".quote-row").forEach((row) => {
-            const i = parseInt(row.getAttribute("data-qi"));
-            row.querySelector("textarea").addEventListener("input", (e) => {
-              s.quotes[i].text = e.target.value;
-              saveState();
-            });
-            row.querySelectorAll("input[data-field]").forEach((inp) => {
-              inp.addEventListener("input", (e) => {
-                s.quotes[i][inp.getAttribute("data-field")] = e.target.value;
-                saveState();
-              });
-            });
-          });
-          wrap.querySelectorAll("[data-remove]").forEach((btn) => {
-            btn.addEventListener("click", () => {
-              s.quotes.splice(parseInt(btn.getAttribute("data-remove")), 1);
-              saveState();
-              renderQuoteList();
-            });
-          });
-        }
-        renderQuoteList();
-        document.getElementById("add-quote").addEventListener("click", () => {
-          s.quotes.push({ text: "", page: "", note: "" });
-          saveState();
-          renderQuoteList();
-        });
-
-        // vocab
-        function renderVocabList() {
-          const wrap = document.getElementById("vocab-list");
-          wrap.innerHTML =
-            s.vocab
-              .map(
-                (v, i) => `
-      <div class="vocab-row" data-vi="${i}">
-        <input type="text" placeholder="Word / phrase" data-field="word" value="${v.word || ""}">
-        <input type="text" placeholder="Meaning / translation" data-field="meaning" value="${v.meaning || ""}">
-        <button class="remove-btn" data-remove="${i}">✕</button>
-      </div>
-    `,
-              )
-              .join("") || `<p style="color:#a0906f; font-size:13px;">No words saved yet.</p>`;
-
-          wrap.querySelectorAll(".vocab-row").forEach((row) => {
-            const i = parseInt(row.getAttribute("data-vi"));
-            row.querySelectorAll("input[data-field]").forEach((inp) => {
-              inp.addEventListener("input", (e) => {
-                s.vocab[i][inp.getAttribute("data-field")] = e.target.value;
-                saveState();
-              });
-            });
-          });
-          wrap.querySelectorAll("[data-remove]").forEach((btn) => {
-            btn.addEventListener("click", () => {
-              s.vocab.splice(parseInt(btn.getAttribute("data-remove")), 1);
-              saveState();
-              renderVocabList();
-            });
-          });
-        }
-        renderVocabList();
-        document.getElementById("add-vocab").addEventListener("click", () => {
-          s.vocab.push({ word: "", meaning: "" });
-          saveState();
-          renderVocabList();
-        });
-
-        document.getElementById("done-check").addEventListener("change", (e) => {
-          s.done = e.target.checked;
-          saveState();
-          updateProgress();
-        });
-
-        document.getElementById("prev-btn").addEventListener("click", () => navigate(`chapter-${n - 1}`));
-        document.getElementById("next-btn").addEventListener("click", () => navigate(`chapter-${n + 1}`));
-      }
-
-      function renderQuotes() {
-        let rows = [];
-        chapterData.forEach((c) => {
-          state.chapters[c.num].quotes.forEach((q) => {
-            if (q.text && q.text.trim()) rows.push({ chapter: c.num, title: c.title, ...q });
-          });
-        });
-        content.innerHTML = `
-    <h2 class="page-title">My quotes</h2>
-    <p class="page-sub">Everything you've saved, in one place — ready for oral exam evidence.</p>
-    ${
-      rows.length === 0
-        ? `<div class="card"><p style="color:var(--ink-soft)">No quotes yet. Add some from inside a chapter page.</p></div>`
-        : rows
-            .map(
-              (r) => `
-        <div class="card">
-          <div style="font-size:11px; color:#a0906f; font-family:Arial,sans-serif; margin-bottom:6px;">Chapter ${r.chapter} — ${r.title}</div>
-          <div class="quote-example"><div class="q">"${r.text}"</div>
-          ${r.page ? `<div><strong>Page/location:</strong> ${r.page}</div>` : ""}
-          ${r.note ? `<div><strong>Why it matters:</strong> ${r.note}</div>` : ""}
+      function renderQA() {
+        const container = document.getElementById("qa-container");
+        let html = "";
+        qaSections.forEach((sec) => {
+          const items = qaItems.filter((i) => i.section === sec.id);
+          if (!items.length) return;
+          html += `<div class="qa-phase-header">${sec.label}</div>`;
+          items.forEach((item, idx) => {
+            html += `
+        <div class="qa-item" data-key="${sec.id}-${idx}">
+          <div class="qa-q">${item.q}<span class="arrow">▾</span></div>
+          <div class="qa-body">
+            <div class="qa-en">${item.en}</div>
+            <div class="qa-de">${item.de}</div>
           </div>
         </div>
-      `,
-            )
-            .join("")
-    }
-  `;
-      }
-
-      function renderVocab() {
-        let rows = [];
-        chapterData.forEach((c) => {
-          state.chapters[c.num].vocab.forEach((v) => {
-            if (v.word && v.word.trim()) rows.push({ chapter: c.num, ...v });
+      `;
           });
         });
-        content.innerHTML = `
-    <h2 class="page-title">My vocabulary</h2>
-    <p class="page-sub">Click a word to reveal its meaning — quick self-testing.</p>
-    ${
-      rows.length === 0
-        ? `<div class="card"><p style="color:var(--ink-soft)">No words yet. Add some from inside a chapter page.</p></div>`
-        : `<div class="card"><table class="caste-table">
-        <tr><th>Chapter</th><th>Word</th><th>Meaning (click to reveal)</th></tr>
-        ${rows
-          .map(
-            (r, i) => `
-          <tr>
-            <td>${r.chapter}</td>
-            <td>${r.word}</td>
-            <td><span class="vocab-reveal" data-i="${i}" style="cursor:pointer; color:#a0906f;">tap to reveal</span></td>
-          </tr>
-        `,
-          )
-          .join("")}
-      </table></div>`
-    }
-  `;
-        content.querySelectorAll(".vocab-reveal").forEach((el) => {
-          el.addEventListener("click", () => {
-            const i = parseInt(el.getAttribute("data-i"));
-            el.textContent = rows[i].meaning || "(no meaning saved)";
-            el.style.color = "var(--ink)";
-            el.style.cursor = "default";
-          });
+        container.innerHTML = html;
+        container.querySelectorAll(".qa-item").forEach((el) => {
+          el.querySelector(".qa-q").addEventListener("click", () => el.classList.toggle("open"));
         });
       }
+      renderQA();
+      document.getElementById("qa-expand-all").addEventListener("click", () => {
+        document.querySelectorAll(".qa-item").forEach((el) => el.classList.add("open"));
+      });
+      document.getElementById("qa-collapse-all").addEventListener("click", () => {
+        document.querySelectorAll(".qa-item").forEach((el) => el.classList.remove("open"));
+      });
 
-      function renderCharacters() {
-        content.innerHTML = `
-    <h2 class="page-title">Character tracker</h2>
-    <p class="page-sub">Update these notes as each character develops through the book.</p>
-    ${characterList
-      .map(
-        (c) => `
-      <div class="card char-card">
-        <h3>${c.name}</h3>
-        <span class="chap-tag">First appears: Chapter ${c.first}</span>
-        <div class="intro">${c.intro}</div>
-        <textarea data-char="${c.name}" placeholder="Your notes on how this character develops...">${state.charNotes[c.name] || ""}</textarea>
-      </div>
-    `,
-      )
-      .join("")}
-  `;
-        content.querySelectorAll("[data-char]").forEach((ta) => {
-          ta.addEventListener("input", (e) => {
-            state.charNotes[ta.getAttribute("data-char")] = e.target.value;
-            saveState();
-          });
+      /* ---------------- TABS ---------------- */
+      document.querySelectorAll("nav.tabs button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("nav.tabs button").forEach((b) => b.classList.remove("active"));
+          document.querySelectorAll(".view").forEach((v) => v.classList.remove("active"));
+          btn.classList.add("active");
+          document.getElementById("view-" + btn.getAttribute("data-tab")).classList.add("active");
         });
-      }
-
-      /* ---------------- SIDEBAR NAV BUILD ---------------- */
-
-      const chapterNavWrap = document.getElementById("chapter-nav");
-      chapterData.forEach((c) => {
-        const btn = document.createElement("button");
-        btn.className = "nav-btn";
-        btn.setAttribute("data-chapter", c.num);
-        btn.innerHTML = `<span>Ch. ${c.num}: ${c.title.length > 22 ? c.title.slice(0, 20) + "…" : c.title}</span><span class="tick"></span>`;
-        btn.addEventListener("click", () => navigate(`chapter-${c.num}`));
-        chapterNavWrap.appendChild(btn);
       });
-
-      document.querySelectorAll(".nav-btn[data-view]").forEach((btn) => {
-        btn.addEventListener("click", () => navigate(btn.getAttribute("data-view")));
-      });
-
-      /* ---------------- EXPORT / IMPORT ---------------- */
-
-      document.getElementById("export-btn").addEventListener("click", () => {
-        const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "brave-new-world-notes.json";
-        a.click();
-        URL.revokeObjectURL(url);
-      });
-
-      document.getElementById("import-btn").addEventListener("click", () => {
-        document.getElementById("import-file").click();
-      });
-      document.getElementById("import-file").addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-          try {
-            const parsed = JSON.parse(evt.target.result);
-            const base = defaultState();
-            Object.keys(base.chapters).forEach((k) => {
-              if (parsed.chapters && parsed.chapters[k])
-                base.chapters[k] = Object.assign(base.chapters[k], parsed.chapters[k]);
-            });
-            if (parsed.charNotes) {
-              Object.keys(base.charNotes).forEach((k) => {
-                if (parsed.charNotes[k] !== undefined) base.charNotes[k] = parsed.charNotes[k];
-              });
-            }
-            state = base;
-            saveState();
-            render(state.currentView || "dashboard");
-            alert("Notes imported successfully.");
-          } catch (err) {
-            alert("Could not read this file. Make sure it is a JSON export from this tool.");
-          }
-        };
-        reader.readAsText(file);
-      });
-
-      /* ---------------- INIT ---------------- */
-      updateProgress();
-      render(state.currentView || "dashboard");
     </script>
   </body>
 </html>
