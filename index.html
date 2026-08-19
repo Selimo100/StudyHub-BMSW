@@ -219,6 +219,81 @@
       line-height: 1.5;
     }
 
+    .skill-banner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px clamp(16px, 2.6vw, 22px);
+      margin-bottom: 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(120deg, rgba(184, 16, 32, 0.07), rgba(255, 255, 255, 0.9) 42%);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(4px);
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .skill-banner:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-ring);
+    }
+
+    .skill-banner:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .skill-banner-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .skill-banner-icon svg { width: 22px; height: 22px; }
+
+    .skill-banner-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+    .skill-banner-text strong {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--subject);
+      letter-spacing: -0.01em;
+    }
+
+    .skill-banner-text span { color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
+
+    .skill-banner-text code {
+      font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+      font-size: 0.88em;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .skill-banner-arrow {
+      margin-left: auto;
+      flex-shrink: 0;
+      font-size: 1.3rem;
+      color: var(--accent);
+      transition: transform 0.2s ease;
+    }
+
+    .skill-banner:hover .skill-banner-arrow { transform: translateX(4px); }
+
+    @media (max-width: 560px) {
+      .skill-banner { gap: 13px; }
+      .skill-banner-arrow { display: none; }
+    }
+
     .subjects {
       display: grid;
       gap: 18px;
@@ -749,6 +824,20 @@
         Die Einträge sind unten als einfache Link-Listen aufgebaut.
       </p>
     </section>
+
+    <a class="skill-banner" href="./claude-skill/index.html">
+      <span class="skill-banner-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v3M12 18v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M3 12h3M18 12h3M4.9 19.1L7 17M17 7l2.1-2.1"></path>
+          <circle cx="12" cy="12" r="3.5"></circle>
+        </svg>
+      </span>
+      <span class="skill-banner-text">
+        <strong>Zusammenfassungen automatisch erstellen</strong>
+        <span>Mit dem Claude-Code-Skill <code>/studyhub-summary</code> aus deinem Prüfungsmaterial eine vollständige Lernseite bauen — Anleitung und Aufbau.</span>
+      </span>
+      <span class="skill-banner-arrow" aria-hidden="true">→</span>
+    </a>
 
     <section class="school-block">
       <div class="school-header">

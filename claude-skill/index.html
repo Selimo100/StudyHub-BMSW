@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyHub Skill – Zusammenfassungen automatisch erstellen</title>
+  <meta name="description" content="Ein Claude-Code-Skill, das aus deinem Prüfungsmaterial eine vollständige StudyHub-Zusammenfassung mit Übungen und Lösungen baut. Aufbau, Installation und Nutzung." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="apple-touch-icon" href="../favicon.svg" />
+  <meta name="theme-color" content="#082038" />
+  <style>
+    :root {
+      --navy: #082038;
+      --accent: #b81020;
+      --accent-hover: #8f0c18;
+      --accent-soft: rgba(184, 16, 32, 0.08);
+      --accent-ring: rgba(184, 16, 32, 0.22);
+
+      --bg-top: #e2eaef;
+      --text: #16202e;
+      --muted: #5b6675;
+      --card: rgba(255, 255, 255, 0.9);
+      --border: rgba(8, 32, 56, 0.1);
+
+      --code-bg: #0d2136;
+      --code-text: #dbe6f0;
+
+      --shadow: 0 14px 34px rgba(8, 32, 56, 0.12);
+      --shadow-hover: 0 18px 40px rgba(8, 32, 56, 0.18);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Inter, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg-top);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- Topbar ---------- */
+    .topbar {
+      background: rgba(226, 234, 239, 0.82);
+      padding: 16px clamp(18px, 4vw, 56px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      margin: 0;
+      font-size: clamp(1.2rem, 2.8vw, 1.7rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .brand-mark { width: clamp(28px, 5vw, 34px); height: clamp(28px, 5vw, 34px); flex-shrink: 0; }
+    .brand-name .accent { color: var(--accent); }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .back-link:hover { border-color: var(--accent-ring); color: var(--accent); transform: translateX(-2px); }
+    .back-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 64px 20px 84px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(120% 140% at 50% -20%, rgba(184, 16, 32, 0.3), transparent 55%),
+        linear-gradient(160deg, #0c2a49 0%, #082038 55%, #061729 100%);
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 55%, rgba(6, 20, 34, 0.4));
+      z-index: -1;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 760px; }
+
+    .hero-eyebrow {
+      margin: 0 0 12px;
+      display: inline-block;
+      color: #ff8b93;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      color: #f9fbff;
+      font-size: clamp(1.9rem, 5.2vw, 3.1rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    }
+    .hero h1 .accent { color: #ff6d78; }
+
+    .hero p {
+      margin: 16px auto 0;
+      max-width: 560px;
+      color: #dbe6f0;
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      opacity: 0.95;
+    }
+
+    .hero-cmd {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #f9fbff;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: clamp(0.92rem, 2.4vw, 1.05rem);
+      font-weight: 600;
+    }
+
+    /* ---------- Layout ---------- */
+    .wrap {
+      width: min(1100px, 92vw);
+      margin: -48px auto 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ---------- Sprungnavigation ---------- */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 3vw, 24px);
+      margin-bottom: 26px;
+      backdrop-filter: blur(4px);
+    }
+
+    .toc h2 {
+      margin: 0 0 12px;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .toc ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .toc a {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+    .toc a:hover { border-color: var(--accent-ring); color: var(--accent); background: var(--accent-soft); }
+    .toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* ---------- Sektionen ---------- */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 3.4vw, 34px);
+      margin-bottom: 22px;
+      backdrop-filter: blur(4px);
+      scroll-margin-top: 88px;
+    }
+
+    .card > h2 {
+      margin: 0 0 6px;
+      font-size: clamp(1.3rem, 3vw, 1.75rem);
+      letter-spacing: -0.01em;
+      color: var(--navy);
+    }
+
+    .card > h2 + .sub {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .card h3 {
+      margin: 26px 0 8px;
+      font-size: 1.06rem;
+      color: var(--navy);
+    }
+    .card h3:first-of-type { margin-top: 18px; }
+
+    .card p { margin: 0 0 12px; }
+    .card p:last-child { margin-bottom: 0; }
+
+    .card ul, .card ol { margin: 0 0 12px; padding-left: 22px; }
+    .card li { margin-bottom: 6px; }
+
+    strong { font-weight: 700; color: var(--navy); }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.9em;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 2px 6px;
+      border-radius: 5px;
+      overflow-wrap: break-word;
+    }
+
+    /* ---------- Codeblock ---------- */
+    .code {
+      position: relative;
+      margin: 0 0 16px;
+    }
+
+    .code pre {
+      margin: 0;
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 16px 54px 16px 18px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.87rem;
+      line-height: 1.65;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .code pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      font-size: inherit;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 11px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: inherit;
+      color: var(--code-text);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .copy-btn:hover { background: rgba(255, 255, 255, 0.24); }
+    .copy-btn:focus-visible { outline: 2px solid #ff6d78; outline-offset: 2px; }
+    .copy-btn.done { background: #2e8b57; border-color: #2e8b57; color: #fff; }
+
+    /* ---------- Schritte ---------- */
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+
+    .steps > li {
+      counter-increment: step;
+      position: relative;
+      padding: 0 0 4px 46px;
+      margin-bottom: 22px;
+    }
+
+    .steps > li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .steps > li > strong { display: block; margin-bottom: 6px; font-size: 1.02rem; }
+
+    /* ---------- Phasen-Timeline ---------- */
+    .phases { list-style: none; margin: 0; padding: 0; }
+
+    .phases li {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .phases li:last-child { border-bottom: 0; }
+
+    .phase-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-top: 3px;
+    }
+
+    .phase-body strong { display: block; margin-bottom: 3px; }
+    .phase-body span { color: var(--muted); font-size: 0.95rem; }
+
+    /* ---------- Feature-Grid ---------- */
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+
+    .tile {
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .tile h4 {
+      margin: 0 0 6px;
+      font-size: 0.98rem;
+      color: var(--navy);
+    }
+
+    .tile p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+
+    /* ---------- Tabelle ---------- */
+    .table-scroll { overflow-x: auto; margin-bottom: 14px; -webkit-overflow-scrolling: touch; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.94rem;
+      min-width: 460px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    tbody tr:last-child td { border-bottom: 0; }
+
+    /* ---------- Hinweisbox ---------- */
+    .note {
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      border-radius: 0 11px 11px 0;
+      padding: 14px 18px;
+      margin: 0 0 16px;
+    }
+    .note p { margin: 0; }
+    .note.safe { border-left-color: #2e8b57; background: rgba(46, 139, 87, 0.09); }
+
+    /* ---------- Details ---------- */
+    details {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0;
+      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.62);
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 13px 17px;
+      font-weight: 700;
+      color: var(--navy);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 1.25rem; color: var(--accent); font-weight: 700; line-height: 1; }
+    details[open] summary::after { content: "–"; }
+    summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+    .details-body { padding: 0 17px 15px; }
+    .details-body p:last-child, .details-body ul:last-child { margin-bottom: 0; }
+
+    /* ---------- Footer ---------- */
+    .foot {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 10px 0 0;
+    }
+    .foot a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .foot a:hover { text-decoration: underline; }
+
+    @media (max-width: 560px) {
+      .phases li { grid-template-columns: 1fr; gap: 4px; }
+      .phase-tag { padding-top: 0; }
+      .code pre { padding-right: 18px; padding-top: 44px; }
+      .copy-btn { top: 8px; right: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../index.html">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <g stroke="#082038" stroke-width="4" stroke-linecap="round">
+          <line x1="32" y1="30" x2="32" y2="11"/>
+          <line x1="32" y1="30" x2="15" y2="16"/>
+          <line x1="32" y1="30" x2="49" y2="16"/>
+          <line x1="32" y1="30" x2="10" y2="28"/>
+          <line x1="32" y1="30" x2="54" y2="28"/>
+        </g>
+        <circle cx="32" cy="9" r="5" fill="#b81020"/>
+        <circle cx="10" cy="28" r="5" fill="#b81020"/>
+        <circle cx="54" cy="28" r="5" fill="#b81020"/>
+        <circle cx="15" cy="15" r="5" fill="#082038"/>
+        <circle cx="49" cy="15" r="5" fill="#082038"/>
+        <path d="M32 40 C24 35 15 35 8 37 L8 52 C15 50 24 50 32 53 C40 50 49 50 56 52 L56 37 C49 35 40 35 32 40 Z" fill="#082038"/>
+        <circle cx="32" cy="30" r="7" fill="#082038"/>
+        <circle cx="32" cy="30" r="3" fill="#eef2f6"/>
+      </svg>
+      <span class="brand-name">Study<span class="accent">Hub</span></span>
+    </a>
+    <a class="back-link" href="../index.html">← Zur Fächerübersicht</a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Claude Code Skill</span>
+      <h1>Zusammenfassungen,<br /><span class="accent">automatisch erstellt.</span></h1>
+      <p>
+        Du legst deine Lernziele fest, öffnest den Ordner mit deinem Prüfungsmaterial —
+        und bekommst eine vollständige Lernseite mit Theorie, Übungen, Lösungen und
+        Prüfungssimulation, fertig eingebunden in StudyHub.
+      </p>
+      <span class="hero-cmd">/studyhub-summary</span>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <nav class="toc" aria-label="Seiteninhalt">
+      <h2>Auf dieser Seite</h2>
+      <ul>
+        <li><a href="#was">Was es macht</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#lernziele">Lernziele</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#aufbau">Aufbau</a></li>
+        <li><a href="#qualitaet">Qualitätsregeln</a></li>
+        <li><a href="#sicherheit">Sicherheit</a></li>
+        <li><a href="#probleme">Wenn etwas klemmt</a></li>
+      </ul>
+    </nav>
+
+    <!-- ============ WAS ============ -->
+    <section class="card" id="was">
+      <h2>Was es macht</h2>
+      <p class="sub">Von einem Ordner voller Unterlagen zu einer fertigen Lernseite.</p>
+
+      <p>
+        <strong>studyhub-summary</strong> ist ein Skill für
+        <a href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code</a>.
+        Ein Skill ist eine gespeicherte Arbeitsanweisung: Statt jedes Mal aufs Neue zu
+        erklären, wie eine gute Zusammenfassung aussehen soll, steht das einmal fest
+        geschrieben da und wird mit einem Befehl abgerufen.
+      </p>
+
+      <p>Du startest Claude Code im Ordner mit deinem Prüfungsmaterial und tippst <code>/studyhub-summary</code>. Danach passiert Folgendes:</p>
+
+      <div class="grid">
+        <div class="tile">
+          <h4>Material lesen</h4>
+          <p>Der Ordner wird rekursiv durchsucht und die relevanten Dateien werden tatsächlich gelesen — auch PDFs, nicht nur Dateinamen.</p>
+        </div>
+        <div class="tile">
+          <h4>Lernziele abbilden</h4>
+          <p>Jedes Lernziel wird auf Quellen, Konzepte, Beispiele und Übungen abgebildet. Fehlt Material, wird das vorher gemeldet.</p>
+        </div>
+        <div class="tile">
+          <h4>Seite schreiben</h4>
+          <p>Theorie, durchgerechnete Beispiele, typische Fehler, Übungen auf fünf Niveaus, vollständige Lösungen, Prüfungssimulation.</p>
+        </div>
+        <div class="tile">
+          <h4>Einbinden</h4>
+          <p>Die Seite landet am richtigen Ort im Repo und wird in der Fächerübersicht verlinkt. Die Suche findet sie automatisch.</p>
+        </div>
+      </div>
+
+      <h3>Was es ausdrücklich nicht ist</h3>
+      <p>
+        Kein Spickzettel-Generator. Das Ziel ist eine Seite, mit der man den Stoff
+        wirklich lernen kann — Lehrbuch, Übungsheft, Prüfungssimulator und
+        Schlusscheckliste in einem. Typische Seiten sind entsprechend lang.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>Voraussetzung:</strong> Claude Code muss auf deinem Rechner installiert
+          und angemeldet sein. Das Skill selbst ist nur eine Sammlung von Textdateien —
+          es funktioniert ohne Claude Code nicht.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ INSTALLATION ============ -->
+    <section class="card" id="installation">
+      <h2>Installation</h2>
+      <p class="sub">Einmalig, dann steht der Befehl in jedem Projekt zur Verfügung.</p>
+
+      <ol class="steps">
+        <li>
+          <strong>Repository klonen</strong>
+          <p>Falls du StudyHub noch nicht lokal hast:</p>
+          <div class="code">
+            <pre><code>git clone git@github.com:Selimo100/StudyHub-BMSW.git ~/dev/school/StudyHub</code></pre>
+          </div>
+        </li>
+        <li>
+          <strong>Skill ins persönliche Claude-Verzeichnis kopieren</strong>
+          <p>Persönliche Skills liegen unter <code>~/.claude/skills/</code> und gelten dadurch in <em>allen</em> Ordnern — nicht nur im Repo.</p>
+          <div class="code">
+            <pre><code>mkdir -p ~/.claude/skills
+cp -R ~/dev/school/StudyHub/claude-skill/studyhub-summary ~/.claude/skills/</code></pre>
+          </div>
+        </li>
+        <li>
+          <strong>Konfiguration anlegen</strong>
+          <p>In <code>config.md</code> trägst du den Pfad zu deinem lokalen Repo ein. Die Datei ist bewusst nicht im Repo — sie enthält deine persönlichen Pfade.</p>
+          <div class="code">
+            <pre><code>cd ~/.claude/skills/studyhub-summary
+cp config.example.md config.md</code></pre>
+          </div>
+        </li>
+        <li>
+          <strong>Zugriff aufs Repo erlauben</strong>
+          <p>
+            Damit das Skill aus einem beliebigen Fachordner heraus ins StudyHub-Repo
+            schreiben darf, den Repo-Pfad in <code>~/.claude/settings.json</code> ergänzen:
+          </p>
+          <div class="code">
+            <pre><code>{
+  "permissions": {
+    "additionalDirectories": [
+      "/Users/DEIN-NAME/dev/school/StudyHub"
+    ]
+  }
+}</code></pre>
+          </div>
+          <p>Ohne diesen Eintrag geht es auch — dann musst du Claude Code jedes Mal mit <code>--add-dir</code> starten.</p>
+        </li>
+        <li>
+          <strong>Prüfen, ob es erkannt wird</strong>
+          <p>Claude Code starten, <code>/</code> tippen — <code>/studyhub-summary</code> muss in der Liste auftauchen.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ LERNZIELE ============ -->
+    <section class="card" id="lernziele">
+      <h2>Lernziele</h2>
+      <p class="sub">Sie bestimmen den Umfang der Zusammenfassung — nichts sonst.</p>
+
+      <p>
+        Es gibt drei Wege, die Lernziele mitzugeben. Die erste vorhandene Quelle gewinnt,
+        niedrigere Quellen dürfen ergänzen, aber den Umfang nicht überschreiben.
+      </p>
+
+      <h3>1. Direkt beim Aufruf — empfohlen</h3>
+      <p>Weil die Lernziele sich bei jeder Prüfung ändern, ist das der einfachste Weg. Einfach hinter den Befehl schreiben:</p>
+      <div class="code">
+        <pre><code>/studyhub-summary Lernziele:
+- Arbeitsvertrag definieren und Merkmale nennen
+- Arbeitsvertrag vom Auftrag abgrenzen
+- Kündigungsfristen berechnen
+
+Prüfung am 14.09., 90 Minuten, Hilfsmittel: OR</code></pre>
+      </div>
+
+      <h3>2. Datei im Fachordner</h3>
+      <p>
+        Eine <code>lernziele.md</code> neben dem Material ablegen — sie wird bis drei Ebenen
+        tief gefunden. Praktisch, wenn die Lehrperson die Lernziele ohnehin als Datei
+        verteilt hat, und sie bleibt beim Material liegen.
+      </p>
+
+      <h3>3. Die Fallback-Datei</h3>
+      <p>
+        <code>~/.claude/skills/studyhub-summary/LERNZIELE.md</code> wird nur verwendet, wenn
+        du nichts inline mitgegeben hast und keine Datei im Ordner liegt.
+      </p>
+
+      <h3>Format</h3>
+      <p>
+        Kein Template nötig, eine rohe Liste genügt. Je mehr Kontext, desto präziser das
+        Ergebnis — besonders wertvoll sind Prüfungsform, Dauer, erlaubte Hilfsmittel und
+        Hinweise der Lehrperson.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>Jedes Lernziel wird nachweislich abgedeckt.</strong> Es wird erklärt, an
+          einem Beispiel gezeigt, mit einer Übung geprüft und gelöst. Ein Lernziel, das nur
+          in einer Überschrift vorkommt, gilt als nicht abgedeckt. Reicht das Material für
+          ein Lernziel nicht aus, wird das gemeldet, <em>bevor</em> die Seite entsteht — nicht
+          stillschweigend weggelassen.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ ABLAUF ============ -->
+    <section class="card" id="ablauf">
+      <h2>Ablauf</h2>
+      <p class="sub">Acht Phasen von den Rohdaten bis zur eingebundenen Seite.</p>
+
+      <ol class="phases">
+        <li>
+          <span class="phase-tag">Phase 0</span>
+          <span class="phase-body">
+            <strong>Preflight</strong>
+            <span>Ein Skript prüft Lernziele, Repo-Zugriff, Git-Zustand und erstellt ein Inventar des Ordners. Fehlt etwas Wesentliches, wird hier abgebrochen — mit dem konkreten Befehl zur Behebung.</span>
+          </span>
+        </li>
+        <li>
+          <span class="phase-tag">Phase 1</span>
+          <span class="phase-body">
+            <strong>Analyse</strong>
+            <span>Material sichten und priorisieren, Fach, Schule und Thema bestimmen, Zielort im Repo festlegen, prüfen ob schon eine Seite dazu existiert. Daraus entsteht die Coverage-Map: Lernziel → Quelle → Konzepte → Beispiele → Übungen.</span>
+          </span>
+        </li>
+        <li>
+          <span class="phase-tag">Phase 2</span>
+          <span class="phase-body">
+            <strong>Preflight-Bericht</strong>
+            <span>Kurze Übersicht des Erkannten: Bereich, Fach, Prüfung, Anzahl Lernziele, gefundene Quelldateien, Zielpfad. Rückfragen nur bei echten Blockern — nicht bei allem, was aus den Dateien ableitbar ist.</span>
+          </span>
+        </li>
+        <li>
+          <span class="phase-tag">Phase 3</span>
+          <span class="phase-body">
+            <strong>Aufbau planen</strong>
+            <span>Gliederung festlegen, fachspezifisch angepasst. Mathematik braucht andere Didaktik als Recht oder Geschichte.</span>
+          </span>
+        </li>
+        <li>
+          <span class="phase-tag">Phase 4</span>
+          <span class="phase-body">
+            <strong>Seite schreiben</strong>
+            <span>Eigenständige HTML-Seite mit eigenem CSS, ohne Frameworks. Deutsch (Schweiz), niemals <code>ß</code>. Wissen wird verdichtet, nicht weggelassen.</span>
+          </span>
+        </li>
+        <li>
+          <span class="phase-tag">Phase 5</span>
+          <span class="phase-body">
+            <strong>Coverage-Gate</strong>
+            <span>Jedes Lernziel wird gegen Theorie, Beispiel, Übung und Lösung geprüft. Alles muss auf PASS stehen, sonst wird nachgebessert statt beschönigt.</span>
+          </span>
+        </li>
+        <li>
+          <span class="phase-tag">Phase 6</span>
+          <span class="phase-body">
+            <strong>Integration und Validierung</strong>
+            <span>Datei an den richtigen Ort, Link in die Fächerübersicht, anschliessend automatische Prüfung durch ein Validierungsskript.</span>
+          </span>
+        </li>
+        <li>
+          <span class="phase-tag">Phase 7/8</span>
+          <span class="phase-body">
+            <strong>Commit und Bericht</strong>
+            <span>Gezielter Commit nur der eigenen Dateien, danach ein knapper Abschlussbericht: was entstand, wie viele Lernziele abgedeckt sind, wie viele Übungen, was validiert wurde.</span>
+          </span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ AUFBAU ============ -->
+    <section class="card" id="aufbau">
+      <h2>Aufbau</h2>
+      <p class="sub">Wie das Skill intern organisiert ist — und warum so.</p>
+
+      <div class="code">
+        <pre><code>studyhub-summary/
+├── SKILL.md                 Workflow in 8 Phasen — das Herzstück
+├── config.example.md        Vorlage für die persönliche config.md
+├── LERNZIELE.md             Fallback-Datei für die Lernziele
+├── LERNZIELE.template.md    Leervorlage (dient der Template-Erkennung)
+├── README.md
+├── references/
+│   ├── source-analysis.md       Material sichten, Prüfungsmodell, Coverage-Map
+│   ├── summary-quality.md       Inhalt, Sprache, fachspezifische Didaktik
+│   ├── exercises.md             Übungen auf 5 Niveaus, Lösungen, Simulation
+│   └── studyhub-integration.md  Repo-Konventionen, Einbindung, Validierung
+└── scripts/
+    ├── preflight.sh         Lernziele, Zugriff, Git-Zustand, Materialinventar
+    └── validate.sh          HTML, Anker, Sprache, Lecks, Index-Verlinkung</code></pre>
+      </div>
+
+      <h3>Warum die Aufteilung in <code>references/</code></h3>
+      <p>
+        <code>SKILL.md</code> bleibt bewusst kurz und beschreibt nur den Ablauf. Die langen
+        inhaltlichen Vorgaben — wie eine gute Übung aussieht, wie Mathematik anders
+        behandelt wird als Geschichte — stehen in eigenen Dateien und werden nur dann
+        gelesen, wenn sie in der jeweiligen Phase gebraucht werden. Das hält den
+        Arbeitsspeicher schlank und die Anweisungen trotzdem ausführlich.
+      </p>
+
+      <h3>Warum Skripte</h3>
+      <p>
+        Die beiden Shell-Skripte machen genau das, was ein Sprachmodell unzuverlässig
+        macht und ein Skript deterministisch: zählen, vergleichen, prüfen. Ob ein
+        <code>ß</code> in der Datei steht, ob ein Anker ins Leere zeigt oder ob der Link in der
+        Übersicht wirklich existiert, ist nichts, was man schätzen sollte.
+      </p>
+
+      <details>
+        <summary>Was <code>preflight.sh</code> prüft</summary>
+        <div class="details-body">
+          <ul>
+            <li>Sind Lernziele vorhanden — und aus welcher der drei Quellen?</li>
+            <li>Erkennt, wenn die Fallback-Datei noch das unveränderte Template ist</li>
+            <li>Ist das StudyHub-Repo les- und schreibbar? Sonst: exakter Befehl zur Behebung</li>
+            <li>Git-Zustand: Branch, laufender Merge oder Rebase, Detached HEAD</li>
+            <li>Fremde uncommittete Änderungen werden aufgelistet und geschützt</li>
+            <li>Inventar des Ordners, ohne <code>node_modules</code>, Caches und Build-Output</li>
+            <li>Hebt prüfungsrelevante Dateien hervor, damit sie zuerst gelesen werden</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Was <code>validate.sh</code> prüft</summary>
+        <div class="details-body">
+          <ul>
+            <li>Ablageort und Dateiname entsprechen der Konvention</li>
+            <li>Kein <code>ß</code>, keine unnötige Umschreibung von Umlauten</li>
+            <li>Doctype, Charset, Viewport, Titel, <code>lang</code>-Attribut</li>
+            <li>Tag-Balance und doppelte IDs</li>
+            <li>Tote Sprungmarken und ins Leere zeigende relative Verweise</li>
+            <li>Übrig gebliebene Platzhalter oder TODO-Reste</li>
+            <li>Versehentlich geleakte lokale Dateipfade</li>
+            <li>Übungen und Lösungen sind tatsächlich vorhanden</li>
+            <li>Externe Abhängigkeiten — das Repo soll ohne Build und ohne Framework laufen</li>
+            <li>Syntaxprüfung des Inline-JavaScripts</li>
+            <li>Der Link in der Fächerübersicht existiert, und alle Links dort zeigen auf echte Dateien</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ QUALITAET ============ -->
+    <section class="card" id="qualitaet">
+      <h2>Qualitätsregeln</h2>
+      <p class="sub">Die Vorgaben, an denen sich jede erzeugte Seite messen lassen muss.</p>
+
+      <h3>Der Massstab</h3>
+      <p>
+        Jede Seite muss diese Frage mit Ja beantworten: <em>„Wenn ich alles auf dieser
+        Seite verstehe und lösen kann — bin ich nach den gelieferten Lernzielen optimal
+        auf die Prüfung vorbereitet?"</em>
+      </p>
+
+      <h3>Übungen auf fünf Niveaus</h3>
+      <p>Übungen sind Pflicht, keine Dekoration. Die Mehrheit darf ausdrücklich nicht blosses Abfragen sein.</p>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Level</th><th>Name</th><th>Was geprüft wird</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Grundlagen</td><td>Definitionen und Grundverfahren</td></tr>
+            <tr><td>2</td><td>Anwendung</td><td>Wissen auf normale Situationen anwenden</td></tr>
+            <tr><td>3</td><td>Schwierige Anwendung</td><td>Mehrere Konzepte kombinieren</td></tr>
+            <tr><td>4</td><td>Transfer</td><td>Wissen in neuer, ungewohnter Situation einsetzen</td></tr>
+            <tr><td>5</td><td>Prüfungssimulation</td><td>Realistisch schwer, Methode nicht offensichtlich</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Vorhandene Aufgaben werden nicht einfach abgeschrieben, sondern zu Varianten
+        umgebaut, die dieselbe Kompetenz prüfen — teils bewusst mit Fallen wie
+        überflüssigen Angaben, leicht veränderten Bedingungen oder einer fehlerhaften
+        Lösung, die gefunden werden soll.
+      </p>
+
+      <h3>Lösungen erklären, nicht nur nennen</h3>
+      <p>Jede Lösung sagt, welches Konzept geprüft wird, wie man den Ansatz erkennt, wie der Weg aussieht, was herauskommt — und wo der typische Irrweg liegt.</p>
+
+      <h3>Sprache</h3>
+      <p>
+        Deutsch (Schweiz): niemals <code>ß</code>, immer <code>ss</code>. Umlaute bleiben Umlaute.
+        Fremdsprachliche Lerninhalte bleiben in ihrer Sprache — ein englischer Beispielsatz
+        bleibt englisch, die Erklärung drumherum ist deutsch.
+      </p>
+
+      <h3>Nicht überzusammenfassen</h3>
+      <p>
+        Der häufigste Fehler wäre, aus 100 Seiten Material zwei Seiten HTML zu machen.
+        Redundanz wird verdichtet, Wissen nicht. Definitionen, Ausnahmen, Verfahren und
+        Beispiele bleiben drin.
+      </p>
+
+      <h3>Keine erfundenen Fakten</h3>
+      <p>
+        Gesetzesartikel, Formeln, historische Daten, Befehle, Prüfungsregeln und Vorgaben
+        der Lehrperson werden nie erfunden. Widersprechen sich Quellen und lässt sich das
+        nicht auflösen, wird nachgefragt statt geraten.
+      </p>
+    </section>
+
+    <!-- ============ SICHERHEIT ============ -->
+    <section class="card" id="sicherheit">
+      <h2>Sicherheit</h2>
+      <p class="sub">Was das Skill niemals tut.</p>
+
+      <div class="note safe">
+        <p>
+          Standardmässig wird <strong>committet, aber nicht gepusht</strong>. Nichts landet
+          auf der Website, bevor du selbst <code>git push</code> ausführst. Wer das anders will,
+          stellt in <code>config.md</code> auf Modus C um.
+        </p>
+      </div>
+
+      <ul>
+        <li>Es werden nur die selbst erstellten Dateien gestaged — gezielt per <code>git add &lt;pfad&gt;</code>, nie <code>git add -A</code>.</li>
+        <li>Fremde uncommittete Änderungen bleiben unangetastet und werden im Preflight aufgelistet.</li>
+        <li>Kein <code>git reset --hard</code>, kein <code>git clean -fd</code>, kein Force-Push.</li>
+        <li>Läuft ein Merge oder Rebase, oder ist HEAD detached, wird abgebrochen und nachgefragt.</li>
+        <li>Eine bestehende Zusammenfassung wird nie überschrieben, nur weil der Name ähnlich ist.</li>
+        <li>Lokale Dateipfade, Benutzernamen und private Dateinamen gelangen nicht in die öffentliche Seite — <code>validate.sh</code> prüft das eigens.</li>
+      </ul>
+
+      <h3>Wenn schon eine Seite zum Thema existiert</h3>
+      <p>
+        Dann wird sie vollständig gelesen, mit den aktuellen Lernzielen und dem aktuellen
+        Material abgeglichen und gezielt <strong>verbessert</strong> — nicht blind neu
+        erzeugt. Gute vorhandene Inhalte bleiben erhalten. Ist unklar, ob es sich um ein
+        Update oder eine eigene neue Seite handelt, wird gefragt.
+      </p>
+    </section>
+
+    <!-- ============ PROBLEME ============ -->
+    <section class="card" id="probleme">
+      <h2>Wenn etwas klemmt</h2>
+      <p class="sub">Die häufigsten Fälle und was dann passiert.</p>
+
+      <details>
+        <summary><code>/studyhub-summary</code> erscheint nicht in der Liste</summary>
+        <div class="details-body">
+          <p>
+            Prüfen, ob der Ordner wirklich unter <code>~/.claude/skills/studyhub-summary/</code>
+            liegt und eine <code>SKILL.md</code> mit Frontmatter enthält. Danach Claude Code neu
+            starten. Skills werden beim Start eingelesen.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Es findet das StudyHub-Repo nicht</summary>
+        <div class="details-body">
+          <p>
+            Der Pfad in <code>config.md</code> stimmt nicht mit deinem tatsächlichen Klon
+            überein. Die Skripte lesen die erste alleinstehende Pfadzeile in dieser Datei.
+            Alternativ per Umgebungsvariable, die Vorrang hat:
+          </p>
+          <div class="code">
+            <pre><code>export STUDYHUB_REPO="$HOME/dev/school/StudyHub"</code></pre>
+          </div>
+        </div>
+      </details>
+
+      <details>
+        <summary>Kein Schreibzugriff aufs Repo</summary>
+        <div class="details-body">
+          <p>
+            Claude Code darf standardmässig nur im Startordner arbeiten. Entweder den
+            Repo-Pfad dauerhaft in <code>~/.claude/settings.json</code> unter
+            <code>additionalDirectories</code> eintragen, oder pro Sitzung:
+          </p>
+          <div class="code">
+            <pre><code>claude --add-dir ~/dev/school/StudyHub</code></pre>
+          </div>
+          <p>Das Skill erkennt den fehlenden Zugriff selbst und nennt dir den exakten Befehl.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Es sagt, es fehle Material für ein Lernziel</summary>
+        <div class="details-body">
+          <p>
+            Das ist Absicht und kein Fehler. Statt ein Lernziel mit erfundenem Inhalt zu
+            füllen, wird konkret benannt, was fehlt. Ergänze die Unterlagen im Ordner oder
+            beantworte die Rückfrage — danach läuft es weiter.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Die Seite ist online nicht sichtbar</summary>
+        <div class="details-body">
+          <p>
+            Wahrscheinlich fehlt der Push. Das Skill committet standardmässig nur lokal:
+          </p>
+          <div class="code">
+            <pre><code>cd ~/dev/school/StudyHub
+git log --oneline -1
+git push</code></pre>
+          </div>
+          <p>Danach deployt Netlify automatisch, das dauert etwa eine Minute.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Kann ich das auch für ein anderes Fach oder Modul nutzen?</summary>
+        <div class="details-body">
+          <p>
+            Ja. Das Skill ist bewusst nicht auf ein einzelnes Fach zugeschnitten und passt
+            seine Didaktik an — Mathematik, Physik, Chemie, Wirtschaft &amp; Recht,
+            Geschichte &amp; Politik, Sprachen sowie IT-Module. Existiert für dein Fach noch
+            keine Karte in der Übersicht, wird sie mitsamt Ordnerstruktur angelegt.
+          </p>
+        </div>
+      </details>
+
+      <p class="foot" style="margin-top: 24px;">
+        Der vollständige Quelltext des Skills liegt im Repo unter <code>claude-skill/studyhub-summary/</code>.
+      </p>
+    </section>
+
+    <p class="foot">
+      <a href="../index.html">← Zurück zur Fächerübersicht</a>
+    </p>
+  </main>
+
+  <script>
+    (function () {
+      // Kopier-Buttons fuer alle Codebloecke
+      document.querySelectorAll(".code").forEach(function (block) {
+        var pre = block.querySelector("pre");
+        if (!pre) return;
+
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "copy-btn";
+        btn.textContent = "Kopieren";
+        btn.setAttribute("aria-label", "Codeblock in die Zwischenablage kopieren");
+
+        btn.addEventListener("click", function () {
+          var text = pre.innerText;
+
+          var done = function () {
+            btn.textContent = "Kopiert";
+            btn.classList.add("done");
+            window.setTimeout(function () {
+              btn.textContent = "Kopieren";
+              btn.classList.remove("done");
+            }, 1600);
+          };
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, fallback);
+          } else {
+            fallback();
+          }
+
+          function fallback() {
+            var ta = document.createElement("textarea");
+            ta.value = text;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "absolute";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand("copy"); done(); } catch (e) { /* still */ }
+            document.body.removeChild(ta);
+          }
+        });
+
+        block.appendChild(btn);
+      });
+    })();
+  </script>
+</body>
+</html>
