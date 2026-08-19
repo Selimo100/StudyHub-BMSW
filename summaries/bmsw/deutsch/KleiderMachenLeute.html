@@ -435,6 +435,123 @@
         background: var(--night);
         color: var(--gold-l);
       }
+      .fkt {
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.7rem;
+      }
+      /* SCROLL-WRAPPER FÜR TABELLEN */
+      .tw {
+        overflow-x: auto;
+        margin-bottom: 1rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      .tw table {
+        margin-bottom: 0;
+        min-width: 33rem;
+      }
+      /* LERNZIEL-RASTER */
+      .lz {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        gap: 0.7rem;
+        margin-bottom: 1rem;
+      }
+      .lzc {
+        background: var(--warm);
+        border: 1px solid var(--border);
+        border-top: 3px solid var(--gold);
+        border-radius: 4px;
+        padding: 0.85rem 1rem;
+        box-shadow: 0 2px 8px var(--shad);
+      }
+      .lzc .lzn {
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--rust);
+        margin-bottom: 0.3rem;
+      }
+      .lzc .lzt {
+        font-size: 0.86rem;
+        line-height: 1.6;
+        margin-bottom: 0.45rem;
+      }
+      .lzc .lzw {
+        font-size: 0.76rem;
+        color: var(--muted);
+        border-top: 1px dashed var(--border);
+        padding-top: 0.4rem;
+      }
+      /* PRÜFUNGSAUFGABE */
+      .pa {
+        background: #fbf3ef;
+        border: 1px solid #d9b7a6;
+        border-left: 4px solid var(--rust);
+        border-radius: 4px;
+        padding: 1.1rem 1.3rem;
+        margin-bottom: 1rem;
+      }
+      .pa h4 {
+        font-family: "Playfair Display", serif;
+        color: var(--rust);
+        margin-bottom: 0.55rem;
+        font-size: 0.96rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 0.6rem;
+        align-items: baseline;
+      }
+      .pa .pt {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .pa p,
+      .pa li {
+        font-size: 0.86rem;
+        line-height: 1.7;
+      }
+      .pa ul,
+      .pa ol {
+        padding-left: 1.15rem;
+      }
+      .pa .sol-btn {
+        background: var(--rust);
+      }
+      .pa .sol-btn:hover {
+        background: #6d2c12;
+      }
+      .pa .sol {
+        border-top: 1px solid #d9b7a6;
+      }
+      .pa .sol-lbl {
+        color: var(--rust);
+      }
+      /* CHECKLISTE */
+      .ck {
+        list-style: none;
+        padding-left: 0;
+      }
+      .ck li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.4rem;
+        font-size: 0.87rem;
+        line-height: 1.65;
+      }
+      .ck li::before {
+        content: "☐";
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+        font-size: 1rem;
+        line-height: 1.4;
+      }
       /* TWO COL */
       .tc {
         display: grid;
@@ -754,11 +871,15 @@
       <div class="hero-lbl">Gottfried Keller · 1874 · BMS Winterthur · Lehrperson L. Wihler</div>
       <h1><em>Kleider machen Leute</em></h1>
       <div class="hero-sub">Vollständiger Prüfungslernguide · Alle Materialien integriert · Mit Lösungen</div>
+      <div class="hero-sub" style="margin-top: 0.5rem; font-weight: 600">
+        Prüfung: 4. Juni 2026 · ca. 50 Minuten · OLAT mit Safe Exam Browser
+      </div>
       <div class="hero-tags">
         <span class="ht">Inhalt & ZOPEF</span><span class="ht">Erzählanalyse</span><span class="ht">Allegorie</span>
         <span class="ht">Figuren & Nettchen</span><span class="ht">Novelle</span
         ><span class="ht">Realismus & Fontane</span> <span class="ht">Autor Keller</span
-        ><span class="ht">Prüfungsübungen</span><span class="ht">Lektürekontrolle</span>
+        ><span class="ht">Prüfungsübungen</span><span class="ht">Prüfungssimulation</span
+        ><span class="ht">Lektürekontrolle</span><span class="ht">Last-Minute</span>
       </div>
     </div>
 
@@ -772,7 +893,9 @@
       <button class="nb" onclick="show('realismus', this)">🏛 Realismus</button>
       <button class="nb" onclick="show('autor', this)">✍️ Autor</button>
       <button class="nb" onclick="show('uebungen', this)">✏️ Übungen</button>
+      <button class="nb" onclick="show('simulation', this)">🎯 Prüfungssimulation</button>
       <button class="nb" onclick="show('kontrolle', this)">✅ Lektürekontrolle</button>
+      <button class="nb" onclick="show('lastminute', this)">🔥 Last-Minute</button>
     </nav>
 
     <main>
@@ -788,6 +911,56 @@
           <strong>Kernthema:</strong> Der mittellose Schneider Wenzel Strapinski wird durch seinen eleganten Mantel für
           einen polnischen Grafen gehalten. Das Missverständnis wächst zur schweigend geduldeten Lüge – bis zur
           öffentlichen Entlarvung. Am Ende siegt echte Liebe über gesellschaftlichen Schein.
+        </div>
+
+        <div class="ib">
+          <strong>Prüfungsrahmen:</strong> 4. Juni 2026 · ca. 50 Minuten · OLAT mit Safe Exam Browser. Das heisst:
+          <strong>keine Hilfsmittel, kein Buch, kein Internet</strong> – Seitenangaben und Zitate musst du sinngemäss
+          aus dem Kopf reproduzieren können. Zeitbudget: bei ca. 50 Minuten bleiben pro Aufgabe rund 5–8 Minuten. Übe
+          deshalb, in <strong>3–5 Sätzen mit Textbeleg</strong> zu antworten, statt lange Einleitungen zu schreiben.
+        </div>
+
+        <div class="card">
+          <div class="ct">🎯 Die sechs Lernziele – und wo sie hier stehen</div>
+          <div class="lz">
+            <div class="lzc">
+              <div class="lzn">Lernziel 1</div>
+              <div class="lzt">Sie kennen den Inhalt (Lektürekontrolle).</div>
+              <div class="lzw">→ 01 Inhalt · 02 ZOPEF · 11 Lektürekontrolle · Simulation A1</div>
+            </div>
+            <div class="lzc">
+              <div class="lzn">Lernziel 2</div>
+              <div class="lzt">
+                Sie können Textstellen interpretieren (Symbolik, Metaphern, Allegorien, Redewendungen – Schlittenfahrt,
+                Tanz).
+              </div>
+              <div class="lzw">→ 04 Allegorie & Symbole · Übungen 2, 9, 11 · Simulation A3 & A4</div>
+            </div>
+            <div class="lzc">
+              <div class="lzn">Lernziel 3</div>
+              <div class="lzt">Sie können Begriffe der Erzähltheorie anwenden.</div>
+              <div class="lzw">→ 03 Erzählanalyse · Übungen 1, 8, 10 · Simulation A2</div>
+            </div>
+            <div class="lzc">
+              <div class="lzn">Lernziel 4</div>
+              <div class="lzt">
+                Sie können die wichtigen Figuren charakterisieren und kennen Figurenkonstellation und Konflikte.
+              </div>
+              <div class="lzw">→ 05 Figuren · Übungen 3, 6, 12 · Simulation A5</div>
+            </div>
+            <div class="lzc">
+              <div class="lzn">Lernziel 5</div>
+              <div class="lzt">Sie kennen die Textsortenmerkmale der Novelle und wenden sie auf «KmL» an.</div>
+              <div class="lzw">→ 06 Novelle · Übungen 4, 8, 13 · Simulation A6</div>
+            </div>
+            <div class="lzc">
+              <div class="lzn">Lernziel 6</div>
+              <div class="lzt">
+                Sie kennen die Epoche «Realismus» und begründen an einer Textstelle, wieso «KmL» dazugehört.
+              </div>
+              <div class="lzw">→ 07 Realismus · Übungen 5, 14 · Simulation A7</div>
+            </div>
+          </div>
         </div>
 
         <div class="card">
@@ -1256,12 +1429,20 @@
               ><span class="arr">▼</span>
             </div>
             <div class="qa">
-              Fortuna ist die <strong>römische Glücksgöttin</strong>, die das Schicksal dreht (Fortuna-Rad). Die
-              Allegorie ist vielschichtig: Für Strapinski ist die Fahrt mit Nettchen der Höhepunkt seines Glücks – aber
-              das Glücksrad dreht sich weiter (bald folgt die Entlarvung). Die Fortuna kündigt also schon den
-              bevorstehenden Absturz an. Gleichzeitig steht sie für die Unberechenbarkeit des Schicksals: Strapinski
-              hatte das Glück nicht verdient und kann es nicht festhalten. → Das «Gemeinte»: Schein-Glück ist
-              vergänglich; nur echtes, ehrliches Glück (am Ende mit Nettchen) ist dauerhaft.
+              <strong>Wörtliche Begründung im Text zuerst:</strong> Der Schlitten trägt «ein vergoldetes Frauenbild als
+              Schlittenzierat […], die Fortuna vorstellend; <em>denn die Stadtwohnung des Amtsrates hiess zur
+              Fortuna</em>». Wie alle Goldacher Schlitten trägt er also schlicht das <strong>Sinnbild des Hauses</strong>
+              (siehe Tapferkeit, Tüchtigkeit, Sparsamkeit …). Diesen Punkt in der Prüfung immer zuerst nennen – er zeigt,
+              dass du die Stelle wirklich gelesen hast.<br /><br />
+              <strong>Die Allegorie darüber hinaus:</strong> Fortuna ist die römische Glücksgöttin mit dem Rad des
+              Schicksals. Für Strapinski ist die Fahrt der Höhepunkt seines Glücks – aber das Rad dreht sich weiter, die
+              Entlarvung folgt Minuten später. Die Figur kündigt den Absturz an und sagt zugleich: Wenzels Aufstieg
+              beruht nicht auf Leistung, sondern auf <strong>Zufall</strong> (Wagen, Kutscher, Mantel). Was der Zufall
+              gab, kann er nehmen.<br /><br />
+              <strong>Gegenbild beachten:</strong> Die Seldwyler führen im Zug eine <em>eigene</em>, riesige
+              Stroh-Fortuna mit, der ein schwarzer Ziegenbock nachjagt. Das Glück der Goldacher ist vergoldet, das der
+              Seldwyler aus Stroh und Flittergold – und es wird gejagt. Die beiden Fortuna-Figuren stehen einander
+              gegenüber wie Schein und Entlarvung.
             </div>
           </div>
 
@@ -1271,15 +1452,154 @@
               ><span class="arr">▼</span>
             </div>
             <div class="qa">
-              Der Tanz der Schneider ist eine <strong>doppelte Allegorie</strong>: Einerseits tanzen buchstäblich
-              Schneider – also Menschen aus Strapinskis eigentlichem Stand. Das ist eine deutliche Anspielung auf seine
-              wahre Identität, mitten in der Verlobungsfeier. Andererseits ist der Tanz eine
-              <strong>Allegorie auf das gesellschaftliche Spiel</strong>: Wer tanzt, gehört dazu – aber die Seldwyler
-              zeigen durch diesen Tanz, dass sie die «Wahrheit» kennen und sie bald enthüllen werden. Der Tanz der
-              Schneider kündigt symbolisch die Entlarvung an: Das «Gesagte» (Tanz) bedeutet das «Gemeinte» (Strapinskis
-              wahrer Stand tritt ans Licht).
+              <strong>Was konkret passiert:</strong> Die als Schneider aller Zeiten und Nationen verkleideten Seldwyler
+              führen den Goldachern eine <strong>Tierfabel</strong> vor. Nacheinander erscheinen:
+              <ul style="margin: 0.5rem 0 0.6rem 0; padding-left: 1.2rem">
+                <li>eine <strong>Krähe, die sich mit Pfauenfedern schmückt</strong> und quakend umherhüpft,</li>
+                <li>ein <strong>Wolf, der sich einen Schafspelz zurechtschneidert</strong>,</li>
+                <li>
+                  ein <strong>Esel, der eine Löwenhaut aus Werg trägt</strong> und sich «heroisch damit drapiert».
+                </li>
+              </ul>
+              Danach wird der Kreis leer, die Musik wird «wehmütig ernst» – und als letzte Erscheinung tritt ein
+              <strong>schlanker junger Mann in dunklem Mantel mit dunklen Haaren</strong> auf: Wenzels Doppelgänger.
+              <br /><br />
+              <strong>Was das bedeutet:</strong> Alle drei Tiere sind bekannte Allegorien für <em>dieselbe</em> Sache –
+              jemand wirkt durch fremdes Äusseres grösser, edler oder harmloser, als er ist. Die Seldwyler halten
+              Wenzel damit einen Spiegel vor, <em>ohne ihn zu nennen</em>: Das ist die Kunst dieser Allegorie – erst
+              die letzte Figur macht das Gemeinte für alle eindeutig. Der Tanz ist damit die
+              <strong>Peripetie in Bildform</strong>: Die Wahrheit wird nicht ausgesprochen, sondern aufgeführt.
+              <br /><br />
+              <strong>Doppelte Schärfe:</strong> Die Fabel trifft nicht nur Wenzel, sondern auch die Goldacher. Wer die
+              Krähe für einen Pfau hält, ist selbst blind. Die Zuschauer stehen im Ring und lachen – bis sie merken,
+              dass sie mitgemeint sind.
             </div>
           </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">🛷 Die beiden Schlittenzüge im Detail (Reclam S.31–33)</div>
+          <p style="margin-bottom: 0.7rem">
+            Die Schlittenfahrt ist die wichtigste Interpretationsstelle der Novelle. Die Lehrperson hat sie in den
+            Lernzielen ausdrücklich genannt. Lerne die konkreten Bilder – nur mit ihnen kannst du «begründen».
+          </p>
+          <div class="tw">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 25%">Bild im Text</th>
+                  <th style="width: 15%">Zug</th>
+                  <th>Gemeinte Bedeutung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Tapferkeit, Tüchtigkeit, Verbesserlichkeit, Sparsamkeit</strong></td>
+                  <td>Goldach</td>
+                  <td>
+                    Sinnbilder der Häuser. Die Goldacher fahren ihre eigenen <strong>bürgerlichen Tugenden</strong>
+                    spazieren – sie inszenieren sich als ehrenhafte, tüchtige Gesellschaft. Ironie: Genau diese
+                    «Tüchtigen» sind gerade auf einen Mantel hereingefallen.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Jakobsbrunnen, Teich Bethesda</strong></td>
+                  <td>Goldach</td>
+                  <td>
+                    Biblische Hausnamen. Am Bethesda-Schlitten sitzt <strong>Böhni</strong> mit der Figur, die fast 30
+                    Jahre auf Heilung bzw. Glück wartete. Böhni deutet damit sein eigenes langes, geduldiges Werben um
+                    Nettchen an – halb Selbstmitleid, halb Anspruchsanmeldung.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Vergoldete Fortuna</strong> als Schlittenzierat</td>
+                  <td>Goldach</td>
+                  <td>
+                    Wörtlich: das Haus des Amtsrats heisst «zur Fortuna». Allegorisch: Wenzels Glück ist Zufallsglück und
+                    dreht sich gleich weiter.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Riesige Stroh-Fortuna</strong> voll Flittergold, in den Äther fliegend</td>
+                  <td>Seldwyla</td>
+                  <td>
+                    Parodie der Goldacher Fortuna: <strong>Stroh statt Gold, Flitter statt Wert</strong>. Genau so ist
+                    Wenzels Grafentum – von aussen glänzend, von innen hohl.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Schwarzer Ziegenbock</strong>, der der Fortuna mit gesenkten Hörnern nachjagt</td>
+                  <td>Seldwyla</td>
+                  <td>
+                    Unglück, Schuld, das Teuflisch-Triebhafte, das dem Glück auf den Fersen ist. Bildlich:
+                    <strong>Die Enthüllung holt Wenzels Glück ein.</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Bügeleisen (15 Schuh hoch), riesige Schere</strong></td>
+                  <td>Seldwyla</td>
+                  <td>
+                    Schneiderwerkzeug ins Monströse vergrössert. Wenzels <strong>wahrer Beruf</strong> wird
+                    buchstäblich haushoch über das Fest gehalten – die Wahrheit ist da, bevor sie ausgesprochen wird.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Inschrift vorn: «Leute machen Kleider»</strong></td>
+                  <td>Seldwyla</td>
+                  <td>
+                    Die nüchterne Wahrheit des Handwerks: Schneider stellen Kleidung her. Dahinter fährt ein
+                    «historisch-ethnographischer Schneiderfestzug» – Schneider aller Nationen und Zeitalter.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Inschrift hinten: «Kleider machen Leute»</strong> – im letzten Schlitten sitzen Kaiser,
+                    Könige, Ratsherren, Prälaten
+                  </td>
+                  <td>Seldwyla</td>
+                  <td>
+                    Die Umkehrung und Zuspitzung: Diese Würdenträger sind ausdrücklich «das Werk der vorausgefahrenen»
+                    Schneider. <strong>Der Titel der Novelle wird zur These:</strong> Gesellschaftlicher Rang ist ein
+                    Produkt, das man nähen kann.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="hl" style="margin-bottom: 0">
+            <strong>Merksatz für die Prüfung:</strong> Der Goldacher Zug zeigt, <em>wofür sich die Bürger halten</em>.
+            Der Seldwyler Zug zeigt, <em>wie es wirklich funktioniert</em>. Die Begegnung der beiden Züge ist der
+            Zusammenstoss von Schein und Sein – noch bevor ein einziges Wort der Enthüllung fällt.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">🛤 Die Kreuzstrasse – Wenzels Entscheidungsstelle</div>
+          <p>
+            Kurz bevor Wenzel endgültig in Goldach bleibt, steht er «gleich dem <strong>Jüngling am Scheidewege</strong>,
+            auf einer wirklichen Kreuzstrasse». Keller legt hier die klassische Allegorie
+            <em>Herakles am Scheideweg</em> (Wahl zwischen Tugend und Laster) direkt über die Landkarte – die innere
+            Entscheidung wird als <strong>äusserer Ort</strong> sichtbar. Genau das ist eine Allegorie: das Gemeinte
+            (moralische Wahl) wird als Gesagtes (Strassenkreuzung) gezeigt.
+          </p>
+          <div class="tc" style="margin-top: 0.8rem; margin-bottom: 0">
+            <div class="gb" style="margin-bottom: 0">
+              <strong>Richtung Feld (Wahrheit):</strong> «die freie Ferne; Arbeit, Entbehrung, Armut, Dunkelheit […],
+              aber auch ein gutes Gewissen und ein ruhiger Wandel.»
+            </div>
+            <div class="ib" style="margin-bottom: 0">
+              <strong>Richtung Stadt (Schein):</strong> «gastliche Rauchsäulen», «die goldenen Turmknöpfe funkelten
+              lockend» – «Glück, Genuss und <strong>Verschuldung</strong>, ein geheimnisvolles Schicksal winkten dort.»
+            </div>
+          </div>
+          <p style="margin-top: 0.8rem">
+            <strong>Prüfungsrelevant:</strong> Das Wort «Verschuldung» ist ein Doppelsinn – finanzielle Schulden
+            <em>und</em> moralische Schuld. Und die Pointe der Stelle: Wenzel <em>entscheidet</em> sich für das Feld –
+            «dieses fühlend, wollte er denn auch entschlossen ins Feld abschwenken». Im gleichen Augenblick rollt ein
+            Fuhrwerk heran und nimmt ihm die Entscheidung wieder ab. <strong>Er wählt richtig und wird trotzdem
+            zurückgetragen.</strong> Genau darin liegt seine Halbschuld: nicht im Wollen, sondern in der Schwäche, beim
+            Gewollten zu bleiben.
+          </p>
         </div>
 
         <div class="card">
@@ -1340,8 +1660,10 @@
         <div class="hl">
           <strong>Übergeordnete Symbolebene:</strong> Alle Symbole kreisen um <strong>Schein ↔ Sein</strong> und
           <strong>Aussen ↔ Innen</strong>. Mantel (Schein), Fingerhut (Sein), Kutsche/Schlitten
-          (Passivität/Kontrollverlust), Fortuna (Schicksal/Glück), Schneider-Tanz (Wahrheit), Schnee (Reinigung) bilden
-          ein kohärentes Symbolnetz.
+          (Passivität/Kontrollverlust), Kreuzstrasse (Entscheidung), Fortuna (Zufallsglück), Ziegenbock (Schuld),
+          Schere und Bügeleisen (wahrer Stand), Tierfabel im Tanz (Entlarvung), Schnee (Reinigung) bilden ein
+          kohärentes Symbolnetz. <strong>Prüfungstipp:</strong> Wenn du eine unbekannte Stelle interpretieren musst,
+          frage immer zuerst: <em>Zeigt sie Schein oder Sein – und wer täuscht hier wen?</em>
         </div>
       </div>
       <!-- /allegorie -->
@@ -1355,17 +1677,7 @@
         </div>
 
         <div class="fk">
-          <div
-            style="
-              font-size: 0.68rem;
-              letter-spacing: 0.1em;
-              text-transform: uppercase;
-              color: var(--muted);
-              margin-bottom: 0.7rem;
-            "
-          >
-            Figurenkonstellation
-          </div>
+          <div class="fkt">Figurenkonstellation</div>
           <div class="fc">Wenzel Strapinski («Graf»)</div>
           <div class="farr">❤️ echte Liebe / Verlobung / Heirat am Ende</div>
           <div class="fr"><span class="fs">Nettchen Müller</span></div>
@@ -1475,7 +1787,7 @@
               </tr>
               <tr>
                 <td><strong>Schlank, stolz</strong></td>
-                <td>S.30: «schneeweiße Gestalt»</td>
+                <td>S.30: «schneeweisse Gestalt»</td>
               </tr>
               <tr>
                 <td><strong>Reichtum ist ihr wichtig</strong></td>
@@ -1822,7 +2134,7 @@
           <div class="ct">🏙 Was ist Seldwyla? (Offizieller Lösungstext)</div>
           <div class="qb">
             «Seldwyla bedeutet nach der älteren Sprache einen wonnigen und sonnigen Ort… die Gemeinde reich ist und die
-            Bürgerschaft arm, und zwar so, dass kein Mensch zu Seldwyla etwas hat und niemand weiß, wovon sie seit
+            Bürgerschaft arm, und zwar so, dass kein Mensch zu Seldwyla etwas hat und niemand weiss, wovon sie seit
             Jahrhunderten eigentlich leben.»
           </div>
           <p style="font-size: 0.86rem; margin-top: 0.6rem"><strong>Offizielle Lösung aus dem Dossier:</strong></p>
@@ -1856,11 +2168,55 @@
 
         <div class="ib">
           💡 Strategie: Schreibe jede Antwort zuerst kurz auf Papier, dann aufdecken und vergleichen. Was fehlte →
-          nochmal wiederholen.
+          nochmal wiederholen. Weil die Prüfung im Safe Exam Browser läuft, hast du keine Notizen – trainiere das freie
+          Formulieren, nicht das Wiedererkennen.
+        </div>
+
+        <div class="card">
+          <div class="ct">📶 Schwierigkeitsstufen</div>
+          <div class="tw">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 18%">Level</th>
+                  <th>Was geprüft wird</th>
+                  <th style="width: 26%">Übungen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="bd bd-g">Level 1</span></td>
+                  <td>Grundlagen: Definitionen und Grundbegriffe abrufen</td>
+                  <td>8</td>
+                </tr>
+                <tr>
+                  <td><span class="bd bd-b">Level 2</span></td>
+                  <td>Anwendung: Begriff auf eine bekannte Stelle anwenden</td>
+                  <td>1, 4</td>
+                </tr>
+                <tr>
+                  <td><span class="bd bd-s">Level 3</span></td>
+                  <td>Schwierige Anwendung: mehrere Konzepte verbinden, abwägen</td>
+                  <td>2, 3, 6, 9, 13</td>
+                </tr>
+                <tr>
+                  <td><span class="bd bd-r">Level 4</span></td>
+                  <td>Transfer: unbekannte Stelle, neue Fragestellung, Fehlersuche</td>
+                  <td>5, 7, 10, 11, 12, 14</td>
+                </tr>
+                <tr>
+                  <td><span class="bd bd-n">Level 5</span></td>
+                  <td>Prüfungssimulation unter Zeitdruck</td>
+                  <td>Sektion 10 «Prüfungssimulation»</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div style="margin-bottom: 0.8rem">
-          <span class="bd bd-b">Übung 1</span> <strong>Erzählanalyse – Begriffe zuordnen</strong>
+          <span class="bd bd-b">Level 2</span> <span class="bd bd-n">Übung 1</span>
+          <strong>Erzählanalyse – Begriffe zuordnen</strong>
         </div>
         <div class="ex">
           <h4>Ordne zu und erkläre kurz</h4>
@@ -1902,7 +2258,7 @@
         </div>
 
         <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
-          <span class="bd bd-r">Übung 2</span> <strong>Allegorie – Gesagtes und Gemeintes</strong>
+          <span class="bd bd-s">Level 3</span> <span class="bd bd-n">Übung 2</span> <strong>Allegorie – Gesagtes und Gemeintes</strong>
         </div>
         <div class="ex">
           <h4>Erkläre das Gemeinte hinter dem Gesagten</h4>
@@ -1933,7 +2289,7 @@
         </div>
 
         <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
-          <span class="bd bd-s">Übung 3</span> <strong>Nettchen-Charakterisierung</strong>
+          <span class="bd bd-s">Level 3</span> <span class="bd bd-n">Übung 3</span> <strong>Nettchen-Charakterisierung</strong>
         </div>
         <div class="ex">
           <h4>Ist Nettchen «Tussi» oder emanzipierte Frau? – Argumente sammeln</h4>
@@ -1960,7 +2316,7 @@
         </div>
 
         <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
-          <span class="bd bd-g">Übung 4</span> <strong>Novellen-Merkmale</strong>
+          <span class="bd bd-b">Level 2</span> <span class="bd bd-n">Übung 4</span> <strong>Novellen-Merkmale</strong>
         </div>
         <div class="ex">
           <h4>Wahr oder falsch? – Korrigiere und begründe</h4>
@@ -1994,7 +2350,7 @@
         </div>
 
         <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
-          <span class="bd bd-n">Übung 5</span> <strong>Realismus-Textstellen-Analyse</strong>
+          <span class="bd bd-r">Level 4</span> <span class="bd bd-n">Übung 5</span> <strong>Realismus-Textstellen-Analyse</strong>
         </div>
         <div class="ex">
           <h4>Begründe mit 4 Epochenmerkmalen</h4>
@@ -2028,7 +2384,7 @@
         </div>
 
         <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
-          <span class="bd bd-r">Übung 6</span> <strong>Anklage vs. Verteidigung</strong>
+          <span class="bd bd-s">Level 3</span> <span class="bd bd-n">Übung 6</span> <strong>Anklage vs. Verteidigung</strong>
         </div>
         <div class="ex">
           <h4>Ist Strapinski schuldig? – Je 3 Argumente mit Textstelle</h4>
@@ -2060,31 +2416,813 @@
         </div>
 
         <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
-          <span class="bd bd-b">Übung 7</span> <strong>Letzte Seite S.58 – Erklärung</strong>
+          <span class="bd bd-r">Level 4</span> <span class="bd bd-n">Übung 7</span> <strong>Letzte Seite S.58 – Erklärung</strong>
         </div>
         <div class="ex">
           <h4>Erkläre die letzte Zeile auf S.58: «Undank/Rache» – Wieso?</h4>
           <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
           <div class="sol">
-            <div class="sol-lbl">Aus Folien (Slide 31)</div>
+            <div class="sol-lbl">Musterlösung</div>
             <p>
-              Die letzte Zeile bezieht sich auf <strong>Nettchens Rache an den Seldwylern</strong>. Nettchen hatte schon
-              früh angekündigt, sich zu rächen (S.52). Sie ist vorausschauend und intelligent – sie plant aktiv ihre
-              Gegenmassnahme. Nachdem sie und Wenzel zunächst in Seldwyla leben, ziehen sie später erfolgreich nach
-              Goldach zurück – was als Rache an den Seldwylern gilt, die Wenzel blossgestellt haben. Der «Undank»
-              bezieht sich auch auf die Seldwyler selbst: Sie glaubten, durch die Entlarvung zu «siegen» – aber am Ende
-              sind Wenzel und Nettchen die Gewinner. Keller schliesst die Novelle damit ab, dass gesellschaftliche
-              Schadenfreude bestraft wird.
+              <strong>Der Wortlaut zuerst:</strong> «Aber in Seldwyla liess er nicht einen Stüber zurück, sei es aus
+              Undank oder aus Rache.» Das Subjekt ist <strong>Wenzel</strong>, nicht Nettchen. Es geht darum, dass er
+              nach zehn bis zwölf Jahren mit Nettchen und den Kindern nach Goldach übersiedelt und in Seldwyla
+              <em>keinen einzigen Rappen</em> seines Vermögens zurücklässt.
             </p>
+            <p>
+              <strong>Was vorher geschah:</strong> Wenzel wird ein erfolgreicher «Marchand-Tailleur». Die Seldwyler
+              kaufen bei ihm Samtwesten, Ballfräcke und rot ausgeschlagene Mäntel – und er lässt sie stets erst zahlen,
+              bevor er Neues liefert, sodass sie klagen, «er presse ihnen das Blut unter den Nägeln hervor». Er nimmt
+              den Seldwylern also systematisch Geld ab und trägt es fort.
+            </p>
+            <p><strong>Die beiden angebotenen Deutungen:</strong></p>
+            <ul>
+              <li>
+                <strong>Undank:</strong> Die Seldwyler haben ihm nach der Entlarvung faktisch seine Existenz ermöglicht
+                – er wurde bei ihnen Geschäftsmann und reich. Trotzdem gibt er ihrer Stadt nichts zurück.
+              </li>
+              <li>
+                <strong>Rache:</strong> Dieselben Seldwyler haben ihn am Verlobungsfest öffentlich blossgestellt. Dass
+                er ihnen nun das Geld abnimmt und wegträgt, ist die späte, kühl geschäftliche Vergeltung.
+              </li>
+            </ul>
+            <p>
+              <strong>Der entscheidende Punkt – und der beste Prüfungssatz:</strong> Keller
+              <strong>entscheidet sich nicht</strong> («sei es … oder …»). Der auktoriale Erzähler, der die ganze
+              Novelle lang alles wusste und alles kommentierte, verweigert hier ausgerechnet das moralische Urteil.
+              Damit bleibt offen, ob Wenzel innerlich ein besserer Mensch geworden ist oder nur ein erfolgreicherer.
+              Der romantische Träumer ist zum nüchternen Geschäftsmann geworden – «rund und stattlich», «beinah gar
+              nicht mehr träumerisch». Das ist typisch <strong>poetischer Realismus</strong>: kein moralisierendes,
+              sondern ein ironisch offenes Ende.
+            </p>
+            <p>
+              <strong>Typischer Fehler:</strong> Die Zeile auf Nettchens Racheplan (S.52) zu beziehen. Nettchens Rache
+              ist ein <em>anderes</em>, früheres Motiv – sie will demonstrativ nach Seldwyla ziehen. Die Schlusszeile
+              spricht dagegen von Wenzel und vom Weggang <em>aus</em> Seldwyla.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-g">Level 1</span> <span class="bd bd-n">Übung 8</span>
+          <strong>Grundbegriffe – frei definieren</strong>
+        </div>
+        <div class="ex">
+          <h4>Definiere in je einem Satz, ohne nachzuschlagen</h4>
+          <ol>
+            <li>Dingsymbol</li>
+            <li>Peripetie</li>
+            <li>erlebte Rede</li>
+            <li>unerhörte Begebenheit</li>
+            <li>olympischer Standort</li>
+            <li>retardierendes Moment</li>
+            <li>Novellenzyklus</li>
+          </ol>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <ul>
+              <li>
+                <strong>Dingsymbol:</strong> Ein Gegenstand (auch Tier oder Pflanze), der in einer Novelle
+                stellvertretend für den zentralen Konflikt steht, wiederholt an bedeutsamen Stellen auftaucht und die
+                Handlung beeinflusst. Der Begriff stammt aus der Novellentheorie (Heyses Falkentheorie).
+              </li>
+              <li>
+                <strong>Peripetie:</strong> Der entscheidende Wendepunkt, an dem die Handlung umschlägt – bei «KmL» die
+                öffentliche Enthüllung am Verlobungsfest.
+              </li>
+              <li>
+                <strong>Erlebte Rede:</strong> Gedanken oder Gefühle einer Figur werden in der Er-/Sie-Form und im
+                Tempus des Erzählens wiedergegeben, ohne einleitendes «er dachte». Erzählerstimme und Figurenstimme
+                verschmelzen.
+              </li>
+              <li>
+                <strong>Unerhörte Begebenheit:</strong> Der ungewöhnliche, überraschende Vorfall, um den eine Novelle
+                kreist – hier: ein mittelloser Schneider wird für einen polnischen Grafen gehalten und heiratet
+                schliesslich eine reiche Bürgerstochter.
+              </li>
+              <li>
+                <strong>Olympischer Standort:</strong> Der Erzähler steht räumlich und zeitlich ausserhalb des
+                Geschehens und hat vollen Überblick – wie ein Gott vom Olymp. Beispiel: die einleitende Beschreibung
+                Seldwylas.
+              </li>
+              <li>
+                <strong>Retardierendes Moment:</strong> Die Verzögerung kurz vor dem Schluss, die noch einmal
+                Spannung erzeugt und den Eindruck weckt, es gehe doch nicht gut aus – hier: Vater und Böhni reisen
+                Nettchen nach und wollen sie zurückholen.
+              </li>
+              <li>
+                <strong>Novellenzyklus:</strong> Eine Sammlung mehrerer Novellen, die durch einen gemeinsamen Rahmen
+                verbunden sind – bei Keller durch den erfundenen Schauplatz Seldwyla («Die Leute von Seldwyla», zehn
+                Erzählungen, erschienen 1873–1875).
+              </li>
+            </ul>
+            <p style="margin-top: 0.5rem">
+              <strong>Typischer Fehler:</strong> Peripetie und retardierendes Moment vertauschen. Merke: Peripetie =
+              der Umschlag <em>selbst</em>, retardierendes Moment = die Bremse <em>danach</em>.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-s">Level 3</span> <span class="bd bd-n">Übung 9</span>
+          <strong>Kurze Textstelle interpretieren</strong>
+        </div>
+        <div class="ex">
+          <h4>Was leistet dieser Satz für die ganze Novelle?</h4>
+          <div class="qb">
+            «Der Wagen war mit allerlei Vorrichtungen zur Aufnahme des Gepäckes versehen und schien deswegen schwer
+            bepackt zu sein, obgleich alles leer war.»
+          </div>
+          <p>Erkläre in 3–4 Sätzen, warum diese Beschreibung mehr ist als eine Nebenbemerkung.</p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <p>
+              <strong>Geprüft wird:</strong> Erkennen, dass ein scheinbar sachliches Detail ein Sinnbild ist
+              (Lernziel 2).
+            </p>
+            <p>
+              Der Wagen <em>wirkt</em> reich beladen, ist aber leer – genau wie Wenzel: Der Mantel verspricht Rang und
+              Vermögen, dahinter steht ein Fingerhut. Keller stellt das <strong>Grundmuster Schein–Sein</strong> also
+              schon auf der zweiten Seite in einem einzigen Gegenstand vor, lange bevor die Verwechslung überhaupt
+              beginnt. Bemerkenswert ist die Reihenfolge: Der leere Wagen erzeugt den Eindruck, nicht der Inhalt –
+              «schien deswegen schwer bepackt zu sein» beschreibt exakt, wie später die Goldacher schliessen. Das
+              Detail ist damit eine <strong>vorwegnehmende Metapher</strong> für die gesamte Handlung.
+            </p>
+            <p>
+              <strong>Typischer Irrweg:</strong> Nur zu schreiben «der Wagen ist ein Statussymbol». Das ist richtig,
+              aber zu wenig – die Pointe liegt im Wort <em>leer</em>.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-r">Level 4</span> <span class="bd bd-n">Übung 10</span>
+          <strong>Fehlerhafte Antwort korrigieren</strong>
+        </div>
+        <div class="ex">
+          <h4>Finde die vier Fehler in dieser Schülerantwort</h4>
+          <div class="qb">
+            «‹Kleider machen Leute› ist in der Ich-Form geschrieben. Das Erzählverhalten ist personal, weil wir nur
+            Wenzels Gedanken kennen. Die Erzählhaltung ist neutral und sachlich, der Erzähler wertet nie. Als
+            Darbietungsform kommt praktisch nur direkte Rede vor.»
+          </div>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <ul>
+              <li>
+                <strong>Fehler 1 – Erzählform:</strong> Nicht Ich-Form, sondern <strong>Er-/Sie-Form</strong>. Der
+                Erzähler ist keine Figur der Handlung.
+              </li>
+              <li>
+                <strong>Fehler 2 – Erzählverhalten:</strong> Nicht personal, sondern <strong>auktorial</strong>. Wir
+                kennen nicht nur Wenzels Innenleben, sondern auch Nettchens Gedanken (S.19) und Böhnis Überlegungen.
+                Ein personaler Erzähler wäre an <em>eine</em> Figur gebunden.
+              </li>
+              <li>
+                <strong>Fehler 3 – Erzählhaltung:</strong> Gerade nicht neutral. Der Erzähler ist
+                <strong>ironisch, humorvoll und stellenweise offen wertend</strong> – er nennt Wenzel den «Märtyrer
+                seines Mantels» (S.4) und spricht vom «abschüssigen Weg des Bösen» (S.8, Z.10).
+              </li>
+              <li>
+                <strong>Fehler 4 – Darbietungsformen:</strong> Es kommen mehrere vor:
+                <strong>Erzählerbericht</strong> (Beschreibung Seldwylas, S.26, Z.23), <strong>direkte Rede</strong>
+                und <strong>erlebte Rede</strong> (Nettchens Gedanken, S.19, Z.5–9).
+              </li>
+            </ul>
+            <p style="margin-top: 0.5rem">
+              <strong>Prüfungstipp:</strong> Erzählform (Wer spricht grammatisch?), Erzählverhalten (Wie viel weiss
+              er?), Erzählhaltung (Wie steht er dazu?) und Standort (Wo steht er?) sind vier <em>getrennte</em>
+              Kategorien nach Petersen. In OLAT werden sie gern einzeln abgefragt – vermische sie nicht.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-r">Level 4</span> <span class="bd bd-n">Übung 11</span>
+          <strong>Die Kreuzstrasse – Transfer</strong>
+        </div>
+        <div class="ex">
+          <h4>Interpretiere und ziehe eine Folgerung zur Schuldfrage</h4>
+          <div class="qb">
+            «Da stand er nun, gleich dem Jüngling am Scheidewege, auf einer wirklichen Kreuzstrasse; […] Glück, Genuss
+            und Verschuldung, ein geheimnisvolles Schicksal winkten dort; von der Feldseite her aber glänzte die freie
+            Ferne; Arbeit, Entbehrung, Armut, Dunkelheit harrten dort, aber auch ein gutes Gewissen und ein ruhiger
+            Wandel; dieses fühlend, wollte er denn auch entschlossen ins Feld abschwenken.»
+          </div>
+          <p>
+            a) Welches rhetorische Mittel liegt vor und woran erkennst du es? b) Was bedeutet das Wort «Verschuldung»
+            hier doppelt? c) Was folgt aus dem <em>letzten</em> Teilsatz für die Frage, ob Wenzel schuldig ist?
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <p>
+              <strong>a) Allegorie</strong> (mit Vergleich eingeleitet: «gleich dem Jüngling am Scheidewege»). Erkennbar
+              daran, dass ein abstrakter Vorgang – die moralische Entscheidung – als räumliches Bild
+              <em>durchgehalten</em> wird: zwei Wege, zwei Wertelisten. Keller spielt auf die antike Allegorie
+              «Herakles am Scheideweg» an (Wahl zwischen Tugend und Laster). Eine Metapher wäre ein einzelnes Bild; hier
+              wird das Bild über den ganzen Abschnitt ausgebaut – deshalb Allegorie.
+            </p>
+            <p>
+              <strong>b) «Verschuldung»</strong> meint gleichzeitig <em>finanzielle Schulden</em> (er lebt in Goldach
+              auf fremde Kosten) und <em>moralische Schuld</em> (er lässt die Täuschung laufen). Keller verbindet
+              beides in einem Wort – Geld und Moral sind in dieser bürgerlichen Welt dasselbe Register.
+            </p>
+            <p>
+              <strong>c) Entscheidend für die Schuldfrage:</strong> Wenzel <em>will</em> ins Feld abschwenken, also den
+              ehrlichen Weg gehen. Er entscheidet sich richtig – aber im selben Augenblick rollt ein Fuhrwerk heran und
+              nimmt ihm die Entscheidung ab. Seine Schuld liegt damit nicht im bösen Vorsatz, sondern in der
+              <strong>Willensschwäche</strong>: Er wählt das Gute und hält es nicht durch. Das stützt die
+              Verteidigungslinie – er ist kein geplanter Hochstapler –, entlastet ihn aber nicht vollständig, denn
+              schwach sein ist kein Freispruch.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-r">Level 4</span> <span class="bd bd-n">Übung 12</span>
+          <strong>Böhni – Figur und Konflikt zusammendenken</strong>
+        </div>
+        <div class="ex">
+          <h4>Warum schweigt Böhni, obwohl er die Wahrheit ahnt?</h4>
+          <p>
+            Beantworte in 4–5 Sätzen und beziehe dabei seine Schlittenfigur (Teich Bethesda) mit ein. Nenne
+            abschliessend, welche Funktion er in der Figurenkonstellation erfüllt.
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <p>
+              Böhni durchschaut Wenzel früh (S.16, S.17, Z.27), denn als nüchterner Buchhalter beobachtet er Zahlen und
+              Verhalten statt Auftreten. Er schweigt trotzdem – aus <strong>Eigeninteresse</strong>: Er will Nettchen
+              selbst heiraten und hofft, dass der «Graf» sich von allein entlarvt und dabei möglichst tief fällt. Ein
+              sofortiges Aufdecken hätte ihn zum Warner gemacht, das Zuwarten macht ihn zum Sieger – so seine
+              Rechnung.
+            </p>
+            <p>
+              Seine <strong>Schlittenfigur am Teich Bethesda</strong> – die Gestalt, die fast dreissig Jahre auf ihr
+              Glück wartete – ist eine Allegorie auf ihn selbst: der ewig Wartende, der sein Anrecht auf Nettchen
+              öffentlich anmeldet, ohne es auszusprechen. Zugleich entlarvt sie ihn: Wer sein Glück nur
+              <em>abwartet</em>, statt es zu verdienen, ist nicht besser als der, der es geschenkt bekommt.
+            </p>
+            <p>
+              <strong>Funktion in der Konstellation:</strong> Böhni ist Wenzels Gegenspieler und dessen dunkles
+              Spiegelbild. Er verkörpert Vernunft, Besitz und gesellschaftliche Sicherheit – aber ohne Liebe. Dadurch
+              macht Keller die Wahl Nettchens erst bedeutsam: Sie entscheidet sich nicht zwischen arm und reich,
+              sondern zwischen <strong>Berechnung und Gefühl</strong>. Und Böhni macht sich durch sein Schweigen
+              mitschuldig an genau der Täuschung, die er später ausnutzt.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-s">Level 3</span> <span class="bd bd-n">Übung 13</span>
+          <strong>Novellenmerkmale kritisch prüfen</strong>
+        </div>
+        <div class="ex">
+          <h4>Welches Novellenmerkmal ist bei «KmL» am schwächsten erfüllt?</h4>
+          <p>
+            Prüfe insbesondere: «Nicht die Personen, sondern was ihnen passiert, steht im Vordergrund» und «Verbindung
+            durch eine Rahmenhandlung». Begründe deine Wahl.
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung (Argumentation zählt, nicht die «richtige» Wahl)</div>
+            <p>
+              <strong>Am schwächsten erfüllt: «Nicht die Personen stehen im Vordergrund».</strong> Zwar ist das Ereignis
+              – die Verwechslung – der Motor der Handlung, und Wenzel bleibt lange passiv, was das Merkmal stützt. Aber
+              <strong>Nettchen durchläuft eine echte Entwicklung</strong>: von der romantischen, aufs Äussere bedachten
+              Amtsratstochter zur Frau, die sich gegen Vater und Böhni durchsetzt. Auch Wenzel verändert sich am Schluss
+              vom Träumer zum nüchternen Geschäftsmann. Solche Figurenentwicklung ist eher ein Romanmerkmal – hier
+              greift die reine Novellendefinition zu kurz.
+            </p>
+            <p>
+              <strong>Zur Rahmenhandlung:</strong> Dieses Merkmal ist erfüllt, aber
+              <strong>anders als in der klassischen Definition</strong>. Es gibt keine erzählte Rahmenhandlung (wie
+              etwa bei Boccaccio, wo Figuren einander Geschichten erzählen), sondern eine
+              <strong>Klammer durch den gemeinsamen Schauplatz</strong> Seldwyla im Zyklus «Die Leute von Seldwyla».
+              Wer hier «erfüllt» schreibt, muss diesen Unterschied nennen – sonst ist die Antwort ungenau.
+            </p>
+            <p>
+              <strong>Prüfungstipp:</strong> Bei «Merkmal erfüllt? Begründung» ist ein differenziertes «ja, aber …»
+              meist mehr wert als ein glattes «ja». Zeige, dass du den Unterschied zwischen Definition und Textbefund
+              siehst.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.8rem; margin-top: 1.2rem">
+          <span class="bd bd-r">Level 4</span> <span class="bd bd-n">Übung 14</span>
+          <strong>Realismus – welche Stelle taugt als Beleg?</strong>
+        </div>
+        <div class="ex">
+          <h4>Entscheide begründet zwischen zwei Textstellen</h4>
+          <p>Du sollst belegen, dass «KmL» zum poetischen Realismus gehört. Welche Stelle eignet sich besser?</p>
+          <ul>
+            <li>
+              <strong>Stelle A:</strong> Wenzel liegt nach der Enthüllung fast erfroren im Schnee und will sterben.
+            </li>
+            <li>
+              <strong>Stelle B:</strong> Wenzel wird ein sparsamer, fleissiger «Marchand-Tailleur», lässt die Seldwyler
+              stets zuerst zahlen, verdoppelt sein Vermögen und übersiedelt nach Goldach.
+            </li>
+          </ul>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <p>
+              <strong>Besser geeignet: Stelle B.</strong> Sie trifft mehrere Epochenmerkmale gleichzeitig:
+            </p>
+            <ul>
+              <li>
+                <strong>Bürgerliches Milieu und Arbeitswelt:</strong> Handel, Kredit, Zahlungsmoral, Vermögensbildung –
+                genau der Stoff, den der Realismus in den Mittelpunkt rückt. Die Fussnote im Text markiert die
+                historische Entwicklung: «Der Handwerker wird im 19. Jahrhundert zum Unternehmer.» Das ist konkrete
+                Zeitgeschichte, keine Fantasie.
+              </li>
+              <li>
+                <strong>Keine Idealisierung:</strong> Wenzel wird nicht zum edlen Helden, sondern zum harten
+                Geschäftsmann, dem man nachsagt, er presse den Kunden «das Blut unter den Nägeln hervor».
+              </li>
+              <li>
+                <strong>Poetische Verklärung statt Anklage:</strong> Diese Härte wird humorvoll-ironisch erzählt, nicht
+                sozialkritisch angeklagt – genau Fontanes «Läuterung» des rohen Erzes. Zugleich schliesst der Erzähler
+                mit «sei es aus Undank oder aus Rache» und verweigert das Urteil.
+              </li>
+            </ul>
+            <p>
+              <strong>Warum Stelle A schwächer ist:</strong> Der einsame Held im nächtlichen Schneesturm, die
+              Todessehnsucht, die rettende Geliebte – das sind der Motivik nach <strong>romantische</strong> Elemente.
+              Man kann die Stelle mit guter Begründung verwenden (Keller schneidet sie durch Nettchens nüchternes
+              Nachfragen sofort auf den Boden zurück), aber sie ist als Erstbeleg riskant: Ein Korrektor liest dort
+              zuerst Romantik.
+            </p>
+            <p>
+              <strong>Prüfungstipp:</strong> Wähle für Epochenbelege immer eine Stelle mit
+              <strong>Geld, Beruf, Stand oder Gesellschaft</strong> darin – dort ist der Realismus am wenigsten
+              bestreitbar.
+            </p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.4rem">
+          <div class="ct">✍️ Fertige Prüfungsformulierungen – auswendig können</div>
+          <p style="margin-bottom: 0.7rem">
+            Diese Sätze passen auf die häufigsten Fragestellungen. Lerne sie als Gerüst und ergänze in der Prüfung
+            jeweils <strong>eine konkrete Textstelle</strong>.
+          </p>
+          <div class="tw">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 24%">Wird gefragt nach …</th>
+                  <th>Antwortgerüst</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Figurenkonstellation</strong></td>
+                  <td>
+                    Die Figurenkonstellation ist um den Gegensatz Goldach – Seldwyla gebaut: Goldach steht für
+                    Reichtum, Ordnung und Status, Seldwyla für Armut, Spott und Entlarvung. Wenzel steht zwischen
+                    beiden Welten, Nettchen und Böhni bilden mit ihm das Dreieck um die Liebe.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Zentraler Konflikt</strong></td>
+                  <td>
+                    Der Hauptkonflikt ist der Gegensatz von Schein und Sein: Wenzel ist ein armer Schneider, wird aber
+                    wegen Kleidung, Wagen und Auftreten als Graf behandelt. Dazu kommen der innere Konflikt (schweigen
+                    oder gestehen), der Rivalitätskonflikt mit Böhni und der Standeskonflikt zwischen Nettchen und
+                    ihrem Vater.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Schlittenfahrt</strong></td>
+                  <td>
+                    Die Schlittenfahrt stellt die beiden Gesellschaften symbolisch gegenüber: Die Goldacher fahren ihre
+                    bürgerlichen Tugenden als Hausbilder spazieren, die Seldwyler parodieren sie mit Stroh-Fortuna,
+                    Ziegenbock und riesigem Schneiderwerkzeug und bereiten so die Enthüllung vor.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Allegorischer Tanz</strong></td>
+                  <td>
+                    Der Tanz führt mit Krähe, Wolf und Esel eine Tierfabel über falschen Glanz auf und lässt zuletzt
+                    einen Doppelgänger Wenzels auftreten. Die Wahrheit wird damit nicht ausgesprochen, sondern
+                    aufgeführt – der Tanz ist die Peripetie in Bildform.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Nettchen</strong></td>
+                  <td>
+                    Nettchen entwickelt sich von einer romantischen, vom Schein beeindruckten jungen Frau zu einer
+                    selbstständigen Figur, die sich bewusst und gegen Vater und Böhni für Wenzel entscheidet. Sie ist
+                    am Ende die Handelnde und die Starke in der Beziehung.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Schuldfrage</strong></td>
+                  <td>
+                    Wenzel ist mitschuldig, weil er schweigt und die Rolle annimmt, aber kein geplanter Betrüger: Er
+                    hat sich nie selbst Graf genannt und stets mit seinem echten Namen unterschrieben. Die
+                    Verantwortung liegt ebenso beim Kutscher, der das Gerücht in die Welt setzte, bei den gutgläubigen
+                    Goldachern und bei Böhni, der schwieg.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Novelle</strong></td>
+                  <td>
+                    «KmL» ist eine Novelle: kurze Prosaerzählung, unerhörte Begebenheit, Dingsymbol Kleidung,
+                    Leitmotiv der Verkleidung, deutliche Schicksalswende und dramatischer Fünf-Phasen-Aufbau,
+                    eingebunden in den Zyklus «Die Leute von Seldwyla».
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Realismus</strong></td>
+                  <td>
+                    Die Novelle gehört zum poetischen Realismus, weil sie eine glaubwürdige bürgerliche Wirklichkeit
+                    mit Beruf, Geld und Stand zeigt, menschliche Schwächen nicht beschönigt und diesen Stoff zugleich
+                    durch Ironie, Symbolik und kunstvolle Handlungsführung «läutert» – nicht Misere, sondern
+                    gestaltete Wirklichkeit.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
       <!-- /uebungen -->
 
-      <!-- =================== 10 LEKTÜREKONTROLLE =================== -->
+      <!-- =================== 10 PRÜFUNGSSIMULATION =================== -->
+      <div id="simulation" class="sec">
+        <div class="sh">
+          <div class="num">10 — Prüfungssimulation</div>
+          <h2>Probeprüfung · 50 Minuten · 40 Punkte</h2>
+          <p>Alle sechs Lernziele kombiniert – Lösungen erst am Schluss aufdecken</p>
+        </div>
+
+        <div class="hl">
+          <strong>So arbeitest du damit:</strong> Stelle einen Timer auf <strong>50 Minuten</strong>, lege Buch und
+          Notizen weg (in der Prüfung sperrt der Safe Exam Browser ohnehin alles) und beantworte alle sieben Aufgaben
+          am Stück. Erst danach aufdecken und mit dem Punkteraster vergleichen. <strong>Richtwert:</strong> 32 von 40
+          Punkten ohne Hilfsmittel heisst, du bist bereit.
+        </div>
+
+        <div class="ib">
+          <strong>Zeitplan:</strong> A1 7 Min · A2 7 Min · A3 8 Min · A4 8 Min · A5 8 Min · A6 6 Min · A7 6 Min. Wenn
+          eine Aufgabe klemmt: markieren, weitergehen, am Schluss zurückkommen. Ein leeres Feld gibt sicher null
+          Punkte, ein halber Satz nicht.
+        </div>
+
+        <div class="pa">
+          <h4><span>Aufgabe 1 – Inhalt und Handlungsverlauf</span><span class="pt">6 Punkte · 7 Min</span></h4>
+          <p>
+            a) Schildere in höchstens acht Sätzen, wie aus dem Schneider Wenzel Strapinski ein «Graf» wird. Nenne dabei
+            mindestens drei <strong>verschiedene Ursachen</strong>. (4 P)<br />
+            b) Nenne die drei Schicksalswenden der Novelle in der richtigen Reihenfolge. (2 P)
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung und Punkteraster</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <p>
+              <strong>a)</strong> Wenzel verliert wegen des Konkurses seines Meisters Arbeit und Lohn und muss aus
+              Seldwyla auswandern. Auf der Landstrasse nach Goldach besitzt er nur einen Fingerhut, trägt aber einen
+              dunkelgrauen Radmantel mit Samtfutter und eine polnische Pelzmütze, die ihm ein edles Aussehen geben. Ein
+              Kutscher, der einen leeren herrschaftlichen Reisewagen für einen fremden Grafen überführt, nimmt ihn aus
+              Mitleid mit, weil es zu regnen beginnt. In Goldach steigt Wenzel vor dem Gasthof «Zur Waage» aus diesem
+              Wagen. Der Kutscher setzt aus Spass das Gerücht in die Welt, es handle sich um einen polnischen Grafen.
+              Wirt und Köchin deuten daraufhin jedes Zeichen von Armut und Scheu um: Dass er den Mantel nicht ablegt,
+              gilt als Empfindlichkeit gegen Kälte, sein Schweigen als vornehme Zurückhaltung. Wenzel, nicht beredt und
+              vor Scham verstummt, widerspricht nicht. Die Goldacher bauen die Rolle immer weiter aus, bis er ihr nicht
+              mehr entkommt.
+            </p>
+            <p>
+              <strong>Punkte a):</strong> je 1 P für drei genannte Ursachen aus: (1) Kleidung/Erscheinung, (2)
+              herrschaftlicher Wagen, (3) Spass bzw. Gerücht des Kutschers, (4) Gutgläubigkeit und Fehldeutung der
+              Goldacher, (5) Wenzels Schweigen und Schüchternheit. 1 P für sprachlich geordnete, chronologische
+              Darstellung.
+            </p>
+            <p>
+              <strong>b)</strong> ① Wenzel wird für einen Grafen gehalten – gesellschaftlicher Aufstieg. ② Die
+              öffentliche Enthüllung am Verlobungsfest durch Schlittenzug und allegorischen Tanz – Peripetie. ③
+              Nettchen entscheidet sich trotz allem für ihn – die Wende zum guten Ausgang. (je ⅔ P, Reihenfolge muss
+              stimmen)
+            </p>
+            <p>
+              <strong>Häufiger Fehler:</strong> schreiben, Wenzel habe sich «in die Kutsche geschlichen» oder sich als
+              Graf ausgegeben. Beides steht nicht im Text und kostet Punkte.
+            </p>
+          </div>
+        </div>
+
+        <div class="pa">
+          <h4><span>Aufgabe 2 – Erzähltheorie anwenden</span><span class="pt">6 Punkte · 7 Min</span></h4>
+          <p>Bestimme für die folgende Stelle vier Kategorien nach Petersen und begründe jede mit dem Wortlaut:</p>
+          <div class="qb">
+            «…also dass er der Märtyrer seines Mantels war und Hunger litt, so schwarz wie des letzteren Samtfutter.»
+          </div>
+          <p>
+            a) Erzählform, b) Erzählverhalten, c) Erzählhaltung, d) Erzählperspektive (Aussen- oder Innensicht) – je
+            mit kurzer Begründung. (4 P)<br />
+            e) Welche Darbietungsform liegt vor, und welche <em>andere</em> Darbietungsform kommt in der Novelle bei
+            Nettchen typischerweise vor? Nenne dort eine Fundstelle. (2 P)
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung und Punkteraster</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <ul>
+              <li>
+                <strong>a) Erzählform:</strong> Er-/Sie-Form. Über Wenzel wird in der dritten Person gesprochen («er
+                war»), der Erzähler gehört nicht zur Handlung. (1 P)
+              </li>
+              <li>
+                <strong>b) Erzählverhalten:</strong> auktorial. Der Erzähler weiss um Wenzels Beweggründe und
+                Empfinden, deutet sein Verhalten und stellt es in einen grösseren Zusammenhang. (1 P)
+              </li>
+              <li>
+                <strong>c) Erzählhaltung:</strong> ironisch-humorvoll, zugleich verständnisvoll. «Märtyrer seines
+                Mantels» überhöht komisch – ein Märtyrer stirbt für den Glauben, Wenzel hungert für ein Kleidungsstück.
+                Die Ironie ist mitfühlend, nicht verachtend. (1 P)
+              </li>
+              <li>
+                <strong>d) Perspektive:</strong> Verbindung von Aussensicht (Mantel, Samtfutter) und Innensicht
+                (Hunger, Beweggrund); der Erzähler blickt in die Figur hinein. (1 P)
+              </li>
+              <li>
+                <strong>e)</strong> Hier: <strong>Erzählerbericht</strong> mit wertendem Kommentar. Bei Nettchen
+                typisch: <strong>erlebte Rede</strong> – ihre romantischen Gedanken werden in der Er-/Sie-Form ohne
+                «sie dachte» wiedergegeben (S.19, Z.5–9). (2 P)
+              </li>
+            </ul>
+            <p>
+              <strong>Bewertungshinweis:</strong> Ohne Begründung am Wortlaut gibt es je nur einen halben Punkt. Der
+              blosse Begriff genügt nicht – die Lernzielformulierung lautet «anwenden», nicht «nennen».
+            </p>
+          </div>
+        </div>
+
+        <div class="pa">
+          <h4><span>Aufgabe 3 – Textstelle interpretieren</span><span class="pt">6 Punkte · 8 Min</span></h4>
+          <p>
+            Erkläre die Redewendung im Titel und zeige an <strong>zwei</strong> Stellen der Novelle, wie Keller sie
+            wörtlich nimmt. Gehe abschliessend auf die Umkehrung «Leute machen Kleider» ein.
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung und Punkteraster</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <p>
+              <strong>Redewendung (2 P):</strong> «Kleider machen Leute» heisst sprichwörtlich: Wer gut gekleidet ist,
+              wird besser behandelt und höher eingeschätzt – das Äussere bestimmt, wie man sozial gesehen wird. Keller
+              nimmt dieses Sprichwort zum Ausgangspunkt und prüft es an einem Extremfall.
+            </p>
+            <p><strong>Zwei Belegstellen (je 1,5 P), zum Beispiel:</strong></p>
+            <ul>
+              <li>
+                Radmantel und polnische Pelzmütze verleihen dem hungernden Schneider «ein edles und romantisches
+                Aussehen» – die Goldacher schliessen vom Stoff auf den Stand.
+              </li>
+              <li>
+                Der grüne Samtrock bei der Schlittenfahrt lässt Wenzel auf dem Höhepunkt seiner Rolle besonders
+                vornehm wirken – die Kleidung trägt die Illusion bis zuletzt.
+              </li>
+              <li>
+                Auch nach der Enthüllung, halb erfroren im Schnee, wirkt seine Kleidung noch edel – der Schein
+                überlebt die Wahrheit.
+              </li>
+            </ul>
+            <p>
+              <strong>Umkehrung (1 P):</strong> Der Seldwyler Festzug trägt vorn die Inschrift «Leute machen Kleider»
+              und schliesst hinten mit «Kleider machen Leute». Vorn fahren die Schneider aller Nationen und Zeitalter,
+              hinten sitzen Kaiser, Könige, Ratsherren und Prälaten – ausdrücklich als deren «Werk». Damit wird aus dem
+              Sprichwort eine <strong>Gesellschaftsthese</strong>: Rang ist kein Wesen, sondern ein Erzeugnis. Wenzel
+              macht als Schneider die Kleider – und seine Kleider machen ihn zum Grafen.
+            </p>
+          </div>
+        </div>
+
+        <div class="pa">
+          <h4><span>Aufgabe 4 – Symbolik der Schlittenfahrt</span><span class="pt">6 Punkte · 8 Min</span></h4>
+          <p>
+            Ordne den folgenden Bildern aus dem Verlobungsfest ihre Bedeutung zu und erkläre jeweils in ein bis zwei
+            Sätzen: a) die vergoldete Fortuna am Brautschlitten, b) die Stroh-Fortuna und der schwarze Ziegenbock, c)
+            das riesige Bügeleisen und die Schere, d) die Krähe mit Pfauenfedern im Tanz.
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung und Punkteraster</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung (je 1,5 P)</div>
+            <ul>
+              <li>
+                <strong>a) Vergoldete Fortuna:</strong> Wörtlich das Hauszeichen des Amtsrats, dessen Stadtwohnung «zur
+                Fortuna» heisst – wie alle Goldacher Schlitten trägt auch dieser das Sinnbild seines Hauses.
+                Allegorisch: Wenzels Glück beruht auf Zufall, und das Rad der Glücksgöttin dreht sich weiter.
+              </li>
+              <li>
+                <strong>b) Stroh-Fortuna mit Ziegenbock:</strong> Die Seldwyler parodieren das goldene Glück der
+                Goldacher als Strohpuppe voller Flittergold – glänzend und wertlos, wie Wenzels Grafentum. Der schwarze
+                Ziegenbock, der ihr mit gesenkten Hörnern nachjagt, steht für Unglück und Schuld, die das Scheinglück
+                einholen.
+              </li>
+              <li>
+                <strong>c) Bügeleisen und Schere:</strong> Wenzels wahrer Beruf, ins Riesenhafte vergrössert und
+                haushoch über das Fest getragen. Die Wahrheit ist sichtbar, bevor sie ausgesprochen wird.
+              </li>
+              <li>
+                <strong>d) Krähe mit Pfauenfedern:</strong> Allegorie für falschen Glanz – ein gewöhnlicher Vogel
+                schmückt sich mit fremdem Gefieder. Gemeint ist Wenzel, getroffen sind aber auch die Goldacher, die die
+                Krähe für einen Pfau gehalten haben.
+              </li>
+            </ul>
+            <p>
+              <strong>Bewertungshinweis:</strong> Volle Punkte nur, wenn du Bild <em>und</em> Bedeutung nennst. «Die
+              Fortuna steht für Glück» allein ist eine halbe Antwort.
+            </p>
+          </div>
+        </div>
+
+        <div class="pa">
+          <h4><span>Aufgabe 5 – Figuren und Konflikte</span><span class="pt">6 Punkte · 8 Min</span></h4>
+          <p>
+            a) Charakterisiere Nettchen und beschreibe ihre Entwicklung. Belege mindestens zwei Eigenschaften mit
+            Textstellen. (4 P)<br />
+            b) Nenne einen inneren und einen äusseren Konflikt der Novelle und erkläre den Unterschied. (2 P)
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung und Punkteraster</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <p>
+              <strong>a)</strong> Nettchen ist die Tochter eines wohlhabenden Amtsrats, hübsch, gebildet und
+              gesprächig, aber zu Beginn deutlich aufs Äussere bedacht: Sie trägt viel Schmuck (S.18) und will
+              ausdrücklich einen möglichst vornehmen, fremdländischen Mann heiraten – Böhni lehnt sie deshalb ab. Sie
+              ist eine begeisterte Romantikerin (S.19, Z.5–9) und gutgläubig. Zugleich zeigt sie früh Selbstwert,
+              Manieren und Klugheit (S.26). Nach der Enthüllung ist sie schockiert und beschämt, bleibt aber nicht
+              passiv: Sie fährt Wenzel nach, findet ihn im Schnee, hört seine Lebensgeschichte und prüft ihn. Danach
+              entscheidet sie «aus tief entschlossener Seele» (S.52) für ihn, setzt sich standfest gegen Vater und
+              Böhni durch (S.53–55) und fordert ihr Erbe ein. <strong>Entwicklung:</strong> von der romantischen, vom
+              Schein beeindruckten jungen Frau zur selbstständigen Frau, die das Herz über den Stand stellt und in der
+              Beziehung die Stärkere ist.
+            </p>
+            <p>
+              <strong>Punkte a):</strong> 1 P Ausgangszustand, 1 P Endzustand, 1 P benannte Entwicklung, 1 P zwei
+              korrekte Belege mit Seitenangabe.
+            </p>
+            <p>
+              <strong>b)</strong> <em>Innerer Konflikt:</em> Wenzel kämpft mit sich selbst – soll er die Wahrheit sagen
+              oder die Rolle weiterspielen? Er hat ein schlechtes Gewissen, geniesst aber Anerkennung und Nettchens
+              Nähe. <em>Äusserer Konflikt:</em> zum Beispiel Wenzel gegen Böhni als Rivalen um Nettchen oder Seldwyla
+              gegen Goldach als arme gegen reiche Stadt. <strong>Unterschied:</strong> Der innere Konflikt spielt sich
+              in einer Figur ab (Wunsch gegen Gewissen), der äussere zwischen Figuren oder Gruppen. (2 P)
+            </p>
+          </div>
+        </div>
+
+        <div class="pa">
+          <h4><span>Aufgabe 6 – Textsorte Novelle</span><span class="pt">5 Punkte · 6 Min</span></h4>
+          <p>
+            Weise an «Kleider machen Leute» vier Novellenmerkmale nach – jeweils Merkmal plus konkreter Beleg. Ordne
+            zusätzlich die fünf Phasen des dramatischen Aufbaus je einem Handlungsschritt zu.
+          </p>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung und Punkteraster</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung</div>
+            <p><strong>Vier Merkmale (je 0,75 P), zum Beispiel:</strong></p>
+            <ul>
+              <li>
+                <strong>Kürzere Prosaerzählung / Epik:</strong> Die Handlung ist auf einen einzigen Vorfall
+                konzentriert, es gibt kaum Nebenhandlungen.
+              </li>
+              <li>
+                <strong>Unerhörte Begebenheit:</strong> Ein mittelloser Schneider wird für einen polnischen Grafen
+                gehalten – und heiratet am Ende eine reiche Amtsratstochter.
+              </li>
+              <li>
+                <strong>Dingsymbol:</strong> die Kleidung, allen voran der Radmantel. Er löst die Verwechslung aus,
+                kehrt an allen Wendepunkten wieder und steht für den Kernkonflikt Schein gegen Sein.
+              </li>
+              <li>
+                <strong>Wiederkehrendes Motiv / Leitmotiv:</strong> Kleidung und Verkleidung – Mantel, Pelzmütze,
+                Samtrock, Maskerade des Festzugs, Verwandlung des Doppelgängers im Tanz.
+              </li>
+              <li>
+                <strong>Schicksalswende:</strong> die Enthüllung am Verlobungsfest.
+              </li>
+              <li>
+                <strong>Einbindung in einen Zyklus:</strong> Teil von «Die Leute von Seldwyla», zusammengehalten durch
+                den gemeinsamen Schauplatz.
+              </li>
+            </ul>
+            <p><strong>Aufbau (2 P für alle fünf):</strong></p>
+            <ul>
+              <li><strong>Exposition:</strong> Wenzel wandert arm und hungrig nach Goldach.</li>
+              <li>
+                <strong>Steigende Handlung:</strong> Er wird für einen Grafen gehalten, verliebt sich in Nettchen und
+                spielt die Rolle immer weiter.
+              </li>
+              <li>
+                <strong>Peripetie:</strong> Verlobungsfest, Seldwyler Schlittenzug und allegorischer Tanz enthüllen
+                ihn.
+              </li>
+              <li>
+                <strong>Retardierendes Moment:</strong> Wenzel liegt im Schnee, Vater und Böhni wollen Nettchen
+                zurückholen – es scheint doch nicht gut auszugehen.
+              </li>
+              <li>
+                <strong>Lösung:</strong> Nettchen entscheidet sich für Wenzel, es folgen Hochzeit und wirtschaftlicher
+                Erfolg.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pa">
+          <h4><span>Aufgabe 7 – Epoche Realismus belegen</span><span class="pt">5 Punkte · 6 Min</span></h4>
+          <p>Lies die folgende Stelle aus der Einleitung und begründe mit vier Epochenmerkmalen, warum sie zum poetischen Realismus gehört.</p>
+          <div class="qb">
+            «…denn dies ist das Wahrzeichen und sonderbare Schicksal derselben, dass die Gemeinde reich ist und die
+            Bürgerschaft arm, und zwar so, dass kein Mensch zu Seldwyla etwas hat und niemand weiss, wovon sie seit
+            Jahrhunderten eigentlich leben.»
+          </div>
+          <button class="sol-btn" onclick="ts(this)">▶ Lösung und Punkteraster</button>
+          <div class="sol">
+            <div class="sol-lbl">Musterlösung (je 1 P, 1 P für sprachliche Geschlossenheit)</div>
+            <ul>
+              <li>
+                <strong>① Soziale und wirtschaftliche Wirklichkeit:</strong> Die Stelle spricht von Gemeindevermögen,
+                Armut der Bürger und der Frage, wovon die Leute leben. Besitzverhältnisse und Erwerb sind das
+                Kernthema des Realismus – nicht Gefühl, Traum oder Vergangenheit.
+              </li>
+              <li>
+                <strong>② Bürgerliches Milieu:</strong> Im Zentrum steht eine ganz gewöhnliche Kleinstadt und ihre
+                Bürgerschaft, nicht Adel, Helden oder Mythos.
+              </li>
+              <li>
+                <strong>③ Keine Idealisierung, aber auch keine Anklage:</strong> Die Armut wird klar benannt, doch
+                nicht als Elend ausgestellt. Das entspricht Fontanes Forderung, Realismus sei nicht «das nackte
+                Wiedergeben alltäglichen Lebens, am wenigsten seines Elends» – Misere ist noch kein Realismus, es fehlt
+                sonst «die Läuterung».
+              </li>
+              <li>
+                <strong>④ Poetische Verklärung durch Ironie:</strong> Der Widerspruch «die Gemeinde reich, die
+                Bürgerschaft arm» und das ratlose «niemand weiss, wovon sie eigentlich leben» sind humorvoll
+                zugespitzt. Der auktoriale Erzähler gestaltet den Stoff kunstvoll, statt ihn nur abzubilden – genau das
+                macht aus Realismus <em>poetischen</em> Realismus.
+              </li>
+            </ul>
+            <p>
+              <strong>Ergänzung, falls Zeit bleibt:</strong> Auch die klare, schlichte und verständliche Sprache ist
+              ein Epochenmerkmal, ebenso die regionale Verankerung («irgendwo in der Schweiz»). Epoche: 1848–1890,
+              Keller lebte 1819–1890.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">📊 Auswertung</div>
+          <div class="tw">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 20%">Punkte</th>
+                  <th>Bedeutung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>36–40</strong></td>
+                  <td>Sehr sicher. Nur noch Seitenangaben und Zitate auffrischen.</td>
+                </tr>
+                <tr>
+                  <td><strong>30–35</strong></td>
+                  <td>Solide. Schau gezielt die Aufgaben an, bei denen Belege gefehlt haben.</td>
+                </tr>
+                <tr>
+                  <td><strong>22–29</strong></td>
+                  <td>
+                    Inhalt sitzt, Fachbegriffe wackeln. Arbeite Sektion 03 (Erzählanalyse) und 06 (Novelle) nochmals
+                    durch und wiederhole Übung 8 und 10.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>unter 22</strong></td>
+                  <td>
+                    Zuerst die Lektürekontrolle (Sektion 11) vollständig durchgehen, danach diese Simulation
+                    wiederholen.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- /simulation -->
+
+      <!-- =================== 11 LEKTÜREKONTROLLE =================== -->
       <div id="kontrolle" class="sec">
         <div class="sh">
-          <div class="num">10 — Lektürekontrolle</div>
+          <div class="num">11 — Lektürekontrolle</div>
           <h2>Alle Prüfungsfragen auf einen Blick</h2>
           <p>Klicke zum Aufdecken der Antwort</p>
         </div>
@@ -2096,10 +3234,15 @@
             Wie kommt Strapinski nach Goldach? Warum gilt er dort als Graf?<span class="arr">▼</span>
           </div>
           <div class="qa">
-            Er setzt sich erschöpft in eine herrschaftliche Kutsche, die ohne sein Zutun losfährt (Passivität!). In
-            Goldach steigt er aus – elegant gekleidet (Mantel, Pelzkragen, Pelzmütze). Da er nichts sagt und würdevoll
-            wirkt, halten ihn die Goldacher für einen polnischen Grafen. Der Kutscher bestätigt das Gerücht (S.11).
-            Strapinski widerspricht nie aktiv.
+            <strong>Genau lesen:</strong> Der Kutscher <em>bietet</em> ihm den leeren Wagen an, weil es zu regnen
+            beginnt und er sieht, dass sich der Fussgänger «matt und kümmerlich durch die Welt schlägt» – es ist ein
+            Akt des Mitleids, nicht Wenzels Idee. Der Wagen selbst ist ein neuer, herrschaftlicher Reisewagen, den der
+            Kutscher für einen fremden Grafen aus Basel überführt; die vielen Gepäckvorrichtungen lassen ihn schwer
+            beladen wirken, «obgleich alles leer war» – ein Bild für die ganze Novelle.<br /><br />
+            In Goldach steigt Wenzel aus diesem Wagen aus, elegant gekleidet (Radmantel mit schwarzem Samt, polnische
+            Pelzmütze, gepflegtes Haar). Der <strong>Kutscher setzt aus Spass das Gerücht in die Welt</strong>, es sei
+            ein Graf (S.11). Wenzel schweigt – teils aus Schüchternheit, teils weil ihm die Worte im Mund ersterben. Er
+            behauptet nie aktiv, ein Graf zu sein; er widerspricht nur nicht.
           </div>
         </div>
         <div class="qi">
@@ -2176,10 +3319,15 @@
             Welche Bedeutung hat der Tanz der Schneider? (S.35, Z.1f)<span class="arr">▼</span>
           </div>
           <div class="qa">
-            Doppelte Allegorie: ① Schneider tanzen mitten auf Strapinskis Verlobungsfest = Verweis auf seinen wahren
-            Stand, den er verleugnet. ② Die Seldwyler kündigen durch diesen Tanz symbolisch die bevorstehende Enthüllung
-            an. Gesagt (Tanz) = Gemeint (Wahrheit tritt ans Licht). Der Tanz ist gesellschaftliche Bühnenmetapher: Wer
-            tanzt, gehört dazu – Strapinski wird bald nicht mehr «mitspielen» können.
+            Die als Schneider verkleideten Seldwyler führen eine <strong>Tierfabel</strong> auf: eine
+            <strong>Krähe mit Pfauenfedern</strong>, ein <strong>Wolf, der sich einen Schafspelz zurechtschneidert</strong>,
+            ein <strong>Esel mit Löwenhaut</strong>. Alle drei bedeuten dasselbe: Jemand erscheint durch fremdes
+            Äusseres edler, stärker oder harmloser, als er ist. Danach wird der Ring leer, die Musik wird ernst – und
+            ein <strong>Doppelgänger Wenzels</strong> (schlanker junger Mann, dunkler Mantel, dunkle Haare) betritt den
+            Kreis. Erst diese letzte Figur macht das Gemeinte eindeutig.<br /><br />
+            <strong>Deutung:</strong> Der Tanz ist die Peripetie in Bildform – die Wahrheit wird nicht gesagt, sondern
+            <em>aufgeführt</em>. Er trifft doppelt: Wenzel als den, der fremden Glanz trägt, und die Goldacher als die,
+            die eine Krähe für einen Pfau gehalten haben.
           </div>
         </div>
 
@@ -2260,6 +3408,132 @@
         </div>
       </div>
       <!-- /kontrolle -->
+
+      <!-- =================== 12 LAST-MINUTE =================== -->
+      <div id="lastminute" class="sec">
+        <div class="sh">
+          <div class="num">12 — Last-Minute</div>
+          <h2>Repetition am Vorabend</h2>
+          <p>Kompakte Schlusscheckliste – ersetzt die Zusammenfassung nicht</p>
+        </div>
+
+        <div class="hl">
+          <strong>Der eine Satz, der alles trägt:</strong> Ein armer Schneider wird wegen seines Mantels für einen
+          Grafen gehalten, schweigt aus Schwäche und Liebe, wird öffentlich entlarvt – und gewinnt trotzdem, weil
+          Nettchen sich für den Menschen statt für den Rang entscheidet. Alles andere in dieser Novelle ist eine
+          Variation von <strong>Schein und Sein</strong>.
+        </div>
+
+        <div class="card">
+          <div class="ct">🔒 Das musst du auswendig können</div>
+          <ul class="ck">
+            <li><strong>Autor:</strong> Gottfried Keller, 1819–1890, lebte und starb in Zürich, Staatsschreiber.</li>
+            <li>
+              <strong>Werk:</strong> «Kleider machen Leute», 1874, aus dem Novellenzyklus «Die Leute von Seldwyla»
+              (10 Erzählungen, Teil I 1856, Gesamtwerk 1873–1875).
+            </li>
+            <li><strong>Epoche:</strong> Poetischer Realismus, 1848–1890.</li>
+            <li>
+              <strong>Fontanes vier Ausschlüsse:</strong> die Lüge, das Forcierte, das Nebelhafte, das Abgestorbene.
+            </li>
+            <li>
+              <strong>Fontanes Kernsatz:</strong> Realismus ist nicht «das nackte Wiedergeben alltäglichen Lebens» –
+              Misere ohne Läuterung ist «rohes Erz, nicht Metall».
+            </li>
+            <li><strong>Dingsymbol:</strong> Kleidung, allen voran der Radmantel. Gegenstück: der Fingerhut.</li>
+            <li>
+              <strong>Erzählsituation:</strong> Er-/Sie-Form · auktorial · olympischer Standort · ironisch-humorvoll,
+              teils wertend · Aussen- und Innensicht · Erzählerbericht, direkte Rede, erlebte Rede.
+            </li>
+            <li>
+              <strong>Fünf Phasen:</strong> Exposition – steigende Handlung – Peripetie (Verlobungsfest) –
+              retardierendes Moment (Schnee, Vater und Böhni) – Lösung (Hochzeit).
+            </li>
+            <li>
+              <strong>Ortsnamen:</strong> Seldwyla = «wonniger, sonniger Ort», Gemeinde reich, Bürgerschaft arm.
+              Goldach = Gold plus «Ach».
+            </li>
+            <li>
+              <strong>Schlusssatz:</strong> «Aber in Seldwyla liess er nicht einen Stüber zurück, sei es aus Undank
+              oder aus Rache.»
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="ct">🎭 Symbolliste in Kurzform</div>
+          <div class="tw">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 34%">Bild</th>
+                  <th>Bedeutung in einem Satz</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Radmantel, Pelzmütze</strong></td><td>Schein, der den Stand erzeugt.</td></tr>
+                <tr><td><strong>Fingerhut</strong></td><td>Sein – Wenzels wirkliche Armut und sein Handwerk.</td></tr>
+                <tr><td><strong>Leerer, schwer wirkender Reisewagen</strong></td><td>Vorwegnahme der ganzen Handlung: voller Schein, leerer Inhalt.</td></tr>
+                <tr><td><strong>Kreuzstrasse</strong></td><td>Entscheidung zwischen gutem Gewissen und Genuss samt «Verschuldung».</td></tr>
+                <tr><td><strong>Vergoldete Fortuna</strong></td><td>Hauszeichen des Amtsrats und Zeichen für Zufallsglück.</td></tr>
+                <tr><td><strong>Stroh-Fortuna mit Flittergold</strong></td><td>Parodie: glänzendes, aber wertloses Glück.</td></tr>
+                <tr><td><strong>Schwarzer Ziegenbock</strong></td><td>Unglück und Schuld, die dem Glück nachjagen.</td></tr>
+                <tr><td><strong>Bügeleisen und Schere</strong></td><td>Wenzels wahrer Beruf, riesengross sichtbar gemacht.</td></tr>
+                <tr><td><strong>Krähe, Wolf, Esel im Tanz</strong></td><td>Falscher Glanz, Täuschung, angemasste Grösse.</td></tr>
+                <tr><td><strong>Doppelgänger im Tanz</strong></td><td>Die Entlarvung als Aufführung – die Peripetie in Bildform.</td></tr>
+                <tr><td><strong>Schnee</strong></td><td>Wahrheit, Kälte der Ächtung, Reinigung vor dem Neuanfang.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct">⚠️ Die häufigsten Fallen</div>
+          <ul>
+            <li>
+              <strong>Erzählverhalten und Standort verwechseln.</strong> Auktorial = wie viel er weiss. Olympisch = wo
+              er steht. Zwei Kategorien, zwei Antworten.
+            </li>
+            <li>
+              <strong>Peripetie und retardierendes Moment vertauschen.</strong> Peripetie = die Enthüllung.
+              Retardierend = alles danach bis zu Nettchens Entscheid.
+            </li>
+            <li>
+              <strong>Den Schlusssatz Nettchen zuschreiben.</strong> Es geht um Wenzel, der nach dem Wegzug keinen
+              Rappen in Seldwyla lässt.
+            </li>
+            <li>
+              <strong>Behaupten, Wenzel habe sich als Graf ausgegeben.</strong> Er hat nie so unterschrieben – der
+              Advokat weist das am Ende ausdrücklich nach. Er schweigt, das ist etwas anderes.
+            </li>
+            <li>
+              <strong>Sagen, der Kutscher habe ihn eingeladen «weil er ihn für einen Grafen hielt».</strong> Der
+              Kutscher nimmt ihn aus Mitleid im Regen mit; das Gerücht setzt er erst danach aus Spass in die Welt.
+            </li>
+            <li>
+              <strong>Allegorie und Metapher gleichsetzen.</strong> Metapher = ein einzelnes Bild. Allegorie = ein
+              Bild, das über eine längere Strecke konsequent durchgeführt wird. Symbol = ein wiederkehrender
+              Gegenstand mit tieferer Bedeutung.
+            </li>
+            <li>
+              <strong>Realismus mit Naturalismus verwechseln.</strong> Der Naturalismus zeigt Elend ungefiltert; der
+              poetische Realismus formt es künstlerisch und ironisch.
+            </li>
+            <li>
+              <strong>Interpretieren ohne Beleg.</strong> Jede Deutung braucht eine Textstelle – sonst gibt es nur die
+              halbe Punktzahl.
+            </li>
+          </ul>
+        </div>
+
+        <div class="gb">
+          <strong>Kurz vor der Prüfung:</strong> Geh die Symbolliste oben durch und sprich zu jedem Bild laut einen
+          Satz. Wenn du bei allen elf einen Satz sagen kannst, ohne nachzuschauen, ist Lernziel 2 – das
+          erfahrungsgemäss schwerste – gesichert. Danach einmal die acht Prüfungsformulierungen aus Sektion 09
+          durchlesen. Mehr braucht es nicht.
+        </div>
+      </div>
+      <!-- /lastminute -->
     </main>
 
     <script>
