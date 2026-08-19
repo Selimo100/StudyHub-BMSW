@@ -1,1 +1,8 @@
 .DS_Store
+
+# Persoenliche Skill-Konfiguration (enthaelt lokale Pfade) - nie einchecken
+claude-skill/studyhub-summary/config.md
+
+.github
+.vscode
+.claude
