@@ -1,0 +1,1459 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Physik Grundlagen – Einsteiger-Guide: Umrechnen, Masse, Dichte, Genauigkeit</title>
+    <style>
+      :root {
+        --paper: #f4f2ee;
+        --paper2: #e9e6df;
+        --ink: #1e2127;
+        --ink-soft: #474d59;
+        --line: #d3ccbe;
+        --primary: #1c5aa8; /* physik-blau */
+        --primary-d: #123f77;
+        --steel: #4a6b8a;
+        --gold: #c79a3a;
+        --warn: #b8412b;
+        --ok: #2e8b57;
+        --m: #d2553a; /* Masse   */
+        --v: #2f6fd0; /* Volumen */
+        --r: #8a4fbf; /* Dichte  */
+        --shadow: 0 2px 0 rgba(30, 33, 39, 0.1), 0 14px 30px -12px rgba(30, 33, 39, 0.33);
+        --sans: Arial, "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;
+        --mono: Consolas, "Courier New", "DejaVu Sans Mono", monospace;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at 12% -5%, #fbfaf6, transparent 42%), var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        line-height: 1.62;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { flex: 1 1 auto; min-width: 0; max-width: 820px; padding: 10px 0 90px; }
+      @media (max-width: 900px) { .wrap { padding: 0 18px 90px; } }
+
+      header.top { text-align: center; padding: 46px 18px 26px; }
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 10px;
+      }
+      h1 {
+        font-family: var(--sans);
+        font-weight: 800;
+        font-size: clamp(2rem, 5.6vw, 3.4rem);
+        line-height: 1.04;
+        margin: 0;
+      }
+      h1 em { font-style: italic; color: var(--primary); }
+      .sub { max-width: 640px; margin: 14px auto 0; color: var(--ink-soft); font-size: 1.02rem; }
+
+      /* ---------- Layout mit Seiten-Navigation ---------- */
+      .page {
+        display: flex;
+        align-items: flex-start;
+        gap: 34px;
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 18px;
+      }
+      .sidenav {
+        flex: 0 0 234px;
+        position: sticky;
+        top: 12px;
+        align-self: flex-start;
+        max-height: calc(100vh - 24px);
+        overflow-y: auto;
+        padding: 22px 0 12px;
+        scrollbar-width: thin;
+      }
+      .sidenav::-webkit-scrollbar { width: 5px; }
+      .sidenav::-webkit-scrollbar-thumb { background: var(--line); border-radius: 5px; }
+      .sidenav-title {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding: 0 14px;
+        margin: 0 0 10px;
+      }
+      .sidenav-inner { display: flex; flex-direction: column; gap: 3px; }
+      .navlink {
+        display: block;
+        width: 100%;
+        text-align: left;
+        border: none;
+        border-left: 3px solid transparent;
+        background: none;
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 0.9rem;
+        line-height: 1.35;
+        color: var(--ink-soft);
+        padding: 9px 14px;
+        border-radius: 0 9px 9px 0;
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      .navlink:hover { background: #fff; color: var(--primary); }
+      .navlink.active {
+        background: #fff;
+        color: var(--primary-d);
+        border-left-color: var(--primary);
+        box-shadow: var(--shadow);
+      }
+      .sidenav-back {
+        display: inline-block;
+        margin: 16px 14px 0;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--primary);
+        text-decoration: none;
+      }
+      .sidenav-back:hover { text-decoration: underline; }
+
+      @media (max-width: 900px) {
+        .page { display: block; padding: 0; }
+        .sidenav {
+          position: sticky;
+          top: 0;
+          z-index: 50;
+          flex: none;
+          max-height: none;
+          margin: 14px 0 0;
+          padding: 10px 14px;
+          background: rgba(244, 242, 238, 0.94);
+          backdrop-filter: blur(8px);
+          border-bottom: 1.5px solid var(--line);
+        }
+        .sidenav-title, .sidenav-back { display: none; }
+        .sidenav-inner { flex-direction: row; gap: 7px; overflow-x: auto; scrollbar-width: thin; }
+        .navlink {
+          flex: 0 0 auto;
+          white-space: nowrap;
+          border: 1.5px solid var(--line);
+          border-radius: 999px;
+          padding: 8px 13px;
+          font-size: 0.82rem;
+          background: #fff;
+        }
+        .navlink.active {
+          background: var(--primary);
+          color: #fff;
+          border-color: var(--primary);
+          border-left-color: var(--primary);
+          box-shadow: var(--shadow);
+        }
+      }
+
+      .panel { display: none; animation: fade 0.35s ease; }
+      .panel.active { display: block; }
+      @keyframes fade {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: none; }
+      }
+      section.block { margin-top: 30px; }
+      h2 {
+        font-family: var(--sans);
+        font-weight: 700;
+        font-size: 1.65rem;
+        margin: 34px 0 6px;
+        color: var(--primary-d);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      h2 .num {
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        background: var(--primary);
+        color: #fff;
+        border-radius: 7px;
+        padding: 3px 8px;
+        font-weight: 600;
+      }
+      h3 {
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin: 24px 0 4px;
+      }
+      h4 { font-size: 1rem; margin: 16px 0 4px; color: var(--primary-d); }
+      p { margin: 8px 0; }
+      .lead { font-size: 1.05rem; color: var(--ink-soft); }
+      ul, ol { margin: 8px 0; padding-left: 22px; }
+      li { margin: 4px 0; }
+
+      .card {
+        background: #fff;
+        border: 1.5px solid var(--line);
+        border-radius: 16px;
+        padding: 20px 22px;
+        margin: 16px 0;
+        box-shadow: var(--shadow);
+      }
+      .merke, .warn, .tip {
+        border-radius: 10px;
+        padding: 14px 18px;
+        margin: 16px 0;
+      }
+      .merke { border-left: 6px solid var(--gold); background: #fffaf0; }
+      .warn { border-left: 6px solid var(--warn); background: #fdeee9; }
+      .tip { border-left: 6px solid var(--primary); background: #eaf1f9; }
+      .merke .tag, .warn .tag, .tip .tag {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .merke .tag { color: var(--gold); }
+      .warn .tag { color: var(--warn); }
+      .tip .tag { color: var(--primary); }
+
+      ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 14px 0; }
+      ol.steps > li {
+        position: relative;
+        padding: 10px 6px 10px 46px;
+        margin: 8px 0;
+        border-bottom: 1px dashed var(--line);
+      }
+      ol.steps > li:last-child { border-bottom: none; }
+      ol.steps > li::before {
+        counter-increment: s;
+        content: counter(s);
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .eq {
+        font-family: var(--mono);
+        background: var(--paper2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 2px 7px;
+        font-size: 0.95em;
+        color: var(--primary-d);
+      }
+      .eqblock {
+        font-family: var(--mono);
+        background: #fff;
+        border: 1.5px solid var(--line);
+        border-radius: 12px;
+        padding: 16px;
+        text-align: center;
+        font-size: 1.05rem;
+        margin: 14px 0;
+        color: var(--primary-d);
+        overflow-x: auto;
+      }
+      .frac {
+        display: inline-flex;
+        flex-direction: column;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 0.86em;
+        margin: 0 3px;
+      }
+      .frac > span:first-child { border-bottom: 1.5px solid currentColor; padding: 0 5px; }
+      .frac > span:last-child { padding: 0 5px; }
+      .pm { color: var(--m); font-weight: 700; }
+      .pv { color: var(--v); font-weight: 700; }
+      .pr { color: var(--r); font-weight: 700; }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0;
+        font-size: 0.92rem;
+        background: #fff;
+        border: 1.5px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      th, td {
+        padding: 9px 11px;
+        text-align: center;
+        border-bottom: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+      }
+      th { background: var(--primary); color: #fff; font-weight: 600; }
+      td:first-child, th:first-child { text-align: left; }
+      tr:last-child td { border-bottom: none; }
+      td:last-child, th:last-child { border-right: none; }
+      .mono { font-family: var(--mono); font-size: 0.9em; }
+      .tbl-scroll { overflow-x: auto; }
+
+      .tool {
+        background: #fff;
+        border: 1.5px solid var(--line);
+        border-radius: 18px;
+        padding: 20px;
+        margin: 18px 0;
+        box-shadow: var(--shadow);
+      }
+      .field-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: flex-end;
+        margin: 12px 0;
+      }
+      .fld { display: flex; flex-direction: column; gap: 4px; }
+      .fld label {
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: var(--ink-soft);
+      }
+      select, input[type="number"], input[type="text"] {
+        font-family: var(--mono);
+        font-size: 0.92rem;
+        padding: 8px 10px;
+        border: 1.5px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+        min-width: 90px;
+      }
+      .readout {
+        font-family: var(--mono);
+        background: var(--paper2);
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin-top: 12px;
+        font-size: 0.9rem;
+        line-height: 1.75;
+      }
+      .readout b { color: var(--primary-d); }
+      button.b {
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: 1.5px solid var(--primary);
+        background: #fff;
+        color: var(--primary);
+        border-radius: 999px;
+        padding: 7px 14px;
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      button.b:hover { background: var(--primary); color: #fff; }
+      .btnrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+      /* Präfix-Leiter */
+      .ladder { display: flex; flex-wrap: wrap; gap: 4px; margin: 14px 0; font-family: var(--mono); font-size: 0.8rem; }
+      .rung {
+        border: 1.5px solid var(--line);
+        border-radius: 8px;
+        padding: 6px 9px;
+        background: #fff;
+        text-align: center;
+        min-width: 64px;
+      }
+      .rung b { display: block; font-size: 0.95rem; color: var(--primary-d); }
+      .rung span { color: var(--ink-soft); font-size: 0.72rem; }
+      .rung.base { background: var(--primary); border-color: var(--primary); }
+      .rung.base b, .rung.base span { color: #fff; }
+
+      .ex {
+        border: 1.5px solid var(--line);
+        border-radius: 14px;
+        margin: 12px 0;
+        overflow: hidden;
+        background: #fff;
+      }
+      .ex .q { padding: 14px 16px; font-weight: 500; }
+      .ex .q .lbl {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        background: var(--paper2);
+        color: var(--primary-d);
+        border-radius: 6px;
+        padding: 2px 8px;
+        margin-right: 8px;
+        font-weight: 600;
+      }
+      .ex .sol {
+        display: none;
+        padding: 0 16px 16px;
+        border-top: 1px dashed var(--line);
+        background: #fbfdff;
+      }
+      .ex .sol.show { display: block; padding-top: 14px; }
+      .ex .sol .stag {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ok);
+        font-weight: 600;
+      }
+      .reveal {
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 0.8rem;
+        border: none;
+        background: var(--primary);
+        color: #fff;
+        border-radius: 8px;
+        padding: 6px 12px;
+        cursor: pointer;
+        margin: 0 16px 14px;
+      }
+      .reveal:hover { background: var(--primary-d); }
+
+      .check { list-style: none; padding: 0; margin: 14px 0; }
+      .check li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 11px 14px;
+        border: 1.5px solid var(--line);
+        border-radius: 12px;
+        margin: 8px 0;
+        background: #fff;
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      .check li:hover { border-color: var(--primary); }
+      .check li.done { background: #eef6f2; border-color: var(--ok); }
+      .check .box {
+        flex: 0 0 22px;
+        height: 22px;
+        border: 2px solid var(--line);
+        border-radius: 6px;
+        margin-top: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        color: #fff;
+        transition: 0.15s;
+      }
+      .check li.done .box { background: var(--ok); border-color: var(--ok); }
+      .check .ctxt b { display: block; }
+      .check .ctxt span { color: var(--ink-soft); font-size: 0.88rem; }
+
+      .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+      hr.soft { border: none; border-top: 1.5px dashed var(--line); margin: 26px 0; }
+      .backlink {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        font-size: 0.82rem;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 8px;
+      }
+      .backlink:hover { text-decoration: underline; }
+      footer { text-align: center; color: var(--ink-soft); font-size: 0.85rem; margin-top: 50px; }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="eyebrow">BMS Winterthur · Physik · Skript 01 „Grundlagen“</div>
+      <h1>Umrechnen, <em>Masse &amp; Dichte</em>, Genauigkeit</h1>
+      <p class="sub">
+        Dein Einsteiger-Guide für die Physik-Grundlagen bis und mit Kapitel 7 „Genauigkeit von Messgrössen“.
+        Keine Vorkenntnisse nötig – ein sicheres Rezept fürs Umrechnen, dazu interaktive Rechner und alle
+        Übungen mit Lösungen aus deinen Arbeitsblättern.
+      </p>
+      <a class="backlink" href="../../../index.html">← zurück zu StudyHub</a>
+    </header>
+
+    <div class="page">
+      <aside class="sidenav">
+        <p class="sidenav-title">Inhalt</p>
+        <nav class="sidenav-inner" id="navlist">
+          <button class="navlink active" data-t="start">🚀&nbsp; Start &amp; Überblick</button>
+          <button class="navlink" data-t="einheiten">📏&nbsp; SI-Einheiten &amp; Präfixe</button>
+          <button class="navlink" data-t="zehner">🔟&nbsp; Zehnerpotenzen</button>
+          <button class="navlink" data-t="umrechnen">🔄&nbsp; Umrechnen – die Methode</button>
+          <button class="navlink" data-t="flaeche">▦&nbsp; Fläche &amp; Volumen</button>
+          <button class="navlink" data-t="dichte">⚖️&nbsp; Masse &amp; Dichte</button>
+          <button class="navlink" data-t="rechnen">🧮&nbsp; Rechnen mit Grössen</button>
+          <button class="navlink" data-t="genau">🎯&nbsp; Genauigkeit (Kap. 7)</button>
+          <button class="navlink" data-t="ueben">✍️&nbsp; Übungen</button>
+        </nav>
+        <a class="sidenav-back" href="../../../index.html">← zurück zu StudyHub</a>
+      </aside>
+
+      <div class="wrap">
+      <!-- ==================== START ==================== -->
+      <div class="panel active" id="start">
+        <section class="block">
+          <h2><span class="num">!</span> Zuerst lesen – warum „Umrechnen“ dich am Anfang nervt</h2>
+          <p class="lead">
+            In der Physik steht hinter jeder Zahl eine <b>Einheit</b> (m, kg, s …). Fehler entstehen fast nie
+            beim Rechnen selbst, sondern weil verschiedene Einheiten <b>gemischt</b> werden – z.&nbsp;B. mm und m
+            in derselben Formel. Dieser Guide gibt dir <b>ein</b> Rezept, das immer funktioniert.
+          </p>
+          <div class="merke">
+            <span class="tag">Die eine Idee, die alles trägt</span>
+            <p style="margin: 6px 0 0">
+              Eine Einheit ist nur eine <b>Abkürzung für einen Zahlenwert</b>.
+              <span class="eq">1&nbsp;km</span> heisst wörtlich „<span class="eq">1000&nbsp;m</span>“,
+              <span class="eq">1&nbsp;µm</span> heisst „<span class="eq">0.000001&nbsp;m</span>“.
+              Wenn du die Abkürzung durch ihre Bedeutung <b>ersetzt</b> und dann zusammenrechnest,
+              kann fast nichts mehr schiefgehen.
+            </p>
+          </div>
+
+          <h3>Was in diesem Kapitel geprüft wird</h3>
+          <div class="tbl-scroll">
+            <table>
+              <tr><th>Thema</th><th>Was du können musst</th><th>Tab</th></tr>
+              <tr><td>SI-Basiseinheiten</td><td>Die 7 Grössen &amp; Einheiten kennen, Symbole zuordnen</td><td>📏</td></tr>
+              <tr><td>Präfixe (k, m, µ, n …)</td><td>Die Präfix-Tabelle auswendig, Werte damit umrechnen</td><td>📏 / 🔄</td></tr>
+              <tr><td>Zehnerpotenzen</td><td>Ohne TR multiplizieren, addieren, schreiben</td><td>🔟</td></tr>
+              <tr><td>Einheiten umrechnen</td><td>Länge, Zeit, auch fremde Einheiten (foot, lbs, inch)</td><td>🔄</td></tr>
+              <tr><td>Fläche &amp; Volumen</td><td>m²/dm²/mm², m³/dm³/cm³ – die „hoch 2 / hoch 3“-Falle</td><td>▦</td></tr>
+              <tr><td>Masse &amp; Dichte</td><td><span class="eq">ρ = m/V</span> nach jeder Grösse auflösen</td><td>⚖️</td></tr>
+              <tr><td>Rechnen mit Grössen</td><td>Die 3 Grundsätze strikt anwenden</td><td>🧮</td></tr>
+              <tr><td>Genauigkeit (Kap. 7)</td><td>Signifikante Stellen, richtig runden, absoluter/relativer Fehler</td><td>🎯</td></tr>
+            </table>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">0</span> Die goldene Lernreihenfolge</h2>
+          <div class="grid2">
+            <div class="card">
+              <h3 style="margin-top: 0">Verstehen (Tag 1–2)</h3>
+              <p>
+                1️⃣ Präfix-Tabelle sitzt → 2️⃣ Zehnerpotenzen ohne TR → 3️⃣ Umrech­nungs-Rezept an 5 Beispielen üben →
+                4️⃣ Fläche/Volumen extra üben (die klassische Falle).
+              </p>
+            </div>
+            <div class="card">
+              <h3 style="margin-top: 0">Anwenden (Tag 3–4)</h3>
+              <p>
+                5️⃣ <span class="eq">ρ = m/V</span> in alle Richtungen → 6️⃣ die 3 Grundsätze bei jeder Aufgabe →
+                7️⃣ signifikante Stellen &amp; Fehlerrechnung → 8️⃣ alle Übungen im Tab „✍️“ rechnen.
+              </p>
+            </div>
+          </div>
+          <div class="tip">
+            <span class="tag">Tipp</span>
+            <p style="margin: 6px 0 0">
+              Nimm dir für jede Aufgabe zuerst 20&nbsp;Sekunden: <b>Was ist gegeben? Was ist gesucht?
+              In welchen Einheiten?</b> Erst dann rechnen. Das ist kein Zeitverlust – es ist der Grund,
+              warum geübte Leute weniger Fehler machen.
+            </p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">✓</span> Lernziel-Checkliste</h2>
+          <p>Tippe an, was sicher sitzt. Ziel: am Ende alles grün.</p>
+          <ul class="check" id="checklist">
+            <li><div class="box">✓</div><div class="ctxt"><b>Präfixe auswendig</b><span>tera → femto, mit Symbol und Zehnerpotenz</span></div></li>
+            <li><div class="box">✓</div><div class="ctxt"><b>Zehnerpotenzen ohne TR</b><span>·10ⁿ addieren, multiplizieren, als Dezimalzahl schreiben</span></div></li>
+            <li><div class="box">✓</div><div class="ctxt"><b>Einheiten-Ersetzen beherrscht</b><span>Symbol durch Bedeutung ersetzen, kürzen – auch bei foot/lbs/inch</span></div></li>
+            <li><div class="box">✓</div><div class="ctxt"><b>Fläche &amp; Volumen umrechnen</b><span>×100 pro Stufe (m²), ×1000 pro Stufe (m³)</span></div></li>
+            <li><div class="box">✓</div><div class="ctxt"><b>Dichteformel in alle Richtungen</b><span>ρ=m/V, m=ρ·V, V=m/ρ – mit Einheiten</span></div></li>
+            <li><div class="box">✓</div><div class="ctxt"><b>Die 3 Grundsätze</b><span>erst Symbole · gleiche Einheiten zuerst · am Schluss sinnvoll runden</span></div></li>
+            <li><div class="box">✓</div><div class="ctxt"><b>Signifikante Stellen zählen</b><span>führende Nullen zählen nicht; Regel für ·/× und für +/−</span></div></li>
+            <li><div class="box">✓</div><div class="ctxt"><b>Absoluter &amp; relativer Fehler</b><span>Δx = x_max − x̄, rel. Fehler = Δx / x̄</span></div></li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--ink-soft)">💾 Fortschritt wird in dieser Sitzung gemerkt (nicht dauerhaft gespeichert).</p>
+        </section>
+      </div>
+
+      <!-- ==================== EINHEITEN ==================== -->
+      <div class="panel" id="einheiten">
+        <section class="block">
+          <h2><span class="num">1</span> Die 7 SI-Basiseinheiten</h2>
+          <p class="lead">
+            Aus diesen 7 Grössen lässt sich <b>jede</b> andere Einheit zusammensetzen. Für dieses Kapitel
+            zählen vor allem die ersten drei: <b>Meter, Kilogramm, Sekunde</b>.
+          </p>
+          <div class="tbl-scroll">
+            <table>
+              <tr><th>Physik. Grösse</th><th>Symbol (Grösse)</th><th>Basiseinheit</th><th>Symbol (Einheit)</th></tr>
+              <tr><td>Masse</td><td>m</td><td>Kilogramm</td><td>kg</td></tr>
+              <tr><td>Strecke / Länge</td><td>s, l, d …</td><td>Meter</td><td>m</td></tr>
+              <tr><td>Zeit</td><td>t</td><td>Sekunde</td><td>s</td></tr>
+              <tr><td>Stromstärke</td><td>I</td><td>Ampere</td><td>A</td></tr>
+              <tr><td>Temperatur</td><td>T</td><td>Kelvin</td><td>K</td></tr>
+              <tr><td>Stoffmenge</td><td>n</td><td>Mol</td><td>mol</td></tr>
+              <tr><td>Lichtstärke</td><td>I<sub>v</sub></td><td>Candela</td><td>cd</td></tr>
+            </table>
+          </div>
+          <div class="warn">
+            <span class="tag">Kleine Fiesheit</span>
+            <p style="margin: 6px 0 0">
+              Das Symbol <span class="eq">m</span> bedeutet je nach Zusammenhang <b>Masse</b> (die Grösse)
+              oder <b>Meter</b> (die Einheit). <span class="eq">s</span> ist mal <b>Strecke</b>,
+              mal <b>Sekunde</b>. Aus dem Kontext erkennst du, was gemeint ist.
+            </p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">2</span> Die Präfix-Tabelle – auswendig!</h2>
+          <p>Ein Präfix (Vorsilbe) vor einer Einheit ist nur ein Faktor. <span class="eq">k</span> heisst „mal 1000“, <span class="eq">m</span> (milli) heisst „geteilt durch 1000“.</p>
+          <div class="tbl-scroll">
+            <table>
+              <tr><th>Präfix</th><th>Symbol</th><th>Bedeutung</th><th>Zehnerpotenz</th></tr>
+              <tr><td>tera</td><td>T</td><td>1 000 000 000 000</td><td>10¹²</td></tr>
+              <tr><td>giga</td><td>G</td><td>1 000 000 000</td><td>10⁹</td></tr>
+              <tr><td>mega</td><td>M</td><td>1 000 000</td><td>10⁶</td></tr>
+              <tr><td>kilo</td><td>k</td><td>1 000</td><td>10³</td></tr>
+              <tr><td>hekto</td><td>h</td><td>100</td><td>10²</td></tr>
+              <tr><td>deka</td><td>da</td><td>10</td><td>10¹</td></tr>
+              <tr><td>— (Basis)</td><td>—</td><td>1</td><td>10⁰</td></tr>
+              <tr><td>dezi</td><td>d</td><td>0,1</td><td>10⁻¹</td></tr>
+              <tr><td>centi</td><td>c</td><td>0,01</td><td>10⁻²</td></tr>
+              <tr><td>milli</td><td>m</td><td>0,001</td><td>10⁻³</td></tr>
+              <tr><td>mikro</td><td>µ</td><td>0,000 001</td><td>10⁻⁶</td></tr>
+              <tr><td>nano</td><td>n</td><td>0,000 000 001</td><td>10⁻⁹</td></tr>
+              <tr><td>piko</td><td>p</td><td>0,000 000 000 001</td><td>10⁻¹²</td></tr>
+              <tr><td>femto</td><td>f</td><td>0,000 000 000 000 001</td><td>10⁻¹⁵</td></tr>
+            </table>
+          </div>
+          <div class="merke">
+            <span class="tag">Eselsbrücke</span>
+            <p style="margin: 6px 0 0">
+              Die „grossen“ Dreierschritte: <b>kilo–mega–giga–tera</b> = 10<sup>3,6,9,12</sup>.
+              Die „kleinen“: <b>milli–mikro–nano–piko–femto</b> = 10<sup>−3,−6,−9,−12,−15</sup>.
+              Dazwischen die Alltagsstufen <b>hekto, deka, dezi, centi</b>.
+            </p>
+          </div>
+          <div class="tip">
+            <span class="tag">So liest du es</span>
+            <p style="margin: 6px 0 0">
+              <span class="eq">13&nbsp;nm</span> = <span class="eq">13 · 10⁻⁹ m</span> = <span class="eq">1.3 · 10⁻⁸ m</span>.
+              Vergleich mit <span class="eq">1.4 · 10⁻⁷ m</span>: der Exponent −7 ist grösser als −8 →
+              <span class="eq">1.4·10⁻⁷ m</span> ist die <b>grössere</b> Distanz.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================== ZEHNERPOTENZEN ==================== -->
+      <div class="panel" id="zehner">
+        <section class="block">
+          <h2><span class="num">3</span> Zehnerpotenzen ohne Taschenrechner</h2>
+          <p class="lead">
+            <span class="eq">10ⁿ</span> heisst: eine 1 mit n Nullen (bei n&nbsp;&gt;&nbsp;0) bzw.
+            das Komma um |n| Stellen nach links (bei n&nbsp;&lt;&nbsp;0).
+          </p>
+          <div class="tbl-scroll">
+            <table>
+              <tr><th>Regel</th><th>Formel</th><th>Beispiel</th></tr>
+              <tr><td>Als Dezimalzahl</td><td>10ⁿ = 1 &amp; n Nullen</td><td>3.4·10⁵ = 340 000</td></tr>
+              <tr><td>Negativer Exponent</td><td>10⁻ⁿ = 1 / 10ⁿ</td><td>4.7·10⁻⁷ = 0.000 000 47</td></tr>
+              <tr><td>Multiplizieren</td><td>10ᵃ · 10ᵇ = 10<sup>a+b</sup></td><td>10⁵ · 10⁻² = 10³</td></tr>
+              <tr><td>Dividieren</td><td>10ᵃ / 10ᵇ = 10<sup>a−b</sup></td><td>10⁶ / 10⁹ = 10⁻³</td></tr>
+              <tr><td>Potenzieren</td><td>(10ᵃ)ᶜ = 10<sup>a·c</sup></td><td>(10³)² = 10⁶</td></tr>
+            </table>
+          </div>
+
+          <div class="merke">
+            <span class="tag">Addieren ≠ Multiplizieren</span>
+            <p style="margin: 6px 0 0">
+              Beim <b>Addieren</b> darfst du die Exponenten <b>nicht</b> zusammenzählen – du musst erst
+              beide Zahlen gleich schreiben:<br />
+              <span class="eq">2.5·10⁵ + 5·10⁻²</span> = <span class="eq">250 000 + 0.05</span> = <span class="eq">250 000.05</span><br />
+              Beim <b>Multiplizieren</b> dagegen: <span class="eq">2.5·10⁵ · 5·10⁻²</span> =
+              <span class="eq">(2.5·5) · 10<sup>5+(−2)</sup></span> = <span class="eq">12.5·10³</span> = <span class="eq">12 500</span>.
+            </p>
+          </div>
+
+          <h3>Standard-Schreibweise (wissenschaftliche Notation)</h3>
+          <p>
+            Eine Zahl „schön“ schreiben heisst: <b>eine Ziffer vor dem Komma</b>, Rest als <span class="eq">·10ⁿ</span>.
+          </p>
+          <div class="eqblock">
+            0.0001 = 1·10⁻⁴ &nbsp;&nbsp;|&nbsp;&nbsp; 100 000 = 1·10⁵ &nbsp;&nbsp;|&nbsp;&nbsp; 12.5·10³ = 1.25·10⁴
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================== UMRECHNEN ==================== -->
+      <div class="panel" id="umrechnen">
+        <section class="block">
+          <h2><span class="num">4</span> Das Rezept: „Einheit durch ihre Bedeutung ersetzen“</h2>
+          <p class="lead">
+            Diese Methode funktioniert für <b>alles</b> – auch für Einheiten, die du noch nie gesehen hast
+            (foot, pound, inch). Du musst dir nur <b>nichts merken ausser der Präfix-Tabelle</b>.
+          </p>
+          <ol class="steps">
+            <li>Schreibe die Zahl mit ihrer Einheit hin.</li>
+            <li>Ersetze jedes Einheiten-Symbol durch „<b>1 Symbol = … Basiseinheit</b>“. Beispiele:
+              <span class="eq">1 km = 10³ m</span>, <span class="eq">1 µm = 10⁻⁶ m</span>,
+              <span class="eq">1 min = 60 s</span>, <span class="eq">1 g = 10⁻³ kg</span>.</li>
+            <li>Alles zusammenrechnen (Zahlen mal Zahlen, Zehnerpotenzen nach den Regeln aus Tab 🔟).</li>
+            <li>Zum Schluss wieder in die gewünschte Einheit umschreiben.</li>
+          </ol>
+
+          <div class="tool">
+            <h3 style="margin-top: 0">🔄 Präfix-Umrechner</h3>
+            <p>Wähle Wert, Start- und Zieleinheit. Der Rechner zeigt dir auch den <b>Exponenten-Sprung</b>.</p>
+            <div class="field-row">
+              <div class="fld"><label>Wert</label><input type="number" id="cvVal" value="7.56" step="any" /></div>
+              <div class="fld"><label>von</label>
+                <select id="cvFrom"></select>
+              </div>
+              <div class="fld"><label>nach</label>
+                <select id="cvTo"></select>
+              </div>
+              <div class="fld"><label>Grösse</label>
+                <select id="cvDim">
+                  <option value="1">Länge / Masse / Zeit (linear)</option>
+                  <option value="2">Fläche (²)</option>
+                  <option value="3">Volumen (³)</option>
+                </select>
+              </div>
+            </div>
+            <div class="readout" id="cvRead"></div>
+            <div class="btnrow">
+              <button class="b" data-cv="1,km,um,1">1 km → µm</button>
+              <button class="b" data-cv="25,min,s,1">25 min → s</button>
+              <button class="b" data-cv="0.0048,m,dm,2">0.0048 m² → dm²</button>
+              <button class="b" data-cv="360000,cm,dm,3">360 000 cm³ → dm³</button>
+            </div>
+          </div>
+
+          <div class="ladder" id="ladder"></div>
+          <p style="font-size: 0.84rem; color: var(--ink-soft)">
+            Die blaue Stufe ist die Basiseinheit. Jede Stufe nach rechts = <span class="eq">·10</span>
+            (bzw. <span class="eq">·100</span> bei Fläche, <span class="eq">·1000</span> bei Volumen).
+          </p>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">5</span> Vorgerechnete Beispiele (aus Übung P01.M01)</h2>
+
+          <h3>Beispiel A · Wie viele µm sind 1 km?</h3>
+          <div class="eqblock">
+            1 km = 10³ m &nbsp;und&nbsp; 1 m = 10⁶ µm<br />
+            → 1 km = 10³ · 10⁶ µm = 10⁹ µm
+          </div>
+
+          <h3>Beispiel B · Lichtgeschwindigkeit c = 2.9979·10⁸ m/s in mm/ps</h3>
+          <div class="eqblock">
+            1 m = 10³ mm &nbsp;|&nbsp; 1 s = 10¹² ps<br />
+            c = 2.9979·10⁸ ·
+            <span class="frac"><span>10³ mm</span><span>10¹² ps</span></span>
+            = 2.9979·10<sup>8+3−12</sup> mm/ps = 2.9979·10⁻¹ mm/ps ≈ <b>0.30 mm/ps</b>
+          </div>
+
+          <h3>Beispiel C · 1 foot in Meter (1 m = 39.37 inch, 1 foot = 12 inch)</h3>
+          <div class="eqblock">
+            1 foot = 12 inch = 12 ·
+            <span class="frac"><span>1</span><span>39.37</span></span>
+            m = <b>0.305 m</b> &nbsp;→&nbsp; 42.5 foot = 42.5 · 0.305 m ≈ <b>12.95 m</b>
+          </div>
+
+          <h3>Beispiel D · Dichte von Eisen: 0.2853 lbs/inch³ in kg/m³</h3>
+          <p>1 lbs = 0.4545 kg, &nbsp; 1 m = 39.37 inch → 1 inch = 1/39.37 m → 1 inch³ = (1/39.37)³ m³</p>
+          <div class="eqblock">
+            ρ = 0.2853 ·
+            <span class="frac"><span>0.4545 kg</span><span>(1/39.37)³ m³</span></span>
+            = 0.2853 · 0.4545 · 39.37³
+            <span class="frac"><span>kg</span><span>m³</span></span>
+            ≈ <b>7913 kg/m³</b>
+          </div>
+          <div class="tip">
+            <span class="tag">Warum das reicht</span>
+            <p style="margin: 6px 0 0">
+              Du hast nie eine „Umrechnungsformel für Dichte“ gebraucht. Du hast nur <b>lbs</b> und
+              <b>inch</b> je durch ihre Bedeutung ersetzt und gekürzt. Genau so gehst du an jede
+              zusammengesetzte Einheit heran (auch N, J, Pa …).
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================== FLÄCHE & VOLUMEN ==================== -->
+      <div class="panel" id="flaeche">
+        <section class="block">
+          <h2><span class="num">6</span> Die „hoch 2 / hoch 3“-Falle</h2>
+          <p class="lead">
+            Bei Längen ist eine Stufe der Präfix-Leiter Faktor <b>10</b>. Bei Flächen (<span class="eq">m²</span>)
+            ist es Faktor <b>100</b>, bei Volumen (<span class="eq">m³</span>) Faktor <b>1000</b> – weil die
+            Umrechnung <b>zweimal bzw. dreimal</b> passiert.
+          </p>
+          <div class="eqblock">
+            1 m = 10 dm → 1 m² = (10 dm)² = 10² dm² = 100 dm²<br />
+            1 m = 10 dm → 1 m³ = (10 dm)³ = 10³ dm³ = 1000 dm³
+          </div>
+
+          <div class="tbl-scroll">
+            <table>
+              <tr><th>Schritt auf der Leiter</th><th>Länge</th><th>Fläche</th><th>Volumen</th></tr>
+              <tr><td>m ↔ dm</td><td>×10</td><td>×100</td><td>×1000</td></tr>
+              <tr><td>dm ↔ cm</td><td>×10</td><td>×100</td><td>×1000</td></tr>
+              <tr><td>cm ↔ mm</td><td>×10</td><td>×100</td><td>×1000</td></tr>
+              <tr><td>m ↔ mm (3 Stufen)</td><td>×1000</td><td>×10⁶</td><td>×10⁹</td></tr>
+            </table>
+          </div>
+
+          <h3>Vorgerechnet</h3>
+          <div class="eqblock">
+            0.0048 m² = 0.0048 · 100 dm² = <b>0.48 dm²</b> = 0.48 · 10 000 mm² = <b>4800 mm²</b><br />
+            360 000 cm³ = 360 000 / 1000 dm³ = <b>360 dm³</b> = 360 / 1000 m³ = <b>0.36 m³</b><br />
+            7.6 dm³ = 7.6 · 10⁶ mm³ = <b>7 600 000 mm³</b><br />
+            5 Quadratmeilen = 5 · (1.6 km)² = 5 · 2.56 km² = <b>12.8 km²</b>
+          </div>
+          <div class="merke">
+            <span class="tag">Merke</span>
+            <p style="margin: 6px 0 0">
+              1 Liter = 1 dm³. &nbsp; 1 mL = 1 cm³. &nbsp; 1 m³ = 1000 L.
+              Diese drei brauchst du in Physik ständig (z.&nbsp;B. bei Dichte-Aufgaben).
+            </p>
+          </div>
+          <div class="warn">
+            <span class="tag">Typischer Fehler</span>
+            <p style="margin: 6px 0 0">
+              „<span class="eq">1 m³ = 100 cm³</span>“ ist <b>falsch</b>. Es sind
+              <span class="eq">10⁶ cm³</span> (nämlich 100·100·100). Immer prüfen: passt die
+              Grössenordnung? Ein Würfel von 1&nbsp;m Kante fasst sicher mehr als 100 Zuckerwürfel.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================== MASSE & DICHTE ==================== -->
+      <div class="panel" id="dichte">
+        <section class="block">
+          <h2><span class="num">7</span> Masse, Volumen, Dichte</h2>
+          <p class="lead">
+            <b>Masse</b> <span class="pm">m</span> sagt, <i>wie viel Stoff</i> da ist (in kg).
+            <b>Volumen</b> <span class="pv">V</span> sagt, <i>wie viel Platz</i> er braucht (in m³).
+            <b>Dichte</b> <span class="pr">ρ</span> („rho“) sagt, <i>wie dicht der Stoff gepackt ist</i>:
+            Kilogramm pro Kubikmeter.
+          </p>
+          <div class="eqblock" style="font-size: 1.3rem">
+            <span class="pr">ρ</span> =
+            <span class="frac"><span class="pm">m</span><span class="pv">V</span></span>
+            &nbsp;&nbsp;⟺&nbsp;&nbsp; <span class="pm">m</span> = <span class="pr">ρ</span> · <span class="pv">V</span>
+            &nbsp;&nbsp;⟺&nbsp;&nbsp; <span class="pv">V</span> =
+            <span class="frac"><span class="pm">m</span><span class="pr">ρ</span></span>
+          </div>
+          <div class="merke">
+            <span class="tag">Dreieck-Trick</span>
+            <p style="margin: 6px 0 0">
+              Schreibe <span class="pm">m</span> oben, <span class="pr">ρ</span> und <span class="pv">V</span>
+              unten ins Dreieck. Decke die gesuchte Grösse mit dem Finger ab – was übrig bleibt, ist die Formel.
+              Gesucht <span class="pm">m</span> → <span class="pr">ρ</span>·<span class="pv">V</span>.
+              Gesucht <span class="pv">V</span> → <span class="pm">m</span>/<span class="pr">ρ</span>.
+            </p>
+          </div>
+
+          <h3>Was ist gleich, was verschieden?</h3>
+          <div class="tbl-scroll">
+            <table>
+              <tr><th></th><th>gleiches Material</th><th>gleiches Volumen</th><th>gleiche Masse</th></tr>
+              <tr><td>… also ist gleich:</td><td>Dichte ρ</td><td>Volumen V</td><td>Masse m</td></tr>
+              <tr><td>Beispiel</td><td>Eiswürfel &amp; Eisblock</td><td>Würfel Blei / Alu</td><td>1 kg Federn / 1 kg Blei</td></tr>
+            </table>
+          </div>
+          <p><b>Blei ist dichter als Alu – nicht „schwerer“.</b> „Schwer“ hängt vom Volumen ab, „dicht“ nicht.</p>
+
+          <h3>Dichte-Tabelle (aus den Aufgaben)</h3>
+          <div class="tbl-scroll">
+            <table>
+              <tr><th>Stoff</th><th>ρ in kg/m³</th><th>ρ in g/cm³</th></tr>
+              <tr><td>Wasser (4 °C)</td><td>1000</td><td>1.00</td></tr>
+              <tr><td>Eis (0 °C)</td><td>917</td><td>0.917</td></tr>
+              <tr><td>Ethanol</td><td>789</td><td>0.789</td></tr>
+              <tr><td>Glycerin</td><td>≈ 1260</td><td>≈ 1.26</td></tr>
+              <tr><td>Aluminium</td><td>2700</td><td>2.70</td></tr>
+              <tr><td>Zinn</td><td>7290</td><td>7.29</td></tr>
+              <tr><td>Eisen</td><td>≈ 7900</td><td>≈ 7.9</td></tr>
+              <tr><td>Messing</td><td>8470</td><td>8.47</td></tr>
+              <tr><td>Kupfer</td><td>8920</td><td>8.92</td></tr>
+              <tr><td>Blei</td><td>11340</td><td>11.34</td></tr>
+            </table>
+          </div>
+          <div class="tip">
+            <span class="tag">Umrechnung g/cm³ ↔ kg/m³</span>
+            <p style="margin: 6px 0 0">
+              <span class="eq">1 g/cm³ = 1000 kg/m³</span>. Grund: 1 g = 10⁻³ kg, 1 cm³ = 10⁻⁶ m³ →
+              10⁻³ / 10⁻⁶ = 10³. Also einfach <b>· 1000</b>.
+            </p>
+          </div>
+
+          <div class="tool">
+            <h3 style="margin-top: 0">⚖️ Dichte-Rechner</h3>
+            <p>Gib zwei Werte ein, lass den dritten leer – der Rechner löst die Formel für dich auf.</p>
+            <div class="field-row">
+              <div class="fld"><label>Masse m (kg)</label><input type="number" id="dM" step="any" placeholder="?" /></div>
+              <div class="fld"><label>Volumen V (m³)</label><input type="number" id="dV" step="any" placeholder="?" /></div>
+              <div class="fld"><label>Dichte ρ (kg/m³)</label><input type="number" id="dR" step="any" placeholder="?" /></div>
+              <button class="b" id="dGo">berechnen</button>
+            </div>
+            <div class="readout" id="dRead">Zwei Felder ausfüllen, dann „berechnen“.</div>
+            <div class="btnrow">
+              <button class="b" data-d="_,2,11340">Blei, V = 2 m³ → m</button>
+              <button class="b" data-d="0.005,_,2700">Alu, m = 5 g → V</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">8</span> Dichte-Aufgaben Schritt für Schritt</h2>
+
+          <h3>„Welche Masse hat 2.000 m³ Blei?“ (ρ = 11340 kg/m³)</h3>
+          <div class="eqblock">
+            geg.: ρ = 11340 kg/m³, V = 2.000 m³ &nbsp;·&nbsp; ges.: m<br />
+            m = ρ · V = 11340
+            <span class="frac"><span>kg</span><span>m³</span></span>
+            · 2.000 m³ = 22 680 kg = <b>22.68 t</b>
+          </div>
+
+          <h3>„Welches Volumen hat 5.00 g Aluminium?“ (ρ = 2700 kg/m³)</h3>
+          <div class="eqblock">
+            zuerst gleiche Einheiten: 5.00 g = 5.00·10⁻³ kg<br />
+            V = m / ρ = (5.00·10⁻³ kg) / (2700 kg/m³) = 1.85·10⁻⁶ m³ = <b>1.85 cm³</b>
+          </div>
+
+          <h3>Eisquader: m = 400 g, a = 4.00 cm, b = 5.00 cm, ρ = 917 kg/m³ → dritte Kante c?</h3>
+          <div class="eqblock">
+            V = m / ρ = 0.400 kg / 917 (kg/m³) = 4.362·10⁻⁴ m³ = 436.2 cm³<br />
+            c = V / (a·b) = 436.2 cm³ / (4.00·5.00 cm²) = <b>21.8 cm</b>
+          </div>
+
+          <h3>Unbekannte Flüssigkeit: m = 5.00 kg, V = 3.96 dm³. Welcher Stoff?</h3>
+          <div class="eqblock">
+            ρ = m / V =
+            <span class="frac"><span>5000 g</span><span>3960 cm³</span></span>
+            ≈ 1.26 g/cm³ = 1260 kg/m³ → <b>Glycerin</b>
+          </div>
+
+          <div class="merke">
+            <span class="tag">Mischungs-Aufgaben (schwieriger)</span>
+            <p style="margin: 6px 0 0">
+              Bei „mische X und Y“ gilt: <b>Massen addieren, Volumen addieren</b>, dann
+              ρ<sub>Misch</sub> = m<sub>ges</sub> / V<sub>ges</sub>. Jedes Teilvolumen bekommst du
+              aus V = m / ρ. Beispiel 1 kg Wasser + 1 kg Ethanol:
+              V = 1/1000 + 1/789 m³ ≈ 2.267·10⁻³ m³, also ρ = 2 / 2.267·10⁻³ ≈ <b>882 kg/m³</b>.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================== RECHNEN MIT GRÖSSEN ==================== -->
+      <div class="panel" id="rechnen">
+        <section class="block">
+          <h2><span class="num">9</span> Die 3 Grundsätze – bei jeder Aufgabe</h2>
+          <p class="lead">
+            Diese drei Regeln aus dem Skript verhindern die meisten Fehler. Halte dich <b>strikt</b> daran,
+            auch wenn es am Anfang umständlich wirkt.
+          </p>
+
+          <div class="card">
+            <h3 style="margin-top: 0">Grundsatz 1 · Erst mit Symbolen, dann mit Zahlen</h3>
+            <p>
+              Zuerst überlegen: <b>gegeben / gesucht</b>. Dann die Formel nach der gesuchten Grösse
+              <b>auflösen</b>. Erst ganz am Schluss Zahlen mit Einheiten einsetzen.
+            </p>
+            <p style="margin: 4px 0 0; color: var(--ink-soft); font-size: 0.9rem">
+              Vorteil: weniger Schreibarbeit, weniger Fehler, Formel ist wiederverwendbar.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-top: 0">Grundsatz 2 · Zuerst alles in dieselben Einheiten</h3>
+            <p>
+              Bevor du rechnest: alle gegebenen Grössen in <b>Basiseinheiten</b> (m, kg, s) umrechnen –
+              oder zumindest in ein <b>einheitliches</b> System.
+            </p>
+            <div class="warn" style="margin: 10px 0 0">
+              <span class="tag">Beispiel Kegelvolumen – der Klassiker</span>
+              <p style="margin: 6px 0 0">
+                d = 5 mm, h = 3.1 m. Wer <span class="eq">r = 2.5 mm</span> und <span class="eq">h = 3.1 m</span>
+                direkt einsetzt, mischt mm und m → Ergebnis um Faktor 1000 (bzw. 10⁶) daneben.
+                Richtig: <span class="eq">r = 2.5 mm = 0.0025 m</span>, dann rechnen.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-top: 0">Grundsatz 3 · Zwischenresultate genau, Schluss sinnvoll runden</h3>
+            <p>
+              Zwischenschritte <b>voll</b> aufschreiben (sonst Rundungsfehler). Das Endergebnis mit so
+              vielen <b>signifikanten Stellen</b> wie die <b>ungenaueste</b> Eingangsgrösse.
+            </p>
+            <p style="margin: 4px 0 0; color: var(--ink-soft); font-size: 0.9rem">
+              Beispiel: Zug durch den 57.1 km langen Gotthard-Basistunnel bei 153 km/h →
+              <b>22.4 min</b>, nicht 22.392157 min.
+            </p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">10</span> Musterlösung nach den Grundsätzen</h2>
+          <h3>Pendel: Schwingungsdauer bei l = 785 mm (g = 9.81 m/s²)</h3>
+          <div class="eqblock">
+            geg.: l = 785 mm = 0.785 m &nbsp;|&nbsp; ges.: t &nbsp;|&nbsp; Formel: t = 2π · √(l / g)<br />
+            t = 2π · √(0.785 / 9.81) s = 2π · √(0.08002) s = 2π · 0.2829 s ≈ <b>1.78 s</b>
+          </div>
+          <h3>Umkehrung: Wie lang, damit T = 60 s (einmal pro Minute)?</h3>
+          <div class="eqblock">
+            t = 2π · √(l/g) &nbsp;→&nbsp; auflösen nach l:
+            l = g · (t / 2π)² = 9.81 · (60 / 2π)² m ≈ 9.81 · 91.19 m ≈ <b>895 m</b>
+          </div>
+          <div class="tip">
+            <span class="tag">Merke</span>
+            <p style="margin: 6px 0 0">
+              „Erst Symbole“ heisst hier: <b>l = g·(t/2π)²</b> hinschreiben, <i>bevor</i> Zahlen kommen.
+              Dann siehst du sofort, ob die Umformung stimmt.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================== GENAUIGKEIT ==================== -->
+      <div class="panel" id="genau">
+        <section class="block">
+          <h2><span class="num">11</span> Kapitel 7 – Genauigkeit von Messgrössen</h2>
+          <p class="lead">
+            Jede Messung hat einen <b>Messfehler</b> (feinste Skala des Geräts, Abweichung des Geräts,
+            ungenaues Ablesen). Darum ist die Masszahl <b>nie exakt</b> bekannt – und man muss der Zahl
+            ansehen, wie genau sie ist.
+          </p>
+          <div class="eqblock" style="font-size: 1.15rem">
+            Messwert: &nbsp; h = 22.3 m &nbsp;&nbsp;→&nbsp;&nbsp;
+            <span class="mono">h</span> = Symbol, &nbsp;<span class="mono">22.3</span> = Masszahl, &nbsp;<span class="mono">m</span> = Einheit
+          </div>
+
+          <h3>Signifikante Stellen – die Regeln</h3>
+          <ul>
+            <li>Die <b>letzte</b> Ziffer der Masszahl ist noch verlässlich. Mehr signifikante Ziffern = genauer.</li>
+            <li><b>Vorangestellte Nullen zählen nicht</b> mit. (<span class="eq">0.0052</span> → 2 signifikante Stellen.)</li>
+            <li>Nullen <b>zwischen</b> oder <b>hinter</b> anderen Ziffern zählen mit. (<span class="eq">4.0030</span> → 5.)</li>
+            <li>Bei <b>· und /</b>: Ergebnis auf so viele <b>signifikante Ziffern</b> runden wie die ungenaueste Eingangsgrösse.</li>
+            <li>Bei <b>+ und −</b>: Ergebnis auf so viele <b>Dezimalstellen</b> wie die ungenaueste Eingangsgrösse.</li>
+          </ul>
+          <div class="tbl-scroll">
+            <table>
+              <tr><th>Zahl</th><th>signifikante Stellen</th><th>Warum</th></tr>
+              <tr><td>10.244 m</td><td>5</td><td>alle Ziffern zählen</td></tr>
+              <tr><td>0.0020 m</td><td>2</td><td>führende Nullen weg, „20“ bleibt</td></tr>
+              <tr><td>4.0030 m</td><td>5</td><td>innere + hintere Null zählen</td></tr>
+              <tr><td>3.0·10⁻² m</td><td>2</td><td>nur die Mantisse „3.0“ zählt</td></tr>
+              <tr><td>0.0052 m</td><td>2</td><td>„52“</td></tr>
+              <tr><td>40.000 g</td><td>5</td><td>Komma da → alle Nullen verlässlich</td></tr>
+            </table>
+          </div>
+          <div class="warn">
+            <span class="tag">Grauzone</span>
+            <p style="margin: 6px 0 0">
+              Bei <span class="eq">300000 m</span> <i>ohne</i> Komma ist unklar, wie viele Nullen verlässlich sind.
+              Im Unterricht wird es als <b>6 signifikante Stellen</b> gezählt – eindeutig machst du es mit
+              <span class="eq">3.0·10⁵ m</span> (2 Stellen) oder <span class="eq">3.00000·10⁵ m</span> (6 Stellen).
+            </p>
+          </div>
+
+          <div class="tool">
+            <h3 style="margin-top: 0">🎯 Signifikante-Stellen-Checker</h3>
+            <p>Zahl eingeben (auch <span class="mono">3.0e-2</span> oder <span class="mono">30·10^3</span> als <span class="mono">30e3</span>).</p>
+            <div class="field-row">
+              <div class="fld"><label>Zahl</label><input type="text" id="sfIn" value="4.0030" /></div>
+              <button class="b" id="sfGo">zählen</button>
+            </div>
+            <div class="readout" id="sfRead"></div>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">12</span> Rechnen mit der richtigen Genauigkeit</h2>
+
+          <h3>Beispiel 1 · Addition: Kartoffeln kaufen</h3>
+          <p>
+            7.56 kg (Marktwaage, 0.01 kg) − 6.052 kg (Laborwaage, 0.001 kg) + 13.7 kg (Badezimmerwaage, 0.1 kg).
+          </p>
+          <div class="eqblock">
+            7.56 − 6.052 + 13.7 = 15.208 kg<br />
+            ungenaueste Grösse: 13.7 kg → <b>1 Dezimalstelle</b> → Ergebnis: <b>15.2 kg</b>
+          </div>
+          <p style="color: var(--ink-soft); font-size: 0.9rem">
+            → Bei + / − zählt die <b>absolute</b> Genauigkeit (Anzahl Dezimalstellen), nicht die signifikanten Stellen.
+          </p>
+
+          <h3>Beispiel 2 · Division: Geschwindigkeit einer Läuferin</h3>
+          <p>
+            s = 100 m abgeschritten (Unsicherheit ± 5 m → nur <b>2</b> sign. Stellen: <span class="eq">1.0·10² m</span>),
+            t = 13.42 s (Handy-Stoppuhr 0.01 s → 4 sign. Stellen).
+          </p>
+          <div class="eqblock">
+            v = s / t = 100 m / 13.42 s = 7.45156… m/s<br />
+            ungenaueste Grösse: s mit 2 sign. Stellen → <b>v ≈ 7.5 m/s</b>
+          </div>
+          <div class="merke">
+            <span class="tag">Fehler abschätzen (min/max-Methode)</span>
+            <p style="margin: 6px 0 0">
+              v<sub>max</sub> = s<sub>max</sub>/t<sub>min</sub> = 105 / 13.415 = 7.827 m/s &nbsp;·&nbsp;
+              v<sub>min</sub> = s<sub>min</sub>/t<sub>max</sub> = 95 / 13.425 = 7.076 m/s<br />
+              absoluter Fehler Δv ≈ 7.83 − 7.45 ≈ <b>0.4 m/s</b> &nbsp;·&nbsp;
+              relativer Fehler = Δv / v̄ = 0.376 / 7.45 ≈ <b>5 %</b><br />
+              Ergebnis mit Fehlerangabe: <b>v = (7.5 ± 0.4) m/s</b> &nbsp;oder&nbsp; <b>v = 7.5 m/s (± 5 %)</b>
+            </p>
+          </div>
+          <p style="color: var(--ink-soft); font-size: 0.9rem">
+            → Die genaue Zeitmessung (4 Stellen) <b>nützt nichts</b>, solange die Distanz nur auf 2 Stellen
+            bekannt ist. Die ungenaueste Grösse bestimmt das Ergebnis.
+          </p>
+
+          <h3>Die Begriffe</h3>
+          <div class="tbl-scroll">
+            <table>
+              <tr><th>Begriff</th><th>Formel</th><th>bedeutet</th></tr>
+              <tr><td>Mittelwert x̄</td><td>—</td><td>der „beste“ Wert (meist s/t bzw. m/V)</td></tr>
+              <tr><td>absoluter Fehler Δx</td><td>Δx = x<sub>max</sub> − x̄ &nbsp;(oder x̄ − x<sub>min</sub>)</td><td>gleiche Einheit wie x</td></tr>
+              <tr><td>relativer Fehler</td><td>Δx / x̄</td><td>dimensionslos, oft in %</td></tr>
+            </table>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">13</span> Vollbeispiel: Dichte einer Platte mit Fehler</h2>
+          <p>
+            Gemessen: l = 5.2 cm, b = 3.4 cm, d = 2.3 mm, m = 34.9 g. Jede letzte Stelle ist ± 1
+            unsicher → absolute Unsicherheiten: Δl = 0.05 cm, Δb = 0.05 cm, Δd = 0.05 mm, Δm = 0.05 g.
+          </p>
+          <ol class="steps">
+            <li>Gleiche Einheiten: d = 2.3 mm = 0.23 cm.</li>
+            <li>Volumen: V = l·b·d = 5.2 · 3.4 · 0.23 cm³ = 4.0664 cm³ (Zwischenwert genau lassen).</li>
+            <li>Dichte: ρ = m / V = 34.9 g / 4.0664 cm³ = 8.583 g/cm³.</li>
+            <li>Signifikante Stellen: d hat nur <b>2</b> → ρ ≈ <b>8.6 g/cm³ = 8600 kg/m³</b>.</li>
+            <li>Relativer Fehler = Summe der relativen Einzelfehler:<br />
+              Δl/l = 0.96 %, &nbsp; Δb/b = 1.5 %, &nbsp; Δd/d = 2.2 %, &nbsp; Δm/m = 0.14 % &nbsp;→&nbsp; zusammen ≈ <b>5 %</b>.</li>
+            <li>Absoluter Fehler: Δρ = 5 % · 8.58 ≈ <b>0.4 g/cm³</b>.</li>
+          </ol>
+          <div class="eqblock">
+            ρ = (8.6 ± 0.4) g/cm³ &nbsp;≈&nbsp; 8600 kg/m³ &nbsp;→&nbsp; Material: <b>Messing</b> (ρ ≈ 8470 kg/m³)
+          </div>
+          <div class="tip">
+            <span class="tag">Faustregel für ·/÷</span>
+            <p style="margin: 6px 0 0">
+              Bei Produkten und Quotienten <b>addieren sich die relativen Fehler</b>. Darum lohnt es sich,
+              die <b>ungenaueste</b> Messung (hier d) mit einem besseren Gerät zu wiederholen – die anderen
+              zu verbessern bringt fast nichts.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================== ÜBUNGEN ==================== -->
+      <div class="panel" id="ueben">
+        <section class="block">
+          <h2><span class="num">✍️</span> Übungen mit Lösungen</h2>
+          <p class="lead">Alle aus deinen Arbeitsblättern (Ue P01.M01 &amp; Skript Kap. 6/7). Erst selbst rechnen, dann aufdecken.</p>
+
+          <h3>A · Umrechnen &amp; Zehnerpotenzen</h3>
+          <div id="exUm"></div>
+
+          <h3>B · Fläche &amp; Volumen</h3>
+          <div id="exFl"></div>
+
+          <h3>C · Masse &amp; Dichte</h3>
+          <div id="exDi"></div>
+
+          <h3>D · Genauigkeit &amp; signifikante Stellen</h3>
+          <div id="exGe"></div>
+        </section>
+
+        <section class="block">
+          <h2><span class="num">?</span> Mini-Quiz</h2>
+          <div id="exQuiz"></div>
+        </section>
+
+        <footer>
+          Guide erstellt für StudyHub · Quelle: Skript „Sk 01 Grundlagen“ &amp; Übung „P01.M01 Einheiten“ (M. Mohr, Physik TALS).
+          <br />Bei Fehlern im Guide: melden und neu generieren lassen.
+        </footer>
+      </div>
+    </div>
+    </div>
+
+    <script>
+      /* ---------- Seiten-Navigation ---------- */
+      const navlinks = document.querySelectorAll(".navlink");
+      const panels = document.querySelectorAll(".panel");
+      navlinks.forEach((t) =>
+        t.addEventListener("click", () => {
+          navlinks.forEach((x) => x.classList.remove("active"));
+          panels.forEach((p) => p.classList.remove("active"));
+          t.classList.add("active");
+          document.getElementById(t.dataset.t).classList.add("active");
+          if (t.scrollIntoView) t.scrollIntoView({ block: "nearest", inline: "nearest" });
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }),
+      );
+
+      /* ---------- Checkliste (Session-Memory) ---------- */
+      (function () {
+        const KEY = "physik_grundl_check";
+        const items = document.querySelectorAll("#checklist li");
+        let saved = [];
+        try { saved = JSON.parse(sessionStorage.getItem(KEY) || "[]"); } catch (e) {}
+        items.forEach((li, i) => {
+          if (saved.includes(i)) li.classList.add("done");
+          li.addEventListener("click", () => {
+            li.classList.toggle("done");
+            const done = [];
+            items.forEach((x, j) => x.classList.contains("done") && done.push(j));
+            try { sessionStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}
+          });
+        });
+      })();
+
+      /* ---------- Präfix-Umrechner ---------- */
+      (function () {
+        const prefixes = [
+          { s: "T", e: 12 }, { s: "G", e: 9 }, { s: "M", e: 6 }, { s: "k", e: 3 },
+          { s: "h", e: 2 }, { s: "da", e: 1 }, { s: "(Basis)", e: 0 }, { s: "d", e: -1 },
+          { s: "c", e: -2 }, { s: "m", e: -3 }, { s: "u", e: -6 }, { s: "n", e: -9 },
+          { s: "p", e: -12 }, { s: "f", e: -15 },
+        ];
+        const from = document.getElementById("cvFrom");
+        const to = document.getElementById("cvTo");
+        const val = document.getElementById("cvVal");
+        const dim = document.getElementById("cvDim");
+        const read = document.getElementById("cvRead");
+        prefixes.forEach((p) => {
+          const label = p.s === "(Basis)" ? "— (Basis)" : p.s + " (10" + supscript(p.e) + ")";
+          from.add(new Option(label, p.s));
+          to.add(new Option(label, p.s));
+        });
+        from.value = "k"; to.value = "m";
+
+        function supscript(n) {
+          const map = { "-": "⁻", 0: "⁰", 1: "¹", 2: "²", 3: "³", 4: "⁴", 5: "⁵", 6: "⁶", 7: "⁷", 8: "⁸", 9: "⁹" };
+          return String(n).split("").map((c) => map[c] || c).join("");
+        }
+        function eOf(sym) { return prefixes.find((p) => p.s === sym).e; }
+
+        function calc() {
+          const v = parseFloat(val.value);
+          const d = parseInt(dim.value, 10);
+          if (isNaN(v)) { read.textContent = "Bitte eine Zahl eingeben."; return; }
+          const shift = (eOf(from.value) - eOf(to.value)) * d;
+          const result = v * Math.pow(10, shift);
+          const unit = d === 1 ? "" : d === 2 ? "²" : "³";
+          const fn = from.value === "(Basis)" ? "" : from.value;
+          const tn = to.value === "(Basis)" ? "" : to.value;
+          read.innerHTML =
+            "<b>" + v + " " + fn + "m" + unit + "  =  " + format(result) + " " + tn + "m" + unit + "</b><br>" +
+            "Exponenten-Sprung: 10<sup>" + (shift >= 0 ? "+" : "") + shift + "</sup>" +
+            (d > 1 ? "  (weil hoch " + d + ": Faktor pro Stufe = 10" + supscript(d) + ")" : "");
+          renderLadder(d);
+        }
+        function format(x) {
+          if (x !== 0 && (Math.abs(x) >= 1e6 || Math.abs(x) < 1e-4))
+            return x.toExponential(4).replace(/e([+-]\d+)/, "·10^$1");
+          return parseFloat(x.toPrecision(8)).toString();
+        }
+        function renderLadder(d) {
+          const box = document.getElementById("ladder");
+          const show = ["k", "h", "da", "(Basis)", "d", "c", "m"];
+          box.innerHTML = show
+            .map((s) => {
+              const p = prefixes.find((x) => x.s === s);
+              const cls = s === "(Basis)" ? "rung base" : "rung";
+              const name = s === "(Basis)" ? "Basis" : s;
+              return '<div class="' + cls + '"><b>' + name + '</b><span>10' + supscript(p.e * (d || 1)) + "</span></div>";
+            })
+            .join('<div style="align-self:center">→</div>');
+        }
+        [from, to, val, dim].forEach((el) => el.addEventListener("input", calc));
+        document.querySelectorAll("[data-cv]").forEach((b) =>
+          b.addEventListener("click", () => {
+            const [v, f, t, d] = b.dataset.cv.split(",");
+            val.value = v; from.value = f; to.value = t; dim.value = d;
+            calc();
+          }),
+        );
+        calc();
+      })();
+
+      /* ---------- Dichte-Rechner ---------- */
+      (function () {
+        const M = document.getElementById("dM"), V = document.getElementById("dV"), R = document.getElementById("dR");
+        const out = document.getElementById("dRead");
+        function go() {
+          const m = parseFloat(M.value), v = parseFloat(V.value), r = parseFloat(R.value);
+          const has = [!isNaN(m), !isNaN(v), !isNaN(r)].filter(Boolean).length;
+          if (has < 2) { out.textContent = "Bitte genau zwei Felder ausfüllen."; return; }
+          if (!isNaN(m) && !isNaN(v)) {
+            const res = m / v;
+            out.innerHTML = "ρ = m / V = " + m + " kg / " + v + " m³ = <b>" + sig(res) + " kg/m³</b>  (= " + sig(res / 1000) + " g/cm³)";
+          } else if (!isNaN(m) && !isNaN(r)) {
+            const res = m / r;
+            out.innerHTML = "V = m / ρ = " + m + " kg / " + r + " kg/m³ = <b>" + sig(res) + " m³</b>  (= " + sig(res * 1e6) + " cm³)";
+          } else {
+            const res = r * v;
+            out.innerHTML = "m = ρ · V = " + r + " kg/m³ · " + v + " m³ = <b>" + sig(res) + " kg</b>  (= " + sig(res / 1000) + " t)";
+          }
+        }
+        function sig(x) {
+          if (x !== 0 && (Math.abs(x) >= 1e6 || Math.abs(x) < 1e-4)) return x.toExponential(3);
+          return parseFloat(x.toPrecision(6)).toString();
+        }
+        document.getElementById("dGo").addEventListener("click", go);
+        [M, V, R].forEach((el) => el.addEventListener("keydown", (e) => e.key === "Enter" && go()));
+        document.querySelectorAll("[data-d]").forEach((b) =>
+          b.addEventListener("click", () => {
+            const [m, v, r] = b.dataset.d.split(",");
+            M.value = m === "_" ? "" : m;
+            V.value = v === "_" ? "" : v;
+            R.value = r === "_" ? "" : r;
+            go();
+          }),
+        );
+      })();
+
+      /* ---------- Signifikante-Stellen-Checker ---------- */
+      (function () {
+        const inp = document.getElementById("sfIn"), out = document.getElementById("sfRead");
+        function count() {
+          let raw = inp.value.trim().replace(/\s/g, "").replace(",", ".");
+          if (!raw) { out.textContent = "Zahl eingeben."; return; }
+          let mant = raw.split(/[eE]/)[0].replace(/^[+-]/, "");
+          let hadPoint = mant.includes(".");
+          let digits = mant.replace(".", "");
+          let stripped = digits.replace(/^0+/, "");
+          if (stripped === "") stripped = "0";
+          let n = stripped.length;
+          let note = "";
+          if (!hadPoint && /0$/.test(digits) && !/[eE]/.test(raw)) {
+            note = "  ⚠ ohne Komma sind die letzten Nullen mehrdeutig – hier wie im Unterricht mitgezählt.";
+          }
+          out.innerHTML = "<b>" + raw + "</b> hat <b>" + n + "</b> signifikante Stelle" + (n === 1 ? "" : "n") +
+            " (verlässlich: „" + stripped + "“)." + note;
+        }
+        document.getElementById("sfGo").addEventListener("click", count);
+        inp.addEventListener("keydown", (e) => e.key === "Enter" && count());
+        count();
+      })();
+
+      /* ---------- Übungen ---------- */
+      function exHTML(items, container) {
+        document.getElementById(container).innerHTML = items
+          .map(
+            (it) => `
+    <div class="ex">
+      <div class="q"><span class="lbl">${it.lbl}</span>${it.q}</div>
+      <button class="reveal">Lösung zeigen</button>
+      <div class="sol"><span class="stag">Lösung</span><div style="margin-top:6px">${it.s}</div></div>
+    </div>`,
+          )
+          .join("");
+      }
+      exHTML(
+        [
+          { lbl: "M01·1a", q: "Wie viele Mikrometer (µm) sind in 1 km?", s: "1 km = 10³ m, 1 m = 10⁶ µm → <b>10⁹ µm</b>." },
+          { lbl: "M01·1b", q: "Welchem Bruchteil eines Zentimeters entspricht 1.0 µm?", s: "1 µm = 10⁻⁶ m = 10⁻⁴ cm = <b>1/10 000 cm</b>." },
+          { lbl: "M01·1c", q: "Wie viele µm stecken in 1.0 yd (1 yd = 0.9144 m)?", s: "0.9144 m · 10⁶ µm/m = <b>914 400 µm</b>." },
+          { lbl: "M01·2", q: "c = 2.9979·10⁸ m/s in mm/ps (1 ps = 10⁻¹² s).", s: "·10³ (m→mm), ÷10¹² (s→ps): 2.9979·10⁸⁺³⁻¹² = 2.9979·10⁻¹ ≈ <b>0.30 mm/ps</b>." },
+          { lbl: "M01·3", q: "1 foot = 12 inch, 1 m = 39.37 inch. 1 foot in m? Und 42.5 foot?", s: "1 foot = 12/39.37 m ≈ <b>0.305 m</b>. 42.5 · 0.305 ≈ <b>12.95 m</b>." },
+          { lbl: "M01·5a", q: "Schreibe 0.0001 und 100 000 als Zehnerpotenz.", s: "0.0001 = <b>1·10⁻⁴</b>, 100 000 = <b>1·10⁵</b>." },
+          { lbl: "M01·5c", q: "2.5·10⁵ + 5·10⁻² = ?", s: "250 000 + 0.05 = <b>250 000.05</b> (beim Addieren NICHT Exponenten zusammenzählen)." },
+          { lbl: "M01·5d", q: "2.5·10⁵ · 5·10⁻² = ?", s: "(2.5·5)·10⁵⁻² = 12.5·10³ = <b>12 500</b>." },
+          { lbl: "M01·8", q: "Fläche der Schweiz A = 41 285 km² in m².", s: "1 km² = 10⁶ m² → 41 285 · 10⁶ = <b>4.1285·10¹⁰ m²</b>." },
+        ],
+        "exUm",
+      );
+      exHTML(
+        [
+          { lbl: "M01·6a", q: "0.0048 m² in dm² und mm².", s: "·100 → <b>0.48 dm²</b>; ·10 000 → <b>4800 mm²</b>." },
+          { lbl: "M01·6b", q: "360 000 cm³ in dm³ und m³.", s: "÷1000 → <b>360 dm³</b>; ÷10⁶ → <b>0.36 m³</b>." },
+          { lbl: "M01·6c", q: "7.6 dm³ in mm³.", s: "1 dm³ = 10⁶ mm³ → <b>7 600 000 mm³</b>." },
+          { lbl: "M01·6d", q: "5 Quadratmeilen in km² (1 mile = 1.6 km).", s: "5 · (1.6)² = 5 · 2.56 = <b>12.8 km²</b>." },
+          { lbl: "M01·7", q: "0.50 m breite Stoffbahn wiegt 8.0 g pro cm (Länge). kg pro m²?", s: "1 m² braucht 2 m Länge = 200 cm → 200 · 8.0 g = 1600 g = <b>1.6 kg/m²</b>." },
+          { lbl: "M01·4", q: "Eisen: 0.2853 lbs/inch³ (1 lbs = 0.4545 kg, 1 m = 39.37 inch) in kg/m³.", s: "0.2853 · 0.4545 · 39.37³ ≈ <b>7913 kg/m³</b>." },
+        ],
+        "exFl",
+      );
+      exHTML(
+        [
+          { lbl: "Sk 6.2·2", q: "Masse von 2.000 m³ Blei? (ρ = 11 340 kg/m³)", s: "m = ρ·V = 11 340 · 2.000 = 22 680 kg = <b>22.68 t</b>." },
+          { lbl: "Sk 6.2·3", q: "Volumen von 5.00 g Aluminium? (ρ = 2700 kg/m³)", s: "5.00 g = 5.00·10⁻³ kg; V = m/ρ = 5·10⁻³ / 2700 = 1.85·10⁻⁶ m³ = <b>1.85 cm³</b>." },
+          { lbl: "Sk 6.2·4", q: "Masse eines Bleiwürfels mit Kante 1.000 cm?", s: "V = 1.000 cm³ = 10⁻⁶ m³; m = 11 340 · 10⁻⁶ = 0.01134 kg = <b>11.34 g</b>." },
+          { lbl: "Sk 6.2·5", q: "Welches Volumen muss ein Bleiwürfel für m = 1.000 kg haben?", s: "V = m/ρ = 1.000 / 11 340 = 8.82·10⁻⁵ m³ = <b>88.2 cm³</b>." },
+          { lbl: "Sk 6.2·6", q: "Eisquader m = 400 g, a = 4.00 cm, b = 5.00 cm, ρ = 917 kg/m³. Dritte Kante c?", s: "V = m/ρ = 0.400/917 = 4.362·10⁻⁴ m³ = 436.2 cm³; c = V/(a·b) = 436.2/20 = <b>21.8 cm</b>." },
+          { lbl: "Sk 6.2·7", q: "Flüssigkeit m = 5.00 kg, V = 3.96 dm³. Welcher Stoff?", s: "ρ = 5000 g / 3960 cm³ ≈ 1.26 g/cm³ = 1260 kg/m³ → <b>Glycerin</b>." },
+          { lbl: "Sk 6.2·10", q: "1.00 kg Wasser + 1.00 kg Ethanol (ρ = 789 kg/m³). Dichte der Mischung?", s: "V = 1/1000 + 1/789 = 2.267·10⁻³ m³; ρ = 2.00 / 2.267·10⁻³ ≈ <b>882 kg/m³</b>." },
+          { lbl: "Sk 5·3", q: "Aluminiumzylinder m = 21.49 kg, r = 19 cm, h = 7.02·10⁻² m. Dichte?", s: "V = π·r²·h = π·(0.19)²·0.0702 = 7.96·10⁻³ m³; ρ = 21.49 / 7.96·10⁻³ ≈ <b>2.7·10³ kg/m³</b> (Alu)." },
+        ],
+        "exDi",
+      );
+      exHTML(
+        [
+          { lbl: "Sk 7", q: "Signifikante Stellen: 300000 m · 0.0052 m · 5.2 m · 40 kg · 3.0·10⁻² m · 40.000 g", s: "<b>6</b> · <b>2</b> · <b>2</b> · <b>2</b> · <b>2</b> · <b>5</b>." },
+          { lbl: "Sk 7.1·1", q: "7.56 kg − 6.052 kg + 13.7 kg mit korrekter Genauigkeit.", s: "= 15.208 → ungenauste Grösse 13.7 (1 Dezimalstelle) → <b>15.2 kg</b>." },
+          { lbl: "Sk 7.1·2", q: "v aus s = 100 m (±5 m) und t = 13.42 s. Ergebnis + Fehler.", s: "v = 100/13.42 = 7.4516 m/s; s hat 2 sign. Stellen → <b>v ≈ 7.5 m/s</b>. Δv ≈ 0.4 m/s, rel. ≈ 5 % → <b>v = (7.5 ± 0.4) m/s</b>." },
+          { lbl: "Sk 7·Platte", q: "l = 5.2 cm, b = 3.4 cm, d = 2.3 mm, m = 34.9 g. Dichte + Fehler + Material?", s: "V = 5.2·3.4·0.23 = 4.066 cm³; ρ = 34.9/4.066 = 8.58 g/cm³ → 2 sign. Stellen (d) → <b>8.6 g/cm³ ≈ 8600 kg/m³</b>. Rel. Fehler ≈ 0.96+1.5+2.2+0.14 ≈ 5 % → Δρ ≈ 0.4 → <b>(8.6 ± 0.4) g/cm³ → Messing</b>." },
+          { lbl: "Sk 4", q: "Zug: 57.1 km Tunnel bei 153 km/h. Wie viele Minuten (richtig gerundet)?", s: "t = 57.1/153 h = 0.3732 h · 60 = 22.39 min → 3 sign. Stellen → <b>22.4 min</b>." },
+        ],
+        "exGe",
+      );
+      document.querySelectorAll(".reveal").forEach((b) =>
+        b.addEventListener("click", () => {
+          const sol = b.nextElementSibling;
+          sol.classList.toggle("show");
+          b.textContent = sol.classList.contains("show") ? "Lösung verbergen" : "Lösung zeigen";
+        }),
+      );
+
+      /* ---------- Mini-Quiz ---------- */
+      const quiz = [
+        { q: "1 m³ = ? cm³", opts: ["100", "1000", "10⁶", "10⁹"], a: 2, e: "100·100·100 = 10⁶ cm³." },
+        { q: "13 nm oder 1.4·10⁻⁷ m – was ist grösser?", opts: ["13 nm", "1.4·10⁻⁷ m", "gleich"], a: 1, e: "13 nm = 1.3·10⁻⁸ m; −7 > −8." },
+        { q: "0.00470 – wie viele signifikante Stellen?", opts: ["2", "3", "5", "6"], a: 1, e: "Führende Nullen weg → „470“ = 3." },
+        { q: "ρ = m/V. Wie berechnest du V?", opts: ["V = ρ·m", "V = m/ρ", "V = ρ/m", "V = m·ρ"], a: 1, e: "Nach V auflösen: V = m/ρ." },
+        { q: "Bei Division: das Ergebnis bekommt so viele sign. Stellen wie …", opts: ["die genaueste Grösse", "die ungenaueste Grösse", "immer 3", "der Mittelwert"], a: 1, e: "Die ungenaueste Eingangsgrösse bestimmt das Ergebnis." },
+        { q: "1 g/cm³ = ? kg/m³", opts: ["1", "100", "1000", "10⁶"], a: 2, e: "10⁻³ kg / 10⁻⁶ m³ = 10³." },
+      ];
+      let qHTML = "";
+      quiz.forEach((it, i) => {
+        qHTML += `<div class="ex"><div class="q"><span class="lbl">Q${i + 1}</span>${it.q}<div class="btnrow" data-qi="${i}">${it.opts
+          .map((o, j) => `<button class="b qopt" data-j="${j}">${o}</button>`)
+          .join("")}</div><div class="qfb" style="margin-top:8px;font-size:.88rem"></div></div></div>`;
+      });
+      document.getElementById("exQuiz").innerHTML = qHTML;
+      document.querySelectorAll(".qopt").forEach((btn) =>
+        btn.addEventListener("click", function () {
+          const row = this.closest(".btnrow"), qi = +row.dataset.qi, j = +this.dataset.j, fb = row.nextElementSibling;
+          row.querySelectorAll(".qopt").forEach((b) => (b.disabled = true));
+          if (j === quiz[qi].a) {
+            this.style.background = "#2e8b57"; this.style.color = "#fff"; this.style.borderColor = "#2e8b57";
+            fb.innerHTML = "✅ Richtig! " + quiz[qi].e; fb.style.color = "#2e8b57";
+          } else {
+            this.style.background = "#b8412b"; this.style.color = "#fff"; this.style.borderColor = "#b8412b";
+            const good = row.querySelectorAll(".qopt")[quiz[qi].a];
+            good.style.background = "#2e8b57"; good.style.color = "#fff";
+            fb.innerHTML = "❌ Nicht ganz. " + quiz[qi].e; fb.style.color = "#b8412b";
+          }
+        }),
+      );
+    </script>
+  </body>
+</html>
