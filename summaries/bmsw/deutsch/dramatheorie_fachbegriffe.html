@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dramatheorie – Fachbegriffe, Aristoteles, Werkformen · Prüfungsvorbereitung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f4ef;
+  --surface:#ffffff;
+  --surface-soft:#f4efe7;
+  --text:#231a20;
+  --muted:#6d6068;
+  --border:#e0d5c8;
+  --border-strong:#c9b8a6;
+  --plum:#5b2545;
+  --plum-soft:#f3e6ee;
+  --gold:#a3701c;
+  --gold-soft:#fbf0da;
+  --green:#e4f1e4;
+  --green-text:#1f5c31;
+  --red:#fbe3df;
+  --red-text:#9c2c1e;
+  --blue:#e6eef8;
+  --blue-text:#1d4b80;
+  --shadow:0 18px 45px rgba(35,26,32,.09);
+  --radius:20px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left,rgba(91,37,69,.13),transparent 34%),
+    radial-gradient(circle at 90% 8%,rgba(163,112,28,.12),transparent 32%),
+    linear-gradient(180deg,#fdfbf8 0%,var(--bg) 42%,#efe8de 100%);
+  line-height:1.6;
+  overflow-wrap:break-word;
+}
+h1,h2,h3,h4{font-family:Fraunces,Georgia,"Times New Roman",serif;letter-spacing:-.01em;}
+a{color:var(--plum);}
+header{max-width:1160px;margin:0 auto;padding:44px 20px 22px;}
+.hero{
+  background:linear-gradient(135deg,#ffffff 0%,#f7ecf3 55%,#fdf3df 100%);
+  border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow);
+  padding:32px;position:relative;overflow:hidden;
+}
+.hero::after{content:"";position:absolute;width:300px;height:300px;border-radius:999px;
+  background:rgba(91,37,69,.07);right:-100px;top:-130px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;
+  background:var(--plum-soft);color:var(--plum);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+h1{margin:16px 0 12px;max-width:900px;font-size:clamp(30px,5vw,52px);line-height:1.06;}
+.lead{max-width:860px;color:var(--muted);font-size:18px;margin:0;position:relative;}
+.hero-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:26px;position:relative;}
+.kpi{background:rgba(255,255,255,.8);border:1px solid rgba(224,213,200,.9);border-radius:16px;padding:15px;}
+.kpi strong{display:block;font-size:21px;color:var(--plum);margin-bottom:2px;font-family:Fraunces,serif;}
+.kpi span{font-size:13px;color:var(--muted);}
+nav.toc{position:sticky;top:0;z-index:20;background:rgba(247,244,239,.93);backdrop-filter:blur(9px);
+  border-bottom:1px solid var(--border);margin-top:26px;}
+nav.toc ul{max-width:1160px;margin:0 auto;padding:10px 16px;list-style:none;display:flex;gap:6px;overflow-x:auto;}
+nav.toc a{display:block;white-space:nowrap;padding:7px 12px;border-radius:999px;font-size:14px;font-weight:600;
+  text-decoration:none;color:var(--muted);}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--plum-soft);color:var(--plum);}
+main{max-width:1160px;margin:0 auto;padding:12px 20px 90px;}
+section{margin-top:44px;scroll-margin-top:70px;}
+section>h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 6px;}
+.section-sub{color:var(--muted);margin:0 0 20px;max-width:860px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px;box-shadow:0 8px 24px rgba(35,26,32,.05);margin-bottom:16px;}
+.card h3{margin:0 0 10px;font-size:21px;}
+.card h4{margin:18px 0 6px;font-size:17px;}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;
+  background:var(--gold-soft);color:var(--gold);margin-right:6px;}
+.tag.lz{background:var(--blue);color:var(--blue-text);}
+.tag.lvl{background:var(--plum-soft);color:var(--plum);}
+.callout{border-left:4px solid var(--plum);background:var(--surface-soft);border-radius:0 14px 14px 0;
+  padding:14px 16px;margin:14px 0;}
+.callout.warn{border-left-color:#c0392b;background:var(--red);}
+.callout.warn strong{color:var(--red-text);}
+.callout.tip{border-left-color:var(--green-text);background:var(--green);}
+.callout.tip strong{color:var(--green-text);}
+.callout.quote{border-left-color:var(--gold);background:var(--gold-soft);font-style:italic;}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border-radius:14px;border:1px solid var(--border);}
+table{border-collapse:collapse;width:100%;min-width:520px;background:var(--surface);font-size:15px;}
+th,td{padding:10px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border);}
+thead th{background:var(--plum);color:#fff;font-weight:600;position:sticky;top:0;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even){background:var(--surface-soft);}
+td.term{font-weight:700;color:var(--plum);white-space:normal;}
+ul.clean{margin:8px 0;padding-left:20px;}
+ul.clean li{margin-bottom:5px;}
+.pyramid{display:grid;gap:8px;margin:16px 0;}
+.akt{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:start;
+  border:1px solid var(--border);border-radius:14px;padding:12px 14px;background:var(--surface-soft);}
+.akt .no{font-family:Fraunces,serif;font-size:28px;font-weight:700;color:var(--gold);text-align:center;line-height:1.1;}
+.akt .no small{display:block;font-size:11px;font-family:Inter,sans-serif;color:var(--muted);font-weight:600;text-transform:uppercase;}
+.akt b{color:var(--plum);}
+.ex{border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px;background:var(--surface);}
+.ex-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;}
+.ex-head h4{margin:0;font-size:18px;flex:1 1 240px;}
+details{border:1px solid var(--border);border-radius:12px;background:var(--surface-soft);padding:0 14px;margin-top:12px;}
+details[open]{padding-bottom:12px;}
+summary{cursor:pointer;font-weight:600;padding:11px 0;color:var(--plum);list-style:none;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:"▸ ";display:inline-block;transition:transform .15s;}
+details[open] summary::before{content:"▾ ";}
+summary:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:6px;}
+.gap{display:inline-block;min-width:120px;border-bottom:2px dotted var(--gold);margin:0 3px;}
+.quiz-q{border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:12px;background:var(--surface);}
+.quiz-q p.q{font-weight:600;margin:0 0 10px;}
+.opts{display:grid;gap:8px;}
+.opt{text-align:left;font:inherit;font-size:15px;cursor:pointer;padding:10px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--surface-soft);color:var(--text);transition:.12s;}
+.opt:hover{border-color:var(--plum);}
+.opt:focus-visible{outline:2px solid var(--plum);outline-offset:2px;}
+.opt.correct{background:var(--green);border-color:var(--green-text);color:var(--green-text);font-weight:600;}
+.opt.wrong{background:var(--red);border-color:var(--red-text);color:var(--red-text);}
+.fb{margin:10px 0 0;font-size:14px;color:var(--muted);min-height:1.2em;}
+.scorebar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  background:var(--plum);color:#fff;border-radius:14px;padding:12px 18px;margin-bottom:16px;}
+.scorebar strong{font-family:Fraunces,serif;font-size:20px;}
+.scorebar button{font:inherit;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.14);color:#fff;padding:7px 14px;border-radius:999px;}
+.checklist{list-style:none;padding:0;margin:0;}
+.checklist li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--border);}
+.checklist li:last-child{border-bottom:none;}
+.checklist input{margin-top:5px;width:17px;height:17px;accent-color:var(--plum);flex-shrink:0;}
+.cw{display:grid;gap:10px;}
+.cw-row{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:start;
+  border:1px solid var(--border);border-radius:10px;padding:9px 12px;background:var(--surface-soft);}
+.cw-row .n{font-weight:700;color:var(--gold);font-family:Fraunces,serif;}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;letter-spacing:.12em;}
+footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);font-size:14px;
+  border-top:1px solid var(--border);}
+.backlink{display:inline-block;margin-top:8px;font-weight:600;}
+@media(max-width:880px){
+  .grid2,.grid3,.hero-grid{grid-template-columns:1fr;}
+  .hero{padding:24px;}
+  header{padding:26px 14px 14px;}
+  main{padding:10px 14px 70px;}
+  .card{padding:17px;}
+}
+@media(max-width:520px){
+  .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media print{
+  nav.toc{display:none;}
+  details{page-break-inside:avoid;}
+  details>summary{display:none;}
+  details{padding-bottom:12px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hero">
+    <span class="eyebrow">BMSW · Deutsch · Literatur</span>
+    <h1>Dramatheorie: Fachbegriffe, Aristoteles und Werkformen</h1>
+    <p class="lead">Vollständige Vorbereitung auf die Prüfung «Dramatheorie» vom <strong>10. September 2026</strong>.
+    Die Prüfung wird auf Olat gelöst, <strong>ohne Unterlagen</strong>. Geprüft werden die Fachbegriffe der Dramatik,
+    das antike Theater und Aristoteles, der fünfaktige Aufbau, die Werkformen sowie die textsortenspezifischen
+    Merkmale am Beispiel von Dürrenmatts «Die Physiker».</p>
+    <div class="hero-grid">
+      <div class="kpi"><strong>8</strong><span>Lernziele abgedeckt</span></div>
+      <div class="kpi"><strong>60+</strong><span>Fachbegriffe mit Definition</span></div>
+      <div class="kpi"><strong>22</strong><span>Übungen, Level 1–5</span></div>
+      <div class="kpi"><strong>10.09.</strong><span>Prüfungsdatum 2026</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Seitennavigation">
+  <ul>
+    <li><a href="#fokus">Prüfungsfokus</a></li>
+    <li><a href="#grundlagen">Gattung Drama</a></li>
+    <li><a href="#antike">Antike &amp; Aristoteles</a></li>
+    <li><a href="#aufbau">5 Akte</a></li>
+    <li><a href="#reden">Reden auf der Bühne</a></li>
+    <li><a href="#formen">Werkformen</a></li>
+    <li><a href="#offen">Offen / geschlossen</a></li>
+    <li><a href="#physiker">«Die Physiker»</a></li>
+    <li><a href="#glossar">Glossar A–Z</a></li>
+    <li><a href="#fehler">Typische Fehler</a></li>
+    <li><a href="#uebungen">Übungen</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#simulation">Prüfungssimulation</a></li>
+    <li><a href="#lastminute">Last Minute</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="fokus">
+  <h2>Prüfungsfokus</h2>
+  <p class="section-sub">Die Prüfungsform verrät die Aufgabentypen: Olat, ohne Unterlagen, mit Lückentexten und
+  Kreuzworträtseln. Das heisst — Definitionen müssen <em>aktiv abrufbar</em> sein, nicht nur wiedererkennbar.</p>
+  <div class="grid3">
+    <div class="card">
+      <h3>Auswendig können</h3>
+      <ul class="clean">
+        <li>Alle Fachbegriffe der Liste <strong>wörtlich definierbar</strong></li>
+        <li>Die fünf Akte nach Freytag in <strong>richtiger Reihenfolge</strong></li>
+        <li>Die drei Einheiten: Ort, Zeit, Handlung</li>
+        <li>Katharsis, Mimesis, Ständeklausel, Fallhöhe</li>
+        <li>Merkmale Tragödie / Komödie / Tragikomödie</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Verstehen und erklären</h3>
+      <ul class="clean">
+        <li><strong>Warum</strong> die drei Einheiten eingeführt wurden</li>
+        <li><strong>Warum</strong> es die Ständeklausel gab (Fallhöhe!)</li>
+        <li>Wozu Botenbericht, Mauerschau, Deus ex machina dienen</li>
+        <li>Warum «Die Physiker» ein Drama ist</li>
+        <li>Unterschied offenes ↔ geschlossenes Drama</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Häufig verwechselt</h3>
+      <ul class="clean">
+        <li>Botenbericht ↔ Mauerschau (Zeitpunkt!)</li>
+        <li>Peripetie ↔ erregendes Moment</li>
+        <li>Katharsis ↔ Katastrophe</li>
+        <li>Ständeklausel ↔ Fallhöhe</li>
+        <li>Parabase ↔ Monolog</li>
+        <li>dramatisch ↔ tragisch (Alltagssprache!)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Lernziel-Abdeckung</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Nr.</th><th>Lernziel</th><th>Theorie</th><th>Übung</th></tr></thead>
+        <tbody>
+          <tr><td class="term">L1</td><td>Fachbegriffe der Dramatik erklären</td><td><a href="#glossar">Glossar A–Z</a>, alle Theorieteile</td><td>A1, A2, A6</td></tr>
+          <tr><td class="term">L2</td><td>Fachbegriffe korrekt einsetzen</td><td><a href="#physiker">Anwendung «Physiker»</a></td><td>A3, A9, A10, P1</td></tr>
+          <tr><td class="term">L3</td><td>Textsortenmerkmale der Lektüre: Warum ist «Die Physiker» ein Drama?</td><td><a href="#physiker">Kapitel «Die Physiker»</a></td><td>A11, P3</td></tr>
+          <tr><td class="term">L4</td><td>Sämtliche Fachbegriffe (Liste + Dossier-Ergänzungen)</td><td><a href="#glossar">Glossar A–Z</a> (60+ Begriffe)</td><td>A1, A2, A5, Quiz</td></tr>
+          <tr><td class="term">L5</td><td>Definieren, Begriff zur Definition finden, Lückentext, Kreuzworträtsel</td><td><a href="#glossar">Glossar</a> + <a href="#fehler">Abgrenzungen</a></td><td>A4, A5, A6, A7</td></tr>
+          <tr><td class="term">L6</td><td>Aristoteles, antikes Theater, Bühneneffekte, Bühnengestaltung, 5-Akt-Aufbau</td><td><a href="#antike">Antike</a>, <a href="#aufbau">Fünf Akte</a></td><td>A8, A12, A13, P2</td></tr>
+          <tr><td class="term">L7</td><td>Werkformen, insbesondere Komödie, Tragödie, Tragikomödie</td><td><a href="#formen">Werkformen</a></td><td>A14, A15, A16</td></tr>
+          <tr><td class="term">L8</td><td>Geschlossenes und offenes Drama unterscheiden</td><td><a href="#offen">Offen / geschlossen</a></td><td>A17, A18, P4</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="grundlagen">
+  <h2>Die Gattung Dramatik <span class="tag lz">L1 · L4</span></h2>
+  <p class="section-sub">Drama ist neben Epik und Lyrik eine der drei literarischen Grossgattungen. Alles beginnt bei
+  der Wortbedeutung — und die erklärt bereits das halbe Konzept.</p>
+
+  <div class="card">
+    <h3>Definition und Wortherkunft</h3>
+    <p>Das griechische Wort <strong>drama</strong> bedeutet schlicht <strong>«Handlung»</strong>. Ein Drama ist ein
+    Text mit verteilten Rollen, der eine Handlung durch <strong>Figurenrede</strong> darstellt und für die
+    <strong>Bühnendarstellung</strong> bestimmt ist. Es wendet sich damit primär an ein <em>Publikum</em>, nicht an
+    Lesende.</p>
+    <p>Die einzige Ausnahme von der Bühnenbestimmung ist das <strong>Lesedrama</strong> — ein Stück, das bewusst zum
+    Lesen und nicht zur Aufführung geschrieben wurde.</p>
+    <div class="callout warn">
+      <strong>Achtung, Alltagssprache:</strong> <em>dramatisch</em> ist nicht dasselbe wie <em>tragisch</em>.
+      «Dramatisch» ist ein <strong>Gattungsbegriff</strong> (zur Gattung Drama gehörend, in Figurenrede dargestellt).
+      Umgangssprachlich meint man damit «aufregend, zugespitzt» — in der Prüfung ist das falsch.
+      Eine Komödie ist auch dramatisch, aber ganz sicher nicht tragisch.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Woran man einen dramatischen Text erkennt</h3>
+    <p>Diese sechs Merkmale sind die Prüfkriterien, mit denen man jeden beliebigen Text als Drama identifiziert.
+    Sie brauchst du wörtlich, wenn nach den textsortenspezifischen Merkmalen gefragt wird.</p>
+    <ul class="clean">
+      <li><strong>Kein Erzähler.</strong> Es gibt keine vermittelnde Instanz, die kommentiert oder ins Innere
+      einer Figur blickt. Das ist der härteste Unterschied zur Epik.</li>
+      <li><strong>Alles in direkter Rede</strong> — als Dialog oder Monolog. Der gesprochene Text heisst
+      <strong>Haupttext</strong>.</li>
+      <li><strong>Regieanweisungen</strong> (kursiv gedruckt, auch <strong>Nebentext</strong> genannt):
+      Hinweise zu Bewegung, Gestik, Mimik, Sprechweise, Bühnenbild.</li>
+      <li><strong>Gliederung in Akte und Szenen</strong> (bzw. Aufzüge und Auftritte).</li>
+      <li><strong>Ein dramatischer Konflikt</strong> als Motor der Handlung — ohne Konflikt kein Drama.</li>
+      <li><strong>Für die Bühne bestimmt</strong>, also auf Aufführbarkeit hin geschrieben.</li>
+    </ul>
+
+    <h4>Beispiel: Haupttext und Nebentext unterscheiden</h4>
+    <p>Aus Goethes «Faust» (Szene «Ein Gartenhäuschen»):</p>
+    <div class="callout quote">
+      <em>Margarete springt herein, steckt sich hinter die Tür, hält die Fingerspitze an die Lippen und guckt durch die Ritze.</em><br>
+      <strong>MARGARETE:</strong> Er kommt!<br>
+      <strong>FAUST</strong> <em>(kommt)</em>: Ach, Schelm, so neckst du mich! Treff ich dich! <em>(Er küsst sie.)</em><br>
+      <strong>MEPHISTOPHELES:</strong> Es ist wohl Zeit zu scheiden.
+    </div>
+    <p><strong>Nebentext</strong> ist alles Kursive: die Ortsangabe, «(kommt)», «(Er küsst sie.)». Er stammt vom
+    <em>Autor</em> und wird nicht gesprochen. <strong>Haupttext</strong> ist die Figurenrede nach dem Namen.
+    Ebenfalls Nebentext: die Figurennamen selbst und die Szenenüberschrift.</p>
+  </div>
+
+  <div class="card">
+    <h3>Der dramatische Konflikt</h3>
+    <p>Der Konflikt ist die <strong>zentrale Auseinandersetzung, aus der sich die Handlung entwickelt</strong>. Man
+    unterscheidet zwei Grundtypen — und sie schliessen sich nicht aus, oft treten beide gleichzeitig auf.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Typ</th><th>Definition</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td class="term">innerer Konflikt</td><td>Konflikt <em>innerhalb</em> einer Figur, die zwischen unterschiedlichen Wünschen oder Entscheidungen hin- und hergerissen ist.</td><td>Möbius liebt Schwester Monika — und muss sie töten, um sein Wissen geheim zu halten.</td></tr>
+          <tr><td class="term">äusserer Konflikt</td><td>Konflikt zwischen <strong>Protagonist</strong> und <strong>Antagonist</strong>, der ein anderes Ziel verfolgt.</td><td>Möbius gegen die Chefärztin von Zahnd, die seine Manuskripte auswerten will.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Drama ist ein Sammelbegriff</h3>
+    <p>Nicht nur Theaterstücke sind Dramen. Zur Gattung gehören alle «Bühnenstücke» mit Textgrundlage:</p>
+    <ul class="clean">
+      <li><strong>Theaterstücke</strong> — Tragödie, Komödie, Schauspiel, Tragikomödie</li>
+      <li><strong>Libretto</strong> — der Textbuch-Teil von Oper, Operette, Musical, Oratorium, Kantate</li>
+      <li><strong>Hörspielmanuskript</strong> — für das Hörspiel</li>
+      <li><strong>Drehbuch / Skript</strong> — für den Spielfilm</li>
+    </ul>
+    <div class="callout tip"><strong>Prüfungstipp:</strong> Wird gefragt, ob ein Drehbuch ein Drama sei —
+    ja. Entscheidend ist die Darstellung in Figurenrede für eine Aufführung, nicht die Theaterbühne selbst.</div>
+  </div>
+
+  <div class="card">
+    <h3>Figuren im Werk und Menschen ausserhalb</h3>
+    <p>Eine beliebte Prüfungsfalle: Begriffe <em>innerhalb</em> der fiktionalen Welt sauber von den Berufen
+    <em>ausserhalb</em> (Alltagsrealität, Inszenierung) trennen.</p>
+    <div class="grid2">
+      <div>
+        <h4>In der fiktionalen Welt</h4>
+        <ul class="clean">
+          <li><strong>Figur</strong> — vom Autor erfundene Gestalt</li>
+          <li><strong>Protagonist</strong> — die Hauptfigur, Hauptperson</li>
+          <li><strong>Antagonist</strong> — der Gegenspieler des Protagonisten</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ausserhalb: die Inszenierung</h4>
+        <ul class="clean">
+          <li><strong>Autor</strong> — schreibt das Stück inkl. Regieanweisungen und Wortlaut der Reden</li>
+          <li><strong>Dramaturg</strong> — bearbeitet und aktualisiert das Stück für die Bühne, verfasst die
+          <strong>Strichfassung</strong> (gekürzte Spielfassung)</li>
+          <li><strong>Regisseur</strong> — inszeniert die Aufführung</li>
+          <li><strong>Schauspieler</strong> — stellt die Figur durch Bewegung, Gestik, Mimik, Sprechweise und
+          Maske dar</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn"><strong>Typischer Fehler:</strong> «Der Schauspieler ist der Protagonist.» Falsch —
+    der Schauspieler <em>stellt</em> den Protagonisten dar. Protagonist ist eine Figur, Schauspieler ein Mensch.</div>
+  </div>
+
+  <div class="card">
+    <h3>Gliederung: Akt, Szene, Auftritt</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Begriff</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Akt / Aufzug</td><td>Grössere Handlungseinheit, meist in mehrere Szenen gegliedert. Der Name «Aufzug» kommt vom Aufziehen des Vorhangs.</td></tr>
+          <tr><td class="term">Szene</td><td>Einteilung der Handlung innerhalb eines Aktes; beginnt meist mit einem Wechsel aller Figuren oder einem Ortswechsel.</td></tr>
+          <tr><td class="term">Auftritt</td><td>Kleinste Struktureinheit, gekennzeichnet durch eine Änderung der <strong>Figurenkonstellation</strong> — jemand tritt auf oder geht ab.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Zitierweise: <strong>I,1</strong> heisst «erster Akt, erste Szene». <strong>II,3</strong> heisst
+    «zweiter Akt, dritte Szene». Moderne Dramen sind oft nur noch in Szenen gegliedert; der
+    <strong>Einakter</strong> hat als eigenständige Form grosse Beachtung gefunden.</p>
+  </div>
+</section>
+
+<section id="antike">
+  <h2>Antikes Theater und Aristoteles <span class="tag lz">L6</span></h2>
+  <p class="section-sub">Das Herzstück der Prüfung. Hier stecken Katharsis, Mimesis, Ständeklausel, Fallhöhe und
+  die drei Einheiten — und alle Bühneneffekte, nach denen ausdrücklich gefragt wird.</p>
+
+  <div class="card">
+    <h3>Ursprung: der Dionysoskult</h3>
+    <p>Der Ursprung des europäischen Dramas liegt in der <strong>griechischen Antike</strong>, die Entwicklung
+    setzt etwa <strong>ab 600 v. Chr.</strong> ein; ihren Höhepunkt erlebt die Tragödie im
+    <strong>5. Jahrhundert v. Chr.</strong> Sie entstand wahrscheinlich im Zusammenhang mit dem
+    <strong>Dionysoskult</strong>, dem Kult um den Gott des Weines. Bei den Kulthandlungen wurden zunächst Lieder
+    von einem <strong>Chor</strong> gesungen und getanzt; aus festlichen Strassenumzügen zu Ehren des Gottes
+    entwickelte sich das Erzählen von Geschichten auf einer Bühne.</p>
+    <p>Das Wort <strong>Tragödie</strong> zeigt diese Herkunft: <em>trag</em> = Ziegenbock, <em>odia</em> = Gesang,
+    also <strong>«Bocksgesang»</strong>. Der «Bock» war ein <strong>Satyr</strong> — ein Mischwesen, das den
+    Weingott begleitete.</p>
+    <h4>Die zweite Wurzel: die Demokratie</h4>
+    <p>Das Theater entstand zugleich mit einer neuen politischen Ordnung, der <strong>Demokratie</strong>. Die
+    männlichen Vollbürger sollten an politischen Entscheidungen teilhaben — dafür mussten sie politische
+    Themen verstehen. Die Tragödie war deshalb auch ein <strong>künstlerisches Bildungsprogramm</strong>.</p>
+    <div class="callout tip"><strong>Die drei gesellschaftlichen Aufgaben der griechischen Tragödie:</strong>
+    (1) Unterhaltung / Entertainment, (2) gemeinschaftsstiftendes Event, (3) Erziehung der männlichen Zuschauer
+    zu politisch nachdenklichen Bürgern.</div>
+    <p>Aus den Anfängen sind kaum Quellen erhalten: Von <strong>Aischylos</strong> (525–456 v. Chr.), der rund
+    80 Stücke zur Aufführung gebracht haben soll, sind heute nur sieben bekannt. Die drei grossen Tragiker, die
+    in Wettbewerben gegeneinander antraten, sind <strong>Aischylos</strong>, <strong>Sophokles</strong>
+    (496–406 v. Chr.) und <strong>Euripides</strong> (480–406 v. Chr.). Von Sophokles stammen die zwei
+    bekanntesten Stücke: <strong>«König Ödipus»</strong> — Ödipus erschlägt unwissend seinen Vater und zeugt mit
+    seiner Mutter vier Kinder — und <strong>«Antigone»</strong>, die für ein Begräbnis selbst lebendig begraben
+    wird.</p>
+  </div>
+
+  <div class="card">
+    <h3>Bühnengestaltung: das Theatron</h3>
+    <p>Als «Theater» galt ursprünglich <strong>nur der Zuschauerraum</strong>. Der Begriff
+    <strong>Theatron</strong> leitet sich vom altgriechischen <em>theasthai</em> ab — «schauen, zuschauen».</p>
+    <ul class="clean">
+      <li>Das Theatron war stets <strong>rund bzw. kreisförmig</strong>.</li>
+      <li>Grund: Die antiken <strong>Freiluftbühnen</strong> lehnten sich an <strong>natürliche Hänge</strong> an.
+      In Athen war das der <strong>südliche Abhang der Akropolis</strong>.</li>
+      <li>Gespielt wurde auf einer <strong>steinernen Bühne</strong> — ohne Vorhänge, Drehmechanismen oder
+      doppelte Böden.</li>
+      <li>Aufgeführt wurde im <strong>Wechsel von Schauspiel und Chor</strong>: Nach jedem Akt trat der Chor auf
+      und erklärte oder kommentierte in Liedern und Sprechgesang das bisherige Geschehen.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Bühneneffekte</h3>
+    <p>Bereits die Griechen liebten Bühneneffekte — sie sind ausdrücklich Prüfungsstoff.</p>
+    <div class="grid2">
+      <ul class="clean">
+        <li>eine <strong>Donnermaschine</strong></li>
+        <li><strong>Blitze</strong>, simuliert mit <strong>Spiegeln</strong></li>
+      </ul>
+      <ul class="clean">
+        <li><strong>Tiere</strong> auf der Bühne</li>
+        <li>ein <strong>Kran</strong>, mit dem Götter in der Höhe schweben konnten</li>
+      </ul>
+    </div>
+    <h4>Deus ex machina — «der Gott aus der Maschine»</h4>
+    <p><strong>Definition:</strong> das unerwartete Auftauchen einer Gottheit in der antiken Tragödie, die einen
+    Konflikt löst, der aus der Handlung selbst nicht mehr lösbar ist. Das Erscheinen kommt für den Zuschauer
+    überraschend und beendet den Konflikt <strong>abrupt</strong>.</p>
+    <p><strong>Wann und warum:</strong> Wenn die Figuren alle Argumente vorgebracht hatten und der Konflikt ein
+    unlösbares <strong>Dilemma</strong> war, erfolgte «von oben» der Urteilsspruch. Technisch war das ein
+    Darsteller, der als Gott verkleidet — etwa als Justitia — auf einer <strong>Hebebühne</strong> über der Bühne
+    schwebte. Der Begriff verbindet also Bühnentechnik und Dramaturgie: Die «machina» ist der Kran.</p>
+    <div class="callout warn"><strong>Falle:</strong> Deus ex machina ist keine Figur der Handlung, sondern ein
+    <em>Lösungstrick von aussen</em>. Heute wird der Begriff abwertend für jede unglaubwürdige Rettung in letzter
+    Sekunde verwendet.</div>
+  </div>
+
+  <div class="card">
+    <h3>Die «Poetik» des Aristoteles</h3>
+    <p><strong>Aristoteles</strong> (griechischer Philosoph, 4. Jh. v. Chr.) schrieb mit der
+    <strong>«Poetik»</strong> (335 v. Chr.) die wichtigste Grundlage der europäischen Dramentheorie. Sein System
+    lässt sich in sechs Punkten zusammenfassen — genau in dieser Struktur lohnt es sich, es zu lernen:</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Aspekt</th><th>Forderung des Aristoteles</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Grundprinzip</td><td><strong>Mimesis</strong> = Nachahmung von Menschen, Handlung und Lebenswirklichkeit. Das Drama soll eine <em>mögliche</em> Wirklichkeit darstellen.</td></tr>
+          <tr><td class="term">Aufgabe des Dichters</td><td>Konstruktion einer möglichen Wirklichkeit durch Gestaltung von Charakteren und Ereignissen sowie Konstruktion der Fabel; den Zuschauer in <strong>Jammer und Schaudern</strong> versetzen.</td></tr>
+          <tr><td class="term">Wirkung im Publikum</td><td><strong>Katharsis</strong> (Reinigung) durch Jammer und Schaudern.</td></tr>
+          <tr><td class="term">Figurengestaltung</td><td>Darstellung <strong>besserer Menschen</strong>, als sie in der Wirklichkeit gegeben sind (in der Komödie umgekehrt: schlechtere).</td></tr>
+          <tr><td class="term">Formmerkmale</td><td>Regel der <strong>drei Einheiten</strong> (Zeit, Ort, Handlung), <strong>geformte Sprache</strong> (Verslehre) und <strong>Ständeklausel</strong>.</td></tr>
+          <tr><td class="term">Werkaufbau</td><td>Ein Theaterstück soll eine <strong>abgeschlossene Haupthandlung</strong> aufweisen → vgl. geschlossenes Drama.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout quote">
+      «Die Tragödie ist die Nachahmung [Mimesis] einer guten und in sich geschlossenen Handlung von bestimmter
+      Grösse, in anziehend geformter Sprache […], die Rührung [éleos] und Schrecken [phóbos] hervorruft und
+      hierdurch eine Reinigung [Katharsis] von derartigen Erregungszuständen bewirkt.»
+      <br><span style="font-style:normal;font-size:14px;">— Aristoteles: Poetik (335 v. Chr.), VI 1449B</span>
+    </div>
+    <p>Über die <strong>Komödie</strong> schreibt Aristoteles: «Die Komödie ist […] Nachahmung von schlechteren
+    Menschen, aber nicht im Hinblick auf jede Art von Schlechtigkeit, sondern nur insoweit, als das Lächerliche
+    am Hässlichen teilhat.»</p>
+  </div>
+
+  <div class="card">
+    <h3>Katharsis im Detail</h3>
+    <p><strong>Definition:</strong> Katharsis ist die <strong>Reinigung der Seele des Zuschauers</strong> durch
+    <strong>Jammer/Mitleid</strong> (griech. <em>éleos</em>) und <strong>Schaudern/Furcht</strong>
+    (griech. <em>phóbos</em>).</p>
+    <p><strong>Wie sie funktioniert:</strong> Der Zuschauer verfolgt, wie der tragische Held den Fehler begeht, der
+    zu grossem Leid führt. Er erlebt die Handlung emotional mit — er leidet mit, weint mit — und die emotionale
+    Erregung löst sich im Mitleid mit dem sterbenden Helden. Der Held stirbt <strong>stellvertretend</strong> für
+    alle Menschen, die aus seinem negativen Vorbild lernen können, wohin es führt, sich den Leidenschaften
+    auszuliefern. Durch die <strong>Identifikation</strong> soll der Zuschauer sein eigenes Verhalten
+    reflektieren und die Bühne klüger, bedachter und weniger emotional verlassen.</p>
+    <h4>Lessings Neuübersetzung</h4>
+    <p><strong>Gotthold Ephraim Lessing</strong> übersetzt die Begriffe neu ins Deutsche: Aus dem Paar
+    <em>Mitleid und Schrecken</em> wird <strong>«Mitleid und Furcht»</strong>. Der Unterschied ist wichtig: Der
+    Zuschauer ist damit nicht nur schockiert und hat Mitleid — er hat <strong>Furcht, selbst etwas Ähnliches zu
+    erleben</strong>. Genau das führt dazu, dass er ein besserer Mensch zu werden versucht.</p>
+    <div class="callout warn"><strong>Verwechslungsgefahr:</strong> <strong>Katharsis</strong> ist die Wirkung
+    <em>beim Publikum</em>. <strong>Katastrophe</strong> ist der Handlungsteil <em>auf der Bühne</em> (5. Akt).
+    Beide beginnen mit «Kat» — das ist die Falle.</div>
+  </div>
+
+  <div class="card">
+    <h3>Die Lehre der drei Einheiten</h3>
+    <p>Aristoteles hielt für das Drama die Einhaltung der drei Einheiten für erforderlich: Handlung, Raum und Zeit
+    sollen je <strong>eine Einheit</strong> bilden.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Einheit</th><th>Regel</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Einheit des Ortes</td><td>Ein Schauplatz, kein Szenenwechsel.</td></tr>
+          <tr><td class="term">Einheit der Zeit</td><td>Spielzeit und gespielte Zeit sollen möglichst kongruent sein — höchstens von Sonnenaufgang bis Sonnenuntergang, also etwa <strong>ein Tag</strong>.</td></tr>
+          <tr><td class="term">Einheit der Handlung</td><td><strong>Ein</strong> Handlungsstrang; auf Nebenhandlungen wie im Epos wird verzichtet. In der Tragödie: Beschränkung auf <strong>eine Leidenschaft</strong>; eine allfällige Nebenhandlung steht im Dienst der Haupthandlung.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Warum wurde die Regel eingeführt?</h4>
+    <p>Die praktische Begründung liegt in der Bühnentechnik: Man spielte auf einer <strong>steinernen Bühne ohne
+    Effekte</strong> — keine Vorhänge, keine Drehmechanismen, keine doppelten Böden. Trotzdem wollte man den
+    Eindruck vermitteln, das Bühnengeschehen sei <strong>real</strong>. Diese <strong>Glaubhaftigkeit</strong>
+    (Illusion) hätte man zerstört, wenn mitten im Stück Ort oder Tageszeit gewechselt hätten.</p>
+    <div class="callout tip"><strong>Merkhilfe:</strong> <strong>O–Z–H</strong> — <strong>O</strong>rt (einer),
+    <strong>Z</strong>eit (ein Tag), <strong>H</strong>andlung (eine). Ein Stück, das alle drei einhält, ist ein
+    <strong>geschlossenes Drama</strong>.</div>
+  </div>
+
+  <div class="card">
+    <h3>Ständeklausel und Fallhöhe</h3>
+    <p>Diese beiden Begriffe hängen kausal zusammen — die Fallhöhe ist die <em>Begründung</em> der Ständeklausel.
+    Wer das versteht, verwechselt sie nie mehr.</p>
+    <h4>Ständeklausel</h4>
+    <p><strong>Definition:</strong> die traditionelle Regel, nach der in der <strong>Tragödie</strong> nur Personen
+    <strong>hohen Standes</strong> dargestellt werden — Könige, Fürsten, Adlige —, während bürgerliche Figuren der
+    <strong>Komödie</strong> vorbehalten sind.</p>
+    <p><strong>Herkunft:</strong> Sie geht auf Aristoteles zurück, der die Tragödie den Konflikten der
+    <em>guten oder schönen</em> Menschen vorbehielt, während die Angelegenheiten der <em>schlechten oder
+    hässlichen</em> Menschen in der Komödie dargestellt werden sollten. Später wurde daraus: der gute Mensch =
+    der Adlige, der schlechtere Mensch = der Bürger.</p>
+    <h4>Fallhöhe</h4>
+    <p><strong>Definition:</strong> die Vorstellung, dass tragisches Scheitern nur dann wirksam dargestellt werden
+    kann, wenn die Hauptfigur eine hohe, etwa fürstliche Stellung hat und einen bedeutenden Absturz erlebt.</p>
+    <p><strong>Begründung der Ständeklausel über die Fallhöhe:</strong> Dem Leben der Bürgerlichen fehle es an
+    Grösse und Bedeutung — und ihrer dramatischen Darstellung damit an Fallhöhe. Motive wie
+    <strong>Ausweglosigkeit</strong> und <strong>tragisches Scheitern</strong> liessen sich an bürgerlichen
+    Schicksalen nicht ausdrücken, weil Bürgerliche nur in Situationen gerieten, aus denen man ihnen leicht
+    heraushelfen könne.</p>
+    <div class="callout tip"><strong>So merkst du dir den Unterschied:</strong> Die
+    <strong>Ständeklausel</strong> ist die <em>Regel</em> («wer darf in welche Gattung?»), die
+    <strong>Fallhöhe</strong> ist der <em>Grund</em> dafür («von weit oben fällt es sich wirkungsvoller»).</div>
+    <p><strong>Der Bruch:</strong> Ab der zweiten Hälfte des 18. Jahrhunderts wird die Ständeklausel im
+    <strong>bürgerlichen Trauerspiel</strong> aufgehoben — dazu unten mehr.</p>
+  </div>
+
+  <div class="card">
+    <h3>Weitere antike Begriffe</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Begriff</th><th>Definition</th><th>Warum wichtig</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Hamartia</td><td>Der «kleine Fehler» bzw. die Verfehlung des tragischen Helden — Arroganz, Dummheit, Flüchtigkeit oder Selbstüberhöhung.</td><td>Der Untergang brauchte eine Ursache, damit die Ordnung der Götter <strong>gerecht und verlässlich</strong> erschien. Ein völlig schuldloser Tod hätte den Glauben an einen gerechten Kosmos zerstört. Der Held musste Vorbild sein <em>und</em> einen kleinen Fehler begehen.</td></tr>
+          <tr><td class="term">tragisch</td><td>Die Figur wird schuldlos in ein Gesamtgeschick verwickelt und geht unter. Der Untergang ist <strong>unausweichlich</strong> und kann sozialer Sturz, moralischer Abstieg oder Tod sein.</td><td>Grenzt den Fachbegriff gegen die Alltagsbedeutung ab.</td></tr>
+          <tr><td class="term">Chor</td><td>Gruppe, die zwischen den Akten in Liedern und Sprechgesang das Geschehen erklärt oder kommentiert.</td><td>Besonderheit der antiken Tragödie, die später wegfiel.</td></tr>
+          <tr><td class="term">Prolog</td><td>Einleitende Worte vor Beginn der eigentlichen Handlung.</td><td>Gegenstück: Epilog am Schluss.</td></tr>
+          <tr><td class="term">Blankvers</td><td>Häufigster Dramenvers der deutschen Tragödie, besonders in Aufklärung und Klassik: <strong>fünfhebiger Jambus</strong>.</td><td>Konkretisiert die «geformte Sprache» des Aristoteles.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="aufbau">
+  <h2>Der Aufbau des klassischen Dramas: die fünf Akte <span class="tag lz">L6</span></h2>
+  <p class="section-sub">Das klassische Drama wird nach spätantikem Muster in <strong>fünf Akte</strong> (Tragödie)
+  bzw. <strong>drei Akte</strong> (Komödie) unterteilt. <strong>Gustav Freytag</strong> beschrieb diesen Aufbau in
+  «Die Technik des Dramas» (1863) mit einem pyramidenförmigen Schema — dem
+  <strong>dramatischen Dreieck</strong> bzw. <strong>pyramidalen Aufbau</strong>.</p>
+
+  <div class="card">
+    <h3>Das dramatische Dreieck nach Gustav Freytag</h3>
+    <div class="pyramid">
+      <div class="akt"><div class="no">1<small>Akt</small></div><div>
+        <b>Exposition</b> (Ausgangssituation) — führt in <strong>Ort, Zeit und Atmosphäre</strong> ein und stellt
+        die wichtigsten Figuren sowie die Ausgangssituation vor. Merkfrage: <em>Wer, wo, wann, was?</em>
+        Der Konflikt wird bereits angedeutet.</div></div>
+      <div class="akt"><div class="no">2<small>Akt</small></div><div>
+        <b>Erregendes Moment</b> (Konfliktauslösung, auch «steigende Handlung» / Komplikation) — die Geschichte
+        erhält den <strong>entscheidenden Anstoss</strong>. Interessen stossen aufeinander, Intrigen werden
+        gesponnen, der Konflikt bahnt sich an. Spannungssteigerndes Element zwischen Exposition und Höhepunkt.</div></div>
+      <div class="akt"><div class="no">3<small>Akt</small></div><div>
+        <b>Höhepunkt / Peripetie</b> — der <strong>bedeutendste Wendepunkt</strong> der Handlung. Über Erfolg oder
+        Misserfolg wird entschieden, der Konflikt eskaliert. Für den Helden wendet sich das Blatt: Das Glück
+        verlässt ihn — und das ausgerechnet auf dem Höhepunkt.</div></div>
+      <div class="akt"><div class="no">4<small>Akt</small></div><div>
+        <b>Retardierendes Moment</b> (fallende Handlung) — <strong>verzögert</strong> die Auflösung und erzeugt
+        nochmals Spannung. Es wird Hoffnung gestreut: «Es könnte doch noch einmal alles gut kommen.» Die
+        unweigerliche Richtung der Handlung lässt sich trotzdem nicht mehr aufhalten.</div></div>
+      <div class="akt"><div class="no">5<small>Akt</small></div><div>
+        <b>Katastrophe / Auflösung</b> — der Konflikt wird aufgelöst. In der Tragödie hat der tragische Held
+        verloren, es endet oft in <strong>Tod oder Verlust</strong>; im besten Fall sind alle anderen Figuren
+        geläutert. In der Komödie folgt ein <strong>Happy End</strong>.</div></div>
+    </div>
+    <div class="callout tip"><strong>Merkhilfe für die Reihenfolge:</strong>
+    <strong>E</strong>xposition – <strong>E</strong>rregendes Moment – <strong>P</strong>eripetie –
+    <strong>R</strong>etardierendes Moment – <strong>K</strong>atastrophe.
+    «<strong>E</strong>in <strong>E</strong>rnster <strong>P</strong>lan <strong>R</strong>ettet
+    <strong>K</strong>einen.»</div>
+    <div class="callout warn"><strong>Zwei Klassiker-Fehler:</strong><br>
+    (1) Erregendes Moment und Peripetie vertauschen. Das <em>erregende</em> Moment steht im <strong>2.</strong> Akt
+    und <em>startet</em> den Konflikt; die <em>Peripetie</em> steht im <strong>3.</strong> Akt und <em>wendet</em>
+    ihn. Faustregel: <em>erregend = anfangen, Peripetie = umkippen.</em><br>
+    (2) Das retardierende Moment für eine echte Rettung halten. Es <em>verzögert</em> nur und weckt falsche
+    Hoffnung — der Ausgang steht schon fest.</div>
+    <p><strong>Wichtig zur Einordnung:</strong> Moderne und zeitgenössische Texte orientieren sich meist
+    <em>nicht</em> mehr an diesem Aufbau, sondern bilden bisweilen nur lose verbundene Szenenfolgen.</p>
+  </div>
+
+  <div class="card">
+    <h3>Zieldrama und analytisches Drama</h3>
+    <p>Eine zweite Aufbau-Unterscheidung — sie betrifft die Frage, <strong>wo der Auslöser des Konflikts
+    liegt</strong>.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Form</th><th>Merkmale</th><th>Beispiele</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Zieldrama<br>(synthetisches Drama)</td><td>Die <strong>Ursache</strong> des Konflikts wird auf der Bühne dargestellt. Der Konflikt <strong>entwickelt sich</strong> auf der Bühne und endet in der Katastrophe (bzw. in der Komödie im Happy End).</td><td>Die klassische Tragödie</td></tr>
+          <tr><td class="term">analytisches Drama<br>(Enthüllungsdrama)</td><td>Der Auslöser des Konflikts liegt in der <strong>Vergangenheit</strong>. Nach und nach werden Ereignisse <strong>enthüllt</strong>; auf der Bühne werden nur die <em>Folgen</em> dargestellt.</td><td>«Nora» von Henrik Ibsen; «Der Besuch der alten Dame» von Friedrich Dürrenmatt</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip"><strong>Erkennungsfrage:</strong> Muss ich als Zuschauer erfahren, <em>was früher
+    geschah</em>, damit ich das Stück verstehe? Dann analytisch. Sehe ich den Konflikt von Grund auf entstehen?
+    Dann Zieldrama.</div>
+  </div>
+</section>
+
+<section id="reden">
+  <h2>Reden auf der Bühne <span class="tag lz">L1 · L4</span></h2>
+  <p class="section-sub">Ein Drama zeichnet sich durch die <strong>Redehandlung</strong> aus: Gesprochen wird nicht
+  nur geredet, sondern gehandelt. Diese Begriffe kommen im Lückentext fast sicher vor.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Dialog</h3>
+      <p><strong>Definition:</strong> Wechselrede zwischen mindestens zwei Figuren.</p>
+      <p>Dialoge verfolgen ganz unterschiedliche <strong>kommunikative Absichten</strong>:</p>
+      <ul class="clean">
+        <li>sachliches Gespräch</li><li>Entscheidungsfindung</li><li>Enthüllung</li><li>Streit</li>
+        <li>Einschüchterung</li><li>Manipulation</li><li>Aneinandervorbeireden</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Monolog</h3>
+      <p><strong>Definition:</strong> Selbstgespräch einer Figur.</p>
+      <p>Funktionen des Monologs:</p>
+      <ul class="clean">
+        <li>Die Figur ringt um eine Entscheidung und erörtert Handlungsmöglichkeiten.</li>
+        <li>Sie reflektiert oder kommentiert eine Handlung.</li>
+        <li>Sie äussert Gefühle.</li>
+        <li>Sie spricht zum Publikum.</li>
+      </ul>
+      <p>Der Monolog ist die Ersatzform für den fehlenden Erzähler: Was in der Epik der Erzähler über das
+      Innenleben verrät, muss im Drama die Figur selbst aussprechen.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Stichomythie, Parabase und die vierte Wand</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Begriff</th><th>Definition</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Stichomythie</td><td>Rede und Gegenrede wechseln sich in <strong>sehr schneller Folge</strong> ab; die Gesprächspartner fallen sich teils ins Wort.</td><td>Höchste Zuspitzung, Tempo, Streit, Schlagabtausch.</td></tr>
+          <tr><td class="term">Parabase</td><td><strong>Direkte Wendung einer Bühnenfigur an das Publikum.</strong> In der Antike legte der Schauspieler dazu seine Maske ab.</td><td>Die <strong>dramatische Illusion wird aufgelöst</strong>. Eingesetzt wird die Parabase im <strong>epischen Theater</strong>.</td></tr>
+          <tr><td class="term">vierte Wand</td><td>Die <strong>gedachte Grenze</strong> zwischen Bühne und Publikum.</td><td>Bei direkter Ansprache des Publikums wird sie <strong>durchbrochen</strong>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn"><strong>Abgrenzung:</strong> Beim <strong>Monolog</strong> spricht die Figur
+    <em>mit sich selbst</em> — das Publikum hört gewissermassen zu. Bei der <strong>Parabase</strong> spricht sie
+    <em>das Publikum direkt an</em> und zerstört damit die Illusion. Die vierte Wand ist nicht die Handlung,
+    sondern die <em>Grenze</em>, die dabei durchbrochen wird.</div>
+  </div>
+
+  <div class="card">
+    <h3>Botenbericht und Mauerschau (Teichoskopie)</h3>
+    <p>Beide sind <strong>dramentechnische Hilfsmittel</strong>. Sie lösen dasselbe Grundproblem: Auf einer
+    überschaubaren Bühne mit kleinem Figurenensemble kann man <strong>keine aufmarschierenden Armeen, keine
+    Schlachten und keine gewaltigen Naturphänomene zeigen</strong>. Also lässt man davon <em>erzählen</em>.
+    Unterschieden werden sie durch <strong>Ort und Zeit des Geschehens</strong>:</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th></th><th>Botenbericht</th><th>Mauerschau / Teichoskopie</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Definition</td><td>Eine Figur <strong>erzählt</strong> von Ereignissen an anderen Schauplätzen, von anderen Figuren oder aus der Vergangenheit.</td><td>Eine Figur <strong>beobachtet</strong> ein <strong>gleichzeitig</strong> ausserhalb der Bühne stattfindendes Geschehen und berichtet den anderen Figuren davon.</td></tr>
+          <tr><td class="term">Zeitpunkt</td><td>Das Ereignis ist <strong>bereits geschehen</strong> (auch weit in der Vergangenheit möglich).</td><td>Das Ereignis geschieht <strong>jetzt gerade</strong>, parallel zur Bühnenhandlung.</td></tr>
+          <tr><td class="term">Wer berichtet</td><td>Ein <strong>Bote / Kurier</strong>, der von aussen hereinkommt.</td><td>Eine anwesende Figur, die von der Bühne aus hinausschaut (z. B. von einer Mauer — daher der Name, griech. <em>teichos</em> = Mauer, <em>skopein</em> = schauen).</td></tr>
+          <tr><td class="term">Typisches Beispiel</td><td>Nachricht über den Ausgang einer fernen Schlacht oder eine Katastrophe.</td><td>Beschreibung einer Schlacht, die in diesem Moment vor der Stadt tobt.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip"><strong>Eselsbrücke:</strong> Der <strong>Bote</strong> muss erst
+    <strong>ankommen</strong> — also ist es schon vorbei. Bei der <strong>Mauerschau</strong> wird
+    <strong>geschaut</strong> — man sieht es also gerade jetzt.</div>
+  </div>
+
+  <div class="card">
+    <h3>Dramatische Ironie</h3>
+    <p><strong>Definition:</strong> Manche Dinge wissen <strong>die Zuschauer, aber die Figuren nicht</strong>.
+    Die Figur handelt deshalb unter Umständen nicht so, wie es der Situation angemessen wäre — daraus kann
+    <strong>Komik</strong> entstehen, aber auch Spannung und Beklemmung.</p>
+    <p><strong>Beispiel aus «Die Physiker»:</strong> Das Publikum weiss längst, dass die drei Physiker nicht
+    verrückt sind, während Inspektor Voss und Schwester Monika weiter im Dunkeln tappen. Wenn Möbius Monika warnt
+    «Sie rennen in Ihr Verderben» (S. 46), versteht das Publikum die Drohung — Monika nicht.</p>
+    <p>Ein Sonderfall davon ist die <strong>Vorausdeutung</strong>: ein Hinweis im Text auf ein späteres Ereignis,
+    der die Spannung nicht vermindert, sondern erhöht — der Zuschauer <em>ahnt</em> das Kommende und rechnet
+    damit.</p>
+  </div>
+</section>
+
+<section id="formen">
+  <h2>Werkformen <span class="tag lz">L7</span></h2>
+  <p class="section-sub">Werkformen sind die Spielarten des Dramas. Prüfungsschwerpunkt sind Tragödie, Komödie und
+  Tragikomödie — dazu kommen bürgerliches Trauerspiel und naturalistisches Drama aus dem Dossier.</p>
+
+  <div class="card">
+    <h3>Tragödie (Trauerspiel)</h3>
+    <p><strong>Definition:</strong> die ernste Form des Dramas. Der Held gerät in einen <strong>unlösbaren
+    Konflikt</strong>, der ihn in den Untergang bzw. zur Katastrophe führt.</p>
+    <ul class="clean">
+      <li>Der <strong>tragische Konflikt</strong> ist der Kern — weil er sich nicht lösen lässt, wird der Held
+      in den Untergang getrieben.</li>
+      <li>Jede Tragödie verhandelt eine <strong>Leidenschaft, einen Affekt</strong>: Liebe, Hass, Rache, Neid,
+      Stolz, Eifersucht, Machtgier, Sehnsucht, Eifer. Diese sind <strong>zeitlos</strong> — deshalb können sich
+      Zuschauer noch heute in einem antiken Helden wiedererkennen.</li>
+      <li>Die Leidenschaft des tragischen Helden ist <strong>ungezügelt</strong> und verführt ihn zu Taten. So
+      gerät er in den Konflikt. Teils erreicht er sein Ziel, aber die Leidenschaft treibt meist zum
+      <strong>unvermeidlichen Untergang</strong>.</li>
+      <li>Der Held gerät durch <strong>eigene Schuld</strong> ins Unglück, wehrt sich gegen den Untergang und
+      erliegt dann der selbst verursachten Bedrohung.</li>
+      <li>Haltung des Zuschauers: <strong>geringe Distanz, Identifikation, aufschauend</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Komödie (Lustspiel)</h3>
+    <p><strong>Definition:</strong> Drama mit grundsätzlich <strong>lösbarem</strong> Konflikt und häufig glücklichem
+    Ende; die Wirkung beruht auf dem <strong>Lächerlichmachen</strong> menschlicher Laster und Schwächen.</p>
+    <ul class="clean">
+      <li>Das zentrale Element ist die <strong>Komik</strong>.</li>
+      <li>Verspottete Laster: Einbildung, Schwatzhaftigkeit, Verleumdung und Ähnliches. Dieses Verhalten führt die
+      Figur in Verstrickungen, in denen sie sich lächerlich verhält.</li>
+      <li>Der Komödienkonflikt kann auch durch <strong>Rollenvertauschung, Verkleidung, Zerstreutheit oder
+      Intrige</strong> entstehen.</li>
+      <li>Haltung des Zuschauers: <strong>distanziert, überlegen, herabschauend</strong> — man kann über die
+      Figuren lachen.</li>
+      <li>Der <strong>Aufbau gleicht dem der Tragödie</strong>; klassisch hat die Komödie jedoch nur
+      <strong>drei Akte</strong>.</li>
+    </ul>
+    <h4>Direktvergleich Komödie ↔ Tragödie</h4>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th></th><th>Komödie</th><th>Tragödie</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Konflikt</td><td>Positiver Held leidet an der Welt; Leiden bzw. Bestrafung bleiben <strong>unterhalb der Schmerzgrenze</strong>.</td><td>Negativer Held wird wegen einer Charakterschwäche bestraft; er gerät durch eigene Schuld ins Unglück und erliegt der selbst verursachten Bedrohung.</td></tr>
+          <tr><td class="term">Haltung des Zuschauers</td><td>Distanziert, überlegen, herabschauend.</td><td>Geringe Distanz, Identifikation, aufschauend.</td></tr>
+          <tr><td class="term">Ausgang</td><td>Konflikt lösbar, oft Happy End.</td><td>Konflikt unlösbar, Katastrophe, Tod oder Verlust.</td></tr>
+          <tr><td class="term">Ständeklausel (klassisch)</td><td>Bürgerliche Figuren.</td><td>Figuren hohen Standes.</td></tr>
+          <tr><td class="term">Akte (klassisch)</td><td>Drei.</td><td>Fünf.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Tragikomödie</h3>
+    <p><strong>Definition:</strong> dramatische Form, in der Elemente der Tragödie und der Komödie <strong>eng
+    miteinander verknüpft</strong> sind; ernste bzw. tragische Ereignisse werden mit komischen Elementen
+    verbunden.</p>
+    <ul class="clean">
+      <li>Bereits in der Antike bekannt, erlebte sie <strong>nach 1945</strong> eine Renaissance.</li>
+      <li><strong>Friedrich Dürrenmatt</strong> (Schweiz) schrieb über die Gattung, sie «sei die einzig mögliche
+      dramatische Form, heute das Tragische auszusagen».</li>
+      <li>Formal oft: <strong>keine Akte, lockere Szenenfolge, offene Form</strong>.</li>
+    </ul>
+    <div class="callout tip"><strong>Warum das für die Prüfung zentral ist:</strong> Dürrenmatt nennt «Die
+    Physiker» im Untertitel eine <strong>Komödie</strong>, obwohl drei Menschen sterben und das Stück in einer
+    Katastrophe endet. Genau diese Spannung ist die Tragikomödie — das Tragische wird <em>aus der Komödie
+    heraus</em> hervorgebracht.</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Bürgerliches Trauerspiel</h3>
+      <p><strong>Definition:</strong> Bruch mit der Ständeklausel — ab der zweiten Hälfte des
+      <strong>18. Jahrhunderts</strong> sind nicht mehr nur Angehörige des Adels, sondern auch des Bürgertums
+      Figuren einer Tragödie.</p>
+      <p><strong>Lessing korrigiert die Ständeklausel</strong>, weil es dem Zuschauer so leichter fällt, sich in
+      den Helden <strong>einzufühlen</strong> — erst dadurch kann die Tragödie nach Lessing ihre Wirkung
+      (Katharsis) voll entfalten. Die Standeskonflikte finden zwischen Bürgertum und Adel oder zwischen Klein-
+      und Grossbürgertum statt.</p>
+      <p><strong>Erneuerungen:</strong></p>
+      <ul class="clean">
+        <li>Verlagerung in die Welt des Bürgertums</li>
+        <li>Abschaffung der Ständeklausel</li>
+        <li>zeittypische Probleme statt zeitloser Affekte</li>
+        <li>Figuren sprechen <strong>Prosa</strong> (statt Vers)</li>
+      </ul>
+      <p><strong>Epoche und Autoren:</strong> Aufklärung, 18. Jahrhundert; Gotthold Ephraim Lessing
+      («Emilia Galotti»), Friedrich Schiller («Kabale und Liebe»).</p>
+    </div>
+    <div class="card">
+      <h3>Naturalistisches Drama</h3>
+      <p><strong>Definition:</strong> Das naturalistische Drama verlegt das tragische Geschehen ins
+      <strong>kleinbürgerlich-proletarische Milieu</strong>.</p>
+      <ul class="clean">
+        <li>Es geht <strong>nicht</strong> um Aufstieg und Fall eines Helden, sondern um die
+        <strong>misslichen Lebensumstände</strong> der Figuren.</li>
+        <li>Ziel ist <strong>keine kathartische Wirkung</strong>, sondern das <strong>Aufrütteln</strong> des
+        Publikums durch die realitätsgetreue Schilderung der Lebensumstände der Unterschicht.</li>
+        <li><strong>Sekundenstil:</strong> Die Wirklichkeit soll möglichst getreu abgebildet werden — Stottern,
+        Stammeln, Dialekte, Ausrufe, Atempausen und lange, exakte Regieanweisungen.</li>
+      </ul>
+      <p><strong>Epoche und Autoren:</strong> 19. Jahrhundert; Gerhart Hauptmann, Henrik Ibsen.</p>
+      <div class="callout warn"><strong>Wichtige Abgrenzung:</strong> Bürgerliches Trauerspiel und
+      naturalistisches Drama brechen beide mit der Ständeklausel — aber das bürgerliche Trauerspiel <em>will</em>
+      weiterhin Katharsis, das naturalistische Drama nicht.</div>
+    </div>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Geschlossenes und offenes Drama <span class="tag lz">L8</span></h2>
+  <p class="section-sub">Die zentrale Bauformen-Unterscheidung. Kriterium ist immer: <strong>Werden die drei
+  Einheiten des Aristoteles beachtet oder nicht?</strong></p>
+
+  <div class="card">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Kriterium</th><th>Geschlossenes (klassisches) Drama</th><th>Offenes (modernes) Drama</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Grunddefinition</td><td>Drama, bei dem die <strong>drei Einheiten</strong> nach Aristoteles <strong>beachtet</strong> werden.</td><td>Drama, bei dem die drei Einheiten <strong>nicht</strong> berücksichtigt werden.</td></tr>
+          <tr><td class="term">Aufbau</td><td><strong>Linear</strong>, von A nach Z.</td><td><strong>Sprunghaft</strong>: Handlungssprünge, Zeitsprünge.</td></tr>
+          <tr><td class="term">Handlungsführung</td><td><strong>Konsequent, ohne Nebenhandlungen</strong> — ein Strang.</td><td><strong>Mehrere Handlungen</strong> nebeneinander, gleichzeitig oder abwechselnd.</td></tr>
+          <tr><td class="term">Ort</td><td>Ein Schauplatz.</td><td><strong>Mehrere Orte</strong>, häufige Schauplatzwechsel.</td></tr>
+          <tr><td class="term">Zeit</td><td>Höchstens etwa ein Tag.</td><td>Beliebig, oft grosse Zeitsprünge.</td></tr>
+          <tr><td class="term">Figuren</td><td><strong>Wenige</strong> Personen.</td><td><strong>Viele</strong> Personen.</td></tr>
+          <tr><td class="term">Sprache</td><td>Einheitlich, geformt (oft Vers, z. B. Blankvers).</td><td>Unterschiedliche Sprachen oder <strong>Dialekte</strong>.</td></tr>
+          <tr><td class="term">Gliederung</td><td>Fünf Akte (Tragödie) bzw. drei (Komödie).</td><td>Oft nur lose Szenenfolge, teils gar keine Akte.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip"><strong>Prüfungsstrategie:</strong> Wenn du entscheiden musst, ob ein Stück offen oder
+    geschlossen ist, geh die drei Einheiten der Reihe nach durch. <em>Ein</em> Ort? <em>Ein</em> Tag?
+    <em>Ein</em> Handlungsstrang? Drei Mal Ja = geschlossen. Zusätzlich hilft die Figurenzahl als Indiz.</div>
+    <div class="callout warn"><strong>Falle:</strong> «Offenes Drama» heisst <em>nicht</em> «offenes Ende».
+    Es geht um die <strong>Bauform</strong>, nicht um den Schluss. Ein offenes Drama kann sehr wohl klar
+    enden.</div>
+  </div>
+</section>
+
+<section id="physiker">
+  <h2>Warum ist «Die Physiker» ein Drama? <span class="tag lz">L2 · L3</span></h2>
+  <p class="section-sub">Dieses Lernziel verlangt, die textsortenspezifischen Merkmale der Lektüre zu
+  <em>erklären</em> — also die Theoriebegriffe am konkreten Werk zu belegen. Die Antwort besteht immer aus
+  <strong>Merkmal + Beleg aus dem Werk</strong>.</p>
+
+  <div class="card">
+    <h3>Das Werk auf einen Blick</h3>
+    <ul class="clean">
+      <li><strong>Autor:</strong> Friedrich Dürrenmatt (Schweiz)</li>
+      <li><strong>Untertitel des Autors:</strong> «Eine Komödie» — de facto eine <strong>Tragikomödie</strong></li>
+      <li><strong>Gliederung:</strong> <strong>zwei Akte</strong> mit je drei Szenen (zitiert als I,1 bis II,3)</li>
+      <li><strong>Ort der Handlung:</strong> der <strong>Salon der Villa</strong> des Sanatoriums «Les Cerisiers»
+      von Frl. Dr. h.c. med. Mathilde von Zahnd</li>
+      <li><strong>Zentrale Figuren:</strong> Möbius (Protagonist), «Newton» = Alec Jasper Kilton (westlicher
+      Geheimdienst), «Einstein» (östlicher Geheimdienst), Chefärztin Dr. von Zahnd, Inspektor Richard Voss,
+      Missionar Oskar Rose, Schwester Monika Stettler</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Die Merkmale, Punkt für Punkt belegt</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Merkmal der Gattung</th><th>Nachweis im Werk</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Kein Erzähler</td><td>Es gibt keine vermittelnde Instanz. Was wir über die Figuren erfahren, erfahren wir ausschliesslich aus ihrem Reden und Handeln — deshalb kann Dürrenmatt uns über die Identität der «Physiker» so lange täuschen.</td></tr>
+          <tr><td class="term">Ausschliesslich Figurenrede</td><td>Der gesamte Haupttext besteht aus Dialogen (z. B. das Verhör des Inspektors, das Abendessen der drei Physiker, S. 68–77) und Monologen (die <strong>drei Abschlussmonologe</strong> von Newton, Einstein und Möbius, S. 85–87).</td></tr>
+          <tr><td class="term">Regieanweisungen / Nebentext</td><td>Das Stück beginnt mit einem ausführlichen <strong>einleitenden Nebentext</strong> — einer sehr genauen Ortsbeschreibung des Salons und der Umgebung. Auch mitten im Dialog stehen Anweisungen: «INSPEKTOR <em>dumpf</em>», «Er wischt sich den Schweiss ab.»</td></tr>
+          <tr><td class="term">Gliederung in Akte und Szenen</td><td>Zwei Akte mit je drei Szenen. Die beiden <strong>Aktanfänge</strong> sind bewusst parallel gebaut (gleicher Raum, ermordete Krankenschwester, Ermittlung durch Voss) — ein Effekt, der ohne Aktgliederung gar nicht möglich wäre.</td></tr>
+          <tr><td class="term">Dramatischer Konflikt</td><td><strong>Äusserer Konflikt:</strong> Möbius gegen Kilton und «Einstein», die ihn für ihre Geheimdienste gewinnen wollen — und gegen die Chefärztin, die seine Manuskripte längst kopiert hat.<br><strong>Innerer Konflikt:</strong> Möbius' Liebe zu Schwester Monika gegen seine Überzeugung, sein Wissen geheim halten zu müssen. Er löst ihn, indem er sie tötet.</td></tr>
+          <tr><td class="term">Für die Bühne bestimmt</td><td>Der Einheitsschauplatz und die genaue Bühnenbeschreibung sind auf eine reale Aufführung hin geschrieben.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Weitere Theoriebegriffe am Werk <span class="tag lz">L2</span></h3>
+    <p>Hier wird geprüft, ob du die Begriffe <strong>korrekt einsetzen</strong> kannst — nicht nur definieren.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Begriff</th><th>Anwendung auf «Die Physiker»</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Protagonist / Antagonist</td><td>Protagonist ist Möbius. Als Antagonisten wirken je nach Szene Kilton und «Einstein» (sie wollen sein Wissen), am Ende vor allem <strong>Dr. von Zahnd</strong>, die alle Pläne durchkreuzt.</td></tr>
+          <tr><td class="term">Dramatische Ironie</td><td>Das Publikum weiss vor den Figuren, dass die Physiker nicht verrückt sind. Daraus entsteht Komik — und beim Mord an Monika Beklemmung.</td></tr>
+          <tr><td class="term">Vorausdeutung</td><td>Möbius warnt Monika mehrfach, sie solle gehen, und sagt schliesslich: «Sie rennen in Ihr Verderben.» (S. 46) Der Zuschauer <strong>ahnt den Mord voraus</strong> — im Kontrast zu Monikas «Blindheit» vor Liebe.</td></tr>
+          <tr><td class="term">Peripetie</td><td>Die grosse <strong>Enthüllungsszene</strong> (ab S. 78): Möbius hat die beiden anderen überzeugt, freiwillig im Sanatorium zu bleiben — und genau in diesem Moment offenbart die Chefärztin, dass sie die Manuskripte längst kopiert hat und die Macht besitzt. Alles kippt.</td></tr>
+          <tr><td class="term">Katastrophe</td><td>Möbius' Opfer war völlig umsonst: Die drei bleiben gefangen, das Wissen ist in den Händen der Wahnsinnigen. Der Konflikt ist «aufgelöst» — aber gegen den Helden.</td></tr>
+          <tr><td class="term">Karikaturhafte Überzeichnung</td><td>Missionar Rose und Schwester Monika werden durch übertriebene Frömmigkeit bzw. Opferbereitschaft ins Lächerliche gezogen. Sie sind deshalb <strong>keine tragischen Gestalten</strong>: Der Zuschauer empfindet kein echtes Mitleid — die klassische Katharsis wird verweigert.</td></tr>
+          <tr><td class="term">Einheit des Ortes</td><td>Ist gewahrt: Das ganze Stück spielt im Salon der Villa. Dürrenmatt nutzt die klassische Regel bewusst — für eine ganz und gar unklassische Wirkung.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn"><strong>Vorsicht bei der Einordnung offen/geschlossen:</strong> «Die Physiker»
+    <em>wahrt</em> Einheit des Ortes und weitgehend der Zeit und hat wenige Figuren — insofern klassisch. Es hat
+    aber nur <strong>zwei Akte</strong> statt fünf, ist als <strong>Komödie</strong> bezeichnet, obwohl es tragisch
+    endet, und verweigert die Katharsis. Wenn du gefragt wirst, argumentiere mit den <strong>Kriterien</strong>
+    und nicht mit einem Etikett.</div>
+  </div>
+</section>
+
+<section id="glossar">
+  <h2>Glossar A–Z: sämtliche Fachbegriffe <span class="tag lz">L1 · L4 · L5</span></h2>
+  <p class="section-sub">Die vollständige Begriffsliste aus der Fachbegriffsübersicht <em>und</em> den Ergänzungen
+  des Drama-Dossiers, alphabetisch für das Nachschlagen. Für Lückentext und Kreuzworträtsel gilt: Definition lesen
+  → Begriff aus dem Kopf nennen, nicht umgekehrt.</p>
+
+  <div class="card">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Begriff</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Akt / Aufzug</td><td>Grössere Handlungseinheit eines Dramas, meist in mehrere Szenen bzw. Auftritte gegliedert.</td></tr>
+          <tr><td class="term">analytisches Drama</td><td>Enthüllungsdrama: Der Auslöser des Konflikts liegt in der Vergangenheit und wird nach und nach enthüllt; auf der Bühne erscheinen nur die Folgen.</td></tr>
+          <tr><td class="term">Antagonist</td><td>Gegenspieler des Protagonisten bzw. der Hauptfigur.</td></tr>
+          <tr><td class="term">Aristoteles</td><td>Griechischer Philosoph, Verfasser der «Poetik» (335 v. Chr.), der wichtigsten Grundlage der europäischen Dramentheorie.</td></tr>
+          <tr><td class="term">Auftritt</td><td>Kleinste Struktureinheit, gekennzeichnet durch eine Änderung in der Figurenkonstellation (Erscheinen oder Abgang eines Darstellers).</td></tr>
+          <tr><td class="term">Autor</td><td>Schreibt das Stück, darunter die Figurenrede und gegebenenfalls die Regieanweisungen.</td></tr>
+          <tr><td class="term">Blankvers</td><td>Häufigster Dramenvers der deutschen Tragödie, besonders in Aufklärung und Klassik: fünfhebiger Jambus.</td></tr>
+          <tr><td class="term">Botenbericht</td><td>Dramentechnisches Hilfsmittel: Eine Figur erzählt von einem schwer darstellbaren oder vergangenen Ereignis, von anderen Schauplätzen oder anderen Figuren.</td></tr>
+          <tr><td class="term">bürgerliches Trauerspiel</td><td>Bruch mit der Ständeklausel: Ab der zweiten Hälfte des 18. Jahrhunderts sind auch Angehörige des Bürgertums Figuren einer Tragödie.</td></tr>
+          <tr><td class="term">Chor</td><td>Gruppe, die in der antiken Tragödie zwischen den Akten in Liedern und Sprechgesang das Geschehen erklärt oder kommentiert.</td></tr>
+          <tr><td class="term">Deus ex machina</td><td>Unerwartetes Auftauchen einer Gottheit, die einen aus der Handlung heraus nicht mehr lösbaren Konflikt abrupt beendet; technisch mit einem Kran bzw. einer Hebebühne umgesetzt.</td></tr>
+          <tr><td class="term">Dialog</td><td>Wechselrede zwischen mindestens zwei Figuren.</td></tr>
+          <tr><td class="term">Dilemma</td><td>Konflikt, der sich nicht einfach lösen lässt, weil jede Entscheidung Nachteile bringt.</td></tr>
+          <tr><td class="term">Drama / Dramatik</td><td>Literarische Gattung, bei der eine Handlung durch Figurenrede und Handlung auf der Bühne dargestellt wird; griech. <em>drama</em> = Handlung.</td></tr>
+          <tr><td class="term">dramatische Ironie</td><td>Die Zuschauer wissen etwas, das die Figuren nicht wissen; daraus kann Komik oder Spannung entstehen.</td></tr>
+          <tr><td class="term">dramatischer Konflikt</td><td>Zentrale Auseinandersetzung, aus der sich die Handlung eines Dramas entwickelt.</td></tr>
+          <tr><td class="term">dramatisches Dreieck</td><td>Pyramidaler Aufbau: Modell Gustav Freytags für den fünfaktigen Aufbau des klassischen Dramas von der Exposition bis zur Katastrophe.</td></tr>
+          <tr><td class="term">Dramaturg</td><td>Bearbeitet und aktualisiert ein Stück für die Bühne und kann dafür eine Strichfassung erstellen.</td></tr>
+          <tr><td class="term">drei Einheiten</td><td>Regel nach Aristoteles, nach der Handlung, Ort und Zeit je eine Einheit bilden sollen: eine Handlung, an einem Ort, innerhalb eines Tages.</td></tr>
+          <tr><td class="term">Einakter</td><td>Eigenständige Dramenform, die nur aus einem einzigen Akt besteht.</td></tr>
+          <tr><td class="term">Einheit der Handlung</td><td>Das Drama konzentriert sich auf einen Handlungsstrang; Nebenhandlungen werden vermieden bzw. dienen der Haupthandlung.</td></tr>
+          <tr><td class="term">Einheit der Zeit</td><td>Spielzeit und gespielte Zeit sollen möglichst übereinstimmen; die Handlung umfasst höchstens etwa einen Tag.</td></tr>
+          <tr><td class="term">Einheit des Ortes</td><td>Die Handlung findet an einem Schauplatz statt; ein Szenenwechsel wird vermieden.</td></tr>
+          <tr><td class="term">erregendes Moment</td><td>2. Akt: spannungssteigerndes Element zwischen Exposition und Höhepunkt; die Handlung erhält den entscheidenden Anstoss, der Konflikt bahnt sich an.</td></tr>
+          <tr><td class="term">Exposition</td><td>1. Akt: Einführung in Ort, Zeit und Atmosphäre sowie Vorstellung der wichtigsten Figuren und der Ausgangssituation.</td></tr>
+          <tr><td class="term">Fallhöhe</td><td>Vorstellung, dass tragisches Scheitern besonders wirksam ist, wenn eine hochgestellte Hauptfigur einen bedeutenden Absturz erlebt.</td></tr>
+          <tr><td class="term">Figur</td><td>Vom Autor erfundene Gestalt innerhalb der fiktionalen Welt.</td></tr>
+          <tr><td class="term">Freytag, Gustav</td><td>Verfasser von «Die Technik des Dramas» (1863); beschrieb den fünfaktigen Aufbau im pyramidenförmigen Schema.</td></tr>
+          <tr><td class="term">geschlossenes Drama</td><td>Linear aufgebautes Drama mit konsequenter Handlungsführung, wenigen Figuren und Beachtung der drei Einheiten.</td></tr>
+          <tr><td class="term">Hamartia</td><td>Der kleine Fehler bzw. die Verfehlung des tragischen Helden (Arroganz, Dummheit, Flüchtigkeit, Selbstüberhöhung), die seinen Untergang verursacht.</td></tr>
+          <tr><td class="term">Haupttext</td><td>Der gesprochene Text eines Dramas, also die Figurenrede.</td></tr>
+          <tr><td class="term">Höhepunkt</td><td>3. Akt: bedeutendster Punkt der Handlung, fällt meist mit der Peripetie zusammen; über Erfolg oder Misserfolg wird entschieden.</td></tr>
+          <tr><td class="term">innerer Konflikt</td><td>Konflikt innerhalb einer Figur, die zwischen unterschiedlichen Wünschen oder Entscheidungen hin- und hergerissen ist.</td></tr>
+          <tr><td class="term">äusserer Konflikt</td><td>Konflikt zwischen Protagonist und Antagonist, der ein anderes Ziel verfolgt.</td></tr>
+          <tr><td class="term">Katastrophe</td><td>5. Akt: Auflösung des Konflikts am Ende des Dramas; in der Tragödie verliert der Held häufig durch Tod oder Verlust, in der Komödie folgt ein Happy End.</td></tr>
+          <tr><td class="term">Katharsis</td><td>Reinigung der Seele des Publikums durch Jammer bzw. Mitleid (éleos) und Schaudern bzw. Furcht (phóbos), die nach Aristoteles durch die Tragödie erzielt werden soll.</td></tr>
+          <tr><td class="term">Komödie / Lustspiel</td><td>Drama, dessen Wirkung auf dem Lächerlichmachen menschlicher Laster und Schwächen beruht; der Konflikt ist grundsätzlich lösbar, das Ende oft glücklich.</td></tr>
+          <tr><td class="term">Lesedrama</td><td>Drama, das nicht zur Aufführung, sondern zum Lesen bestimmt ist.</td></tr>
+          <tr><td class="term">Libretto</td><td>Textbuch von Oper, Operette, Musical, Oratorium oder Kantate.</td></tr>
+          <tr><td class="term">Mauerschau / Teichoskopie</td><td>Dramentechnisches Hilfsmittel: Eine Figur beobachtet ein gleichzeitig ausserhalb der Bühne stattfindendes Geschehen und berichtet den anderen Figuren davon.</td></tr>
+          <tr><td class="term">Mimesis</td><td>Nachahmung bzw. Darstellung von Menschen, Handlung und Lebenswirklichkeit; Grundprinzip der Poetik des Aristoteles.</td></tr>
+          <tr><td class="term">Monolog</td><td>Selbstgespräch einer Figur.</td></tr>
+          <tr><td class="term">naturalistisches Drama</td><td>Drama, das das tragische Geschehen ins kleinbürgerlich-proletarische Milieu verlegt, nicht auf Katharsis, sondern auf Aufrütteln zielt und im Sekundenstil arbeitet.</td></tr>
+          <tr><td class="term">Nebentext</td><td>Alles, was nicht gesprochen wird: Regieanweisungen, Figurennamen, Szenenüberschriften, Orts- und Zeitangaben.</td></tr>
+          <tr><td class="term">offenes Drama</td><td>Locker aufgebautes Drama mit Handlungs- und Zeitsprüngen, mehreren Orten, mehreren Handlungen und häufig vielen Figuren; die drei Einheiten werden nicht berücksichtigt.</td></tr>
+          <tr><td class="term">Parabase</td><td>Direkte Wendung einer Bühnenfigur an das Publikum; dadurch wird die dramatische Illusion aufgelöst.</td></tr>
+          <tr><td class="term">Peripetie</td><td>Unerwartete Wendung in der Handlung; der entscheidende Umschlag im Schicksal des Helden.</td></tr>
+          <tr><td class="term">Poetik</td><td>Schrift des Aristoteles (335 v. Chr.) über die Dichtkunst, insbesondere über die Tragödie.</td></tr>
+          <tr><td class="term">Prolog</td><td>Einleitende Worte vor Beginn der eigentlichen Handlung.</td></tr>
+          <tr><td class="term">Protagonist</td><td>Hauptfigur bzw. Hauptperson eines Dramas.</td></tr>
+          <tr><td class="term">Regieanweisung</td><td>Hinweis des Autors zu Mimik, Gestik, Sprechweise, Bewegung und Bühnenausstattung, der neben der Figurenrede steht (meist kursiv).</td></tr>
+          <tr><td class="term">Regisseur</td><td>Inszeniert die Aufführung eines Dramas.</td></tr>
+          <tr><td class="term">retardierendes Moment</td><td>4. Akt: spannungssteigernde Handlungsverzögerung, die beim Zuschauer nochmals Hoffnung auf ein gutes Ende weckt.</td></tr>
+          <tr><td class="term">Satyr</td><td>Mischwesen («Bock»), das den Weingott Dionysos begleitete; Namensgeber des «Bocksgesangs» (Tragödie).</td></tr>
+          <tr><td class="term">Schauspieler</td><td>Stellt eine Figur durch Bewegung, Gestik, Mimik, Sprechweise und Maske dar.</td></tr>
+          <tr><td class="term">Sekundenstil</td><td>Technik des Naturalismus: möglichst getreue Abbildung der Wirklichkeit durch Stottern, Stammeln, Dialekte, Ausrufe, Atempausen und exakte Regieanweisungen.</td></tr>
+          <tr><td class="term">Ständeklausel</td><td>Traditionelle Regel, nach der in Tragödien Personen hohen Standes dargestellt werden, während bürgerliche Figuren der Komödie vorbehalten sind.</td></tr>
+          <tr><td class="term">Stichomythie</td><td>Sehr schneller Wechsel von Rede und Gegenrede; die Gesprächspartner fallen sich teilweise ins Wort.</td></tr>
+          <tr><td class="term">Strichfassung</td><td>Vom Dramaturgen erstellte, gekürzte Spielfassung eines Stücks.</td></tr>
+          <tr><td class="term">Szene</td><td>Einteilung der Handlung innerhalb eines Aktes; beginnt meist mit einem Wechsel aller Figuren oder einem Ortswechsel.</td></tr>
+          <tr><td class="term">Theatron</td><td>Ursprünglich nur der Zuschauerraum; vom griech. <em>theasthai</em> = schauen. Stets rund, weil sich die Freiluftbühnen an natürliche Hänge anlehnten.</td></tr>
+          <tr><td class="term">Tragikomödie</td><td>Dramatische Form, in der Elemente der Tragödie und der Komödie eng miteinander verknüpft sind.</td></tr>
+          <tr><td class="term">Tragödie / Trauerspiel</td><td>Drama mit einem tragischen, nicht lösbaren Konflikt, der den Helden meist in den Untergang bzw. die Katastrophe führt.</td></tr>
+          <tr><td class="term">vierte Wand</td><td>Gedachte Grenze zwischen Bühne und Publikum; bei einer direkten Ansprache des Publikums wird sie durchbrochen.</td></tr>
+          <tr><td class="term">Vorausdeutung</td><td>Hinweis im Text auf ein späteres Ereignis, der die Erwartung des Zuschauers lenkt.</td></tr>
+          <tr><td class="term">Zieldrama</td><td>Synthetisches Drama: Ursache und Entwicklung des Konflikts werden auf der Bühne dargestellt, der Konflikt endet in der Katastrophe bzw. im Happy End.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="fehler">
+  <h2>Typische Fehler und Verwechslungen <span class="tag lz">L1 · L5</span></h2>
+  <p class="section-sub">Diese Paare sind die klassischen Fallen. Wer sie sauber trennt, verliert in Lückentexten
+  keine Punkte.</p>
+  <div class="card">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Verwechslung</th><th>So trennst du sie</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Katharsis ↔ Katastrophe</td><td><strong>Katharsis</strong> = Wirkung beim <em>Publikum</em> (Reinigung). <strong>Katastrophe</strong> = Handlungsteil auf der <em>Bühne</em> (5. Akt).</td></tr>
+          <tr><td class="term">Botenbericht ↔ Mauerschau</td><td>Bote = Ereignis ist <em>vorbei</em>, jemand kommt und erzählt. Mauerschau = Ereignis läuft <em>gerade</em>, jemand schaut hinaus.</td></tr>
+          <tr><td class="term">erregendes Moment ↔ Peripetie</td><td>Erregendes Moment (2. Akt) <em>startet</em> den Konflikt. Peripetie (3. Akt) <em>wendet</em> ihn.</td></tr>
+          <tr><td class="term">Ständeklausel ↔ Fallhöhe</td><td>Ständeklausel = die <em>Regel</em>. Fallhöhe = die <em>Begründung</em> der Regel.</td></tr>
+          <tr><td class="term">Monolog ↔ Parabase</td><td>Monolog = Figur spricht <em>mit sich selbst</em>. Parabase = Figur spricht <em>das Publikum an</em> und zerstört die Illusion.</td></tr>
+          <tr><td class="term">Mimesis ↔ Katharsis</td><td>Mimesis = <em>Prinzip</em> der Darstellung (Nachahmung). Katharsis = <em>Wirkung</em> der Darstellung.</td></tr>
+          <tr><td class="term">Akt ↔ Szene ↔ Auftritt</td><td>Akt = grösste Einheit. Szene = Einteilung innerhalb des Akts. Auftritt = kleinste Einheit, definiert über den Wechsel der Figurenkonstellation.</td></tr>
+          <tr><td class="term">dramatisch ↔ tragisch</td><td>Dramatisch = zur Gattung Drama gehörend. Tragisch = auf unausweichlichen Untergang zulaufend.</td></tr>
+          <tr><td class="term">offenes Drama ↔ offenes Ende</td><td>Offenes Drama betrifft die <em>Bauform</em> (drei Einheiten verletzt), nicht den Schluss.</td></tr>
+          <tr><td class="term">Protagonist ↔ Schauspieler</td><td>Protagonist = Figur <em>im</em> Werk. Schauspieler = Mensch <em>ausserhalb</em>, in der Inszenierung.</td></tr>
+          <tr><td class="term">Deus ex machina ↔ retardierendes Moment</td><td>Deus ex machina <em>beendet</em> den Konflikt abrupt von aussen. Das retardierende Moment <em>verzögert</em> ihn nur und ändert nichts am Ausgang.</td></tr>
+          <tr><td class="term">Haupttext ↔ Nebentext</td><td>Haupttext = wird gesprochen. Nebentext = alles andere (Regieanweisungen, Figurennamen, Szenentitel).</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="uebungen">
+  <h2>Übungen</h2>
+  <p class="section-sub">18 Aufgaben in fünf Niveaus — von der Definitionsabfrage bis zur Transferaufgabe. Löse
+  zuerst selbst, klappe die Lösung erst danach auf. Die Aufgaben bilden die zu erwartenden Olat-Aufgabentypen ab:
+  Definition, Zuordnung, Lückentext, Kreuzworträtsel und offene Erklärfrage.</p>
+
+  <h3 style="margin-top:26px;">Level 1 — Grundlagen</h3>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A1 · Definitionen abrufen</h4><span class="tag lvl">Level 1</span><span class="tag lz">L1 · L4</span></div>
+    <p>Definiere in je einem vollständigen Satz: (a) Peripetie, (b) Teichoskopie, (c) Stichomythie,
+    (d) Ständeklausel, (e) Mimesis, (f) Auftritt.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Geprüft wird:</strong> präzises Abrufen der Kerndefinitionen — genau das, was der Olat-Lückentext
+      verlangt.</p>
+      <ul class="clean">
+        <li><strong>(a) Peripetie:</strong> die unerwartete Wendung in der Handlung, der entscheidende Umschlag im
+        Schicksal des Helden (3. Akt).</li>
+        <li><strong>(b) Teichoskopie / Mauerschau:</strong> Eine Figur beobachtet ein gleichzeitig ausserhalb der
+        Bühne stattfindendes Geschehen und berichtet den anderen Figuren davon.</li>
+        <li><strong>(c) Stichomythie:</strong> sehr schneller Wechsel von Rede und Gegenrede, wobei sich die
+        Gesprächspartner teils ins Wort fallen.</li>
+        <li><strong>(d) Ständeklausel:</strong> die Regel, nach der in der Tragödie nur Personen hohen Standes
+        dargestellt werden, während bürgerliche Figuren der Komödie vorbehalten sind.</li>
+        <li><strong>(e) Mimesis:</strong> Nachahmung bzw. Darstellung von Menschen, Handlung und
+        Lebenswirklichkeit — Grundprinzip der Poetik des Aristoteles.</li>
+        <li><strong>(f) Auftritt:</strong> die kleinste Struktureinheit des Dramas, gekennzeichnet durch eine
+        Änderung der Figurenkonstellation (Erscheinen oder Abgang eines Darstellers).</li>
+      </ul>
+      <p><strong>Typischer Irrweg:</strong> Bei (b) nur «jemand berichtet etwas» zu schreiben — dann ist es vom
+      Botenbericht nicht unterscheidbar. Die <em>Gleichzeitigkeit</em> muss in der Definition stehen.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A2 · Begriff zur Definition finden</h4><span class="tag lvl">Level 1</span><span class="tag lz">L1 · L4</span></div>
+    <p>Nenne den Fachbegriff, der jeweils gemeint ist:</p>
+    <ol class="clean">
+      <li>Gedachte Grenze zwischen Bühne und Publikum.</li>
+      <li>Vom Dramaturgen erstellte, gekürzte Spielfassung eines Stücks.</li>
+      <li>Der kleine Fehler des tragischen Helden, der seinen Untergang verursacht.</li>
+      <li>Spannungssteigernde Handlungsverzögerung im 4. Akt.</li>
+      <li>Drama, dessen Konfliktauslöser in der Vergangenheit liegt und nach und nach enthüllt wird.</li>
+      <li>Häufigster Dramenvers der deutschen Klassik: fünfhebiger Jambus.</li>
+    </ol>
+    <details><summary>Lösung anzeigen</summary>
+      <ol class="clean">
+        <li>vierte Wand</li><li>Strichfassung</li><li>Hamartia</li><li>retardierendes Moment</li>
+        <li>analytisches Drama (Enthüllungsdrama)</li><li>Blankvers</li>
+      </ol>
+      <p><strong>Erkennungsstrategie:</strong> Achte auf das Signalwort. «Grenze» → vierte Wand. «Gekürzt» →
+      Strichfassung. «Vergangenheit, enthüllt» → analytisch. Genau so funktionieren Kreuzworträtsel-Hinweise.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A3 · Haupttext oder Nebentext?</h4><span class="tag lvl">Level 1</span><span class="tag lz">L2</span></div>
+    <p>Ordne jedes Element zu (Haupttext / Nebentext) und begründe kurz:</p>
+    <ol class="clean">
+      <li><em>Ein Gartenhäuschen</em></li>
+      <li>MARGARETE:</li>
+      <li>Er kommt!</li>
+      <li><em>(Er küsst sie.)</em></li>
+      <li><strong>INSPEKTOR</strong> <em>dumpf</em></li>
+    </ol>
+    <details><summary>Lösung anzeigen</summary>
+      <ol class="clean">
+        <li><strong>Nebentext</strong> — Szenenüberschrift bzw. Ortsangabe, wird nicht gesprochen.</li>
+        <li><strong>Nebentext</strong> — der Figurenname ist eine Sprecherbezeichnung, keine Rede.</li>
+        <li><strong>Haupttext</strong> — gesprochene Figurenrede.</li>
+        <li><strong>Nebentext</strong> — Regieanweisung zur Handlung.</li>
+        <li><strong>Nebentext</strong> (beides) — Sprecherbezeichnung plus Regieanweisung zur Sprechweise.</li>
+      </ol>
+      <p><strong>Faustregel:</strong> Alles, was ein Schauspieler <em>tut</em> statt <em>sagt</em>, ist Nebentext.</p>
+    </details>
+  </div>
+
+  <h3 style="margin-top:26px;">Level 2 — Anwendung</h3>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A4 · Lückentext «Aristoteles»</h4><span class="tag lvl">Level 2</span><span class="tag lz">L5 · L6</span></div>
+    <p>Setze die passenden Fachbegriffe ein:</p>
+    <p>Das Grundprinzip der «Poetik» ist die <span class="gap"></span>, also die Nachahmung von Handlung und
+    Lebenswirklichkeit. Die Tragödie soll beim Zuschauer Jammer und Schaudern auslösen; daraus entsteht die
+    <span class="gap"></span>. Formal fordert Aristoteles die Lehre der <span class="gap"></span> — nämlich die
+    Einheit von <span class="gap"></span>, <span class="gap"></span> und <span class="gap"></span> — sowie die
+    <span class="gap"></span>, nach der in der Tragödie nur Figuren hohen Standes auftreten dürfen. Begründet wird
+    das mit der <span class="gap"></span>, weil ein Absturz aus grosser Höhe wirkungsvoller ist. Ein Stück, das die
+    drei Einheiten beachtet, nennt man ein <span class="gap"></span> Drama.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p>Mimesis · Katharsis · drei Einheiten · Ort · Zeit · Handlung · Ständeklausel · Fallhöhe · geschlossenes</p>
+      <p><strong>Hinweis zur Reihenfolge:</strong> Ort–Zeit–Handlung ist die übliche Nennreihenfolge; Aristoteles
+      selbst spricht von Handlung, Raum und Zeit. Beide Reihenfolgen sind inhaltlich richtig — die Begriffe müssen
+      stimmen.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A5 · Kreuzworträtsel</h4><span class="tag lvl">Level 2</span><span class="tag lz">L4 · L5</span></div>
+    <p>Die Buchstabenzahl ist angegeben — genau so funktioniert die Olat-Aufgabe.</p>
+    <div class="cw">
+      <div class="cw-row"><span class="n">1</span><div>Selbstgespräch einer Figur. <span class="mono">(7)</span></div></div>
+      <div class="cw-row"><span class="n">2</span><div>Reinigung der Seele des Publikums durch Mitleid und Furcht. <span class="mono">(9)</span></div></div>
+      <div class="cw-row"><span class="n">3</span><div>Gegenspieler der Hauptfigur. <span class="mono">(10)</span></div></div>
+      <div class="cw-row"><span class="n">4</span><div>Direkte Wendung einer Bühnenfigur an das Publikum. <span class="mono">(8)</span></div></div>
+      <div class="cw-row"><span class="n">5</span><div>Einführung in Ort, Zeit und Figuren im 1. Akt. <span class="mono">(10)</span></div></div>
+      <div class="cw-row"><span class="n">6</span><div>Griechischer Zuschauerraum, stets kreisförmig. <span class="mono">(8)</span></div></div>
+      <div class="cw-row"><span class="n">7</span><div>Grössere Handlungseinheit, auch «Aufzug» genannt. <span class="mono">(3)</span></div></div>
+      <div class="cw-row"><span class="n">8</span><div>Verbindet Elemente von Tragödie und Komödie. <span class="mono">(13)</span></div></div>
+      <div class="cw-row"><span class="n">9</span><div>Naturalistische Technik der wirklichkeitsgetreuen Abbildung. <span class="mono">(12)</span></div></div>
+      <div class="cw-row"><span class="n">10</span><div>Mischwesen im Gefolge des Dionysos, Namensgeber des «Bocksgesangs». <span class="mono">(5)</span></div></div>
+    </div>
+    <details><summary>Lösung anzeigen</summary>
+      <p>1 MONOLOG · 2 KATHARSIS · 3 ANTAGONIST · 4 PARABASE · 5 EXPOSITION · 6 THEATRON · 7 AKT ·
+      8 TRAGIKOMOEDIE · 9 SEKUNDENSTIL · 10 SATYR</p>
+      <p><strong>Tipp:</strong> Bei Kreuzworträtseln werden Umlaute meist als OE/AE/UE geschrieben — deshalb hat
+      «Tragikomödie» hier 13 Buchstaben. Prüfe im Zweifel die Buchstabenzahl gegen beide Schreibweisen.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A6 · Fehlerhafte Definitionen korrigieren</h4><span class="tag lvl">Level 2</span><span class="tag lz">L1 · L5</span></div>
+    <p>Jede dieser Definitionen enthält einen Fehler. Finde und korrigiere ihn.</p>
+    <ol class="clean">
+      <li>«Die Katharsis ist der Untergang des Helden am Ende der Tragödie.»</li>
+      <li>«Beim Botenbericht schildert eine Figur, was sie gerade jetzt ausserhalb der Bühne sieht.»</li>
+      <li>«Das erregende Moment ist der bedeutendste Wendepunkt im 3. Akt.»</li>
+      <li>«Ein offenes Drama ist ein Drama mit offenem Ende.»</li>
+      <li>«Die Fallhöhe besagt, dass in der Tragödie nur Adlige auftreten dürfen.»</li>
+    </ol>
+    <details><summary>Lösung anzeigen</summary>
+      <ol class="clean">
+        <li>Verwechselt mit der <strong>Katastrophe</strong>. Richtig: Katharsis ist die <em>Reinigung des
+        Publikums</em> durch Mitleid und Furcht.</li>
+        <li>Das ist die <strong>Mauerschau/Teichoskopie</strong>. Beim Botenbericht ist das Ereignis bereits
+        geschehen und wird von einem hinzukommenden Boten erzählt.</li>
+        <li>Verwechselt mit der <strong>Peripetie</strong>. Das erregende Moment steht im <em>2.</em> Akt und
+        gibt der Handlung den entscheidenden Anstoss.</li>
+        <li>Falsch: Es geht um die <strong>Bauform</strong> — die drei Einheiten werden nicht beachtet
+        (mehrere Orte, Zeitsprünge, mehrere Handlungen, viele Figuren).</li>
+        <li>Das ist die <strong>Ständeklausel</strong>. Die Fallhöhe ist die <em>Begründung</em>: Tragisches
+        Scheitern wirkt nur bei einer hochgestellten Figur, die einen bedeutenden Absturz erlebt.</li>
+      </ol>
+      <p><strong>Warum diese Aufgabe wichtig ist:</strong> Im Olat-Multiple-Choice werden genau solche falschen
+      Definitionen als Distraktoren angeboten. Wer sie einmal aktiv korrigiert hat, fällt nicht darauf herein.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A7 · Lückentext «Freytag»</h4><span class="tag lvl">Level 2</span><span class="tag lz">L5 · L6</span></div>
+    <p>Der Aufbau des klassischen Dramas wurde 1863 von <span class="gap"></span> in seinem Buch
+    «<span class="gap"></span>» in einem <span class="gap"></span>förmigen Schema beschrieben. Im 1. Akt steht die
+    <span class="gap"></span>, im 2. Akt das <span class="gap"></span>, im 3. Akt der Höhepunkt bzw. die
+    <span class="gap"></span>, im 4. Akt das <span class="gap"></span> und im 5. Akt die
+    <span class="gap"></span>. Eine klassische Tragödie hat <span class="gap"></span> Akte, eine klassische
+    Komödie <span class="gap"></span>.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p>Gustav Freytag · Die Technik des Dramas · pyramiden- (dramatisches Dreieck) · Exposition · erregende
+      Moment · Peripetie · retardierende Moment · Katastrophe (Auflösung) · fünf · drei</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A8 · Antikes Theater: Wissensfragen</h4><span class="tag lvl">Level 2</span><span class="tag lz">L6</span></div>
+    <p>Beantworte in Stichworten:</p>
+    <ol class="clean">
+      <li>Welche zwei geschichtlichen Wurzeln hatte die antike Tragödie?</li>
+      <li>Nenne vier Bühneneffekte der Griechen.</li>
+      <li>Warum war das Theatron kreisförmig?</li>
+      <li>Welche drei gesellschaftlichen Aufgaben hatte die griechische Tragödie?</li>
+      <li>Nenne die drei berühmtesten antiken Tragödiendichter.</li>
+    </ol>
+    <details><summary>Lösung anzeigen</summary>
+      <ol class="clean">
+        <li><strong>(1)</strong> Der <strong>Dionysoskult</strong> — festliche Strassenumzüge zu Ehren des
+        Weingottes mit Chorgesängen; <strong>(2)</strong> die entstehende <strong>Demokratie</strong> in den
+        griechischen Stadtstaaten, für die die Bürger politisch gebildet werden mussten.</li>
+        <li>Donnermaschine; Blitze, simuliert mit Spiegeln; Tiere auf der Bühne; ein Kran, mit dem Götter schweben
+        konnten (Deus ex machina).</li>
+        <li>Weil sich die Freiluftbühnen an <strong>natürliche Hänge</strong> anlehnten — in Athen an den
+        südlichen Abhang der Akropolis.</li>
+        <li>Unterhaltung; gemeinschaftsstiftendes Event; Erziehung der männlichen Zuschauer zu politisch
+        nachdenklichen Bürgern.</li>
+        <li>Aischylos, Sophokles, Euripides.</li>
+      </ol>
+    </details>
+  </div>
+
+  <h3 style="margin-top:26px;">Level 3 — Schwierige Anwendung</h3>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A9 · Szenen einordnen</h4><span class="tag lvl">Level 3</span><span class="tag lz">L2</span></div>
+    <p>Welches dramentechnische Mittel liegt jeweils vor? Begründe.</p>
+    <ol class="clean">
+      <li>Ein Diener stürzt herein: «Herr, die Schlacht ist verloren, der König gefallen!»</li>
+      <li>Eine Königin steht am Fenster: «Seht nur, wie sie den Hügel herabströmen — jetzt weichen die Unseren!»</li>
+      <li>Zwei Figuren streiten sich in Halbzeilen, jede fällt der anderen ins Wort.</li>
+      <li>Der Held tritt an die Rampe und fragt das Publikum, ob es an seiner Stelle anders gehandelt hätte.</li>
+      <li>Kurz vor der Hinrichtung trifft ein Begnadigungsgesuch ein — vergeblich, wie sich zeigt.</li>
+    </ol>
+    <details><summary>Lösung anzeigen</summary>
+      <ol class="clean">
+        <li><strong>Botenbericht</strong> — jemand kommt von aussen herein und berichtet ein bereits
+        abgeschlossenes Ereignis.</li>
+        <li><strong>Mauerschau / Teichoskopie</strong> — die Figur beobachtet ein <em>gleichzeitig</em> ablaufendes
+        Geschehen ausserhalb der Bühne und berichtet davon.</li>
+        <li><strong>Stichomythie</strong> — sehr schneller Wechsel von Rede und Gegenrede.</li>
+        <li><strong>Parabase</strong> — direkte Wendung ans Publikum; die vierte Wand wird durchbrochen und die
+        dramatische Illusion aufgelöst.</li>
+        <li><strong>Retardierendes Moment</strong> — die Auflösung wird verzögert und Hoffnung geweckt, ohne den
+        Ausgang zu ändern.</li>
+      </ol>
+      <p><strong>Typischer Irrweg bei 5:</strong> Wer «Deus ex machina» antwortet, übersieht das Wort
+      <em>vergeblich</em>. Ein Deus ex machina <em>löst</em> den Konflikt tatsächlich; das retardierende Moment
+      lässt ihn nur kurz lösbar erscheinen.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A10 · Akte zuordnen</h4><span class="tag lvl">Level 3</span><span class="tag lz">L2 · L6</span></div>
+    <p>Ein erfundenes Stück: Ein Herzog erfährt, dass sein Bruder ihn stürzen will (I). Er lässt den Bruder
+    verhaften und provoziert damit einen Aufstand der Stadt (II). Im Kampf tötet er versehentlich seinen eigenen
+    Sohn, der auf der Gegenseite stand (III). Ein Vermittler bietet einen Waffenstillstand an, der Herzog schöpft
+    Hoffnung (IV). Der Waffenstillstand scheitert, der Herzog verliert Stadt und Leben (V).</p>
+    <p>Benenne für jeden Akt den Fachbegriff nach Freytag und begründe je einen davon ausführlich.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <ul class="clean">
+        <li><strong>I — Exposition:</strong> Ort, Figuren und Ausgangssituation werden eingeführt, der Konflikt
+        wird angedeutet.</li>
+        <li><strong>II — erregendes Moment:</strong> Die Verhaftung ist der <em>entscheidende Anstoss</em>;
+        Interessen stossen aufeinander, der Konflikt bahnt sich an.</li>
+        <li><strong>III — Peripetie / Höhepunkt:</strong> Der versehentliche Tod des eigenen Sohnes ist der
+        bedeutendste Wendepunkt. Das Glück verlässt den Helden genau auf dem Höhepunkt der Handlung — und die
+        Ursache ist ein eigener Fehler (Hamartia: seine Härte gegenüber dem Bruder).</li>
+        <li><strong>IV — retardierendes Moment:</strong> Das Waffenstillstandsangebot verzögert die Auflösung und
+        weckt Hoffnung, ändert aber nichts an der Richtung der Handlung.</li>
+        <li><strong>V — Katastrophe:</strong> Der Konflikt wird aufgelöst; der tragische Held verliert alles.</li>
+      </ul>
+      <p><strong>Erkennungsregel:</strong> Der Akt, in dem die Handlung <em>kippt</em> (aus Erfolg wird
+      Misserfolg), ist immer die Peripetie — nicht der Akt mit den meisten Toten.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A11 · Warum ist «Die Physiker» ein Drama?</h4><span class="tag lvl">Level 3</span><span class="tag lz">L3</span></div>
+    <p>Erkläre in einem zusammenhängenden Text (ca. 8–10 Sätze) anhand von <strong>mindestens fünf</strong>
+    textsortenspezifischen Merkmalen, warum «Die Physiker» der Gattung Dramatik zuzuordnen ist. Belege jedes
+    Merkmal am Werk.</p>
+    <details><summary>Musterlösung anzeigen</summary>
+      <p>«Die Physiker» ist ein Drama, weil das Stück eine Handlung ausschliesslich durch Figurenrede auf einer
+      Bühne darstellt. Erstens fehlt jede erzählende Instanz: Es gibt keinen Erzähler, der die Figuren kommentiert
+      oder in ihr Inneres blickt — nur deshalb kann Dürrenmatt das Publikum so lange darüber täuschen, wer die
+      drei Patienten wirklich sind. Zweitens besteht der gesamte Haupttext aus <strong>Dialogen</strong> — etwa
+      dem Verhör durch Inspektor Voss oder dem Gespräch der drei Physiker beim Abendessen — und aus
+      <strong>Monologen</strong>, am deutlichsten in den drei Abschlussmonologen von Newton, Einstein und Möbius.
+      Drittens enthält der Text umfangreiche <strong>Regieanweisungen</strong>: Das Stück beginnt mit einem
+      ausführlichen einleitenden Nebentext, der den Salon der Villa genau beschreibt, und auch im Dialog stehen
+      Anweisungen zur Sprechweise und zur Gestik. Viertens ist das Werk in <strong>Akte und Szenen</strong>
+      gegliedert — zwei Akte mit je drei Szenen, deren parallel gebaute Anfänge Dürrenmatt gezielt für seine
+      Wirkung nutzt. Fünftens trägt das Stück einen <strong>dramatischen Konflikt</strong>: äusserlich zwischen
+      Möbius und den beiden Agenten sowie der Chefärztin, innerlich in Möbius selbst, der zwischen seiner Liebe zu
+      Schwester Monika und seiner Verantwortung für die Menschheit zerrissen ist. Sechstens ist der Text
+      erkennbar <strong>für die Bühne bestimmt</strong>: Der Einheitsschauplatz und die präzise
+      Bühnenbeschreibung zielen auf die Aufführung. Damit erfüllt «Die Physiker» alle Gattungsmerkmale des
+      Dramas.</p>
+      <p><strong>Bewertungskriterien:</strong> mindestens fünf Merkmale korrekt benannt (je 1 Punkt), jedes mit
+      einem konkreten Beleg aus dem Werk (je 1 Punkt), Fachbegriffe korrekt verwendet, zusammenhängender Text
+      statt Stichworte.</p>
+      <p><strong>Typischer Irrweg:</strong> Über den <em>Inhalt</em> des Stücks schreiben («Es geht um drei
+      Physiker in einer Anstalt…»). Gefragt sind die <em>Gattungsmerkmale</em> — der Inhalt liefert nur die
+      Belege.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A12 · Warum diese Regel?</h4><span class="tag lvl">Level 3</span><span class="tag lz">L6</span></div>
+    <p>Erkläre jeweils die <strong>Begründung</strong>, nicht nur die Regel:</p>
+    <ol class="clean">
+      <li>Weshalb wurde die Regel der drei Einheiten eingeführt?</li>
+      <li>Weshalb wurde die Teichoskopie eingeführt?</li>
+      <li>Weshalb musste der Held eine Hamartia begehen?</li>
+    </ol>
+    <details><summary>Lösung anzeigen</summary>
+      <ol class="clean">
+        <li>Die antiken Tragödien wurden auf einer <strong>steinernen Bühne ohne Effekte</strong> aufgeführt — es
+        gab keine Vorhänge, Drehmechanismen oder doppelten Böden. Trotzdem sollte das Geschehen
+        <strong>real</strong> wirken. Ein Wechsel von Ort oder Tageszeit mitten im Stück hätte diese
+        <strong>Glaubhaftigkeit zerstört</strong>.</li>
+        <li>Auf einer überschaubaren Bühne mit kleinem Ensemble liessen sich <strong>aufmarschierende Armeen,
+        Schlachten und gewaltige Naturphänomene</strong> nicht darstellen. Die Mauerschau bringt sie ins Stück,
+        indem eine Figur schildert, was sie ausserhalb der Bühnenwelt sieht.</li>
+        <li>Damit die <strong>Ordnung der Götter gerecht und verlässlich</strong> erschien, brauchte der Untergang
+        eine Ursache. Ein völlig schuldloser Tod hätte das Publikum schockiert und den Glauben an einen gerechten
+        Kosmos zerstört. Der Held musste deshalb Vorbild sein <em>und</em> eine kleine Verfehlung begehen —
+        Arroganz, Dummheit, Flüchtigkeit oder Selbstüberhöhung.</li>
+      </ol>
+      <p><strong>Prüfungstipp:</strong> «Weshalb»-Fragen sind fast immer <em>Technik- oder Wirkungsfragen</em>.
+      Frag dich: Was konnte die antike Bühne nicht? Oder: Was sollte das Publikum fühlen?</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A13 · Katharsis in eigenen Worten</h4><span class="tag lvl">Level 3</span><span class="tag lz">L6</span></div>
+    <p>Erkläre den Vorgang der Katharsis in fünf bis sieben Sätzen. Verwende dabei: Mimesis, éleos, phóbos,
+    Identifikation, stellvertretend. Gehe zusätzlich auf Lessings Neuübersetzung ein.</p>
+    <details><summary>Musterlösung anzeigen</summary>
+      <p>Nach Aristoteles ist die Tragödie <strong>Mimesis</strong>, also die Nachahmung einer in sich
+      geschlossenen Handlung. Der Zuschauer verfolgt, wie der tragische Held einen Fehler begeht, der zu grossem
+      Leid führt. Dabei empfindet er <strong>éleos</strong> — Jammer, Mitleid, Rührung — und
+      <strong>phóbos</strong> — Furcht, Schrecken, Schaudern. Durch die <strong>Identifikation</strong> mit dem
+      Helden erlebt er den Konflikt emotional mit; der Held durchlebt und erleidet ihn
+      <strong>stellvertretend</strong> für das Publikum. Die aufgestaute Erregung löst sich im Mitleid mit dem
+      sterbenden Helden — das ist die <strong>Katharsis</strong>, die Reinigung der Seele. Der Zuschauer soll
+      dadurch sein eigenes Verhalten reflektieren und die Tragödie klüger, bedachter und weniger emotional
+      verlassen. <strong>Lessing</strong> übersetzte das Begriffspaar neu als «Mitleid und Furcht»: Der Zuschauer
+      ist damit nicht nur erschüttert, sondern fürchtet, selbst Ähnliches zu erleben — und genau das bewegt ihn
+      dazu, ein besserer Mensch werden zu wollen.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A14 · Tragödie oder Komödie?</h4><span class="tag lvl">Level 3</span><span class="tag lz">L7</span></div>
+    <p>Ordne jede Beschreibung zu und nenne das entscheidende Kriterium:</p>
+    <ol class="clean">
+      <li>Der Zuschauer blickt auf die Figur herab und lacht über ihre Einbildung.</li>
+      <li>Der Held wehrt sich gegen den Untergang und erliegt der selbst verursachten Bedrohung.</li>
+      <li>Der Konflikt entsteht durch eine Verwechslung infolge einer Verkleidung.</li>
+      <li>Die Hauptfigur ist von einer ungezügelten Leidenschaft getrieben, die sie ins Verderben führt.</li>
+      <li>Das Leiden der Figur bleibt unterhalb der Schmerzgrenze.</li>
+    </ol>
+    <details><summary>Lösung anzeigen</summary>
+      <ol class="clean">
+        <li><strong>Komödie</strong> — Kriterium: distanzierte, überlegene, herabschauende Haltung des Zuschauers.</li>
+        <li><strong>Tragödie</strong> — Kriterium: eigene Schuld, unausweichlicher Untergang.</li>
+        <li><strong>Komödie</strong> — Kriterium: Konfliktentstehung durch Rollenvertauschung, Verkleidung,
+        Zerstreutheit oder Intrige.</li>
+        <li><strong>Tragödie</strong> — Kriterium: die ungezügelte Leidenschaft (der Affekt) als Kern des
+        tragischen Konflikts.</li>
+        <li><strong>Komödie</strong> — Kriterium: Leiden bzw. Bestrafung bleiben unterhalb der Schmerzgrenze.</li>
+      </ol>
+    </details>
+  </div>
+
+  <h3 style="margin-top:26px;">Level 4 — Transfer</h3>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A15 · Dürrenmatts Tragikomödie begründen</h4><span class="tag lvl">Level 4</span><span class="tag lz">L7</span></div>
+    <p>Dürrenmatt nennt «Die Physiker» im Untertitel «Eine Komödie», obwohl drei Frauen ermordet werden und das
+    Stück in einer Katastrophe endet. Erkläre mit den Gattungsbegriffen, warum die Bezeichnung trotzdem nicht
+    falsch ist — und welche Werkform tatsächlich vorliegt.</p>
+    <details><summary>Musterlösung anzeigen</summary>
+      <p><strong>Geprüft wird:</strong> Werkformen sicher unterscheiden <em>und</em> auf einen Grenzfall anwenden.</p>
+      <p>Formal liegt eine <strong>Tragikomödie</strong> vor: eine Form, in der Elemente von Tragödie und Komödie
+      eng miteinander verknüpft sind, indem tragische Ereignisse mit komischen verbunden werden. Für die
+      <strong>Komödie</strong> spricht die <strong>Distanz</strong> des Zuschauers: Figuren wie Missionar Rose und
+      Schwester Monika sind karikaturhaft überzeichnet — ihre übertriebene Frömmigkeit und Opferbereitschaft geben
+      sie der Lächerlichkeit preis. Deshalb sind sie keine tragischen Gestalten, mit denen man wirklich mitleidet;
+      die klassische <strong>Identifikation</strong> und damit die <strong>Katharsis</strong> bleiben aus. Auch die
+      absurde Grundsituation und die <strong>dramatische Ironie</strong> — das Publikum weiss vor den Figuren
+      Bescheid — erzeugen Komik. Für das <strong>Tragische</strong> spricht der unlösbare Konflikt: Möbius opfert
+      Liebe, Familie und Freiheit, um die Menschheit zu schützen, und erreicht damit exakt das Gegenteil.
+      Dürrenmatt selbst schrieb, die Tragikomödie «sei die einzig mögliche dramatische Form, heute das Tragische
+      auszusagen» — das Tragische entsteht also <em>aus der Komödie heraus</em>, als plötzlich sich öffnender
+      Abgrund. Der Untertitel ist deshalb kein Etikettenschwindel, sondern Programm.</p>
+      <p><strong>Typischer Irrweg:</strong> «Es ist eine Tragödie, weil Menschen sterben.» Tote allein machen
+      keine Tragödie — entscheidend sind Konfliktart, Fallhöhe und die Haltung des Zuschauers.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A16 · Ständeklausel im Wandel</h4><span class="tag lvl">Level 4</span><span class="tag lz">L6 · L7</span></div>
+    <p>Skizziere den Weg der Ständeklausel von Aristoteles über Lessing bis zum naturalistischen Drama. Wer bricht
+    wann womit — und welche <em>Wirkung</em> soll dadurch jeweils erreicht werden?</p>
+    <details><summary>Musterlösung anzeigen</summary>
+      <ul class="clean">
+        <li><strong>Aristoteles:</strong> Die Tragödie ist den Konflikten der «guten oder schönen» Menschen
+        vorbehalten, die Komödie den «schlechten oder hässlichen». Später wird daraus die Zuordnung Adliger →
+        Tragödie, Bürger → Komödie. <em>Begründung:</em> die Fallhöhe.</li>
+        <li><strong>Lessing, 18. Jh. (bürgerliches Trauerspiel):</strong> korrigiert die Ständeklausel, weil sich
+        der Zuschauer in einen bürgerlichen Helden <strong>leichter einfühlen</strong> kann. <em>Wirkungsziel:</em>
+        erst dadurch entfaltet die Tragödie ihre Wirkung — die Katharsis wird <strong>verstärkt</strong>, nicht
+        aufgegeben. Weitere Erneuerungen: zeittypische Probleme statt zeitloser Affekte, Figuren sprechen Prosa.</li>
+        <li><strong>Naturalismus, 19. Jh. (Hauptmann, Ibsen):</strong> verlegt das tragische Geschehen ins
+        kleinbürgerlich-proletarische Milieu und interessiert sich nicht mehr für Aufstieg und Fall eines Helden,
+        sondern für die misslichen Lebensumstände. <em>Wirkungsziel:</em> ausdrücklich <strong>keine
+        Katharsis</strong>, sondern <strong>Aufrütteln</strong> durch realitätsgetreue Schilderung — umgesetzt im
+        Sekundenstil.</li>
+      </ul>
+      <p><strong>Die Pointe der Aufgabe:</strong> Beide brechen mit der Ständeklausel, aber aus
+      <em>entgegengesetzten</em> Gründen — Lessing, um die aristotelische Wirkung zu retten; der Naturalismus, um
+      sie abzuschaffen.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A17 · Bauform bestimmen</h4><span class="tag lvl">Level 4</span><span class="tag lz">L8</span></div>
+    <p>Ein Stück spielt an einem einzigen Tag im Salon eines Hauses, hat sieben Figuren und einen durchgehenden
+    Handlungsstrang — ist aber in nur zwei Akte gegliedert, endet ohne Katharsis und trägt den Untertitel
+    «Komödie». Ist es ein geschlossenes oder ein offenes Drama? Begründe mit den Kriterien.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Antwort: geschlossen</strong> — jedenfalls nach dem entscheidenden Kriterium.</p>
+      <p><strong>Begründung Kriterium für Kriterium:</strong> Einheit des Ortes ✓ (ein Salon), Einheit der Zeit ✓
+      (ein Tag), Einheit der Handlung ✓ (ein durchgehender Strang), wenige Figuren ✓, linearer Aufbau ✓. Damit sind
+      die drei Einheiten gewahrt — und genau daran entscheidet sich die Bauform.</p>
+      <p><strong>Die eingebaute Falle:</strong> Aktzahl, fehlende Katharsis und der Untertitel «Komödie» sind
+      <strong>irrelevante Zusatzinformationen</strong> für diese Frage. Sie betreffen Werkform und Wirkung, nicht
+      die Bauform. Wer sich davon ablenken lässt, antwortet «offen».</p>
+      <p><strong>Merksatz:</strong> Bauform = drei Einheiten. Werkform = Konflikt und Ausgang. Wirkung = Katharsis
+      oder nicht. Drei verschiedene Fragen.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>A18 · Umbauen statt beschreiben</h4><span class="tag lvl">Level 4</span><span class="tag lz">L8</span></div>
+    <p>Nimm eine beliebige klassische Tragödie in fünf Akten. Beschreibe <strong>vier konkrete Eingriffe</strong>,
+    mit denen man daraus ein offenes Drama machen würde, und benenne bei jedem Eingriff, welches Merkmal des
+    geschlossenen Dramas dabei aufgegeben wird.</p>
+    <details><summary>Musterlösung anzeigen</summary>
+      <ol class="clean">
+        <li><strong>Handlung auf mehrere Schauplätze verteilen</strong> (Palast, Schlachtfeld, Marktplatz) → gibt
+        die <strong>Einheit des Ortes</strong> auf.</li>
+        <li><strong>Zeitsprünge einbauen</strong>, etwa «Zehn Jahre später» → gibt die <strong>Einheit der
+        Zeit</strong> auf.</li>
+        <li><strong>Eine gleichrangige Nebenhandlung ergänzen</strong>, die nicht der Haupthandlung dient → gibt
+        die <strong>Einheit der Handlung</strong> und die konsequente Handlungsführung auf.</li>
+        <li><strong>Die Aktstruktur auflösen</strong> zu einer losen Szenenfolge, viele Nebenfiguren einführen und
+        sie Dialekt sprechen lassen → gibt lineare Bauform, geringe Figurenzahl und einheitliche Sprache auf.</li>
+      </ol>
+      <p><strong>Warum diese Aufgabe schwer ist:</strong> Sie verlangt, die Kriterien nicht nur wiederzuerkennen,
+      sondern <em>anzuwenden</em> — man muss wissen, welches Merkmal an welchem Eingriff hängt. Genau das prüft
+      echtes Verständnis statt Auswendiglernen.</p>
+    </details>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz: Begriffe im Schnelldurchlauf <span class="tag lz">L4</span></h2>
+  <p class="section-sub">15 Fragen im Olat-Stil. Eine Antwort ist richtig — klicke sie an, das Feedback erscheint
+  sofort.</p>
+  <div class="scorebar">
+    <span>Punktestand: <strong id="score">0</strong> / <strong id="total">0</strong></span>
+    <button type="button" id="reset">Quiz zurücksetzen</button>
+  </div>
+  <div id="quiz-list"></div>
+</section>
+
+<section id="simulation">
+  <h2>Prüfungssimulation</h2>
+  <p class="section-sub">Vier Aufgaben, 45 Minuten, insgesamt 40 Punkte — ohne Unterlagen, wie an der Prüfung.
+  Die Aufgabenstellungen verraten die Fachbegriffe absichtlich nicht.</p>
+
+  <div class="ex">
+    <div class="ex-head"><h4>P1 · Textausschnitt analysieren</h4><span class="tag lvl">Level 5</span><span class="tag lz">L2</span><span class="tag">10 Punkte</span></div>
+    <p>Lies den folgenden erfundenen Ausschnitt und beantworte die Fragen darunter.</p>
+    <div class="callout quote">
+      <em>Vorzimmer des Königs. Abend. ELVIRA tritt ans Fenster.</em><br>
+      <strong>ELVIRA:</strong> Da — die Fackeln am Tor! Sie brechen das Gitter auf, jetzt strömen sie über den Hof.<br>
+      <strong>DON RAMIRO:</strong> Wie viele?<br>
+      <strong>ELVIRA:</strong> Zu viele.<br>
+      <strong>DON RAMIRO:</strong> Wir halten.<br>
+      <strong>ELVIRA:</strong> Womit?<br>
+      <strong>DON RAMIRO:</strong> Mit dem, was bleibt.<br>
+      <em>Ein Bote stürzt herein.</em><br>
+      <strong>BOTE:</strong> Herr — der Süden ist gefallen, das Heer ist geschlagen, seit gestern.<br>
+      <strong>DON RAMIRO</strong> <em>allein, nachdem alle abgegangen sind</em>: Ich habe es gewusst. Ich habe es
+      gewusst und geschwiegen, weil Schweigen bequemer war als Widerspruch. Nun steht die Rechnung offen.
+    </div>
+    <ol class="clean">
+      <li>Benenne <strong>drei</strong> dramentechnische Mittel in diesem Ausschnitt und belege sie am Text. (6 P.)</li>
+      <li>Unterscheide im Ausschnitt Haupttext und Nebentext an je einem Beispiel. (2 P.)</li>
+      <li>Welche Art von Konflikt deutet Don Ramiros Schlussrede an? (2 P.)</li>
+    </ol>
+    <details><summary>Musterlösung und Punkteverteilung</summary>
+      <p><strong>1. (je 2 P.: Begriff + Beleg)</strong></p>
+      <ul class="clean">
+        <li><strong>Mauerschau / Teichoskopie:</strong> Elvira steht am Fenster und schildert, was <em>in diesem
+        Moment</em> ausserhalb der Bühne geschieht («Sie brechen das Gitter auf, jetzt strömen sie über den Hof»).</li>
+        <li><strong>Stichomythie:</strong> «Wie viele?» / «Zu viele.» / «Wir halten.» / «Womit?» — sehr schneller
+        Wechsel von Rede und Gegenrede in Kurzzeilen.</li>
+        <li><strong>Botenbericht:</strong> Der hereinstürzende Bote berichtet ein <em>bereits abgeschlossenes</em>
+        Ereignis («seit gestern»).</li>
+        <li>(Ebenfalls gültig: <strong>Monolog</strong> — Don Ramiro spricht allein, reflektiert und äussert
+        Gefühle.)</li>
+      </ul>
+      <p><strong>2. (2 P.)</strong> Nebentext: «<em>Vorzimmer des Königs. Abend.</em>», «<em>Ein Bote stürzt
+      herein.</em>», «<em>allein, nachdem alle abgegangen sind</em>», die Figurennamen. Haupttext: jede gesprochene
+      Replik, z. B. «Zu viele.»</p>
+      <p><strong>3. (2 P.)</strong> Ein <strong>innerer Konflikt</strong>: Ramiro ist zerrissen zwischen seinem
+      Wissen und seinem Schweigen; er erkennt eigene Schuld. Die Formulierung «weil Schweigen bequemer war»
+      benennt eine Verfehlung im Sinne der <strong>Hamartia</strong>. (1 P. für «innerer Konflikt», 1 P. für die
+      Begründung am Text.)</p>
+      <p><strong>Häufigster Punkteverlust:</strong> Mauerschau und Botenbericht als dasselbe zu behandeln. Das
+      Wörtchen «seit gestern» ist hier der entscheidende Beleg.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>P2 · Aristoteles und das antike Theater</h4><span class="tag lvl">Level 5</span><span class="tag lz">L6</span><span class="tag">12 Punkte</span></div>
+    <ol class="clean">
+      <li>Nenne die sechs Aspekte der aristotelischen Dramentheorie (Grundprinzip, Aufgabe des Dichters, Wirkung,
+      Figurengestaltung, Formmerkmale, Werkaufbau) mit je einem Stichwort. (6 P.)</li>
+      <li>Erkläre den Zusammenhang zwischen Bühnentechnik und der Lehre der drei Einheiten. (3 P.)</li>
+      <li>Was ist ein Deus ex machina — inhaltlich und technisch? (3 P.)</li>
+    </ol>
+    <details><summary>Musterlösung und Punkteverteilung</summary>
+      <p><strong>1. (je 1 P.)</strong> Grundprinzip: Mimesis (Nachahmung). Aufgabe des Dichters: Konstruktion einer
+      möglichen Wirklichkeit, den Zuschauer in Jammer und Schaudern versetzen. Wirkung: Katharsis durch Jammer und
+      Schaudern. Figurengestaltung: Darstellung besserer Menschen, als sie in der Wirklichkeit sind. Formmerkmale:
+      drei Einheiten, geformte Sprache, Ständeklausel. Werkaufbau: abgeschlossene Haupthandlung.</p>
+      <p><strong>2. (3 P.)</strong> Die antike Bühne war eine <em>steinerne Bühne ohne Effekte</em> — keine
+      Vorhänge, Drehmechanismen, doppelten Böden (1 P.). Trotzdem sollte das Geschehen als real erscheinen (1 P.).
+      Ein Wechsel von Ort oder Tageszeit hätte diese Glaubhaftigkeit zerstört, deshalb Einheit von Ort, Zeit und
+      Handlung (1 P.).</p>
+      <p><strong>3. (3 P.)</strong> Inhaltlich: das unerwartete Auftauchen einer Gottheit, die einen aus der
+      Handlung heraus nicht mehr lösbaren Konflikt abrupt beendet (1 P.); es kommt für den Zuschauer überraschend
+      und liefert die Schlusswende in einem Dilemma (1 P.). Technisch: ein als Gott verkleideter Darsteller, der
+      auf einer Hebebühne bzw. mit einem Kran über der Bühne schwebte (1 P.).</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>P3 · Gattungszuordnung begründen</h4><span class="tag lvl">Level 5</span><span class="tag lz">L3</span><span class="tag">10 Punkte</span></div>
+    <p>«Begründen Sie die Gattungszuordnung der im Unterricht gelesenen Lektüre und belegen Sie Ihre Aussagen am
+    Werk.»</p>
+    <details><summary>Musterlösung und Bewertungsraster</summary>
+      <p>Erwartet wird die vollständige Antwort aus <a href="#uebungen">A11</a>: mindestens fünf Gattungsmerkmale
+      des Dramas — kein Erzähler, ausschliesslich Figurenrede in Dialog und Monolog, Regieanweisungen/Nebentext,
+      Gliederung in Akte und Szenen, dramatischer Konflikt (innen und aussen), Bestimmung für die Bühne — jeweils
+      mit einem konkreten Beleg aus «Die Physiker».</p>
+      <p><strong>Raster:</strong> je 1 P. für ein korrekt benanntes Merkmal (max. 5), je 1 P. für den zugehörigen
+      Werkbeleg (max. 5). Abzug bei blosser Inhaltsangabe, bei fehlender Fachterminologie oder wenn Merkmale
+      genannt, aber nicht belegt werden.</p>
+      <p><strong>Aufwertung:</strong> Wer zusätzlich die Werkform korrekt als Tragikomödie einordnet und dies
+      begründet, zeigt über das Geforderte hinausgehendes Verständnis.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>P4 · Vergleichstabelle aus dem Kopf</h4><span class="tag lvl">Level 5</span><span class="tag lz">L8</span><span class="tag">8 Punkte</span></div>
+    <p>Stelle geschlossenes und offenes Drama in einer Tabelle mit mindestens vier Vergleichskriterien gegenüber.
+    Nenne zu jedem Kriterium beide Ausprägungen.</p>
+    <details><summary>Musterlösung</summary>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Kriterium</th><th>geschlossen</th><th>offen</th></tr></thead>
+          <tbody>
+            <tr><td class="term">drei Einheiten</td><td>beachtet</td><td>nicht beachtet</td></tr>
+            <tr><td class="term">Aufbau</td><td>linear, von A nach Z</td><td>sprunghaft, Handlungs- und Zeitsprünge</td></tr>
+            <tr><td class="term">Handlungsstränge</td><td>einer, ohne Nebenhandlungen</td><td>mehrere nebeneinander</td></tr>
+            <tr><td class="term">Orte</td><td>einer</td><td>mehrere</td></tr>
+            <tr><td class="term">Figurenzahl</td><td>wenige</td><td>viele</td></tr>
+            <tr><td class="term">Sprache</td><td>einheitlich, geformt</td><td>unterschiedliche Sprachen, Dialekte</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Raster:</strong> je 2 P. pro vollständig ausgefülltem Kriterium (Kriterium + beide Ausprägungen),
+      max. 8 P. Volle Punktzahl nur, wenn die drei Einheiten als Kriterium vorkommen — sie sind die Grundlage der
+      Unterscheidung.</p>
+    </details>
+  </div>
+</section>
+
+<section id="lastminute">
+  <h2>Last-Minute-Repetition</h2>
+  <p class="section-sub">Am Vorabend durchgehen. Was du nicht abhaken kannst, schlägst du im
+  <a href="#glossar">Glossar</a> nach.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>Kann ich ohne Hilfe …</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c1"><label for="c1">die sechs Merkmale eines dramatischen Textes aufzählen?</label></li>
+        <li><input type="checkbox" id="c2"><label for="c2">Haupttext und Nebentext an einem Beispiel trennen?</label></li>
+        <li><input type="checkbox" id="c3"><label for="c3">inneren und äusseren Konflikt definieren und je ein Beispiel nennen?</label></li>
+        <li><input type="checkbox" id="c4"><label for="c4">die fünf Akte nach Freytag in richtiger Reihenfolge mit Funktion nennen?</label></li>
+        <li><input type="checkbox" id="c5"><label for="c5">die drei Einheiten nennen <em>und</em> begründen, warum es sie gab?</label></li>
+        <li><input type="checkbox" id="c6"><label for="c6">Katharsis, Mimesis, Ständeklausel und Fallhöhe je in einem Satz definieren?</label></li>
+        <li><input type="checkbox" id="c7"><label for="c7">Lessings Neuübersetzung von éleos und phóbos erklären?</label></li>
+        <li><input type="checkbox" id="c8"><label for="c8">vier antike Bühneneffekte aufzählen?</label></li>
+        <li><input type="checkbox" id="c9"><label for="c9">erklären, warum das Theatron kreisförmig war?</label></li>
+        <li><input type="checkbox" id="c10"><label for="c10">Botenbericht und Mauerschau sicher unterscheiden?</label></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>… und weiter</h3>
+      <ul class="checklist">
+        <li><input type="checkbox" id="c11"><label for="c11">Dialog, Monolog, Stichomythie, Parabase und vierte Wand definieren?</label></li>
+        <li><input type="checkbox" id="c12"><label for="c12">Tragödie, Komödie und Tragikomödie gegeneinander abgrenzen?</label></li>
+        <li><input type="checkbox" id="c13"><label for="c13">bürgerliches Trauerspiel und naturalistisches Drama beschreiben?</label></li>
+        <li><input type="checkbox" id="c14"><label for="c14">geschlossenes und offenes Drama an vier Kriterien unterscheiden?</label></li>
+        <li><input type="checkbox" id="c15"><label for="c15">Zieldrama und analytisches Drama unterscheiden?</label></li>
+        <li><input type="checkbox" id="c16"><label for="c16">Akt, Szene und Auftritt sauber trennen?</label></li>
+        <li><input type="checkbox" id="c17"><label for="c17">Figur, Protagonist, Antagonist von Autor, Dramaturg, Regisseur und Schauspieler trennen?</label></li>
+        <li><input type="checkbox" id="c18"><label for="c18">erklären, warum «Die Physiker» ein Drama ist — mit fünf belegten Merkmalen?</label></li>
+        <li><input type="checkbox" id="c19"><label for="c19">Deus ex machina inhaltlich und technisch erklären?</label></li>
+        <li><input type="checkbox" id="c20"><label for="c20">Hamartia definieren und begründen, warum sie nötig war?</label></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Die zehn Begriffe, die am ehesten drankommen</h3>
+    <p><strong>Katharsis · Mimesis · Ständeklausel · Fallhöhe · drei Einheiten · Peripetie · retardierendes
+    Moment · Teichoskopie · Deus ex machina · Tragikomödie</strong></p>
+    <p>Sie stehen alle namentlich in den Lernzielen oder sind die klassischen Prüfungsfallen. Wenn du diese zehn
+    aus dem Stand definieren kannst, ist der Rest Fleissarbeit.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Prüfungszusammenfassung «Dramatheorie» · BMSW Deutsch · Prüfung vom 10. September 2026 ·
+  Grundlage: Theoriedossier Dramatik, Fachbegriffsliste, Materialien zur antiken Tragödie und
+  «Die Physiker» von Friedrich Dürrenmatt.</p>
+  <p><a class="backlink" href="../../../index.html">← zurück zu StudyHub</a></p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var QUESTIONS = [
+    { q: "Wie lautet die wörtliche Bedeutung des griechischen Wortes «drama»?",
+      o: ["Handlung", "Leiden", "Bocksgesang", "Nachahmung"], a: 0,
+      e: "«drama» heisst Handlung. «Bocksgesang» ist die Bedeutung von «Tragödie», «Nachahmung» die von «Mimesis»." },
+    { q: "Welches Merkmal unterscheidet das Drama am deutlichsten von der Epik?",
+      o: ["Es gibt keinen Erzähler.", "Es gibt einen Konflikt.", "Es ist in Kapitel gegliedert.", "Es verwendet direkte Rede."], a: 0,
+      e: "Konflikte und direkte Rede gibt es auch in der Epik. Das Fehlen jeder vermittelnden Erzählinstanz ist der harte Unterschied." },
+    { q: "Was ist die Katharsis?",
+      o: ["Die Reinigung der Seele des Zuschauers durch Mitleid und Furcht.", "Die Auflösung des Konflikts im 5. Akt.", "Die Nachahmung der Lebenswirklichkeit.", "Der kleine Fehler des tragischen Helden."], a: 0,
+      e: "Die Auflösung im 5. Akt ist die Katastrophe, die Nachahmung ist die Mimesis, der kleine Fehler die Hamartia." },
+    { q: "In welchem Akt steht das retardierende Moment?",
+      o: ["4. Akt", "2. Akt", "3. Akt", "5. Akt"], a: 0,
+      e: "Reihenfolge: 1 Exposition, 2 erregendes Moment, 3 Peripetie, 4 retardierendes Moment, 5 Katastrophe." },
+    { q: "Eine Figur beobachtet vom Fenster aus eine Schlacht, die gerade tobt, und berichtet davon. Was ist das?",
+      o: ["Mauerschau (Teichoskopie)", "Botenbericht", "Parabase", "Deus ex machina"], a: 0,
+      e: "Entscheidend ist die Gleichzeitigkeit. Beim Botenbericht ist das Ereignis bereits abgeschlossen." },
+    { q: "Womit begründete man die Ständeklausel?",
+      o: ["Mit der Fallhöhe.", "Mit der Mimesis.", "Mit den drei Einheiten.", "Mit der Katharsis."], a: 0,
+      e: "Bürgerlichen Schicksalen fehle es an Grösse und damit an Fallhöhe — nur ein Absturz von weit oben wirke tragisch." },
+    { q: "Welche der drei Einheiten fordert, dass die Handlung höchstens einen Tag umfasst?",
+      o: ["Einheit der Zeit", "Einheit des Ortes", "Einheit der Handlung", "Einheit der Sprache"], a: 0,
+      e: "Spielzeit und gespielte Zeit sollen möglichst kongruent sein — höchstens von Sonnenaufgang bis Sonnenuntergang. Eine «Einheit der Sprache» gibt es nicht." },
+    { q: "Was ist eine Parabase?",
+      o: ["Die direkte Wendung einer Bühnenfigur an das Publikum.", "Ein Selbstgespräch einer Figur.", "Der sehr schnelle Wechsel von Rede und Gegenrede.", "Der Bericht eines Boten von aussen."], a: 0,
+      e: "Dabei wird die vierte Wand durchbrochen und die dramatische Illusion aufgelöst; eingesetzt wird sie im epischen Theater." },
+    { q: "Wie viele Akte hat die klassische Komödie?",
+      o: ["drei", "fünf", "zwei", "einen"], a: 0,
+      e: "Fünf Akte hat die Tragödie, drei die Komödie. Der Aufbau selbst gleicht sich." },
+    { q: "Welches Merkmal spricht für ein offenes Drama?",
+      o: ["Mehrere Handlungen laufen nebeneinander.", "Die Handlung spielt an einem Ort.", "Es treten wenige Figuren auf.", "Der Aufbau ist linear."], a: 0,
+      e: "Alle anderen Merkmale kennzeichnen das geschlossene Drama." },
+    { q: "Was bezeichnet die Hamartia?",
+      o: ["Den kleinen Fehler des Helden, der seinen Untergang verursacht.", "Den plötzlichen Umschwung der Handlung.", "Die Reinigung des Publikums.", "Die Regel über den Stand der Figuren."], a: 0,
+      e: "Der Untergang brauchte eine Ursache, damit die Ordnung der Götter gerecht erschien — ein schuldloser Tod hätte das Publikum schockiert." },
+    { q: "Wer beschrieb den fünfaktigen Aufbau im pyramidenförmigen Schema?",
+      o: ["Gustav Freytag, 1863", "Aristoteles, 335 v. Chr.", "Gotthold Ephraim Lessing, 18. Jh.", "Friedrich Dürrenmatt, 1955"], a: 0,
+      e: "In «Die Technik des Dramas» (1863). Von Aristoteles stammt die «Poetik», nicht das Dreieck." },
+    { q: "Wer bearbeitet und aktualisiert ein Stück für die Bühne und erstellt die Strichfassung?",
+      o: ["Der Dramaturg", "Der Regisseur", "Der Autor", "Der Protagonist"], a: 0,
+      e: "Der Regisseur inszeniert die Aufführung, der Autor schreibt das Stück; der Protagonist ist eine Figur im Werk." },
+    { q: "Was gilt für das naturalistische Drama?",
+      o: ["Es zielt nicht auf Katharsis, sondern will aufrütteln.", "Es hält die Ständeklausel streng ein.", "Es folgt dem fünfaktigen Schema Freytags.", "Es verzichtet auf Regieanweisungen."], a: 0,
+      e: "Im Gegenteil: Der Sekundenstil verlangt lange, exakte Regieanweisungen — Stottern, Dialekte, Atempausen inklusive." },
+    { q: "Welche Werkform bezeichnete Dürrenmatt als «die einzig mögliche dramatische Form, heute das Tragische auszusagen»?",
+      o: ["Die Tragikomödie", "Die Tragödie", "Das bürgerliche Trauerspiel", "Das analytische Drama"], a: 0,
+      e: "Deshalb trägt «Die Physiker» den Untertitel «Eine Komödie», obwohl das Stück in einer Katastrophe endet." }
+  ];
+
+  var container = document.getElementById("quiz-list");
+  var scoreEl = document.getElementById("score");
+  var totalEl = document.getElementById("total");
+  if (!container) { return; }
+
+  var score = 0;
+  var answered = 0;
+
+  function build() {
+    container.innerHTML = "";
+    score = 0;
+    answered = 0;
+    scoreEl.textContent = "0";
+    totalEl.textContent = String(QUESTIONS.length);
+
+    QUESTIONS.forEach(function (item, i) {
+      var box = document.createElement("div");
+      box.className = "quiz-q";
+
+      var q = document.createElement("p");
+      q.className = "q";
+      q.textContent = (i + 1) + ". " + item.q;
+      box.appendChild(q);
+
+      var opts = document.createElement("div");
+      opts.className = "opts";
+
+      var order = item.o.map(function (text, idx) { return { text: text, idx: idx }; });
+      for (var k = order.length - 1; k > 0; k--) {
+        var j = Math.floor(Math.random() * (k + 1));
+        var tmp = order[k]; order[k] = order[j]; order[j] = tmp;
+      }
+
+      var fb = document.createElement("p");
+      fb.className = "fb";
+
+      order.forEach(function (opt) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "opt";
+        btn.textContent = opt.text;
+        btn.addEventListener("click", function () {
+          if (box.dataset.done === "1") { return; }
+          box.dataset.done = "1";
+          answered++;
+          var buttons = opts.querySelectorAll("button");
+          Array.prototype.forEach.call(buttons, function (b) { b.disabled = true; });
+          if (opt.idx === item.a) {
+            btn.classList.add("correct");
+            score++;
+            fb.textContent = "Richtig. " + item.e;
+          } else {
+            btn.classList.add("wrong");
+            Array.prototype.forEach.call(buttons, function (b) {
+              if (b.textContent === item.o[item.a]) { b.classList.add("correct"); }
+            });
+            fb.textContent = "Nicht ganz. " + item.e;
+          }
+          scoreEl.textContent = String(score);
+        });
+        opts.appendChild(btn);
+      });
+
+      box.appendChild(opts);
+      box.appendChild(fb);
+      container.appendChild(box);
+    });
+  }
+
+  document.getElementById("reset").addEventListener("click", build);
+  build();
+})();
+</script>
+</body>
+</html>
