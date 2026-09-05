@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brave New World — Interactive Timeline &amp; Analysis</title>
+    <style>
+      :root {
+        --bg: #f6f1e7;
+        --panel: #fffdf8;
+        --ink: #2b2620;
+        --ink-soft: #5c554a;
+        --accent: #8a3b2e;
+        --accent-soft: #c98a63;
+        --line: #e3d9c6;
+        --green: #4d6b53;
+        --chip: #efe4cd;
+        --london: #3d5a73;
+        --london-bg: #e6ecf1;
+        --reservation: #a85f3f;
+        --reservation-bg: #f3e6dc;
+        --lighthouse: #3f7a72;
+        --lighthouse-bg: #e2efec;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Georgia", "Iowan Old Style", serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+      header {
+        padding: 26px 30px 14px 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      header h1 {
+        margin: 0 0 4px 0;
+        font-size: 26px;
+      }
+      header p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-style: italic;
+        font-size: 14px;
+      }
+
+      nav.tabs {
+        display: flex;
+        gap: 6px;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 30px;
+        border-bottom: 2px solid var(--line);
+        flex-wrap: wrap;
+      }
+      nav.tabs button {
+        font-family: Arial, sans-serif;
+        font-size: 13.5px;
+        background: none;
+        border: none;
+        padding: 12px 16px;
+        cursor: pointer;
+        color: var(--ink-soft);
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
+      }
+      nav.tabs button.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+        font-weight: bold;
+      }
+      nav.tabs button:hover {
+        color: var(--accent);
+      }
+
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 26px 30px 80px 30px;
+      }
+      .view {
+        display: none;
+      }
+      .view.active {
+        display: block;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 20px 22px;
+        margin-bottom: 18px;
+      }
+      .card h3 {
+        margin: 0 0 10px 0;
+        font-size: 15px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-family: Arial, sans-serif;
+      }
+      .card h4 {
+        margin: 14px 0 6px 0;
+        font-size: 14.5px;
+        color: var(--ink);
+      }
+      .card p {
+        font-size: 14.5px;
+        line-height: 1.65;
+        color: var(--ink-soft);
+        margin: 0 0 8px 0;
+      }
+
+      /* Location legend / mini map */
+      .loc-map {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+      }
+      .loc-box {
+        flex: 1;
+        min-width: 180px;
+        border-radius: 10px;
+        padding: 14px 16px;
+        font-family: Arial, sans-serif;
+      }
+      .loc-box.london {
+        background: var(--london-bg);
+        border: 1px solid var(--london);
+      }
+      .loc-box.reservation {
+        background: var(--reservation-bg);
+        border: 1px solid var(--reservation);
+      }
+      .loc-box.lighthouse {
+        background: var(--lighthouse-bg);
+        border: 1px solid var(--lighthouse);
+      }
+      .loc-box .name {
+        font-weight: bold;
+        font-size: 13.5px;
+        margin-bottom: 4px;
+      }
+      .loc-box.london .name {
+        color: var(--london);
+      }
+      .loc-box.reservation .name {
+        color: var(--reservation);
+      }
+      .loc-box.lighthouse .name {
+        color: var(--lighthouse);
+      }
+      .loc-box .desc {
+        font-size: 12px;
+        color: var(--ink-soft);
+        line-height: 1.5;
+      }
+
+      /* Timeline controls */
+      .tl-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .sort-toggle {
+        display: flex;
+        gap: 6px;
+      }
+      .sort-toggle button {
+        font-family: Arial, sans-serif;
+        font-size: 12.5px;
+        padding: 7px 14px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: #fff;
+        cursor: pointer;
+      }
+      .sort-toggle button.active {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+      .char-filter {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .char-chip {
+        font-family: Arial, sans-serif;
+        font-size: 11.5px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        background: var(--chip);
+        color: #5a4a2f;
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+      .char-chip.active {
+        background: var(--green);
+        color: #fff;
+      }
+      #clear-filter {
+        font-family: Arial, sans-serif;
+        font-size: 11.5px;
+        color: var(--accent);
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      /* Timeline */
+      .timeline {
+        position: relative;
+        padding-left: 28px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 6px;
+        bottom: 6px;
+        width: 2px;
+        background: var(--line);
+      }
+      .tl-event {
+        position: relative;
+        margin-bottom: 16px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 14px 16px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+      .tl-event::before {
+        content: "";
+        position: absolute;
+        left: -24px;
+        top: 20px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        border: 2px solid var(--panel);
+      }
+      .tl-event.dimmed {
+        opacity: 0.25;
+      }
+      .tl-event .tl-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .tl-event .badges {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        font-family: Arial, sans-serif;
+        font-size: 10.5px;
+      }
+      .badge {
+        padding: 3px 9px;
+        border-radius: 10px;
+        white-space: nowrap;
+      }
+      .badge.time {
+        background: #efe4cd;
+        color: #5a4a2f;
+      }
+      .badge.chapter {
+        background: #e6e6e6;
+        color: #444;
+      }
+      .badge.loc {
+        color: #fff;
+      }
+      .badge.loc.london {
+        background: var(--london);
+      }
+      .badge.loc.reservation {
+        background: var(--reservation);
+      }
+      .badge.loc.lighthouse {
+        background: var(--lighthouse);
+      }
+      .tl-event h4 {
+        margin: 8px 0 4px 0;
+        font-size: 15.5px;
+        color: var(--ink);
+      }
+      .tl-event .summary {
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        line-height: 1.5;
+        margin-bottom: 6px;
+      }
+      .tl-event .detail {
+        display: none;
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        line-height: 1.6;
+        border-top: 1px dashed var(--line);
+        padding-top: 8px;
+        margin-top: 8px;
+      }
+      .tl-event.expanded .detail {
+        display: block;
+      }
+      .tl-event .chars {
+        margin-top: 8px;
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .tl-event .chars span {
+        font-family: Arial, sans-serif;
+        font-size: 10.5px;
+        background: #e6ecdf;
+        color: var(--green);
+        padding: 2px 8px;
+        border-radius: 10px;
+      }
+
+      /* phase header */
+      .phase-header {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin: 26px 0 10px -28px;
+        padding-left: 28px;
+        font-weight: bold;
+      }
+      .phase-header:first-child {
+        margin-top: 0;
+      }
+
+      /* Characters */
+      .char-card {
+        margin-bottom: 16px;
+      }
+      .char-card .tagline {
+        font-style: italic;
+        color: var(--ink-soft);
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+      .char-card .field {
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+      .char-card .field b {
+        color: var(--ink);
+      }
+      .rel-line {
+        font-size: 14px;
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+      .rel-line b {
+        color: var(--accent);
+      }
+      .minor-list {
+        font-size: 13.5px;
+        line-height: 1.8;
+        color: var(--ink-soft);
+      }
+
+      /* Vocab */
+      #vocab-search {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+      .vocab-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 12px;
+      }
+      .vocab-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px 14px;
+        background: var(--panel);
+        cursor: pointer;
+      }
+      .vocab-card .word {
+        font-weight: bold;
+        color: var(--accent);
+        font-size: 14.5px;
+      }
+      .vocab-card .reveal {
+        margin-top: 8px;
+        font-size: 13px;
+        color: var(--ink-soft);
+        display: none;
+        line-height: 1.5;
+      }
+      .vocab-card.flipped .reveal {
+        display: block;
+      }
+      .vocab-card .hint {
+        font-size: 11px;
+        color: #a0906f;
+        font-family: Arial, sans-serif;
+        margin-top: 6px;
+      }
+      .vocab-card.flipped .hint {
+        display: none;
+      }
+
+      @media (max-width: 700px) {
+        header,
+        main,
+        nav.tabs {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Brave New World</h1>
+      <p>Interactive timeline, character map &amp; book analysis — whole-book overview (includes the ending)</p>
+    </header>
+
+    <nav class="tabs">
+      <button data-tab="timeline" class="active">🕰 Timeline</button>
+      <button data-tab="characters">👥 Characters &amp; Relationships</button>
+      <button data-tab="analysis">📘 Book Analysis</button>
+      <button data-tab="vocab">🔤 Vocabulary</button>
+    </nav>
+
+    <main>
+      <!-- TIMELINE -->
+      <div class="view active" id="view-timeline">
+        <div class="card">
+          <h3>Where things happen</h3>
+          <p>
+            The novel moves between three settings. Keep this in mind — it's a big part of what feels confusing at
+            first.
+          </p>
+          <div class="loc-map">
+            <div class="loc-box reservation">
+              <div class="name">The Savage Reservation (Malpais)</div>
+              <div class="desc">
+                New Mexico, North America. A fenced-off area outside World State control, where the "old" way of life
+                (family, religion, ageing, birth) still exists. Far from London — reached by plane.
+              </div>
+            </div>
+            <div class="loc-box london">
+              <div class="name">London</div>
+              <div class="desc">
+                The heart of the World State, year A.F. 632. Clean, controlled, and emotionally cold. Almost the entire
+                "present-day" plot happens here.
+              </div>
+            </div>
+            <div class="loc-box lighthouse">
+              <div class="name">The Lighthouse</div>
+              <div class="desc">An abandoned lighthouse on the English coast, near London. Where the story ends.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="tl-controls">
+            <div class="sort-toggle">
+              <button data-sort="book" class="active">📖 Book order (as narrated)</button>
+              <button data-sort="chron">🕰 Real-time order (chronological)</button>
+            </div>
+            <button id="clear-filter" style="display: none">Clear character filter</button>
+          </div>
+          <div class="char-filter" id="char-filter"></div>
+        </div>
+
+        <div class="timeline" id="timeline-container"></div>
+      </div>
+
+      <!-- CHARACTERS -->
+      <div class="view" id="view-characters">
+        <div class="card">
+          <h3>Main characters</h3>
+          <div id="char-cards"></div>
+        </div>
+        <div class="card">
+          <h3>Key relationships</h3>
+          <div id="rel-lines"></div>
+        </div>
+        <div class="card">
+          <h3>Minor characters (quick reference)</h3>
+          <div class="minor-list" id="minor-list"></div>
+        </div>
+      </div>
+
+      <!-- ANALYSIS -->
+      <div class="view" id="view-analysis">
+        <div class="card">
+          <h3>Narrator &amp; point of view</h3>
+          <p>
+            Third-person <b>omniscient</b> external narrator — not a character in the story. The narrator can move
+            freely between the Hatchery, the Reservation, John's memories, Bernard's insecurity and Mond's reasoning.
+            This wide view makes the World State feel like a whole system, not just one person's problem, and creates
+            irony: horrifying things are often described in calm, official language.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Structure — Freytag's Pyramid</h3>
+          <p>
+            <b>Exposition (Ch. 1–3):</b> the Hatchery, conditioning, and the ideology of the World State are introduced.
+          </p>
+          <p>
+            <b>Rising action (Ch. 4–14):</b> the trip to the Reservation, John's discovery and arrival in London, his
+            fame, the love conflict with Lenina, and Linda's death.
+          </p>
+          <p><b>Climax (Ch. 15–17):</b> the soma riot and John's debate with Mustapha Mond.</p>
+          <p><b>Falling action:</b> John retreats to the lighthouse.</p>
+          <p><b>Resolution (Ch. 18):</b> John's suicide — the World State continues, unchanged.</p>
+          <p>
+            The plot is mostly linear, but has two important flashback-style sections: the Director's memory of losing a
+            woman on the Reservation (Ch. 6) and John's own account of his childhood (Ch. 8) — see the Timeline tab for
+            how these fit chronologically.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Genre &amp; form</h3>
+          <p>
+            A <b>dystopian</b>, <b>satirical</b>, and <b>philosophical</b> novel. It follows dystopian conventions
+            (state control, propaganda, an outsider who reveals the system's cost) but is unusual because the World
+            State rules mainly through pleasure and conditioning rather than open terror — which makes it more
+            unsettling, since many citizens genuinely like their own oppression.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Language &amp; style</h3>
+          <p>
+            Huxley mixes scientific jargon, advertising-like slogans, lyrical description, comedy and philosophical
+            dialogue. The Hatchery chapters use long technical lists (mechanical mood); Chapter 3 uses fast
+            cross-cutting between scenes (a collage of propaganda and noise). The tone shifts from clinical and ironic
+            in the London chapters to emotional and tragic in John's story, Linda's death, and the ending.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Literary devices</h3>
+          <p>
+            <b>Soma</b> — symbol of artificial happiness and the refusal to face pain or truth.<br />
+            <b>Ford</b> — allusion to Henry Ford and mass production; religious language redirected toward industrial
+            efficiency.<br />
+            <b>Shakespeare</b> — motif representing complex language, tragedy, love and moral conflict — everything the
+            World State removed.<br />
+            <b>Bottles &amp; factories</b> — symbolise the industrialisation of human life.<br />
+            <b>Irony</b> — the title itself: this "brave new world" is not brave in a positive sense, just comfortable
+            and spiritually small.<br />
+            <b>Contrast</b> — London vs. the Reservation, though neither is presented as perfect.<br />
+            <b>Repetition</b> — hypnopaedic slogans show how repeated language replaces reasoning.<br />
+            <b>Foreshadowing</b> — the Director's story about losing a woman on the Reservation (Ch. 6) prepares the
+            reveal of Linda and John.<br />
+            <b>Names as allusions</b> — Marx, Lenina, Darwin Bonaparte, Ford connect the future world to political,
+            scientific and historical ideas.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Themes</h3>
+          <p>
+            <b>Central theme:</b> a society that removes suffering by controlling truth, freedom, love and individuality
+            may become stable — but also less human.
+          </p>
+          <p><b>Happiness vs. freedom:</b> the World State gives pleasure and comfort but removes meaningful choice.</p>
+          <p>
+            <b>Technology &amp; social control:</b> the Hatchery, conditioning, feelies and soma all show technology
+            used to predetermine identity and limit thought.
+          </p>
+          <p>
+            <b>Consumerism &amp; distraction:</b> people are conditioned to consume, replace, and avoid solitude — still
+            relevant to debates about advertising, entertainment and social media.
+          </p>
+          <p>
+            <b>Love, sex &amp; family:</b> the World State separates sex from commitment and treats family as obscene;
+            John idealises love so strongly he can't handle real desire. The novel criticises both extremes.
+          </p>
+          <p>
+            <b>Art, language &amp; truth:</b> Shakespeare gives John a language for feelings London can't express; Mond
+            suppresses old art because it would destabilise society.
+          </p>
+          <p>
+            <b>Ambiguous moral message:</b> the novel clearly criticises the World State but doesn't offer a simple
+            alternative — the Reservation is cruel too, and John's idealism becomes self-destructive.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Setting &amp; context</h3>
+          <p>
+            Main setting: London in the World State, year A.F. 632 ("After Ford" — industry has replaced religion).
+            Contrast setting: the Savage Reservation in New Mexico. Written in the early 1930s, the novel reflects fears
+            about mass production, Fordism, behaviourist psychology, eugenics, consumer culture and totalitarian
+            control.
+          </p>
+        </div>
+      </div>
+
+      <!-- VOCAB -->
+      <div class="view" id="view-vocab">
+        <div class="card">
+          <h3>Important words</h3>
+          <p>Click a card to reveal the definition and German translation. Search to filter.</p>
+          <input type="text" id="vocab-search" placeholder="Search a word..." />
+          <div class="vocab-grid" id="vocab-grid"></div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      /* ---------------- TIMELINE DATA ---------------- */
+      const events = [
+        {
+          id: 1,
+          phase: "Backstory",
+          bookOrder: 6.1,
+          chronOrder: 1,
+          timeLabel: "~25 years before the main story",
+          chapterRef: "Revealed in Ch. 6",
+          loc: "reservation",
+          title: "The Director's Forgotten Companion",
+          summary:
+            "On a research trip to the Reservation, the Director brings a young Beta woman with him. She gets lost during a storm and is left behind.",
+          detail:
+            "He never speaks of her again publicly — but this memory quietly sets up one of the novel's strongest ironic reversals later on.",
+          chars: ["The Director"],
+        },
+        {
+          id: 2,
+          phase: "Backstory",
+          bookOrder: 8.1,
+          chronOrder: 2,
+          timeLabel: "~25 years before the main story, shortly after",
+          chapterRef: "Revealed in Ch. 7–8",
+          loc: "reservation",
+          title: "John is Born",
+          summary:
+            "The lost woman, Linda, gives birth to a son on the Reservation — a natural birth, which is shameful both by World State standards and unusual for the pueblo.",
+          detail:
+            "Linda is looked down on by the Reservation community for her World-State habits (promiscuity, in their eyes), and John grows up an outsider from birth.",
+          chars: ["Linda", "John"],
+        },
+        {
+          id: 3,
+          phase: "Backstory",
+          bookOrder: 8.2,
+          chronOrder: 3,
+          timeLabel: "Childhood &amp; teenage years on the Reservation",
+          chapterRef: "Revealed in Ch. 8",
+          loc: "reservation",
+          title: "Growing Up Excluded",
+          summary:
+            "John grows up rejected by the pueblo because of his mother. Mitsima teaches him practical skills; Popé causes him jealousy and shame. He discovers a copy of Shakespeare, which becomes his entire education in beauty, heroism and moral language.",
+          detail:
+            "This is a coming-of-age story inside the dystopian novel — it explains John's later idealism and his inability to fit in anywhere, London included.",
+          chars: ["John", "Linda", "Popé", "Mitsima"],
+        },
+        {
+          id: 4,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 1,
+          chronOrder: 4,
+          timeLabel: "Main story begins",
+          chapterRef: "Ch. 1",
+          loc: "london",
+          title: "A Tour of the Hatchery",
+          summary:
+            "Students are shown how humans are decanted from bottles, sorted into castes, and conditioned before birth.",
+          detail:
+            "Almost a guided tour rather than a story — Huxley makes the reader learn the world before judging any individual character.",
+          chars: ["The Director", "Henry Foster", "Lenina Crowne"],
+        },
+        {
+          id: 5,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 2,
+          chronOrder: 5,
+          timeLabel: "Same period",
+          chapterRef: "Ch. 2",
+          loc: "london",
+          title: "Learning to Obey",
+          summary:
+            "The Director explains infant conditioning (fear of books/flowers) and hypnopaedia — sleep-teaching that makes slogans feel like personal beliefs.",
+          detail: "Disturbing because the cruelty is presented calmly, as normal science.",
+          chars: ["The Director"],
+        },
+        {
+          id: 6,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 3,
+          chronOrder: 6,
+          timeLabel: "Same period",
+          chapterRef: "Ch. 3",
+          loc: "london",
+          title: "The World State's Ideology",
+          summary:
+            "Mustapha Mond lectures on history, family and soma while Lenina talks with Fanny and Bernard reacts angrily to gossip about Lenina.",
+          detail:
+            "The fast cuts between scenes create a collage effect, mirroring a society full of noise and slogans. Bernard emerges here as an insecure outsider.",
+          chars: ["Mustapha Mond", "Bernard Marx", "Lenina Crowne", "Fanny Crowne"],
+        },
+        {
+          id: 7,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 4,
+          chronOrder: 7,
+          timeLabel: "Following days",
+          chapterRef: "Ch. 4",
+          loc: "london",
+          title: "Bernard and Helmholtz",
+          summary:
+            "Lenina embarrasses Bernard by publicly accepting his invitation to the Reservation. Bernard meets Helmholtz Watson, who senses something missing in his own life.",
+          detail: "The 'outsider' theme becomes personal and emotional, not just political.",
+          chars: ["Bernard Marx", "Lenina Crowne", "Helmholtz Watson"],
+        },
+        {
+          id: 8,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 5,
+          chronOrder: 8,
+          timeLabel: "Following days",
+          chapterRef: "Ch. 5",
+          loc: "london",
+          title: "Soma and the Solidarity Service",
+          summary:
+            "Lenina and Henry enjoy a soma-fuelled evening. Bernard attends a Solidarity Service but can't feel the manufactured unity everyone else seems to feel.",
+          detail:
+            "The Service looks religious but is shallow and mechanical — Huxley satirising group rituals that promise unity without truth.",
+          chars: ["Lenina Crowne", "Henry Foster", "Bernard Marx"],
+        },
+        {
+          id: 9,
+          phase: "Part 1 — London (exposition)",
+          bookOrder: 6.5,
+          chronOrder: 9,
+          timeLabel: "Shortly after",
+          chapterRef: "Ch. 6",
+          loc: "london",
+          title: "Permission to Travel",
+          summary:
+            "Bernard gets permission from the Director to visit the Reservation. The Director recalls his own lost companion (Event 1) and threatens Bernard with exile to Iceland.",
+          detail:
+            "Bernard's rebellion is shown to be fragile: he criticises the system but still fears losing his place in it.",
+          chars: ["Bernard Marx", "Lenina Crowne", "The Director"],
+        },
+        {
+          id: 10,
+          phase: "Part 2 — The Reservation",
+          bookOrder: 7,
+          chronOrder: 10,
+          timeLabel: "A few days later",
+          chapterRef: "Ch. 7",
+          loc: "reservation",
+          title: "Arrival at the Reservation",
+          summary:
+            "Bernard and Lenina arrive and are shocked by poverty, age, illness and religion. They meet Linda and John for the first time.",
+          detail:
+            "The Reservation isn't a simple paradise either — it contains suffering, exclusion and violence of its own.",
+          chars: ["Bernard Marx", "Lenina Crowne", "Linda", "John"],
+        },
+        {
+          id: 11,
+          phase: "Part 2 — The Reservation",
+          bookOrder: 9,
+          chronOrder: 11,
+          timeLabel: "Same visit",
+          chapterRef: "Ch. 9",
+          loc: "reservation",
+          title: "The Plan to Go to London",
+          summary:
+            "Bernard gets permission from Mustapha Mond to bring Linda and John to London. Overwhelmed, Lenina takes soma; John secretly watches her sleep, idealising her.",
+          detail:
+            "Quietly sets up the tragic misunderstanding between John and Lenina: they desire each other but have completely different ideas of love.",
+          chars: ["Bernard Marx", "John", "Lenina Crowne", "Mustapha Mond"],
+        },
+        {
+          id: 12,
+          phase: "Part 3 — John in London",
+          bookOrder: 10,
+          chronOrder: 12,
+          timeLabel: "Return to London",
+          chapterRef: "Ch. 10",
+          loc: "london",
+          title: "The Director is Shamed",
+          summary:
+            'Bernard reveals Linda and John publicly. John calls the Director "father" — an obscene word in the World State — and the Director resigns in humiliation.',
+          detail:
+            "One of the novel's strongest ironic reversals: the Director, who teaches controlled reproduction, is ruined by natural reproduction.",
+          chars: ["The Director", "Bernard Marx", "John", "Linda"],
+        },
+        {
+          id: 13,
+          phase: "Part 3 — John in London",
+          bookOrder: 11,
+          chronOrder: 13,
+          timeLabel: "Following weeks",
+          chapterRef: "Ch. 11",
+          loc: "london",
+          title: "John, the Celebrity",
+          summary:
+            'John becomes fashionable — "the Savage" everyone wants to see. He tours schools, factories and feelies, growing more disgusted each time.',
+          detail:
+            "The World State turns even rebellion and otherness into entertainment — John is consumed as a novelty, not accepted as a person.",
+          chars: ["John", "Bernard Marx", "Lenina Crowne", "Helmholtz Watson"],
+        },
+        {
+          id: 14,
+          phase: "Part 3 — John in London",
+          bookOrder: 12,
+          chronOrder: 14,
+          timeLabel: "Same period",
+          chapterRef: "Ch. 12",
+          loc: "london",
+          title: "Bernard's Fall, a Real Friendship",
+          summary:
+            "Bernard's popularity collapses when John refuses to appear for his guests. John and Helmholtz bond over Shakespeare, though Helmholtz can't take family and romance seriously.",
+          detail: "Separates shallow rebellion (Bernard) from genuine dissatisfaction (Helmholtz).",
+          chars: ["Bernard Marx", "John", "Helmholtz Watson"],
+        },
+        {
+          id: 15,
+          phase: "Part 3 — John in London",
+          bookOrder: 13,
+          chronOrder: 15,
+          timeLabel: "Same period",
+          chapterRef: "Ch. 13",
+          loc: "london",
+          title: "A Clash Over Love",
+          summary:
+            "Lenina tries to start a relationship with John. His Shakespeare-shaped idea of romantic love collides violently with her casual approach to sex.",
+          detail:
+            "The central personal conflict of the novel: World State sexuality vs. John's Shakespearean ideals — neither can understand the other's moral language.",
+          chars: ["Lenina Crowne", "John"],
+        },
+        {
+          id: 16,
+          phase: "Part 4 — Crisis &amp; the End",
+          bookOrder: 14,
+          chronOrder: 16,
+          timeLabel: "Shortly after",
+          chapterRef: "Ch. 14",
+          loc: "london",
+          title: "Linda Dies",
+          summary:
+            "John visits the dying Linda, surrounded by children conditioned to see death as entertainment. She dies confused, calling for Popé. John's grief turns to rage.",
+          detail: "Contrasts real grief with a society that has removed deep attachment by removing grief altogether.",
+          chars: ["John", "Linda"],
+        },
+        {
+          id: 17,
+          phase: "Part 4 — Crisis &amp; the End",
+          bookOrder: 15,
+          chronOrder: 17,
+          timeLabel: "Same day",
+          chapterRef: "Ch. 15",
+          loc: "london",
+          title: "The Soma Riot",
+          summary:
+            "John tries to stop Delta workers from taking their soma ration, calling it poison. Helmholtz joins him; Bernard hesitates. Police end the riot calmly with gas and soma.",
+          detail:
+            "Demonstrates Huxley's key idea: oppression works best when people love the things that enslave them.",
+          chars: ["John", "Helmholtz Watson", "Bernard Marx"],
+        },
+        {
+          id: 18,
+          phase: "Part 4 — Crisis &amp; the End",
+          bookOrder: 16,
+          chronOrder: 18,
+          timeLabel: "Immediately after",
+          chapterRef: "Ch. 16",
+          loc: "london",
+          title: "Facing Mustapha Mond",
+          summary:
+            "John, Helmholtz and Bernard are brought before Mond, who explains why art, science, religion and truth are sacrificed for stability. Helmholtz accepts exile; Bernard begs to stay.",
+          detail:
+            "The antagonist has intelligent arguments — the reader must decide whether comfort is worth the loss of freedom and depth.",
+          chars: ["Mustapha Mond", "John", "Helmholtz Watson", "Bernard Marx"],
+        },
+        {
+          id: 19,
+          phase: "Part 4 — Crisis &amp; the End",
+          bookOrder: 17,
+          chronOrder: 19,
+          timeLabel: "Same conversation, continued",
+          chapterRef: "Ch. 17",
+          loc: "london",
+          title: "The Great Debate",
+          summary:
+            "John and Mond continue arguing. Mond says the modern world has no need for God, tragic art or intense suffering. John insists he wants real danger, freedom, goodness and sin.",
+          detail: "The philosophical climax of the novel — John clearly rejects the World State's bargain.",
+          chars: ["John", "Mustapha Mond"],
+        },
+        {
+          id: 20,
+          phase: "Part 4 — Crisis &amp; the End",
+          bookOrder: 18,
+          chronOrder: 20,
+          timeLabel: "Final days",
+          chapterRef: "Ch. 18",
+          loc: "lighthouse",
+          title: "The Lighthouse",
+          summary:
+            "Denied exile with Helmholtz and Bernard, John retreats to an abandoned lighthouse to purify himself — but journalists and crowds turn even his isolation into a spectacle. He hangs himself.",
+          detail:
+            "The novel begins with manufactured bodies and ends with John's body as a final spectacle — the system absorbs almost everything.",
+          chars: ["John", "Bernard Marx", "Helmholtz Watson"],
+        },
+      ];
+
+      const allChars = [
+        "The Director",
+        "Henry Foster",
+        "Lenina Crowne",
+        "Bernard Marx",
+        "Fanny Crowne",
+        "Mustapha Mond",
+        "Helmholtz Watson",
+        "Linda",
+        "John",
+        "Popé",
+        "Mitsima",
+      ];
+
+      let currentSort = "book";
+      let activeFilters = [];
+
+      function renderCharFilter() {
+        const wrap = document.getElementById("char-filter");
+        wrap.innerHTML = allChars
+          .map(
+            (c) => `<span class="char-chip ${activeFilters.includes(c) ? "active" : ""}" data-char="${c}">${c}</span>`,
+          )
+          .join("");
+        wrap.querySelectorAll(".char-chip").forEach((chip) => {
+          chip.addEventListener("click", () => {
+            const c = chip.getAttribute("data-char");
+            if (activeFilters.includes(c)) activeFilters = activeFilters.filter((x) => x !== c);
+            else activeFilters.push(c);
+            document.getElementById("clear-filter").style.display = activeFilters.length ? "inline" : "none";
+            renderCharFilter();
+            renderTimeline();
+          });
+        });
+      }
+      document.getElementById("clear-filter").addEventListener("click", () => {
+        activeFilters = [];
+        document.getElementById("clear-filter").style.display = "none";
+        renderCharFilter();
+        renderTimeline();
+      });
+
+      function renderTimeline() {
+        const sorted = [...events].sort((a, b) =>
+          currentSort === "book" ? a.bookOrder - b.bookOrder : a.chronOrder - b.chronOrder,
+        );
+        const container = document.getElementById("timeline-container");
+        let lastPhase = null;
+        let html = "";
+        sorted.forEach((ev) => {
+          if (ev.phase !== lastPhase) {
+            html += `<div class="phase-header">${ev.phase}</div>`;
+            lastPhase = ev.phase;
+          }
+          const dimmed = activeFilters.length && !ev.chars.some((c) => activeFilters.includes(c));
+          html += `
+      <div class="tl-event ${dimmed ? "dimmed" : ""}" data-id="${ev.id}">
+        <div class="tl-top">
+          <div class="badges">
+            <span class="badge time">${ev.timeLabel}</span>
+            <span class="badge chapter">${ev.chapterRef}</span>
+            <span class="badge loc ${ev.loc}">${ev.loc === "london" ? "London" : ev.loc === "reservation" ? "Reservation" : "Lighthouse"}</span>
+          </div>
+        </div>
+        <h4>${ev.title}</h4>
+        <div class="summary">${ev.summary}</div>
+        <div class="detail">${ev.detail}</div>
+        <div class="chars">${ev.chars.map((c) => `<span>${c}</span>`).join("")}</div>
+      </div>
+    `;
+        });
+        container.innerHTML = html;
+        container.querySelectorAll(".tl-event").forEach((el) => {
+          el.addEventListener("click", () => el.classList.toggle("expanded"));
+        });
+      }
+
+      document.querySelectorAll(".sort-toggle button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          currentSort = btn.getAttribute("data-sort");
+          document.querySelectorAll(".sort-toggle button").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          renderTimeline();
+        });
+      });
+
+      renderCharFilter();
+      renderTimeline();
+
+      /* ---------------- CHARACTERS ---------------- */
+      const mainCharacters = [
+        {
+          name: 'John ("the Savage")',
+          tagline: "Linda's son, born naturally on the Reservation, raised on a copy of Shakespeare.",
+          role: "Exposes the World State by reacting to it with Shakespearean ideals, religious guilt, and a longing for real love.",
+          traits:
+            "Passionate, intelligent, lonely, idealistic, morally intense — but also rigid and sometimes violent.",
+          arc: "Moves from wonder to disgust, then to rebellion, isolation, and suicide.",
+          represents: "Human dignity, art, suffering, tragic idealism.",
+        },
+        {
+          name: "Bernard Marx",
+          tagline: "An Alpha Plus psychologist who feels socially inferior because he's physically small and disliked.",
+          role: "Brings Lenina to the Reservation and John to London, changing the whole plot.",
+          traits: "Insecure, resentful, intelligent, jealous, often hypocritical.",
+          arc: "Outsider → celebrity → cowardly exile.",
+          represents: "Alienation, false rebellion, social insecurity.",
+        },
+        {
+          name: "Lenina Crowne",
+          tagline: "A Beta worker at the Hatchery — attractive, popular, and mostly well-conditioned.",
+          role: "Her relationship with Bernard drives the plot to the Reservation; her attraction to John creates the central love conflict.",
+          traits: "Kind, conventional, sensual, emotionally limited, sometimes curious.",
+          arc: "Never fully breaks free of her conditioning, but John's rejection shows she can suffer emotionally.",
+          represents: "Conditioning, consumer sexuality, the limits of empathy.",
+        },
+        {
+          name: "Mustapha Mond",
+          tagline: "Resident World Controller for Western Europe — one of only ten globally.",
+          role: "Explains and defends the World State's sacrifices: truth, art, religion and freedom, all for stability.",
+          traits: "Calm, intelligent, ironic, cultured, controlled.",
+          arc: "Doesn't change much — his function is to reveal the system's logic.",
+          represents: "Power, censorship, the trade-off between happiness and truth.",
+        },
+        {
+          name: "Helmholtz Watson",
+          tagline: 'An Alpha Plus lecturer and "emotional engineer" who feels his writing could mean more.',
+          role: "Becomes John's real friend and joins the soma riot.",
+          traits: "Strong, intelligent, sincere, creative, dissatisfied.",
+          arc: "Accepts exile positively — a chance to write freely.",
+          represents: "Art, language, authentic individuality, courage.",
+        },
+        {
+          name: "Linda",
+          tagline: "A Beta woman lost on the Reservation years ago; John's mother.",
+          role: "Her return humiliates the Director and brings the taboo of motherhood into London.",
+          traits: "Needy, damaged, nostalgic, addicted to comfort.",
+          arc: "Declines into soma-induced death after returning to London.",
+          represents: "Motherhood, shame, addiction, cultural displacement.",
+        },
+        {
+          name: "The Director (D.H.C.)",
+          tagline: "Director of Hatcheries and Conditioning in London.",
+          role: 'Introduces the system and later tries to punish Bernard — but is ruined when John calls him "father".',
+          traits: "Authoritarian, conventional, hypocritical, proud.",
+          arc: "Falls from authority to shame and resignation.",
+          represents: "Institutional power, hypocrisy, taboo.",
+        },
+      ];
+
+      document.getElementById("char-cards").innerHTML = mainCharacters
+        .map(
+          (c) => `
+  <div class="card char-card">
+    <h4 style="margin-top:0; color:var(--accent);">${c.name}</h4>
+    <div class="tagline">${c.tagline}</div>
+    <div class="field"><b>Role in the plot:</b> ${c.role}</div>
+    <div class="field"><b>Traits:</b> ${c.traits}</div>
+    <div class="field"><b>Development:</b> ${c.arc}</div>
+    <div class="field"><b>Represents:</b> ${c.represents}</div>
+  </div>
+`,
+        )
+        .join("");
+
+      const relationships = [
+        { a: "Bernard", b: "John", note: "Uses him for social revenge; later loses control of the situation." },
+        { a: "John", b: "Lenina", note: "Mutual desire, but completely different ideas of love." },
+        { a: "John", b: "Mond", note: "Philosophical conflict: freedom and suffering vs. stability and comfort." },
+        { a: "John", b: "Linda", note: "Deep mother-son bond mixed with shame, pain and neglect." },
+        { a: "Bernard", b: "Helmholtz", note: "Both outsiders, but Helmholtz is more courageous and authentic." },
+        { a: "The Director", b: "John", note: "His hidden fatherhood destroys his public authority." },
+      ];
+      document.getElementById("rel-lines").innerHTML = relationships
+        .map(
+          (r) => `
+  <div class="rel-line"><b>${r.a}</b> ↔ <b>${r.b}</b> — ${r.note}</div>
+`,
+        )
+        .join("");
+
+      const minorCharacters = [
+        {
+          name: "Henry Foster",
+          note: "A confident Alpha who dates Lenina — represents the normal, successful, morally blind World State citizen.",
+        },
+        {
+          name: "Fanny Crowne",
+          note: "Lenina's friend — explains social norms to her; shows that peer pressure polices people, not just the State.",
+        },
+        {
+          name: "Popé",
+          note: "A man on the Reservation connected to Linda — contributes to John's jealousy and hatred in childhood.",
+        },
+        {
+          name: "Mitsima",
+          note: "An older Reservation man who teaches John practical skills — one of his few positive male role models.",
+        },
+        {
+          name: "Benito Hoover",
+          note: "A cheerful Alpha, always offering soma — a small example of sadness treated as a chemical problem.",
+        },
+        {
+          name: "Dr Shaw",
+          note: "Linda's doctor — keeps her permanently drugged, showing the moral danger of choosing comfort over life.",
+        },
+      ];
+      document.getElementById("minor-list").innerHTML = minorCharacters
+        .map((m) => `<div><b>${m.name}</b> — ${m.note}</div>`)
+        .join("");
+
+      /* ---------------- VOCAB ---------------- */
+      const vocab = [
+        {
+          word: "dystopia",
+          en: "A fictional society that seems fine at first but is actually oppressive or frightening.",
+          de: "die Dystopie",
+        },
+        { word: "satire", en: "Writing that uses exaggeration and irony to criticise society.", de: "die Satire" },
+        {
+          word: "irony",
+          en: "Saying or showing one thing while meaning something different, often to criticise.",
+          de: "die Ironie",
+        },
+        {
+          word: "dramatic irony",
+          en: "When the reader knows something a character doesn't.",
+          de: "die dramatische Ironie",
+        },
+        {
+          word: "foreshadowing",
+          en: "A hint early in the story about something that will happen later.",
+          de: "die Vorausdeutung",
+        },
+        { word: "motif", en: "An idea, image or object that repeats throughout a text.", de: "das Motiv" },
+        { word: "allusion", en: "An indirect reference to another person, place, or work.", de: "die Anspielung" },
+        {
+          word: "omniscient narrator",
+          en: "A narrator who knows everything about every character.",
+          de: "der allwissende Erzähler",
+        },
+        { word: "protagonist", en: "The main character of a story.", de: "der/die Protagonist(in)" },
+        { word: "antagonist", en: "The character who opposes the protagonist.", de: "der/die Antagonist(in)" },
+        { word: "dehumanisation", en: "Treating people as if they are not fully human.", de: "die Entmenschlichung" },
+        {
+          word: "conditioning",
+          en: "Training someone, often without their awareness, to think or react a certain way.",
+          de: "die Konditionierung",
+        },
+        { word: "hypnopaedia", en: "Huxley's invented term for sleep-teaching.", de: "die Hypnopädie (Schlaflehre)" },
+        { word: "utopia", en: "An imagined perfect society.", de: "die Utopie" },
+        { word: "propaganda", en: "Biased information spread to influence people's beliefs.", de: "die Propaganda" },
+        { word: "caste", en: "A fixed social class a person is born into.", de: "die Kaste" },
+        { word: "stability", en: "The state of being unchanging and secure.", de: "die Stabilität" },
+        {
+          word: "individuality",
+          en: "The qualities that make a person different from others.",
+          de: "die Individualität",
+        },
+        {
+          word: "consumerism",
+          en: "A culture that emphasises constantly buying and using goods.",
+          de: "der Konsumismus",
+        },
+        { word: "exile", en: "Being sent away from one's home as punishment.", de: "das Exil / die Verbannung" },
+        {
+          word: "tragic hero",
+          en: "A main character whose flaws lead to their own downfall.",
+          de: "der tragische Held",
+        },
+        { word: "climax", en: "The turning point or most intense moment of a story.", de: "der Höhepunkt" },
+        { word: "resolution", en: "The part of a story where conflicts are resolved.", de: "die Auflösung" },
+        {
+          word: "tone",
+          en: "The author's attitude toward the subject, shown through style.",
+          de: "der Ton / die Tonalität",
+        },
+        {
+          word: "soma",
+          en: "The World State's happiness drug — instant relief with (officially) no side effects.",
+          de: "Soma (die Glücksdroge)",
+        },
+        {
+          word: "decanting",
+          en: 'This book\'s word for "being born" — taken out of a bottle rather than born naturally.',
+          de: "das Dekantieren",
+        },
+        {
+          word: "Bokanovsky's Process",
+          en: "The technique that splits one egg into up to 96 identical embryos.",
+          de: "der Bokanovsky-Prozess",
+        },
+        {
+          word: "viviparous",
+          en: "Giving birth from a body — the natural way, seen as almost obscene in the World State.",
+          de: "lebendgebärend",
+        },
+        {
+          word: "pneumatic",
+          en: 'Slang for an attractive, curvy body — literally "full of air".',
+          de: "(übertragen) kurvig/drall",
+        },
+        {
+          word: "feelies",
+          en: "Cinema where physical sensations are transmitted directly to the audience.",
+          de: 'die „Feelies" (Fühlkino)',
+        },
+        { word: "the Savage", en: "John's nickname once he arrives in London.", de: '„der Wilde"' },
+      ];
+
+      function renderVocab(filter = "") {
+        const grid = document.getElementById("vocab-grid");
+        const f = filter.toLowerCase();
+        grid.innerHTML = vocab
+          .filter((v) => v.word.toLowerCase().includes(f))
+          .map(
+            (v) => `
+    <div class="vocab-card" data-word="${v.word}">
+      <div class="word">${v.word}</div>
+      <div class="hint">Tap to reveal definition &amp; translation</div>
+      <div class="reveal"><b>EN:</b> ${v.en}<br><b>DE:</b> ${v.de}</div>
+    </div>
+  `,
+          )
+          .join("");
+        grid.querySelectorAll(".vocab-card").forEach((card) => {
+          card.addEventListener("click", () => card.classList.toggle("flipped"));
+        });
+      }
+      renderVocab();
+      document.getElementById("vocab-search").addEventListener("input", (e) => renderVocab(e.target.value));
+
+      /* ---------------- TABS ---------------- */
+      document.querySelectorAll("nav.tabs button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("nav.tabs button").forEach((b) => b.classList.remove("active"));
+          document.querySelectorAll(".view").forEach((v) => v.classList.remove("active"));
+          btn.classList.add("active");
+          document.getElementById("view-" + btn.getAttribute("data-tab")).classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
