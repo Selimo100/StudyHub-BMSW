@@ -60,12 +60,20 @@ h1{margin:16px 0 12px;max-width:900px;font-size:clamp(30px,5vw,52px);line-height
 .kpi{background:rgba(255,255,255,.8);border:1px solid rgba(224,213,200,.9);border-radius:16px;padding:15px;}
 .kpi strong{display:block;font-size:21px;color:var(--plum);margin-bottom:2px;font-family:Fraunces,serif;}
 .kpi span{font-size:13px;color:var(--muted);}
-nav.toc{position:sticky;top:0;z-index:20;background:rgba(247,244,239,.93);backdrop-filter:blur(9px);
-  border-bottom:1px solid var(--border);margin-top:26px;}
-nav.toc ul{max-width:1160px;margin:0 auto;padding:10px 16px;list-style:none;display:flex;gap:6px;overflow-x:auto;}
-nav.toc a{display:block;white-space:nowrap;padding:7px 12px;border-radius:999px;font-size:14px;font-weight:600;
-  text-decoration:none;color:var(--muted);}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh;}
+aside.sidebar{position:sticky;top:0;height:100vh;overflow:auto;padding:26px 20px;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-right:1px solid var(--border);}
+.sidebar .logo{display:flex;gap:12px;align-items:center;margin-bottom:20px;}
+.sidebar .mark{flex:none;width:45px;height:45px;border-radius:15px;
+  background:linear-gradient(135deg,var(--plum),var(--gold));box-shadow:var(--shadow);}
+.sidebar .logo strong{display:block;font-size:1rem;font-family:Fraunces,Georgia,serif;}
+.sidebar .logo span{font-size:.82rem;color:var(--muted);}
+nav.toc ul{list-style:none;margin:0;padding:0;}
+nav.toc a{display:block;text-decoration:none;padding:9px 12px;margin:3px 0;border-radius:13px;
+  color:var(--muted);font-weight:650;font-size:.92rem;}
 nav.toc a:hover,nav.toc a:focus-visible{background:var(--plum-soft);color:var(--plum);}
+.sidebar-note{margin-top:18px;font-size:13px;color:var(--muted);}
+.content{min-width:0;}
 main{max-width:1160px;margin:0 auto;padding:12px 20px 90px;}
 section{margin-top:44px;scroll-margin-top:70px;}
 section>h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 6px;}
@@ -140,6 +148,12 @@ summary:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-ra
 footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);font-size:14px;
   border-top:1px solid var(--border);}
 .backlink{display:inline-block;margin-top:8px;font-weight:600;}
+@media(max-width:980px){
+  .layout{display:block;}
+  aside.sidebar{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--border);}
+  nav.toc ul{display:flex;flex-wrap:wrap;gap:4px;}
+  nav.toc a{margin:0;}
+}
 @media(max-width:880px){
   .grid2,.grid3,.hero-grid{grid-template-columns:1fr;}
   .hero{padding:24px;}
@@ -151,7 +165,8 @@ footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);
   .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
 }
 @media print{
-  nav.toc{display:none;}
+  .layout{display:block;}
+  aside.sidebar{display:none;}
   details{page-break-inside:avoid;}
   details>summary{display:none;}
   details{padding-bottom:12px;}
@@ -159,6 +174,33 @@ footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);
 </style>
 </head>
 <body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="logo">
+    <div class="mark"></div>
+    <div><strong>Dramatheorie</strong><span>Deutsch · Prüfung 10.09.2026</span></div>
+  </div>
+  <nav class="toc" aria-label="Seitennavigation">
+    <ul>
+      <li><a href="#fokus">Prüfungsfokus</a></li>
+      <li><a href="#grundlagen">Gattung Drama</a></li>
+      <li><a href="#antike">Antike &amp; Aristoteles</a></li>
+      <li><a href="#aufbau">5 Akte</a></li>
+      <li><a href="#reden">Reden auf der Bühne</a></li>
+      <li><a href="#formen">Werkformen</a></li>
+      <li><a href="#offen">Offen / geschlossen</a></li>
+      <li><a href="#physiker">«Die Physiker»</a></li>
+      <li><a href="#glossar">Glossar A–Z</a></li>
+      <li><a href="#fehler">Typische Fehler</a></li>
+      <li><a href="#uebungen">Übungen</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#simulation">Prüfungssimulation</a></li>
+      <li><a href="#lastminute">Last Minute</a></li>
+    </ul>
+  </nav>
+  <p class="sidebar-note">Tipp: Mit der Browsersuche (⌘F) einzelne Fachbegriffe blitzschnell nachschlagen.</p>
+</aside>
+<div class="content">
 <header>
   <div class="hero">
     <span class="eyebrow">BMSW · Deutsch · Literatur</span>
@@ -175,25 +217,6 @@ footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);
     </div>
   </div>
 </header>
-
-<nav class="toc" aria-label="Seitennavigation">
-  <ul>
-    <li><a href="#fokus">Prüfungsfokus</a></li>
-    <li><a href="#grundlagen">Gattung Drama</a></li>
-    <li><a href="#antike">Antike &amp; Aristoteles</a></li>
-    <li><a href="#aufbau">5 Akte</a></li>
-    <li><a href="#reden">Reden auf der Bühne</a></li>
-    <li><a href="#formen">Werkformen</a></li>
-    <li><a href="#offen">Offen / geschlossen</a></li>
-    <li><a href="#physiker">«Die Physiker»</a></li>
-    <li><a href="#glossar">Glossar A–Z</a></li>
-    <li><a href="#fehler">Typische Fehler</a></li>
-    <li><a href="#uebungen">Übungen</a></li>
-    <li><a href="#quiz">Quiz</a></li>
-    <li><a href="#simulation">Prüfungssimulation</a></li>
-    <li><a href="#lastminute">Last Minute</a></li>
-  </ul>
-</nav>
 
 <main>
 
@@ -1648,6 +1671,8 @@ footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);
   «Die Physiker» von Friedrich Dürrenmatt.</p>
   <p><a class="backlink" href="../../../index.html">← zurück zu StudyHub</a></p>
 </footer>
+</div><!-- /.content -->
+</div><!-- /.layout -->
 
 <script>
 (function () {
