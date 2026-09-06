@@ -353,6 +353,47 @@
         margin-top: 28px;
       }
 
+      /* ---- Fachgruppen (Sprachen, MINT, ...) ---- */
+      .subject-group {
+        margin-top: 22px;
+      }
+
+      .subject-group:first-of-type {
+        margin-top: 0;
+      }
+
+      .group-title {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.86rem;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .group-icon {
+        font-size: 1rem;
+        line-height: 1;
+      }
+
+      .group-count {
+        margin-left: auto;
+        min-width: 22px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.05);
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-align: center;
+      }
+
       .school-header {
         display: flex;
         align-items: center;
@@ -934,277 +975,304 @@
           <img class="school-logo" src="./logo-bmsw.png" alt="BMSW Logo" />
         </div>
 
-        <section class="subjects">
-          <article class="subject-card">
-            <h3>
-              <span>Wirtschaft &amp; Recht</span
-              ><button
-                type="button"
-                class="pdf-btn"
-                data-pdf-subject="wirtschaft-recht"
-                aria-label="PDF-Zusammenfassungen öffnen"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
+        <section class="subject-group" data-category="Sprachen">
+          <h4 class="group-title"><span class="group-icon" aria-hidden="true">💬</span>Sprachen<span class="group-count">3</span></h4>
+          <div class="subjects">
+            <article class="subject-card">
+              <h3>
+                <span>Englisch</span
+                ><button
+                  type="button"
+                  class="pdf-btn"
+                  data-pdf-subject="englisch"
+                  aria-label="PDF-Zusammenfassungen öffnen"
                 >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bmsw/wirtschaft-recht/kap_17&amp;20.html" target="_blank" rel="noopener"
-                  >Recht - Kapitel 17 + 20</a
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bmsw/englisch/final_exam.html" target="_blank" rel="noopener"
+                    >English Final Exam</a
+                  >
+                </li>
+                <li>
+                  <a href="./summaries/bmsw/englisch/test3.html" target="_blank" rel="noopener"
+                    >Test 3 (prep final exam)</a
+                  >
+                </li>
+              </ul>
+            </article>
+            <article class="subject-card">
+              <h3>
+                <span>Deutsch</span
+                ><button
+                  type="button"
+                  class="pdf-btn"
+                  data-pdf-subject="deutsch"
+                  aria-label="PDF-Zusammenfassungen öffnen"
                 >
-              </li>
-              <li>
-                <a href="./summaries/bmsw/wirtschaft-recht/kap_21&amp;22.html" target="_blank" rel="noopener"
-                  >Recht - Kapitel 21 + 22</a
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bmsw/deutsch/KleiderMachenLeute.html" target="_blank" rel="noopener"
+                    >Kleider machen Leute</a
+                  >
+                </li>
+              </ul>
+              <ul class="link-list">
+                <li>
+                  <a
+                    href="./summaries/bmsw/deutsch/zitieren_referenzieren_bibliografieren_pruefung.html"
+                    target="_blank"
+                    rel="noopener"
+                    >Zitieren, Referenzieren, Bibliographieren</a
+                  >
+                </li>
+              </ul>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bmsw/deutsch/Dramatheorie.html" target="_blank" rel="noopener">Dramatheorie</a>
+                </li>
+              </ul>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bmsw/deutsch/dramatheorie_fachbegriffe.html" target="_blank" rel="noopener"
+                    >Dramatheorie - Fachbegriffe</a
+                  >
+                </li>
+              </ul>
+            </article>
+            <article class="subject-card">
+              <h3>
+                <span>Französisch</span
+                ><button
+                  type="button"
+                  class="pdf-btn"
+                  data-pdf-subject="french"
+                  aria-label="PDF-Zusammenfassungen öffnen"
                 >
-              </li>
-            </ul>
-          </article>
-
-          <article class="subject-card">
-            <h3>
-              <span>Geschichte &amp; Politik</span
-              ><button
-                type="button"
-                class="pdf-btn"
-                data-pdf-subject="geschichte-politik"
-                aria-label="PDF-Zusammenfassungen öffnen"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bmsw/french/hypothese_pronoms.html" target="_blank" rel="noopener"
+                    >Hypothèses, conseils et pronoms relatifs</a
+                  >
+                </li>
+              </ul>
+            </article>
+          </div>
+        </section>
+        <section class="subject-group" data-category="MINT">
+          <h4 class="group-title"><span class="group-icon" aria-hidden="true">🧮</span>Mathematik &amp; Naturwissenschaften<span class="group-count">4</span></h4>
+          <div class="subjects">
+            <article class="subject-card">
+              <h3>
+                <span>Mathe <small>Grundlagen</small></span
+                ><button type="button" class="pdf-btn" data-pdf-subject="mathe" aria-label="PDF-Zusammenfassungen öffnen">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bmsw/mathe-glf/trigonometrische_gleichungen.html" target="_blank" rel="noopener"
+                    >Trigonometrische Gleichungen</a
+                  >
+                </li>
+              </ul>
+            </article>
+             <article class="subject-card">
+              <h3>
+                <span>Mathe <small>Schwerpunkt</small></span
+                ><button type="button" class="pdf-btn" data-pdf-subject="mathe-sp" aria-label="PDF-Zusammenfassungen öffnen">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+              </ul>
+            </article>
+            <article class="subject-card">
+              <h3>
+                <span>Physik</span
+                ><button
+                  type="button"
+                  class="pdf-btn"
+                  data-pdf-subject="physik"
+                  aria-label="PDF-Zusammenfassungen öffnen"
                 >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list"></ul>
-          </article>
-
-          <article class="subject-card">
-            <h3>
-              <span>Englisch</span
-              ><button
-                type="button"
-                class="pdf-btn"
-                data-pdf-subject="englisch"
-                aria-label="PDF-Zusammenfassungen öffnen"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bmsw/physik/grundlagen_umrechnen_guide.html" target="_blank" rel="noopener"
+                    >Grundlagen – Einsteiger-Guide: Umrechnen, Masse &amp; Dichte, Genauigkeit</a
+                  >
+                </li>
+              </ul>
+            </article>
+            <article class="subject-card">
+              <h3>
+                <span>Chemie</span
+                ><button
+                  type="button"
+                  class="pdf-btn"
+                  data-pdf-subject="chemie"
+                  aria-label="PDF-Zusammenfassungen öffnen"
                 >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bmsw/englisch/final_exam.html" target="_blank" rel="noopener"
-                  >English Final Exam</a
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list"></ul>
+            </article>
+          </div>
+        </section>
+        <section class="subject-group" data-category="Gesellschaft">
+          <h4 class="group-title"><span class="group-icon" aria-hidden="true">⚖️</span>Gesellschaft, Wirtschaft &amp; Recht<span class="group-count">2</span></h4>
+          <div class="subjects">
+            <article class="subject-card">
+              <h3>
+                <span>Wirtschaft &amp; Recht</span
+                ><button
+                  type="button"
+                  class="pdf-btn"
+                  data-pdf-subject="wirtschaft-recht"
+                  aria-label="PDF-Zusammenfassungen öffnen"
                 >
-              </li>
-              <li>
-                <a href="./summaries/bmsw/englisch/test3.html" target="_blank" rel="noopener"
-                  >Test 3 (prep final exam)</a
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bmsw/wirtschaft-recht/kap_17&amp;20.html" target="_blank" rel="noopener"
+                    >Recht - Kapitel 17 + 20</a
+                  >
+                </li>
+                <li>
+                  <a href="./summaries/bmsw/wirtschaft-recht/kap_21&amp;22.html" target="_blank" rel="noopener"
+                    >Recht - Kapitel 21 + 22</a
+                  >
+                </li>
+              </ul>
+            </article>
+            <article class="subject-card">
+              <h3>
+                <span>Geschichte &amp; Politik</span
+                ><button
+                  type="button"
+                  class="pdf-btn"
+                  data-pdf-subject="geschichte-politik"
+                  aria-label="PDF-Zusammenfassungen öffnen"
                 >
-              </li>
-            </ul>
-          </article>
-
-          <article class="subject-card">
-            <h3>
-              <span>Deutsch</span
-              ><button
-                type="button"
-                class="pdf-btn"
-                data-pdf-subject="deutsch"
-                aria-label="PDF-Zusammenfassungen öffnen"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bmsw/deutsch/KleiderMachenLeute.html" target="_blank" rel="noopener"
-                  >Kleider machen Leute</a
-                >
-              </li>
-            </ul>
-            <ul class="link-list">
-              <li>
-                <a
-                  href="./summaries/bmsw/deutsch/zitieren_referenzieren_bibliografieren_pruefung.html"
-                  target="_blank"
-                  rel="noopener"
-                  >Zitieren, Referenzieren, Bibliographieren</a
-                >
-              </li>
-            </ul>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bmsw/deutsch/Dramatheorie.html" target="_blank" rel="noopener">Dramatheorie</a>
-              </li>
-            </ul>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bmsw/deutsch/dramatheorie_fachbegriffe.html" target="_blank" rel="noopener"
-                  >Dramatheorie - Fachbegriffe</a
-                >
-              </li>
-            </ul>
-          </article>
-
-          <article class="subject-card">
-            <h3>
-              <span>Mathe</span
-              ><button type="button" class="pdf-btn" data-pdf-subject="mathe" aria-label="PDF-Zusammenfassungen öffnen">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bmsw/mathe/trigonometrische_gleichungen.html" target="_blank" rel="noopener"
-                  >Trigonometrische Gleichungen</a
-                >
-              </li>
-            </ul>
-          </article>
-
-          <article class="subject-card">
-            <h3>
-              <span>Physik</span
-              ><button
-                type="button"
-                class="pdf-btn"
-                data-pdf-subject="physik"
-                aria-label="PDF-Zusammenfassungen öffnen"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bmsw/physik/grundlagen_umrechnen_guide.html" target="_blank" rel="noopener"
-                  >Grundlagen – Einsteiger-Guide: Umrechnen, Masse &amp; Dichte, Genauigkeit</a
-                >
-              </li>
-            </ul>
-          </article>
-
-          <article class="subject-card">
-            <h3>
-              <span>Chemie</span
-              ><button
-                type="button"
-                class="pdf-btn"
-                data-pdf-subject="chemie"
-                aria-label="PDF-Zusammenfassungen öffnen"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list"></ul>
-          </article>
-
-          <article class="subject-card">
-            <h3>
-              <span>Französisch</span
-              ><button
-                type="button"
-                class="pdf-btn"
-                data-pdf-subject="french"
-                aria-label="PDF-Zusammenfassungen öffnen"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bmsw/french/hypothese_pronoms.html" target="_blank" rel="noopener"
-                  >Hypothèses, conseils et pronoms relatifs</a
-                >
-              </li>
-            </ul>
-          </article>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list"></ul>
+            </article>
+          </div>
         </section>
       </section>
 
@@ -1219,146 +1287,149 @@
           <img class="school-logo" src="./logo-bmsw.png" alt="BMSW Logo" />
         </div>
 
-        <section class="subjects">
-          <article class="subject-card">
-            <h3>
-              <span>Mathe - GLF</span
-              ><button type="button" class="pdf-btn" data-pdf-subject="GLF" aria-label="PDF-Zusammenfassungen öffnen">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
+        <section class="subject-group" data-category="Sprachen">
+          <div class="subjects">
+            <article class="subject-card">
+              <h3>
+                <span>English - Books</span
+                ><button
+                  type="button"
+                  class="pdf-btn"
+                  data-pdf-subject="english-books"
+                  aria-label="PDF-Zusammenfassungen öffnen"
                 >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bmsw/GLF/geometrie_zusammenfassung.html" target="_blank" rel="noopener"
-                  >Geometrische Formen</a
-                >
-              </li>
-            </ul>
-          </article>
-
-          <article class="subject-card">
-            <h3>
-              <span>Mathe - SPF</span
-              ><button type="button" class="pdf-btn" data-pdf-subject="SPF" aria-label="PDF-Zusammenfassungen öffnen">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list"></ul>
-          </article>
-
-          <article class="subject-card">
-            <h3>
-              <span>English - Books</span
-              ><button
-                type="button"
-                class="pdf-btn"
-                data-pdf-subject="english-books"
-                aria-label="PDF-Zusammenfassungen öffnen"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bmsw/english-books/brave_new_world_analysis.html" target="_blank" rel="noopener"
-                  >Brave New World</a
-                >
-              </li>
-              <li>
-                <a
-                  href="./summaries/bmsw/english-books/brave_new_world_reading_companion.html"
-                  target="_blank"
-                  rel="noopener"
-                  >Brave New World - Q&A</a
-                >
-              </li>
-              <li>
-                <a href="./summaries/bmsw/english-books/brave_new_world_timeline.html" target="_blank" rel="noopener"
-                  >Brave New World - Timeline</a
-                >
-              </li>
-              <li>
-                <a
-                  href="./summaries/bmsw/english-books/oranges_are_not_the_only_fruit_analysis.html"
-                  target="_blank"
-                  rel="noopener"
-                  >Oranges Are Not The Only Fruit</a
-                >
-              </li>
-              <li>
-                <a href="./summaries/bmsw/english-books/Fahrenheit_451_analysis.html" target="_blank" rel="noopener"
-                  >Fahrenheit 451</a
-                >
-              </li>
-              <li>
-                <a
-                  href="./summaries/bmsw/english-books/The_Perks_Of_Being_A_Wallflower_analysis.html"
-                  target="_blank"
-                  rel="noopener"
-                  >The Perks Of Being A Wallflower</a
-                >
-              </li>
-              <li>
-                <a href="./summaries/bmsw/english-books/dead_poets_society_analysis.html" target="_blank" rel="noopener"
-                  >Dead Poets Society</a
-                >
-              </li>
-            </ul>
-          </article>
-
-          <article class="subject-card">
-            <h3>
-              <span>Französisch mündlich</span
-              ><button type="button" class="pdf-btn" data-pdf-subject="SPF" aria-label="PDF-Zusammenfassungen öffnen">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list"></ul>
-          </article>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bmsw/english-books/brave_new_world_analysis.html" target="_blank" rel="noopener"
+                    >Brave New World</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./summaries/bmsw/english-books/brave_new_world_reading_companion.html"
+                    target="_blank"
+                    rel="noopener"
+                    >Brave New World - Q&A</a
+                  >
+                </li>
+                <li>
+                  <a href="./summaries/bmsw/english-books/brave_new_world_timeline.html" target="_blank" rel="noopener"
+                    >Brave New World - Timeline</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./summaries/bmsw/english-books/oranges_are_not_the_only_fruit_analysis.html"
+                    target="_blank"
+                    rel="noopener"
+                    >Oranges Are Not The Only Fruit</a
+                  >
+                </li>
+                <li>
+                  <a href="./summaries/bmsw/english-books/Fahrenheit_451_analysis.html" target="_blank" rel="noopener"
+                    >Fahrenheit 451</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./summaries/bmsw/english-books/The_Perks_Of_Being_A_Wallflower_analysis.html"
+                    target="_blank"
+                    rel="noopener"
+                    >The Perks Of Being A Wallflower</a
+                  >
+                </li>
+                <li>
+                  <a href="./summaries/bmsw/english-books/dead_poets_society_analysis.html" target="_blank" rel="noopener"
+                    >Dead Poets Society</a
+                  >
+                </li>
+              </ul>
+            </article>
+            <article class="subject-card">
+              <h3>
+                <span>Französisch mündlich</span
+                ><button type="button" class="pdf-btn" data-pdf-subject="SPF" aria-label="PDF-Zusammenfassungen öffnen">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list"></ul>
+            </article>
+          </div>
+        </section>
+        <section class="subject-group" data-category="MINT">
+          <div class="subjects">
+            <article class="subject-card">
+              <h3>
+                <span>Mathe - GLF</span
+                ><button type="button" class="pdf-btn" data-pdf-subject="GLF" aria-label="PDF-Zusammenfassungen öffnen">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bmsw/GLF/geometrie_zusammenfassung.html" target="_blank" rel="noopener"
+                    >Geometrische Formen</a
+                  >
+                </li>
+              </ul>
+            </article>
+            <article class="subject-card">
+              <h3>
+                <span>Mathe - SPF</span
+                ><button type="button" class="pdf-btn" data-pdf-subject="SPF" aria-label="PDF-Zusammenfassungen öffnen">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list"></ul>
+            </article>
+          </div>
         </section>
       </section>
 
@@ -1373,72 +1444,74 @@
           <img class="school-logo" src="./logo-bbw.svg" alt="BBW Logo" />
         </div>
 
-        <section class="subjects">
-          <article class="subject-card">
-            <h3>
-              <span>Modul 165 - NoSQL</span
-              ><button
-                type="button"
-                class="pdf-btn"
-                data-pdf-subject="bbw/m165"
-                aria-label="PDF-Zusammenfassungen öffnen"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
+        <section class="subject-group" data-category="Informatik">
+          <div class="subjects">
+            <article class="subject-card">
+              <h3>
+                <span>Modul 165 - NoSQL</span
+                ><button
+                  type="button"
+                  class="pdf-btn"
+                  data-pdf-subject="bbw/m165"
+                  aria-label="PDF-Zusammenfassungen öffnen"
                 >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list">
-              <li><a href="./summaries/bbw/m165/exam_2.html" target="_blank" rel="noopener">D1G, E1G, F1G, G1G</a></li>
-            </ul>
-          </article>
-          <article class="subject-card">
-            <h3>
-              <span>Modul 347 - Dienst mit Container anwenden </span
-              ><button
-                type="button"
-                class="pdf-btn"
-                data-pdf-subject="bbw/m347"
-                aria-label="PDF-Zusammenfassungen öffnen"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+                <li><a href="./summaries/bbw/m165/exam_2.html" target="_blank" rel="noopener">D1G, E1G, F1G, G1G</a></li>
+              </ul>
+            </article>
+            <article class="subject-card">
+              <h3>
+                <span>Modul 347 - Dienst mit Container anwenden </span
+                ><button
+                  type="button"
+                  class="pdf-btn"
+                  data-pdf-subject="bbw/m347"
+                  aria-label="PDF-Zusammenfassungen öffnen"
                 >
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <path d="M14 2v6h6"></path></svg
-                >PDF
-              </button>
-            </h3>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bbw/m347/modul347_pruefungsvorbereitung.html" target="_blank" rel="noopener"
-                  >Prüfungsvorbereitung</a
-                >
-              </li>
-            </ul>
-            <ul class="link-list">
-              <li>
-                <a href="./summaries/bbw/m347/modul347_pruefung.html" target="_blank" rel="noopener"
-                  >Prüfung interaktiv</a
-                >
-              </li>
-            </ul>
-          </article>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <path d="M14 2v6h6"></path></svg
+                  >PDF
+                </button>
+              </h3>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bbw/m347/modul347_pruefungsvorbereitung.html" target="_blank" rel="noopener"
+                    >Prüfungsvorbereitung</a
+                  >
+                </li>
+              </ul>
+              <ul class="link-list">
+                <li>
+                  <a href="./summaries/bbw/m347/modul347_pruefung.html" target="_blank" rel="noopener"
+                    >Prüfung interaktiv</a
+                  >
+                </li>
+              </ul>
+            </article>
+          </div>
         </section>
       </section>
 
