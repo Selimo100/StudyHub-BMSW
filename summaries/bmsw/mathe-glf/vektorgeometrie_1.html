@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<title>Vektorgeometrie I – Mathe TALS · Prüfungsvorbereitung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --paper:#F4F7F6; --sheet:#FFFFFF; --grid:#D6E4DF; --ink:#18233D; --muted:#56627A; --line:#C9D5D2;
+  --va:#C2412B; --vb:#23795A; --vc:#A86D0C; --vr:#2A4BB5;
+  --accent:#2A4BB5; --accent-soft:#E3E9FA; --ok:#1F7A4F; --ok-soft:#DFF1E7; --warn:#9A5B00; --warn-soft:#FBEFD9;
+  --key:#EEF1F5; --key-edge:#B9C1CE; --shadow:0 1px 0 rgba(24,35,61,.06),0 6px 20px -12px rgba(24,35,61,.25);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#101522; --sheet:#171E2E; --grid:#24304A; --ink:#E6EAF3; --muted:#9AA5BD; --line:#2C3752;
+  --va:#F0775F; --vb:#5CC79A; --vc:#E2AE4A; --vr:#8EA6FF;
+  --accent:#8EA6FF; --accent-soft:#232E4F; --ok:#6DD39F; --ok-soft:#173327; --warn:#F2B75C; --warn-soft:#3A2B12;
+  --key:#232C40; --key-edge:#3A4661; --shadow:0 1px 0 rgba(0,0,0,.3),0 8px 24px -14px rgba(0,0,0,.7);
+}}
+:root[data-theme="dark"]{
+  --paper:#101522; --sheet:#171E2E; --grid:#24304A; --ink:#E6EAF3; --muted:#9AA5BD; --line:#2C3752;
+  --va:#F0775F; --vb:#5CC79A; --vc:#E2AE4A; --vr:#8EA6FF;
+  --accent:#8EA6FF; --accent-soft:#232E4F; --ok:#6DD39F; --ok-soft:#173327; --warn:#F2B75C; --warn-soft:#3A2B12;
+  --key:#232C40; --key-edge:#3A4661; --shadow:0 1px 0 rgba(0,0,0,.3),0 8px 24px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:17px/1.6 "Source Sans 3",system-ui,sans-serif;margin:0;padding-inline:16px}
+h1,h2,h3,.disp{font-family:"Barlow Condensed","Arial Narrow",sans-serif;text-wrap:balance;letter-spacing:.01em}
+h2{font-size:2rem;line-height:1.1;margin:0 0 .4rem;font-weight:700}
+h3{font-size:1.35rem;margin:1.8rem 0 .5rem;font-weight:600}
+p{margin:.5rem 0}
+code,.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.86em}
+.wrap{max-width:1080px;margin:0 auto;padding-block:20px 60px}
+.backlink{display:inline-block;margin-bottom:10px;font:600 .9rem "JetBrains Mono",monospace;color:var(--accent);text-decoration:none}.backlink:hover{text-decoration:underline}
+
+/* header */
+header.top{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end;padding:28px 24px 22px;margin-bottom:18px;
+  background:
+   linear-gradient(var(--grid) 1px,transparent 1px) 0 0/22px 22px,
+   linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/22px 22px, var(--sheet);
+  border:1px solid var(--line);border-radius:6px;position:relative;overflow:hidden}
+.eyebrow{font:600 .78rem/1 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+header.top h1{font-size:clamp(2.4rem,6vw,3.8rem);line-height:.95;margin:.4rem 0 .5rem;font-weight:700}
+header.top h1 .r{color:var(--vr)}
+header.top p{max-width:52ch;color:var(--muted);margin:0;background:var(--sheet);display:inline}
+.count{text-align:right;background:var(--sheet);padding:6px 10px;border:1px solid var(--line);border-radius:4px}
+.count b{display:block;font:700 2.6rem/1 "Barlow Condensed",sans-serif;color:var(--accent);font-variant-numeric:tabular-nums}
+.count span{font-size:.85rem;color:var(--muted)}
+.hero-svg{position:absolute;right:170px;top:10px;opacity:.9;pointer-events:none}
+@media (max-width:760px){.hero-svg{display:none} header.top{grid-template-columns:1fr}.count{text-align:left;justify-self:start}}
+
+/* tabs */
+nav.tabs{display:flex;gap:4px;overflow-x:auto;position:sticky;top:0;z-index:5;background:var(--paper);padding:8px 0;border-bottom:1px solid var(--line);margin-bottom:22px;scrollbar-width:thin}
+nav.tabs button{flex:0 0 auto;font:600 1.02rem/1 "Barlow Condensed",sans-serif;letter-spacing:.03em;border:1px solid transparent;background:none;color:var(--muted);padding:9px 12px;border-radius:4px;cursor:pointer}
+nav.tabs button:hover{color:var(--ink);background:var(--sheet)}
+nav.tabs button[aria-selected="true"]{color:var(--ink);background:var(--sheet);border-color:var(--line);box-shadow:inset 0 -3px 0 var(--accent)}
+nav.tabs button .n{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--muted);margin-right:5px}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.pane{display:none}
+section.pane.on{display:block}
+.lead{font-size:1.1rem;color:var(--muted);max-width:65ch}
+
+/* blocks */
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;box-shadow:var(--shadow)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.merk{border-left:4px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 6px 6px 0;margin:14px 0}
+.merk .t{font:700 .78rem/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+.falle{border-left:4px solid var(--warn);background:var(--warn-soft);padding:12px 16px;border-radius:0 6px 6px 0;margin:14px 0}
+.falle .t{font:700 .78rem/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);display:block;margin-bottom:6px}
+.ref{display:inline-block;font:600 .78rem/1.4 "JetBrains Mono",monospace;color:var(--muted);border:1px dashed var(--line);padding:2px 7px;border-radius:3px}
+.prose{max-width:70ch}
+ul.clean{padding-left:1.1rem;margin:.4rem 0} ul.clean li{margin:.25rem 0}
+
+/* math */
+.v{display:inline-block;position:relative;padding-top:.32em;line-height:1;font-style:italic;font-weight:600}
+.v::before{content:"";position:absolute;left:.04em;right:.18em;top:.1em;height:1.5px;background:currentColor}
+.v::after{content:"";position:absolute;right:0;top:calc(.1em - .19em + .75px);border-top:.19em solid transparent;border-bottom:.19em solid transparent;border-left:.3em solid currentColor}
+.v.u{font-style:normal}
+.ca{color:var(--va)}.cb{color:var(--vb)}.cc{color:var(--vc)}.cr{color:var(--vr)}
+.cv{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;padding:0 .35em;margin:0 .1em;line-height:1.15;font-variant-numeric:tabular-nums;
+  border-left:1.5px solid currentColor;border-right:1.5px solid currentColor;border-radius:.5em/1.2em;font-size:.95em}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.85em;line-height:1.1;margin:0 .1em}
+.frac span:first-child{border-bottom:1px solid currentColor;padding:0 .15em}
+.eq{font-size:1.08rem;padding:10px 0;overflow-x:auto}
+table.t{border-collapse:collapse;width:100%;font-size:.95rem}
+table.t th,table.t td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+table.t th{font:600 .8rem "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tw{overflow-x:auto}
+
+/* TR */
+.kbd{display:inline-block;font:600 .8rem/1 "JetBrains Mono",monospace;background:var(--key);border:1px solid var(--key-edge);border-bottom-width:3px;border-radius:5px;padding:4px 7px;margin:0 1px;white-space:nowrap;color:var(--ink)}
+.screen{font-family:"JetBrains Mono",monospace;font-size:.9rem;background:#DDE6D2;color:#1D2A14;border-radius:6px;padding:10px 14px;border:2px solid #9AA88C;overflow-x:auto;white-space:pre;line-height:1.55}
+.screen .o{color:#3F5A1F}
+.steps{counter-reset:s;list-style:none;padding:0;margin:.5rem 0}
+.steps li{counter-increment:s;position:relative;padding:4px 0 8px 38px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:4px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--sheet);font:700 .85rem/26px "JetBrains Mono",monospace;text-align:center}
+
+/* reveal / tasks */
+details.sol{margin-top:8px;border-top:1px dashed var(--line);padding-top:6px}
+details.sol summary{cursor:pointer;font:600 .9rem "JetBrains Mono",monospace;color:var(--accent);list-style:none}
+details.sol summary::before{content:"▸ "} details.sol[open] summary::before{content:"▾ "}
+details.sol > div{padding:8px 0 2px}
+.task{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.task h4{margin:0;font:600 1.1rem "Barlow Condensed",sans-serif;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.pts{font:600 .75rem "JetBrains Mono",monospace;color:var(--muted);white-space:nowrap}
+
+/* plan */
+.plan{display:grid;gap:10px}
+.day{display:grid;grid-template-columns:92px 1fr;gap:14px;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:12px 16px;align-items:start}
+.day .d{font:700 1.25rem/1.1 "Barlow Condensed",sans-serif}
+.day .d small{display:block;font:500 .78rem "JetBrains Mono",monospace;color:var(--muted);margin-top:3px}
+.day.exam{border-color:var(--va);background:linear-gradient(90deg,var(--warn-soft),var(--sheet))}
+.chk{display:flex;flex-direction:column;gap:5px}
+.chk label{display:flex;gap:9px;align-items:flex-start;cursor:pointer}
+.chk input{margin-top:5px;accent-color:var(--ok);width:17px;height:17px;flex:0 0 auto}
+.chk label:has(input:checked) span{color:var(--muted);text-decoration:line-through}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+@media (max-width:520px){.day{grid-template-columns:1fr;gap:6px}}
+
+/* plotter */
+.plot{display:grid;grid-template-columns:minmax(260px,330px) 1fr;gap:18px;align-items:start}
+@media (max-width:760px){.plot{grid-template-columns:1fr}}
+.inrow{display:grid;grid-template-columns:52px 1fr 1fr 1fr;gap:6px;align-items:center;margin-bottom:6px}
+.inrow input{width:100%;font:15px "JetBrains Mono",monospace;padding:6px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink)}
+.inrow .h{font:600 .72rem "JetBrains Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.svgbox{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:6px;max-width:100%}
+.svgbox svg{width:100%;height:auto;display:block}
+.btn{font:600 .95rem "Barlow Condensed",sans-serif;letter-spacing:.04em;border:1px solid var(--accent);color:var(--accent);background:var(--sheet);padding:7px 14px;border-radius:4px;cursor:pointer}
+.btn.fill{background:var(--accent);color:var(--sheet)}
+.score{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.selfpts{display:flex;gap:6px;align-items:center;font-size:.9rem;color:var(--muted);margin-top:4px}
+.selfpts input{width:58px;font:14px "JetBrains Mono",monospace;padding:4px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink)}
+.tf{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}
+.tf button{font:600 .8rem "JetBrains Mono",monospace;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:4px 10px;border-radius:4px;cursor:pointer}
+.tf button.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.tf button.wrong{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+figure{margin:0}
+figcaption{font-size:.85rem;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<a class="backlink" href="../../../index.html">← zurück zu StudyHub</a>
+<header class="top">
+  <div>
+    <span class="eyebrow">Mathematik TALS · Skript 11 · BMS Winterthur</span>
+    <h1>Vektorgeometrie I<br><span class="r">Prüfungs&shy;coach</span></h1>
+    <p>Erklärungen, TI-Nspire-Wege (ohne CAS), deine Aufgaben aus Skript &amp; Sammlung und eine Probeprüfung – bis Donnerstag.</p>
+  </div>
+  <svg class="hero-svg" width="230" height="130" viewBox="0 0 230 130" aria-hidden="true">
+    <defs>
+      <marker id="ha" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--va)"/></marker>
+      <marker id="hb" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--vb)"/></marker>
+      <marker id="hr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--vr)"/></marker>
+    </defs>
+    <line x1="20" y1="110" x2="132" y2="88" stroke="var(--va)" stroke-width="3" marker-end="url(#ha)"/>
+    <line x1="132" y1="88" x2="198" y2="22" stroke="var(--vb)" stroke-width="3" marker-end="url(#hb)"/>
+    <line x1="20" y1="110" x2="196" y2="24" stroke="var(--vr)" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#hr)"/>
+    <text x="70" y="118" font-family="Source Sans 3" font-style="italic" font-weight="700" fill="var(--va)">a</text>
+    <text x="172" y="66" font-family="Source Sans 3" font-style="italic" font-weight="700" fill="var(--vb)">b</text>
+    <text x="96" y="58" font-family="Source Sans 3" font-style="italic" font-weight="700" fill="var(--vr)">a + b</text>
+  </svg>
+  <div class="count"><b id="cd">–</b><span>Tage bis Do, 17.9.</span></div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Kapitel">
+  <button role="tab" data-t="plan" aria-selected="true"><span class="n">⌂</span>Lernplan</button>
+  <button role="tab" data-t="grund"><span class="n">§1–2.2</span>Grundlagen</button>
+  <button role="tab" data-t="lin"><span class="n">§2.3–2.4</span>Multiplikation &amp; LK</button>
+  <button role="tab" data-t="zer"><span class="n">§2.5</span>Zerlegung &amp; Figuren</button>
+  <button role="tab" data-t="koord"><span class="n">§3–3.2</span>Koordinaten</button>
+  <button role="tab" data-t="tr"><span class="n">§3.3</span>TI-Nspire</button>
+  <button role="tab" data-t="auf"><span class="n">Nr.</span>Aufgaben</button>
+  <button role="tab" data-t="probe"><span class="n">60′</span>Probeprüfung</button>
+</nav>
+
+<!-- ============ PLAN ============ -->
+<section class="pane on" id="plan">
+  <h2>Dein Plan bis Donnerstag</h2>
+  <p class="lead">Seiten 1–5 (Vektorbegriff, Addition, Subtraktion) hast du erledigt. Neu dazu kommen Multiplikation, Linearkombination, Zerlegung, Koordinaten, Kollinearität und der TR. Hake ab, was erledigt ist – der Stand bleibt in diesem Browser gespeichert.</p>
+  <div class="bar" aria-hidden="true"><i id="pbar"></i></div>
+  <p class="mono" style="color:var(--muted);font-size:.8rem" id="ptext"></p>
+  <div class="plan" id="planlist">
+    <div class="day"><div class="d">Fr<small>11.9.</small></div><div class="chk">
+      <label><input type="checkbox" id="p1"><span>Tab «Multiplikation &amp; LK» lesen (Skript S. 6)</span></label>
+      <label><input type="checkbox" id="p2"><span>Skript Aufgabe 3 (Vektor <i class="v">d</i> grafisch)</span></label>
+      <label><input type="checkbox" id="p3"><span>Sammlung Nr. 7e, 7f</span></label></div></div>
+    <div class="day"><div class="d">Sa<small>12.9.</small></div><div class="chk">
+      <label><input type="checkbox" id="p4"><span>Tab «Zerlegung &amp; Figuren»: Weg-Methode, Mittelpunkt, Schwerpunkt</span></label>
+      <label><input type="checkbox" id="p5"><span>Sammlung Nr. 14, 16, 17</span></label>
+      <label><input type="checkbox" id="p6"><span>Skript Aufgabe 4 a, b, d, f (Challenge – ruhig mit Lösung vergleichen)</span></label></div></div>
+    <div class="day"><div class="d">So<small>13.9.</small></div><div class="chk">
+      <label><input type="checkbox" id="p7"><span>Zerlegung (Skript S. 7) + Sammlung Nr. 24</span></label>
+      <label><input type="checkbox" id="p8"><span>Tab «Koordinaten»: Skript Aufgabe 5 und 6</span></label>
+      <label><input type="checkbox" id="p9"><span>Sammlung Nr. 42, 43, 47</span></label></div></div>
+    <div class="day"><div class="d">Mo<small>14.9.</small></div><div class="chk">
+      <label><input type="checkbox" id="p10"><span>Kollineare Vektoren (Skript S. 9)</span></label>
+      <label><input type="checkbox" id="p11"><span>Tab «TI-Nspire» am eigenen TR nachtippen</span></label>
+      <label><input type="checkbox" id="p12"><span>Skript Aufgabe 7 + Sammlung Nr. 46, 48–51 mit TR</span></label></div></div>
+    <div class="day"><div class="d">Di<small>15.9.</small></div><div class="chk">
+      <label><input type="checkbox" id="p13"><span>Probeprüfung in 60 Minuten, ohne Lösungen anschauen</span></label>
+      <label><input type="checkbox" id="p14"><span>Korrigieren, Punkte eintragen, Fehler notieren</span></label></div></div>
+    <div class="day"><div class="d">Mi<small>16.9.</small></div><div class="chk">
+      <label><input type="checkbox" id="p15"><span>Schwachstellen aus der Probeprüfung nochmals üben</span></label>
+      <label><input type="checkbox" id="p16"><span>Repetition S. 2–5: Nr. 6, 9, 10, 12 kurz durchgehen</span></label>
+      <label><input type="checkbox" id="p17"><span>TR prüfen: Batterie, Vektorformat kartesisch, Befehle sitzen</span></label></div></div>
+    <div class="day exam"><div class="d">Do<small>17.9.</small></div><div><b>Prüfung.</b> Geodreieck, Bleistift, Häuschenpapier und geladenen TR mitnehmen. Bei grafischen Aufgaben immer sauber Pfeilspitzen und Namen dranschreiben.</div></div>
+  </div>
+
+  <h3>Was an der Prüfung drankommt – auf einen Blick</h3>
+  <div class="tw"><table class="t">
+    <tr><th>Thema</th><th>Das musst du können</th><th>Skript</th></tr>
+    <tr><td>Vektorbegriff</td><td>Betrag &amp; Richtung, Repräsentant, Skalar vs. Vektor</td><td>S. 2–3</td></tr>
+    <tr><td>Addition / Subtraktion</td><td>Pfeile aneinanderhängen, Gegenvektor, Terme vereinfachen</td><td>S. 4–5</td></tr>
+    <tr><td>Multiplikation, LK</td><td>k·<i class="v">a</i> zeichnen, Linearkombination konstruieren</td><td>S. 6</td></tr>
+    <tr><td>Zerlegung &amp; Figuren</td><td>Vektoren in Würfel, Pyramide, Dreieck durch gegebene ausdrücken</td><td>S. 7</td></tr>
+    <tr><td>Koordinaten</td><td>Komponenten ablesen, rechnen, Betrag mit Pythagoras</td><td>S. 8–9</td></tr>
+    <tr><td>Kollinear</td><td>prüfen, ob <i class="v">b</i> = k·<i class="v">a</i>; fehlende Koordinaten bestimmen</td><td>S. 9</td></tr>
+    <tr><td>TI-Nspire</td><td>Vektoren eingeben, norm, Zerlegung per Gleichungssystem</td><td>S. 10</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ GRUNDLAGEN ============ -->
+<section class="pane" id="grund">
+  <h2>Grundlagen – Repetition</h2>
+  <p class="lead">Das hast du schon gemacht. Hier nur das Wichtigste zum schnellen Auffrischen.</p>
+  <div class="grid2">
+    <div class="sheet">
+      <h3 style="margin-top:0">Vektor vs. Skalar</h3>
+      <p>Ein <b>Vektor</b> hat Betrag (Länge) <b>und</b> Richtung. Alle Pfeile mit gleicher Länge und Richtung sind derselbe Vektor – jeder einzelne Pfeil heisst <b>Repräsentant</b>.</p>
+      <p>Ein <b>Skalar</b> hat nur einen Betrag.</p>
+      <ul class="clean">
+        <li>Skalar: Temperatur, Zeit, Masse, Druck, Dichte, Energie, Alter, Länge</li>
+        <li>Vektor: Geschwindigkeit, Kraft, Verschiebung, Wind, Beschleunigung, Strömung, Lichtstrahl</li>
+      </ul>
+      <div class="falle"><span class="t">Falle (Nr. 2)</span>Aus <i class="v">a</i> = <i class="v">b</i> folgt a = b (gleiche Länge). Aber aus a = b folgt <b>nicht</b> <i class="v">a</i> = <i class="v">b</i> – die Richtung kann verschieden sein.</div>
+    </div>
+    <div class="sheet">
+      <h3 style="margin-top:0">Addition &amp; Subtraktion</h3>
+      <p><b>Addieren:</b> Pfeile aneinanderhängen (Spitze an Fuss). Resultierende = vom Anfang des ersten zur Spitze des letzten Pfeils.</p>
+      <p class="eq"><i class="v u">AB</i> + <i class="v u">BC</i> = <i class="v u">AC</i> &nbsp;(«innere Buchstaben kürzen sich»)</p>
+      <p><b>Subtrahieren:</b> Gegenvektor addieren: <i class="v">a</i> − <i class="v">b</i> = <i class="v">a</i> + (−<i class="v">b</i>). Und −<i class="v u">AB</i> = <i class="v u">BA</i>.</p>
+      <p>Geschlossene Vektorkette ⇒ Summe = Nullvektor <i class="v">0</i>.</p>
+      <div class="merk"><span class="t">Trick für Terme</span>Jede Subtraktion in eine Addition mit umgedrehten Buchstaben verwandeln, dann so ordnen, dass Ende = nächster Anfang:<br><i class="v u">XY</i> − <i class="v u">ZY</i> + <i class="v u">XZ</i> = <i class="v u">XY</i> + <i class="v u">YZ</i> + <i class="v u">XZ</i> = <i class="v u">XZ</i> + <i class="v u">XZ</i> = 2<i class="v u">XZ</i></div>
+    </div>
+  </div>
+  <h3>Rechengesetze (gelten wie bei Zahlen)</h3>
+  <p><i class="v">a</i> + <i class="v">b</i> = <i class="v">b</i> + <i class="v">a</i> (Kommutativ) · <i class="v">a</i> + (<i class="v">b</i> + <i class="v">c</i>) = (<i class="v">a</i> + <i class="v">b</i>) + <i class="v">c</i> (Assoziativ) · <i class="v">a</i> − <i class="v">a</i> = <i class="v">0</i> · |<i class="v">a</i> − <i class="v">b</i>| = |<i class="v">b</i> − <i class="v">a</i>|</p>
+  <div class="falle"><span class="t">Falle (Nr. 5 / 6)</span>|<i class="v">a</i> + <i class="v">b</i>| = |<i class="v">a</i>| + |<i class="v">b</i>| gilt <b>nur</b>, wenn <i class="v">a</i> und <i class="v">b</i> die gleiche Richtung haben. Sonst ist die Summe kürzer (Dreiecksungleichung). Und: Betrag (Zahl) ≠ Vektor – «c = <i class="v">a</i> + <i class="v">b</i>» ist falsch geschrieben.</div>
+</section>
+
+<!-- ============ LIN ============ -->
+<section class="pane" id="lin">
+  <h2>Multiplikation mit einer Zahl &amp; Linearkombination</h2>
+  <p class="lead">Neu für dich – aber einfach: Eine Zahl vor dem Vektor streckt, staucht oder dreht ihn um.</p>
+  <div class="grid2">
+    <div class="sheet">
+      <h3 style="margin-top:0">k · <i class="v">a</i></h3>
+      <ul class="clean">
+        <li><b>Betrag:</b> |k·<i class="v">a</i>| = |k| · |<i class="v">a</i>|</li>
+        <li><b>k &gt; 0:</b> gleiche Richtung wie <i class="v">a</i></li>
+        <li><b>k &lt; 0:</b> Gegenrichtung</li>
+        <li>1·<i class="v">a</i> = <i class="v">a</i>, &nbsp;(−1)·<i class="v">a</i> = −<i class="v">a</i>, &nbsp;0·<i class="v">a</i> = <i class="v">0</i></li>
+      </ul>
+      <svg viewBox="0 0 320 120" width="100%" role="img" aria-label="a, 2a und minus 1.5a als Pfeile">
+        <defs>
+          <marker id="m1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--va)"/></marker>
+        </defs>
+        <line x1="20" y1="25" x2="80" y2="25" stroke="var(--va)" stroke-width="2.5" marker-end="url(#m1)"/>
+        <text x="95" y="30" fill="var(--ink)" font-size="14" font-style="italic">a</text>
+        <line x1="20" y1="60" x2="140" y2="60" stroke="var(--va)" stroke-width="2.5" marker-end="url(#m1)"/>
+        <text x="155" y="65" fill="var(--ink)" font-size="14" font-style="italic">2a  (doppelt so lang)</text>
+        <line x1="110" y1="98" x2="20" y2="98" stroke="var(--va)" stroke-width="2.5" marker-end="url(#m1)"/>
+        <text x="125" y="103" fill="var(--ink)" font-size="14" font-style="italic">−1.5a  (1.5× so lang, umgedreht)</text>
+      </svg>
+      <p>Rechengesetze: k(<i class="v">a</i> + <i class="v">b</i>) = k<i class="v">a</i> + k<i class="v">b</i> · (k + m)<i class="v">a</i> = k<i class="v">a</i> + m<i class="v">a</i> · k(m<i class="v">a</i>) = (km)<i class="v">a</i> — du darfst also ausmultiplizieren und zusammenfassen wie in der Algebra.</p>
+    </div>
+    <div class="sheet">
+      <h3 style="margin-top:0">Linearkombination</h3>
+      <p>Eine Summe/Differenz von Vektoren, jeder mit einem Faktor: das Ergebnis ist wieder ein Vektor.</p>
+      <p class="eq"><i class="v cr">v</i> = <i class="v ca">a</i> + 2·<i class="v cb">b</i> − <i class="v cc">c</i></p>
+      <b>So konstruierst du sie</b>
+      <ol class="steps">
+        <li>Jeden Summanden einzeln bilden: 2<i class="v">b</i> (doppelt so lang), −<i class="v">c</i> (umgedreht) …</li>
+        <li>Alle Pfeile Spitze an Fuss aneinanderhängen – Reihenfolge egal.</li>
+        <li>Resultierende vom Startpunkt zur letzten Spitze einzeichnen und beschriften.</li>
+      </ol>
+      <div class="merk"><span class="t">Terme vereinfachen</span>Wie in der Algebra: ausmultiplizieren, gleiche Vektoren zusammenfassen.<br>z = 3(<i class="v">a</i> + 2<i class="v">x</i>) − 4(<span class="frac"><span><i class="v">x</i></span><span>2</span></span> + <i class="v">y</i>) − 5<i class="v">b</i> = 3<i class="v">a</i> + 6<i class="v">x</i> − 2<i class="v">x</i> − 4<i class="v">y</i> − 5<i class="v">b</i> = 3<i class="v">a</i> + 4<i class="v">x</i> − 4<i class="v">y</i> − 5<i class="v">b</i><br>Danach <i class="v">x</i>, <i class="v">y</i> durch <i class="v">a</i>, <i class="v">b</i> ersetzen (Skript Aufg. 4e → Resultat 3<i class="v">a</i> − 13<i class="v">b</i>).</div>
+    </div>
+  </div>
+  <div class="falle"><span class="t">Häufiger Fehler</span>Beim Konstruieren vergessen, dass ein Minus die Richtung dreht: −3<i class="v">c</i> zeigt in die <b>Gegenrichtung</b> von <i class="v">c</i> und ist 3-mal so lang.</div>
+  <p><span class="ref">Üben: Skript Aufg. 3 · Sammlung Nr. 7e, 7f, 14, 16, 17</span></p>
+</section>
+
+<!-- ============ ZERLEGUNG ============ -->
+<section class="pane" id="zer">
+  <h2>Zerlegung &amp; Vektoren in Figuren</h2>
+  <p class="lead">Das ist der anspruchsvollste Teil (Würfel, Pyramide, Dreieck). Mit einer festen Methode wird er zur Routine.</p>
+
+  <div class="grid2">
+    <div class="sheet">
+      <h3 style="margin-top:0">Die Weg-Methode</h3>
+      <p>Gesucht ist z.&nbsp;B. <i class="v u">HB</i> durch <i class="v">a</i>, <i class="v">b</i>, <i class="v">c</i>:</p>
+      <ol class="steps">
+        <li>Startpunkt (H) und Zielpunkt (B) in der Skizze markieren.</li>
+        <li>Einen Weg <b>nur entlang bekannter Kanten</b> suchen.</li>
+        <li>Jede Kante in Pfeilrichtung = +, gegen die Pfeilrichtung = −.</li>
+        <li>Alles addieren und zusammenfassen.</li>
+      </ol>
+      <p>Welcher Weg, ist egal – das Resultat ist immer gleich.</p>
+    </div>
+    <div class="sheet">
+      <h3 style="margin-top:0">Beispiel Würfel (Nr. 16)</h3>
+      <svg viewBox="0 0 300 220" width="100%" role="img" aria-label="Würfel ABCDEFGH mit a=AB, b=AD, c=AE">
+        <defs>
+          <marker id="wa" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--va)"/></marker>
+          <marker id="wb" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--vb)"/></marker>
+          <marker id="wc" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--vc)"/></marker>
+          <marker id="wr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--vr)"/></marker>
+        </defs>
+        <g fill="none" stroke="var(--muted)" stroke-width="1.3">
+          <path d="M130,150 L130,40 M130,150 L240,150" stroke-dasharray="4 3"/>
+          <path d="M60,190 L170,190 L240,150 L240,40 L130,40 L60,80 Z M60,80 L170,80 L170,190 M170,80 L240,40"/>
+        </g>
+        <line x1="60" y1="190" x2="166" y2="190" stroke="var(--va)" stroke-width="3" marker-end="url(#wa)"/>
+        <line x1="60" y1="190" x2="126" y2="152" stroke="var(--vb)" stroke-width="3" marker-end="url(#wb)"/>
+        <line x1="60" y1="190" x2="60" y2="84" stroke="var(--vc)" stroke-width="3" marker-end="url(#wc)"/>
+        <line x1="60" y1="190" x2="205" y2="60" stroke="var(--vr)" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#wr)"/>
+        <circle cx="205" cy="60" r="3.5" fill="var(--vr)"/>
+        <g font-size="13" fill="var(--ink)" font-family="Source Sans 3">
+          <text x="45" y="205">A</text><text x="172" y="205">B</text><text x="245" y="160">C</text><text x="136" y="146">D</text>
+          <text x="45" y="80">E</text><text x="160" y="75">F</text><text x="245" y="38">G</text><text x="120" y="35">H</text>
+          <text x="210" y="72" fill="var(--vr)">M</text>
+          <text x="108" y="208" fill="var(--va)" font-style="italic" font-weight="700">a</text>
+          <text x="88" y="163" fill="var(--vb)" font-style="italic" font-weight="700">b</text>
+          <text x="42" y="138" fill="var(--vc)" font-style="italic" font-weight="700">c</text>
+        </g>
+      </svg>
+      <p><i class="v u">AM</i> (M Mitte von FG): A → B → F → M = <i class="v ca">a</i> + <i class="v cc">c</i> + ½<i class="v cb">b</i></p>
+    </div>
+  </div>
+
+  <h3>Die drei Punkte, die du auswendig kennen musst</h3>
+  <div class="grid3">
+    <div class="sheet"><b>Mittelpunkt einer Strecke</b><p>Halber Weg: <i class="v u">AM</i> = ½ <i class="v u">AB</i>.</p></div>
+    <div class="sheet"><b>Schwerpunkt S im Dreieck</b><p>Liegt auf der Seitenhalbierenden, <b>⅔ ab der Ecke</b>. Kurzformel: <i class="v u">AS</i> = ⅓(<i class="v u">AB</i> + <i class="v u">AC</i>).</p></div>
+    <div class="sheet"><b>Diagonalenschnitt / Würfelmitte</b><p>Halbiert die Diagonale: <i class="v u">AM</i> = ½<i class="v u">AC</i>, im Würfel <i class="v u">AK</i> = ½(<i class="v">a</i> + <i class="v">b</i> + <i class="v">c</i>).</p></div>
+  </div>
+
+  <h3>Zerlegung in zwei Richtungen</h3>
+  <div class="prose">
+    <p>Einen Vektor <i class="v">a</i> in <i class="v">b</i> und <i class="v">c</i> zerlegen heisst: Zahlen x, y finden mit <b><i class="v">a</i> = x·<i class="v">b</i> + y·<i class="v">c</i></b>.</p>
+    <p><b>Grafisch:</b> Durch Anfangs- und Endpunkt von <i class="v">a</i> je eine Parallele zu <i class="v">b</i> und zu <i class="v">c</i> zeichnen. Es entsteht ein Parallelogramm, dessen Seiten x<i class="v">b</i> und y<i class="v">c</i> sind. Dann abmessen: wie oft passt <i class="v">b</i> hinein?</p>
+    <p><b>Rechnerisch (mit Koordinaten):</b> komponentenweise ein Gleichungssystem mit 2 Unbekannten aufstellen → TR (siehe Tab TI-Nspire).</p>
+  </div>
+  <div class="falle"><span class="t">Keine Lösung</span>Wenn <i class="v">b</i> und <i class="v">c</i> parallel (kollinear) sind, kann man <i class="v">a</i> nicht zerlegen (ausser <i class="v">a</i> ist auch parallel).</div>
+
+  <h3>Skript Aufgabe 4 – Tipps</h3>
+  <div class="grid2">
+    <div class="task"><h4>4a Seitenhalbierende</h4><p>Von B zur Mitte von CA: erst <i class="v u">BC</i>, dann halbe Strecke <i class="v u">CA</i>.</p><details class="sol"><summary>Lösung</summary><div><i class="v">s</i> = <i class="v">a</i> + ½<i class="v">b</i></div></details></div>
+    <div class="task"><h4>4b Gleich lange Kräfte</h4><p>Zeichne das Parallelogramm: Summe gleich lang ⇒ zwei gleichseitige Dreiecke.</p><details class="sol"><summary>Lösung</summary><div>120°</div></details></div>
+    <div class="task"><h4>4c Sechseck</h4><p>Im regelmässigen Sechseck ist die lange Diagonale 2× so lang wie eine Seite und parallel zur Seite <i class="v">b</i>.</p><details class="sol"><summary>Lösung</summary><div>I: <i class="v">c</i> = −<i class="v">a</i> + <i class="v">b</i> &nbsp; II: <i class="v">x</i> = <i class="v">a</i> − 3<i class="v">b</i></div></details></div>
+    <div class="task"><h4>4f Pyramide mit Schwerpunkt</h4><p>Nutze <i class="v">s</i> = <i class="v u">?S</i> und die ⅔-Regel: von der Ecke bis S sind ⅔ der Seitenhalbierenden.</p><details class="sol"><summary>Lösungen</summary><div><i class="v u">DC</i> = −<i class="v">b</i> + 3<i class="v">s</i>; <i class="v u">AC</i> = −<i class="v">a</i> − <i class="v">b</i> + 3<i class="v">s</i>; <i class="v u">BC</i> = −2<i class="v">b</i> + 3<i class="v">s</i>; <i class="v u">SC</i> = −<i class="v">b</i> + 2<i class="v">s</i>; <i class="v u">SM</i> = ½<i class="v">a</i> + ½<i class="v">b</i> − <i class="v">s</i>; <i class="v u">ST</i> = ⅓<i class="v">a</i></div></details></div>
+  </div>
+  <p style="margin-top:12px"><span class="ref">Üben: Skript Aufg. 4 · Sammlung Nr. 14, 16, 17, 24</span></p>
+</section>
+
+<!-- ============ KOORD ============ -->
+<section class="pane" id="koord">
+  <h2>Vektoren im Koordinatensystem</h2>
+  <p class="lead">Ab hier wird gerechnet statt gezeichnet: Ein Vektor ist einfach «so viel nach rechts, so viel nach oben».</p>
+  <div class="grid2">
+    <div class="sheet">
+      <h3 style="margin-top:0">Komponenten &amp; Betrag</h3>
+      <p class="eq"><i class="v">a</i> = <span class="cv"><span>x</span><span>y</span></span> &nbsp;→&nbsp; x = nach rechts (+) / links (−), y = nach oben (+) / unten (−)</p>
+      <p>Ablesen: <b>Spitze minus Fuss</b>. Pfeil von (1|−2) nach (4|3) ⇒ <span class="cv"><span>3</span><span>5</span></span>.</p>
+      <p><b>Betrag</b> (Pythagoras): |<i class="v">a</i>| = √(x² + y²)</p>
+      <p>Bsp.: <span class="cv"><span>−4</span><span>3</span></span> ⇒ √(16 + 9) = 5 &nbsp;(Nr. 46b)</p>
+    </div>
+    <div class="sheet">
+      <h3 style="margin-top:0">Rechnen = komponentenweise</h3>
+      <p class="eq"><span class="cv"><span>−4</span><span>1</span></span> + <span class="cv"><span>3</span><span>2</span></span> = <span class="cv"><span>−1</span><span>3</span></span> &nbsp;&nbsp; 3·<span class="cv"><span>2</span><span>−1</span></span> = <span class="cv"><span>6</span><span>−3</span></span></p>
+      <p><b>Skript Aufg. 6:</b> <i class="v">d</i> = 2<i class="v">a</i> − <i class="v">b</i> − 3<i class="v">c</i> mit <i class="v">a</i> = <span class="cv"><span>−3</span><span>1</span></span>, <i class="v">b</i> = <span class="cv"><span>−2</span><span>4</span></span>, <i class="v">c</i> = <span class="cv"><span>−1</span><span>−2</span></span></p>
+      <p class="eq">x: 2·(−3) − (−2) − 3·(−1) = −6 + 2 + 3 = −1<br>y: 2·1 − 4 − 3·(−2) = 2 − 4 + 6 = 4 &nbsp;⇒ <i class="v">d</i> = <span class="cv"><span>−1</span><span>4</span></span></p>
+    </div>
+  </div>
+
+  <h3>Kollineare Vektoren</h3>
+  <div class="prose">
+    <p>Kollinear = parallel oder antiparallel = «linear abhängig». Es gibt eine Zahl k mit <i class="v">b</i> = k·<i class="v">a</i>.</p>
+    <p><b>Test:</b> Beide Komponenten durcheinander teilen – kommt <b>zweimal dieselbe Zahl</b> heraus, sind sie kollinear.</p>
+    <p><span class="cv"><span>2</span><span>−3</span></span> und <span class="cv"><span>−6</span><span>9</span></span>: −6 : 2 = −3 und 9 : (−3) = −3 ⇒ kollinear, k = −3.</p>
+  </div>
+  <div class="merk"><span class="t">Fehlende Koordinate (Nr. 49)</span><i class="v">p</i> = <span class="cv"><span>4</span><span>−6</span></span> kollinear zu <i class="v">r</i> = <span class="cv"><span>−5</span><span>r₂</span></span>. Aus der bekannten Komponente k bestimmen: −5 = k·4 ⇒ k = −1.25. Dann r₂ = −1.25·(−6) = 7.5.</div>
+
+  <h3>Vektor-Zeichner zum Kontrollieren</h3>
+  <p class="prose">Gib bis zu drei Vektoren und ihre Faktoren ein. Der Zeichner hängt k₁<i class="v">a</i>, k₂<i class="v">b</i>, k₃<i class="v">c</i> aneinander und zeigt die Resultierende – ideal, um deine Handzeichnungen (Nr. 42, 47, Skript Aufg. 6) zu überprüfen. Voreingestellt: Skript Aufgabe 6.</p>
+  <div class="plot">
+    <div class="sheet">
+      <div class="inrow"><span class="h"></span><span class="h">x</span><span class="h">y</span><span class="h">Faktor</span></div>
+      <div class="inrow"><b class="ca"><i class="v">a</i></b><input id="ax" value="-3" inputmode="decimal" aria-label="a x"><input id="ay" value="1" inputmode="decimal" aria-label="a y"><input id="ka" value="2" inputmode="decimal" aria-label="Faktor a"></div>
+      <div class="inrow"><b class="cb"><i class="v">b</i></b><input id="bx" value="-2" inputmode="decimal" aria-label="b x"><input id="by" value="4" inputmode="decimal" aria-label="b y"><input id="kb" value="-1" inputmode="decimal" aria-label="Faktor b"></div>
+      <div class="inrow"><b class="cc"><i class="v">c</i></b><input id="cx" value="-1" inputmode="decimal" aria-label="c x"><input id="cy" value="-2" inputmode="decimal" aria-label="c y"><input id="kc" value="-3" inputmode="decimal" aria-label="Faktor c"></div>
+      <p style="margin-top:10px">Resultat: <b class="cr" id="res"></b></p>
+      <p style="font-size:.85rem;color:var(--muted)">Faktor 0 = Vektor weglassen.</p>
+    </div>
+    <div class="svgbox"><svg id="plotsvg" viewBox="0 0 400 400" role="img" aria-label="Vektorkette im Koordinatensystem"></svg></div>
+  </div>
+  <p style="margin-top:12px"><span class="ref">Üben: Skript Aufg. 5, 6 · Sammlung Nr. 42, 43, 47, 51</span></p>
+</section>
+
+<!-- ============ TR ============ -->
+<section class="pane" id="tr">
+  <h2>TI-Nspire (ohne CAS)</h2>
+  <p class="lead">Wichtig: Der Befehl <code>solve(a=x·b+y·c, x,y)</code> aus dem Skript funktioniert nur auf dem CAS-Modell. Auf deinem TR nimmst du stattdessen das Gleichungssystem-Werkzeug – unten Schritt für Schritt.</p>
+
+  <div class="grid2">
+    <div class="sheet">
+      <h3 style="margin-top:0">Einmalig einstellen</h3>
+      <ol class="steps">
+        <li><span class="kbd">doc</span> → Einstellungen → Dokumenteinstellungen</li>
+        <li><b>Vektorformat: Kartesisch</b> · Reell oder Komplex: Reell</li>
+        <li>Mit OK bestätigen (bzw. «Als Standard» speichern).</li>
+      </ol>
+      <h3>Vektoren eingeben</h3>
+      <p>Spaltenvektor mit eckigen Klammern und <b>Strichpunkt</b> (<span class="kbd">ctrl</span> <span class="kbd">(</span> gibt [ ]):</p>
+      <div class="screen">a:=[3;1]      <span class="o">▸ [3]
+                  [1]</span></div>
+      <p style="font-size:.9rem;color:var(--muted)">Alternativ Matrix-Vorlage (2×1) aus der Vorlagen-Palette <span class="kbd">⊞</span>. Ich empfehle den Strichpunkt (Spalte) statt Komma (Zeile): nur mit Spaltenvektoren funktioniert der Trick <code>augment</code> weiter unten.</p>
+    </div>
+    <div class="sheet">
+      <h3 style="margin-top:0">Die Grundbefehle</h3>
+      <div class="tw"><table class="t">
+        <tr><th>Was</th><th>Eingabe</th><th>Ergebnis</th></tr>
+        <tr><td>Addieren</td><td><code>a+b</code></td><td>Vektor</td></tr>
+        <tr><td>Subtrahieren</td><td><code>a-b</code></td><td>Vektor</td></tr>
+        <tr><td>Gegenvektor</td><td><code>-a</code></td><td>Vektor</td></tr>
+        <tr><td>Mal Zahl</td><td><code>5·a</code></td><td>Vektor</td></tr>
+        <tr><td>Linearkomb.</td><td><code>a+3·b-2·c</code></td><td>Vektor</td></tr>
+        <tr><td>Betrag</td><td><code>norm(a)</code></td><td>Zahl</td></tr>
+      </table></div>
+      <p style="font-size:.9rem;color:var(--muted)"><code>norm</code> findest du über <span class="kbd">menu</span> → Matrix &amp; Vektor → Normen → Norm, oder einfach eintippen. Ohne CAS kommt eine Dezimalzahl (√106 → 10.2956); für die Prüfung beides notieren.</p>
+      <div class="screen">norm([-9;-5])   <span class="o">▸ 10.2956</span></div>
+    </div>
+  </div>
+
+  <h3>Zerlegung / Koeffizienten bestimmen – Methode A: Gleichungssystem</h3>
+  <p class="prose">Beispiel Skript Aufg. 7a: <i class="v">c</i> = <span class="cv"><span>7</span><span>7</span></span> soll x·<i class="v">a</i> + y·<i class="v">b</i> werden, mit <i class="v">a</i> = <span class="cv"><span>3</span><span>1</span></span>, <i class="v">b</i> = <span class="cv"><span>−1</span><span>2</span></span>.</p>
+  <div class="grid2">
+    <div class="sheet">
+      <ol class="steps">
+        <li>Auf Papier komponentenweise aufschreiben:<br>x-Zeile: 3x − 1y = 7<br>y-Zeile: 1x + 2y = 7</li>
+        <li><span class="kbd">menu</span> → Algebra → Lineares Gleichungssystem lösen</li>
+        <li>Anzahl Gleichungen: 2, Variablen: <code>x,y</code> → OK</li>
+        <li>Die zwei Gleichungen eintippen → <span class="kbd">enter</span></li>
+      </ol>
+    </div>
+    <div class="screen" style="align-self:start">linSolve({3x-y=7, x+2y=7},{x,y})
+<span class="o">                      ▸ {3,2}</span>
+
+⇒ x = 3, y = 2
+⇒ c = 3·a + 2·b</div>
+  </div>
+
+  <h3>Methode B: in einer Zeile mit <code>simult</code></h3>
+  <p class="prose"><code>augment(a,b)</code> stellt die zwei Spaltenvektoren nebeneinander (= Koeffizientenmatrix). <code>simult</code> löst dann das System. Sehr schnell, wenn die Vektoren schon gespeichert sind.</p>
+  <div class="screen">a:=[3;1]   b:=[-1;2]   c:=[7;7]
+simult(augment(a,b),c)     <span class="o">▸ [3]
+                             [2]</span></div>
+  <p style="font-size:.9rem;color:var(--muted)">Auch mit drei Unbekannten-Vektoren funktioniert das nur, wenn es genau 2 Koeffizienten gibt. Bei Aufgaben wie Nr. 50 (<i class="v">s</i> = x<i class="v">a</i> + y<i class="v">b</i> − 1.5x<i class="v">c</i>) erst zusammenfassen: x(<i class="v">a</i> − 1.5<i class="v">c</i>) + y<i class="v">b</i> → <code>simult(augment(a-1.5·c,b),s)</code> ▸ [−4; −3.5].</p>
+
+  <h3>Nach einem Vektor auflösen (Aufg. 7b)</h3>
+  <p class="prose">½<i class="v">a</i> + 3<i class="v">b</i> = <i class="v">c</i> → wie eine normale Gleichung umformen: <i class="v">b</i> = (<i class="v">c</i> − ½<i class="v">a</i>) : 3. Dann eintippen:</p>
+  <div class="screen">(c-0.5·a)/3     <span class="o">▸ [1   ]
+                  [-1.5]</span></div>
+
+  <h3>Kollinear prüfen mit dem TR</h3>
+  <p class="prose">Zwei Vektoren nebeneinander in eine Matrix: ist die Determinante 0, sind sie kollinear. (<span class="kbd">menu</span> → Matrix &amp; Vektor → Determinante)</p>
+  <div class="screen">det(augment([3;7],[4.5;10.5]))   <span class="o">▸ 0     → kollinear</span>
+det(augment([3;7],[5;9]))        <span class="o">▸ -8    → nicht kollinear</span></div>
+
+  <div class="falle"><span class="t">TR-Fallen</span>
+    Variablen bleiben im Dokument gespeichert! Wenn <code>a</code> von einer früheren Aufgabe noch belegt ist, rechnet der TR mit dem alten Wert. Für jede Aufgabe neu zuweisen oder neues Dokument (<span class="kbd">doc</span> → Neu).<br>
+    Menünamen können je nach Betriebssystem-Version etwas anders heissen – tippe alles vor der Prüfung einmal selbst durch.
+  </div>
+</section>
+
+<!-- ============ AUFGABEN ============ -->
+<section class="pane" id="auf">
+  <h2>Deine Aufgaben mit Lösungen</h2>
+  <p class="lead">Zuerst selber lösen, dann aufklappen. Lösungen stammen aus dem Lösungsblatt bzw. dem Skript-Anhang.</p>
+
+  <h3>Noch offen – ab Skript Seite 6</h3>
+  <div class="grid2">
+    <div class="task"><h4>Nr. 7e, 7f <span class="pts">grafisch</span></h4><p>Linearkombinationen im Raster zeichnen und Länge/Winkel messen.</p><details class="sol"><summary>Lösung</summary><div>e) 17 cm, 36° · f) 18 cm, −56°</div></details></div>
+    <div class="task"><h4>Nr. 14 <span class="pts">Dreieck + Schwerpunkt</span></h4><p><i class="v u">AB</i> = <i class="v">a</i>, <i class="v u">BC</i> = <i class="v">b</i>. Tipp: <i class="v u">AS</i> = ⅓(<i class="v u">AB</i> + <i class="v u">AC</i>), und <i class="v u">AC</i> = <i class="v">a</i> + <i class="v">b</i>.</p><details class="sol"><summary>Lösung</summary><div>a) <i class="v u">SA</i> = −⅔<i class="v">a</i> − ⅓<i class="v">b</i>, <i class="v u">SB</i> = ⅓<i class="v">a</i> − ⅓<i class="v">b</i>, <i class="v u">SC</i> = ⅓<i class="v">a</i> + ⅔<i class="v">b</i><br>b) Summe = <i class="v">0</i></div></details></div>
+    <div class="task"><h4>Nr. 16 <span class="pts">Würfel</span></h4><p><i class="v">a</i> = <i class="v u">AB</i>, <i class="v">b</i> = <i class="v u">AD</i>, <i class="v">c</i> = <i class="v u">AE</i>; K Würfelmitte, M Mitte FG.</p><details class="sol"><summary>Lösung</summary><div>a) <i class="v">a</i> + <i class="v">c</i> · b) <i class="v">a</i> + ½<i class="v">b</i> + <i class="v">c</i> · c) −½<i class="v">b</i> + <i class="v">c</i> · d) ½<i class="v">a</i> + ½<i class="v">b</i> + ½<i class="v">c</i> · e) −½<i class="v">a</i> − ½<i class="v">c</i> · f) −½<i class="v">a</i> − ½<i class="v">b</i> + ½<i class="v">c</i></div></details></div>
+    <div class="task"><h4>Nr. 17 <span class="pts">Pyramide</span></h4><p><i class="v">a</i> = <i class="v u">AB</i>, <i class="v">b</i> = <i class="v u">BC</i>, <i class="v">c</i> = <i class="v u">AE</i>; M Mitte BE. Tipp: <i class="v u">BE</i> = −<i class="v">a</i> + <i class="v">c</i>.</p><details class="sol"><summary>Lösung</summary><div>a) ½<i class="v">c</i> − ½<i class="v">a</i> · b) <i class="v">b</i> − ½<i class="v">c</i> + ½<i class="v">a</i> · c) <i class="v">b</i> − ½<i class="v">a</i> − ½<i class="v">c</i></div></details></div>
+    <div class="task"><h4>Nr. 24 <span class="pts">Zerlegung</span></h4><p>Parallelen zu u und v durch Anfang und Ende jedes Kraftpfeils ziehen.</p><details class="sol"><summary>Lösung</summary><div>Keine Lösung im Blatt – mit dem Vektor-Zeichner oder in der Stunde kontrollieren.</div></details></div>
+    <div class="task"><h4>Skript Aufg. 5 &amp; 6 <span class="pts">Koordinaten</span></h4><details class="sol"><summary>Lösung</summary><div>5a) <i class="v">a</i> = <span class="cv"><span>−4</span><span>−1</span></span>, <i class="v">b</i> = <span class="cv"><span>−4</span><span>3</span></span>, <i class="v">c</i> = <span class="cv"><span>0</span><span>−2</span></span><br>6) <i class="v">d</i> = <span class="cv"><span>−1</span><span>4</span></span></div></details></div>
+    <div class="task"><h4>Nr. 43 <span class="pts">ablesen</span></h4><details class="sol"><summary>Lösung</summary><div><i class="v">a</i> = <span class="cv"><span>8</span><span>5</span></span> <i class="v">b</i> = <span class="cv"><span>−6</span><span>2</span></span> <i class="v">c</i> = <span class="cv"><span>9</span><span>2</span></span> <i class="v">d</i> = <span class="cv"><span>4</span><span>7</span></span> <i class="v">e</i> = <span class="cv"><span>−7</span><span>12</span></span> <i class="v">f</i> = <span class="cv"><span>4</span><span>−15</span></span> <i class="v">g</i> = <span class="cv"><span>−14</span><span>−9</span></span></div></details></div>
+    <div class="task"><h4>Nr. 46, 47 <span class="pts">Betrag, LK</span></h4><details class="sol"><summary>Lösung</summary><div>46: |<i class="v">a</i>| = 8, |<i class="v">b</i>| = 5, |<i class="v">c</i>| = √106 ≈ 10.30, |<i class="v">d</i>| = √62.5 ≈ 7.91<br>47: <span class="cv"><span>−12</span><span>26</span></span></div></details></div>
+    <div class="task"><h4>Nr. 48 <span class="pts">TR</span></h4><p>Summe aller x = 0 und Summe aller y = 0.</p><details class="sol"><summary>Lösung</summary><div>−3 + b₁ + 8 = 0 ⇒ b₁ = −5 = b₂; 7 − 5 + c₂ = 0 ⇒ c₂ = −2</div></details></div>
+    <div class="task"><h4>Nr. 49 <span class="pts">TR</span></h4><p>Erst r₂ über Kollinearität, dann <i class="v">q</i> = 2<i class="v">p</i> − 3<i class="v">r</i> − <i class="v">s</i>.</p><details class="sol"><summary>Lösung</summary><div>r₂ = 7.5, q₁ = 2, q₂ = −3</div></details></div>
+    <div class="task"><h4>Nr. 50 <span class="pts">TR</span></h4><p>Gleichungssystem: 1.5x + 10y + 4.5x = −59 und 2x − 8y + 10.5x = −22.</p><details class="sol"><summary>Lösung</summary><div>x = −4, y = −3.5</div></details></div>
+    <div class="task"><h4>Nr. 51 <span class="pts">kollinear</span></h4><details class="sol"><summary>Lösung</summary><div>a) <i class="v">p</i> und <i class="v">r</i> (Faktor 1.5) · b) <i class="v">v</i> und <i class="v">w</i> (Faktor −1.5) · c) keine</div></details></div>
+    <div class="task"><h4>Skript Aufg. 7 <span class="pts">TR</span></h4><details class="sol"><summary>Lösung</summary><div>a) <i class="v">c</i> = 3<i class="v">a</i> + 2<i class="v">b</i> · b) <i class="v">b</i> = <span class="cv"><span>1</span><span>−1.5</span></span></div></details></div>
+  </div>
+
+  <h3>Schon gemacht – Kontrolllösungen S. 2–5</h3>
+  <div class="grid3">
+    <div class="task"><h4>Nr. 2–5</h4><details class="sol"><summary>Lösung</summary><div>2: falsch ist a = b ⇒ <i class="v">a</i> = <i class="v">b</i><br>3: (1) <i class="v u">AM</i>, <i class="v u">MD</i>, <i class="v u">FE</i>, <i class="v u">BC</i> (2) <i class="v u">AF</i>, <i class="v u">BM</i>, <i class="v u">ME</i>, <i class="v u">CD</i><br>4: (1) <i class="v u">AD</i>, <i class="v u">EH</i>, <i class="v u">FG</i> (2) <i class="v u">CF</i> (3) keiner<br>5: gleiche Richtung</div></details></div>
+    <div class="task"><h4>Nr. 6, 7a–d</h4><details class="sol"><summary>Lösung</summary><div>6: falsch sind (1), (2), (3), (5)<br>7: a) 9.8 cm, 66° b) 13 cm, 27° c) 9 cm, 180° d) 13 cm, 94°</div></details></div>
+    <div class="task"><h4>Nr. 9, 10, 12</h4><details class="sol"><summary>Lösung</summary><div>9: a) 2<i class="v">b</i> b) 2<i class="v">a</i> c) <i class="v">0</i> d) −2<i class="v">c</i><br>10: a) <i class="v u">AC</i> b) <i class="v u">UW</i> c) <i class="v">0</i> d) <i class="v u">CE</i> e) <i class="v u">CB</i> f) <i class="v u">UZ</i> g) <i class="v u">PS</i> h) 2<i class="v u">AC</i> i) <i class="v">0</i><br>12: a) −<i class="v">a</i> b) −<i class="v">b</i> c) <i class="v">a</i> − <i class="v">b</i> d) <i class="v">a</i> − 2<i class="v">b</i> e) 2<i class="v">b</i> − <i class="v">a</i></div></details></div>
+  </div>
+</section>
+
+<!-- ============ PROBE ============ -->
+<section class="pane" id="probe">
+  <h2>Probeprüfung</h2>
+  <p class="lead">10 Aufgaben, 44 Punkte, 60 Minuten. Erlaubt: TI-Nspire, Geodreieck. Löse zuerst alles auf Papier, dann Lösungen aufklappen und Punkte eintragen.</p>
+  <div class="score">
+    <button class="btn fill" id="tbtn">Timer starten (60:00)</button>
+    <span class="mono" id="timer" style="font-size:1.3rem;font-variant-numeric:tabular-nums"></span>
+    <span style="margin-left:auto">Deine Punkte: <b id="total" class="mono">0</b> / 44 &nbsp;<span id="note" class="mono" style="color:var(--muted)"></span></span>
+  </div>
+
+  <div class="grid2" id="probelist">
+    <div class="task"><h4>1 · Richtig oder falsch? <span class="pts">4 P</span></h4>
+      <div id="tfq"></div>
+      <details class="sol"><summary>Begründung</summary><div>a) falsch – nur bei gleicher Richtung. b) richtig. c) falsch – Masse ist ein Skalar. d) richtig – Betrag 2·|<i class="v">a</i>|, Gegenrichtung.</div></details>
+      <div class="selfpts"><label for="s1">Punkte</label><input id="s1" type="number" min="0" max="4" step="0.5"></div></div>
+
+    <div class="task"><h4>2 · Vereinfachen <span class="pts">4 P</span></h4>
+      <p>a) <i class="v u">AB</i> − <i class="v u">CB</i> + <i class="v u">CD</i> &nbsp; b) <i class="v u">PQ</i> + <i class="v u">RP</i> − <i class="v u">RQ</i><br>c) <i class="v u">XY</i> + <i class="v u">YZ</i> − <i class="v u">XZ</i> + <i class="v u">ZW</i> &nbsp; d) Bestimme <i class="v">x</i>: <i class="v u">AB</i> + <i class="v">x</i> = <i class="v u">CB</i></p>
+      <details class="sol"><summary>Lösung</summary><div>a) <i class="v u">AB</i> + <i class="v u">BC</i> + <i class="v u">CD</i> = <i class="v u">AD</i><br>b) <i class="v u">RP</i> + <i class="v u">PQ</i> + <i class="v u">QR</i> = <i class="v">0</i><br>c) <i class="v u">XZ</i> − <i class="v u">XZ</i> + <i class="v u">ZW</i> = <i class="v u">ZW</i><br>d) <i class="v">x</i> = <i class="v u">CB</i> − <i class="v u">AB</i> = <i class="v u">CB</i> + <i class="v u">BA</i> = <i class="v u">CA</i></div></details>
+      <div class="selfpts"><label for="s2">Punkte</label><input id="s2" type="number" min="0" max="4" step="0.5"></div></div>
+
+    <div class="task"><h4>3 · Parallelogramm <span class="pts">6 P</span></h4>
+      <p>Parallelogramm ABCD mit <i class="v">a</i> = <i class="v u">AB</i>, <i class="v">b</i> = <i class="v u">AD</i>. M ist der Diagonalenschnittpunkt, N die Mitte von CD. Drücke durch <i class="v">a</i> und <i class="v">b</i> aus: <i class="v u">AC</i>, <i class="v u">BD</i>, <i class="v u">AM</i>, <i class="v u">MB</i>, <i class="v u">AN</i>, <i class="v u">NB</i>.</p>
+      <details class="sol"><summary>Lösung</summary><div><i class="v u">AC</i> = <i class="v">a</i> + <i class="v">b</i> · <i class="v u">BD</i> = −<i class="v">a</i> + <i class="v">b</i> · <i class="v u">AM</i> = ½<i class="v">a</i> + ½<i class="v">b</i> · <i class="v u">MB</i> = ½<i class="v">a</i> − ½<i class="v">b</i> · <i class="v u">AN</i> = <i class="v">b</i> + ½<i class="v">a</i> · <i class="v u">NB</i> = ½<i class="v">a</i> − <i class="v">b</i> &nbsp;(je 1 P)</div></details>
+      <div class="selfpts"><label for="s3">Punkte</label><input id="s3" type="number" min="0" max="6" step="0.5"></div></div>
+
+    <div class="task"><h4>4 · Quader <span class="pts">6 P</span></h4>
+      <p>Quader ABCDEFGH (Beschriftung wie Nr. 16), <i class="v">a</i> = <i class="v u">AB</i>, <i class="v">b</i> = <i class="v u">AD</i>, <i class="v">c</i> = <i class="v u">AE</i>. M ist die Mitte von GH, K der Mittelpunkt des Quaders. Drücke aus: <i class="v u">AG</i>, <i class="v u">BH</i>, <i class="v u">AM</i>, <i class="v u">BM</i>, <i class="v u">KM</i>.</p>
+      <details class="sol"><summary>Lösung</summary><div><i class="v u">AG</i> = <i class="v">a</i> + <i class="v">b</i> + <i class="v">c</i> (1 P) · <i class="v u">BH</i> = −<i class="v">a</i> + <i class="v">b</i> + <i class="v">c</i> (1 P) · <i class="v u">AM</i> = ½<i class="v">a</i> + <i class="v">b</i> + <i class="v">c</i> (1 P) · <i class="v u">BM</i> = −½<i class="v">a</i> + <i class="v">b</i> + <i class="v">c</i> (1 P) · <i class="v u">KM</i> = <i class="v u">AM</i> − <i class="v u">AK</i> = ½<i class="v">b</i> + ½<i class="v">c</i> (2 P)</div></details>
+      <div class="selfpts"><label for="s4">Punkte</label><input id="s4" type="number" min="0" max="6" step="0.5"></div></div>
+
+    <div class="task"><h4>5 · Dreieck mit Schwerpunkt <span class="pts">4 P</span></h4>
+      <p>Dreieck ABC, <i class="v">a</i> = <i class="v u">AB</i>, <i class="v">b</i> = <i class="v u">AC</i>, S Schwerpunkt, D Mitte von BC. Gesucht: <i class="v u">AD</i>, <i class="v u">AS</i>, <i class="v u">BS</i>, <i class="v u">SD</i>.</p>
+      <details class="sol"><summary>Lösung</summary><div><i class="v u">AD</i> = ½<i class="v">a</i> + ½<i class="v">b</i> · <i class="v u">AS</i> = ⅔<i class="v u">AD</i> = ⅓<i class="v">a</i> + ⅓<i class="v">b</i> · <i class="v u">BS</i> = −<i class="v">a</i> + <i class="v u">AS</i> = −⅔<i class="v">a</i> + ⅓<i class="v">b</i> · <i class="v u">SD</i> = ⅓<i class="v u">AD</i> = ⅙<i class="v">a</i> + ⅙<i class="v">b</i></div></details>
+      <div class="selfpts"><label for="s5">Punkte</label><input id="s5" type="number" min="0" max="4" step="0.5"></div></div>
+
+    <div class="task"><h4>6 · Rechnen mit Koordinaten <span class="pts">5 P</span></h4>
+      <p><i class="v">a</i> = <span class="cv"><span>2</span><span>−3</span></span>, <i class="v">b</i> = <span class="cv"><span>−1</span><span>4</span></span>, <i class="v">c</i> = <span class="cv"><span>6</span><span>0</span></span>.<br>a) Berechne <i class="v">d</i> = 3<i class="v">a</i> − 2<i class="v">b</i> + ½<i class="v">c</i> (von Hand, TR zur Kontrolle).<br>b) Berechne |<i class="v">a</i>| und |<i class="v">d</i>|.<br>c) Zeichne die Konstruktion von <i class="v">d</i> ab dem Ursprung.</p>
+      <details class="sol"><summary>Lösung</summary><div>a) x: 6 + 2 + 3 = 11, y: −9 − 8 + 0 = −17 ⇒ <i class="v">d</i> = <span class="cv"><span>11</span><span>−17</span></span> (2 P)<br>b) |<i class="v">a</i>| = √13 ≈ 3.61, |<i class="v">d</i>| = √410 ≈ 20.25 (2 P)<br>c) Kontrolle im Vektor-Zeichner: a = (2,−3) Faktor 3, b = (−1,4) Faktor −2, c = (6,0) Faktor 0.5 (1 P)</div></details>
+      <div class="selfpts"><label for="s6">Punkte</label><input id="s6" type="number" min="0" max="5" step="0.5"></div></div>
+
+    <div class="task"><h4>7 · Kollinear <span class="pts">4 P</span></h4>
+      <p>a) Bestimme q₂ so, dass <i class="v">p</i> = <span class="cv"><span>6</span><span>−4</span></span> und <i class="v">q</i> = <span class="cv"><span>−9</span><span>q₂</span></span> kollinear sind.<br>b) Welche sind kollinear? <i class="v">u</i> = <span class="cv"><span>2</span><span>−5</span></span>, <i class="v">v</i> = <span class="cv"><span>−3</span><span>7.5</span></span>, <i class="v">w</i> = <span class="cv"><span>4</span><span>10</span></span></p>
+      <details class="sol"><summary>Lösung</summary><div>a) −9 = k·6 ⇒ k = −1.5 ⇒ q₂ = −1.5·(−4) = 6 (2 P)<br>b) <i class="v">u</i> und <i class="v">v</i>: −3 : 2 = −1.5 und 7.5 : (−5) = −1.5 ✓. <i class="v">w</i> ist mit keinem kollinear (4 : 2 = 2, aber 10 : (−5) = −2). (2 P)</div></details>
+      <div class="selfpts"><label for="s7">Punkte</label><input id="s7" type="number" min="0" max="4" step="0.5"></div></div>
+
+    <div class="task"><h4>8 · Zerlegung mit TR <span class="pts">4 P</span></h4>
+      <p>Stelle <i class="v">v</i> = <span class="cv"><span>1</span><span>11</span></span> als Linearkombination von <i class="v">a</i> = <span class="cv"><span>2</span><span>1</span></span> und <i class="v">b</i> = <span class="cv"><span>−1</span><span>3</span></span> dar. Schreibe das Gleichungssystem und die TR-Eingabe auf.</p>
+      <details class="sol"><summary>Lösung</summary><div>2x − y = 1 und x + 3y = 11 (2 P)<br><code>linSolve({2x-y=1,x+3y=11},{x,y})</code> ▸ {2,3} oder <code>simult(augment(a,b),v)</code><br>⇒ <i class="v">v</i> = 2<i class="v">a</i> + 3<i class="v">b</i> (2 P)</div></details>
+      <div class="selfpts"><label for="s8">Punkte</label><input id="s8" type="number" min="0" max="4" step="0.5"></div></div>
+
+    <div class="task"><h4>9 · Vektorgleichung <span class="pts">3 P</span></h4>
+      <p>Bestimme <i class="v">b</i> so, dass ⅓<i class="v">a</i> + 2<i class="v">b</i> = <i class="v">c</i> gilt, mit <i class="v">a</i> = <span class="cv"><span>6</span><span>−3</span></span> und <i class="v">c</i> = <span class="cv"><span>4</span><span>5</span></span>.</p>
+      <details class="sol"><summary>Lösung</summary><div><i class="v">b</i> = (<i class="v">c</i> − ⅓<i class="v">a</i>) : 2 = (<span class="cv"><span>4</span><span>5</span></span> − <span class="cv"><span>2</span><span>−1</span></span>) : 2 = <span class="cv"><span>2</span><span>6</span></span> : 2 = <span class="cv"><span>1</span><span>3</span></span></div></details>
+      <div class="selfpts"><label for="s9">Punkte</label><input id="s9" type="number" min="0" max="3" step="0.5"></div></div>
+
+    <div class="task"><h4>10 · Anwendung: Boot im Fluss <span class="pts">4 P</span></h4>
+      <p>Ein Boot fährt relativ zum Wasser mit <i class="v">v</i><sub>rel</sub> = <span class="cv"><span>0</span><span>4</span></span> m/s quer über einen 60 m breiten Fluss. Die Strömung ist <i class="v">v</i><sub>w</sub> = <span class="cv"><span>1.5</span><span>0</span></span> m/s.<br>a) Bestimme <i class="v">v</i><sub>abs</sub> und seinen Betrag.<br>b) Wie lange dauert die Überfahrt und wie weit wird das Boot abgetrieben?</p>
+      <details class="sol"><summary>Lösung</summary><div>a) <i class="v">v</i><sub>abs</sub> = <i class="v">v</i><sub>rel</sub> + <i class="v">v</i><sub>w</sub> = <span class="cv"><span>1.5</span><span>4</span></span>, |<i class="v">v</i><sub>abs</sub>| = √18.25 ≈ 4.27 m/s (2 P)<br>b) Quer: 60 m : 4 m/s = 15 s. Abdrift: 1.5 m/s · 15 s = 22.5 m (2 P)</div></details>
+      <div class="selfpts"><label for="s10">Punkte</label><input id="s10" type="number" min="0" max="4" step="0.5"></div></div>
+  </div>
+</section>
+</div>
+
+<script>
+(function(){
+  const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+  // countdown
+  const exam=new Date(2026,8,17), now=new Date(); now.setHours(0,0,0,0);
+  const d=Math.round((exam-now)/864e5); document.getElementById('cd').textContent=d>0?d:(d===0?'heute':'✓');
+
+  // tabs
+  const btns=[...document.querySelectorAll('nav.tabs button')];
+  function show(id){btns.forEach(b=>b.setAttribute('aria-selected',b.dataset.t===id));document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id===id));store.set('vk-tab',id)}
+  btns.forEach(b=>b.addEventListener('click',()=>{show(b.dataset.t);window.scrollTo({top:0})}));
+  show(store.get('vk-tab','plan'));
+
+  // plan checklist
+  const cbs=[...document.querySelectorAll('#planlist input[type=checkbox]')];
+  const saved=store.get('vk-plan',{});
+  function upd(){const n=cbs.filter(c=>c.checked).length;document.getElementById('pbar').style.width=(n/cbs.length*100)+'%';document.getElementById('ptext').textContent=n+' von '+cbs.length+' Punkten erledigt'}
+  cbs.forEach(c=>{c.checked=!!saved[c.id];c.addEventListener('change',()=>{saved[c.id]=c.checked;store.set('vk-plan',saved);upd()})});upd();
+
+  // true/false
+  const tf=[['a) |a⃗ + b⃗| = |a⃗| + |b⃗| gilt immer.',false],['b) −AB⃗ = BA⃗',true],['c) Die Masse ist eine vektorielle Grösse.',false],['d) −2·a⃗ ist doppelt so lang wie a⃗ und zeigt in die Gegenrichtung.',true]];
+  const tfq=document.getElementById('tfq');
+  tf.forEach(([q,a],i)=>{const w=document.createElement('div');w.innerHTML='<p style="margin:.3rem 0 0">'+q+'</p>';const r=document.createElement('div');r.className='tf';
+    ['richtig','falsch'].forEach(lbl=>{const b=document.createElement('button');b.type='button';b.id='tf'+i+lbl;b.textContent=lbl;b.onclick=()=>{r.querySelectorAll('button').forEach(x=>x.className='');b.className=((lbl==='richtig')===a)?'right':'wrong'};r.appendChild(b)});
+    w.appendChild(r);tfq.appendChild(w)});
+
+  // self points
+  const sp=[...document.querySelectorAll('.selfpts input')];const pts=store.get('vk-pts',{});
+  function tot(){let s=0;sp.forEach(i=>{const v=parseFloat(i.value);if(!isNaN(v))s+=Math.min(v,+i.max)});document.getElementById('total').textContent=s;
+    const note=s>0?Math.round((s/44*5+1)*2)/2:null;document.getElementById('note').textContent=note?'≈ Note '+Math.min(6,note).toFixed(1):''}
+  sp.forEach(i=>{if(pts[i.id]!=null)i.value=pts[i.id];i.addEventListener('input',()=>{pts[i.id]=i.value;store.set('vk-pts',pts);tot()})});tot();
+
+  // timer
+  let t=null,left=3600;const tb=document.getElementById('tbtn'),te=document.getElementById('timer');
+  function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+  tb.onclick=()=>{if(t){clearInterval(t);t=null;tb.textContent='Weiter';return}
+    tb.textContent='Pause';t=setInterval(()=>{left--;te.textContent=fmt(left);if(left<=0){clearInterval(t);t=null;te.textContent='Zeit um – Stift weg!';tb.textContent='Neu starten';left=3600}},1000);te.textContent=fmt(left)};
+
+  // plotter
+  const ids=['ax','ay','ka','bx','by','kb','cx','cy','kc'];const svg=document.getElementById('plotsvg');const NS='http://www.w3.org/2000/svg';
+  function num(id){const v=parseFloat(String(document.getElementById(id).value).replace(',','.'));return isNaN(v)?0:v}
+  function el(n,a){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e}
+  function fm(x){return (Math.round(x*100)/100).toString()}
+  function draw(){
+    const V=[[num('ax'),num('ay'),num('ka'),'var(--va)','a'],[num('bx'),num('by'),num('kb'),'var(--vb)','b'],[num('cx'),num('cy'),num('kc'),'var(--vc)','c']];
+    let p=[0,0];const segs=[];V.forEach(([x,y,k,col,n])=>{if(k===0||(x===0&&y===0))return;const q=[p[0]+k*x,p[1]+k*y];segs.push([p,q,col,(k===1?'':(k===-1?'−':fm(k)))+n]);p=q});
+    const pts=[[0,0],...segs.map(s=>s[1])];let mnx=Math.min(...pts.map(q=>q[0]),-1),mxx=Math.max(...pts.map(q=>q[0]),1),mny=Math.min(...pts.map(q=>q[1]),-1),mxy=Math.max(...pts.map(q=>q[1]),1);
+    const span=Math.ceil(Math.max(mxx-mnx,mxy-mny))+2;const cxm=(mnx+mxx)/2,cym=(mny+mxy)/2;const x0=Math.floor(cxm-span/2),y0=Math.floor(cym-span/2);const S=360/span,O=20;
+    const X=x=>O+(x-x0)*S,Y=y=>O+(y0+span-y)*S;
+    svg.innerHTML='';const defs=el('defs',{});
+    [['va','var(--va)'],['vb','var(--vb)'],['vc','var(--vc)'],['vr','var(--vr)']].forEach(([id,c])=>{const m=el('marker',{id:'pm'+id,viewBox:'0 0 8 8',markerWidth:4,markerHeight:4,refX:7,refY:4,orient:'auto'});m.appendChild(el('path',{d:'M0,0 L8,4 L0,8 z',fill:c}));defs.appendChild(m)});svg.appendChild(defs);
+    const step=span>24?5:(span>12?2:1);
+    for(let i=0;i<=span;i++){const gx=x0+i,gy=y0+i;svg.appendChild(el('line',{x1:X(gx),y1:O,x2:X(gx),y2:O+span*S,stroke:'var(--grid)','stroke-width':gx===0?0:1}));svg.appendChild(el('line',{x1:O,y1:Y(gy),x2:O+span*S,y2:Y(gy),stroke:'var(--grid)','stroke-width':gy===0?0:1}));
+      if(gx%step===0&&gx!==0){const t=el('text',{x:X(gx),y:Math.min(Math.max(Y(0)+13,O+10),O+span*S-2),'font-size':10,'text-anchor':'middle',fill:'var(--muted)','font-family':'JetBrains Mono'});t.textContent=gx;svg.appendChild(t)}
+      if(gy%step===0&&gy!==0){const t=el('text',{x:Math.min(Math.max(X(0)-4,O+14),O+span*S),y:Y(gy)+3,'font-size':10,'text-anchor':'end',fill:'var(--muted)','font-family':'JetBrains Mono'});t.textContent=gy;svg.appendChild(t)}}
+    if(x0<=0&&x0+span>=0)svg.appendChild(el('line',{x1:X(0),y1:O,x2:X(0),y2:O+span*S,stroke:'var(--muted)','stroke-width':1.3}));
+    if(y0<=0&&y0+span>=0)svg.appendChild(el('line',{x1:O,y1:Y(0),x2:O+span*S,y2:Y(0),stroke:'var(--muted)','stroke-width':1.3}));
+    segs.forEach(([a,b,col,lab])=>{const id=col.slice(6,8);svg.appendChild(el('line',{x1:X(a[0]),y1:Y(a[1]),x2:X(b[0]),y2:Y(b[1]),stroke:col,'stroke-width':3,'marker-end':'url(#pm'+id+')'}));
+      const dx=X(b[0])-X(a[0]),dy=Y(b[1])-Y(a[1]),L=Math.hypot(dx,dy)||1;const t=el('text',{x:(X(a[0])+X(b[0]))/2-dy/L*16,y:(Y(a[1])+Y(b[1]))/2+dx/L*16+4,'text-anchor':'middle',fill:col,'font-size':14,'font-weight':700,'font-style':'italic','font-family':'Source Sans 3'});t.textContent=lab;svg.appendChild(t)});
+    if(segs.length>1)svg.appendChild(el('line',{x1:X(0),y1:Y(0),x2:X(p[0]),y2:Y(p[1]),stroke:'var(--vr)','stroke-width':2.5,'stroke-dasharray':'6 4','marker-end':'url(#pmvr)'}));
+    document.getElementById('res').textContent='('+fm(p[0])+' | '+fm(p[1])+'),  Betrag ≈ '+fm(Math.hypot(p[0],p[1]));
+  }
+  ids.forEach(i=>document.getElementById(i).addEventListener('input',draw));draw();
+})();
+</script>
+
+</body>
+</html>
