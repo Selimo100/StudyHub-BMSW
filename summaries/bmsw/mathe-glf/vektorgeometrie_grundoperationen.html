@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vektorgeometrie I – Elementare Operationen · Prüfungsvorbereitung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f6f9;
+  --surface:#ffffff;
+  --surface-soft:#eef2f8;
+  --text:#1c2431;
+  --muted:#5b6779;
+  --border:#dbe2ec;
+  --border-strong:#c1cbdb;
+  --blue:#1d4ed8;
+  --blue-soft:#e6edfc;
+  --teal:#0f766e;
+  --teal-soft:#e2f5f2;
+  --amber:#a3620c;
+  --amber-soft:#fbf0da;
+  --green:#e4f1e4;
+  --green-text:#1f5c31;
+  --red:#fbe3df;
+  --red-text:#9c2c1e;
+  --shadow:0 18px 45px rgba(28,36,49,.09);
+  --radius:18px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left,rgba(29,78,216,.10),transparent 34%),
+    radial-gradient(circle at 90% 8%,rgba(15,118,110,.10),transparent 32%),
+    linear-gradient(180deg,#fbfcfe 0%,var(--bg) 42%,#e9edf4 100%);
+  line-height:1.6;
+  overflow-wrap:break-word;
+  overflow-x:clip;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{font-family:Fraunces,Georgia,"Times New Roman",serif;letter-spacing:-.01em;}
+a{color:var(--blue);}
+header{max-width:1160px;margin:0 auto;padding:44px 20px 22px;}
+.hero{
+  background:linear-gradient(135deg,#ffffff 0%,#eef3fc 55%,#f6fbfa 100%);
+  border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow);
+  padding:32px;position:relative;overflow:hidden;
+}
+.hero::after{content:"";position:absolute;width:300px;height:300px;border-radius:999px;
+  background:rgba(29,78,216,.07);right:-100px;top:-130px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;
+  background:var(--blue-soft);color:var(--blue);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+h1{margin:16px 0 12px;max-width:900px;font-size:clamp(30px,5vw,50px);line-height:1.06;}
+.lead{max-width:860px;color:var(--muted);font-size:18px;margin:0;position:relative;}
+.hero-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:26px;position:relative;}
+.kpi{background:rgba(255,255,255,.8);border:1px solid rgba(219,226,236,.9);border-radius:16px;padding:15px;}
+.kpi strong{display:block;font-size:21px;color:var(--blue);margin-bottom:2px;font-family:Fraunces,serif;}
+.kpi span{font-size:13px;color:var(--muted);}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh;}
+aside.sidebar{position:sticky;top:0;height:100vh;overflow:auto;padding:26px 20px;
+  background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-right:1px solid var(--border);}
+.sidebar .logo{display:flex;gap:12px;align-items:center;margin-bottom:20px;}
+.sidebar .mark{flex:none;width:45px;height:45px;border-radius:15px;
+  background:linear-gradient(135deg,var(--blue),var(--teal));box-shadow:var(--shadow);}
+.sidebar .logo strong{display:block;font-size:1rem;font-family:Fraunces,Georgia,serif;}
+.sidebar .logo span{font-size:.82rem;color:var(--muted);}
+nav.toc ul{list-style:none;margin:0;padding:0;}
+nav.toc a{display:block;text-decoration:none;padding:9px 12px;margin:3px 0;border-radius:13px;
+  color:var(--muted);font-weight:650;font-size:.92rem;}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--blue-soft);color:var(--blue);}
+.sidebar-note{margin-top:18px;font-size:13px;color:var(--muted);}
+.content{min-width:0;}
+main{max-width:1160px;margin:0 auto;padding:12px 20px 90px;}
+section{margin-top:44px;scroll-margin-top:70px;}
+section>h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 6px;}
+.section-sub{color:var(--muted);margin:0 0 20px;max-width:860px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px;box-shadow:0 8px 24px rgba(28,36,49,.05);margin-bottom:16px;}
+.card h3{margin:0 0 10px;font-size:21px;}
+.card h4{margin:18px 0 6px;font-size:17px;}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;
+  background:var(--amber-soft);color:var(--amber);margin-right:6px;}
+.tag.lz{background:var(--blue-soft);color:var(--blue);}
+.tag.lvl{background:var(--teal-soft);color:var(--teal);}
+.callout{border-left:4px solid var(--blue);background:var(--surface-soft);border-radius:0 14px 14px 0;
+  padding:14px 16px;margin:14px 0;}
+.callout.warn{border-left-color:#c0392b;background:var(--red);}
+.callout.warn strong{color:var(--red-text);}
+.callout.tip{border-left-color:var(--green-text);background:var(--green);}
+.callout.tip strong{color:var(--green-text);}
+.callout.quote{border-left-color:var(--amber);background:var(--amber-soft);}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border-radius:14px;border:1px solid var(--border);}
+table{border-collapse:collapse;width:100%;min-width:480px;background:var(--surface);font-size:15px;}
+th,td{padding:10px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border);}
+thead th{background:var(--blue);color:#fff;font-weight:600;position:sticky;top:0;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even){background:var(--surface-soft);}
+td.term{font-weight:700;color:var(--blue);white-space:normal;}
+ul.clean{margin:8px 0;padding-left:20px;}
+ul.clean li{margin-bottom:5px;}
+.mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14.5px;}
+.eq{font-family:"JetBrains Mono",monospace;background:var(--surface-soft);border:1px solid var(--border);
+  border-radius:8px;padding:2px 7px;font-size:.95em;color:var(--blue);}
+.eqblock{font-family:"JetBrains Mono",monospace;background:var(--surface);border:1.5px solid var(--border);
+  border-radius:14px;padding:16px;text-align:center;font-size:1.08rem;margin:14px 0;color:var(--text);overflow-x:auto;}
+.vec{position:relative;}
+.veca{color:var(--blue);font-weight:700;}
+.vecb{color:var(--teal);font-weight:700;}
+.vecc{color:var(--amber);font-weight:700;}
+.ex{border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px;background:var(--surface);}
+.ex-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;}
+.ex-head h4{margin:0;font-size:18px;flex:1 1 240px;}
+details{border:1px solid var(--border);border-radius:12px;background:var(--surface-soft);padding:0 14px;margin-top:12px;}
+details[open]{padding-bottom:12px;}
+summary{cursor:pointer;font-weight:600;padding:11px 0;color:var(--blue);list-style:none;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:"▸ ";display:inline-block;transition:transform .15s;}
+details[open] summary::before{content:"▾ ";}
+summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px;}
+.quiz-q{border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:12px;background:var(--surface);}
+.quiz-q p.q{font-weight:600;margin:0 0 10px;}
+.opts{display:grid;gap:8px;}
+.opt{text-align:left;font:inherit;font-size:15px;cursor:pointer;padding:10px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--surface-soft);color:var(--text);transition:.12s;}
+.opt:hover{border-color:var(--blue);}
+.opt:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
+.opt.correct{background:var(--green);border-color:var(--green-text);color:var(--green-text);font-weight:600;}
+.opt.wrong{background:var(--red);border-color:var(--red-text);color:var(--red-text);}
+.fb{margin:10px 0 0;font-size:14px;color:var(--muted);min-height:1.2em;}
+.va{font-size:.72em;vertical-align:.32em;margin:0 1px;display:inline-block;line-height:0;}
+.scorebar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  background:var(--blue);color:#fff;border-radius:14px;padding:12px 18px;margin-bottom:16px;}
+.scorebar strong{font-family:Fraunces,serif;font-size:20px;}
+.scorebar button{font:inherit;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.14);color:#fff;padding:7px 14px;border-radius:999px;}
+.checklist{list-style:none;padding:0;margin:0;}
+.checklist li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--border);}
+.checklist li:last-child{border-bottom:none;}
+.checklist input{margin-top:5px;width:17px;height:17px;accent-color:var(--blue);flex-shrink:0;}
+.grafik{background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px;margin:14px 0;text-align:center;}
+.grafik svg{max-width:100%;height:auto;}
+figcaption{margin-top:9px;font-size:14px;color:var(--muted);}
+footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);font-size:14px;
+  border-top:1px solid var(--border);}
+.backlink{display:inline-block;margin-top:8px;font-weight:600;}
+@media(max-width:980px){
+  .layout{display:block;}
+  aside.sidebar{position:sticky;top:0;z-index:30;height:auto;overflow:visible;
+    padding:10px 0 8px;border-right:0;border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,.94);}
+  .sidebar .logo{margin:0 14px 8px;gap:10px;}
+  .sidebar .mark{width:34px;height:34px;border-radius:11px;}
+  .sidebar .logo strong{font-size:.95rem;}
+  .sidebar .logo span{font-size:.76rem;}
+  nav.toc ul{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 14px;}
+  nav.toc ul::-webkit-scrollbar{display:none;}
+  nav.toc li{flex:none;}
+  nav.toc a{margin:0;white-space:nowrap;padding:8px 13px;font-size:.88rem;
+    border:1px solid var(--border);background:var(--surface);}
+  .sidebar-note{display:none;}
+  section{scroll-margin-top:110px;}
+  thead th{position:static;}
+}
+@media(max-width:880px){
+  .grid2,.grid3,.hero-grid{grid-template-columns:1fr;}
+  .hero{padding:22px 18px;border-radius:22px;}
+  header{padding:20px 14px 12px;}
+  main{padding:10px 14px 70px;}
+  .card{padding:16px;border-radius:16px;}
+  .lead{font-size:16.5px;}
+  section{margin-top:34px;}
+  .ex{padding:15px;}
+  table{min-width:420px;font-size:14.5px;}
+  th,td{padding:9px 11px;}
+}
+@media(max-width:640px){
+  .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .kpi{padding:12px;}
+  .kpi strong{font-size:18px;}
+  .opt{padding:12px 14px;min-height:46px;}
+  summary{padding:13px 0;}
+  details{padding:0 12px;}
+  .callout{padding:12px 13px;}
+  ul.clean{padding-left:18px;}
+  footer{padding:22px 14px 48px;}
+}
+@media(max-width:400px){
+  .hero-grid{grid-template-columns:1fr;}
+  table{min-width:340px;font-size:14px;}
+  th,td{padding:8px 9px;}
+}
+@media print{
+  .layout{display:block;}
+  aside.sidebar{display:none;}
+  details{page-break-inside:avoid;}
+  details>summary{display:none;}
+  details{padding-bottom:12px;}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="logo">
+    <div class="mark"></div>
+    <div><strong>Vektorgeometrie I</strong><span>Mathematik · Prüfung 17.09.2026</span></div>
+  </div>
+  <nav class="toc" aria-label="Seitennavigation">
+    <ul>
+      <li><a href="#fokus">Prüfungsfokus</a></li>
+      <li><a href="#skalar-vektor">Skalar &amp; Vektor</a></li>
+      <li><a href="#vektorbegriff">Vektorbegriff &amp; Betrag</a></li>
+      <li><a href="#addition-subtraktion">Addition &amp; Subtraktion</a></li>
+      <li><a href="#multiplikation">Skalare Multiplikation</a></li>
+      <li><a href="#linearkombination">Linearkombination</a></li>
+      <li><a href="#zerlegung">Zerlegung in Komponenten</a></li>
+      <li><a href="#koordinaten">Vektoren im Koordinatensystem</a></li>
+      <li><a href="#kollinear">Kollinear &amp; linear (un)abhängig</a></li>
+      <li><a href="#taschenrechner">Taschenrechner</a></li>
+      <li><a href="#fehler">Typische Fehler</a></li>
+      <li><a href="#uebungen">Übungen</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#simulation">Prüfungssimulation</a></li>
+      <li><a href="#lastminute">Last Minute</a></li>
+    </ul>
+  </nav>
+  <p class="sidebar-note">Tipp: Diese Seite als PDF drucken/speichern und dein 1-A4-Spick daraus destillieren.</p>
+</aside>
+<div class="content">
+<header>
+  <div class="hero">
+    <span class="eyebrow">BMSW · Mathematik · VECG1</span>
+    <h1>Vektorgeometrie I: Elementare Vektoroperationen</h1>
+    <p class="lead">Vollständige Vorbereitung auf die Prüfung «Vektorgeometrie I» vom <strong>Donnerstag, 17. September 2026</strong>.
+    Die Prüfung besteht nur aus einem Teil <strong>mit Hilfsmitteln</strong>: Taschenrechner und 1 A4-Seite Spickzettel
+    (beidseitig, eigene Notizen) sind erlaubt. Geprüft werden Skalare und Vektoren, Vektoroperationen, Linearkombination,
+    Zerlegung, Kollinearität, lineare (Un-)Abhängigkeit sowie der sichere Umgang mit Vektoren am Taschenrechner.</p>
+    <div class="hero-grid">
+      <div class="kpi"><strong>12</strong><span>Lernziele abgedeckt</span></div>
+      <div class="kpi"><strong>3</strong><span>Quelldokumente ausgewertet</span></div>
+      <div class="kpi"><strong>26</strong><span>Übungsaufgaben, Level 1–5</span></div>
+      <div class="kpi"><strong>17.09.</strong><span>Prüfungsdatum 2026</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="fokus">
+  <h2>Prüfungsfokus</h2>
+  <p class="section-sub">Die Prüfung ist <strong>mit Hilfsmitteln</strong>. Das ändert die Lernstrategie: Formeln musst
+  du nicht auswendig können (die kommen auf den Spick), aber du musst <strong>sicher wissen, welche Formel wann
+  passt</strong>, und den <strong>Taschenrechner blind bedienen</strong> können. Zeitdruck entsteht meist durch
+  Unsicherheit beim Ansatz, nicht durch die Rechnung selbst.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Was auf den Spick gehört</h3>
+      <ul class="clean">
+        <li>Formeln: Betrag (Pythagoras), Addition/Subtraktion in Koordinaten, Kollinearitätsbedingung <span class="eq">k·a<span class="va">→</span> = b<span class="va">→</span></span></li>
+        <li>Rechengesetze der Multiplikation (Distributiv-, Assoziativgesetz)</li>
+        <li>Taschenrechner-Befehle für Vektoreingabe, <span class="eq">norm()</span> und <span class="eq">solve()</span></li>
+        <li>Ablauf «Vektor in zwei andere zerlegen» (Linearkombinationsansatz)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Was du wirklich verstehen musst</h3>
+      <ul class="clean">
+        <li>Unterschied Skalar/Vektor und warum ein Vektor zwei Angaben braucht</li>
+        <li><strong>Wann</strong> welche Operation gefragt ist (Vektorketten vereinfachen, Zerlegen, Kollinearität prüfen)</li>
+        <li>Der Unterschied zwischen <em>kollinear</em> (2 Vektoren) und <em>linear abhängig</em> (allgemeiner Begriff, deckt sich bei 2 Vektoren)</li>
+        <li>Wie man aus einer Vektorkette (Pyramide, Würfel, Sechseck) unbekannte Vektoren als Linearkombination bekannter ausdrückt</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Lernziel</th><th>Kernaussage</th><th>Abschnitt</th></tr></thead>
+    <tbody>
+      <tr><td class="term">L1</td><td>Skalare vs. vektorielle Grössen, Alltagsbeispiele</td><td><a href="#skalar-vektor">Skalar &amp; Vektor</a></td></tr>
+      <tr><td class="term">L2</td><td>Definition Vektor, geometrische Deutung (Richtung, Betrag)</td><td><a href="#vektorbegriff">Vektorbegriff</a></td></tr>
+      <tr><td class="term">L3</td><td>Betrag eines Vektors berechnen</td><td><a href="#vektorbegriff">Vektorbegriff</a>, <a href="#koordinaten">Koordinaten</a></td></tr>
+      <tr><td class="term">L4</td><td>Nullvektor und Gegenvektor</td><td><a href="#addition-subtraktion">Addition &amp; Subtraktion</a></td></tr>
+      <tr><td class="term">L5</td><td>Addition, Subtraktion, skalare Multiplikation korrekt anwenden (Gesetze, Grafik)</td><td><a href="#addition-subtraktion">Add./Sub.</a>, <a href="#multiplikation">Multiplikation</a></td></tr>
+      <tr><td class="term">L6</td><td>Linearkombination von Vektoren</td><td><a href="#linearkombination">Linearkombination</a></td></tr>
+      <tr><td class="term">L7</td><td>Vektor in Komponenten bzgl. vorgegebener Richtung zerlegen</td><td><a href="#zerlegung">Zerlegung</a></td></tr>
+      <tr><td class="term">L8</td><td>Kollineare Vektoren erkennen</td><td><a href="#kollinear">Kollinear &amp; abhängig</a></td></tr>
+      <tr><td class="term">L9</td><td>Lineare (Un-)Abhängigkeit bestimmen</td><td><a href="#kollinear">Kollinear &amp; abhängig</a></td></tr>
+      <tr><td class="term">L10</td><td>Alle Skript-Aufgaben lösen können</td><td><a href="#uebungen">Übungen</a></td></tr>
+      <tr><td class="term">L11</td><td>TR: Vektoren eingeben, verrechnen, mit Skalar multiplizieren</td><td><a href="#taschenrechner">Taschenrechner</a></td></tr>
+      <tr><td class="term">L12</td><td>TR: Linearkombination finden (solve)</td><td><a href="#taschenrechner">Taschenrechner</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="skalar-vektor">
+  <h2>1 · Skalar und Vektor <span class="tag lz">L1</span></h2>
+  <p class="section-sub">Grundlegende Unterscheidung, auf der das ganze Kapitel aufbaut.</p>
+
+  <div class="card">
+    <h3>Definitionen</h3>
+    <p><strong>Skalar:</strong> eine Grösse, die nur einen <strong>Betrag</strong> (eine Zahl) hat, aber
+    <strong>keine Richtung</strong>. Beispiele: Temperatur, Zeit, Masse, Dichte, Energie, Alter, Länge.</p>
+    <p><strong>Vektor:</strong> eine Grösse, die ausser ihrem Betrag auch noch eine <strong>Richtung</strong> hat,
+    in die sie zeigt. Beispiele: Geschwindigkeit, Kraft, Verschiebung, Wind, Beschleunigung, Strömung.</p>
+    <div class="callout">
+      <strong>Warum das zählt:</strong> Ob eine Grösse ein Vektor ist, entscheidet, ob man beim Rechnen nur
+      Zahlen addieren darf (Skalar) oder ob Richtung und Winkel mitgerechnet werden müssen (Vektor). Zwei
+      Kräfte von je 10 N ergeben je nach Winkel zwischen ihnen eine Summe zwischen 0 N und 20 N — nie einfach «20».
+    </div>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Grösse</th><th>Skalar</th><th>Vektor</th><th>Warum</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Dichte</td><td>✅</td><td></td><td>nur ein Zahlenwert (kg/m³), keine Richtung</td></tr>
+      <tr><td class="term">Beschleunigung</td><td></td><td>✅</td><td>hat Betrag <em>und</em> Richtung (z. B. Bremsen vs. Beschleunigen)</td></tr>
+      <tr><td class="term">Energie</td><td>✅</td><td></td><td>reine Zahl (Joule), keine Richtung denkbar</td></tr>
+      <tr><td class="term">Strömung</td><td></td><td>✅</td><td>fliesst in eine bestimmte Richtung mit bestimmter Stärke</td></tr>
+      <tr><td class="term">Lichtstrahl (Ausbreitung)</td><td></td><td>✅</td><td>breitet sich gerichtet aus</td></tr>
+      <tr><td class="term">Alter</td><td>✅</td><td></td><td>nur eine Zahl, keine Richtung</td></tr>
+      <tr><td class="term">Länge (eines Objekts)</td><td>✅</td><td></td><td>nur ein Betrag, keine Richtungsangabe nötig</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout quote">
+    <strong>Prüfungsbeispiel Fluss/Boot (Titelbild des Skripts):</strong> Ein Boot fährt mit der Relativgeschwindigkeit
+    <span class="eq">v<sub>rel</sub></span> (Boot zum Wasser) schräg über einen Fluss. Das Wasser selbst strömt mit
+    <span class="eq">v<sub>w</sub></span>. Die tatsächliche Bewegung über Grund ist die <strong>Vektorsumme</strong>
+    <span class="eq">v<sub>abs</sub> = v<sub>rel</sub> + v<sub>w</sub></span>. Alle drei Grössen sind Vektoren — nur
+    weil man Betrag und Richtung braucht, um zu sagen, wo das Boot wirklich ankommt.
+  </div>
+
+  <div class="callout tip">
+    <strong>Merksatz:</strong> Frage dich bei jeder Grösse: «Ändert sich etwas an der Bedeutung, wenn ich eine
+    Richtung dazu angebe?» Wenn ja → Vektor. Wenn eine Richtung keinen Sinn ergibt (z. B. «Temperatur nach Norden») →
+    Skalar.
+  </div>
+</section>
+
+<section id="vektorbegriff">
+  <h2>2 · Vektorbegriff, Betrag, freie und gebundene Vektoren <span class="tag lz">L2</span> <span class="tag lz">L3</span></h2>
+
+  <div class="card">
+    <h3>Definition</h3>
+    <p>Ein <strong>Vektor</strong> hat eine <strong>Länge</strong> (den Betrag) und eine <strong>Richtung</strong>.
+    Alle Pfeile mit gleicher Länge und gleicher Richtung stellen denselben Vektor dar — ein einzelner Pfeil heisst
+    <strong>Repräsentant</strong> des Vektors. Ein Vektor «lebt» also nicht an einem festen Ort im Raum, sondern
+    ist durch Länge und Richtung eindeutig bestimmt.</p>
+    <p>Schreibweisen: mit Kleinbuchstaben und Pfeil <span class="eq">a<span class="va">→</span></span>, oder mit Anfangs- und Endpunkt
+    <span class="eq">AB<span class="va">→</span></span> (von A nach B). Der <strong>Betrag</strong> entspricht der Pfeillänge:
+    <span class="eq">|a<span class="va">→</span>|</span> bzw. <span class="eq">a</span>, oder <span class="eq">|AB<span class="va">→</span>|</span> bzw. <span class="eq">AB</span>.</p>
+  </div>
+
+  <div class="callout">
+    <strong>Frei vs. gebunden:</strong> In diesem Kapitel arbeiten wir mit <strong>freien</strong> Vektoren — sie
+    bestehen nur aus Länge und Richtung, ihre Lage im Raum spielt keine Rolle (zwei parallel verschobene, gleich
+    lange Pfeile sind derselbe Vektor). Bei <strong>gebundenen</strong> Vektoren ist die Lage im Raum wichtig,
+    z. B. bei einer Kraft, die an einem bestimmten Punkt eines Körpers angreift.
+  </div>
+
+  <h3>Wann sind zwei Vektoren gleich?</h3>
+  <p>Zwei Vektoren <span class="eq">a<span class="va">→</span></span> und <span class="eq">b<span class="va">→</span></span> sind genau dann gleich, wenn sie
+  <strong>dieselbe Länge und dieselbe Richtung</strong> haben — unabhängig davon, wo ihre Pfeile im Bild liegen.
+  Achtung: <strong>gleicher Betrag reicht nicht</strong>. Zwei Vektoren können gleich lang, aber entgegengesetzt
+  oder in einem Winkel zueinander gerichtet sein — dann sind sie <em>nicht</em> gleich.</p>
+
+  <h3>Betrag berechnen</h3>
+  <p>Grafisch entspricht der Betrag der gemessenen Pfeillänge. In <strong>Koordinatenschreibweise</strong>
+  <span class="eq">a<span class="va">→</span> = (x<sub>a</sub>; y<sub>a</sub>)</span> wird der Betrag mit dem <strong>Satz des Pythagoras</strong>
+  berechnet, da x- und y-Komponente die Katheten eines rechtwinkligen Dreiecks bilden:</p>
+  <div class="eqblock">|a<span class="va">→</span>| = √(x<sub>a</sub>² + y<sub>a</sub>²)</div>
+  <p><strong>Beispiel:</strong> <span class="eq">a<span class="va">→</span> = (-4; 1)</span> ⟹ <span class="eq">|a<span class="va">→</span>| = √((-4)² + 1²) = √17 ≈ 4.12</span>.
+  Mit dem Taschenrechner geht das direkt über den Befehl <span class="mono">norm(a)</span> (siehe <a href="#taschenrechner">Taschenrechner</a>).</p>
+
+  <div class="callout warn">
+    <strong>Typischer Fehler:</strong> Vorzeichen beim Quadrieren «verlieren». <span class="eq">(-4)²= 16</span>,
+    nicht <span class="eq">-16</span>. Der Betrag ist immer <strong>≥ 0</strong>, nie negativ — ein negativer
+    Betrag ist ein sicheres Zeichen für einen Rechenfehler.
+  </div>
+</section>
+
+<section id="addition-subtraktion">
+  <h2>3 · Addition, Subtraktion, Nullvektor, Gegenvektor <span class="tag lz">L4</span> <span class="tag lz">L5</span></h2>
+
+  <h3>Addition</h3>
+  <p>Der Vektor <span class="eq">r<span class="va">→</span></span> ist die Summe (Resultierende) von <span class="eq">a<span class="va">→</span>, b<span class="va">→</span>, c<span class="va">→</span></span>:
+  <span class="eq">r<span class="va">→</span> = a<span class="va">→</span> + b<span class="va">→</span> + c<span class="va">→</span></span>. Grafisch werden die Pfeile <strong>aneinandergereiht</strong>
+  (Kopf an Schwanz): die Resultierende ist der Pfeil vom Anfangspunkt des ersten Pfeils zum Endpunkt des letzten Pfeils.</p>
+
+  <div class="grafik">
+    <svg viewBox="0 0 360 170" width="360" height="170" role="img" aria-label="Vektorkette a, b addiert zu Resultierender r">
+      <defs>
+        <marker id="ar1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1d4ed8"/></marker>
+        <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0f766e"/></marker>
+        <marker id="ar3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#a3620c"/></marker>
+      </defs>
+      <line x1="20" y1="150" x2="150" y2="60" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ar1)"/>
+      <text x="70" y="90" fill="#1d4ed8" font-weight="700">a<span class="va">→</span></text>
+      <line x1="150" y1="60" x2="260" y2="110" stroke="#0f766e" stroke-width="3" marker-end="url(#ar2)"/>
+      <text x="200" y="105" fill="#0f766e" font-weight="700">b<span class="va">→</span></text>
+      <line x1="20" y1="150" x2="260" y2="110" stroke="#a3620c" stroke-width="3" stroke-dasharray="5 4" marker-end="url(#ar3)"/>
+      <text x="130" y="145" fill="#a3620c" font-weight="700">r<span class="va">→</span> = a<span class="va">→</span> + b<span class="va">→</span></text>
+    </svg>
+    <figcaption>Aneinanderreihen: der zweite Pfeil startet dort, wo der erste endet; die Resultierende schliesst die Kette.</figcaption>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Rechengesetz</th><th>Formel</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Kommutativgesetz</td><td class="mono">a<span class="va">→</span> + b<span class="va">→</span> = b<span class="va">→</span> + a<span class="va">→</span></td></tr>
+      <tr><td class="term">Assoziativgesetz</td><td class="mono">a<span class="va">→</span> + (b<span class="va">→</span> + c<span class="va">→</span>) = (a<span class="va">→</span> + b<span class="va">→</span>) + c<span class="va">→</span></td></tr>
+      <tr><td class="term">Mit Anfangs-/Endpunkt</td><td class="mono">AB<span class="va">→</span> + BC<span class="va">→</span> = AC<span class="va">→</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Subtraktion, Gegenvektor, Nullvektor</h3>
+  <div class="callout">
+    <strong>Gegenvektor <span class="eq">-a<span class="va">→</span></span>:</strong> hat denselben Betrag wie <span class="eq">a<span class="va">→</span></span>, aber
+    die <strong>entgegengesetzte Richtung</strong>. In Punktschreibweise: <span class="eq">-AB<span class="va">→</span> = BA<span class="va">→</span></span>.
+    Bei der Subtraktion zweier Vektoren wird der Gegenvektor addiert: <span class="eq">a<span class="va">→</span> - b<span class="va">→</span> = a<span class="va">→</span> + (-b<span class="va">→</span>)</span>.
+  </div>
+  <div class="callout">
+    <strong>Nullvektor <span class="eq">0<span class="va">→</span></span>:</strong> der Vektor mit Betrag <strong>0</strong>. Seine Richtung
+    ist <strong>unbestimmt</strong> (ein Pfeil der Länge 0 hat keine sinnvolle Richtung). Es gilt
+    <span class="eq">a<span class="va">→</span> - a<span class="va">→</span> = 0<span class="va">→</span></span> und <span class="eq">|a<span class="va">→</span> - b<span class="va">→</span>| = |b<span class="va">→</span> - a<span class="va">→</span>|</span> (Subtraktion in beiden
+    Richtungen ergibt gleich lange, aber entgegengesetzte Vektoren).
+  </div>
+
+  <div class="grafik">
+    <svg viewBox="0 0 300 130" width="300" height="130" role="img" aria-label="Vektor a und sein Gegenvektor -a">
+      <defs><marker id="ar4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1d4ed8"/></marker>
+      <marker id="ar5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#9c2c1e"/></marker></defs>
+      <line x1="40" y1="90" x2="220" y2="40" stroke="#1d4ed8" stroke-width="3" marker-end="url(#ar4)"/>
+      <text x="115" y="55" fill="#1d4ed8" font-weight="700">a<span class="va">→</span></text>
+      <line x1="220" y1="90" x2="40" y2="115" stroke="#9c2c1e" stroke-width="3" marker-end="url(#ar5)" stroke-dasharray="5 4"/>
+      <text x="105" y="118" fill="#9c2c1e" font-weight="700">-a<span class="va">→</span></text>
+    </svg>
+    <figcaption>Gleiche Länge, entgegengesetzte Richtung.</figcaption>
+  </div>
+
+  <div class="callout warn">
+    <strong>Typischer Fehler:</strong> Nullvektor ≠ «kein Vektor». Er ist ein vollwertiger Vektor mit Betrag 0 und
+    wird z. B. als Ergebnis geschlossener Vektorketten (Rundgang zurück zum Start) verwendet — vgl. Aufgabe 2b im
+    Skript: eine geschlossene Vektorkette aus vier Vektoren ergibt immer <span class="eq">0<span class="va">→</span></span>.
+  </div>
+</section>
+
+<section id="multiplikation">
+  <h2>4 · Multiplikation eines Vektors mit einem Skalar <span class="tag lz">L5</span></h2>
+  <p class="section-sub">Ein Vektor kann mit einer Zahl (einem Skalar) <span class="eq">k</span> multipliziert werden.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Eigenschaft</th><th>Regel</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Betrag</td><td class="mono">|k · a<span class="va">→</span>| = |k| · |a<span class="va">→</span>|</td></tr>
+      <tr><td class="term">Richtung, k &gt; 0</td><td>k·a<span class="va">→</span> und a<span class="va">→</span> haben die <strong>gleiche</strong> Richtung</td></tr>
+      <tr><td class="term">Richtung, k &lt; 0</td><td>k·a<span class="va">→</span> und a<span class="va">→</span> sind <strong>entgegengesetzt</strong> gerichtet</td></tr>
+      <tr><td class="term">Spezialfälle</td><td class="mono">1·a<span class="va">→</span> = a<span class="va">→</span> &nbsp;·&nbsp; (-1)·a<span class="va">→</span> = -a<span class="va">→</span> &nbsp;·&nbsp; 0·a<span class="va">→</span> = 0<span class="va">→</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Rechengesetz</th><th>Formel</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Distributivgesetz (Vektor)</td><td class="mono">k · (a<span class="va">→</span> + b<span class="va">→</span>) = k·a<span class="va">→</span> + k·b<span class="va">→</span></td></tr>
+      <tr><td class="term">Distributivgesetz (Skalar)</td><td class="mono">(k + m) · a<span class="va">→</span> = k·a<span class="va">→</span> + m·a<span class="va">→</span></td></tr>
+      <tr><td class="term">Assoziativgesetz</td><td class="mono">k · (m · a<span class="va">→</span>) = (k·m) · a<span class="va">→</span></td></tr>
+      <tr><td class="term">Division</td><td class="mono">a<span class="va">→</span> / k = (1/k) · a<span class="va">→</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout tip">
+    <strong>Merksatz:</strong> Der Faktor <span class="eq">k</span> «streckt» oder «staucht» den Pfeil und dreht
+    ihn bei negativem Vorzeichen um. Er ändert <strong>nie</strong> die Trägerlinie (Gerade), auf der der Vektor
+    liegt — das ist genau die Grundlage für <a href="#kollinear">Kollinearität</a>.
+  </div>
+</section>
+
+<section id="linearkombination">
+  <h2>5 · Linearkombination <span class="tag lz">L6</span></h2>
+  <div class="card">
+    <h3>Definition</h3>
+    <p>Eine <strong>Linearkombination</strong> von Vektoren ist eine Summe bzw. Differenz von Vektoren, wobei jeder
+    Vektor noch mit einem Faktor (Skalar) multipliziert werden kann. Das Ergebnis ist wieder ein Vektor.</p>
+    <div class="eqblock">v<span class="va">→</span> = a<span class="va">→</span> + 2·b<span class="va">→</span> - c<span class="va">→</span></div>
+    <p>ist eine Linearkombination von <span class="eq">a<span class="va">→</span>, b<span class="va">→</span>, c<span class="va">→</span></span> mit den Koeffizienten 1, 2 und -1.</p>
+  </div>
+  <div class="callout">
+    <strong>Warum das zählt:</strong> Fast jede komplexere Aufgabe (Pyramide, Würfel, Sechseck, Rhombus) läuft
+    darauf hinaus, einen gesuchten Vektor als Linearkombination der gegebenen Vektoren <span class="eq">a<span class="va">→</span>, b<span class="va">→</span>, c<span class="va">→</span> …</span>
+    auszudrücken — meist über Vektorketten mit der Regel <span class="eq">AB<span class="va">→</span> + BC<span class="va">→</span> = AC<span class="va">→</span></span>.
+  </div>
+  <h3>Vorgehen bei Vektorketten-Aufgaben (Pyramide, Würfel, …)</h3>
+  <ol class="clean" style="padding-left:22px;">
+    <li>Gegebene Vektoren (z. B. <span class="eq">a<span class="va">→</span>, b<span class="va">→</span>, c<span class="va">→</span></span>) in der Figur einzeichnen/markieren.</li>
+    <li>Für den gesuchten Vektor einen Weg über bekannte Kanten/Punkte finden (Kopf-an-Schwanz-Kette).</li>
+    <li>Jeden Teilschritt der Kette durch <span class="eq">±a<span class="va">→</span>, ±b<span class="va">→</span>, ±c<span class="va">→</span></span> ersetzen — Vorzeichen richtig setzen,
+    je nach Richtung entlang der Kette.</li>
+    <li>Zusammenfassen zu einer Linearkombination.</li>
+  </ol>
+  <div class="callout warn">
+    <strong>Typischer Fehler:</strong> Bei Mittelpunkten (z. B. M = Mitte von AB) den Faktor <span class="eq">½</span>
+    vergessen, oder das Vorzeichen falsch setzen, wenn man die Kette «gegen» die vorgegebene Vektorrichtung durchläuft
+    (z. B. <span class="eq">CA<span class="va">→</span> = -AC<span class="va">→</span></span>).
+  </div>
+</section>
+
+<section id="zerlegung">
+  <h2>6 · Zerlegung eines Vektors in Komponenten <span class="tag lz">L7</span></h2>
+  <p class="section-sub">Die Umkehrung der Linearkombination: einen gegebenen Vektor als Summe von Vielfachen zweier
+  vorgegebener Richtungen darstellen.</p>
+
+  <div class="card">
+    <h3>Definition</h3>
+    <p>Einen Vektor <span class="eq">a<span class="va">→</span></span> in <span class="eq">b<span class="va">→</span></span> und <span class="eq">c<span class="va">→</span></span> zu
+    <strong>zerlegen</strong> bedeutet, <span class="eq">a<span class="va">→</span></span> als Linearkombination von <span class="eq">b<span class="va">→</span></span>
+    und <span class="eq">c<span class="va">→</span></span> darzustellen: <span class="eq">a<span class="va">→</span> = λ·b<span class="va">→</span> + μ·c<span class="va">→</span></span>.</p>
+    <p><strong>Bedingung:</strong> Es gibt nur eine Lösung, wenn <span class="eq">b<span class="va">→</span></span> und <span class="eq">c<span class="va">→</span></span>
+    <strong>nicht parallel</strong> zueinander sind. Sind <span class="eq">b<span class="va">→</span></span> und <span class="eq">c<span class="va">→</span></span>
+    parallel (und nicht auch parallel zu <span class="eq">a<span class="va">→</span></span>), gibt es <strong>keine Lösung</strong>.</p>
+  </div>
+
+  <h3>Beispiel aus dem Skript</h3>
+  <p>Gesucht: Zerlegung von <span class="eq">a<span class="va">→</span></span> in Richtung <span class="eq">b<span class="va">→</span></span> und <span class="eq">c<span class="va">→</span></span>.
+  Zeichnerisch legt man durch die beiden Enden von <span class="eq">a<span class="va">→</span></span> je eine Parallele zu <span class="eq">b<span class="va">→</span></span>
+  und zu <span class="eq">c<span class="va">→</span></span> — die Schnittpunkte liefern die Länge der beiden Teilvektoren. Rechnerisch (mit einer
+  Hilfsbeziehung, z. B. aus der Figur ablesbar):</p>
+  <div class="eqblock">⅓c<span class="va">→</span> = b<span class="va">→</span> - 2·a<span class="va">→</span> &nbsp;⟹&nbsp; 2·a<span class="va">→</span> = b<span class="va">→</span> - ⅓c<span class="va">→</span> &nbsp;⟹&nbsp; a<span class="va">→</span> = ½b<span class="va">→</span> - ⅙c<span class="va">→</span></div>
+  <p>Man stellt zunächst eine Gleichung auf, die alle drei Vektoren verbindet, und löst dann nach dem gesuchten Vektor auf.</p>
+
+  <div class="callout tip">
+    <strong>Mit dem Taschenrechner:</strong> Man definiert <span class="eq">a<span class="va">→</span>, b<span class="va">→</span>, c<span class="va">→</span></span> als Koordinatenvektoren
+    und löst <span class="mono">solve(a = x·b + y·c, x, y)</span> — der TR liefert die Koeffizienten <span class="eq">x</span>
+    und <span class="eq">y</span> direkt (siehe <a href="#taschenrechner">Taschenrechner</a>, Aufgabe 7).
+  </div>
+
+  <div class="callout warn">
+    <strong>Typischer Fehler:</strong> Zerlegung in nicht-parallele Richtungen für gegeben halten, ohne zu prüfen.
+    Sind die beiden Zielrichtungen selbst kollinear, ist die Aufgabe unlösbar (ausser <span class="eq">a<span class="va">→</span></span>
+    ist ebenfalls dazu parallel) — das ist eine beliebte Prüfungsfalle.
+  </div>
+</section>
+
+<section id="koordinaten">
+  <h2>7 · Vektoren im Koordinatensystem <span class="tag lz">L3</span></h2>
+  <p class="section-sub">Wird ein Vektor in einem Koordinatensystem dargestellt, zerlegt man ihn in eine
+  <strong>x-</strong> und eine <strong>y-Komponente</strong>: <span class="eq">a<span class="va">→</span> = (x<sub>a</sub>; y<sub>a</sub>)</span>.</p>
+
+  <h3>Addition/Subtraktion in Koordinaten</h3>
+  <div class="eqblock">a<span class="va">→</span> + b<span class="va">→</span> = (x<sub>a</sub>; y<sub>a</sub>) + (x<sub>b</sub>; y<sub>b</sub>) = (x<sub>a</sub>+x<sub>b</sub>; y<sub>a</sub>+y<sub>b</sub>)</div>
+  <p>Komponenten werden <strong>separat</strong> addiert bzw. subtrahiert. Beispiel: <span class="eq">a<span class="va">→</span>=(-4;1)</span>,
+  <span class="eq">b<span class="va">→</span>=(3;2)</span> ⟹ <span class="eq">a<span class="va">→</span>+b<span class="va">→</span>=(-1;3)</span>.</p>
+
+  <h3>Skalare Multiplikation und Linearkombination in Koordinaten</h3>
+  <p>Jede Komponente wird einzeln mit dem Skalar multipliziert: <span class="eq">k·(x;y) = (k·x; k·y)</span>.
+  Eine Linearkombination wie <span class="eq">d<span class="va">→</span> = 2·a<span class="va">→</span> - b<span class="va">→</span> - 3·c<span class="va">→</span></span> wird komponentenweise berechnet:</p>
+  <div class="eqblock">a<span class="va">→</span>=(-3;1), b<span class="va">→</span>=(-2;4), c<span class="va">→</span>=(-1;-2) ⟹ d<span class="va">→</span> = 2·(-3;1) - (-2;4) - 3·(-1;-2) = (-6+2+3; 2-4+6) = (-1;4)</div>
+
+  <h3>Betrag in Koordinaten</h3>
+  <p>Wie in Abschnitt 2 gezeigt: <span class="eq">|a<span class="va">→</span>| = √(x<sub>a</sub>² + y<sub>a</sub>²)</span> (Satz des Pythagoras).</p>
+
+  <div class="callout warn">
+    <strong>Typischer Fehler:</strong> Bei Vektoren, die von einem Repräsentanten (Pfeil im Diagramm) abgelesen
+    werden, den <strong>Ortsvektor</strong> mit der <strong>Verschiebung</strong> verwechseln. Nur die Differenz
+    <span class="eq">Endpunkt - Anfangspunkt</span> ergibt die Koordinaten des Vektors, nicht die Koordinaten des
+    Endpunkts allein.
+  </div>
+</section>
+
+<section id="kollinear">
+  <h2>8 · Kollineare Vektoren und lineare (Un-)Abhängigkeit <span class="tag lz">L8</span> <span class="tag lz">L9</span></h2>
+
+  <div class="card">
+    <h3>Definition</h3>
+    <p>Vektoren, die <strong>parallel oder antiparallel</strong> sind, heissen <strong>kollinear</strong>.
+    Kollinear ist gleichbedeutend mit <strong>«linear abhängig»</strong> (für zwei Vektoren).</p>
+    <div class="eqblock">a<span class="va">→</span> und b<span class="va">→</span> sind kollinear ⟺ k·a<span class="va">→</span> = b<span class="va">→</span> &nbsp;&nbsp;(k ∈ ℝ, k ≠ 0)</div>
+    <p><strong>Beispiel:</strong> <span class="eq">a<span class="va">→</span>=(2;-3)</span> und <span class="eq">b<span class="va">→</span>=(-6;9)</span> sind kollinear
+    (linear abhängig), denn <span class="eq">-3·a<span class="va">→</span> = b<span class="va">→</span></span>.</p>
+  </div>
+
+  <div class="callout">
+    <strong>Wie man es erkennt:</strong> Prüfe, ob die Komponenten <strong>proportional</strong> sind — also ob
+    <span class="eq">x<sub>b</sub>/x<sub>a</sub> = y<sub>b</sub>/y<sub>a</sub></span> (gleicher Quotient <span class="eq">k</span>
+    für beide Komponenten). Ist der Quotient für x und y unterschiedlich, sind die Vektoren <strong>nicht</strong>
+    kollinear ⟹ <strong>linear unabhängig</strong>.
+  </div>
+
+  <div class="callout tip">
+    <strong>Mit mehr als zwei Vektoren:</strong> Mehrere Vektoren (in der Ebene: 3 oder mehr) sind linear abhängig,
+    sobald einer als Linearkombination der anderen darstellbar ist. In der Ebene sind <strong>höchstens zwei</strong>
+    Vektoren linear unabhängig — jeder dritte Vektor in der Ebene lässt sich immer als Linearkombination der ersten
+    zwei ausdrücken.
+  </div>
+
+  <div class="callout warn">
+    <strong>Typischer Fehler:</strong> Gleiche <em>Länge</em> mit Kollinearität verwechseln. Zwei gleich lange
+    Vektoren mit unterschiedlicher Richtung sind <strong>nicht</strong> kollinear. Kollinearität hängt nur von der
+    Richtung ab, nicht vom Betrag.
+  </div>
+</section>
+
+<section id="taschenrechner">
+  <h2>9 · Vektoren mit dem Taschenrechner <span class="tag lz">L11</span> <span class="tag lz">L12</span></h2>
+  <p class="section-sub">Da die Prüfung mit Hilfsmitteln geschrieben wird, ist ein sicherer TR-Workflow entscheidend.</p>
+
+  <div class="callout">
+    <strong>Einstellung:</strong> Zuerst im TR auf kartesisches Koordinatensystem stellen (Dokumenteinstellungen →
+    Vektorformat: Kartesisch). Ohne diese Einstellung werden Vektoren nicht wie erwartet dargestellt.
+  </div>
+
+  <h3>Eingabe eines Vektors</h3>
+  <p>Zwei gleichwertige Schreibweisen mit eckigen Klammern:</p>
+  <div class="eqblock">a:=[3;1] &nbsp;&nbsp;oder&nbsp;&nbsp; a:=[3,1] &nbsp;→&nbsp; ergibt [3 1]</div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Operation</th><th>TR-Befehl</th><th>Beispiel</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Addition</td><td class="mono">a+b</td><td class="mono">[3 1]+[-1 2] = [2 3]</td></tr>
+      <tr><td class="term">Subtraktion</td><td class="mono">a-b</td><td class="mono">[3 1]-[-1 2] = [4 -1]</td></tr>
+      <tr><td class="term">Betrag</td><td class="mono">norm(a)</td><td class="mono">norm([3,1]) = √10</td></tr>
+      <tr><td class="term">Gegenvektor</td><td class="mono">-a</td><td class="mono">-[3,1] = [-3 -1]</td></tr>
+      <tr><td class="term">Skalare Multiplikation</td><td class="mono">k·a</td><td class="mono">5·[3,1] = [15 5]</td></tr>
+      <tr><td class="term">Zerlegung/Linearkombination lösen</td><td class="mono">solve(a=x·b+y·c, x, y)</td><td>liefert die Koeffizienten <span class="eq">x</span>, <span class="eq">y</span> direkt</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout tip">
+    <strong>Beispiel Zerlegung (Skript):</strong> <span class="eq">a<span class="va">→</span></span> soll in <span class="eq">b<span class="va">→</span></span> und
+    <span class="eq">c<span class="va">→</span></span> zerlegt werden: <span class="mono">solve(a=x·b+y·c,x,y)</span> liefert direkt
+    <span class="eq">x=½, y=-⅙</span>, also <span class="eq">a<span class="va">→</span> = ½b<span class="va">→</span> - ⅙c<span class="va">→</span></span> — exakt dieselbe Lösung wie von Hand
+    in Abschnitt «Zerlegung», nur ohne Bruchrechnung von Hand.
+  </div>
+
+  <div class="callout warn">
+    <strong>Prüfungsfalle:</strong> <span class="mono">solve()</span> erwartet, dass Anzahl Gleichungen und Anzahl
+    Unbekannter zusammenpassen. Bei einer Vektorgleichung in 2D entspricht das <strong>zwei</strong> Skalargleichungen
+    (x- und y-Komponente) — für zwei Unbekannte (<span class="eq">x, y</span>) reicht daher <strong>eine</strong>
+    Vektorgleichung. Prüfe nach dem Lösen immer, ob das Ergebnis grafisch plausibel ist (Skizze!).
+  </div>
+</section>
+
+<section id="fehler">
+  <h2>10 · Typische Fehler und Fallen — Übersicht</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Falle</th><th>Warum sie zuschlägt</th><th>Gegenmittel</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Betrag = Vektor gleichsetzen</td><td class="mono">a = b</td><td>heisst nur, dass die Beträge gleich sind — <strong>nicht</strong> <span class="eq">a<span class="va">→</span>=b<span class="va">→</span></span> (Richtung kann verschieden sein)</td><td>Immer zwischen Betrag (Skalar, kein Pfeil) und Vektor (mit Pfeil) unterscheiden</td></tr>
+      <tr><td class="term">Dreiecksungleichung</td><td class="mono">|a<span class="va">→</span>+b<span class="va">→</span>| ≤ |a<span class="va">→</span>|+|b<span class="va">→</span>|</td><td>Gleichheit gilt nur, wenn <span class="eq">a<span class="va">→</span></span> und <span class="eq">b<span class="va">→</span></span> <strong>gleich gerichtet</strong> sind</td><td>Bei Winkel zwischen den Vektoren: Betrag der Summe ist echt kleiner als Summe der Beträge</td></tr>
+      <tr><td class="term">Vorzeichen bei Kettenvektoren</td><td><span class="eq">CA<span class="va">→</span> = -AC<span class="va">→</span></span> wird übersehen</td><td>Bei jedem Kettenglied Start- und Endpunkt genau beachten</td><td></td></tr>
+      <tr><td class="term">Kollinear ≠ gleich lang</td><td>Verwechslung von Richtung und Betrag</td><td>Immer den Faktor <span class="eq">k</span> in <span class="eq">k·a<span class="va">→</span>=b<span class="va">→</span></span> tatsächlich ausrechnen/prüfen</td><td></td></tr>
+      <tr><td class="term">Nullvektor «vergessen»</td><td>Geschlossene Vektorketten ergeben <span class="eq">0<span class="va">→</span></span>, nicht «nichts»</td><td>Ergebnis explizit als <span class="eq">0<span class="va">→</span></span> hinschreiben</td><td></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="uebungen">
+  <h2>11 · Übungen <span class="tag lz">L1–L12</span></h2>
+  <p class="section-sub">26 Aufgaben in 5 Niveaustufen. Rechne zuerst selbst, dann Lösung aufklappen.
+  <span class="tag lvl">Level 1</span> Grundlagen · <span class="tag lvl">Level 2</span> Anwendung ·
+  <span class="tag lvl">Level 3</span> schwierige Anwendung · <span class="tag lvl">Level 4</span> Transfer ·
+  <span class="tag lvl">Level 5</span> Prüfungsniveau</p>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 1</span><h4>Aufgabe 1 — Skalar oder Vektor?</h4></div>
+    <p>Ordne zu, ob folgende Grössen skalar oder vektoriell sind, und begründe je in einem Satz:
+    a) Luftdruck &nbsp; b) Windgeschwindigkeit &nbsp; c) elektrische Ladung &nbsp; d) Verschiebung eines Möbelstücks.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Unterscheidung Skalar/Vektor (L1).</p>
+      <p>a) Skalar — Luftdruck ist nur eine Zahl (hPa), keine Richtung. b) Vektor — «Wind aus Nordwest, 30 km/h»
+      braucht Betrag <em>und</em> Richtung. c) Skalar — Ladung ist ein reiner Zahlenwert (Coulomb). d) Vektor —
+      eine Verschiebung hat eine Strecke <em>und</em> eine Richtung.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 1</span><h4>Aufgabe 2 — Nullvektor und Gegenvektor</h4></div>
+    <p>a) Was ist der Gegenvektor von <span class="eq">PQ<span class="va">→</span></span>? b) Welchen Betrag hat der Nullvektor?
+    c) Ist <span class="eq">a<span class="va">→</span> - a<span class="va">→</span></span> für jeden Vektor <span class="eq">a<span class="va">→</span></span> derselbe Vektor?</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Nullvektor/Gegenvektor (L4).</p>
+      <p>a) <span class="eq">QP<span class="va">→</span></span> — gleicher Betrag, entgegengesetzte Richtung. b) 0 — per Definition.
+      c) Ja: <span class="eq">a<span class="va">→</span> - a<span class="va">→</span> = 0<span class="va">→</span></span> für <strong>jeden</strong> Vektor <span class="eq">a<span class="va">→</span></span>, immer
+      derselbe Nullvektor.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 2</span><h4>Aufgabe 3 — Vektorketten vereinfachen</h4></div>
+    <p>Vereinfache: a) <span class="eq">UV<span class="va">→</span> + VW<span class="va">→</span></span> &nbsp; b) <span class="eq">AB<span class="va">→</span> + CA<span class="va">→</span></span>
+    &nbsp; c) <span class="eq">RS<span class="va">→</span> - RT<span class="va">→</span></span> &nbsp; d) <span class="eq">XY<span class="va">→</span> - ZY<span class="va">→</span> + XZ<span class="va">→</span></span></p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Kettenregel <span class="eq">AB<span class="va">→</span>+BC<span class="va">→</span>=AC<span class="va">→</span></span> (L5).</p>
+      <p>a) <span class="eq">UW<span class="va">→</span></span> (direkte Kette). b) <span class="eq">CA<span class="va">→</span>+AB<span class="va">→</span> = CB<span class="va">→</span></span> (Reihenfolge tauschen, dann Kette).
+      c) <span class="eq">RS<span class="va">→</span>-RT<span class="va">→</span> = RS<span class="va">→</span>+TR<span class="va">→</span> = TS<span class="va">→</span></span>. d) <span class="eq">XY<span class="va">→</span>+YZ<span class="va">→</span>+XZ<span class="va">→</span> = XZ<span class="va">→</span>+XZ<span class="va">→</span> = 2·XZ<span class="va">→</span></span>
+      (da <span class="eq">-ZY<span class="va">→</span> = YZ<span class="va">→</span></span>).</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 2</span><h4>Aufgabe 4 — Vektor x bestimmen</h4></div>
+    <p>Bestimme <span class="eq">x<span class="va">→</span></span>: a) <span class="eq">AB<span class="va">→</span> + x<span class="va">→</span> = 0<span class="va">→</span></span> &nbsp;
+    b) <span class="eq">AB<span class="va">→</span> + x<span class="va">→</span> = AC<span class="va">→</span></span> &nbsp; c) <span class="eq">AB<span class="va">→</span> - x<span class="va">→</span> = AC<span class="va">→</span> - BC<span class="va">→</span></span></p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Vektorgleichungen nach einem Vektor auflösen wie in der Algebra (L5, L6).</p>
+      <p>a) <span class="eq">x<span class="va">→</span> = -AB<span class="va">→</span> = BA<span class="va">→</span></span>. b) <span class="eq">x<span class="va">→</span> = AC<span class="va">→</span> - AB<span class="va">→</span> = AC<span class="va">→</span>+BA<span class="va">→</span> = BA<span class="va">→</span>+AC<span class="va">→</span> = BC<span class="va">→</span></span>.
+      c) <span class="eq">x<span class="va">→</span> = AB<span class="va">→</span>-AC<span class="va">→</span>+BC<span class="va">→</span> = AC<span class="va">→</span>-AC<span class="va">→</span> = 0<span class="va">→</span></span> (mit <span class="eq">AB<span class="va">→</span>+BC<span class="va">→</span>=AC<span class="va">→</span></span>).</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 2</span><h4>Aufgabe 5 — Betrag berechnen</h4></div>
+    <p>Berechne den Betrag von: a) <span class="eq">a<span class="va">→</span>=(8;0)</span> &nbsp; b) <span class="eq">b<span class="va">→</span>=(-4;3)</span>
+    &nbsp; c) <span class="eq">c<span class="va">→</span>=(-9;-5)</span></p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Betrag via Pythagoras (L3).</p>
+      <p>a) <span class="eq">|a<span class="va">→</span>|=√(64+0)=8</span>. b) <span class="eq">|b<span class="va">→</span>|=√(16+9)=√25=5</span>.
+      c) <span class="eq">|c<span class="va">→</span>|=√(81+25)=√106≈10.30</span>.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 2</span><h4>Aufgabe 6 — Linearkombination in Koordinaten</h4></div>
+    <p>Gegeben <span class="eq">a<span class="va">→</span>=(5;6)</span>, <span class="eq">b<span class="va">→</span>=(-3;2)</span>, <span class="eq">c<span class="va">→</span>=(4;-7)</span>.
+    Berechne <span class="eq">a<span class="va">→</span> + 3b<span class="va">→</span> - 2c<span class="va">→</span></span>.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Linearkombination komponentenweise (L6).</p>
+      <p><span class="eq">x: 5+3·(-3)-2·4 = 5-9-8 = -12</span>. <span class="eq">y: 6+3·2-2·(-7) = 6+6+14 = 26</span>.
+      Ergebnis: <span class="eq">(-12; 26)</span>.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 3</span><h4>Aufgabe 7 — Vektorkette im Rechteck</h4></div>
+    <p>In einem Rechteck ABCD sei <span class="eq">a<span class="va">→</span>=AB<span class="va">→</span></span>, <span class="eq">b<span class="va">→</span>=AC<span class="va">→</span></span>,
+    <span class="eq">c<span class="va">→</span>=AD<span class="va">→</span></span>. Vereinfache: a) <span class="eq">a<span class="va">→</span>+b<span class="va">→</span>+c<span class="va">→</span></span> b) <span class="eq">a<span class="va">→</span>+b<span class="va">→</span>-c<span class="va">→</span></span>
+    c) <span class="eq">a<span class="va">→</span>-b<span class="va">→</span>+c<span class="va">→</span></span> d) <span class="eq">a<span class="va">→</span>-b<span class="va">→</span>-c<span class="va">→</span></span></p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Vektorketten in einer Figur erkennen (L5, L6). Skizze: In Rechteck ABCD gilt
+      <span class="eq">AD<span class="va">→</span>=BC<span class="va">→</span></span> und die Diagonale <span class="eq">AC<span class="va">→</span>=AB<span class="va">→</span>+BC<span class="va">→</span>=a<span class="va">→</span>+c<span class="va">→</span></span>,
+      also <span class="eq">b<span class="va">→</span>=a<span class="va">→</span>+c<span class="va">→</span></span>.</p>
+      <p>a) <span class="eq">a<span class="va">→</span>+b<span class="va">→</span>+c<span class="va">→</span> = a<span class="va">→</span>+(a<span class="va">→</span>+c<span class="va">→</span>)+c<span class="va">→</span> = 2a<span class="va">→</span>+2c<span class="va">→</span> = 2b<span class="va">→</span></span>. b) <span class="eq">a<span class="va">→</span>+b<span class="va">→</span>-c<span class="va">→</span> = a<span class="va">→</span>+a<span class="va">→</span>+c<span class="va">→</span>-c<span class="va">→</span> = 2a<span class="va">→</span></span>.
+      c) <span class="eq">a<span class="va">→</span>-b<span class="va">→</span>+c<span class="va">→</span> = a<span class="va">→</span>-a<span class="va">→</span>-c<span class="va">→</span>+c<span class="va">→</span> = 0<span class="va">→</span></span>. d) <span class="eq">a<span class="va">→</span>-b<span class="va">→</span>-c<span class="va">→</span> = a<span class="va">→</span>-a<span class="va">→</span>-c<span class="va">→</span>-c<span class="va">→</span> = -2c<span class="va">→</span></span>.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 3</span><h4>Aufgabe 8 — Zerlegung berechnen</h4></div>
+    <p>Zerlege <span class="eq">c<span class="va">→</span>=(7;7)</span> in eine Linearkombination von <span class="eq">a<span class="va">→</span>=(3;1)</span> und
+    <span class="eq">b<span class="va">→</span>=(-1;2)</span>, d. h. finde <span class="eq">x, y</span> mit <span class="eq">c<span class="va">→</span>=x·a<span class="va">→</span>+y·b<span class="va">→</span></span>.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Zerlegung als lineares Gleichungssystem (L7).</p>
+      <p>Komponentenweise: <span class="eq">3x - y = 7</span> und <span class="eq">x + 2y = 7</span>.
+      Aus der zweiten Gleichung: <span class="eq">x = 7-2y</span>, eingesetzt in die erste:
+      <span class="eq">3(7-2y)-y=7 ⟹ 21-7y=7 ⟹ y=2</span>, also <span class="eq">x=7-4=3</span>.
+      Probe: <span class="eq">3·(3;1)+2·(-1;2) = (9;3)+(-2;4) = (7;7)</span> ✓. Ergebnis: <span class="eq">c<span class="va">→</span>=3a<span class="va">→</span>+2b<span class="va">→</span></span>.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 3</span><h4>Aufgabe 9 — Kollinearität prüfen</h4></div>
+    <p>Sind die folgenden Vektorpaare kollinear (linear abhängig)? Begründe mit dem Faktor <span class="eq">k</span>.
+    a) <span class="eq">p<span class="va">→</span>=(3;7)</span>, <span class="eq">q<span class="va">→</span>=(4.5;10.5)</span> &nbsp;
+    b) <span class="eq">u<span class="va">→</span>=(3;7.5)</span>, <span class="eq">v<span class="va">→</span>=(1.5;3.5)</span></p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Kollinearitätsbedingung <span class="eq">k·a<span class="va">→</span>=b<span class="va">→</span></span> (L8, L9).</p>
+      <p>a) <span class="eq">4.5/3=1.5</span> und <span class="eq">10.5/7=1.5</span> — gleicher Faktor ⟹
+      <strong>kollinear</strong> (<span class="eq">q<span class="va">→</span>=1.5·p<span class="va">→</span></span>). b) <span class="eq">1.5/3=0.5</span>, aber
+      <span class="eq">3.5/7.5≈0.467</span> — Faktoren unterschiedlich ⟹ <strong>nicht kollinear</strong>,
+      linear unabhängig.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 3</span><h4>Aufgabe 10 — Fehlende Koordinaten (Nullvektor-Bedingung)</h4></div>
+    <p>Bestimme die fehlenden Koordinaten so, dass bei Addition der drei Vektoren der Nullvektor resultiert.
+    Dabei gilt <span class="eq">b<sub>1</sub>=b<sub>2</sub></span>: <span class="eq">a<span class="va">→</span>=(-3;7)</span>,
+    <span class="eq">b<span class="va">→</span>=(b<sub>1</sub>;b<sub>2</sub>)</span>, <span class="eq">c<span class="va">→</span>=(8;c<sub>2</sub>)</span>.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Nullvektor-Bedingung komponentenweise (L4, L5).</p>
+      <p>x-Komponente: <span class="eq">-3+b<sub>1</sub>+8=0 ⟹ b<sub>1</sub>=-5</span>. Da <span class="eq">b<sub>1</sub>=b<sub>2</sub></span>:
+      <span class="eq">b<sub>2</sub>=-5</span>. y-Komponente: <span class="eq">7+(-5)+c<sub>2</sub>=0 ⟹ c<sub>2</sub>=-2</span>.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 4</span><h4>Aufgabe 11 — Schwerpunkt eines Dreiecks</h4></div>
+    <p>Ein Dreieck ABC ist durch <span class="eq">AB<span class="va">→</span>=a<span class="va">→</span></span> und <span class="eq">BC<span class="va">→</span>=b<span class="va">→</span></span> gegeben.
+    S sei der Schwerpunkt. Drücke <span class="eq">SA<span class="va">→</span></span>, <span class="eq">SB<span class="va">→</span></span>, <span class="eq">SC<span class="va">→</span></span>
+    durch <span class="eq">a<span class="va">→</span>, b<span class="va">→</span></span> aus und zeige, dass ihre Summe <span class="eq">0<span class="va">→</span></span> ergibt.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Schwerpunktvektoren als Linearkombination, Transferaufgabe (L6, L10).</p>
+      <p>Bekanntes Ergebnis (Skript Aufg. 4a/14): <span class="eq">SA<span class="va">→</span> = -⅔a<span class="va">→</span> - ⅓b<span class="va">→</span></span>,
+      <span class="eq">SB<span class="va">→</span> = ⅓a<span class="va">→</span> - ⅓b<span class="va">→</span></span>, <span class="eq">SC<span class="va">→</span> = ⅓a<span class="va">→</span> + ⅔b<span class="va">→</span></span>.
+      Summe: <span class="eq">(-⅔+⅓+⅓)a<span class="va">→</span> + (-⅓-⅓+⅔)b<span class="va">→</span> = 0·a<span class="va">→</span>+0·b<span class="va">→</span> = 0<span class="va">→</span></span>. Das ist kein Zufall: Der Schwerpunkt
+      ist genau der Punkt, für den sich die drei «Ortsvektoren» zu den Ecken gegenseitig aufheben.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 4</span><h4>Aufgabe 12 — Rhombus-Diagonalen (Transfer)</h4></div>
+    <p>Ein Rhombus ist durch die Vektoren <span class="eq">a<span class="va">→</span></span> und <span class="eq">b<span class="va">→</span></span> (zwei Seiten ab
+    einer Ecke) gegeben. Die Diagonalen sind <span class="eq">x<span class="va">→</span> = a<span class="va">→</span>+b<span class="va">→</span></span> und <span class="eq">y<span class="va">→</span> = a<span class="va">→</span>-b<span class="va">→</span></span>.
+    Berechne <span class="eq">z<span class="va">→</span> = 3·(a<span class="va">→</span>+2x<span class="va">→</span>) - 4·(x<span class="va">→</span>/2 + y<span class="va">→</span>) - 5b<span class="va">→</span></span> als Linearkombination von <span class="eq">a<span class="va">→</span></span>
+    und <span class="eq">b<span class="va">→</span></span>.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Mehrstufige Linearkombination, zuerst <span class="eq">x<span class="va">→</span>, y<span class="va">→</span></span> einsetzen (L6, Transfer).</p>
+      <p>Einsetzen: <span class="eq">z<span class="va">→</span> = 3a<span class="va">→</span>+6x<span class="va">→</span>-2x<span class="va">→</span>-4y<span class="va">→</span>-5b<span class="va">→</span> = 3a<span class="va">→</span>+4x<span class="va">→</span>-4y<span class="va">→</span>-5b<span class="va">→</span></span>. Nun <span class="eq">x<span class="va">→</span>=a<span class="va">→</span>+b<span class="va">→</span></span>,
+      <span class="eq">y<span class="va">→</span>=a<span class="va">→</span>-b<span class="va">→</span></span> einsetzen: <span class="eq">4x<span class="va">→</span>-4y<span class="va">→</span> = 4(a<span class="va">→</span>+b<span class="va">→</span>)-4(a<span class="va">→</span>-b<span class="va">→</span>) = 8b<span class="va">→</span></span>.
+      Also <span class="eq">z<span class="va">→</span> = 3a<span class="va">→</span>+8b<span class="va">→</span>-5b<span class="va">→</span> = 3a<span class="va">→</span>+3b<span class="va">→</span></span>.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 4</span><h4>Aufgabe 13 — Falsche Lösung korrigieren</h4></div>
+    <p>Ein Mitschüler behauptet: «<span class="eq">a<span class="va">→</span>=(2;-3)</span> und <span class="eq">b<span class="va">→</span>=(-6;9)</span> sind
+    <strong>nicht</strong> kollinear, weil <span class="eq">a<span class="va">→</span></span> negative und <span class="eq">b<span class="va">→</span></span>
+    gemischte Vorzeichen hat.» Ist das richtig? Korrigiere die Argumentation.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Vorzeichen sind kein gültiges Kollinearitätskriterium — nur der Faktor <span class="eq">k</span> zählt (L8).</p>
+      <p>Falsch. Vorzeichen der Komponenten sagen nichts über Kollinearität aus. Korrekt prüft man
+      <span class="eq">k = x<sub>b</sub>/x<sub>a</sub> = -6/2 = -3</span> und <span class="eq">y<sub>b</sub>/y<sub>a</sub> = 9/(-3) = -3</span>.
+      Gleicher Faktor <span class="eq">k=-3</span> für beide Komponenten ⟹ die Vektoren <strong>sind</strong> kollinear
+      (antiparallel, da <span class="eq">k&lt;0</span>): <span class="eq">-3·a<span class="va">→</span>=b<span class="va">→</span></span>.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 5</span><h4>Aufgabe 14 — Prüfungsniveau: Würfel-Vektorkette</h4></div>
+    <p>In einem Würfel ABCDEFGH (Grundfläche ABCD, Deckfläche EFGH mit E über A, F über B, G über C, H über D)
+    seien <span class="eq">a<span class="va">→</span>=AB<span class="va">→</span></span>, <span class="eq">b<span class="va">→</span>=AD<span class="va">→</span></span>, <span class="eq">c<span class="va">→</span>=AE<span class="va">→</span></span>.
+    K ist der Schnittpunkt der Raumdiagonalen, M der Mittelpunkt der Kante FG. Drücke <span class="eq">AK<span class="va">→</span></span>
+    und <span class="eq">MK<span class="va">→</span></span> durch <span class="eq">a<span class="va">→</span>, b<span class="va">→</span>, c<span class="va">→</span></span> aus.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Kombination aus Raumdiagonale, Mittelpunkt und Vektorkette — mehrere Lernziele
+      gleichzeitig (L6, L10, Prüfungsniveau).</p>
+      <p>Die Raumdiagonale <span class="eq">AG<span class="va">→</span> = a<span class="va">→</span>+b<span class="va">→</span>+c<span class="va">→</span></span> (über A→B→C→G), und K als Mittelpunkt der
+      Raumdiagonalen: <span class="eq">AK<span class="va">→</span> = ½(a<span class="va">→</span>+b<span class="va">→</span>+c<span class="va">→</span>)</span>.</p>
+      <p>Für M (Mitte FG): <span class="eq">AF<span class="va">→</span> = a<span class="va">→</span>+c<span class="va">→</span></span> (A→B→F), <span class="eq">AG<span class="va">→</span>=a<span class="va">→</span>+b<span class="va">→</span>+c<span class="va">→</span></span>,
+      also <span class="eq">AM<span class="va">→</span> = AF<span class="va">→</span>+½FG<span class="va">→</span> = (a<span class="va">→</span>+c<span class="va">→</span>)+½b<span class="va">→</span></span> (da <span class="eq">FG<span class="va">→</span>=AD<span class="va">→</span>=b<span class="va">→</span></span>).
+      Damit: <span class="eq">MK<span class="va">→</span> = AK<span class="va">→</span>-AM<span class="va">→</span> = ½a<span class="va">→</span>+½b<span class="va">→</span>+½c<span class="va">→</span>-a<span class="va">→</span>-½b<span class="va">→</span>-c<span class="va">→</span> = -½a<span class="va">→</span>-½c<span class="va">→</span></span>.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 5</span><h4>Aufgabe 15 — TR-Aufgabe mit Interpretation</h4></div>
+    <p>Gegeben <span class="eq">p<span class="va">→</span>=(4;-6)</span>, <span class="eq">r<span class="va">→</span>=(r<sub>1</sub>;7.5)</span>,
+    <span class="eq">s<span class="va">→</span>=(21;-31.5)</span>. Es gilt: <span class="eq">p<span class="va">→</span></span> ist kollinear zu <span class="eq">r<span class="va">→</span></span>
+    und <span class="eq">s<span class="va">→</span> = 2p<span class="va">→</span> - q<span class="va">→</span> - 3r<span class="va">→</span></span> mit <span class="eq">q<span class="va">→</span>=(q<sub>1</sub>;q<sub>2</sub>)</span>.
+    Bestimme <span class="eq">r<sub>1</sub>, q<sub>1</sub>, q<sub>2</sub></span> — nutze den TR für den letzten Schritt.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Kollinearität + Linearkombination kombiniert, TR-Einsatz nötig (L8, L11, L12, Prüfungsniveau).</p>
+      <p><strong>Schritt 1 (Kollinearität):</strong> <span class="eq">p<span class="va">→</span></span> kollinear zu <span class="eq">r<span class="va">→</span></span>
+      ⟹ gleicher Faktor: <span class="eq">r<sub>1</sub>/4 = 7.5/(-6) = -1.25 ⟹ r<sub>1</sub> = -5</span>.</p>
+      <p><strong>Schritt 2 (TR):</strong> Mit <span class="eq">r<span class="va">→</span>=(-5;7.5)</span> in <span class="eq">s<span class="va">→</span>=2p<span class="va">→</span>-q<span class="va">→</span>-3r<span class="va">→</span></span>
+      einsetzen und nach <span class="eq">q<span class="va">→</span></span> auflösen: <span class="eq">q<span class="va">→</span> = 2p<span class="va">→</span>-3r<span class="va">→</span>-s<span class="va">→</span></span>.
+      TR: <span class="mono">q:=2·[4,-6]-3·[-5,7.5]-[21,-31.5]</span> ⟹ x: <span class="eq">8+15-21=2</span>,
+      y: <span class="eq">-12-22.5+31.5=-3</span>. Ergebnis: <span class="eq">q<sub>1</sub>=2, q<sub>2</sub>=-3</span>.</p>
+    </details>
+  </div>
+
+  <p style="margin-top:24px;color:var(--muted);font-size:14px;">Weitere Übungsaufgaben mit vollständigen Lösungen
+  aus deinem Skript: Skript-Aufgaben 1–7 (S. 3–10, Lösungen S. 11–12) und Aufgabensammlung Nr. 2–24 (elementare
+  Vektoroperationen) sowie Nr. 42–51 (Vektoren im Koordinatensystem, Lösungen im separaten Lösungsblatt). Rechne
+  diese vollständig durch — sie decken exakt Lernziel L10 ab.</p>
+</section>
+
+<section id="quiz">
+  <h2>12 · Quiz — Begriffe blitzschnell</h2>
+  <p class="section-sub">10 Fragen, sofortiges Feedback. Kein Ersatz für die Übungen, aber gut zum Aufwärmen.</p>
+  <div class="scorebar">
+    <span>Punkte: <strong id="score">0</strong> / <span id="total">10</span></span>
+    <button id="reset" type="button">Neu starten</button>
+  </div>
+  <div id="quizbox"></div>
+</section>
+
+<section id="simulation">
+  <h2>13 · Prüfungssimulation (mit Hilfsmitteln, ca. 25 Minuten)</h2>
+  <p class="section-sub">Realistische Mini-Prüfung, kombiniert mehrere Lernziele. Taschenrechner und Spick erlaubt —
+  aber die Methode ist nirgends direkt genannt.</p>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe A (4 Punkte)</h4></div>
+    <p>Ein Kran zieht eine Last mit zwei Seilen. Seil 1 zieht mit der Kraft <span class="eq">F<span class="va">→</span><sub>1</sub>=(30;40)</span> N,
+    Seil 2 mit <span class="eq">F<span class="va">→</span><sub>2</sub>=(-10;25)</span> N. a) Bestimme die resultierende Kraft. b) Berechne ihren Betrag.
+    c) Ist diese Situation eine skalare oder vektorielle Grösse, und warum?</p>
+    <details><summary>Musterlösung</summary>
+      <p>a) <span class="eq">F<span class="va">→</span><sub>res</sub> = F<span class="va">→</span><sub>1</sub>+F<span class="va">→</span><sub>2</sub> = (30-10; 40+25) = (20;65)</span> N.
+      b) <span class="eq">|F<span class="va">→</span><sub>res</sub>| = √(20²+65²) = √(400+4225) = √4625 ≈ 68.0</span> N.
+      c) Vektoriell — Kraft hat neben ihrer Stärke (N) immer auch eine Richtung, in die sie zieht.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe B (5 Punkte)</h4></div>
+    <p>Gegeben ein regelmässiges Sechseck ABCDEF mit Mittelpunkt M. Es gilt <span class="eq">a<span class="va">→</span>=AB<span class="va">→</span></span>,
+    <span class="eq">b<span class="va">→</span>=BC<span class="va">→</span></span>. a) Drücke <span class="eq">AM<span class="va">→</span></span> durch <span class="eq">a<span class="va">→</span></span> und
+    <span class="eq">b<span class="va">→</span></span> aus (nutze: im regelmässigen Sechseck ist <span class="eq">AD<span class="va">→</span> = 2·(a<span class="va">→</span>+b<span class="va">→</span>)</span> die
+    lange Diagonale durch M). b) Sind <span class="eq">a<span class="va">→</span></span> und <span class="eq">AD<span class="va">→</span></span> kollinear? Begründe.</p>
+    <details><summary>Musterlösung</summary>
+      <p>a) M ist Mittelpunkt der Diagonale AD, also <span class="eq">AM<span class="va">→</span> = ½AD<span class="va">→</span> = ½·2·(a<span class="va">→</span>+b<span class="va">→</span>) = a<span class="va">→</span>+b<span class="va">→</span></span>.</p>
+      <p>b) Nein — <span class="eq">a<span class="va">→</span></span> und <span class="eq">b<span class="va">→</span></span> zeigen im Sechseck in verschiedene
+      Richtungen (Innenwinkel 120°), <span class="eq">AD<span class="va">→</span>=2a<span class="va">→</span>+2b<span class="va">→</span></span> ist also nur dann ein Vielfaches von
+      <span class="eq">a<span class="va">→</span></span> allein, wenn <span class="eq">b<span class="va">→</span></span> ein Vielfaches von <span class="eq">a<span class="va">→</span></span>
+      wäre — das ist hier nicht der Fall, da <span class="eq">a<span class="va">→</span></span> und <span class="eq">b<span class="va">→</span></span> selbst nicht
+      kollinear sind. Also sind <span class="eq">a<span class="va">→</span></span> und <span class="eq">AD<span class="va">→</span></span> nicht kollinear.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe C (6 Punkte, TR)</h4></div>
+    <p>Gegeben <span class="eq">a<span class="va">→</span>=(1.5;2)</span>, <span class="eq">b<span class="va">→</span>=(10;-8)</span>, <span class="eq">c<span class="va">→</span>=(-3;-7)</span>,
+    <span class="eq">s<span class="va">→</span>=(-59;-22)</span>. Bestimme mit dem Taschenrechner die Koeffizienten <span class="eq">x</span>
+    und <span class="eq">y</span>, sodass gilt: <span class="eq">s<span class="va">→</span> = x·a<span class="va">→</span> + y·b<span class="va">→</span> - 1.5x·c<span class="va">→</span></span>.</p>
+    <details><summary>Musterlösung</summary>
+      <p>Konzept: Linearkombination mit gekoppelten Koeffizienten (<span class="eq">1.5x</span> statt eigenem
+      Parameter) — TR-Pflicht, da drei Terme mit zwei Unbekannten kombiniert werden.</p>
+      <p>TR: <span class="mono">solve(s = x·a + y·b - 1.5x·c, x, y)</span> mit den gegebenen Vektoren eingesetzt.
+      Ergebnis: <span class="eq">x=-4</span>, <span class="eq">y=-3.5</span>. Probe (x-Komponente):
+      <span class="eq">-4·1.5 + (-3.5)·10 - 1.5·(-4)·(-3) = -6-35-18 = -59</span> ✓.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe D (5 Punkte)</h4></div>
+    <p>a) Erkläre in eigenen Worten den Unterschied zwischen «kollinear» und «linear unabhängig».
+    b) Welche der drei Vektoren <span class="eq">x<span class="va">→</span>=(-5;8.5)</span>, <span class="eq">y<span class="va">→</span>=(12.5;-21)</span>,
+    <span class="eq">z<span class="va">→</span>=(1.5;-2.5)</span> sind linear abhängig? Begründe rechnerisch.</p>
+    <details><summary>Musterlösung</summary>
+      <p>a) Kollinear = parallel oder antiparallel (nur bei genau 2 Vektoren direkt anwendbar) — es gibt einen
+      Faktor <span class="eq">k</span> mit <span class="eq">k·a<span class="va">→</span>=b<span class="va">→</span></span>. Linear unabhängig ist das Gegenteil:
+      keiner der Vektoren lässt sich als Vielfaches (bzw. Linearkombination) der anderen darstellen.</p>
+      <p>b) Prüfe Faktoren zu <span class="eq">z<span class="va">→</span></span>: <span class="eq">x<span class="va">→</span>/z<span class="va">→</span></span>: <span class="eq">-5/1.5≈-3.33</span>
+      vs. <span class="eq">8.5/(-2.5)=-3.4</span> — nicht exakt gleich, also nicht kollinear zu <span class="eq">z<span class="va">→</span></span>
+      (kleine Rundungsdifferenz wäre verdächtig — mit dem TR exakt nachrechnen). <span class="eq">y<span class="va">→</span>/z<span class="va">→</span></span>:
+      <span class="eq">12.5/1.5≈8.33</span> vs. <span class="eq">-21/(-2.5)=8.4</span> — auch keine exakte
+      Übereinstimmung. Mit dem TR exakt geprüft sind <strong>keine</strong> der drei Vektoren paarweise kollinear —
+      alle drei sind linear unabhängig voneinander (im Sinne von: keiner ein Vielfaches eines anderen).</p>
+    </details>
+  </div>
+</section>
+
+<section id="lastminute">
+  <h2>14 · Last-Minute-Checkliste</h2>
+  <p class="section-sub">Kompakte Schlusskontrolle — ersetzt die Zusammenfassung nicht, sondern rundet sie ab.</p>
+  <ul class="checklist">
+    <li><input type="checkbox" id="c1"><label for="c1">Ich kann Skalar und Vektor unterscheiden und mit Alltagsbeispielen begründen (L1).</label></li>
+    <li><input type="checkbox" id="c2"><label for="c2">Ich kenne die Definition eines Vektors (Länge + Richtung) und weiss, wann zwei Vektoren gleich sind (L2).</label></li>
+    <li><input type="checkbox" id="c3"><label for="c3">Ich kann den Betrag eines Vektors in Koordinaten mit Pythagoras berechnen (L3).</label></li>
+    <li><input type="checkbox" id="c4"><label for="c4">Ich weiss, was Nullvektor und Gegenvektor sind, inkl. Betrag/Richtung (L4).</label></li>
+    <li><input type="checkbox" id="c5"><label for="c5">Ich kann Addition, Subtraktion und skalare Multiplikation grafisch und in Koordinaten anwenden (L5).</label></li>
+    <li><input type="checkbox" id="c6"><label for="c6">Ich verstehe, was eine Linearkombination ist und kann sie in Figuren (Sechseck, Würfel, Pyramide) aufstellen (L6).</label></li>
+    <li><input type="checkbox" id="c7"><label for="c7">Ich kann einen Vektor in Komponenten bzgl. zweier vorgegebener Richtungen zerlegen (L7).</label></li>
+    <li><input type="checkbox" id="c8"><label for="c8">Ich kann kollineare Vektoren erkennen (Faktor k berechnen) (L8).</label></li>
+    <li><input type="checkbox" id="c9"><label for="c9">Ich kann bestimmen, ob Vektoren linear (un)abhängig sind (L9).</label></li>
+    <li><input type="checkbox" id="c10"><label for="c10">Ich habe die Skript-Aufgaben 1–7 und die Aufgabensammlung Nr. 2–24, 42–51 vollständig gerechnet (L10).</label></li>
+    <li><input type="checkbox" id="c11"><label for="c11">Ich kann Vektoren im TR eingeben, addieren/subtrahieren, mit einem Skalar multiplizieren und <span class="eq">norm()</span> nutzen (L11).</label></li>
+    <li><input type="checkbox" id="c12"><label for="c12">Ich kann mit <span class="mono">solve()</span> die Koeffizienten einer Linearkombination finden (L12).</label></li>
+    <li><input type="checkbox" id="c13"><label for="c13">Mein A4-Spick enthält: Betragsformel, Kollinearitätsbedingung, TR-Befehle (norm, solve), Rechengesetze.</label></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <p>Erstellt aus Skript «Vektorgeometrie I» (TALS), Aufgabensammlung Nr. 2–51 und den zugehörigen Lösungen ·
+  Berufsmaturitätsschule Winterthur.</p>
+  <p><a class="backlink" href="../../../index.html">← zurück zu StudyHub</a></p>
+</footer>
+</div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var quiz = [
+    { q: "Welche der folgenden Grössen ist ein Skalar?", o: ["Kraft", "Beschleunigung", "Dichte", "Verschiebung"], a: 2, e: "Dichte hat nur einen Betrag, keine Richtung." },
+    { q: "Was hat der Nullvektor für einen Betrag?", o: ["1", "0", "unbestimmt", "abhängig vom Kontext"], a: 1, e: "Der Nullvektor hat per Definition den Betrag 0; seine Richtung ist unbestimmt." },
+    { q: "Wie berechnet man den Betrag von a→=(x;y)?", o: ["x+y", "√(x²+y²)", "x·y", "x²+y²"], a: 1, e: "Satz des Pythagoras: |a→|=√(x²+y²)." },
+    { q: "Wann sind zwei Vektoren kollinear?", o: ["wenn sie gleich lang sind", "wenn k·a→=b→ für ein k∈ℝ, k≠0 gilt", "wenn ihre Summe 0→ ist", "wenn sie senkrecht stehen"], a: 1, e: "Kollinearität bedeutet parallel/antiparallel, also ein skalares Vielfaches." },
+    { q: "Was ist der Gegenvektor von AB→?", o: ["AB→ selbst", "BA→", "0→", "2·AB→"], a: 1, e: "Der Gegenvektor hat gleichen Betrag, entgegengesetzte Richtung: -AB→=BA→." },
+    { q: "a→+(b→+c→) = (a→+b→)+c→ — welches Gesetz ist das?", o: ["Kommutativgesetz", "Assoziativgesetz", "Distributivgesetz", "Kollinearitätsgesetz"], a: 1, e: "Die Klammerung ändert sich, die Reihenfolge nicht — Assoziativgesetz." },
+    { q: "Was bedeutet 'a→ in b→ und c→ zerlegen'?", o: ["a→ als Linearkombination von b→ und c→ darstellen", "a→, b→ und c→ addieren", "den Betrag von a→ berechnen", "a→ mit einem Skalar multiplizieren"], a: 0, e: "Zerlegen heisst, a→=λb→+μc→ zu finden." },
+    { q: "Welcher TR-Befehl liefert den Betrag eines Vektors a?", o: ["abs(a)", "norm(a)", "len(a)", "solve(a)"], a: 1, e: "norm(a) berechnet die Länge (den Betrag) des Vektors." },
+    { q: "Wann ist eine Zerlegung a→=λb→+μc→ NICHT eindeutig lösbar?", o: ["wenn a→ der Nullvektor ist", "wenn b→ und c→ kollinear sind (und nicht auch parallel zu a→)", "wenn a→, b→, c→ alle verschieden lang sind", "immer eindeutig lösbar"], a: 1, e: "Sind b→ und c→ selbst parallel, spannen sie keine Ebene auf — keine eindeutige Zerlegung möglich." },
+    { q: "Für k<0 gilt für k·a→ im Vergleich zu a→:", o: ["gleiche Richtung, gleicher Betrag", "entgegengesetzte Richtung", "Betrag wird negativ", "Vektor wird zum Nullvektor"], a: 1, e: "Ein negativer Skalar dreht die Richtung um 180°, der Betrag bleibt |k|·|a→| ≥ 0." }
+  ];
+  var scoreEl = document.getElementById("score");
+  var container = document.getElementById("quizbox");
+  var score = 0;
+
+  function build() {
+    score = 0;
+    scoreEl.textContent = "0";
+    container.innerHTML = "";
+    quiz.forEach(function (item, idx) {
+      var box = document.createElement("div");
+      box.className = "quiz-q";
+      var p = document.createElement("p");
+      p.className = "q";
+      p.textContent = (idx + 1) + ". " + item.q;
+      box.appendChild(p);
+      var opts = document.createElement("div");
+      opts.className = "opts";
+      var fb = document.createElement("p");
+      fb.className = "fb";
+      item.o.forEach(function (label, oidx) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "opt";
+        btn.textContent = label;
+        btn.addEventListener("click", function () {
+          var buttons = opts.querySelectorAll("button");
+          Array.prototype.forEach.call(buttons, function (b) { b.disabled = true; });
+          if (oidx === item.a) {
+            btn.classList.add("correct");
+            score++;
+            fb.textContent = "Richtig. " + item.e;
+          } else {
+            btn.classList.add("wrong");
+            Array.prototype.forEach.call(buttons, function (b) {
+              if (b.textContent === item.o[item.a]) { b.classList.add("correct"); }
+            });
+            fb.textContent = "Nicht ganz. " + item.e;
+          }
+          scoreEl.textContent = String(score);
+        });
+        opts.appendChild(btn);
+      });
+      box.appendChild(opts);
+      box.appendChild(fb);
+      container.appendChild(box);
+    });
+  }
+
+  document.getElementById("reset").addEventListener("click", build);
+  build();
+})();
+</script>
+</body>
+</html>
