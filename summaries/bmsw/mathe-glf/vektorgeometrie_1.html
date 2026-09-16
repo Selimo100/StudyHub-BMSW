@@ -141,6 +141,36 @@ details.sol > div{padding:8px 0 2px}
 .tf button.wrong{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
 figure{margin:0}
 figcaption{font-size:.85rem;color:var(--muted)}
+
+/* Spick */
+.spick{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:10px}
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:5px;padding:9px 11px;break-inside:avoid}
+.card h4{margin:0 0 3px;font:600 1.02rem "Barlow Condensed",sans-serif;display:flex;gap:7px;align-items:baseline}
+.card h4 .num{font:700 .7rem/1.5 "JetBrains Mono",monospace;background:var(--accent);color:var(--sheet);border-radius:3px;padding:0 5px}
+.card .erk{font-size:.82rem;color:var(--muted);margin:0 0 4px}
+.card .erk b{color:var(--ink)}
+.card p{margin:.2rem 0;font-size:.9rem}
+.card .bsp{background:var(--accent-soft);border-radius:4px;padding:5px 8px;margin:4px 0 2px;font-size:.88rem}
+.card .trz{font:600 .78rem "JetBrains Mono",monospace;color:var(--muted);margin-top:4px;word-break:break-word}
+.notiz{border:1px dashed var(--line);border-radius:5px;padding:8px 11px;background:repeating-linear-gradient(transparent,transparent 25px,var(--line) 25px,var(--line) 26px);min-height:110px}
+.notiz b{font:600 .72rem "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pbreak{break-before:page}
+@media print{
+  :root{--paper:#fff;--sheet:#fff;--ink:#000;--muted:#444;--line:#999;--accent:#000;--accent-soft:#f0f0f0;--grid:#ccc}
+  @page{size:A4;margin:11mm}
+  body{padding:0;font-size:8pt}
+  nav.tabs,header.top,.noprint{display:none!important}
+  .pane{display:none!important}.pane#spick{display:block!important}
+  .wrap{padding:0;max-width:none}
+  .spick{grid-template-columns:1fr 1fr 1fr;gap:4px}
+  .card{box-shadow:none;padding:4px 6px}
+  .card h4{font-size:9.5pt;margin-bottom:1px}.card p,.card .bsp,.card .erk,.card .trz{font-size:7.4pt;line-height:1.28}
+  .card .bsp{padding:3px 5px;margin:2px 0 0}
+  .notiz{grid-column:1/-1;min-height:52mm;background:repeating-linear-gradient(transparent,transparent 7mm,var(--line) 7mm,var(--line) calc(7mm + 0.2mm))}
+  h2{font-size:15pt;margin-bottom:2px}h3{font-size:11.5pt;margin:8px 0 3px}
+  .lead{display:none}
+  details.sol{display:none}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -178,6 +208,7 @@ figcaption{font-size:.85rem;color:var(--muted)}
   <button role="tab" data-t="koord"><span class="n">§3–3.2</span>Koordinaten</button>
   <button role="tab" data-t="tr"><span class="n">§3.3</span>TI-Nspire</button>
   <button role="tab" data-t="auf"><span class="n">Nr.</span>Aufgaben</button>
+  <button role="tab" data-t="spick"><span class="n">A4</span>Spick</button>
   <button role="tab" data-t="probe"><span class="n">60′</span>Probeprüfung</button>
 </nav>
 
@@ -526,6 +557,76 @@ det(augment([3;7],[5;9]))        <span class="o">▸ -8    → nicht kollinear</
     <div class="task"><h4>Nr. 2–5</h4><details class="sol"><summary>Lösung</summary><div>2: falsch ist a = b ⇒ <i class="v">a</i> = <i class="v">b</i><br>3: (1) <i class="v u">AM</i>, <i class="v u">MD</i>, <i class="v u">FE</i>, <i class="v u">BC</i> (2) <i class="v u">AF</i>, <i class="v u">BM</i>, <i class="v u">ME</i>, <i class="v u">CD</i><br>4: (1) <i class="v u">AD</i>, <i class="v u">EH</i>, <i class="v u">FG</i> (2) <i class="v u">CF</i> (3) keiner<br>5: gleiche Richtung</div></details></div>
     <div class="task"><h4>Nr. 6, 7a–d</h4><details class="sol"><summary>Lösung</summary><div>6: falsch sind (1), (2), (3), (5)<br>7: a) 9.8 cm, 66° b) 13 cm, 27° c) 9 cm, 180° d) 13 cm, 94°</div></details></div>
     <div class="task"><h4>Nr. 9, 10, 12</h4><details class="sol"><summary>Lösung</summary><div>9: a) 2<i class="v">b</i> b) 2<i class="v">a</i> c) <i class="v">0</i> d) −2<i class="v">c</i><br>10: a) <i class="v u">AC</i> b) <i class="v u">UW</i> c) <i class="v">0</i> d) <i class="v u">CE</i> e) <i class="v u">CB</i> f) <i class="v u">UZ</i> g) <i class="v u">PS</i> h) 2<i class="v u">AC</i> i) <i class="v">0</i><br>12: a) −<i class="v">a</i> b) −<i class="v">b</i> c) <i class="v">a</i> − <i class="v">b</i> d) <i class="v">a</i> − 2<i class="v">b</i> e) 2<i class="v">b</i> − <i class="v">a</i></div></details></div>
+  </div>
+</section>
+
+<!-- ============ SPICK ============ -->
+<section class="pane" id="spick">
+  <h2>Spick – 1 Seite A4</h2>
+  <p class="lead noprint">Alle Aufgabentypen auf einer Seite: woran du sie erkennst, wie du vorgehst, ein Mini-Beispiel und der TR-Befehl. Unten bleibt rund ein Viertel der Seite frei für eigene Notizen. Drucken mit Ctrl/Cmd + P – gedruckt wird nur dieser Tab.</p>
+
+  <div class="spick">
+    <div class="card"><h4><span class="num">1</span>Terme vereinfachen · <i class="v">x</i> bestimmen</h4>
+      <p class="erk">Erkennen: <b>nur Buchstabenpaare</b>, keine Zahlen.</p>
+      <p>Minus umdrehen (−<i class="v u">CB</i> = <i class="v u">BC</i>), ordnen bis Ende = nächster Anfang, innere Buchstaben streichen. Anfang = Ende ⇒ <i class="v">0</i>.</p>
+      <div class="bsp"><i class="v u">AB</i> − <i class="v u">CB</i> + <i class="v u">CD</i> = <i class="v u">AB</i> + <i class="v u">BC</i> + <i class="v u">CD</i> = <b><i class="v u">AD</i></b><br><i class="v u">AB</i> + <i class="v">x</i> = <i class="v u">AC</i> ⇒ <i class="v">x</i> = <i class="v u">BC</i></div></div>
+
+    <div class="card"><h4><span class="num">2</span>Vektor in Figur ausdrücken</h4>
+      <p class="erk">Erkennen: <b>Würfel, Quader, Pyramide, Sechseck</b>.</p>
+      <p>Weg-Methode: Start → Ziel nur über bekannte Kanten; in Pfeilrichtung +, dagegen −, dann zusammenfassen.</p>
+      <div class="bsp">Würfel <i class="v">a</i>=<i class="v u">AB</i>, <i class="v">b</i>=<i class="v u">AD</i>, <i class="v">c</i>=<i class="v u">AE</i>, M Mitte FG:<br><i class="v u">AM</i> = A→B→F→M = <b><i class="v">a</i> + <i class="v">c</i> + ½<i class="v">b</i></b></div></div>
+
+    <div class="card"><h4><span class="num">3</span>Mitte · Schwerpunkt · Diagonale</h4>
+      <p class="erk">Erkennen: <b>Mittelpunkt, Seitenmitte, Schwerpunkt S</b>.</p>
+      <p>Mitte = halber Weg. Schwerpunkt = ⅔ ab Ecke. Diagonalenschnitt = halbe Diagonale.</p>
+      <div class="bsp"><i class="v u">AM</i> = ½<i class="v u">AB</i> · Dreieck (<i class="v">a</i>=<i class="v u">AB</i>, <i class="v">b</i>=<i class="v u">AC</i>): <i class="v u">AS</i> = ⅓(<i class="v">a</i>+<i class="v">b</i>), <i class="v u">BS</i> = −⅔<i class="v">a</i>+⅓<i class="v">b</i></div></div>
+
+    <div class="card"><h4><span class="num">4</span>Grafisch zeichnen</h4>
+      <p class="erk">Erkennen: <b>«grafisch»</b>, Pfeile im Raster.</p>
+      <p>Faktor = Länge, Minus = Gegenrichtung. Spitze an Fuss hängen, Resultierende vom Start zur letzten Spitze, beschriften.</p>
+      <div class="bsp">−3<i class="v">c</i> = 3× so lang, umgedreht.</div></div>
+
+    <div class="card"><h4><span class="num">5</span>Ablesen / Rechnen in Koordinaten</h4>
+      <p class="erk">Erkennen: <b>Vektoren in Klammern</b> oder Pfeile im KS.</p>
+      <p>Ablesen: <b>Spitze − Fuss</b>. Rechnen: x-Zeile und y-Zeile getrennt.</p>
+      <div class="bsp">(1|−2) → (4|3) ⇒ <span class="cv"><span>3</span><span>5</span></span><br>2<span class="cv"><span>−3</span><span>1</span></span> − <span class="cv"><span>−2</span><span>4</span></span> − 3<span class="cv"><span>−1</span><span>−2</span></span> = <span class="cv"><span>−1</span><span>4</span></span></div>
+      <p class="trz">TR: a:=[-3;1] · 2·a-b-3·c</p></div>
+
+    <div class="card"><h4><span class="num">6</span>Betrag (Länge)</h4>
+      <p class="erk">Erkennen: <b>|<i class="v">a</i>|, «Betrag», «wie lang»</b>.</p>
+      <p>|<i class="v">a</i>| = √(x² + y²), immer positiv; zuerst den Vektor fertig ausrechnen.</p>
+      <div class="bsp"><span class="cv"><span>−9</span><span>−5</span></span> ⇒ √(81+25) = √106 ≈ 10.30</div>
+      <p class="trz">TR: norm([-9;-5])</p></div>
+
+    <div class="card"><h4><span class="num">7</span>Kollinear · fehlende Koordinate</h4>
+      <p class="erk">Erkennen: <b>«kollinear / parallel / linear abhängig»</b> oder Buchstaben statt Zahlen (b₁, r₂).</p>
+      <p>Beide Komponenten teilen: gleicher Faktor k ⇒ kollinear (Länge egal). Fehlende Zahl: k aus bekannter Spalte, dann einsetzen. «Summe = <i class="v">0</i>»: x-Summe = 0, y-Summe = 0.</p>
+      <div class="bsp"><span class="cv"><span>3</span><span>7</span></span>, <span class="cv"><span>4.5</span><span>10.5</span></span>: 1.5 und 1.5 ⇒ kollinear<br><i class="v">p</i>=<span class="cv"><span>4</span><span>−6</span></span>, <i class="v">r</i>=<span class="cv"><span>−5</span><span>r₂</span></span>: k=−1.25 ⇒ r₂ = 7.5</div>
+      <p class="trz">TR: det(augment(a,b)) = 0 ⇒ kollinear</p></div>
+
+    <div class="card"><h4><span class="num">8</span>Zerlegung · Koeffizienten x, y</h4>
+      <p class="erk">Erkennen: <b>«zerlegen», «als LK von <i class="v">a</i> und <i class="v">b</i> darstellen»</b>, zwei Zahlen gesucht.</p>
+      <p>Ansatz <i class="v">c</i> = x<i class="v">a</i> + y<i class="v">b</i> ⇒ zwei Gleichungen (x-Zeile, y-Zeile) ⇒ TR. Steht x mehrfach da, zuerst ordnen: x(<i class="v">a</i>−1.5<i class="v">c</i>) + y<i class="v">b</i>.</p>
+      <div class="bsp"><i class="v">c</i>=<span class="cv"><span>7</span><span>7</span></span>, <i class="v">a</i>=<span class="cv"><span>3</span><span>1</span></span>, <i class="v">b</i>=<span class="cv"><span>−1</span><span>2</span></span> ⇒ 3x−y=7, x+2y=7 ⇒ x=3, y=2 ⇒ <i class="v">c</i> = 3<i class="v">a</i>+2<i class="v">b</i></div>
+      <p class="trz">TR: linSolve({3x-y=7,x+2y=7},{x,y}) · simult(augment(a,b),c)</p></div>
+
+    <div class="card"><h4><span class="num">9</span>Nach einem Vektor auflösen</h4>
+      <p class="erk">Erkennen: <b>gesuchter Vektor in einer Gleichung</b>.</p>
+      <p>Wie Zahlengleichung umstellen, erst zum Schluss Koordinaten einsetzen.</p>
+      <div class="bsp">½<i class="v">a</i> + 3<i class="v">b</i> = <i class="v">c</i>, <i class="v">a</i>=<span class="cv"><span>2</span><span>7</span></span>, <i class="v">c</i>=<span class="cv"><span>4</span><span>−1</span></span> ⇒ <i class="v">b</i> = (<i class="v">c</i>−½<i class="v">a</i>):3 = <span class="cv"><span>1</span><span>−1.5</span></span></div>
+      <p class="trz">TR: (c-0.5·a)/3</p></div>
+
+    <div class="card"><h4><span class="num">10</span>Kräfte · Boot im Fluss</h4>
+      <p class="erk">Erkennen: <b>Text mit N, m/s, Strömung, Seilen</b>.</p>
+      <p>Alle Vektoren addieren, dann Betrag. Zeit = Weg : Geschwindigkeit in dieser Richtung; Abdrift = Strömung · Zeit.</p>
+      <div class="bsp"><span class="cv"><span>30</span><span>40</span></span> + <span class="cv"><span>−10</span><span>25</span></span> = <span class="cv"><span>20</span><span>65</span></span>, |<i class="v">F</i>| = √4625 ≈ 68.0 N</div></div>
+
+    <div class="card"><h4><span class="num">11</span>TR-Karte &amp; Merksätze</h4>
+      <p class="trz">a:=[3;1] · a+b · a−b · 5·a · −a · norm(a)<br>linSolve({…},{x,y}) · simult(augment(a,b),c) · det(augment(a,b))</p>
+      <p class="erk"><b>Kein solve()</b> – nur CAS. Variablen bleiben gespeichert ⇒ neu zuweisen. 2D-Gleichung = 2 Skalargleichungen.</p>
+      <p class="erk">|<i class="v">a</i>+<i class="v">b</i>| = |<i class="v">a</i>|+|<i class="v">b</i>| nur bei gleicher Richtung · Betrag ≠ Vektor · kollinear hängt nur an der Richtung · in der Ebene max. 2 unabhängige Vektoren · Skalar: Masse, Zeit, Temperatur / Vektor: Kraft, Geschwindigkeit, Wind</p></div>
+
+    <div class="notiz"><b>Eigene Notizen</b></div>
   </div>
 </section>
 
