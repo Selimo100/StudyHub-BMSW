@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VWL Kap. 8 · Grundlagen der Volkswirtschaftslehre · Prüfungsvorbereitung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:wght@400;500;600&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eff2ee;
+  --paper:#fdfdfa;
+  --ink:#16201c;
+  --ink-soft:#44524c;
+  --line:#d8dfd9;
+  --green:#1d6b56; --green-soft:#e0f0ea;
+  --geld:#2f6db2; --geld-bg:#e3edf8;
+  --gut:#d9760f; --gut-bg:#fcefdd;
+  --plum:#8a2f6b; --plum-bg:#f6e6f0;
+  --red:#b83a2e; --red-bg:#fbe8e5;
+  --gold:#a0730f; --gold-bg:#f7eed4;
+  --m1:#d9624a; --m2:#ef8f2e; --m3:#f2c233; --m4:#8fb04a; --m5:#5a8dc6;
+  --shadow:0 1px 2px rgba(20,40,30,.05),0 10px 30px rgba(20,50,40,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:118px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Spectral",Georgia,serif;font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 6% 4%,rgba(29,107,86,.06),transparent 40%),radial-gradient(circle at 96% 96%,rgba(217,118,15,.05),transparent 45%)}
+h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;line-height:1.15;color:var(--ink);font-weight:600}
+.ui,button,input,select{font-family:"Archivo",system-ui,sans-serif}
+a{color:var(--green)}
+
+header.top{position:sticky;top:0;z-index:60;background:rgba(239,242,238,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-inner{max-width:1180px;margin:0 auto;padding:9px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{font-family:"Archivo";font-weight:800;font-size:14px;display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+.logo .mark{width:26px;height:26px;background:var(--green);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:13px;transform:rotate(-4deg)}
+.progress-mini{margin-left:auto;font-family:"Archivo";font-size:12.5px;font-weight:700;color:var(--ink-soft);display:flex;align-items:center;gap:8px}
+.progress-mini .bar{width:120px;height:8px;background:var(--line);border-radius:9px;overflow:hidden}
+.progress-mini .bar i{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
+nav.subnav{border-top:1px solid var(--line)}
+.subnav-inner{max-width:1180px;margin:0 auto;padding:6px 22px;display:flex;gap:3px;overflow-x:auto;scrollbar-width:thin}
+nav.subnav a{font-family:"Archivo";font-size:12.5px;font-weight:600;color:var(--ink-soft);text-decoration:none;padding:5px 10px;border-radius:7px;white-space:nowrap}
+nav.subnav a:hover,nav.subnav a:focus-visible{background:var(--green-soft);color:var(--green)}
+nav.subnav a.practice{color:var(--gut)}
+
+.hero{max-width:1180px;margin:0 auto;padding:44px 22px 10px}
+.kicker{font-family:"Archivo";font-weight:700;letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--ink-soft)}
+.hero h1{font-size:clamp(36px,6.4vw,72px);font-weight:900;margin:.14em 0 .12em;letter-spacing:-1.5px}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero .lead{font-size:20px;color:var(--ink-soft);max-width:760px}
+.exam-strip{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.exam-card{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:11px 16px;box-shadow:var(--shadow)}
+.exam-card .l{font-family:"Archivo";font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-soft);opacity:.75}
+.exam-card .v{font-family:"Fraunces";font-size:19px;font-weight:600;margin-top:2px}
+
+main{max-width:1180px;margin:0 auto;padding:0 22px 90px}
+section{scroll-margin-top:118px;margin-top:54px}
+.sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px solid var(--ink);padding-bottom:10px;margin-bottom:22px;flex-wrap:wrap}
+.sec-num{font-family:"Archivo";font-weight:800;font-size:14px;color:#fff;background:var(--green);padding:4px 11px;border-radius:8px}
+.sec-head h2{font-size:clamp(25px,3.8vw,38px);font-weight:700;letter-spacing:-.7px;margin:0}
+.lz{font-family:"Archivo";font-size:11.5px;font-weight:800;letter-spacing:.5px;background:var(--ink);color:#fff;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.sec-head .lz{margin-left:auto}
+.practice-banner{margin:70px 0 0;border-radius:20px;padding:32px 30px;color:#fff;background:linear-gradient(120deg,#8a4a08,#d9760f);position:relative;overflow:hidden}
+.practice-banner h2{color:#fff;font-size:clamp(30px,5vw,50px);font-weight:900;margin:.05em 0}
+.practice-banner p{margin:0;max-width:700px;opacity:.95}
+.practice-banner .ghost{position:absolute;right:22px;top:50%;transform:translateY(-50%);font-family:"Fraunces";font-weight:900;font-size:120px;opacity:.14;line-height:1}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px 28px;box-shadow:var(--shadow);margin:18px 0}
+.card h3{font-size:24px;margin:0 0 8px}
+.card h4{font-size:19px;margin:22px 0 6px}
+p{margin:0 0 14px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.grid2 .card,.grid3 .card{margin:0}
+.def{background:var(--green-soft);border:1.5px solid var(--green);border-radius:13px;padding:14px 18px;margin:16px 0;font-size:17.5px}
+.def b.t{font-family:"Archivo";font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--green);display:block;margin-bottom:2px}
+.note,.warn,.tip,.memo{border-radius:0 11px 11px 0;padding:13px 18px;margin:16px 0;font-size:16.5px}
+.note{background:var(--gold-bg);border-left:4px solid var(--gold)} .note strong{color:var(--gold)}
+.warn{background:var(--red-bg);border-left:4px solid var(--red)} .warn strong{color:var(--red)}
+.tip{background:var(--geld-bg);border-left:4px solid var(--geld)} .tip strong{color:var(--geld)}
+.memo{background:#fff;border:2px dashed var(--green);border-radius:12px}
+.memo strong:first-child{font-family:"Archivo";font-size:12px;letter-spacing:1.3px;text-transform:uppercase;color:var(--green)}
+.filled{position:relative;background:#fffdf4;border:1.5px solid #e6d59a;border-radius:14px;padding:18px 20px 14px;margin:18px 0}
+.filled::before{content:"Dossier ausgefüllt";position:absolute;top:-11px;left:16px;background:#e6d59a;color:#5b4708;font-family:"Archivo";font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:2px 9px;border-radius:6px}
+.filled.ah::before{content:"Arbeitsheft gelöst"}
+.filled h4{margin-top:4px}
+.term{font-weight:600;color:var(--green)}
+.geldc{color:var(--geld);font-weight:600} .gutc{color:var(--gut);font-weight:600}
+
+ul.clean{list-style:none;padding:0;margin:12px 0}
+ul.clean li{padding:6px 0 6px 28px;position:relative;border-bottom:1px dashed var(--line)}
+ul.clean li:last-child{border-bottom:none}
+ul.clean li::before{content:"→";position:absolute;left:4px;top:6px;color:var(--green);font-family:"Archivo";font-weight:800}
+ul.check li::before{content:"✓"}
+ul.cross li::before{content:"✕";color:var(--red)}
+
+.tbl-wrap{overflow-x:auto;margin:18px 0;border-radius:13px;border:1px solid var(--line);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:16px;background:var(--paper);min-width:540px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:"Archivo";font-weight:700;font-size:12.5px;letter-spacing:.4px;background:var(--ink);color:#fff;text-transform:uppercase}
+tbody tr:nth-child(even){background:rgba(216,223,217,.3)}
+td.x{text-align:center;font-family:"Archivo";font-weight:800;color:var(--green)}
+.pill{font-family:"Archivo";font-weight:700;font-size:12px;padding:2px 9px;border-radius:20px;white-space:nowrap;display:inline-block}
+.pill.g{background:var(--geld-bg);color:var(--geld)} .pill.o{background:var(--gut-bg);color:#9a5208}
+.pill.gr{background:var(--green-soft);color:var(--green)} .pill.r{background:var(--red-bg);color:var(--red)} .pill.p{background:var(--plum-bg);color:var(--plum)}
+
+/* Lernziele */
+.lz-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.lz-list li{display:flex;gap:12px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.lz-list input{width:20px;height:20px;margin-top:4px;accent-color:var(--green);flex:none}
+.lz-list .id{font-family:"Archivo";font-weight:800;font-size:13px;color:#fff;background:var(--ink);border-radius:6px;padding:1px 7px;margin-top:3px;flex:none}
+.lz-list label{flex:1;font-size:16.5px;cursor:pointer}
+.lz-list a{font-family:"Archivo";font-size:12.5px;font-weight:700;white-space:nowrap;margin-top:4px}
+.lz-list li.done{background:var(--green-soft)}
+.focus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:18px}
+.focus{border-radius:14px;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--green)}
+.focus h4{margin:0 0 6px;font-size:18px}
+.focus ul{margin:0;padding-left:18px;font-size:15.5px}
+.focus.f2{border-top-color:var(--geld)} .focus.f3{border-top-color:var(--gut)} .focus.f4{border-top-color:var(--red)}
+
+/* Maslow */
+.maslow-wrap{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:22px;align-items:start}
+@media(max-width:760px){.maslow-wrap{grid-template-columns:1fr}}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0}
+.pyr button{border:none;color:#1b1b1b;font-weight:700;font-size:13.5px;padding:0 6px;height:58px;cursor:pointer;clip-path:polygon(10% 0,90% 0,100% 100%,0 100%);transition:filter .15s,transform .15s;line-height:1.15}
+.pyr button:hover,.pyr button:focus-visible{filter:brightness(1.08);transform:scale(1.02);outline:none}
+.pyr button.on{outline:none;filter:saturate(1.3) brightness(.95)}
+.pyr .l5{width:40%;background:var(--m5);clip-path:polygon(50% 0,50% 0,100% 100%,0 100%);color:#fff;height:84px;padding-top:36px;font-size:12px}
+.pyr .l4{width:52%;background:var(--m4)} .pyr .l3{width:68%;background:var(--m3)} .pyr .l2{width:84%;background:var(--m2)} .pyr .l1{width:100%;background:var(--m1);color:#fff}
+.pyr-info{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;min-height:220px;border-left:6px solid var(--m1)}
+.pyr-info h4{margin:0 0 6px}
+
+/* Kreislauf SVG */
+.circ-controls{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.btn{font-family:"Archivo";font-weight:700;font-size:13.5px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:9px;padding:7px 13px;cursor:pointer;transition:.15s}
+.btn:hover,.btn:focus-visible{border-color:var(--green);color:var(--green);outline:none}
+.btn.on{background:var(--green);border-color:var(--green);color:#fff}
+.btn.or.on{background:var(--gut);border-color:var(--gut)}
+.btn.sm{font-size:12.5px;padding:5px 10px}
+.circ-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;overflow-x:auto}
+.circ-box svg{display:block;width:100%;min-width:640px;height:auto}
+svg .node rect{rx:10;stroke-width:2}
+svg .node text{font-family:"Archivo";font-weight:800;font-size:17px;text-anchor:middle;dominant-baseline:middle}
+svg .flow path{fill:none;stroke-width:3;transition:opacity .25s,stroke-width .2s}
+svg .flow text{font-family:"Archivo";font-size:12.5px;font-weight:600;transition:opacity .25s}
+svg .flow.geld path{stroke:var(--geld)} svg .flow.geld text{fill:var(--geld)}
+svg .flow.gut path{stroke:var(--gut);stroke-dasharray:9 6} svg .flow.gut text{fill:#a55a0a}
+svg .flow.off{opacity:0;pointer-events:none}
+svg .flow.dim{opacity:.13}
+svg .flow.hl path{stroke-width:6}
+svg .flow.hl text{font-weight:800}
+svg .flow.hl.geld path{stroke:#7a2fb8} svg .flow.hl.geld text{fill:#7a2fb8}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-family:"Archivo";font-size:13px;font-weight:600;margin:6px 4px}
+.legend span::before{content:"";display:inline-block;width:30px;height:0;border-top:3px solid var(--geld);vertical-align:middle;margin-right:6px}
+.legend span.gu::before{border-top:3px dashed var(--gut)}
+.legend span.hl::before{border-top:5px solid #7a2fb8}
+.chain{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-top:12px}
+.chain ol{margin:6px 0 10px;padding-left:22px}
+.chain ol li{margin:3px 0}
+
+/* Übungen */
+.ex{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:14px 0;box-shadow:var(--shadow)}
+.ex-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.ex-head h4{margin:0;font-size:18.5px;margin-right:auto}
+.lvl{font-family:"Archivo";font-weight:800;font-size:11.5px;border-radius:6px;padding:2px 8px;color:#fff}
+.lvl1{background:#5d8f6f}.lvl2{background:#2f6db2}.lvl3{background:#b0730e}.lvl4{background:#b83a2e}.lvl5{background:#5b2a6e}
+.lvl-filter{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 4px}
+details{margin-top:10px;border-radius:11px;border:1.5px solid var(--green);background:var(--green-soft)}
+details>summary{cursor:pointer;font-family:"Archivo";font-weight:700;font-size:14px;color:var(--green);padding:8px 14px;list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"▸ ";}
+details[open]>summary::before{content:"▾ ";}
+details .sol{padding:2px 16px 12px;font-size:16.5px}
+details .sol p:last-child{margin-bottom:0}
+details.plain{border-color:var(--line);background:var(--paper)}
+details.plain>summary{color:var(--ink)}
+
+/* Trainer */
+.trainer{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);margin:18px 0}
+.trainer .q{font-family:"Fraunces";font-size:21px;font-weight:600;margin:6px 0 12px}
+.trainer .opts{display:flex;flex-wrap:wrap;gap:8px}
+.trainer .fb{margin-top:12px;font-size:16.5px;min-height:1.6em}
+.trainer .fb.ok{color:var(--green)} .trainer .fb.no{color:var(--red)}
+.trainer .meta{font-family:"Archivo";font-size:12.5px;font-weight:700;color:var(--ink-soft);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+/* Flashcards */
+.fc-stage{perspective:1200px;max-width:640px;margin:16px auto}
+.fc{position:relative;height:250px;cursor:pointer;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip{transform:rotateY(180deg)}
+.fc .side{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;box-shadow:var(--shadow)}
+.fc .front{background:var(--green);color:#fff;font-family:"Fraunces";font-size:25px;font-weight:600}
+.fc .back{background:var(--paper);border:2px solid var(--green);transform:rotateY(180deg);font-size:17px}
+.fc-ctrl{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+/* Quiz */
+.quiz-q{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:12px 0}
+.quiz-q .qt{font-weight:600;margin-bottom:8px}
+.quiz-q .qo{display:grid;gap:6px}
+.quiz-q button.opt{text-align:left;font-size:15px;font-weight:500;border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:8px 12px;cursor:pointer}
+.quiz-q button.opt:hover:not(:disabled){border-color:var(--green)}
+.quiz-q button.opt.right{background:var(--green-soft);border-color:var(--green);color:var(--green);font-weight:700}
+.quiz-q button.opt.wrong{background:var(--red-bg);border-color:var(--red);color:var(--red)}
+.quiz-q .ex-txt{display:none;margin-top:8px;font-size:15.5px;color:var(--ink-soft)}
+.quiz-q.answered .ex-txt{display:block}
+.score{position:sticky;bottom:12px;margin:18px auto 0;max-width:340px;text-align:center;background:var(--ink);color:#fff;font-family:"Archivo";font-weight:700;border-radius:30px;padding:9px 16px;box-shadow:var(--shadow);z-index:5}
+
+.sim-head{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.timer{font-family:"Archivo";font-weight:800;font-size:22px;background:var(--ink);color:#fff;border-radius:10px;padding:4px 14px;min-width:96px;text-align:center}
+.pts{font-family:"Archivo";font-weight:800;font-size:12px;background:var(--gold-bg);color:var(--gold);border-radius:6px;padding:2px 8px}
+.checklist li{cursor:pointer}
+footer{text-align:center;font-family:"Archivo";font-size:13px;color:var(--ink-soft);padding:30px 16px 40px}
+@media(max-width:600px){
+  body{font-size:17px}
+  .card,.ex,.trainer{padding:18px 16px}
+  main,.hero,.top-inner,.subnav-inner{padding-left:16px;padding-right:16px}
+  .progress-mini .bar{width:70px}
+  .fc{height:290px}
+}
+@media print{header.top,.circ-controls,.lvl-filter,.score,.fc-stage,.fc-ctrl{display:none}details{border:none}details .sol{display:block}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="logo" href="#top"><span class="mark">8</span>VWL · Grundlagen der Volkswirtschaftslehre</a>
+    <div class="progress-mini" aria-live="polite"><span id="progTxt">0/9 Lernziele</span><span class="bar"><i id="progBar"></i></span></div>
+  </div>
+  <nav class="subnav" aria-label="Kapitelnavigation">
+    <div class="subnav-inner">
+      <a href="#ziele">Lernziele</a>
+      <a href="#knappheit">Knappheit</a>
+      <a href="#opportunitaet">Opportunitätskosten</a>
+      <a href="#maslow">Maslow</a>
+      <a href="#beduerfnisse">Bedürfnisarten</a>
+      <a href="#gueter">Güter</a>
+      <a href="#faktoren">Produktionsfaktoren</a>
+      <a href="#prinzip">Ökon. Prinzip</a>
+      <a href="#kreislauf">Kreislauf</a>
+      <a href="#staat">Staat &amp; Massnahmen</a>
+      <a class="practice" href="#uebungen">Übungen</a>
+      <a class="practice" href="#arbeitsheft">Arbeitsheft</a>
+      <a class="practice" href="#karten">Karten</a>
+      <a class="practice" href="#quiz">Quiz</a>
+      <a class="practice" href="#simulation">Prüfung</a>
+      <a class="practice" href="#repetition">Last Minute</a>
+    </div>
+  </nav>
+</header>
+
+<div class="hero" id="top">
+  <div class="kicker">BMS Winterthur · Wirtschaft und Recht · Kapitel 8</div>
+  <h1>Grundlagen der <em>Volkswirtschaftslehre</em></h1>
+  <p class="lead">Knappheit, Opportunitätskosten, Bedürfnisse, Güter, Produktionsfaktoren, ökonomisches Prinzip und Wirtschaftskreislauf – vollständig erklärt, mit den ausgefüllten Dossierseiten, gelöstem Arbeitsheft und einer Prüfungssimulation.</p>
+  <div class="exam-strip">
+    <div class="exam-card"><div class="l">Prüfung</div><div class="v">Do, 24. September 2026</div></div>
+    <div class="exam-card"><div class="l">Umfang</div><div class="v">Kapitel 8.1 – 8.4</div></div>
+    <div class="exam-card"><div class="l">Lernziele</div><div class="v">9 · alle abgedeckt</div></div>
+    <div class="exam-card"><div class="l">Übungsteil</div><div class="v">28 Aufgaben · Quiz · Simulation</div></div>
+  </div>
+</div>
+
+<main>
+<section id="ziele">
+  <div class="sec-head"><span class="sec-num">00</span><h2>Lernziele &amp; Prüfungsfokus</h2></div>
+  <p>Die Lernziele sind der Prüfungsumfang. Hake ein Lernziel erst ab, wenn du es <b>ohne Hilfe erklären</b> und die zugehörigen Übungen lösen kannst. Dein Fortschritt wird in diesem Browser gespeichert.</p>
+  <ul class="lz-list" id="lzList">
+    <li><input type="checkbox" id="lz1"><span class="id">L1</span><label for="lz1">Die Knappheit von Ressourcen als Grundproblem des Wirtschaftens erklären und die Notwendigkeit wirtschaftlicher Entscheidungen begründen.</label><a href="#knappheit">Theorie →</a></li>
+    <li><input type="checkbox" id="lz2"><span class="id">L2</span><label for="lz2">Opportunitätskosten für Haushalte, Unternehmen und Staat bestimmen sowie versunkene Kosten (Sunk Costs) vom zukünftigen Nutzen unterscheiden.</label><a href="#opportunitaet">Theorie →</a></li>
+    <li><input type="checkbox" id="lz3"><span class="id">L3</span><label for="lz3">Die Stufen der Maslow'schen Bedürfnispyramide benennen und Bedürfnisse konkreten Kategorien zuordnen.</label><a href="#maslow">Theorie →</a></li>
+    <li><input type="checkbox" id="lz4"><span class="id">L4</span><label for="lz4">Bedürfnisse (Grund-, Wahl-, Individual-, Kollektiv-, materielle und immaterielle) unterscheiden und an Beispielen erläutern.</label><a href="#beduerfnisse">Theorie →</a></li>
+    <li><input type="checkbox" id="lz5"><span class="id">L5</span><label for="lz5">Güterarten unterscheiden: freie/wirtschaftliche, materielle/immaterielle, Gebrauchs-/Verbrauchsgüter, Konsum-/Investitionsgüter.</label><a href="#gueter">Theorie →</a></li>
+    <li><input type="checkbox" id="lz6"><span class="id">L6</span><label for="lz6">Die Produktionsfaktoren Arbeit, Kapital, Technologie und natürliche Ressourcen beschreiben und auf Güter und Dienstleistungen anwenden.</label><a href="#faktoren">Theorie →</a></li>
+    <li><input type="checkbox" id="lz7"><span class="id">L7</span><label for="lz7">Das ökonomische Prinzip (Maximum-, Minimum-, Optimumprinzip) erklären und auf praktische Beispiele anwenden.</label><a href="#prinzip">Theorie →</a></li>
+    <li><input type="checkbox" id="lz8"><span class="id">L8</span><label for="lz8">Den einfachen und erweiterten Wirtschaftskreislauf erläutern und die Rollen von Haushalten, Unternehmen, Banken, Staat und Ausland beschreiben.</label><a href="#kreislauf">Theorie →</a></li>
+    <li><input type="checkbox" id="lz9"><span class="id">L9</span><label for="lz9">Geld- und Güterströme analysieren und die Auswirkungen staatlicher Massnahmen auf die Wirtschaft beurteilen.</label><a href="#staat">Theorie →</a></li>
+  </ul>
+
+  <div class="focus-grid">
+    <div class="focus"><h4>Auswendig können</h4><ul>
+      <li>Definition Opportunitätskosten (<i>nächstbeste</i> Alternative)</li>
+      <li>5 Maslow-Stufen in richtiger Reihenfolge</li>
+      <li>3 Bedürfnis-Paare, 4 Güter-Paare</li>
+      <li>4 Produktionsfaktoren</li>
+      <li>Maximum / Minimum / Optimum</li>
+      <li>5 Akteure des erweiterten Kreislaufs</li>
+    </ul></div>
+    <div class="focus f2"><h4>Verstehen &amp; begründen</h4><ul>
+      <li>Warum Knappheit Entscheidungen erzwingt</li>
+      <li>Warum Sunk Costs nicht in Entscheidungen gehören</li>
+      <li>Warum dasselbe Gut je nach Verwendung anders eingeteilt wird</li>
+      <li>Warum Geld- und Güterströme gegenläufig sind</li>
+    </ul></div>
+    <div class="focus f3"><h4>Anwenden (Prüfungsaufgaben)</h4><ul>
+      <li>Fallbeispiele (Profile) Bedürfnissen und Güterarten zuordnen</li>
+      <li>Produktionsfaktoren für ein Produkt bestimmen</li>
+      <li>Transaktionen im Kreislauf einzeichnen</li>
+      <li>Wirkungskette einer Staatsmassnahme beschreiben</li>
+    </ul></div>
+    <div class="focus f4"><h4>Typische Fallen</h4><ul>
+      <li>Opportunitätskosten = «Geld» ✕ → konkrete Alternative</li>
+      <li>Kapital = Geld ✕ → Maschinen, Gebäude</li>
+      <li>«Mit minimalem Aufwand maximalen Ertrag» ✕ unmöglich</li>
+      <li>Geld und Güter in die gleiche Richtung ✕</li>
+      <li>Nur einen Geldstrom eintragen, obwohl zwei entstehen</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= L1 KNAPPHEIT ================= -->
+<section id="knappheit">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Knappheit – das Grundproblem</h2><span class="lz">L1</span></div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Schlaraffenland (Märchen)</h3>
+      <ul class="clean cross">
+        <li>Alles ist im <b>Überfluss</b> vorhanden (Häuser aus Lebkuchen, Geld wächst auf Bäumen).</li>
+        <li>Niemand muss arbeiten – Faulheit wird sogar belohnt.</li>
+        <li>Niemand muss wählen → <b>keine Entscheidungen</b>, kein Verzicht.</li>
+        <li>Folge: Es gibt nichts zu «wirtschaften».</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Realität</h3>
+      <ul class="clean check">
+        <li>Unsere <b>Bedürfnisse sind unbegrenzt</b> – es gibt immer neue Wünsche.</li>
+        <li>Die <b>Mittel sind begrenzt</b>: Zeit, Geld, Energie, Rohstoffe, Arbeitskräfte.</li>
+        <li>Wir müssen <b>abwägen und entscheiden</b>, wofür wir die Mittel einsetzen.</li>
+        <li>Jede Entscheidung bedeutet Verzicht auf eine Alternative.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="def"><b class="t">Definition Knappheit</b>Knappheit bedeutet, dass die verfügbaren Mittel (Ressourcen und wirtschaftliche Güter) <b>nicht ausreichen, um alle Bedürfnisse zu befriedigen</b>. Knappheit betrifft die ganze Volkswirtschaft <i>und</i> jeden einzelnen Menschen – auch reiche Menschen haben nur 24 Stunden am Tag und begrenzte Energie.</div>
+
+  <div class="card">
+    <h3>Die Logik in einer Kette</h3>
+    <p style="font-family:Archivo;font-weight:700;font-size:16px;line-height:2">
+      <span class="pill gr">unbegrenzte Bedürfnisse</span> + <span class="pill r">begrenzte Mittel</span> → <span class="pill p">Knappheit</span> → <span class="pill g">Entscheidungen nötig</span> → <span class="pill o">Verzicht (Opportunitätskosten)</span> → <span class="pill gr">möglichst sinnvoller Mitteleinsatz (ökonomisches Prinzip)</span>
+    </p>
+    <p><b>Wirtschaften</b> heisst deshalb: knappe Mittel so einsetzen, dass möglichst viele Bedürfnisse möglichst gut befriedigt werden. Genau damit beschäftigt sich die <span class="term">Volkswirtschaftslehre (VWL)</span>: Wie können wir unsere knappen Ressourcen so einsetzen, dass möglichst viele Bedürfnisse befriedigt werden – und welche Güter stehen dafür zur Verfügung?</p>
+    <div class="note"><strong>Abgrenzung VWL – BWL:</strong> Die <b>VWL</b> betrachtet die Wirtschaft als Ganzes und das Zusammenwirken aller Wirtschaftsteilnehmer (z. B. Arbeitslosigkeit, Konjunktur, Preis des Erdöls). Die <b>BWL</b> (Betriebswirtschaftslehre) betrachtet das einzelne Unternehmen (z. B. Einkauf, Lagerung, Finanzierung, Mitarbeitermotivation) und gibt praktische Ratschläge.</div>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 4 · Fragen zum Text «Schlaraffenland»</h4>
+    <p><b>Was fällt beim Lesen auf?</b> Essen und Trinken stehen im Zentrum, alles ist masslos übertrieben dargestellt; Faulheit, Lügen und Nichtstun werden belohnt, Fleiss wird bestraft (wer gern arbeitet, wird des Landes verwiesen).</p>
+    <p><b>Unterschiede zu unserem Alltag?</b> Bei uns muss man arbeiten, um Einkommen zu erzielen und Güter kaufen zu können. Güter haben einen Preis, weil sie knapp sind. Im Schlaraffenland ist alles gratis und unbegrenzt vorhanden – niemand muss sich entscheiden.</p>
+    <p><b>Unrealistisch/übertrieben?</b> Häuser aus Eierfladen und Lebkuchen, Brunnen voller Wein, gebratene Vögel fliegen in den Mund, es regnet Honig und schneit Zucker, Geld wächst auf Bäumen, Kleider wachsen im Wald, ein Jungbad macht alte Menschen jung.</p>
+    <p><b>Fehlt etwas für ein gutes Leben?</b> Sinn und Erfüllung (Selbstverwirklichung), echte Anerkennung für Leistung, Gesundheit (Völlerei), geistige Herausforderung, echte Beziehungen. Ohne Knappheit gibt es auch keinen Anreiz, etwas zu leisten oder zu lernen.</p>
+    <h4>Dossier S. 11 · Bedürfnisse im Schlaraffenland</h4>
+    <p><b>a) Welches Bedürfnis steht an erster Stelle?</b> Die körperlichen Grundbedürfnisse: Essen, Trinken, Schlafen/Faulenzen (dazu Kleider und Wohnen). In der Realität ist das anders, weil wir diese Bedürfnisse nicht gratis befriedigen können – wir müssen dafür arbeiten, Geld verdienen und uns entscheiden. Wer die Grundbedürfnisse gesichert hat, strebt zudem nach höheren Bedürfnissen.</p>
+    <p><b>b) Bedürfnisse, die dort kaum vorkommen?</b> Sicherheit (z. B. festes Einkommen – überflüssig, weil alles gratis ist), Wertschätzung für echte Leistung, Selbstverwirklichung (Sinnhaftigkeit, sich weiterentwickeln), Gesundheit.</p>
+  </div>
+</section>
+
+<!-- ================= L2 OPPORTUNITÄTSKOSTEN ================= -->
+<section id="opportunitaet">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Opportunitätskosten &amp; Sunk Costs</h2><span class="lz">L2</span></div>
+
+  <div class="def"><b class="t">Definition Opportunitätskosten</b>Opportunitätskosten sind der <b>Wert (Nutzen) der nächstbesten Alternative</b>, auf die verzichtet wird, wenn man eine Entscheidung trifft. <br><small>Synonym: Verzichtskosten, Alternativkosten.</small></div>
+
+  <div class="card">
+    <h3>Richtig bestimmen – in 3 Schritten</h3>
+    <ol>
+      <li><b>Entscheidung</b> erkennen: Wofür wird die knappe Ressource (Zeit, Geld, Energie, Boden …) eingesetzt?</li>
+      <li><b>Alternativen</b> auflisten: Was hätte man mit derselben Ressource sonst tun können?</li>
+      <li><b>Nächstbeste</b> Alternative wählen und ihren <b>Nutzen</b> benennen → das sind die Opportunitätskosten.</li>
+    </ol>
+    <div class="warn"><strong>Typischer Fehler:</strong> «Die Opportunitätskosten sind Geld.» – Geld ist die <i>eingesetzte Ressource</i>, nicht der Verzicht. Richtig: «das, was ich mit den CHF 150 sonst gemacht hätte, z. B. neue Schuhe». Und: Es zählt <b>nur die nächstbeste</b> Alternative, nicht die Summe aller Alternativen.</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Entscheidung</th><th>Worauf wird verzichtet?</th><th>Opportunitätskosten</th></tr></thead>
+      <tbody>
+        <tr><td>Ins Kino gehen</td><td>Für eine Prüfung lernen</td><td>Bessere Vorbereitung (bessere Note)</td></tr>
+        <tr><td>Am Samstag arbeiten</td><td>Freunde treffen</td><td>Zeit mit Freunden</td></tr>
+        <tr><td>Ein neues Smartphone kaufen</td><td>Geld für Ferien ausgeben</td><td>Das Ferienerlebnis</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 9 · Aktivität «Erkennen Sie die Opportunitätskosten» (korrigiert &amp; vervollständigt)</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Situation</th><th>Akteur</th><th>Opportunitätskosten (nächstbeste Alternative)</th></tr></thead>
+      <tbody>
+        <tr><td>Eine Lernende lernt am Freitagabend für eine Prüfung.</td><td><span class="pill gr">Haushalt</span></td><td>Der Abend mit Freunden (Ausgang, Erholung) – oder Lohn aus einem Abendjob.</td></tr>
+        <tr><td>Ein Unternehmen investiert in eine neue Maschine.</td><td><span class="pill o">Unternehmen</span></td><td>Die beste andere Verwendung desselben Geldes: z. B. Lohnerhöhungen fürs Personal, eine Werbekampagne, ein anderes Investitionsprojekt oder die Zinsen, wenn man das Geld angelegt hätte.</td></tr>
+        <tr><td>Die Regierung baut eine neue Bahnlinie.</td><td><span class="pill g">Staat</span></td><td>Das beste andere Projekt mit denselben Steuermitteln: z. B. neue Schulen, Spitäler, Umweltprojekte – oder eine Steuersenkung. Zusätzlich: der Boden, der nicht mehr für Landwirtschaft/Natur zur Verfügung steht.</td></tr>
+        <tr><td>Sie geben CHF 150 für ein Konzertticket aus.</td><td><span class="pill gr">Haushalt</span></td><td>Das, was Sie mit den CHF 150 sonst gekauft hätten (z. B. neue Sneakers, ein Wochenendausflug) – oder CHF 150 Ersparnis. Dazu: der Abend, den Sie anders genutzt hätten.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Warum sie wichtig sind</h3>
+      <p>Ökonominnen und Ökonomen analysieren damit Entscheidungen von <b>Privatpersonen, Unternehmen und Regierungen</b>. Sie machen sichtbar, dass nichts «gratis» ist – auch wenn kein Geld fliesst.</p>
+      <p><b>Beispiel Staat:</b> Gibt eine Regierung CHF 100 Mio. für eine neue Strasse aus, fehlen diese Mittel für Schulen, Spitäler, öffentlichen Verkehr oder Umweltprojekte.</p>
+    </div>
+    <div class="card">
+      <h3>Was die Höhe beeinflusst</h3>
+      <ul class="clean">
+        <li><b>Persönliche Vorlieben:</b> Wer Fussball liebt, hat hohe Opportunitätskosten, wenn er statt des Matchs arbeitet. Für jemanden ohne Interesse sind sie klein.</li>
+        <li><b>Verfügbarkeit der Ressourcen:</b> Je knapper eine Ressource, desto wertvoller ist jede Einheit. Eine Stunde am Tag vor der Prüfung ist «teurer» als eine Stunde in den Ferien; CHF 50 sind für eine Studentin viel, für eine Managerin wenig.</li>
+        <li><b>Energie:</b> Wer erschöpft ist, verzichtet beim Weiterarbeiten auf wertvolle Erholung.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Versunkene Kosten (Sunk Costs) und der Sunk-Cost-Fehlschluss</h3>
+    <div class="def"><b class="t">Definition Sunk Costs</b>Versunkene Kosten sind Kosten, die <b>bereits angefallen</b> sind und <b>nicht mehr rückgängig gemacht</b> werden können – egal, wie man sich jetzt entscheidet.</div>
+    <p>Gute Entscheidungen orientieren sich nur an <b>zukünftigen Kosten und zukünftigem Nutzen</b>. Der <span class="term">Sunk-Cost-Fehlschluss</span> liegt vor, wenn man eine Sache nur deshalb weiterführt, weil man schon Geld, Zeit oder Energie hineingesteckt hat («Jetzt habe ich schon so viel bezahlt …»).</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Situation</th><th>Sunk Costs (irrelevant)</th><th>Was wirklich zählt (zukünftig)</th></tr></thead>
+      <tbody>
+        <tr><td>Kinofilm ist nach 30 Min. langweilig</td><td>Ticketpreis CHF 20</td><td>Die restlichen 90 Min.: Film weiterschauen oder etwas Besseres tun?</td></tr>
+        <tr><td>Jahresabo Fitness, man geht nie hin</td><td>Bereits bezahlter Jahresbeitrag</td><td>Macht mir Training in Zukunft Freude/Nutzen? Andere Sportart besser?</td></tr>
+        <tr><td>Serie schauen, obwohl sie schlecht geworden ist</td><td>Die bereits geschauten 3 Staffeln</td><td>Nutzen der nächsten Folgen vs. andere Freizeit</td></tr>
+        <tr><td>Staat hat 50 Mio. in ein Projekt investiert, das scheitert</td><td>Die 50 Mio.</td><td>Weitere Kosten vs. künftiger Nutzen des Projekts</td></tr>
+      </tbody>
+    </table></div>
+    <div class="memo"><strong>Merksatz</strong><br>«Was weg ist, ist weg.» Frage nie «Wie viel habe ich schon investiert?», sondern «Lohnt sich <b>ab jetzt</b> der nächste Franken / die nächste Stunde?»</div>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 10 · Fragen zum Video</h4>
+    <p><b>1. Was sind versunkene Kosten?</b> Kosten, die bereits angefallen und bezahlt sind und nicht mehr rückgängig gemacht werden können. Sie sollten eine zukünftige Entscheidung nicht beeinflussen.</p>
+    <p><b>2. Eigene Situationen:</b> ein bezahltes Kinoticket für einen schlechten Film, ein Streaming- oder Fitnessabo, ein gekauftes Game, das keinen Spass macht, ein Tagesticket im Vergnügungspark, obwohl es regnet.</p>
+  </div>
+
+  <div class="trainer" id="sunkTrainer">
+    <div class="meta"><span>Mini-Trainer · Sunk Cost oder zukunftsrelevant?</span><span class="cnt"></span></div>
+    <div class="q"></div>
+    <div class="opts"><button class="btn" data-a="s">Sunk Cost – ignorieren</button><button class="btn" data-a="z">Zukünftig – relevant</button></div>
+    <div class="fb" aria-live="polite"></div>
+    <button class="btn sm next" style="margin-top:8px">Nächste Aussage →</button>
+  </div>
+</section>
+
+<!-- ================= L3 MASLOW ================= -->
+<section id="maslow">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Bedürfnispyramide nach Maslow</h2><span class="lz">L3</span></div>
+
+  <div class="def"><b class="t">Definition Bedürfnis</b>Ein Bedürfnis ist das <b>Gefühl eines Mangels</b>, verbunden mit dem Wunsch, diesen Mangel zu beheben. Die Bedürfnisbefriedigung ist die <b>Triebfeder des Wirtschaftens</b>.</div>
+
+  <p>Der Psychologe <b>Abraham Maslow</b> hat die Bedürfnisse in <b>fünf Stufen</b> geordnet – von den grundlegenden körperlichen Bedürfnissen unten bis zur Selbstverwirklichung oben. Grundidee: Erst wenn die unteren Stufen <b>weitgehend erfüllt</b> sind, werden die höheren Stufen wichtig. Klicke auf eine Stufe.</p>
+
+  <div class="maslow-wrap">
+    <div class="pyr" id="pyr" role="group" aria-label="Maslow-Pyramide">
+      <button class="l5" data-l="5">5 · Selbst&shy;verwirklichung</button>
+      <button class="l4" data-l="4">4 · Wertschätzung</button>
+      <button class="l3" data-l="3">3 · Zugehörigkeit</button>
+      <button class="l2" data-l="2">2 · Sicherheit</button>
+      <button class="l1 on" data-l="1">1 · Körperliche Grundbedürfnisse</button>
+    </div>
+    <div class="pyr-info" id="pyrInfo" aria-live="polite"></div>
+  </div>
+
+  <div class="memo"><strong>Merkhilfe (von unten nach oben)</strong><br>Ich will … <b>überleben</b> (Körper) → <b>sicher sein</b> (Sicherheit) → <b>dazugehören</b> (Zugehörigkeit) → <b>geschätzt werden</b> (Wertschätzung) → <b>mich entfalten</b> (Selbstverwirklichung).</div>
+
+  <div class="card">
+    <h3>So ordnest du einen Sachverhalt ein</h3>
+    <ol>
+      <li><b>Mangel</b> im Text suchen: Was fehlt der Person? (kein Einkommen, keine Freunde, keine Anerkennung …)</li>
+      <li>Mangel als <b>Bedürfnis</b> formulieren («Bedürfnis nach …»).</li>
+      <li>Der passenden <b>Stufe</b> zuordnen und mit dem Stichwort aus der Pyramide begründen.</li>
+      <li><b>Dringlichkeit</b> ordnen: tiefere Stufe = dringender (wenn sie nicht erfüllt ist).</li>
+    </ol>
+    <div class="warn"><strong>Fallen:</strong> «Festes Einkommen» und «Schutz vor Kriminalität» gehören zu <b>Sicherheit</b> (Stufe 2), nicht zu den Grundbedürfnissen. «Gesundheit» steht im Lehrmittel bei den <b>körperlichen Grundbedürfnissen</b> (Stufe 1). «Karriere/Status» = <b>Wertschätzung</b>, «Sinn im Leben / eigene Band gründen» = <b>Selbstverwirklichung</b>.</div>
+    <div class="note"><strong>Kritik am Modell:</strong> Die Reihenfolge ist nicht bei allen Menschen starr. Ein Künstler kann Selbstverwirklichung wichtiger finden als ein sicheres Einkommen (Mateo). Das Modell ist eine Vereinfachung, zeigt aber gut, dass Bedürfnisse unterschiedlich dringend sind.</div>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 12–14 · Aufgabe 2.1.1 – alle sechs Profile analysiert</h4>
+    <details class="plain"><summary>Profil 1: Yasmin (alleinerziehend, Kapstadt, knappes Einkommen)</summary><div class="sol">
+      <p><b>Dringendste Bedürfnisse:</b> <span class="pill" style="background:#fbe0da">Stufe 2 Sicherheit</span> Schutz vor Kriminalität für sich und die Kinder; sicheres, ausreichendes Einkommen. <span class="pill" style="background:#fbe0da">Stufe 1</span> Nahrung und Wohnen für die Familie sind nur knapp gedeckt.</p>
+      <p><b>Begründung:</b> Das Einkommen reicht «knapp» für Miete und Essen → Stufe 1 gerade erfüllt, Stufe 2 klar unerfüllt. Höhere Bedürfnisse (Freizeit, Weiterbildung) treten zurück.</p>
+      <p><b>Wenn erfüllt:</b> Mit einem sicheren Einkommen / sicherem Quartier hätte Yasmin weniger Angst, könnte Zeit und Energie in soziale Kontakte, Weiterbildung und die Förderung der Kinder investieren.</p>
+    </div></details>
+    <details class="plain"><summary>Profil 2: Samim (17, Flüchtling, keine Kontakte, kein Handy)</summary><div class="sol">
+      <p><b>Dringendste Bedürfnisse:</b> Stufe 2 Sicherheit (sicherer Aufenthalt, geregelte Zukunft); Stufe 3 <b>Zugehörigkeit</b> – er hat keine Kontakte, spricht die Sprache kaum, hat kein Handy, um mit Familie/Freunden in Verbindung zu bleiben.</p>
+      <p><b>Begründung:</b> Stufe 1 ist in der Unterkunft grundsätzlich gedeckt (Essen, Schlafplatz). Der grösste Mangel liegt bei Sicherheit und sozialem Anschluss.</p>
+      <p><b>Wenn erfüllt:</b> Mit Sprachkenntnissen und Kontakten kann er sich integrieren, eine Ausbildung beginnen und später Anerkennung (Stufe 4) erlangen.</p>
+    </div></details>
+    <details class="plain"><summary>Profil 3: Jenny (33, erfolgreiche Managerin, fühlt sich leer)</summary><div class="sol">
+      <p><b>Dringendste Bedürfnisse:</b> Stufe 5 <b>Selbstverwirklichung</b> (Sinn, «das Richtige tun»); teilweise Stufe 3 (Partnerschaft).</p>
+      <p><b>Begründung:</b> Stufen 1, 2 und 4 sind erfüllt (sichere Umgebung, gutes Einkommen, Erfolg). Freunde sind vorhanden, aber kein fester Partner. Die innere Leere zeigt einen Mangel an Sinn.</p>
+      <p><b>Wenn erfüllt:</b> Eine sinnstiftende Tätigkeit (Engagement, Neuorientierung) würde Zufriedenheit bringen.</p>
+    </div></details>
+    <details class="plain"><summary>Profil 4: Jonas (16, gute Noten, beliebt, von Eltern kritisiert)</summary><div class="sol">
+      <p><b>Dringendstes Bedürfnis:</b> Stufe 4 <b>Wertschätzung</b> – Anerkennung durch die Eltern.</p>
+      <p><b>Begründung:</b> Stufen 1–2 sind gedeckt, Zugehörigkeit bei Freunden erfüllt. Trotz guter Leistungen fehlt die Anerkennung zu Hause (je nach Sicht auch Zugehörigkeit innerhalb der Familie, Stufe 3).</p>
+      <p><b>Wenn erfüllt:</b> Mehr Selbstvertrauen, entspannteres Familienklima, Motivation für eigene Ziele (Stufe 5).</p>
+    </div></details>
+    <details class="plain"><summary>Profil 5: Mateo (26, Barista, Musiker, knappes Einkommen)</summary><div class="sol">
+      <p><b>Dringendste Bedürfnisse:</b> Stufe 2 Sicherheit (festes, ausreichendes Einkommen – er kann nur knapp die Miete zahlen) und Stufe 5 Selbstverwirklichung (eigene Band).</p>
+      <p><b>Begründung:</b> Nach Maslow ist Stufe 2 zuerst zu sichern. Mateo zeigt aber, dass Menschen auch höhere Bedürfnisse verfolgen, bevor untere ganz erfüllt sind (Kritik am Modell).</p>
+      <p><b>Wenn erfüllt:</b> Mit mehr Einkommen hätte er Geld für Instrumente und Proberaum → Band gründen wird realistisch.</p>
+    </div></details>
+    <details class="plain"><summary>Profil 6: Erika (77, verwitwet, Diabetes, Kinder weit weg)</summary><div class="sol">
+      <p><b>Dringendste Bedürfnisse:</b> Stufe 1 körperliche Grundbedürfnisse (Gesundheit: Medikamente, richtige Ernährung) und Stufe 3 <b>Zugehörigkeit</b> (Einsamkeit nach dem Tod des Mannes, seltene Besuche) – im Dossier ist Zugehörigkeit hervorgehoben.</p>
+      <p><b>Begründung:</b> Wohnen ist gesichert (Apartment), Rente vermutlich vorhanden. Der grösste Mangel ist sozialer Kontakt; die Gesundheit muss laufend gesichert werden.</p>
+      <p><b>Wenn erfüllt:</b> Mehr Kontakte (Seniorentreff, Nachbarschaft, Videoanrufe) verbessern Lebensfreude und oft auch die Gesundheit.</p>
+    </div></details>
+  </div>
+</section>
+
+<!-- ================= L4 BEDÜRFNISARTEN ================= -->
+<section id="beduerfnisse">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Bedürfnisarten unterscheiden</h2><span class="lz">L4</span></div>
+  <p>Neben der Pyramide werden Bedürfnisse nach drei <b>Gegensatzpaaren</b> eingeteilt. Ein Bedürfnis gehört immer zu <b>je einer Seite jedes Paares</b> – die Paare schliessen sich gegenseitig nicht aus.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Kriterium / Prüffrage</th><th>Art</th><th>Erklärung</th><th>Beispiele</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2"><b>Dringlichkeit</b><br><i>Ist es lebensnotwendig?</i></td><td><span class="pill r">Grundbedürfnis</span><br><small>(Existenzbedürfnis)</small></td><td>Muss befriedigt werden, um zu <b>überleben</b>. Alle Menschen haben es zwingend.</td><td>Nahrung, Trinken, Schlaf, Kleidung, Wohnung</td></tr>
+      <tr><td><span class="pill gr">Wahlbedürfnis</span><br><small>(Kultur-/Luxusbedürfnis)</small></td><td><b>Nicht lebensnotwendig</b>, bereichert aber das Leben. Hängt von Einkommen, Kultur, Zeitepoche und persönlichen Vorlieben ab.</td><td>Ferien, Konzert, Markenkleider, Smartphone, Sportwagen</td></tr>
+      <tr><td rowspan="2"><b>Träger</b><br><i>Kann ich es allein befriedigen?</i></td><td><span class="pill p">Individualbedürfnis</span></td><td>Ein <b>einzelner Mensch</b> hat es und befriedigt es selbst (meist durch Kauf am Markt).</td><td>Hunger, eigenes Velo, Haarschnitt, Musik hören</td></tr>
+      <tr><td><span class="pill g">Kollektivbedürfnis</span></td><td>Viele Menschen haben <b>das gleiche Bedürfnis</b>; es kann nur durch die <b>Gemeinschaft (meist den Staat)</b> sinnvoll befriedigt werden.</td><td>Sicherheit (Polizei, Armee), Bildung (Schulen), Mobilität (Strassen, öV), Gesundheitsversorgung (Spitäler), saubere Umwelt</td></tr>
+      <tr><td rowspan="2"><b>Art der Befriedigung</b><br><i>Braucht es ein Sachgut?</i></td><td><span class="pill o">materielles Bedürfnis</span></td><td>Wird durch <b>materielle Güter (Sachgüter)</b> befriedigt – etwas «Anfassbares».</td><td>Brot, Kleidung, Auto, Wohnung</td></tr>
+      <tr><td><span class="pill gr">immaterielles Bedürfnis</span></td><td>Wird durch <b>nicht-materielle</b> Dinge befriedigt: Dienstleistungen, Beziehungen, Gefühle, Wissen.</td><td>Liebe, Freundschaft, Anerkennung, Bildung, Sicherheitsgefühl</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="card">
+    <h3>Vom Individual- zum Kollektivbedürfnis</h3>
+    <p>Viele Kollektivbedürfnisse entstehen, wenn <b>sehr viele Menschen dasselbe Individualbedürfnis</b> haben und eine gemeinsame Lösung effizienter ist:</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Individualbedürfnis</th><th>… wird zum Kollektivbedürfnis</th><th>Gemeinsame Lösung</th></tr></thead>
+      <tbody>
+        <tr><td>Ich will zur Arbeit kommen (Mobilität)</td><td>Alle Pendler wollen sich fortbewegen</td><td>Strassennetz, öffentlicher Verkehr</td></tr>
+        <tr><td>Ich will gesund werden</td><td>Die ganze Bevölkerung braucht medizinische Versorgung</td><td>Spitäler, Krankenversicherung, Impfprogramme</td></tr>
+        <tr><td>Ich will mich sicher fühlen</td><td>Alle wollen Schutz vor Kriminalität</td><td>Polizei, Justiz</td></tr>
+        <tr><td>Ich will etwas lernen</td><td>Alle Kinder brauchen Bildung</td><td>Öffentliche Schulen (z. B. BMS)</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 16 · Fragen zu den Bedürfnisarten</h4>
+    <p><b>Materielle vs. immaterielle Bedürfnisse:</b> Materielle Bedürfnisse werden mit <b>Sachgütern</b> (anfassbar) befriedigt, z. B. Hunger mit Brot. Immaterielle Bedürfnisse werden durch <b>Nicht-Anfassbares</b> befriedigt – Dienstleistungen, soziale Kontakte, Anerkennung, Wissen –, z. B. das Bedürfnis nach Freundschaft.</p>
+    <p><b>Grund- vs. Wahlbedürfnisse:</b> Grundbedürfnisse sind <b>überlebensnotwendig</b> (Essen, Trinken, Schlaf, Kleidung, Wohnung). Wahlbedürfnisse sind <b>nicht überlebensnotwendig</b> und je nach Person, Einkommen und Kultur verschieden (z. B. Ferienreise, Konzert, Markenkleider).</p>
+    <p><b>Ausgehend von einem Individualbedürfnis ein Kollektivbedürfnis erläutern:</b> Jede Person hat das Individualbedürfnis nach <b>Mobilität</b> – sie will zur Schule oder Arbeit gelangen. Weil Tausende Menschen dieses Bedürfnis gleichzeitig haben und nicht jeder eine eigene Strasse bauen kann, entsteht ein <b>Kollektivbedürfnis</b> nach einem Verkehrsnetz. Dieses befriedigt der Staat gemeinsam für alle (Strassen, öffentlicher Verkehr), finanziert über Steuern.</p>
+  </div>
+
+  <div class="note"><strong>Zusatzwissen – Bedürfnis → Bedarf → Nachfrage:</strong> Ein <b>Bedürfnis</b> wird zum <b>Bedarf</b>, wenn Kaufkraft (Geld) vorhanden ist, und zur <b>Nachfrage</b>, wenn man tatsächlich am Markt kauft. Auf dem <b>Markt</b> treffen Angebot und Nachfrage zusammen. Bedürfnisse können auch <b>ohne Konsum</b> befriedigt werden (z. B. Zugehörigkeit durch Zeit mit der Familie).</div>
+</section>
+
+<!-- ================= L5 GÜTER ================= -->
+<section id="gueter">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Güter und Güterarten</h2><span class="lz">L5</span></div>
+  <div class="def"><b class="t">Definition Güter</b>Güter sind <b>alle Mittel und Leistungen, die der Bedürfnisbefriedigung dienen</b>. Bedürfnis = Mangel; Gut = Mittel, um den Mangel zu beheben.</div>
+
+  <div class="card">
+    <h3>Übersicht: 4 Kriterien – 4 Gegensatzpaare</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Kriterium</th><th>Prüffrage</th><th>Güterart A</th><th>Güterart B</th></tr></thead>
+      <tbody>
+        <tr><td><b>Verfügbarkeit</b></td><td>Ist es knapp und hat es einen Preis?</td><td><span class="pill gr">Freie Güter</span><br>unbegrenzt vorhanden, kostenlos, niemand muss dafür etwas herstellen: Luft zum Atmen, Sonnenlicht, Meerwasser, Wind</td><td><span class="pill r">Wirtschaftliche Güter</span><br>knapp, müssen hergestellt werden, haben einen Preis: Brot, Evian-Wasser, Leitungswasser, Smartphone, Haarschnitt</td></tr>
+        <tr><td><b>Beschaffenheit</b></td><td>Kann man es anfassen?</td><td><span class="pill o">Materielle Güter (Sachgüter)</span><br>körperlich, lagerbar: Brot, Velo, Maschine</td><td><span class="pill g">Immaterielle Güter</span><br>nicht körperlich – v. a. <b>Dienstleistungen</b> (Haarschnitt, Beratung, Unterricht, Versicherung), aber auch Rechte/Wissen (Software-Lizenz, Patent)</td></tr>
+        <tr><td><b>Art der Verwendung</b></td><td>Wer nutzt es wofür?</td><td><span class="pill p">Konsumgüter</span><br>dienen <b>direkt</b> der Bedürfnisbefriedigung eines Haushalts: Pizza, privates Handy, Kinobesuch</td><td><span class="pill gr">Investitionsgüter</span><br>werden von Unternehmen zur <b>Herstellung anderer Güter</b> eingesetzt und dienen der Bedürfnisbefriedigung nur <b>indirekt</b>: Pizzaofen, Traktor, Coiffeurstuhl</td></tr>
+        <tr><td><b>Nutzungsdauer</b></td><td>Kann man es mehrmals nutzen?</td><td><span class="pill o">Gebrauchsgüter</span><br>werden <b>mehrmals / über längere Zeit</b> genutzt: Smartphone, Velo, Zahnbürste, Beamer</td><td><span class="pill r">Verbrauchsgüter</span><br>werden bei der Nutzung <b>(einmal) verbraucht</b>: Brot, Benzin, Shampoo, Medikament</td></tr>
+      </tbody>
+    </table></div>
+    <div class="memo"><strong>Entscheidungsweg für jedes Gut</strong><br>① knapp? → wirtschaftlich / frei &nbsp;·&nbsp; ② anfassbar? → materiell / immateriell &nbsp;·&nbsp; ③ Haushalt nutzt es selbst oder Unternehmen produziert damit? → Konsum / Investition &nbsp;·&nbsp; ④ einmal oder mehrmals? → Verbrauch / Gebrauch <small>(v. a. bei Sachgütern)</small></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Die Verwendung entscheidet</h3>
+      <p>Ob ein Gut ein Konsum- oder Investitionsgut ist, hängt <b>nicht vom Gut selbst</b> ab, sondern davon, <b>wer es wofür verwendet</b>:</p>
+      <ul class="clean">
+        <li><b>Auto:</b> Familienauto → Konsumgut · Taxi eines Taxiunternehmens → Investitionsgut</li>
+        <li><b>Teigwaren:</b> Znacht zu Hause → Konsumgut · Restaurant kocht damit Menüs → Investitionsgut</li>
+        <li><b>Laptop:</b> privat zum Gamen → Konsumgut · Grafikbüro gestaltet Aufträge → Investitionsgut</li>
+        <li><b>Traktor:</b> Bauernbetrieb → Investitionsgut · Oldtimer-Sammler → Konsumgut</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Häufige Fallen</h3>
+      <ul class="clean cross">
+        <li><b>Wasser ist nicht automatisch frei:</b> Leitungswasser und Mineralwasser kosten etwas → wirtschaftlich. Frei ist nur z. B. Regenwasser/Meerwasser in der Natur.</li>
+        <li><b>Zahnbürste</b> ist ein Gebrauchsgut (viele Male benutzt), <b>Zahnpasta</b> ein Verbrauchsgut.</li>
+        <li><b>Tennisbälle an einem Grand-Slam-Turnier</b> werden nach wenigen Games ausgewechselt → Verbrauchsgut.</li>
+        <li><b>Dienstleistungen</b> sind immateriell – sie können trotzdem Konsum (Haarschnitt privat) oder Investition (Anlageberatung für eine Firma) sein.</li>
+        <li><b>Geld/Einkommen</b> ist kein Gut im Sinne der Bedürfnisbefriedigung, sondern das <b>Mittel</b>, um Güter zu kaufen.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 17 · Aus Bedürfnissen Güter ableiten und zuordnen</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Bedürfnis</th><th>Gut</th><th>Einordnung</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="3"><b>«Satt sein»</b></td><td>Brot, Teigwaren</td><td>wirtschaftlich · materiell · Konsumgut · Verbrauchsgut</td></tr>
+        <tr><td>Restaurantbesuch</td><td>wirtschaftlich · immateriell (Dienstleistung, inkl. Speisen) · Konsum</td></tr>
+        <tr><td>Kochtopf</td><td>wirtschaftlich · materiell · Konsumgut · Gebrauchsgut</td></tr>
+        <tr><td rowspan="4"><b>«Gesundheit»</b></td><td>Medikamente</td><td>wirtschaftlich · materiell · Konsumgut · Verbrauchsgut</td></tr>
+        <tr><td>Arztbesuch, Physiotherapie</td><td>wirtschaftlich · immateriell (Dienstleistung) · Konsum</td></tr>
+        <tr><td>Velo</td><td>wirtschaftlich · materiell · Konsumgut · Gebrauchsgut</td></tr>
+        <tr><td>Frische Luft, Sonnenlicht</td><td><b>freies Gut</b></td></tr>
+        <tr><td rowspan="3"><b>«Wohlfühlen»</b></td><td>Massage, Wellness</td><td>wirtschaftlich · immateriell (Dienstleistung) · Konsum</td></tr>
+        <tr><td>Sofa, Kuscheldecke</td><td>wirtschaftlich · materiell · Konsumgut · Gebrauchsgut</td></tr>
+        <tr><td>Sonne am See</td><td><b>freies Gut</b></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 19 · Aufgabe 2.2.1 «Von Bedürfnissen zu Gütern» (Tabelle ausgefüllt)</h4>
+    <div class="tbl-wrap"><table style="min-width:820px">
+      <thead><tr><th>Gut (Profil)</th><th>Frei</th><th>Wirt&shy;schaftl.</th><th>Mate&shy;riell</th><th>Imma&shy;teriell</th><th>Kon&shy;sum</th><th>Inves&shy;tition</th><th>Ge&shy;brauch</th><th>Ver&shy;brauch</th></tr></thead>
+      <tbody>
+        <tr><td>Evian-Wasser (Erika, Yasmin)</td><td></td><td class="x">✓</td><td class="x">✓</td><td></td><td class="x">✓</td><td></td><td></td><td class="x">✓</td></tr>
+        <tr><td>Smartphone (Samim)</td><td></td><td class="x">✓</td><td class="x">✓</td><td></td><td class="x">✓</td><td></td><td class="x">✓</td><td></td></tr>
+        <tr><td>Sprachkurs (Samim)</td><td></td><td class="x">✓</td><td></td><td class="x">✓</td><td class="x">✓</td><td></td><td>–</td><td>–</td></tr>
+        <tr><td>Medikamente (Erika)</td><td></td><td class="x">✓</td><td class="x">✓</td><td></td><td class="x">✓</td><td></td><td></td><td class="x">✓</td></tr>
+        <tr><td>Sicherheitstür / Alarmanlage (Yasmin)</td><td></td><td class="x">✓</td><td class="x">✓</td><td></td><td class="x">✓</td><td></td><td class="x">✓</td><td></td></tr>
+        <tr><td>Kaffeemaschine im Café (Mateo)</td><td></td><td class="x">✓</td><td class="x">✓</td><td></td><td></td><td class="x">✓</td><td class="x">✓</td><td></td></tr>
+        <tr><td>Retreat / Coaching (Jenny)</td><td></td><td class="x">✓</td><td></td><td class="x">✓</td><td class="x">✓</td><td></td><td>–</td><td>–</td></tr>
+        <tr><td>Nachhilfe-/Beratungsgespräch (Jonas)</td><td></td><td class="x">✓</td><td></td><td class="x">✓</td><td class="x">✓</td><td></td><td>–</td><td>–</td></tr>
+        <tr><td>Sonnenlicht beim Spaziergang (Erika)</td><td class="x">✓</td><td></td><td colspan="6"><small>Freie Güter werden nicht weiter eingeteilt, da sie nicht produziert und gehandelt werden.</small></td></tr>
+      </tbody>
+    </table></div>
+    <p><small><b>Korrektur zu «stabiles Einkommen»:</b> Einkommen ist kein Gut, sondern das Mittel, um Güter zu kaufen – bzw. ein Bedürfnis nach Sicherheit (Stufe 2). <b>Kollektive Alternativen:</b> öV-Abo statt eigenem Auto, öffentliche Bibliothek statt Bücher kaufen, Nachbarschaftshilfe statt Sicherheitsdienst, staatlich finanzierter Integrations-Sprachkurs.</small></p>
+  </div>
+
+  <div class="card">
+    <h3>Knappheit und Nutzen</h3>
+    <p>Bedürfnisse sind unbeschränkt, wirtschaftliche Güter knapp. Deshalb bewertet jede Person, welchen <span class="term">Nutzen</span> ein Gut für sie hat – und dieser Nutzen ist <b>subjektiv</b>, also von Person zu Person verschieden:</p>
+    <ul class="clean">
+      <li><b>Samim</b> würde mit seinem Budget eher ein <b>Smartphone oder einen Sprachkurs</b> kaufen – er will Kontakte knüpfen und die Sprache lernen (Zugehörigkeit).</li>
+      <li><b>Jenny</b> besitzt bereits alles Materielle und würde dasselbe Geld eher für ein <b>Retreat zur Selbstfindung</b> ausgeben (Selbstverwirklichung).</li>
+    </ul>
+    <p>Gleiches Geld, gleiche Knappheit – aber unterschiedliche Entscheidungen, weil die Bedürfnisse (Maslow-Stufe) und damit der Nutzen verschieden sind. Damit sind auch die <b>Opportunitätskosten</b> für beide verschieden.</p>
+  </div>
+
+  <div class="trainer" id="gutTrainer">
+    <div class="meta"><span>Güter-Trainer · Wähle die richtige Güterart</span><span class="cnt"></span></div>
+    <div class="q"></div>
+    <div class="opts"></div>
+    <div class="fb" aria-live="polite"></div>
+    <button class="btn sm next" style="margin-top:8px">Nächstes Gut →</button>
+  </div>
+</section>
+
+<!-- ================= L6 PRODUKTIONSFAKTOREN ================= -->
+<section id="faktoren">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Produktionsfaktoren</h2><span class="lz">L6</span></div>
+  <p>Bevor ein Mensch ein wirtschaftliches Gut konsumieren kann, muss ein Unternehmen es <b>herstellen</b>. Die dafür eingesetzten Mittel heissen <span class="term">Produktionsfaktoren</span>: alle materiellen und immateriellen Bestandteile, die an der Herstellung von Gütern mitwirken.</p>
+
+  <div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+    <div class="card" style="border-top:5px solid var(--m1)"><h3>Arbeit</h3><p>Körperliche und geistige Tätigkeiten des Menschen: Handwerk, Denkarbeit, Service – als Lohnarbeit oder unternehmerische Tätigkeit.</p><p><small><b>Bäckerei:</b> Bäcker, Verkäuferin</small></p></div>
+    <div class="card" style="border-top:5px solid var(--m2)"><h3>Kapital</h3><p>Produktionsmittel wie <b>Geräte, Maschinen, Gebäude</b>. Gemeint ist das <b>Sach- oder Realkapital</b> – <u>nicht</u> das Geldkapital!</p><p><small><b>Bäckerei:</b> Backstube (Gebäude), Ofen (Maschine)</small></p></div>
+    <div class="card" style="border-top:5px solid var(--m4)"><h3>Technologie</h3><p>Das <b>Know-how</b>, die Erfahrung und das Wissen, wie man die anderen Produktionsfaktoren sinnvoll kombiniert.</p><p><small><b>Bäckerei:</b> Rezept, Backwissen</small></p></div>
+    <div class="card" style="border-top:5px solid var(--m5)"><h3>Natürliche Ressourcen</h3><p><b>Boden, Wasser, Luft, Rohstoffe</b> sowie <b>Standorte</b> – von der Natur bereitgestellt.</p><p><small><b>Bäckerei:</b> Boden für die Backstube, sauberes Wasser, Salz</small></p></div>
+  </div>
+
+  <div class="memo"><strong>Merke</strong><br>Für jedes Gut braucht es immer eine <b>Kombination aller vier</b> Produktionsfaktoren. Die <b>natürlichen Ressourcen</b> stellt die Natur bereit; <b>Arbeit, Kapital und Technologie</b> werden vom Menschen geschaffen. Auch die Zutaten (Mehl, Hefe) wurden wiederum mit allen vier Faktoren hergestellt.</div>
+
+  <div class="warn"><strong>Die grosse Falle «Kapital»:</strong> Der Kredit der Bank oder das Geld auf dem Firmenkonto ist <b>kein</b> Produktionsfaktor Kapital. Erst die damit gekaufte <b>Maschine</b> oder das <b>Gebäude</b> ist Realkapital. Ebenso: Das <b>Gebäude</b> ist Kapital – der <b>Boden/Standort</b>, auf dem es steht, ist eine natürliche Ressource.</div>
+
+  <div class="filled">
+    <h4>Dossier S. 13 · Aufgabe 3.1.1 – Produkt/Dienstleistung «Unterricht» (vervollständigt &amp; korrigiert)</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Arbeit</th><th>Kapital</th><th>Technologie</th><th>Natürliche Ressourcen</th></tr></thead>
+      <tbody><tr>
+        <td>Lehrpersonen, Schulleitung, Sekretariat/Verwaltung, Hauswart, Informatiksupport</td>
+        <td>Schulgebäude, Schulzimmer-Mobiliar, Laptops, Beamer, Wandtafel, WLAN-Infrastruktur</td>
+        <td>Fachwissen und didaktisches Know-how der Lehrpersonen, Lehrplan, Unterrichtsmethoden, Lernplattform/Software</td>
+        <td>Boden und Standort (zentral, gut erreichbar), Energie für Licht und Heizung, Wasser, Tageslicht; Rohstoffe für Papier (Holz) und Kreide (Kalk)</td>
+      </tr></tbody>
+    </table></div>
+    <p><small>Korrektur: <b>Gebäude</b> gehört zum Kapital, nur der <b>Boden/Standort</b> zu den natürlichen Ressourcen. Die Kreide selbst ist ein hergestelltes Hilfsmittel – ihr Rohstoff (Kalk) ist die natürliche Ressource.</small></p>
+    <h4>Weitere Beispiele zu den Profilen</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Gut</th><th>Arbeit</th><th>Kapital</th><th>Technologie</th><th>Natürliche Ressourcen</th></tr></thead>
+      <tbody>
+        <tr><td><b>Smartphone</b> (Samim)</td><td>Ingenieure, Fabrikarbeiter, Verkaufspersonal</td><td>Fabrik, Roboter, Montagebänder, Laden</td><td>Chipdesign, Software, Patente</td><td>Seltene Erden, Lithium, Kupfer, Energie, Fabrikstandort</td></tr>
+        <tr><td><b>Medikament</b> (Erika)</td><td>Forschende, Laborpersonal, Apotheker</td><td>Labor, Produktionsanlagen, Kühllager</td><td>Formel/Wirkstoffwissen, Zulassungs-Know-how</td><td>Chemische/pflanzliche Rohstoffe, Wasser, Standort</td></tr>
+        <tr><td><b>Konzert</b> (Mateo)</td><td>Musiker, Tontechnikerin, Security, Ticketverkauf</td><td>Konzerthalle, Instrumente, Lautsprecher, Bühne</td><td>Musikalisches Können, Tontechnik-Know-how, Eventplanung</td><td>Standort/Boden der Halle, Strom (Energie), Holz der Instrumente</td></tr>
+        <tr><td><b>Wohnung</b> (Yasmin)</td><td>Architektin, Bauarbeiter, Verwaltung</td><td>Baumaschinen, Kran, Werkzeuge</td><td>Baupläne, Statik-Wissen</td><td>Bauland, Sand, Kies, Holz, Wasser</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- ================= L7 ÖKONOMISCHES PRINZIP ================= -->
+<section id="prinzip">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Das ökonomische Prinzip</h2><span class="lz">L7</span></div>
+  <p>Weil die Mittel knapp sind, sollen sie <b>wirtschaftlich (rational)</b> eingesetzt werden. Das ökonomische Prinzip beschreibt das Verhältnis zwischen dem <span class="term">Input</span> (Mitteleinsatz: Zeit, Geld, Material, Arbeit) und dem <span class="term">Output</span> (Ergebnis: Menge, Qualität, Note, Nutzen, Ertrag).</p>
+
+  <div class="grid3">
+    <div class="card" style="border-top:5px solid var(--geld)">
+      <h3>Maximumprinzip</h3>
+      <p style="font-family:Archivo;font-weight:700">Input <span class="pill g">fix</span> → Output <span class="pill gr">möglichst gross</span></p>
+      <p>Mit <b>gegebenen Mitteln</b> soll ein <b>möglichst grosser Ertrag</b> erzielt werden.</p>
+      <p><small><b>Bsp.:</b> Mit CHF 50 Budget möglichst viele/gute Lebensmittel einkaufen. · Mit 6 Stunden Lernzeit die bestmögliche Note holen.</small></p>
+    </div>
+    <div class="card" style="border-top:5px solid var(--gut)">
+      <h3>Minimumprinzip</h3>
+      <p style="font-family:Archivo;font-weight:700">Output <span class="pill o">fix</span> → Input <span class="pill gr">möglichst klein</span></p>
+      <p>Ein <b>vorgegebenes Ziel</b> soll mit <b>möglichst geringem Mitteleinsatz</b> erreicht werden.</p>
+      <p><small><b>Bsp.:</b> Ein bestimmtes Smartphone-Modell möglichst günstig kaufen (Preisvergleich). · Die Note 5 mit möglichst wenig Lernzeit erreichen.</small></p>
+    </div>
+    <div class="card" style="border-top:5px solid var(--green)">
+      <h3>Optimumprinzip</h3>
+      <p style="font-family:Archivo;font-weight:700">Input &amp; Output <span class="pill p">variabel</span> → bestes Verhältnis</p>
+      <p>Weder Mittel noch Ziel sind vorgegeben: Input und Output werden so abgestimmt, dass ihr <b>Verhältnis am günstigsten</b> ist.</p>
+      <p><small><b>Bsp.:</b> So lange lernen, wie jede zusätzliche Stunde die Note noch spürbar verbessert – dann aufhören. · Ein Unternehmen wählt Produktionsmenge und Kosten so, dass der Gewinn am grössten ist.</small></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Erkennen in 5 Sekunden</h3>
+    <ul class="clean">
+      <li>Ist der <b>Einsatz</b> (Budget, Zeit, Material) festgelegt? → <b>Maximumprinzip</b> («mit … möglichst viel»)</li>
+      <li>Ist das <b>Ziel</b> (Menge, Note, Leistung) festgelegt? → <b>Minimumprinzip</b> («… mit möglichst wenig»)</li>
+      <li>Ist <b>beides offen</b> und wird abgewogen? → <b>Optimumprinzip</b> («bestes Verhältnis», «lohnt sich noch»)</li>
+    </ul>
+    <div class="warn"><strong>Klassische Prüfungsfalle:</strong> «Mit <b>minimalem</b> Aufwand einen <b>maximalen</b> Ertrag erzielen» ist <b>kein</b> ökonomisches Prinzip, sondern logisch unmöglich: Mit null Aufwand bekäme man keinen unendlich grossen Ertrag. Es darf immer nur <b>eine Grösse optimiert</b> werden, während die andere fix ist – oder man sucht das beste Verhältnis (Optimum).</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Akteur</th><th>Maximumprinzip</th><th>Minimumprinzip</th></tr></thead>
+      <tbody>
+        <tr><td>Haushalt</td><td>Mit dem Ferienbudget von CHF 1'000 möglichst viel erleben</td><td>Den gewünschten Laptop möglichst günstig kaufen</td></tr>
+        <tr><td>Unternehmen</td><td>Mit 10 Angestellten möglichst viele Brote backen</td><td>Eine Bestellung von 500 Broten mit möglichst tiefen Kosten produzieren</td></tr>
+        <tr><td>Staat</td><td>Mit dem Bildungsbudget möglichst gute Schulen anbieten</td><td>Eine neue Bahnlinie mit möglichst geringen Baukosten erstellen (Ausschreibung)</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><strong>Ergänzung ökologisches Prinzip:</strong> Neben dem ökonomischen soll auch nach dem <b>ökologischen Prinzip</b> gehandelt werden: Die beschränkten natürlichen Ressourcen so einsetzen, dass die Umwelt möglichst wenig belastet wird und auch künftige Generationen ihre Bedürfnisse befriedigen können (Nachhaltigkeit).</div>
+  </div>
+
+  <div class="trainer" id="prinzipTrainer">
+    <div class="meta"><span>Prinzip-Trainer · Welches Prinzip liegt vor?</span><span class="cnt"></span></div>
+    <div class="q"></div>
+    <div class="opts"><button class="btn" data-a="max">Maximum</button><button class="btn" data-a="min">Minimum</button><button class="btn" data-a="opt">Optimum</button><button class="btn" data-a="x">unmöglich / keines</button></div>
+    <div class="fb" aria-live="polite"></div>
+    <button class="btn sm next" style="margin-top:8px">Nächstes Beispiel →</button>
+  </div>
+</section>
+
+<!-- ================= L8 KREISLAUF ================= -->
+<section id="kreislauf">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Der Wirtschaftskreislauf</h2><span class="lz">L8</span></div>
+  <p>Der Wirtschaftskreislauf ist ein <b>vereinfachtes Modell</b>, das zeigt, wie Geld und Güter zwischen den Akteuren einer Volkswirtschaft fliessen. Zu jedem Güterstrom gehört ein <b>gleich grosser, entgegengesetzter Geldstrom</b> (Ausnahme: Zahlungen ohne direkte Gegenleistung wie Steuern, Renten, Überweisungen an Familie).</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Einfacher Kreislauf: 2 Akteure</h3>
+      <ul class="clean">
+        <li><b>Haushalte</b> = Nachfrager nach Gütern und Dienstleistungen (sie konsumieren). Gleichzeitig <b>bieten</b> sie Produktionsfaktoren an, v. a. ihre <b>Arbeit</b>.</li>
+        <li><b>Unternehmen</b> = Anbieter von Gütern und Dienstleistungen (sie produzieren). Gleichzeitig <b>fragen</b> sie Produktionsfaktoren nach.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Die 4 Ströme</h3>
+      <ul class="clean">
+        <li><span class="gutc">Güterstrom</span> Unternehmen → Haushalte: Güter &amp; Dienstleistungen</li>
+        <li><span class="geldc">Geldstrom</span> Haushalte → Unternehmen: Konsumausgaben (Kaufpreis)</li>
+        <li><span class="gutc">Güterstrom</span> Haushalte → Unternehmen: Produktionsfaktoren (Arbeit)</li>
+        <li><span class="geldc">Geldstrom</span> Unternehmen → Haushalte: Einkommen (Löhne)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Interaktives Kreislaufmodell</h3>
+    <p>Baue den Kreislauf Schritt für Schritt auf. Blau = <span class="geldc">Geldstrom</span>, orange gestrichelt = <span class="gutc">Güterstrom</span>.</p>
+    <div class="circ-controls" id="circ1Ctrl">
+      <button class="btn on" data-layer="basic" aria-pressed="true">Einfacher Kreislauf</button>
+      <button class="btn" data-layer="bank" aria-pressed="false">+ Banken</button>
+      <button class="btn" data-layer="staat" aria-pressed="false">+ Staat</button>
+      <button class="btn" data-layer="ausland" aria-pressed="false">+ Ausland</button>
+      <span style="flex-basis:100%;height:0"></span>
+      <button class="btn sm or" data-only="geld">nur Geldströme</button>
+      <button class="btn sm or" data-only="gut">nur Güterströme</button>
+      <button class="btn sm or on" data-only="all">beide</button>
+    </div>
+    <div class="circ-box" id="circ1"></div>
+    <div class="legend"><span>Geldstrom</span><span class="gu">Güterstrom</span></div>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 15 · Aufgabe 4.1.1 – Einfacher Wirtschaftskreislauf</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Transaktion</th><th>Strom</th><th>Richtung</th><th>Beschriftung</th></tr></thead>
+      <tbody>
+        <tr><td>1. Jenny bucht einen Yoga-Retreat.</td><td><span class="pill g">Geld</span></td><td>Haushalt → Unternehmen</td><td>Konsumausgaben (Preis für Retreat)</td></tr>
+        <tr><td>2. Das Retreat-Zentrum bietet Unterkunft, Kurse, Verpflegung.</td><td><span class="pill o">Güter</span></td><td>Unternehmen → Haushalt</td><td>Dienstleistungen &amp; Güter</td></tr>
+        <tr><td>3. Samim übernimmt kleine Hilfsarbeiten in der Unterkunft.</td><td><span class="pill o">Güter</span></td><td>Haushalt → Unternehmen</td><td>Produktionsfaktor Arbeit</td></tr>
+        <tr><td>4. Er erhält dafür eine kleine Entlohnung.</td><td><span class="pill g">Geld</span></td><td>Unternehmen → Haushalt</td><td>Lohn / Einkommen</td></tr>
+      </tbody>
+    </table></div>
+    <p><small>Paare erkennen: 1 ↔ 2 (Kauf) und 3 ↔ 4 (Arbeit gegen Lohn) – jeweils Geld und Gut in <b>entgegengesetzte</b> Richtung.</small></p>
+  </div>
+
+  <div class="card">
+    <h3>Erweiterter Kreislauf: Banken, Staat, Ausland</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Akteur</th><th>Rolle</th><th>Typische Ströme</th></tr></thead>
+      <tbody>
+        <tr><td><b>Haushalte</b></td><td>Konsumieren, bieten Arbeit an, sparen, zahlen Steuern</td><td>Konsumausgaben → U · Arbeit → U · Ersparnisse → Banken · Steuern → Staat · Importkäufe → Ausland</td></tr>
+        <tr><td><b>Unternehmen</b></td><td>Produzieren, zahlen Löhne, investieren, exportieren</td><td>Güter → H · Löhne → H · Steuern → Staat · Kreditrückzahlung + Zinsen → Banken · Exporte → Ausland</td></tr>
+        <tr><td><b>Banken</b></td><td><b>Vermitteln Geld</b> zwischen Sparern (v. a. Haushalte) und Investoren (v. a. Unternehmen): nehmen Einlagen entgegen und vergeben Kredite</td><td>Ersparnisse H → B · Zinsen B → H · Kredite B → U (und H) · Rückzahlung + Zinsen U → B</td></tr>
+        <tr><td><b>Staat</b></td><td>Erhebt <b>Steuern</b> und verteilt <b>Leistungen</b> (Renten, Subventionen, Aufträge); stellt öffentliche Güter bereit (Schulen, Strassen, Polizei) und <b>greift regulierend ein</b></td><td>Steuern H/U → S · Transferzahlungen (AHV-Rente, Sozialhilfe, Stipendien) S → H · Subventionen, Staatsaufträge S → U · Löhne an Staatsangestellte S → H</td></tr>
+        <tr><td><b>Ausland</b></td><td>Liefert <b>Importe</b> und kauft <b>Exporte</b> – verbindet die Schweiz mit der Weltwirtschaft</td><td>Exporte: Güter U → A, Geld A → U · Importe: Güter A → U/H, Geld U/H → A · Überweisungen H → A</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tip"><strong>Denkregel für jede Transaktion:</strong> ① Wer gibt Geld? ② Wer bekommt Geld? ③ Gibt es eine Gegenleistung (Gut/Arbeit)? Wenn ja → zweiter Pfeil in Gegenrichtung (gestrichelt). Wenn nein (Steuern, Rente, Geschenk, Überweisung) → nur ein Geldpfeil.</div>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 16–17 · Aufgaben 4.2.1 – 4.2.3 (Ströme eingetragen)</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Nr.</th><th>Transaktion</th><th>Von → Nach</th><th>Beschriftung</th></tr></thead>
+      <tbody>
+        <tr><td colspan="4" style="background:var(--green-soft);font-family:Archivo;font-weight:800">4.2.1 Banken</td></tr>
+        <tr><td>1</td><td>Jenny legt einen Teil ihres Gehalts bei der Bank an.</td><td><span class="pill g">Haushalt → Bank</span></td><td>Ersparnisse (Einlage); später Zinsen Bank → Haushalt</td></tr>
+        <tr><td>2</td><td>Samim nimmt einen Kleinkredit auf (Smartphone).</td><td><span class="pill g">Bank → Haushalt</span></td><td>Konsumkredit; später Rückzahlung + Zinsen Haushalt → Bank</td></tr>
+        <tr><td>3</td><td>Mateos Band erhält einen Kredit für Instrumente.</td><td><span class="pill g">Bank → Unternehmen</span></td><td>Investitionskredit (die Band tritt gegen Gage auf = Unternehmen; die Instrumente sind Investitionsgüter)</td></tr>
+        <tr><td>4</td><td>Das Musikstudio zahlt den Kredit mit Zinsen zurück.</td><td><span class="pill g">Unternehmen → Bank</span></td><td>Kreditrückzahlung (Tilgung) + Zinsen</td></tr>
+        <tr><td colspan="4" style="background:var(--green-soft);font-family:Archivo;font-weight:800">4.2.2 Staat</td></tr>
+        <tr><td>5</td><td>Samim erhält Unterstützung für Sprachkurse.</td><td><span class="pill g">Staat → Haushalt</span></td><td>Transferzahlung / Unterstützungsbeitrag</td></tr>
+        <tr><td>6</td><td>Erika bekommt ihre AHV-Rente.</td><td><span class="pill g">Staat → Haushalt</span></td><td>Rente (Transferzahlung, Sozialversicherung)</td></tr>
+        <tr><td>7</td><td>Jenny zahlt Einkommenssteuern.</td><td><span class="pill g">Haushalt → Staat</span></td><td>Einkommenssteuer</td></tr>
+        <tr><td>8</td><td>Mateos Café zahlt Unternehmenssteuern.</td><td><span class="pill g">Unternehmen → Staat</span></td><td>Gewinn-/Unternehmenssteuer</td></tr>
+        <tr><td colspan="4" style="background:var(--green-soft);font-family:Archivo;font-weight:800">4.2.3 Ausland</td></tr>
+        <tr><td>9</td><td>Yasmin kauft importierten Reis im Supermarkt.</td><td><span class="pill g">Haushalt → Unternehmen</span> <span class="pill g">Unternehmen → Ausland</span></td><td>Konsumausgabe beim Supermarkt; der Supermarkt bezahlt den Import. Güter: Reis Ausland → Unternehmen → Haushalt</td></tr>
+        <tr><td>10</td><td>Mateos Café importiert Kaffeebohnen aus Kolumbien.</td><td><span class="pill g">Unternehmen → Ausland</span> <span class="pill o">Ausland → Unternehmen</span></td><td>Zahlung für Import · Kaffeebohnen (Import)</td></tr>
+        <tr><td>11</td><td>Samim überweist Geld an seine Familie.</td><td><span class="pill g">Haushalt → Ausland</span></td><td>Überweisung (keine Gegenleistung → nur Geldstrom)</td></tr>
+        <tr><td>12</td><td>Schweizer Unternehmen exportiert Maschinen.</td><td><span class="pill o">Unternehmen → Ausland</span> <span class="pill g">Ausland → Unternehmen</span></td><td>Export von Maschinen · Exporterlös</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- ================= L9 STAAT ================= -->
+<section id="staat">
+  <div class="sec-head"><span class="sec-num">09</span><h2>Ströme analysieren &amp; staatliche Massnahmen beurteilen</h2><span class="lz">L9</span></div>
+  <p>Im Kreislauf hängt alles zusammen: Verändert der Staat <b>einen</b> Strom, verändern sich auch die anderen. Um eine Massnahme zu beurteilen, verfolgt man den Geldstrom Schritt für Schritt – eine <span class="term">Wirkungskette</span>.</p>
+
+  <div class="card">
+    <h3>Schema für Prüfungsantworten</h3>
+    <ol>
+      <li><b>Massnahme</b> benennen und den betroffenen <b>Strom</b> im Kreislauf zeigen (von wem zu wem?).</li>
+      <li><b>Direkte Wirkung</b>: Wer hat mehr/weniger Geld?</li>
+      <li><b>Folgewirkungen</b> entlang des Kreislaufs: Konsum → Umsatz der Unternehmen → Produktion → Arbeitsplätze/Löhne → Steuereinnahmen.</li>
+      <li><b>Beurteilen</b>: Vorteile und Nachteile/Risiken (Staatsverschuldung, Geld fliesst ins Ausland oder wird gespart, Mitnahmeeffekte, Wettbewerbsverzerrung, Zeitverzögerung).</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>Massnahmen-Simulator</h3>
+    <p>Wähle eine Massnahme – die betroffenen Ströme werden <span style="color:#7a2fb8;font-weight:700">violett</span> hervorgehoben und die Wirkungskette erscheint.</p>
+    <div class="circ-controls" id="measureCtrl"></div>
+    <div class="circ-box" id="circ2"></div>
+    <div class="legend"><span>Geldstrom</span><span class="gu">Güterstrom</span><span class="hl">von der Massnahme betroffen</span></div>
+    <div class="chain" id="chainBox" aria-live="polite"></div>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 18 · 4.2.4 (1) Massnahmen zur Verbesserung der Wirtschaftslage – mit Einzeichnung</h4>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Massnahme</th><th>Einzeichnen (Geldstrom)</th><th>Erwartete Wirkung</th></tr></thead>
+      <tbody>
+        <tr><td><b>Staatsaufträge / Investitionen</b> (Strassen, Bahn, Schulhäuser)</td><td>Staat → Unternehmen (Zahlung); Güter Unternehmen → Staat</td><td>Mehr Aufträge → Unternehmen stellen ein → mehr Löhne → mehr Konsum</td></tr>
+        <tr><td><b>Subventionen</b> an Unternehmen (z. B. Landwirtschaft, Innovation)</td><td>Staat → Unternehmen</td><td>Tiefere Kosten, Arbeitsplätze sichern, Investitionen fördern</td></tr>
+        <tr><td><b>Steuersenkung</b> für Haushalte</td><td>kleinerer Strom Haushalte → Staat</td><td>Mehr verfügbares Einkommen → mehr Konsum</td></tr>
+        <tr><td><b>Steuersenkung</b> für Unternehmen</td><td>kleinerer Strom Unternehmen → Staat</td><td>Mehr Gewinn für Investitionen; attraktiver Standort</td></tr>
+        <tr><td><b>Transferzahlungen</b> (Arbeitslosengeld, Kurzarbeitsentschädigung, Prämienverbilligung)</td><td>Staat → Haushalte</td><td>Einkommen bleibt stabil → Konsum bricht nicht ein</td></tr>
+        <tr><td><b>Exportförderung</b> / gute Handelsbeziehungen</td><td>Ausland → Unternehmen (mehr Exporterlöse)</td><td>Mehr Absatz im Ausland → Produktion und Arbeitsplätze im Inland</td></tr>
+        <tr><td><b>Bildung &amp; Forschung</b> finanzieren</td><td>Staat → Haushalte (Stipendien), Staat → Unternehmen (Forschungsbeiträge)</td><td>Langfristig bessere Produktionsfaktoren Arbeit und Technologie</td></tr>
+      </tbody>
+    </table></div>
+    <p><small>Hinweis: Die violett eingezeichneten Pfeile im Dossier (Banken ↔ Unternehmen, Ausland ↔ Unternehmen, Haushalte → Banken, Staat ↔ Unternehmen/Haushalte) entsprechen genau diesen Kanälen: mehr Kredite für Investitionen, Exporte, Sparen sowie Steuern und Staatsausgaben.</small></p>
+  </div>
+
+  <div class="filled">
+    <h4>Dossier S. 19 · 4.2.4 (2) Sparmassnahmen des Staates – ohne Einzeichnung</h4>
+    <div class="grid2">
+      <div>
+        <p><b>Ausgaben senken</b></p>
+        <ul class="clean">
+          <li>Subventionen kürzen (z. B. Landwirtschaft, Kultur)</li>
+          <li>Verwaltung effizienter machen, Stellen nicht mehr besetzen</li>
+          <li>Investitionsprojekte verschieben oder streichen</li>
+          <li>Leistungen überprüfen (z. B. Beiträge, Transfers)</li>
+          <li>Aufgaben auslagern/privatisieren</li>
+        </ul>
+      </div>
+      <div>
+        <p><b>Einnahmen erhöhen</b></p>
+        <ul class="clean">
+          <li>Steuern erhöhen (Einkommens-, Gewinn-, Mehrwertsteuer)</li>
+          <li>Gebühren erhöhen (z. B. Pass, Parkgebühren)</li>
+          <li>Steuerschlupflöcher schliessen, Steuerhinterziehung bekämpfen</li>
+          <li>Wirtschaftswachstum fördern → mehr Steuereinnahmen</li>
+        </ul>
+      </div>
+    </div>
+    <p><b>Beurteilung:</b> Sparen stabilisiert die Staatsfinanzen und verhindert, dass künftige Generationen Schulden abbezahlen müssen. <b>Aber:</b> Weniger Staatsausgaben oder höhere Steuern bedeuten im Kreislauf <b>weniger Geld bei Haushalten und Unternehmen</b> → weniger Konsum und Aufträge → Unternehmen verkaufen weniger → Gefahr von Entlassungen → sinkende Steuereinnahmen. Sparen in einer Krise kann die Lage deshalb verschärfen; sinnvoller ist es, in guten Zeiten zu sparen.</p>
+    <div class="note"><strong>Zusatzwissen Schweiz – Schuldenbremse:</strong> Der Bund hat seit 2003 eine Schuldenbremse. Die Ausgaben dürfen über einen Konjunkturzyklus hinweg nicht grösser sein als die Einnahmen: In schlechten Zeiten sind Defizite erlaubt, in guten Zeiten müssen Überschüsse erzielt werden.</div>
+  </div>
+
+  <div class="warn"><strong>Beurteilen heisst immer zwei Seiten:</strong> Jede Staatsmassnahme kostet Geld (Opportunitätskosten!), das entweder über Steuern, Schulden oder Kürzungen an anderer Stelle finanziert werden muss. Nenne in der Prüfung mindestens <b>einen Vorteil und einen Nachteil</b>.</div>
+</section>
+
+<!-- ================= ÜBUNGEN ================= -->
+<div class="practice-banner" id="uebungsteil">
+  <div class="ghost">✎</div>
+  <div class="kicker" style="color:#fff;opacity:.85">Übungsteil</div>
+  <h2>Üben wie an der Prüfung</h2>
+  <p>28 Aufgaben auf fünf Niveaus, das gelöste Arbeitsheft, Lernkarten, ein Quiz mit Sofort-Feedback und eine Prüfungssimulation mit Timer. Erst selbst lösen – dann Lösung aufklappen.</p>
+</div>
+
+<section id="uebungen">
+  <div class="sec-head"><span class="sec-num">10</span><h2>Aufgaben mit Musterlösungen</h2></div>
+  <p><span class="lvl lvl1">L1 Grundlagen</span> <span class="lvl lvl2">L2 Anwendung</span> <span class="lvl lvl3">L3 Schwierige Anwendung</span> <span class="lvl lvl4">L4 Transfer</span> <span class="lvl lvl5">L5 Prüfungsniveau</span></p>
+  <div class="lvl-filter" id="lvlFilter">
+    <button class="btn sm on" data-f="all">Alle</button>
+    <button class="btn sm" data-f="1">Level 1</button><button class="btn sm" data-f="2">Level 2</button><button class="btn sm" data-f="3">Level 3</button><button class="btn sm" data-f="4">Level 4</button><button class="btn sm" data-f="5">Level 5</button>
+  </div>
+
+  <div class="ex" data-lvl="1"><div class="ex-head"><h4>1 · Knappheit erklären</h4><span class="lz">L1</span><span class="lvl lvl1">Level 1</span></div>
+    <p>Erklären Sie in 3–4 Sätzen, was Knappheit ist und weshalb sie wirtschaftliche Entscheidungen notwendig macht. Verwenden Sie das Schlaraffenland als Gegenbeispiel.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Geprüft:</b> Definition Knappheit, logische Verknüpfung zu Entscheidungen.</p>
+      <p>Knappheit bedeutet, dass die verfügbaren Mittel (Zeit, Geld, Energie, Rohstoffe) nicht ausreichen, um alle – unbegrenzten – Bedürfnisse zu befriedigen. Weil nicht alles gleichzeitig möglich ist, muss man wählen, wofür man die Mittel einsetzt, und dabei auf Alternativen verzichten. Im Schlaraffenland ist alles im Überfluss vorhanden; dort muss niemand entscheiden oder verzichten – deshalb gäbe es dort kein Wirtschaften.</p>
+      <p><b>Typischer Irrweg:</b> Nur «Es gibt zu wenig Geld» schreiben – Knappheit betrifft alle Ressourcen, auch Zeit und Energie.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="3"><div class="ex-head"><h4>2 · «Reiche kennen keine Knappheit»</h4><span class="lz">L1</span><span class="lvl lvl3">Level 3</span></div>
+    <p>Nehmen Sie Stellung zur Aussage: «Eine Milliardärin muss keine wirtschaftlichen Entscheidungen treffen, weil für sie nichts knapp ist.»</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Die Aussage ist falsch.</b> Auch eine Milliardärin hat nur 24 Stunden pro Tag und begrenzte Energie. Sie kann nicht gleichzeitig an einer Sitzung in Zürich und in den Ferien in Japan sein → Zeit ist knapp, sie muss sich entscheiden und hat Opportunitätskosten. Zudem sind ihre Bedürfnisse nicht «fertig»: Sind die unteren Maslow-Stufen erfüllt, entstehen neue Wünsche (Anerkennung, Selbstverwirklichung). Auch Geld ist letztlich begrenzt, wenn sie z. B. zwischen zwei Grossinvestitionen wählen muss.</p>
+      <p><b>Punktelogik:</b> Stellung (falsch) + Knappheit von Zeit/Energie + Beispiel + Hinweis auf unbegrenzte Bedürfnisse.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="1"><div class="ex-head"><h4>3 · Opportunitätskosten definieren</h4><span class="lz">L2</span><span class="lvl lvl1">Level 1</span></div>
+    <p>Definieren Sie Opportunitätskosten und nennen Sie ein eigenes Beispiel aus Ihrem Alltag.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p>Opportunitätskosten sind der Wert der <b>nächstbesten Alternative</b>, auf die man verzichtet, wenn man sich für etwas entscheidet.</p>
+      <p><b>Beispiel:</b> Ich gehe am Samstag ins Training statt in die Stadt mit Freundinnen. Die Opportunitätskosten sind der Nachmittag mit meinen Freundinnen (nicht «die Zeit» allgemein).</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="2"><div class="ex-head"><h4>4 · Opportunitätskosten bei drei Akteuren</h4><span class="lz">L2</span><span class="lvl lvl2">Level 2</span></div>
+    <p>Bestimmen Sie jeweils die Opportunitätskosten und nennen Sie den Akteur:</p>
+    <ol type="a"><li>Die Gemeinde Winterthur nutzt ein freies Grundstück für einen neuen Park.</li><li>Eine Bäckerei kauft für CHF 40'000 einen neuen Ofen.</li><li>Nina arbeitet in den Sommerferien vier Wochen im Detailhandel.</li></ol>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>a) Staat:</b> Die nächstbeste Nutzung des Grundstücks, z. B. ein Schulhaus, günstige Wohnungen oder die Einnahmen aus dem Verkauf des Grundstücks.</p>
+      <p><b>b) Unternehmen:</b> Die nächstbeste Verwendung der CHF 40'000, z. B. ein Lieferwagen für einen Hauslieferdienst, Lohnerhöhungen, eine Renovation des Ladens – oder Zinsen, wenn das Geld angelegt worden wäre.</p>
+      <p><b>c) Haushalt:</b> Die nächstbeste Nutzung der vier Wochen, z. B. eine Reise mit Freunden oder Erholung. (Der verdiente Lohn ist kein Verzicht, sondern der Nutzen der Entscheidung!)</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="3"><div class="ex-head"><h4>5 · Fehlerhafte Lösung korrigieren</h4><span class="lz">L2</span><span class="lvl lvl3">Level 3</span></div>
+    <p>Ein Mitschüler schreibt: «Wenn Leo nach der Lehre ein Vollzeitstudium beginnt, sind seine Opportunitätskosten die Studiengebühren von CHF 1'500 pro Semester und das Geld für Bücher.» Finden und korrigieren Sie den Denkfehler.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Fehler:</b> Studiengebühren und Bücher sind die <b>direkten (finanziellen) Kosten</b> der Entscheidung, nicht der Verzicht auf eine Alternative.</p>
+      <p><b>Korrektur:</b> Die Opportunitätskosten sind die nächstbeste Alternative, die Leo aufgibt: z. B. <b>der Lohn und die Berufserfahrung</b>, die er bei einer Vollzeitstelle nach der Lehre erhalten hätte.</p>
+      <p><b>Warum wichtig:</b> Ökonomen betrachten nicht nur die finanziellen Kosten, sondern auch den entgangenen Nutzen – das ist oft der grössere Posten.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="4"><div class="ex-head"><h4>6 · Das halbfertige Hallenbad</h4><span class="lz">L2</span><span class="lvl lvl4">Level 4</span></div>
+    <p>Eine Gemeinde hat bereits CHF 3 Mio. in Planung und Fundament eines Hallenbads investiert. Neue Berechnungen zeigen: Der Weiterbau kostet weitere CHF 9 Mio., und die Besucherzahlen werden tiefer als erwartet sein. Ein Gemeinderat sagt: «Wir müssen weiterbauen, sonst sind die 3 Millionen verloren.» Beurteilen Sie das Argument und zeigen Sie, welche Informationen für die Entscheidung relevant sind.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Konzept:</b> Sunk Costs / Sunk-Cost-Fehlschluss.</p>
+      <p>Die CHF 3 Mio. sind <b>versunkene Kosten</b>: Sie sind ausgegeben und kommen in keinem Fall zurück – auch nicht, wenn man weiterbaut. Das Argument ist daher ein <b>Sunk-Cost-Fehlschluss</b>.</p>
+      <p><b>Relevant</b> sind nur zukünftige Grössen: die zusätzlichen CHF 9 Mio. (plus künftige Betriebskosten) gegenüber dem <b>künftigen Nutzen</b> des Bades (Besucher, Gesundheit, Schulschwimmen) – und die <b>Opportunitätskosten</b>: Was könnte man mit den 9 Mio. sonst finanzieren (Schulhaus, Steuersenkung)?</p>
+      <p><b>Fazit:</b> Weiterbauen ist nur sinnvoll, wenn der künftige Nutzen die künftigen Kosten übersteigt – unabhängig von den 3 Mio.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="2"><div class="ex-head"><h4>7 · Warum sind Opportunitätskosten verschieden hoch?</h4><span class="lz">L2</span><span class="lvl lvl2">Level 2</span></div>
+    <p>Lea und Tom verbringen beide einen Abend mit Lernen statt am Konzert ihrer Lieblingsband. Lea ist grosser Fan und hat die Band noch nie live gesehen. Tom mag die Band nur mässig, hat aber morgen eine Prüfung und nur noch diesen Abend Zeit. Für wen sind die Opportunitätskosten höher? Begründen Sie mit zwei Einflussfaktoren.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p>Für <b>Lea</b> sind die Opportunitätskosten des Lernens höher: Wegen ihrer <b>persönlichen Vorliebe</b> hat das verpasste Konzert für sie einen sehr grossen Nutzen.</p>
+      <p>Für Tom sind die Opportunitätskosten des Lernens tief (Konzert bedeutet ihm wenig). Umgekehrt wären für ihn die Opportunitätskosten eines Konzertbesuchs sehr hoch, weil die <b>Ressource Zeit</b> vor der Prüfung extrem knapp ist.</p>
+      <p><b>Faktoren:</b> persönliche Vorlieben und Verfügbarkeit der Ressourcen (Zeit, Geld, Energie).</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="1"><div class="ex-head"><h4>8 · Maslow-Stufen</h4><span class="lz">L3</span><span class="lvl lvl1">Level 1</span></div>
+    <p>Nennen Sie die fünf Stufen der Bedürfnispyramide von unten nach oben und je ein Beispiel.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p>1. Körperliche Grundbedürfnisse (Nahrung, Schlaf) · 2. Sicherheit (festes Einkommen, Schutz vor Gefahren) · 3. Zugehörigkeit (Familie, Freunde) · 4. Wertschätzung (Anerkennung, Status) · 5. Selbstverwirklichung (eigene Talente entfalten, Sinn).</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="2"><div class="ex-head"><h4>9 · Bedürfnisse den Stufen zuordnen</h4><span class="lz">L3</span><span class="lvl lvl2">Level 2</span></div>
+    <p>Ordnen Sie zu: a) eine Hausratversicherung abschliessen · b) in einen Chor eintreten · c) nach dem Sport viel trinken · d) Beförderung zur Teamleiterin · e) einen eigenen Roman schreiben · f) unbefristeter Arbeitsvertrag · g) Likes auf Instagram erhalten · h) Znacht mit der Familie.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p>a) 2 Sicherheit · b) 3 Zugehörigkeit · c) 1 Grundbedürfnis · d) 4 Wertschätzung (Status, Erfolg) · e) 5 Selbstverwirklichung · f) 2 Sicherheit (festes Einkommen) · g) 4 Wertschätzung (Anerkennung) · h) 3 Zugehörigkeit (auch 1, falls es ums Essen geht – Begründung zählt).</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="4"><div class="ex-head"><h4>10 · Neues Profil analysieren</h4><span class="lz">L3</span><span class="lz">L4</span><span class="lvl lvl4">Level 4</span></div>
+    <p><b>Profil Luca:</b> 45 Jahre, sein Arbeitgeber ist in Konkurs gegangen. Er hat Ersparnisse für etwa drei Monate. Seine Frau und die Kinder unterstützen ihn, im Turnverein fühlt er sich wohl. Früher war er stolz auf seine Stelle als Abteilungsleiter. Analysieren Sie die dringendsten Bedürfnisse (Maslow), ordnen Sie sie in Grund-/Wahl- und Individual-/Kollektivbedürfnisse ein und zeigen Sie, wie der Staat helfen kann.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Dringendstes Bedürfnis: Sicherheit (Stufe 2)</b> – ein festes Einkommen fehlt, die Ersparnisse reichen nur drei Monate. Es ist ein <b>Grundbedürfnis</b> im weiteren Sinn (Existenzsicherung), weil ohne Einkommen bald auch Stufe 1 (Wohnung, Essen) gefährdet ist.</p>
+      <p><b>Wertschätzung (Stufe 4)</b> ist ebenfalls verletzt (Verlust von Status als Abteilungsleiter) – ein <b>Wahlbedürfnis</b>. <b>Zugehörigkeit (Stufe 3)</b> ist durch Familie und Verein erfüllt.</p>
+      <p><b>Individual/kollektiv:</b> Eine neue Stelle ist sein Individualbedürfnis. Weil viele Menschen gegen Arbeitslosigkeit abgesichert sein wollen, gibt es ein Kollektivbedürfnis nach sozialer Sicherheit → <b>Arbeitslosenversicherung</b>, RAV-Stellenvermittlung, Weiterbildungskurse (Staat → Haushalt: Transferzahlungen).</p>
+      <p><b>Wenn erfüllt:</b> Mit Taggeld und neuer Stelle ist die Sicherheit zurück, er kann wieder Anerkennung im Beruf erlangen.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="2"><div class="ex-head"><h4>11 · Bedürfnisarten einteilen</h4><span class="lz">L4</span><span class="lvl lvl2">Level 2</span></div>
+    <p>Teilen Sie jedes Bedürfnis nach allen drei Gegensatzpaaren ein: a) Hunger · b) Bedürfnis nach einem sicheren Schulweg für alle Kinder · c) Wunsch nach einem Designer-Sofa · d) Wunsch nach Freundschaft.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <div class="tbl-wrap"><table><thead><tr><th>Bedürfnis</th><th>Grund/Wahl</th><th>Individual/Kollektiv</th><th>materiell/immateriell</th></tr></thead><tbody>
+        <tr><td>a) Hunger</td><td>Grund</td><td>Individual</td><td>materiell</td></tr>
+        <tr><td>b) sicherer Schulweg</td><td>Grund (Sicherheit, Schutz)</td><td>Kollektiv</td><td>immateriell (Sicherheit; umgesetzt z. B. mit Lotsendienst, Tempo 30)</td></tr>
+        <tr><td>c) Designer-Sofa</td><td>Wahl</td><td>Individual</td><td>materiell</td></tr>
+        <tr><td>d) Freundschaft</td><td>Wahl (nicht überlebensnotwendig)</td><td>Individual</td><td>immateriell</td></tr>
+      </tbody></table></div>
+    </div></details></div>
+
+  <div class="ex" data-lvl="3"><div class="ex-head"><h4>12 · Individual- oder Kollektivbedürfnis?</h4><span class="lz">L4</span><span class="lvl lvl3">Level 3</span></div>
+    <p>Das Bedürfnis nach Sicherheit kann individuell <i>und</i> kollektiv befriedigt werden. Erklären Sie diesen Unterschied an je einem Beispiel und begründen Sie, weshalb der Staat bestimmte Bedürfnisse übernimmt.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Individuell:</b> Ich kaufe ein Velo-Schloss oder eine Alarmanlage für meine Wohnung – ich allein profitiere und bezahle.</p>
+      <p><b>Kollektiv:</b> Schutz vor Kriminalität in der ganzen Stadt durch die Polizei – alle profitieren gleichzeitig.</p>
+      <p><b>Begründung:</b> Bei Kollektivbedürfnissen wäre eine private Lösung für jeden Einzelnen zu teuer oder unmöglich (niemand kann eine eigene Polizei finanzieren), und man kann niemanden vom Nutzen ausschliessen. Deshalb organisiert der Staat die Befriedigung und finanziert sie über Steuern.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="1"><div class="ex-head"><h4>13 · Güterpaare definieren</h4><span class="lz">L5</span><span class="lvl lvl1">Level 1</span></div>
+    <p>Erklären Sie den Unterschied zwischen a) freien und wirtschaftlichen Gütern, b) Konsum- und Investitionsgütern, c) Gebrauchs- und Verbrauchsgütern.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>a)</b> Freie Güter sind unbegrenzt vorhanden und kostenlos (Sonnenlicht); wirtschaftliche Güter sind knapp, müssen hergestellt werden und haben einen Preis (Brot).</p>
+      <p><b>b)</b> Konsumgüter befriedigen Bedürfnisse von Haushalten direkt (Pizza zu Hause); Investitionsgüter werden von Unternehmen eingesetzt, um andere Güter herzustellen (Pizzaofen im Restaurant).</p>
+      <p><b>c)</b> Gebrauchsgüter werden mehrmals genutzt (Velo); Verbrauchsgüter werden beim Gebrauch verbraucht (Benzin).</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="2"><div class="ex-head"><h4>14 · Gütertabelle</h4><span class="lz">L5</span><span class="lvl lvl2">Level 2</span></div>
+    <p>Ordnen Sie jedes Gut ein (wirtschaftlich/frei · materiell/immateriell · Konsum/Investition · Gebrauch/Verbrauch): a) Mehl in einer Bäckerei · b) Netflix-Abo privat · c) Lastwagen einer Speditionsfirma · d) Wind für ein Segelschiff in der Freizeit · e) Sonnencreme in den Ferien · f) Zahnarztstuhl.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <div class="tbl-wrap"><table><thead><tr><th>Gut</th><th>Verfügbarkeit</th><th>Beschaffenheit</th><th>Verwendung</th><th>Nutzungsdauer</th></tr></thead><tbody>
+        <tr><td>a) Mehl in Bäckerei</td><td>wirtschaftlich</td><td>materiell</td><td><b>Investition</b> (dient Herstellung von Brot)</td><td>Verbrauch</td></tr>
+        <tr><td>b) Netflix-Abo privat</td><td>wirtschaftlich</td><td>immateriell (Dienstleistung)</td><td>Konsum</td><td>– (Dienstleistung; über die Abodauer nutzbar)</td></tr>
+        <tr><td>c) Lastwagen Spedition</td><td>wirtschaftlich</td><td>materiell</td><td>Investition</td><td>Gebrauch</td></tr>
+        <tr><td>d) Wind beim Segeln</td><td><b>frei</b></td><td colspan="3">wird nicht weiter eingeteilt</td></tr>
+        <tr><td>e) Sonnencreme</td><td>wirtschaftlich</td><td>materiell</td><td>Konsum</td><td>Verbrauch</td></tr>
+        <tr><td>f) Zahnarztstuhl</td><td>wirtschaftlich</td><td>materiell</td><td>Investition</td><td>Gebrauch</td></tr>
+      </tbody></table></div>
+    </div></details></div>
+
+  <div class="ex" data-lvl="3"><div class="ex-head"><h4>15 · Ein Gut – zwei Einteilungen</h4><span class="lz">L5</span><span class="lvl lvl3">Level 3</span></div>
+    <p>Zeigen Sie am Beispiel einer Kaffeemaschine, dass dasselbe Gut Konsum- oder Investitionsgut sein kann. Welches Kriterium ist entscheidend?</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p>Kaffeemaschine in <b>Emmas Küche</b>: Sie befriedigt direkt ihr Bedürfnis nach Kaffee → <b>Konsumgut</b>. Kaffeemaschine in <b>Mateos Café</b>: Damit werden Kaffees hergestellt und an Gäste verkauft → <b>Investitionsgut</b>.</p>
+      <p>Entscheidend ist die <b>Art der Verwendung</b> (wer nutzt das Gut wofür?), nicht die Beschaffenheit des Gutes. In beiden Fällen ist sie ein materielles, wirtschaftliches Gebrauchsgut.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="4"><div class="ex-head"><h4>16 · Frei oder wirtschaftlich? – Transfer</h4><span class="lz">L5</span><span class="lz">L1</span><span class="lvl lvl4">Level 4</span></div>
+    <p>a) Ist Luft ein freies Gut? Unterscheiden Sie Atemluft auf einer Wanderung und Pressluft für Pneus an der Tankstelle. b) Früher war saubere Luft in Städten selbstverständlich. Weshalb kann ein freies Gut zu einem wirtschaftlichen Gut werden? Zeigen Sie den Bezug zur Knappheit.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>a)</b> Atemluft ist unbegrenzt verfügbar und kostenlos → <b>freies Gut</b>. Pressluft muss mit einem Kompressor (Kapital, Energie) hergestellt werden, ist also knapp und hat Kosten → <b>wirtschaftliches Gut</b> (auch wenn sie manchmal gratis angeboten wird, trägt jemand die Kosten).</p>
+      <p><b>b)</b> Wenn ein Gut durch Übernutzung oder Verschmutzung <b>knapp</b> wird, muss man Mittel einsetzen, um es zu erhalten (Filteranlagen, Katalysatoren, Umweltvorschriften). Damit entstehen Kosten und das Gut wird zum wirtschaftlichen Gut. Genau hier setzt das ökologische Prinzip an.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="2"><div class="ex-head"><h4>17 · Produktionsfaktoren einer Velowerkstatt</h4><span class="lz">L6</span><span class="lvl lvl2">Level 2</span></div>
+    <p>Nennen Sie für die Dienstleistung «Veloreparatur» je zwei Beispiele pro Produktionsfaktor.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Arbeit:</b> Velomechanikerin, Inhaber (unternehmerische Tätigkeit), Lernender. <b>Kapital:</b> Werkstatt (Gebäude), Montageständer, Werkzeuge, Kompressor. <b>Technologie:</b> Wissen über Schaltungen und E-Bike-Elektronik, Reparaturanleitungen, Diagnose-Software. <b>Natürliche Ressourcen:</b> Standort nahe Bahnhof, Boden, Wasser zum Reinigen, Rohstoffe der Ersatzteile (Stahl, Gummi).</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="3"><div class="ex-head"><h4>18 · Finde die drei Fehler</h4><span class="lz">L6</span><span class="lvl lvl3">Level 3</span></div>
+    <p>Eine Schülerin ordnet für eine Pizzeria zu: <b>Arbeit:</b> Pizzaiolo, Rezept für den Teig · <b>Kapital:</b> Bankkredit über CHF 80'000, Pizzaofen · <b>Technologie:</b> Kassensystem-Know-how · <b>Natürliche Ressourcen:</b> Restaurantgebäude, Tomaten-Rohstoffe, Wasser. Korrigieren Sie.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Fehler 1:</b> Das <b>Rezept</b> ist keine Arbeit, sondern Know-how → <b>Technologie</b>.</p>
+      <p><b>Fehler 2:</b> Der <b>Bankkredit</b> ist Geldkapital und kein Produktionsfaktor. Kapital ist nur Realkapital (Pizzaofen, Tische, Gebäude).</p>
+      <p><b>Fehler 3:</b> Das <b>Restaurantgebäude</b> ist von Menschen geschaffen → <b>Kapital</b>. Natürliche Ressource ist nur der Boden/Standort.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="4"><div class="ex-head"><h4>19 · Wichtigster Produktionsfaktor?</h4><span class="lz">L6</span><span class="lvl lvl4">Level 4</span></div>
+    <p>Vergleichen Sie ein Software-Startup (App-Entwicklung) mit einem Kieswerk. Welcher Produktionsfaktor ist jeweils besonders bedeutend? Begründen Sie und erklären Sie, warum trotzdem alle vier nötig sind.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Software-Startup:</b> <b>Technologie</b> (Programmier-Know-how, Ideen) und <b>Arbeit</b> (qualifizierte Entwicklerinnen) sind zentral; Kapital (Laptops, Server) ist vergleichsweise klein, natürliche Ressourcen spielen kaum eine Rolle.</p>
+      <p><b>Kieswerk:</b> <b>Natürliche Ressourcen</b> (Kiesvorkommen, Boden) und <b>Kapital</b> (Bagger, Förderbänder, Brecheranlagen) sind entscheidend; ohne Kiesvorkommen kein Produkt.</p>
+      <p><b>Trotzdem alle vier:</b> Auch das Startup braucht einen Standort und Strom (natürliche Ressourcen) und Laptops (Kapital); das Kieswerk braucht Maschinisten (Arbeit) und Wissen über Abbau und Sicherheit (Technologie). Güter entstehen immer aus einer Kombination aller Faktoren.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="1"><div class="ex-head"><h4>20 · Ökonomisches Prinzip erklären</h4><span class="lz">L7</span><span class="lvl lvl1">Level 1</span></div>
+    <p>Erklären Sie Maximum-, Minimum- und Optimumprinzip mit den Begriffen Input und Output.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Maximumprinzip:</b> Mit einem gegebenen Input wird ein möglichst grosser Output angestrebt. <b>Minimumprinzip:</b> Ein gegebener Output soll mit möglichst kleinem Input erreicht werden. <b>Optimumprinzip:</b> Input und Output sind beide veränderbar; gesucht wird das günstigste Verhältnis zwischen beiden.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="2"><div class="ex-head"><h4>21 · Prinzipien erkennen</h4><span class="lz">L7</span><span class="lvl lvl2">Level 2</span></div>
+    <p>a) Eine Familie will mit CHF 3'000 möglichst schöne Ferien verbringen. b) Ein Unternehmen will 1'000 T-Shirts mit möglichst geringen Kosten produzieren. c) Mia sucht im Internet den günstigsten Anbieter für genau ein bestimmtes Paar Schuhe. d) Ein Bauer will mit möglichst wenig Dünger den grösstmöglichen Ertrag erzielen. e) Ein Velokurier sucht jene Anzahl Aufträge pro Tag, bei der Einnahmen und Aufwand im besten Verhältnis stehen. f) Die Gemeinde will mit dem Budget von CHF 200'000 möglichst viele Spielplätze sanieren.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p>a) Maximum (Budget fix) · b) Minimum (Menge fix) · c) Minimum (Ziel fix: genau diese Schuhe) · d) <b>unmöglich</b> – beide Grössen gleichzeitig extrem, kein ökonomisches Prinzip · e) Optimum · f) Maximum.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="3"><div class="ex-head"><h4>22 · Eigene Beispiele für Mateos Café</h4><span class="lz">L7</span><span class="lvl lvl3">Level 3</span></div>
+    <p>Formulieren Sie für Mateos Café je ein eigenes Beispiel zu allen drei Prinzipien. Markieren Sie jeweils, was fix und was variabel ist.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Maximum:</b> Mit den vorhandenen 20 kg Kaffeebohnen (<i>Input fix</i>) möglichst viele gute Tassen Kaffee zubereiten (<i>Output max</i>).</p>
+      <p><b>Minimum:</b> Die bestellten 150 Kaffees für einen Firmenanlass (<i>Output fix</i>) mit möglichst tiefen Kosten (Personal, Bohnen) herstellen (<i>Input min</i>).</p>
+      <p><b>Optimum:</b> Mateo überlegt, wie lange das Café offen haben soll: Längere Öffnungszeiten bringen mehr Umsatz, verursachen aber Lohn- und Energiekosten. Er wählt die Öffnungszeit mit dem besten Verhältnis von Ertrag zu Aufwand (<i>beides variabel</i>).</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="2"><div class="ex-head"><h4>23 · Transaktionen im Kreislauf</h4><span class="lz">L8</span><span class="lvl lvl2">Level 2</span></div>
+    <p>Bestimmen Sie für jede Transaktion Strom (Geld/Güter), Richtung und Beschriftung: a) Emma kauft ein Tram-Abo bei Stadtbus Winterthur. b) Emma arbeitet in ihrem Lehrbetrieb. c) Der Lehrbetrieb zahlt ihr den Lehrlingslohn. d) Emma zahlt CHF 500 auf ihr Sparkonto ein. e) Ein Winterthurer Maschinenbauer liefert Anlagen nach Deutschland. f) Emmas Grossvater erhält die AHV-Rente.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p>a) Geld H → U (Konsumausgabe) + Güter U → H (Transportdienstleistung) · b) Güter H → U (Produktionsfaktor Arbeit) · c) Geld U → H (Lohn) · d) Geld H → Bank (Ersparnisse) · e) Güter U → Ausland (Export) + Geld Ausland → U (Exporterlös) · f) Geld Staat → H (Transferzahlung/Rente; keine direkte Gegenleistung).</p>
+      <p><small>Hinweis zu a): Stadtbus ist ein öffentliches Unternehmen – im Modell zählt die Funktion «Anbieter einer Dienstleistung» → Unternehmen.</small></p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="3"><div class="ex-head"><h4>24 · Warum gegenläufig?</h4><span class="lz">L8</span><span class="lvl lvl3">Level 3</span></div>
+    <p>a) Erklären Sie, weshalb Geld- und Güterströme im Kreislauf in entgegengesetzte Richtungen fliessen. b) Nennen Sie drei Transaktionen im erweiterten Kreislauf, bei denen <b>nur ein Geldstrom</b> ohne Güterstrom entsteht, und begründen Sie.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>a)</b> Bei einem Tausch wird eine Leistung gegen Bezahlung abgegeben: Wer ein Gut (oder Arbeit) liefert, erhält dafür Geld. Deshalb fliesst das Geld immer zum Anbieter, das Gut zum Nachfrager.</p>
+      <p><b>b)</b> Steuern (H/U → Staat), Renten/Transferzahlungen (Staat → H), Überweisungen an Familie im Ausland (H → Ausland), Sparen (H → Bank). Hier gibt es <b>keine direkte Gegenleistung</b> in Form eines Gutes – die Steuer ist z. B. nicht der «Preis» für eine bestimmte Strasse.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="4"><div class="ex-head"><h4>25 · Kreislauf mit Banken zeichnen (Arbeitsheft 9)</h4><span class="lz">L8</span><span class="lvl lvl4">Level 4</span></div>
+    <p>Zeichnen Sie einen Wirtschaftskreislauf mit Haushalten, Unternehmen und Banken (Banken nur in Beziehung mit Haushalten und Unternehmen). Beschriften Sie sämtliche Pfeile und Felder. Beschreiben Sie anschliessend die Rolle der Bank in einem Satz.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Felder:</b> Haushalte · Unternehmen · Banken.</p>
+      <p><b>Pfeile zwischen H und U:</b> Güter &amp; Dienstleistungen (U → H, gestrichelt) · Konsumausgaben (H → U) · Arbeit (H → U, gestrichelt) · Löhne (U → H).</p>
+      <p><b>Pfeile mit Banken:</b> Ersparnisse (H → B) · Zinsen auf Ersparnisse (B → H) · Kredite (B → U) · Rückzahlung + Kreditzinsen (U → B).</p>
+      <p><b>Rolle:</b> Die Banken sammeln die Ersparnisse der Haushalte und leihen sie als Kredite an Unternehmen aus, die damit Investitionsgüter kaufen – sie vermitteln also Geld zwischen Sparern und Investoren. Öffne oben den interaktiven Kreislauf mit «+ Banken» als Vorlage.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="3"><div class="ex-head"><h4>26 · Wirkungskette Steuersenkung</h4><span class="lz">L9</span><span class="lvl lvl3">Level 3</span></div>
+    <p>Der Kanton senkt die Einkommenssteuer. Beschreiben Sie die Wirkungskette im Kreislauf über mindestens vier Schritte und nennen Sie zwei Gründe, weshalb die Wirkung kleiner ausfallen könnte als erhofft.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Kette:</b> ① Kleinerer Geldstrom H → Staat ② Haushalte haben mehr verfügbares Einkommen ③ mehr Konsumausgaben H → U ④ Unternehmen verkaufen mehr, produzieren mehr ⑤ sie stellen ein bzw. zahlen mehr Löhne U → H ⑥ Einkommen und Konsum steigen weiter; Staat erhält später teilweise wieder mehr Steuern.</p>
+      <p><b>Dämpfende Gründe:</b> Haushalte <b>sparen</b> einen Teil (Geld fliesst zur Bank statt in den Konsum) · Haushalte kaufen <b>importierte Güter</b> oder im Ausland ein (Geld fliesst ins Ausland) · Der Staat muss wegen tieferer Einnahmen <b>Ausgaben kürzen</b> oder Schulden machen.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="4"><div class="ex-head"><h4>27 · Beurteilung: Tunnelprojekt auf Pump</h4><span class="lz">L9</span><span class="lz">L2</span><span class="lvl lvl4">Level 4</span></div>
+    <p>Der Bund plant einen Bahntunnel für CHF 1 Mrd., finanziert über neue Schulden. Analysieren Sie die Geldströme und beurteilen Sie das Projekt mit je zwei Pro- und Contra-Argumenten. Beziehen Sie die Opportunitätskosten ein.</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>Ströme:</b> Banken/Kapitalgeber → Staat (Kredit); Staat → Bauunternehmen (Auftrag); Bauunternehmen → Haushalte (Löhne); Haushalte → Unternehmen (Konsum); später Staat → Banken/Kapitalgeber (Rückzahlung + Zinsen).</p>
+      <p><b>Pro:</b> Aufträge und Arbeitsplätze in der Bauwirtschaft, zusätzlicher Konsum · Langfristig bessere Infrastruktur (kürzere Reisezeiten → produktivere Wirtschaft).</p>
+      <p><b>Contra:</b> Schulden müssen mit Zinsen zurückbezahlt werden (künftige Steuern oder Kürzungen) · <b>Opportunitätskosten:</b> Die CHF 1 Mrd. fehlen für Bildung, Gesundheit oder Klimaschutz · Teile der Aufträge können ins Ausland fliessen (ausländische Baufirmen, Importmaterial).</p>
+      <p><b>Fazit (Beispiel):</b> Sinnvoll, wenn der langfristige Nutzen die Kosten inkl. Zinsen übersteigt und die Schuldenbremse eingehalten wird.</p>
+    </div></details></div>
+
+  <div class="ex" data-lvl="5"><div class="ex-head"><h4>28 · Fallstudie: Exporteinbruch</h4><span class="lz">L8</span><span class="lz">L9</span><span class="lz">L2</span><span class="lvl lvl5">Level 5</span></div>
+    <p>Wegen einer weltweiten Krise bestellen ausländische Kunden kaum noch Schweizer Maschinen. a) Zeigen Sie mit dem erweiterten Kreislauf, wie sich der Einbruch auf Unternehmen, Haushalte, Banken und Staat auswirkt (mind. 5 Ströme). b) Schlagen Sie zwei staatliche Massnahmen vor, zeichnen Sie die zugehörigen Ströme ein und beurteilen Sie je einen Vorteil und Nachteil. c) Weshalb wäre ein grosses Sparprogramm des Staates genau jetzt problematisch?</p>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>a)</b> Güterstrom U → Ausland (Exporte) und Geldstrom Ausland → U (Exporterlöse) werden kleiner → Unternehmen haben weniger Einnahmen → sie produzieren weniger, führen Kurzarbeit ein oder entlassen → Arbeit H → U und Löhne U → H sinken → Haushalte konsumieren weniger (H → U sinkt, auch bei inländischen Firmen) → Unternehmen investieren weniger und brauchen weniger Kredite (B → U sinkt), Kreditausfälle für Banken möglich → Steuern U → S und H → S sinken, gleichzeitig steigen Arbeitslosengelder S → H.</p>
+      <p><b>b) Massnahme 1: Kurzarbeitsentschädigung</b> (Geld Staat → Haushalte bzw. über Unternehmen an Mitarbeitende). + Arbeitsplätze und Know-how bleiben erhalten, Konsum bricht weniger ein. − Kostet den Staat viel Geld; lohnt sich nicht, wenn die Krise dauerhaft ist (Strukturwandel wird verzögert).</p>
+      <p><b>Massnahme 2: Vorgezogene Staatsaufträge</b> (Geld Staat → Unternehmen, Güter U → Staat), z. B. Sanierung von Schulhäusern. + Ersetzt fehlende Nachfrage, sichert Arbeitsplätze. − Höhere Staatsausgaben/Schulden; wirkt mit Verzögerung, weil Planung dauert; hilft der Maschinenindustrie nur indirekt.</p>
+      <p><b>c)</b> Ein Sparprogramm würde die Geldströme vom Staat zu Haushalten und Unternehmen zusätzlich verkleinern. Die Nachfrage sinkt noch stärker → mehr Entlassungen → noch tiefere Steuereinnahmen. Der Staat würde die Krise verstärken (Opportunitätskosten des Sparens: verlorene Arbeitsplätze).</p>
+    </div></details></div>
+</section>
+
+<!-- ================= ARBEITSHEFT ================= -->
+<section id="arbeitsheft">
+  <div class="sec-head"><span class="sec-num">11</span><h2>Arbeitsheft Kapitel 8 – Lösungen</h2></div>
+  <p>Die Aufgaben aus dem Arbeitsheft sind eine gute Prüfungsvorbereitung. Erst selbst im Heft lösen, dann vergleichen. Bei offenen Aufgaben sind Musterantworten angegeben – andere gut begründete Antworten sind ebenfalls richtig.</p>
+
+  <div class="filled ah">
+    <h4>1 · VWL und BWL</h4>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p>a) Einkauf, Lagerung, Finanzierung → <b>BWL</b> · b) Aktivitäten der einzelnen Wirtschaftsteilnehmer untersuchen und bewerten → <b>VWL</b> (sie untersucht Haushalte, Unternehmen, Staat usw. und ihr Zusammenwirken aus gesamtwirtschaftlicher Sicht) · c) Arbeitslosigkeit, Konjunkturpolitik → <b>VWL</b> · d) praktische Ratschläge für Unternehmen → <b>BWL</b> · e) Mitarbeitende motivieren → <b>BWL</b> · f) Faktoren des Erdölpreises → <b>VWL</b>.</p>
+    </div></details>
+  </div>
+
+  <div class="filled ah">
+    <h4>2 · Bedürfnisse und Konsum</h4>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <div class="tbl-wrap"><table><thead><tr><th>Bedürfnis</th><th>Konsumgut</th><th>Weg ohne Konsum</th></tr></thead><tbody>
+        <tr><td>a) Körperliche Bedürfnisse</td><td>Lebensmittel, Mineralwasser, Bett</td><td>Gemüse im eigenen Garten ernten, Brunnenwasser trinken, spazieren (Bewegung)</td></tr>
+        <tr><td>b) Sicherheit</td><td>Versicherung, Sicherheitsschloss, Alarmanlage</td><td>Nachbarn schauen gegenseitig zum Haus, vorsichtiges Verhalten, Ersparnisse bilden</td></tr>
+        <tr><td>c) Zugehörigkeit</td><td>Vereinsmitgliedschaft, Restaurantbesuch mit Freunden, Fan-Trikot</td><td>Zeit mit Familie und Freunden verbringen, Freiwilligenarbeit in einer Gruppe</td></tr>
+        <tr><td>d) Achtung (Wertschätzung)</td><td>Markenkleider, teures Auto, Luxusuhr</td><td>Gute Leistung in Schule/Beruf, anderen helfen, ein Amt übernehmen</td></tr>
+        <tr><td>e) Selbstverwirklichung</td><td>Malkurs, Musikinstrument, Weltreise</td><td>Eigene Lieder schreiben, sich ehrenamtlich engagieren, meditieren</td></tr>
+      </tbody></table></div>
+    </div></details>
+  </div>
+
+  <div class="filled ah">
+    <h4>3 · «Man gönnt sich ja sonst nichts» – exklusiver Anlass</h4>
+    <details><summary>Musterantwort anzeigen</summary><div class="sol">
+      <p><small>Der Beitrag zeigt einen exklusiven, teuren Anlass. Unabhängig von den Details lässt sich so argumentieren:</small></p>
+      <p><b>Grundbedürfnisse:</b> Werden kaum befriedigt – das feine Essen stillt zwar Hunger, dafür wäre der Aufwand aber nicht nötig; es geht nicht ums Überleben. <b>Sicherheit:</b> Wird nicht befriedigt (höchstens das Gefühl, sich so etwas finanziell leisten zu können). <b>Zugehörigkeit:</b> Wird befriedigt – man gehört zu einem exklusiven Kreis, trifft Gleichgesinnte, teilt das Erlebnis mit Partner/Freunden. <b>Wertschätzung:</b> Stark befriedigt – Status, Prestige, sich von anderen abheben, gesehen werden. <b>Selbstverwirklichung:</b> Teilweise – «sich etwas gönnen», besondere Erlebnisse als Belohnung; echte Entfaltung eigener Fähigkeiten eher nicht.</p>
+    </div></details>
+  </div>
+
+  <div class="filled ah">
+    <h4>4 · Güterarten</h4>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>a)</b> 1 Privates Handy <b>K</b> · 2 Spielfilm auf DVD <b>K</b> · 3 Unfallversicherung <b>D</b> · 4 Coiffeurstuhl <b>I</b> · 5 CAD-Grafikprogramm <b>I</b> (wird in Architektur-/Ingenieurbüros zur Produktion eingesetzt) · 6 Angelrute (Hobbyfischer) <b>K</b> · 7 Reisen <b>D</b> · 8 Haare schneiden <b>D</b> · 9 Anlageberatung <b>D</b> · 10 Taxi (Fahrzeug) <b>I</b> · 11 Konzert <b>D</b> · 12 Bahnfahrt <b>D</b> · 13 Tagesschau im TV <b>D</b> · 14 Brot <b>K</b>.</p>
+      <p><b>b)</b> 1 Apparate im Fitnesscenter <b>G</b> · 2 Beamer im Schulzimmer <b>G</b> · 3 Tennisbälle am Grand-Slam-Turnier <b>V</b> (werden nach wenigen Games ersetzt) · 4 Shampoo im Coiffeursalon <b>V</b> · 5 Zahnbürste <b>G</b> · 6 mein Smartphone <b>G</b>.</p>
+      <p><b>c)</b> Werkzeugmaschinen <b>Investition</b> · Lastwagen <b>Investition</b> · Teigwaren <b>Konsum</b> · Traktor <b>Investition</b> · Zahnbehandlung <b>Konsum</b> · Modelleisenbahn <b>Konsum</b>.</p>
+      <p><b>d)</b> Teigwaren: Kocht eine Familie damit ihr Znacht, sind sie ein Konsumgut. Kauft ein Restaurant sie ein, um Menüs herzustellen und zu verkaufen, sind sie ein Investitionsgut. (Ebenso: Lastwagen einer Transportfirma = Investitionsgut, Wohnmobil/Camper einer Familie = Konsumgut.) Entscheidend ist die <b>Verwendung</b>.</p>
+    </div></details>
+  </div>
+
+  <div class="filled ah">
+    <h4>5 · Produktionsfaktoren: Marroni- und Glacestand</h4>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <div class="tbl-wrap"><table><thead><tr><th>Marronistand</th><th>Faktor</th><th>Glacestand</th><th>Faktor</th></tr></thead><tbody>
+        <tr><td>zweckmässiger Ofen</td><td>K</td><td>Eiscremesorten (Rezepte)</td><td>T</td></tr>
+        <tr><td>Verkäuferin / ich selbst</td><td>A</td><td>Verkäufer, Einkauf und Buchhaltung</td><td>A</td></tr>
+        <tr><td>Häuschen/Stand, Tüten-Presse</td><td>K</td><td>Kühltruhe, Glaceportionierer</td><td>K</td></tr>
+        <tr><td>Wissen, wie man Marroni röstet, ohne dass sie verbrennen</td><td>T</td><td>Wissen über Hygienevorschriften, Kühltechnik</td><td>T</td></tr>
+        <tr><td>Marroni (Rohstoff), Holzkohle/Gas</td><td>N</td><td>Milch, Früchte, Wasser, Strom</td><td>N</td></tr>
+        <tr><td>Standort mit vielen Passanten (Bahnhof, Altstadt)</td><td>N</td><td>sonniger Standort am See/in der Badi</td><td>N</td></tr>
+      </tbody></table></div>
+      <p><b>c) Wichtigster Faktor (Musterantwort):</b> Die <b>natürliche Ressource Standort</b>. Ein Marroni- oder Glacestand lebt von Spontankäufen – ohne viele Passanten nützen der beste Ofen und das beste Rezept nichts. Andere Begründungen (z. B. Technologie: gute Qualität bringt Stammkundschaft) sind möglich, wenn sie überzeugend sind.</p>
+    </div></details>
+  </div>
+
+  <div class="filled ah">
+    <h4>6 · Ökonomisches Prinzip im Privatleben (Lernen)</h4>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p><b>a) Maximumprinzip:</b> Ich lege meine Lernzeit fest (z. B. 5 Stunden bis zur Prüfung) und versuche, in dieser Zeit die bestmögliche Note zu erreichen: Lernziele priorisieren, Aufgaben lösen statt nur lesen, ohne Handy lernen.</p>
+      <p><b>b) Minimumprinzip:</b> Ich setze mir eine Zielnote (z. B. eine 5) und versuche, diese mit möglichst wenig Lernzeit zu erreichen: nur prüfungsrelevante Lernziele, bereits Gekonntes nicht wiederholen, gezielt Lücken schliessen.</p>
+      <p><b>c) Optimumprinzip:</b> Weder Zeit noch Note sind fix. Ich lerne so lange, wie sich der zusätzliche Aufwand noch lohnt: Wenn eine weitere Stunde die Note kaum mehr verbessert (und mir z. B. für ein anderes Fach fehlt → Opportunitätskosten), höre ich auf. Ich suche das beste Verhältnis zwischen Lernzeit und Note.</p>
+    </div></details>
+  </div>
+
+  <div class="filled ah">
+    <h4>7 · Kiosk: Bedürfnisse, Güterarten und Standort</h4>
+    <details><summary>Musterantwort anzeigen</summary><div class="sol">
+      <p><b>a) Bedürfnisse:</b> Hunger und Durst (Snacks, Getränke – Grundbedürfnisse), Information und Unterhaltung (Zeitungen, Zeitschriften), Genuss (Süssigkeiten, Glace – Wahlbedürfnisse), Hoffnung auf Gewinn (Lotto/Toto), Mobilität (Billette, Karten fürs Handy), Kontakt (kurzer Schwatz mit dem Kioskpersonal – Zugehörigkeit).</p>
+      <p><b>b) Güterarten:</b> Wirtschaftliche Güter; überwiegend materielle Konsumgüter, meist Verbrauchsgüter (Getränke, Zigaretten, Zeitungen), teils Gebrauchsgüter (Feuerzeug, Regenschirm); dazu immaterielle Güter bzw. Dienstleistungen (Lottoscheine, Handyguthaben, Paketannahme).</p>
+      <p><b>c) Warum so viele Kioske?</b> Sie decken spontane Kleinbedürfnisse «unterwegs» ab: Sie liegen dort, wo viele Menschen vorbeikommen (Bahnhöfe, Haltestellen), haben lange Öffnungszeiten, sind schnell und nah – der Umweg zum Supermarkt wäre mit Zeit (Opportunitätskosten) verbunden.</p>
+      <p><b>d) Standort Kannenfeldplatz:</b> Der Kiosk befindet sich in einer ehemaligen Wartehalle der Basler Strassenbahn an einem Platz mit Tram-/Bushaltestellen. Der Standort ist sehr günstig: Wartende Fahrgäste haben Zeit und spontane Bedürfnisse (Zeitung, Getränk), es gibt viel Laufkundschaft. Die natürliche Ressource «Standort» ist hier der entscheidende Produktionsfaktor.</p>
+    </div></details>
+  </div>
+
+  <div class="filled ah">
+    <h4>8 · Wirtschaftskreislauf: Aktionen zuordnen (Frau Schmucki &amp; Diamantica)</h4>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <div class="tbl-wrap"><table><thead><tr><th></th><th>Aktion</th><th>Pfeil im Kreislauf</th></tr></thead><tbody>
+        <tr><td>a</td><td>Diamantica bezahlt dem Staat Kapitalsteuern</td><td><span class="pill g">Geld</span> Unternehmen → Staat</td></tr>
+        <tr><td>b</td><td>Kinder besuchen die Primarschule</td><td><span class="pill o">Güter</span> Staat → Haushalt (öffentliche Leistung)</td></tr>
+        <tr><td>c</td><td>Frau Schmucki kauft Modeschmuck</td><td><span class="pill o">Güter</span> Unternehmen → Haushalt</td></tr>
+        <tr><td>d</td><td>Sie bezahlt dafür 250 Franken</td><td><span class="pill g">Geld</span> Haushalt → Unternehmen</td></tr>
+        <tr><td>e</td><td>Frau Schmucki arbeitet bei Diamantica</td><td><span class="pill o">Güter</span> Haushalt → Unternehmen (Arbeit)</td></tr>
+        <tr><td>f</td><td>Diamantica exportiert Designerschmuck in die Emirate</td><td><span class="pill o">Güter</span> Unternehmen → Ausland</td></tr>
+        <tr><td>g</td><td>Frau Schmucki bezahlt Einkommenssteuer</td><td><span class="pill g">Geld</span> Haushalt → Staat</td></tr>
+        <tr><td>h</td><td>Diamantica bezieht Rohdiamanten aus Russland</td><td><span class="pill o">Güter</span> Ausland → Unternehmen</td></tr>
+        <tr><td>i</td><td>Diamantica zahlt den Lohn von 5000 Franken</td><td><span class="pill g">Geld</span> Unternehmen → Haushalt</td></tr>
+        <tr><td>j</td><td>Frau Schmucki kauft im grenznahen Ausland ein</td><td><span class="pill g">Geld</span> Haushalt → Ausland</td></tr>
+      </tbody></table></div>
+      <p><small>Vorgehen: Zuerst entscheiden, ob Geld (durchgezogen) oder ein Gut/eine Leistung (gestrichelt) fliesst, dann die Richtung bestimmen – und erst dann die passende Ellipse im Schema suchen. Bei j) fliessen im Gegenzug Güter vom Ausland zum Haushalt.</small></p>
+    </div></details>
+  </div>
+
+  <div class="filled ah">
+    <h4>9 · Die Banken im erweiterten Wirtschaftskreislauf</h4>
+    <details><summary>Lösung anzeigen</summary><div class="sol">
+      <p>Siehe Aufgabe 25 und den interaktiven Kreislauf (Einstellung «Einfacher Kreislauf» + «+ Banken»). Beschriftete Pfeile: Konsumausgaben, Güter, Arbeit, Löhne (zwischen H und U) sowie Ersparnisse (H → B), Zinsen (B → H), Kredite (B → U), Rückzahlung + Zinsen (U → B).</p>
+    </div></details>
+  </div>
+
+  <div class="card">
+    <h3>Begriffs-Rätsel (Kreuzworträtsel Arbeitsheft)</h3>
+    <p>Die Hinweise aus dem Kreuzworträtsel – klicke auf einen Hinweis, um die Lösung zu sehen.</p>
+    <div class="grid2" id="crossword"></div>
+  </div>
+</section>
+
+<!-- ================= KARTEN ================= -->
+<section id="karten">
+  <div class="sec-head"><span class="sec-num">12</span><h2>Lernkarten</h2></div>
+  <p>Klicke auf die Karte (oder drücke Leertaste), um sie umzudrehen. Markiere, ob du sie gewusst hast.</p>
+  <div class="fc-stage"><div class="fc" id="fc" tabindex="0" role="button" aria-label="Lernkarte umdrehen"><div class="side front" id="fcFront"></div><div class="side back" id="fcBack"></div></div></div>
+  <div class="fc-ctrl">
+    <button class="btn" id="fcPrev">← Zurück</button>
+    <button class="btn" id="fcNo">✕ Noch nicht</button>
+    <button class="btn" id="fcYes">✓ Gewusst</button>
+    <button class="btn" id="fcNext">Weiter →</button>
+    <button class="btn sm" id="fcShuffle">Mischen</button>
+  </div>
+  <p class="ui" id="fcStat" style="text-align:center;font-size:14px;font-weight:700;color:var(--ink-soft);margin-top:10px"></p>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section id="quiz">
+  <div class="sec-head"><span class="sec-num">13</span><h2>Quiz mit Sofort-Feedback</h2></div>
+  <div id="quizBox"></div>
+  <div class="score" id="quizScore">0 / 0 richtig</div>
+  <p style="text-align:center;margin-top:12px"><button class="btn" id="quizReset">Quiz neu starten</button></p>
+</section>
+
+<!-- ================= SIMULATION ================= -->
+<section id="simulation">
+  <div class="sec-head"><span class="sec-num">14</span><h2>Prüfungssimulation</h2></div>
+  <div class="card">
+    <div class="sim-head"><p style="margin:0;flex:1">Bearbeite alle Aufgaben <b>ohne Unterlagen</b> auf Papier. Zeit: <b>45 Minuten</b> · Total <b>40 Punkte</b>. Erst am Schluss die Lösungen öffnen und dich selbst bewerten.</p>
+      <span class="timer" id="timer">45:00</span><button class="btn" id="timerBtn">Start</button><button class="btn sm" id="timerReset">Reset</button></div>
+  </div>
+
+  <div class="ex"><div class="ex-head"><h4>Aufgabe 1 · Knappheit und Entscheidung</h4><span class="pts">4 P.</span></div>
+    <p>Die Gemeinde Seen kann ein grosses Grundstück entweder für ein Fussballfeld, eine Wohnsiedlung oder einen Naturpark nutzen. Sie entscheidet sich für die Wohnsiedlung; der Naturpark wäre die zweitbeste Lösung gewesen.<br>a) Weshalb muss die Gemeinde überhaupt wählen? (1 P.) b) Bestimmen Sie die Opportunitätskosten. (1 P.) c) Für die Planung des Fussballfelds wurden bereits CHF 80'000 ausgegeben. Ein Gemeinderat fordert deshalb, doch das Fussballfeld zu bauen. Beurteilen Sie. (2 P.)</p>
+    <details><summary>Lösung &amp; Bewertung</summary><div class="sol">
+      <p><b>a)</b> Das Grundstück ist knapp (begrenzte Ressource Boden), die Bedürfnisse (Sport, Wohnen, Natur) sind grösser – nicht alle können gleichzeitig befriedigt werden. (1)</p>
+      <p><b>b)</b> Der Nutzen des Naturparks (nächstbeste Alternative) – nicht das Fussballfeld und nicht beide zusammen. (1)</p>
+      <p><b>c)</b> Die CHF 80'000 sind Sunk Costs (1); sie sind unabhängig vom Entscheid verloren und dürfen keine Rolle spielen – entscheidend sind nur künftige Kosten und künftiger Nutzen der Varianten (1).</p>
+    </div></details></div>
+
+  <div class="ex"><div class="ex-head"><h4>Aufgabe 2 · Bedürfnisse analysieren</h4><span class="pts">6 P.</span></div>
+    <p><b>Profil Aylin:</b> 19 Jahre, hat soeben die Lehre abgeschlossen und ist für einen neuen Job nach Genf gezogen. Sie wohnt vorübergehend im Hostel und sucht eine Wohnung. Sie kennt in Genf niemanden. In der Freizeit möchte sie endlich ihr Hobby Fotografie professionell ausbauen.<br>a) Nennen Sie drei Bedürfnisse von Aylin, ordnen Sie sie der Maslow-Stufe zu und begründen Sie kurz. (3 P.) b) Welches ist am dringendsten? Begründen Sie mit dem Modell. (1 P.) c) Ordnen Sie das Bedürfnis «Wohnung» nach den drei Bedürfnis-Paaren ein. (2 P.)</p>
+    <details><summary>Lösung &amp; Bewertung</summary><div class="sol">
+      <p><b>a)</b> je 1 P.: Wohnung/sicheres Dach über dem Kopf → Stufe 1 (Wohnen) bzw. 2 (Sicherheit, dauerhafte Unterkunft) · Kontakte/Freunde in Genf → Stufe 3 Zugehörigkeit · Fotografie ausbauen → Stufe 5 Selbstverwirklichung. (Auch: Anerkennung im neuen Job → Stufe 4.)</p>
+      <p><b>b)</b> Die Wohnung, weil nach Maslow die tieferen Stufen zuerst weitgehend erfüllt sein müssen, bevor höhere Bedürfnisse wichtig werden. (1)</p>
+      <p><b>c)</b> Grundbedürfnis (überlebensnotwendig) · Individualbedürfnis (sie sucht für sich) · materielles Bedürfnis (Sachgut Wohnung). (3 richtige = 2 P., 2 richtige = 1 P.)</p>
+    </div></details></div>
+
+  <div class="ex"><div class="ex-head"><h4>Aufgabe 3 · Güterarten</h4><span class="pts">8 P.</span></div>
+    <p>Ordnen Sie jedes Gut nach den vier Kriterien ein (je 0.5 P.): a) Mähdrescher eines Landwirtschaftsbetriebs · b) Popcorn im Kino · c) Rechtsberatung für eine Privatperson · d) Laptop, mit dem eine Grafikerin Aufträge erledigt.</p>
+    <details><summary>Lösung &amp; Bewertung</summary><div class="sol">
+      <div class="tbl-wrap"><table><thead><tr><th>Gut</th><th>Verfügbarkeit</th><th>Beschaffenheit</th><th>Verwendung</th><th>Nutzungsdauer</th></tr></thead><tbody>
+        <tr><td>a) Mähdrescher</td><td>wirtschaftlich</td><td>materiell</td><td>Investition</td><td>Gebrauch</td></tr>
+        <tr><td>b) Popcorn im Kino</td><td>wirtschaftlich</td><td>materiell</td><td>Konsum</td><td>Verbrauch</td></tr>
+        <tr><td>c) Rechtsberatung privat</td><td>wirtschaftlich</td><td>immateriell (DL)</td><td>Konsum</td><td>– (als Dienstleistung nicht lagerbar; 0.5 P. auch für sinnvolle Begründung)</td></tr>
+        <tr><td>d) Laptop Grafikerin</td><td>wirtschaftlich</td><td>materiell</td><td>Investition</td><td>Gebrauch</td></tr>
+      </tbody></table></div>
+    </div></details></div>
+
+  <div class="ex"><div class="ex-head"><h4>Aufgabe 4 · Produktionsfaktoren</h4><span class="pts">4 P.</span></div>
+    <p>Eine Schreinerei stellt Holztische her. Nennen Sie für jeden der vier Produktionsfaktoren ein passendes Beispiel und erklären Sie kurz, weshalb ein Bankkredit kein Produktionsfaktor Kapital ist.</p>
+    <details><summary>Lösung &amp; Bewertung</summary><div class="sol">
+      <p>Arbeit: Schreiner, Lernende · Kapital: Werkstatt, Kreissäge, Hobelmaschine · Technologie: Wissen über Holzverbindungen, Konstruktionspläne · Natürliche Ressourcen: Holz, Standort, Boden. (je 0.75 P. = 3 P.)</p>
+      <p>Der Kredit ist Geldkapital; Produktionsfaktor Kapital ist nur das Realkapital (Maschinen, Gebäude), das mit dem Geld gekauft wird. (1 P.)</p>
+    </div></details></div>
+
+  <div class="ex"><div class="ex-head"><h4>Aufgabe 5 · Ökonomisches Prinzip</h4><span class="pts">4 P.</span></div>
+    <p>Welches Prinzip liegt vor? Bei einer Aussage liegt kein ökonomisches Prinzip vor – begründen Sie dort. a) Jonas will mit seinem Taschengeld von CHF 60 möglichst viele Konzerttickets ergattern. b) Eine Druckerei will 5'000 Flyer mit möglichst wenig Papierabfall drucken. c) Eine Firma will mit möglichst wenig Personal den höchstmöglichen Umsatz machen. d) Erika überlegt, wie viele Stunden sie im Garten arbeiten soll, damit Aufwand und Ernte im besten Verhältnis stehen.</p>
+    <details><summary>Lösung &amp; Bewertung</summary><div class="sol">
+      <p>a) Maximum (1) · b) Minimum (1) · c) kein ökonomisches Prinzip: Input und Output gleichzeitig extrem ist unmöglich (1 inkl. Begründung) · d) Optimum (1).</p>
+    </div></details></div>
+
+  <div class="ex"><div class="ex-head"><h4>Aufgabe 6 · Erweiterter Wirtschaftskreislauf</h4><span class="pts">8 P.</span></div>
+    <p>Bestimmen Sie für jede Aktion Art des Stroms (Geld/Güter) und Richtung (je 1 P.): a) Die Uhrenfirma Tempus zahlt ihren Mitarbeitenden die Löhne. b) Tempus liefert Uhren nach China. c) Herr Keller zahlt Zinsen für seinen Hypothekarkredit. d) Tempus erhält vom Bund einen Innovationsbeitrag. e) Frau Keller arbeitet als Lehrerin an einer öffentlichen Schule – ihre Arbeitsleistung. f) Tempus importiert Uhrwerke aus Japan und bezahlt dafür. (zwei Ströme, 2 P.) g) Herr Keller zahlt Mehrwertsteuer beim Einkauf (Staat als Empfänger).</p>
+    <details><summary>Lösung &amp; Bewertung</summary><div class="sol">
+      <p>a) Geld U → H · b) Güter U → Ausland (Export) · c) Geld H → Bank · d) Geld Staat → U (Subvention) · e) Güter (Arbeit) H → Staat · f) Güter Ausland → U <b>und</b> Geld U → Ausland (2 P.) · g) Geld H → Staat (Steuer).</p>
+    </div></details></div>
+
+  <div class="ex"><div class="ex-head"><h4>Aufgabe 7 · Staatliche Massnahme beurteilen</h4><span class="pts">6 P.</span></div>
+    <p>Die Arbeitslosigkeit steigt. Die Regierung will die Subventionen an Unternehmen erhöhen und dafür die Mehrwertsteuer anheben. a) Zeigen Sie die beiden betroffenen Geldströme. (2 P.) b) Beschreiben Sie eine mögliche Wirkungskette der Subventionserhöhung. (2 P.) c) Beurteilen Sie das Massnahmenpaket kritisch. (2 P.)</p>
+    <details><summary>Lösung &amp; Bewertung</summary><div class="sol">
+      <p><b>a)</b> Subventionen: Geld Staat → Unternehmen (grösser) (1) · Mehrwertsteuer: Geld Haushalte → Staat (grösser) (1).</p>
+      <p><b>b)</b> Unternehmen erhalten mehr Geld → tiefere Kosten / mehr Investitionen → Arbeitsplätze werden gesichert oder geschaffen → mehr Löhne an Haushalte → mehr Konsum. (2)</p>
+      <p><b>c)</b> Problem: Die höhere Mehrwertsteuer entzieht den Haushalten Kaufkraft → Konsum sinkt → Unternehmen verkaufen weniger – das kann die positive Wirkung der Subventionen aufheben (1). Zudem Mitnahmeeffekte (Firmen hätten ohnehin investiert) und Wettbewerbsverzerrung; positiv: Staatsschulden steigen nicht (1).</p>
+    </div></details></div>
+
+  <div class="card"><h3>Notenskala (Richtwert)</h3>
+    <div class="tbl-wrap"><table><thead><tr><th>Punkte</th><th>38–40</th><th>34–37</th><th>30–33</th><th>24–29</th><th>18–23</th><th>&lt; 18</th></tr></thead>
+    <tbody><tr><td>Einschätzung</td><td>sehr gut vorbereitet</td><td>gut</td><td>genügend+</td><td>knapp – Lücken schliessen</td><td>Theorie wiederholen</td><td>ganze Seite nochmals</td></tr></tbody></table></div>
+    <p><small>Unverbindliche Selbsteinschätzung – die tatsächliche Bewertung legt die Lehrperson fest.</small></p>
+  </div>
+</section>
+
+<!-- ================= REPETITION ================= -->
+<section id="repetition">
+  <div class="sec-head"><span class="sec-num">15</span><h2>Last-Minute-Repetition</h2></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Kann ich ohne Hilfe …?</h3>
+      <ul class="clean check checklist" id="lastList">
+        <li>Knappheit definieren und mit dem Schlaraffenland abgrenzen</li>
+        <li>Opportunitätskosten als <i>nächstbeste</i> Alternative bestimmen – für Haushalt, Unternehmen, Staat</li>
+        <li>Sunk Costs erkennen und erklären, warum nur Zukünftiges zählt</li>
+        <li>die 5 Maslow-Stufen mit Stichworten aufzählen</li>
+        <li>ein Personenprofil analysieren und Bedürfnisse begründet zuordnen</li>
+        <li>Grund/Wahl · Individual/Kollektiv · materiell/immateriell unterscheiden</li>
+        <li>vom Individual- zum Kollektivbedürfnis argumentieren</li>
+        <li>jedes Gut nach 4 Kriterien einteilen</li>
+        <li>zeigen, dass die Verwendung über Konsum/Investition entscheidet</li>
+        <li>die 4 Produktionsfaktoren nennen und auf ein Produkt anwenden</li>
+        <li>Maximum, Minimum, Optimum erkennen – und die «unmögliche» Formulierung entlarven</li>
+        <li>den einfachen Kreislauf mit 4 Strömen zeichnen</li>
+        <li>die Rollen von Banken, Staat und Ausland beschreiben</li>
+        <li>Transaktionen korrekt als Geld/Güter mit Richtung einzeichnen</li>
+        <li>eine Wirkungskette einer Staatsmassnahme aufschreiben und beurteilen</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Die 12 wichtigsten Sätze</h3>
+      <ol style="font-size:16px;padding-left:20px">
+        <li>Bedürfnisse sind unbegrenzt, Mittel sind knapp → wir müssen entscheiden.</li>
+        <li>Opportunitätskosten = Nutzen der nächstbesten verzichteten Alternative.</li>
+        <li>Sunk Costs sind vergangen und irrelevant; nur zukünftige Kosten und Nutzen zählen.</li>
+        <li>Maslow: Körper – Sicherheit – Zugehörigkeit – Wertschätzung – Selbstverwirklichung.</li>
+        <li>Grundbedürfnisse sind überlebensnotwendig, Wahlbedürfnisse nicht.</li>
+        <li>Kollektivbedürfnisse haben viele gleichzeitig; meist befriedigt sie der Staat.</li>
+        <li>Güter = Mittel zur Bedürfnisbefriedigung; freie Güter sind nicht knapp.</li>
+        <li>Konsum oder Investition hängt von der Verwendung ab.</li>
+        <li>Produktionsfaktoren: Arbeit, Kapital (real, nicht Geld!), Technologie, natürliche Ressourcen.</li>
+        <li>Maximum: Input fix · Minimum: Output fix · Optimum: bestes Verhältnis.</li>
+        <li>Zu jedem Güterstrom gehört ein entgegengesetzter Geldstrom.</li>
+        <li>Banken vermitteln Geld, der Staat nimmt Steuern ein und verteilt Leistungen, das Ausland kauft Exporte und liefert Importe.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>Wirtschaft und Recht · Kapitel 8 Grundlagen der VWL · Prüfungsvorbereitung für StudyHub BMSW</footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="mk-geld" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2f6db2"/></marker>
+    <marker id="mk-gut" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9760f"/></marker>
+    <marker id="mk-hl" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7a2fb8"/></marker>
+  </defs>
+</svg>
+<style>
+svg .flow.geld path{marker-end:url(#mk-geld)}
+svg .flow.gut path{marker-end:url(#mk-gut)}
+svg .flow.hl path{marker-end:url(#mk-hl)}
+svg .flow.hl.gut path{stroke:#7a2fb8}
+svg .flow.hl.gut text{fill:#7a2fb8}
+svg .flow text{paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+svg .node.off{opacity:0}
+</style>
+<script>
+(function(){
+  "use strict";
+  var LS = {
+    get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+  };
+  function $(s,r){return (r||document).querySelector(s);}
+  function $all(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+  /* ---------- Lernziele ---------- */
+  var lzState = LS.get("vwl8-lz", {});
+  function updateLz(){
+    var boxes=$all("#lzList input"), n=0;
+    boxes.forEach(function(b){ if(b.checked){n++;} b.closest("li").classList.toggle("done",b.checked); });
+    $("#progTxt").textContent = n+"/"+boxes.length+" Lernziele";
+    $("#progBar").style.width = (n/boxes.length*100)+"%";
+  }
+  $all("#lzList input").forEach(function(b){
+    b.checked = !!lzState[b.id];
+    b.addEventListener("change",function(){ lzState[b.id]=b.checked; LS.set("vwl8-lz",lzState); updateLz(); });
+  });
+  updateLz();
+
+  /* ---------- Maslow ---------- */
+  var MASLOW = {
+    1:{t:"Stufe 1 · Körperliche Grundbedürfnisse",c:"var(--m1)",d:"Alles, was der Körper zum Überleben braucht.",ex:"Nahrung, Trinken, Schlaf, Bewegung, Gesundheit, Sexualität, Wärme/Kleidung",g:"Lebensmittel, Medikamente, Bett, Winterjacke",p:"Erika: Medikamente und richtige Ernährung wegen Diabetes"},
+    2:{t:"Stufe 2 · Bedürfnis nach Sicherheit",c:"var(--m2)",d:"Schutz vor Gefahren und Angst; Planbarkeit der Zukunft.",ex:"Schutz vor Gefahren, Angstfreiheit, Recht und Ordnung, festes Einkommen, sichere Wohnung, Gesundheitsvorsorge",g:"Versicherungen, Alarmanlage, unbefristeter Arbeitsvertrag, Sparkonto",p:"Yasmin: unsichere Gegend, Einkommen reicht knapp"},
+    3:{t:"Stufe 3 · Bedürfnis nach Zugehörigkeit",c:"var(--m3)",d:"Der Mensch ist ein soziales Wesen und will Teil einer Gemeinschaft sein.",ex:"Familie, Freunde, Partnerschaft, Vereinszugehörigkeit, Liebe",g:"Vereinsbeitrag, Smartphone (Kontakt halten), gemeinsamer Restaurantbesuch",p:"Samim: keine Kontakte, kein Handy · Erika: Einsamkeit"},
+    4:{t:"Stufe 4 · Bedürfnis nach Wertschätzung",c:"var(--m4)",d:"Man will von anderen geachtet und anerkannt werden und Selbstachtung haben.",ex:"Anerkennung, Status, Ansehen, Erfolg, Respekt, Lob",g:"Markenkleider, Luxusauto, Weiterbildung für Beförderung",p:"Jonas: wird trotz guter Noten von den Eltern kritisiert"},
+    5:{t:"Stufe 5 · Bedürfnis nach Selbstverwirklichung",c:"var(--m5)",d:"Die eigenen Fähigkeiten entfalten, Sinn finden, das eigene Potenzial ausschöpfen.",ex:"Kreativität, persönliche Entwicklung, Sinnhaftigkeit, Lebensziele erreichen",g:"Musikinstrument, Malkurs, Retreat, Studium aus Interesse",p:"Jenny: fühlt sich leer · Mateo: will eigene Band gründen"}
+  };
+  function showMaslow(l){
+    var m=MASLOW[l], box=$("#pyrInfo");
+    box.style.borderLeftColor=m.c;
+    box.innerHTML="<h4>"+m.t+"</h4><p>"+m.d+"</p><p><b>Beispiele:</b> "+m.ex+"</p><p><b>Güter zur Befriedigung:</b> "+m.g+"</p><p style='margin:0'><b>Profil im Dossier:</b> "+m.p+"</p>";
+    $all("#pyr button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-l")===String(l));});
+  }
+  $all("#pyr button").forEach(function(b){ b.addEventListener("click",function(){showMaslow(b.getAttribute("data-l"));}); });
+  showMaslow(1);
+
+  /* ---------- Wirtschaftskreislauf ---------- */
+  var NS="http://www.w3.org/2000/svg";
+  var NODES=[
+    {k:"U",l:"basic",x:30,y:276,w:160,h:48,t:"Unternehmen",f:"#fcefdd",s:"#d9760f"},
+    {k:"H",l:"basic",x:710,y:276,w:160,h:48,t:"Haushalte",f:"#e0f0ea",s:"#1d6b56"},
+    {k:"B",l:"bank",x:380,y:276,w:140,h:48,t:"Banken",f:"#e3edf8",s:"#2f6db2"},
+    {k:"A",l:"ausland",x:370,y:30,w:160,h:48,t:"Ausland",f:"#f1ecf8",s:"#6b4a9c"},
+    {k:"S",l:"staat",x:370,y:552,w:160,h:48,t:"Staat",f:"#fbe8e5",s:"#b83a2e"}
+  ];
+  var FLOWS=[
+    {k:"kons",l:"basic",c:"geld",d:"M800,276 V150 H100 V276",t:"Konsumausgaben",x:450,y:140},
+    {k:"gut",l:"basic",c:"gut",d:"M150,276 V190 H750 V276",t:"Güter & Dienstleistungen",x:450,y:212},
+    {k:"arb",l:"basic",c:"gut",d:"M750,324 V410 H150 V324",t:"Arbeit (Produktionsfaktor)",x:450,y:400},
+    {k:"lohn",l:"basic",c:"geld",d:"M100,324 V450 H800 V324",t:"Löhne / Einkommen",x:450,y:472},
+    {k:"kredU",l:"bank",c:"geld",d:"M380,290 H192",t:"Kredite",x:286,y:281},
+    {k:"tilg",l:"bank",c:"geld",d:"M190,312 H378",t:"Rückzahlung + Zinsen",x:286,y:333},
+    {k:"spar",l:"bank",c:"geld",d:"M710,290 H522",t:"Ersparnisse",x:615,y:281},
+    {k:"zinsH",l:"bank",c:"geld",d:"M520,312 H708",t:"Zinsen",x:615,y:333},
+    {k:"exp",l:"ausland",c:"gut",d:"M45,276 V46 H368",t:"Exporte (Güter)",x:215,y:37},
+    {k:"expG",l:"ausland",c:"geld",d:"M370,66 H65 V274",t:"Zahlung für Exporte",x:215,y:86},
+    {k:"imp",l:"ausland",c:"gut",d:"M530,46 H855 V274",t:"Importe (Güter)",x:690,y:37},
+    {k:"impG",l:"ausland",c:"geld",d:"M835,276 V66 H532",t:"Zahlung für Importe",x:690,y:86},
+    {k:"stU",l:"staat",c:"geld",d:"M65,324 V566 H368",t:"Steuern",x:215,y:556},
+    {k:"subv",l:"staat",c:"geld",d:"M370,588 H45 V326",t:"Subventionen, Staatsaufträge",x:215,y:610},
+    {k:"stH",l:"staat",c:"geld",d:"M835,324 V566 H532",t:"Steuern",x:690,y:556},
+    {k:"trans",l:"staat",c:"geld",d:"M530,588 H855 V326",t:"Renten, Transferzahlungen",x:690,y:610}
+  ];
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a){e.setAttribute(k,a[k]);}return e;}
+  function buildCircuit(container){
+    var svg=el("svg",{viewBox:"0 0 900 630",role:"img","aria-label":"Erweiterter Wirtschaftskreislauf mit Geld- und Güterströmen"});
+    var gF=el("g",{}), gN=el("g",{});
+    FLOWS.forEach(function(f){
+      var g=el("g",{"class":"flow "+f.c,"data-k":f.k,"data-l":f.l});
+      g.appendChild(el("path",{d:f.d}));
+      var t=el("text",{x:f.x,y:f.y,"text-anchor":"middle"}); t.textContent=f.t; g.appendChild(t);
+      gF.appendChild(g);
+    });
+    NODES.forEach(function(n){
+      var g=el("g",{"class":"node","data-l":n.l});
+      g.appendChild(el("rect",{x:n.x,y:n.y,width:n.w,height:n.h,rx:10,fill:n.f,stroke:n.s}));
+      var t=el("text",{x:n.x+n.w/2,y:n.y+n.h/2+1,fill:n.s}); t.textContent=n.t; g.appendChild(t);
+      gN.appendChild(g);
+    });
+    svg.appendChild(gF); svg.appendChild(gN);
+    container.appendChild(svg);
+    return svg;
+  }
+
+  // Kreislauf 1 (Aufbau)
+  var svg1=buildCircuit($("#circ1"));
+  var layers={basic:true,bank:false,staat:false,ausland:false}, only="all";
+  function render1(){
+    $all(".flow",svg1).forEach(function(g){
+      var on=layers[g.getAttribute("data-l")] && (only==="all" || g.classList.contains(only));
+      g.classList.toggle("off",!on);
+    });
+    $all(".node",svg1).forEach(function(g){ g.classList.toggle("off",!layers[g.getAttribute("data-l")]); });
+    $all("#circ1Ctrl [data-layer]").forEach(function(b){var on=layers[b.getAttribute("data-layer")]; b.classList.toggle("on",on); b.setAttribute("aria-pressed",on?"true":"false");});
+    $all("#circ1Ctrl [data-only]").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-only")===only);});
+  }
+  $all("#circ1Ctrl [data-layer]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var l=b.getAttribute("data-layer");
+      if(l==="basic"){layers={basic:true,bank:false,staat:false,ausland:false};}
+      else{layers[l]=!layers[l];}
+      render1();
+    });
+  });
+  $all("#circ1Ctrl [data-only]").forEach(function(b){ b.addEventListener("click",function(){only=b.getAttribute("data-only");render1();}); });
+  render1();
+
+  // Kreislauf 2 (Massnahmen)
+  var svg2=buildCircuit($("#circ2"));
+  var MEASURES=[
+    {n:"Staatsaufträge",hl:["subv","lohn","kons","stU","stH"],
+     chain:["Der Staat vergibt Aufträge, z. B. für Schulhäuser oder Strassen: <b>Geld Staat → Unternehmen</b>.","Die Unternehmen haben mehr Arbeit, produzieren mehr und stellen Personal ein.","Mehr <b>Löhne Unternehmen → Haushalte</b>.","Die Haushalte haben mehr Einkommen und <b>konsumieren mehr</b> (Haushalte → Unternehmen).","Der Staat erhält einen Teil über höhere <b>Steuern</b> wieder zurück."],
+     pro:"Schafft direkt Nachfrage und Arbeitsplätze; bleibende Infrastruktur.",con:"Kostet viel Geld (Steuern oder Schulden), wirkt oft mit Verzögerung; ein Teil der Nachfrage fliesst ins Ausland (Importmaterial)."},
+    {n:"Subventionen",hl:["subv","lohn","kons"],
+     chain:["Der Staat zahlt Unternehmen Beiträge: <b>Geld Staat → Unternehmen</b>.","Die Kosten der Unternehmen sinken; Arbeitsplätze werden gesichert oder Investitionen möglich.","Löhne fliessen weiter an die Haushalte, der Konsum bleibt stabil."],
+     pro:"Kann gefährdete Branchen oder Innovationen gezielt stützen.",con:"Mitnahmeeffekte (Firmen hätten ohnehin investiert), Wettbewerbsverzerrung, Abhängigkeit vom Staat; kostet Steuergeld (Opportunitätskosten)."},
+    {n:"Steuersenkung Haushalte",hl:["stH","kons","lohn","spar","impG"],
+     chain:["Der Geldstrom <b>Haushalte → Staat</b> wird kleiner.","Die Haushalte haben mehr verfügbares Einkommen.","Sie konsumieren mehr (<b>Haushalte → Unternehmen</b>) …","… aber sparen auch einen Teil (<b>→ Banken</b>) oder kaufen Importe (<b>→ Ausland</b>).","Unternehmen verkaufen mehr und zahlen mehr Löhne."],
+     pro:"Stärkt die Kaufkraft rasch und breit.",con:"Weniger Staatseinnahmen → Kürzungen oder Schulden; die Wirkung verpufft teilweise durch Sparen und Importe."},
+    {n:"Transferzahlungen",hl:["trans","kons"],
+     chain:["Der Staat zahlt z. B. Arbeitslosen- oder Kurzarbeitsentschädigungen: <b>Geld Staat → Haushalte</b>.","Die Einkommen brechen weniger stark ein.","Der Konsum (<b>Haushalte → Unternehmen</b>) bleibt stabiler, Unternehmen verlieren weniger Umsatz."],
+     pro:"Soziale Sicherheit (Maslow Stufe 2) und automatische Stabilisierung in Krisen.",con:"Hohe Kosten; bei dauerhaften Problemen kann nötiger Strukturwandel verzögert werden."},
+    {n:"Exportförderung",hl:["exp","expG","lohn","stU"],
+     chain:["Der Staat unterstützt Firmen beim Export (Handelsabkommen, Beratung, Messen).","Mehr <b>Güter Unternehmen → Ausland</b> und mehr <b>Geld Ausland → Unternehmen</b>.","Die Unternehmen produzieren mehr und zahlen mehr Löhne.","Höhere Gewinne → mehr <b>Steuern</b> an den Staat."],
+     pro:"Nutzt Nachfrage aus dem Ausland; wichtig für die exportorientierte Schweiz.",con:"Abhängigkeit von der Weltwirtschaft und Wechselkursen; Wirkung nicht sicher."},
+    {n:"Sparprogramm",hl:["subv","trans","kons","lohn"],
+     chain:["Der Staat kürzt Ausgaben: weniger <b>Subventionen/Aufträge → Unternehmen</b> und weniger <b>Transfers → Haushalte</b>.","Unternehmen und Haushalte haben weniger Geld.","Der Konsum sinkt, Unternehmen verkaufen weniger.","Weniger Produktion → Gefahr von Entlassungen, sinkende Löhne."],
+     pro:"Gesunde Staatsfinanzen, keine Schuldenlast für künftige Generationen.",con:"Dämpft die Nachfrage – in einer Krise kann Sparen die Lage verschärfen und die Steuereinnahmen sinken zusätzlich."},
+    {n:"Steuererhöhung",hl:["stH","stU","kons","kredU"],
+     chain:["Die Geldströme <b>Haushalte → Staat</b> und <b>Unternehmen → Staat</b> werden grösser.","Haushalte haben weniger verfügbares Einkommen → weniger Konsum.","Unternehmen haben weniger Gewinn → weniger Investitionen, weniger Kredite.","Der Staat hat mehr Einnahmen für Leistungen oder Schuldenabbau."],
+     pro:"Finanziert Staatsaufgaben ohne neue Schulden.",con:"Weniger Kaufkraft und Investitionen; Standort kann an Attraktivität verlieren."}
+  ];
+  var mc=$("#measureCtrl");
+  MEASURES.forEach(function(m,i){
+    var b=document.createElement("button"); b.className="btn"; b.type="button"; b.textContent=m.n;
+    b.addEventListener("click",function(){showMeasure(i);}); mc.appendChild(b);
+  });
+  function showMeasure(i){
+    var m=MEASURES[i];
+    $all(".btn",mc).forEach(function(b,j){b.classList.toggle("on",i===j);});
+    $all(".flow",svg2).forEach(function(g){
+      var h=m.hl.indexOf(g.getAttribute("data-k"))>=0;
+      g.classList.toggle("hl",h); g.classList.toggle("dim",!h);
+    });
+    $("#chainBox").innerHTML="<b>Wirkungskette: "+m.n+"</b><ol>"+m.chain.map(function(c){return "<li>"+c+"</li>";}).join("")+"</ol><p style='margin:0 0 4px'><span class='pill gr'>Vorteil</span> "+m.pro+"</p><p style='margin:0'><span class='pill r'>Nachteil</span> "+m.con+"</p>";
+  }
+  showMeasure(0);
+
+  /* ---------- Trainer-Grundgerüst ---------- */
+  function makeTrainer(root, items, render){
+    var order=shuffle(items.slice()), idx=0, right=0, done=0, answered=false;
+    var q=$(".q",root), fb=$(".fb",root), cnt=$(".cnt",root), opts=$(".opts",root);
+    function show(){
+      answered=false; fb.textContent=""; fb.className="fb";
+      var it=order[idx%order.length];
+      render(it,q,opts,check);
+      cnt.textContent=right+" / "+done+" richtig";
+    }
+    function check(ok,why){
+      if(answered){return;} answered=true; done++; if(ok){right++;}
+      fb.className="fb "+(ok?"ok":"no");
+      fb.innerHTML=(ok?"✓ Richtig. ":"✕ Nicht ganz. ")+why;
+      cnt.textContent=right+" / "+done+" richtig";
+    }
+    $(".next",root).addEventListener("click",function(){idx++;show();});
+    show();
+  }
+
+  // Sunk-Cost-Trainer
+  var SUNK=[
+    {q:"Der bereits bezahlte Preis für ein Konzertticket, wenn man krank ist.",a:"s",w:"Das Geld ist weg, egal ob man hingeht. Relevant ist nur: Nützt mir das Konzert heute mehr als Erholung?"},
+    {q:"Die Kosten für die weitere Reparatur eines alten Autos.",a:"z",w:"Diese Kosten entstehen erst in Zukunft und hängen vom Entscheid ab."},
+    {q:"Die 200 Stunden, die man schon in ein Game investiert hat.",a:"s",w:"Vergangene Zeit ist nicht rückholbar. Zählt nur, ob weiterspielen künftig Freude bringt."},
+    {q:"Der Spass, den die nächste Staffel einer Serie bringen würde.",a:"z",w:"Das ist zukünftiger Nutzen – genau das soll man abwägen."},
+    {q:"Die Planungskosten eines Bauprojekts, das schon beschlossen und bezahlt ist.",a:"s",w:"Bereits bezahlte Planung ist versunken."},
+    {q:"Der Lohn, den man bei einem Jobwechsel künftig verdienen würde.",a:"z",w:"Künftiger Nutzen – relevant für den Entscheid."},
+    {q:"Die Anmeldegebühr für einen Sprachkurs, die nicht zurückerstattet wird.",a:"s",w:"Nicht rückerstattbar = versunken."},
+    {q:"Die Zeit, die man ab heute noch in ein Studium investieren müsste.",a:"z",w:"Zukünftige Kosten (inkl. Opportunitätskosten) sind relevant."},
+    {q:"Der bereits bezahlte Jahresbeitrag im Fitnessstudio.",a:"s",w:"Ob man hingeht oder nicht – der Beitrag ist weg."},
+    {q:"Die Zinsen, die ein Unternehmen für einen neuen Kredit zahlen müsste.",a:"z",w:"Diese Kosten fallen nur an, wenn man sich für den Kredit entscheidet."}
+  ];
+  (function(){
+    var root=$("#sunkTrainer");
+    var btns=$all(".opts button",root), cur=null, cb=null;
+    btns.forEach(function(b){b.addEventListener("click",function(){ if(cur){cb(b.getAttribute("data-a")===cur.a,cur.w);} });});
+    makeTrainer(root,SUNK,function(it,q,opts,check){cur=it;cb=check;q.textContent=it.q;});
+  })();
+
+  // Güter-Trainer
+  var DIMS={v:["freies Gut","wirtschaftliches Gut"],b:["materiell","immateriell"],u:["Konsumgut","Investitionsgut"],n:["Gebrauchsgut","Verbrauchsgut"]};
+  var DIMN={v:"Verfügbarkeit",b:"Beschaffenheit",u:"Verwendung",n:"Nutzungsdauer"};
+  var GUT=[
+    {g:"Sonnenlicht auf der Terrasse",d:"v",a:0,w:"Unbegrenzt vorhanden und gratis."},
+    {g:"Mineralwasser aus dem Supermarkt",d:"v",a:1,w:"Knapp, hergestellt, hat einen Preis."},
+    {g:"Leitungswasser in Winterthur",d:"v",a:1,w:"Muss aufbereitet und geliefert werden, kostet Gebühren."},
+    {g:"Haarschnitt beim Coiffeur",d:"b",a:1,w:"Dienstleistung – nicht anfassbar."},
+    {g:"Velo",d:"b",a:0,w:"Sachgut – anfassbar."},
+    {g:"Versicherungsschutz",d:"b",a:1,w:"Dienstleistung/immaterielle Leistung."},
+    {g:"Pizzaofen in einer Pizzeria",d:"u",a:1,w:"Dient zur Herstellung anderer Güter (Pizzen)."},
+    {g:"Pizza, die du zu Hause isst",d:"u",a:0,w:"Befriedigt direkt dein Bedürfnis."},
+    {g:"Lastwagen einer Transportfirma",d:"u",a:1,w:"Wird zur Erbringung von Transportleistungen eingesetzt."},
+    {g:"Mehl, das eine Bäckerei einkauft",d:"u",a:1,w:"Wird zur Herstellung von Brot verwendet."},
+    {g:"Spielkonsole im Wohnzimmer",d:"u",a:0,w:"Private, direkte Nutzung."},
+    {g:"Zahnbürste",d:"n",a:0,w:"Wird viele Male benutzt."},
+    {g:"Zahnpasta",d:"n",a:1,w:"Wird beim Gebrauch aufgebraucht."},
+    {g:"Benzin",d:"n",a:1,w:"Wird beim Fahren verbraucht."},
+    {g:"Beamer im Schulzimmer",d:"n",a:0,w:"Wird über Jahre genutzt."},
+    {g:"Tennisbälle am Grand-Slam-Turnier",d:"n",a:1,w:"Werden nach wenigen Games ersetzt."},
+    {g:"Kaffeebohnen in Mateos Café",d:"u",a:1,w:"Rohstoff zur Herstellung von Kaffeegetränken für Gäste."},
+    {g:"Streaming-Abo privat",d:"b",a:1,w:"Dienstleistung, kein Sachgut."}
+  ];
+  (function(){
+    var root=$("#gutTrainer");
+    makeTrainer(root,GUT,function(it,q,opts,check){
+      q.innerHTML=it.g+" <span class='pill gr' style='font-size:12px;vertical-align:middle'>"+DIMN[it.d]+"</span>";
+      opts.innerHTML="";
+      DIMS[it.d].forEach(function(o,i){
+        var b=document.createElement("button"); b.className="btn"; b.type="button"; b.textContent=o;
+        b.addEventListener("click",function(){check(i===it.a,"<b>"+DIMS[it.d][it.a]+"</b>: "+it.w);});
+        opts.appendChild(b);
+      });
+    });
+  })();
+
+  // Prinzip-Trainer
+  var PRINZ=[
+    {q:"Mit einem Budget von CHF 500 möglichst viele Werbeplakate drucken.",a:"max",w:"Input (Budget) fix → Output maximieren."},
+    {q:"Eine Strecke von 10 km mit möglichst wenig Benzin fahren.",a:"min",w:"Output (Strecke) fix → Input minimieren."},
+    {q:"Mit möglichst wenig Lernzeit die bestmögliche Note schreiben.",a:"x",w:"Beides gleichzeitig extrem – logisch unmöglich."},
+    {q:"Eine Bäckerei bestimmt die Produktionsmenge so, dass Kosten und Erlös im besten Verhältnis stehen.",a:"opt",w:"Input und Output variabel → bestes Verhältnis."},
+    {q:"Die Note 4.5 mit möglichst wenig Aufwand erreichen.",a:"min",w:"Ziel fix → Aufwand minimieren."},
+    {q:"In 2 Stunden Hausarbeit möglichst viel erledigen.",a:"max",w:"Zeit fix → Ergebnis maximieren."},
+    {q:"Ein Staat will mit CHF 10 Mio. möglichst viele Schulplätze schaffen.",a:"max",w:"Budget fix."},
+    {q:"Eine Firma will 2'000 Stühle mit minimalem Materialeinsatz produzieren.",a:"min",w:"Menge fix."},
+    {q:"Mit minimalen Kosten den maximalen Gewinn erzielen.",a:"x",w:"Klassische Falle: Man kann nicht beides gleichzeitig extremisieren."},
+    {q:"Ein Velokurier sucht die Anzahl Touren pro Tag, bei der sich Aufwand und Ertrag am besten lohnen.",a:"opt",w:"Abwägung beider Grössen."}
+  ];
+  (function(){
+    var root=$("#prinzipTrainer"), cur=null, cb=null;
+    var names={max:"Maximumprinzip",min:"Minimumprinzip",opt:"Optimumprinzip",x:"kein Prinzip (unmöglich)"};
+    $all(".opts button",root).forEach(function(b){b.addEventListener("click",function(){ if(cur){cb(b.getAttribute("data-a")===cur.a,"<b>"+names[cur.a]+"</b> – "+cur.w);} });});
+    makeTrainer(root,PRINZ,function(it,q,opts,check){cur=it;cb=check;q.textContent=it.q;});
+  })();
+
+  /* ---------- Level-Filter ---------- */
+  $all("#lvlFilter button").forEach(function(b){
+    b.addEventListener("click",function(){
+      var f=b.getAttribute("data-f");
+      $all("#lvlFilter button").forEach(function(x){x.classList.toggle("on",x===b);});
+      $all("#uebungen .ex").forEach(function(ex){ ex.style.display=(f==="all"||ex.getAttribute("data-lvl")===f)?"":"none"; });
+    });
+  });
+
+  /* ---------- Begriffs-Rätsel ---------- */
+  var CROSS=[
+    ["W2","Bedürfnisse, die nicht lebensnotwendig sind, deren Erfüllung aber das Leben bereichern","WAHLBEDÜRFNISSE"],
+    ["W5","Der Staat zahlt gewissen Unternehmen …","SUBVENTIONEN"],
+    ["W7","Anerkennung, Status, Ansehen, Erfolg gehören zum Bedürfnis nach …","WERTSCHÄTZUNG"],
+    ["W8","Im erweiterten Wirtschaftskreislauf kommt das neben dem Staat hinzu","AUSLAND"],
+    ["W11","Alle Mittel, die der Befriedigung der Bedürfnisse dienen","GÜTER"],
+    ["W14","Bücher sind typische …","GEBRAUCHSGÜTER (man liest sie mehrmals)"],
+    ["W15","Im einfachen Wirtschaftskreislauf haben wir einen Güterstrom und einen …","GELDSTROM"],
+    ["W16","Unternehmen und Haushalte zahlen dem Staat …","STEUERN"],
+    ["W17","Sind in der Regel Nachfrager nach Gütern","HAUSHALTE"],
+    ["W18","Wenn viele Personen das gleiche Bedürfnis haben, spricht man von …","KOLLEKTIVBEDÜRFNIS"],
+    ["S1","Zusammentreffen von Angebot und Nachfrage","MARKT"],
+    ["S3","Sämtliche Bedürfnisse der Maslow'schen Pyramide sind sogenannte …","INDIVIDUALBEDÜRFNISSE (jeder Mensch hat sie persönlich)"],
+    ["S4","Werden für die Erstellung von Konsumgütern verwendet und tragen indirekt zur Bedürfnisbefriedigung bei","INVESTITIONSGÜTER"],
+    ["S6","Ein typisches immaterielles Gut","DIENSTLEISTUNG"],
+    ["S9","Bedürfnisse, die alle Menschen zwingend befriedigen müssen","GRUNDBEDÜRFNISSE"],
+    ["S10","Zahnpasta ist ein typisches …","VERBRAUCHSGUT"],
+    ["S12","Familie, Freunde, Partnerschaft gehören zum Bedürfnis nach …","ZUGEHÖRIGKEIT"],
+    ["S13","Mit einem gegebenen Input soll ein möglichst grosser Output erzielt werden","MAXIMUMPRINZIP"]
+  ];
+  var cw=$("#crossword");
+  CROSS.forEach(function(c){
+    var d=document.createElement("details"); d.className="plain";
+    d.innerHTML="<summary>"+(c[0].charAt(0)==="W"?"Waagrecht ":"Senkrecht ")+c[0].slice(1)+": "+c[1]+"</summary><div class='sol'><b>"+c[2]+"</b></div>";
+    cw.appendChild(d);
+  });
+
+  /* ---------- Lernkarten ---------- */
+  var CARDS=[
+    ["Knappheit","Die verfügbaren Mittel reichen nicht, um alle (unbegrenzten) Bedürfnisse zu befriedigen → Entscheidungen nötig."],
+    ["Opportunitätskosten","Wert/Nutzen der nächstbesten Alternative, auf die man bei einer Entscheidung verzichtet."],
+    ["Sunk Costs","Bereits angefallene, nicht rückgängig machbare Kosten – für künftige Entscheidungen irrelevant."],
+    ["Sunk-Cost-Fehlschluss","Man führt etwas weiter, nur weil man schon Geld/Zeit investiert hat."],
+    ["Was beeinflusst die Höhe der Opportunitätskosten?","Persönliche Vorlieben und die Verfügbarkeit der Ressourcen Zeit, Geld, Energie."],
+    ["Bedürfnis","Gefühl eines Mangels mit dem Wunsch, ihn zu beheben – Triebfeder des Wirtschaftens."],
+    ["Maslow – Stufen von unten","1 Körperliche Grundbedürfnisse · 2 Sicherheit · 3 Zugehörigkeit · 4 Wertschätzung · 5 Selbstverwirklichung"],
+    ["Maslow Stufe 2 – Beispiele","Schutz vor Gefahren, Angstfreiheit, Recht und Ordnung, festes Einkommen"],
+    ["Maslow Stufe 4 – Beispiele","Anerkennung, Status, Ansehen, Erfolg"],
+    ["Grundbedürfnis","Überlebensnotwendig: Nahrung, Schlaf, Kleidung, Wohnung."],
+    ["Wahlbedürfnis","Nicht lebensnotwendig, bereichert das Leben; abhängig von Einkommen und Kultur: Ferien, Konzert."],
+    ["Individualbedürfnis","Vom Einzelnen empfunden und selbst befriedigt: Hunger, eigenes Velo."],
+    ["Kollektivbedürfnis","Viele haben das gleiche Bedürfnis; Befriedigung durch Gemeinschaft/Staat: Sicherheit, Bildung, Verkehrsnetz."],
+    ["Materielles vs. immaterielles Bedürfnis","Materiell: mit Sachgütern befriedigt (Brot). Immateriell: mit Nicht-Anfassbarem (Freundschaft, Anerkennung, Bildung)."],
+    ["Güter","Alle Mittel und Leistungen, die der Bedürfnisbefriedigung dienen."],
+    ["Freie vs. wirtschaftliche Güter","Frei: unbegrenzt, gratis (Sonnenlicht). Wirtschaftlich: knapp, hergestellt, mit Preis (Brot)."],
+    ["Konsum- vs. Investitionsgut","Konsum: direkte Bedürfnisbefriedigung im Haushalt. Investition: Unternehmen stellen damit andere Güter her. Entscheidend: Verwendung!"],
+    ["Gebrauchs- vs. Verbrauchsgut","Gebrauch: mehrmals nutzbar (Velo). Verbrauch: wird aufgebraucht (Benzin)."],
+    ["Die 4 Produktionsfaktoren","Arbeit · Kapital · Technologie · natürliche Ressourcen"],
+    ["Produktionsfaktor Kapital","Sach-/Realkapital: Geräte, Maschinen, Gebäude – NICHT Geldkapital."],
+    ["Produktionsfaktor Technologie","Know-how, Erfahrung, Wissen, wie man die anderen Faktoren sinnvoll kombiniert."],
+    ["Natürliche Ressourcen","Boden, Wasser, Luft, Rohstoffe, Standorte – von der Natur bereitgestellt."],
+    ["Maximumprinzip","Gegebener Input → möglichst grosser Output."],
+    ["Minimumprinzip","Gegebener Output → möglichst kleiner Input."],
+    ["Optimumprinzip","Input und Output variabel → günstigstes Verhältnis."],
+    ["Einfacher Wirtschaftskreislauf – 4 Ströme","Güter U→H · Konsumausgaben H→U · Arbeit H→U · Löhne U→H"],
+    ["Rolle der Banken","Vermitteln Geld zwischen Sparern (Haushalte) und Investoren (Unternehmen): Einlagen entgegennehmen, Kredite vergeben."],
+    ["Rolle des Staates","Erhebt Steuern, verteilt Leistungen (Renten, Subventionen, Aufträge), stellt öffentliche Güter bereit, greift regulierend ein."],
+    ["Rolle des Auslands","Liefert Importe, kauft Exporte – verbindet die Schweiz mit der Weltwirtschaft."],
+    ["Transferzahlung","Geldzahlung des Staates ohne direkte Gegenleistung, z. B. AHV-Rente, Arbeitslosengeld."],
+    ["Wirkungskette Staatsaufträge","Staat → U (Aufträge) → mehr Produktion → mehr Löhne an H → mehr Konsum → mehr Steuern"]
+  ];
+  var fcOrder=CARDS.map(function(c,i){return i;}), fcI=0, fcKnown=LS.get("vwl8-fc",{});
+  var fc=$("#fc");
+  function fcShow(){
+    var c=CARDS[fcOrder[fcI]];
+    fc.classList.remove("flip");
+    $("#fcFront").textContent=c[0]; $("#fcBack").textContent=c[1];
+    var k=0; for(var key in fcKnown){if(fcKnown[key]){k++;}}
+    $("#fcStat").textContent="Karte "+(fcI+1)+" / "+CARDS.length+" · gewusst: "+k+" / "+CARDS.length+(fcKnown[fcOrder[fcI]]?" · ✓ diese Karte gewusst":"");
+  }
+  function fcFlip(){fc.classList.toggle("flip");}
+  fc.addEventListener("click",fcFlip);
+  fc.addEventListener("keydown",function(e){if(e.key===" "||e.key==="Enter"){e.preventDefault();fcFlip();}});
+  $("#fcNext").addEventListener("click",function(){fcI=(fcI+1)%CARDS.length;fcShow();});
+  $("#fcPrev").addEventListener("click",function(){fcI=(fcI-1+CARDS.length)%CARDS.length;fcShow();});
+  $("#fcYes").addEventListener("click",function(){fcKnown[fcOrder[fcI]]=true;LS.set("vwl8-fc",fcKnown);fcI=(fcI+1)%CARDS.length;fcShow();});
+  $("#fcNo").addEventListener("click",function(){fcKnown[fcOrder[fcI]]=false;LS.set("vwl8-fc",fcKnown);fcI=(fcI+1)%CARDS.length;fcShow();});
+  $("#fcShuffle").addEventListener("click",function(){shuffle(fcOrder);fcI=0;fcShow();});
+  fcShow();
+
+  /* ---------- Quiz ---------- */
+  var QUIZ=[
+    ["Was sind die Opportunitätskosten, wenn du CHF 80 für ein Game ausgibst und sonst Kinotickets gekauft hättest?",["Die CHF 80","Der Nutzen der Kinotickets","Das Game","Alle anderen möglichen Käufe zusammen"],1,"Opportunitätskosten = Nutzen der nächstbesten Alternative, nicht das eingesetzte Geld."],
+    ["Welche Aussage zu Sunk Costs ist richtig?",["Sie sollten eine Entscheidung stark beeinflussen","Sie können durch Weitermachen zurückgeholt werden","Sie sind für künftige Entscheidungen irrelevant","Sie sind dasselbe wie Opportunitätskosten"],2,"Versunkene Kosten sind weg – nur zukünftige Kosten und Nutzen zählen."],
+    ["Warum gibt es im Schlaraffenland keine Opportunitätskosten?",["Weil es keine Unternehmen gibt","Weil alles im Überfluss vorhanden ist und niemand verzichten muss","Weil der Staat alles bezahlt","Weil Faulheit belohnt wird"],1,"Ohne Knappheit keine Entscheidung, ohne Entscheidung kein Verzicht."],
+    ["«Festes Einkommen» gehört bei Maslow zu …",["Stufe 1 Grundbedürfnisse","Stufe 2 Sicherheit","Stufe 3 Zugehörigkeit","Stufe 4 Wertschätzung"],1,"Laut Pyramide: Schutz vor Gefahren, Angstfreiheit, Recht und Ordnung, festes Einkommen."],
+    ["Jenny ist erfolgreich, hat Freunde, fühlt sich aber leer. Welche Stufe ist unerfüllt?",["Sicherheit","Zugehörigkeit","Wertschätzung","Selbstverwirklichung"],3,"Sinnfrage = Selbstverwirklichung (Stufe 5)."],
+    ["Welches ist ein Kollektivbedürfnis?",["Hunger nach einem Sandwich","Wunsch nach eigenem E-Bike","Schutz der Bevölkerung vor Kriminalität","Wunsch nach neuen Sneakers"],2,"Viele haben das Bedürfnis gleichzeitig, der Staat befriedigt es (Polizei)."],
+    ["Ein Wahlbedürfnis ist …",["überlebensnotwendig","nicht lebensnotwendig, bereichert aber das Leben","immer ein Kollektivbedürfnis","immer immateriell"],1,"Wahlbedürfnisse hängen von Einkommen, Kultur und Vorlieben ab."],
+    ["Ein Coiffeurstuhl im Salon ist ein …",["Konsumgut","Investitionsgut","freies Gut","Verbrauchsgut"],1,"Der Coiffeur erbringt damit eine Dienstleistung → Investitionsgut (Gebrauchsgut)."],
+    ["Welches Gut ist ein freies Gut?",["Leitungswasser","Mineralwasser","Luft zum Atmen im Wald","Strom aus der Solaranlage"],2,"Nur die Atemluft ist unbegrenzt und gratis."],
+    ["Was entscheidet, ob ein Gut Konsum- oder Investitionsgut ist?",["Der Preis","Die Lebensdauer","Die Verwendung","Ob es anfassbar ist"],2,"Gleiches Gut, andere Verwendung → andere Einteilung."],
+    ["Shampoo im Coiffeursalon ist ein …",["Gebrauchsgut","Verbrauchsgut","freies Gut","immaterielles Gut"],1,"Es wird bei der Nutzung aufgebraucht."],
+    ["Welches Beispiel gehört zum Produktionsfaktor Kapital?",["Ein Bankkredit","Das Rezept","Der Backofen","Das Bauland"],2,"Kapital = Realkapital (Maschinen, Geräte, Gebäude)."],
+    ["Know-how und Erfahrung sind der Produktionsfaktor …",["Arbeit","Kapital","Technologie","natürliche Ressourcen"],2,"Technologie = Wissen, wie man die Faktoren kombiniert."],
+    ["Welche Produktionsfaktoren werden vom Menschen geschaffen?",["Nur Arbeit","Arbeit, Kapital und Technologie","Kapital und natürliche Ressourcen","Alle vier"],1,"Nur die natürlichen Ressourcen stellt die Natur bereit."],
+    ["«Mit CHF 40 möglichst viel für die Party einkaufen» entspricht dem …",["Minimumprinzip","Maximumprinzip","Optimumprinzip","keinem Prinzip"],1,"Input (CHF 40) fix → Output maximieren."],
+    ["«Mit möglichst geringem Aufwand den grösstmöglichen Ertrag» ist …",["das Optimumprinzip","das Maximumprinzip","logisch unmöglich","das Minimumprinzip"],2,"Man kann nicht beide Grössen gleichzeitig extremisieren."],
+    ["Im einfachen Kreislauf fliesst die Arbeit …",["von Unternehmen zu Haushalten","von Haushalten zu Unternehmen","von Haushalten zum Staat","gar nicht"],1,"Haushalte bieten den Produktionsfaktor Arbeit an (Güterstrom), dafür fliessen Löhne zurück."],
+    ["Was tun Banken im erweiterten Kreislauf?",["Sie erheben Steuern","Sie vermitteln Geld zwischen Sparern und Investoren","Sie produzieren Konsumgüter","Sie kaufen Exporte"],1,"Einlagen entgegennehmen, Kredite vergeben."],
+    ["Erika erhält ihre AHV-Rente. Welcher Strom?",["Geld Haushalt → Staat","Güter Staat → Haushalt","Geld Staat → Haushalt","Geld Bank → Haushalt"],2,"Transferzahlung ohne direkte Gegenleistung."],
+    ["Ein Schweizer Unternehmen exportiert Maschinen. Welche Ströme entstehen?",["Güter U → Ausland und Geld Ausland → U","Geld U → Ausland und Güter Ausland → U","Nur Geld U → Ausland","Güter Ausland → Haushalte"],0,"Exporte: Güter gehen hinaus, Geld kommt herein."],
+    ["Welche Folge hat ein staatliches Sparprogramm im Kreislauf kurzfristig am ehesten?",["Mehr Konsum","Weniger Geld bei Haushalten/Unternehmen und tiefere Nachfrage","Mehr Exporte","Keine Wirkung"],1,"Weniger Staatsausgaben → weniger Einkommen → weniger Konsum."],
+    ["Samim überweist Geld an seine Familie im Herkunftsland. Welcher Strom?",["Geld Haushalt → Ausland, ohne Güterstrom","Geld Haushalt → Ausland und Güter zurück","Geld Ausland → Haushalt","Güter Haushalt → Ausland"],0,"Überweisung ohne Gegenleistung → nur ein Geldstrom."]
+  ];
+  var qBox=$("#quizBox"), qRight=0, qDone=0;
+  function buildQuiz(){
+    qBox.innerHTML=""; qRight=0; qDone=0; updScore();
+    QUIZ.forEach(function(item,qi){
+      var d=document.createElement("div"); d.className="quiz-q";
+      var h="<div class='qt'>"+(qi+1)+". "+item[0]+"</div><div class='qo'>";
+      item[1].forEach(function(o,oi){h+="<button type='button' class='opt' data-i='"+oi+"'>"+o+"</button>";});
+      h+="</div><div class='ex-txt'>"+item[3]+"</div>";
+      d.innerHTML=h;
+      $all("button.opt",d).forEach(function(b){
+        b.addEventListener("click",function(){
+          if(d.classList.contains("answered")){return;}
+          d.classList.add("answered"); qDone++;
+          var i=+b.getAttribute("data-i");
+          if(i===item[2]){qRight++;b.classList.add("right");}
+          else{b.classList.add("wrong"); $all("button.opt",d)[item[2]].classList.add("right");}
+          $all("button.opt",d).forEach(function(x){x.disabled=true;});
+          updScore();
+        });
+      });
+      qBox.appendChild(d);
+    });
+  }
+  function updScore(){ $("#quizScore").textContent=qRight+" / "+qDone+" richtig"+(qDone===QUIZ.length?" · fertig!":" · "+(QUIZ.length-qDone)+" offen"); }
+  $("#quizReset").addEventListener("click",buildQuiz);
+  buildQuiz();
+
+  /* ---------- Timer ---------- */
+  var tLeft=45*60, tRun=false, tInt=null;
+  function tShow(){var m=Math.floor(tLeft/60), s=tLeft%60; $("#timer").textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;}
+  $("#timerBtn").addEventListener("click",function(){
+    if(tRun){clearInterval(tInt);tRun=false;this.textContent="Weiter";return;}
+    tRun=true; this.textContent="Pause";
+    tInt=setInterval(function(){ if(tLeft>0){tLeft--;tShow();} else {clearInterval(tInt);tRun=false;$("#timer").textContent="Zeit!";} },1000);
+  });
+  $("#timerReset").addEventListener("click",function(){clearInterval(tInt);tRun=false;tLeft=45*60;tShow();$("#timerBtn").textContent="Start";});
+  tShow();
+
+  /* ---------- Last-Minute-Checkliste ---------- */
+  var lastState=LS.get("vwl8-last",{});
+  $all("#lastList li").forEach(function(li,i){
+    li.setAttribute("tabindex","0");
+    function paint(){li.style.opacity=lastState[i]?".5":"1"; li.style.textDecoration=lastState[i]?"line-through":"none";}
+    function tog(){lastState[i]=!lastState[i];LS.set("vwl8-last",lastState);paint();}
+    li.addEventListener("click",tog);
+    li.addEventListener("keydown",function(e){if(e.key===" "||e.key==="Enter"){e.preventDefault();tog();}});
+    paint();
+  });
+})();
+</script>
+</body>
+</html>
