@@ -88,6 +88,11 @@ p{margin:0 0 14px}
 .term{font-weight:600;color:var(--green)}
 .geldc{color:var(--geld);font-weight:600} .gutc{color:var(--gut);font-weight:600}
 
+.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0}
+.steps li{counter-increment:s;position:relative;padding:10px 0 10px 46px;border-bottom:1px dashed var(--line);font-size:16.5px}
+.steps li:last-child{border-bottom:none}
+.steps li::before{content:counter(s);position:absolute;left:0;top:9px;width:30px;height:30px;color:#fff;border-radius:9px;font-family:"Archivo";font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;background:var(--green)}
+
 ul.clean{list-style:none;padding:0;margin:12px 0}
 ul.clean li{padding:6px 0 6px 28px;position:relative;border-bottom:1px dashed var(--line)}
 ul.clean li:last-child{border-bottom:none}
@@ -238,6 +243,7 @@ footer{text-align:center;font-family:"Archivo";font-size:13px;color:var(--ink-so
       <a href="#prinzip">Ökon. Prinzip</a>
       <a href="#kreislauf">Kreislauf</a>
       <a href="#staat">Staat &amp; Massnahmen</a>
+      <a href="#werkstatt">Werkstatt</a>
       <a class="practice" href="#uebungen">Übungen</a>
       <a class="practice" href="#arbeitsheft">Arbeitsheft</a>
       <a class="practice" href="#karten">Karten</a>
@@ -256,7 +262,7 @@ footer{text-align:center;font-family:"Archivo";font-size:13px;color:var(--ink-so
     <div class="exam-card"><div class="l">Prüfung</div><div class="v">Do, 24. September 2026</div></div>
     <div class="exam-card"><div class="l">Umfang</div><div class="v">Kapitel 8.1 – 8.4</div></div>
     <div class="exam-card"><div class="l">Lernziele</div><div class="v">9 · alle abgedeckt</div></div>
-    <div class="exam-card"><div class="l">Übungsteil</div><div class="v">28 Aufgaben · Quiz · Simulation</div></div>
+    <div class="exam-card"><div class="l">Übungsteil</div><div class="v">48 Aufgaben · Quiz · Simulation</div></div>
   </div>
 </div>
 
@@ -908,12 +914,233 @@ footer{text-align:center;font-family:"Archivo";font-size:13px;color:var(--ink-so
   <div class="warn"><strong>Beurteilen heisst immer zwei Seiten:</strong> Jede Staatsmassnahme kostet Geld (Opportunitätskosten!), das entweder über Steuern, Schulden oder Kürzungen an anderer Stelle finanziert werden muss. Nenne in der Prüfung mindestens <b>einen Vorteil und einen Nachteil</b>.</div>
 </section>
 
+<!-- ================= WERKSTATT: EINZEICHNEN & MASSNAHMEN ================= -->
+<section id="werkstatt">
+  <div class="sec-head"><span class="sec-num">9b</span><h2>Werkstatt: Wie löse ich diese Aufgaben?</h2><span class="lz">L8 · L9</span></div>
+  <p>Hier geht es nur ums <b>Vorgehen</b>: Wie zeichne ich Transaktionen in den Kreislauf ein und wie beantworte ich eine Massnahmen-Frage? Zuerst das Rezept, dann durchgerechnete Beispiele, dann 20 Aufgaben mit Lösungen.</p>
+
+  <h3 style="font-size:26px;margin-top:34px">Teil A · Kreislauf einzeichnen</h3>
+
+  <div class="card">
+    <h3>Das Rezept – 4 Fragen für jede Transaktion</h3>
+    <ol class="steps" style="counter-reset:s">
+      <li><b>Wer mit wem?</b> Bestimme die beiden Akteure und markiere die zwei Felder.<br><small>Privatperson/Familie = <b>Haushalt</b> · Firma, Laden, Café, Studio, Praxis = <b>Unternehmen</b> · Bank = <b>Banken</b> · Gemeinde, Kanton, Bund, AHV, öffentliche Schule, Polizei = <b>Staat</b> · alles über die Landesgrenze = <b>Ausland</b></small></li>
+      <li><b>Was fliesst?</b> <span class="geldc">Geld</span> (durchgezogener Pfeil) oder ein <span class="gutc">Gut / eine Leistung</span> (gestrichelter Pfeil)?<br><small>Wichtig: <b>Arbeit ist kein Geld</b>, sondern eine Leistung → gestrichelt. Auch Schulunterricht, Beratung, eine Bahnfahrt sind Leistungen.</small></li>
+      <li><b>In welche Richtung?</b> Der Pfeil zeigt dorthin, wo es <b>ankommt</b> (wer bekommt das Geld bzw. das Gut?).</li>
+      <li><b>Gibt es eine Gegenleistung?</b><br><small><b>Ja</b> → zweiter Pfeil in die Gegenrichtung (Kauf = Ware hin, Geld zurück). <b>Nein</b> → nur ein Pfeil: Steuern, Renten, Subventionen, Stipendien, Überweisungen an die Familie.</small></li>
+    </ol>
+    <div class="memo"><strong>Schritt 5 – beschriften</strong><br>Schreibe nie nur «Geld» oder «Ware» an den Pfeil, sondern den <b>Fachbegriff</b>. Dafür gibt es Punkte.</div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Pfeil</th><th>Richtige Beschriftung</th></tr></thead>
+      <tbody>
+        <tr><td>Haushalt zahlt für ein Produkt</td><td>Konsumausgaben (Kaufpreis)</td></tr>
+        <tr><td>Unternehmen liefert etwas</td><td>Güter und Dienstleistungen</td></tr>
+        <tr><td>Haushalt arbeitet</td><td>Arbeit (Produktionsfaktor)</td></tr>
+        <tr><td>Unternehmen zahlt dafür</td><td>Lohn / Einkommen</td></tr>
+        <tr><td>Haushalt zahlt Geld auf die Bank</td><td>Ersparnisse (Einlage)</td></tr>
+        <tr><td>Bank gibt Geld weiter</td><td>Kredit</td></tr>
+        <tr><td>Kredit wird zurückgezahlt</td><td>Rückzahlung (Tilgung) + Zinsen</td></tr>
+        <tr><td>Haushalt/Unternehmen an den Staat</td><td>Einkommenssteuer / Gewinnsteuer / Mehrwertsteuer</td></tr>
+        <tr><td>Staat an Haushalt</td><td>Transferzahlung (AHV-Rente, Arbeitslosengeld, Stipendium)</td></tr>
+        <tr><td>Staat an Unternehmen</td><td>Subvention / Zahlung für einen Staatsauftrag</td></tr>
+        <tr><td>Staat liefert etwas</td><td>Öffentliche Leistungen (Schule, Sicherheit, Strassen)</td></tr>
+        <tr><td>Güter gehen ins Ausland</td><td>Export · Geld zurück: Exporterlös</td></tr>
+        <tr><td>Güter kommen aus dem Ausland</td><td>Import · Geld hin: Zahlung für Importe</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h3>Drei durchgerechnete Beispiele</h3>
+
+    <h4>Beispiel 1 · «Emma kauft im Coop einen Salat für CHF 8.»</h4>
+    <ol>
+      <li>Akteure: Emma = <b>Haushalt</b>, Coop = <b>Unternehmen</b>.</li>
+      <li>Es fliesst Geld (CHF 8) – und zusätzlich der Salat.</li>
+      <li>Richtung: Geld vom Haushalt zum Unternehmen.</li>
+      <li>Gegenleistung? Ja, der Salat → zweiter Pfeil Unternehmen → Haushalt, gestrichelt.</li>
+    </ol>
+    <p><b>Ergebnis:</b> <span class="pill g">Geld H → U: Konsumausgaben</span> <span class="pill o">Güter U → H: Güter (Salat)</span></p>
+
+    <h4>Beispiel 2 · «Die Bäckerei Keller überweist dem Kanton die Gewinnsteuer.»</h4>
+    <ol>
+      <li>Akteure: Bäckerei = <b>Unternehmen</b>, Kanton = <b>Staat</b>.</li>
+      <li>Es fliesst Geld.</li>
+      <li>Richtung: Unternehmen → Staat.</li>
+      <li>Gegenleistung? <b>Nein</b> – für die Steuer bekommt die Bäckerei nichts Direktes zurück (die öffentlichen Leistungen sind kein Preis für diese Steuer).</li>
+    </ol>
+    <p><b>Ergebnis:</b> <span class="pill g">Geld U → S: Gewinnsteuer</span> – nur ein Pfeil!</p>
+
+    <h4>Beispiel 3 · «Ein Zürcher Pharmaunternehmen verkauft Medikamente nach Japan.»</h4>
+    <ol>
+      <li>Akteure: Pharmafirma = <b>Unternehmen</b>, Japan = <b>Ausland</b>.</li>
+      <li>Es fliesst ein Gut (Medikamente) – und Geld.</li>
+      <li>Richtung: Güter vom Unternehmen ins Ausland.</li>
+      <li>Gegenleistung? Ja, die Bezahlung → Geld Ausland → Unternehmen.</li>
+    </ol>
+    <p><b>Ergebnis:</b> <span class="pill o">Güter U → A: Export</span> <span class="pill g">Geld A → U: Exporterlös</span></p>
+    <div class="tip"><strong>Eselsbrücke für Export/Import:</strong> Das <b>Gut</b> geht dorthin, wo es <b>gebraucht</b> wird – das <b>Geld</b> kommt immer von der Seite, die <b>kauft</b>. Beim Export kauft das Ausland → Geld kommt zu uns.</div>
+  </div>
+
+  <div class="warn"><strong>Die 6 häufigsten Fehler beim Einzeichnen</strong>
+    <ul class="clean cross" style="margin-top:6px">
+      <li>Arbeit als Geldstrom gezeichnet – Arbeit ist eine <b>Leistung</b> (gestrichelt), der Lohn ist der Geldstrom.</li>
+      <li>Nur einen Pfeil gezeichnet, obwohl es eine Gegenleistung gibt (Kauf = immer zwei Pfeile).</li>
+      <li>Zwei Pfeile gezeichnet, obwohl es keine Gegenleistung gibt (Steuern, Rente, Subvention, Überweisung).</li>
+      <li>Export-Pfeil falsch herum: Güter gehen <b>hinaus</b>, Geld kommt <b>herein</b>.</li>
+      <li>Ein Café oder eine Band, die Geld verdient, als Haushalt statt als <b>Unternehmen</b> eingeordnet (auch wenn eine Person genannt wird).</li>
+      <li>Pfeil ohne Beschriftung oder nur mit «Geld» – der Fachbegriff gibt den Punkt.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Aufgaben A · 12 Transaktionen einzeichnen</h3>
+    <p>Notiere für jede Transaktion: <b>Akteure – Stromart – Richtung – Beschriftung</b> und ob ein Gegenstrom entsteht. Erst dann die Lösung öffnen.</p>
+
+    <div class="ex" data-lvl="2"><div class="ex-head"><h4>A1</h4><span class="lvl lvl1">Level 1</span></div>
+      <p>Samim kauft im Kiosk eine Zeitung für CHF 4.50.</p>
+      <details><summary>Lösung</summary><div class="sol"><p><b>Haushalt ↔ Unternehmen</b> · zwei Ströme: <span class="pill g">Geld H → U: Konsumausgaben</span> <span class="pill o">Güter U → H: Zeitung</span></p></div></details></div>
+
+    <div class="ex" data-lvl="2"><div class="ex-head"><h4>A2</h4><span class="lvl lvl1">Level 1</span></div>
+      <p>Jenny arbeitet 42 Stunden pro Woche in ihrer Firma.</p>
+      <details><summary>Lösung</summary><div class="sol"><p><b>Haushalt → Unternehmen</b> · <span class="pill o">Güterstrom (gestrichelt): Arbeit (Produktionsfaktor)</span>. Der Gegenstrom ist der Lohn (<span class="pill g">Geld U → H</span>) – dieser wird meist als eigene Transaktion aufgeführt.</p></div></details></div>
+
+    <div class="ex" data-lvl="2"><div class="ex-head"><h4>A3</h4><span class="lvl lvl2">Level 2</span></div>
+      <p>Erika bekommt monatlich CHF 2'100 AHV-Rente.</p>
+      <details><summary>Lösung</summary><div class="sol"><p><b>Staat → Haushalt</b> · <span class="pill g">Geld: Transferzahlung (AHV-Rente)</span> · <b>nur ein Pfeil</b>, keine Gegenleistung.</p></div></details></div>
+
+    <div class="ex" data-lvl="2"><div class="ex-head"><h4>A4</h4><span class="lvl lvl2">Level 2</span></div>
+      <p>Mateos Café kauft eine neue Kaffeemaschine bei einem Schweizer Hersteller.</p>
+      <details><summary>Lösung</summary><div class="sol"><p><b>Unternehmen ↔ Unternehmen</b> (beide im Feld «Unternehmen»): <span class="pill g">Geld</span> vom Café zum Hersteller, <span class="pill o">Güter</span> (Kaffeemaschine, ein Investitionsgut) zurück. Im vereinfachten Kreislaufmodell wird dieser Strom oft innerhalb des Unternehmenssektors dargestellt oder weggelassen – nenne ihn in der Prüfung trotzdem korrekt.</p></div></details></div>
+
+    <div class="ex" data-lvl="2"><div class="ex-head"><h4>A5</h4><span class="lvl lvl2">Level 2</span></div>
+      <p>Yasmin legt CHF 200 auf ihr Sparkonto.</p>
+      <details><summary>Lösung</summary><div class="sol"><p><b>Haushalt → Bank</b> · <span class="pill g">Geld: Ersparnisse (Einlage)</span>. Gegenstrom später: <span class="pill g">Geld B → H: Zinsen</span>. Achtung: Es fliesst <b>kein Gut</b>.</p></div></details></div>
+
+    <div class="ex" data-lvl="2"><div class="ex-head"><h4>A6</h4><span class="lvl lvl2">Level 2</span></div>
+      <p>Die Bank gewährt Mateos Café einen Kredit von CHF 30'000 für den Umbau.</p>
+      <details><summary>Lösung</summary><div class="sol"><p><b>Bank → Unternehmen</b> · <span class="pill g">Geld: Kredit</span>. Später zurück: <span class="pill g">Geld U → B: Rückzahlung + Zinsen</span>.</p></div></details></div>
+
+    <div class="ex" data-lvl="3"><div class="ex-head"><h4>A7</h4><span class="lvl lvl3">Level 3</span></div>
+      <p>Jonas besucht die öffentliche Kantonsschule.</p>
+      <details><summary>Lösung</summary><div class="sol"><p><b>Staat → Haushalt</b> · <span class="pill o">Leistung (gestrichelt): öffentliche Leistung Bildung/Unterricht</span> · kein direkter Geldstrom zurück – die Schule wird über Steuern finanziert (separater Pfeil H → S).</p></div></details></div>
+
+    <div class="ex" data-lvl="3"><div class="ex-head"><h4>A8</h4><span class="lvl lvl3">Level 3</span></div>
+      <p>Mateos Café importiert Kaffeebohnen aus Kolumbien und überweist CHF 4'000 dafür.</p>
+      <details><summary>Lösung</summary><div class="sol"><p>Zwei Ströme: <span class="pill o">Güter A → U: Import (Kaffeebohnen)</span> und <span class="pill g">Geld U → A: Zahlung für Importe</span>. Richtung merken: Ware kommt herein, Geld geht hinaus.</p></div></details></div>
+
+    <div class="ex" data-lvl="3"><div class="ex-head"><h4>A9</h4><span class="lvl lvl3">Level 3</span></div>
+      <p>Samim erhält vom Kanton einen Beitrag an seinen Deutschkurs; den Kurs besucht er bei einer privaten Sprachschule, die er selbst bezahlt.</p>
+      <details><summary>Lösung</summary><div class="sol"><p>Drei Ströme: <span class="pill g">Geld S → H: Transferzahlung (Kursbeitrag)</span> · <span class="pill g">Geld H → U: Konsumausgabe (Kursgebühr)</span> · <span class="pill o">Leistung U → H: Sprachkurs (Dienstleistung)</span>.</p><p><small>Typische Prüfungsaufgabe: Eine Situation erzeugt <b>mehrere</b> Pfeile – lies genau, wer wem was gibt.</small></p></div></details></div>
+
+    <div class="ex" data-lvl="3"><div class="ex-head"><h4>A10</h4><span class="lvl lvl3">Level 3</span></div>
+      <p>Der Bund zahlt einem Bauunternehmen CHF 12 Mio. für den Bau eines Tunnels.</p>
+      <details><summary>Lösung</summary><div class="sol"><p>Zwei Ströme: <span class="pill g">Geld S → U: Zahlung für einen Staatsauftrag</span> und <span class="pill o">Leistung U → S: Bauleistung (Tunnel)</span>. Hier <b>gibt</b> es eine Gegenleistung – anders als bei einer Subvention.</p></div></details></div>
+
+    <div class="ex" data-lvl="4"><div class="ex-head"><h4>A11</h4><span class="lvl lvl4">Level 4</span></div>
+      <p>Samim arbeitet im Restaurant, verdient CHF 3'800, zahlt davon CHF 250 Steuern, überweist CHF 300 an seine Familie im Herkunftsland und legt CHF 200 auf die Bank. Zeichnen Sie alle Ströme, die von Samim ausgehen oder bei ihm ankommen.</p>
+      <details><summary>Lösung</summary><div class="sol">
+        <p><span class="pill o">Güter H → U: Arbeit</span> · <span class="pill g">Geld U → H: Lohn (3'800)</span> · <span class="pill g">Geld H → S: Einkommenssteuer (250)</span> · <span class="pill g">Geld H → Ausland: Überweisung (300)</span> · <span class="pill g">Geld H → Bank: Ersparnisse (200)</span>.</p>
+        <p>Drei davon (Steuer, Überweisung, Sparen) haben <b>keinen</b> Güter-Gegenstrom. Der Rest des Lohns fliesst als Konsumausgabe zu den Unternehmen zurück.</p>
+      </div></details></div>
+
+    <div class="ex" data-lvl="4"><div class="ex-head"><h4>A12</h4><span class="lvl lvl4">Level 4</span></div>
+      <p>Die Uhrenfirma Tempus nimmt bei der Bank einen Kredit auf, kauft damit eine Maschine aus Deutschland, produziert Uhren, verkauft sie in die USA und zahlt ihren Mitarbeitenden Löhne. Zeichnen Sie die Kette (6 Ströme).</p>
+      <details><summary>Lösung</summary><div class="sol">
+        <p>① <span class="pill g">Geld B → U: Kredit</span> ② <span class="pill g">Geld U → A: Zahlung für Importe</span> ③ <span class="pill o">Güter A → U: Import (Maschine, Investitionsgut)</span> ④ <span class="pill o">Güter U → A: Export (Uhren)</span> ⑤ <span class="pill g">Geld A → U: Exporterlös</span> ⑥ <span class="pill g">Geld U → H: Löhne</span> (Gegenstrom: <span class="pill o">Arbeit H → U</span>). Später zusätzlich: <span class="pill g">Geld U → B: Rückzahlung + Zinsen</span>.</p>
+      </div></details></div>
+  </div>
+
+  <h3 style="font-size:26px;margin-top:40px">Teil B · Massnahmen beurteilen</h3>
+
+  <div class="card">
+    <h3>Das Antwortschema – 4 Sätze, die immer passen</h3>
+    <ol class="steps">
+      <li><b>Strom benennen:</b> «Der Staat … . Damit wird der Geldstrom von <i>X</i> zu <i>Y</i> grösser/kleiner.»</li>
+      <li><b>Direkte Wirkung:</b> «Dadurch haben <i>X</i> mehr/weniger Geld zur Verfügung.»</li>
+      <li><b>Wirkungskette (2–3 Schritte):</b> «Deshalb steigt/sinkt der Konsum → die Unternehmen setzen mehr/weniger um → sie stellen ein / entlassen → Löhne und Steuereinnahmen steigen/sinken.»</li>
+      <li><b>Beurteilung:</b> «Vorteil: … Nachteil: … Fazit: …»</li>
+    </ol>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Massnahme</th><th>Betroffener Strom</th><th>Richtung der Wirkung</th></tr></thead>
+      <tbody>
+        <tr><td>Steuern senken (Haushalte)</td><td>H → S wird kleiner</td><td>mehr Kaufkraft → mehr Konsum</td></tr>
+        <tr><td>Steuern erhöhen</td><td>H → S / U → S wird grösser</td><td>weniger Konsum und Investitionen</td></tr>
+        <tr><td>Subventionen zahlen</td><td>S → U wird grösser</td><td>tiefere Kosten, Arbeitsplätze gesichert</td></tr>
+        <tr><td>Staatsaufträge vergeben</td><td>S → U grösser (+ Leistung U → S)</td><td>direkte Nachfrage, Aufträge</td></tr>
+        <tr><td>Transferzahlungen erhöhen</td><td>S → H wird grösser</td><td>Einkommen stabil → Konsum stabil</td></tr>
+        <tr><td>Sparen / Ausgaben kürzen</td><td>S → U und S → H werden kleiner</td><td>weniger Nachfrage, aber gesunde Finanzen</td></tr>
+        <tr><td>Exportförderung</td><td>U → A und A → U werden grösser</td><td>mehr Absatz, mehr Arbeitsplätze</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note"><strong>Diese drei «Bremsen» bringen fast immer einen Extrapunkt:</strong> Ein Teil des zusätzlichen Geldes wird <b>gespart</b> (fliesst zur Bank), ein Teil fliesst für <b>Importe ins Ausland</b>, und die Massnahme wirkt oft erst mit <b>Verzögerung</b>. Deshalb fällt die Wirkung kleiner aus als erhofft.</div>
+  </div>
+
+  <div class="card">
+    <h3>Zwei Musterantworten – so schreibst du es auf</h3>
+    <h4>Frage: «Der Bund erhöht die Kurzarbeitsentschädigung. Zeigen Sie die Wirkung im Wirtschaftskreislauf und beurteilen Sie die Massnahme.» (6 P.)</h4>
+    <div class="filled" style="background:#fff">
+      <p><i>Musterantwort:</i> Mit der Kurzarbeitsentschädigung zahlt der Staat Geld an die Haushalte; der Geldstrom <b>Staat → Haushalte (Transferzahlung)</b> wird grösser, eine direkte Gegenleistung gibt es nicht. Dadurch verlieren die betroffenen Haushalte trotz weniger Arbeit kaum Einkommen. Deshalb bleiben ihre <b>Konsumausgaben (Haushalte → Unternehmen)</b> stabil, die Unternehmen setzen weiterhin um und müssen weniger Personal entlassen; auch die Steuereinnahmen des Staates brechen weniger stark ein.<br>
+      <b>Vorteil:</b> Arbeitsplätze und Know-how bleiben erhalten, die Nachfrage wird stabilisiert. <b>Nachteil:</b> Die Massnahme kostet den Staat viel Geld (Schulden oder Kürzungen an anderer Stelle, also Opportunitätskosten) und verzögert bei dauerhaften Problemen den nötigen Strukturwandel. <b>Fazit:</b> In einer kurzen Krise sinnvoll, als Dauerlösung nicht.</p>
+    </div>
+    <h4>Frage: «Der Kanton streicht die Kulturbeiträge und verschiebt den Neubau einer Schule. Welche Folgen hat das?» (4 P.)</h4>
+    <div class="filled" style="background:#fff">
+      <p><i>Musterantwort:</i> Der Kanton kürzt Ausgaben: Die Geldströme <b>Staat → Unternehmen (Subventionen, Staatsaufträge)</b> werden kleiner. Kulturbetriebe und Baufirmen erhalten weniger Geld und Aufträge. Deshalb produzieren sie weniger, zahlen weniger Löhne an die Haushalte, und diese konsumieren weniger – die Nachfrage sinkt weiter, und die Steuereinnahmen des Kantons gehen zurück.<br>
+      <b>Vorteil:</b> Der Kantonshaushalt kommt ins Gleichgewicht, es entstehen keine neuen Schulden zulasten künftiger Generationen. <b>Nachteil:</b> Kurzfristig dämpft das Sparen die Wirtschaft und kann Arbeitsplätze kosten; zudem fehlt die Schule später (Opportunitätskosten).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Aufgaben B · 8 Massnahmen beurteilen</h3>
+
+    <div class="ex" data-lvl="2"><div class="ex-head"><h4>B1</h4><span class="lvl lvl2">Level 2</span></div>
+      <p>Der Bund senkt die Mehrwertsteuer von 8.1 % auf 7.5 %. Welcher Strom ist betroffen und was passiert?</p>
+      <details><summary>Lösung</summary><div class="sol"><p>Der Geldstrom <b>Haushalte → Staat (Mehrwertsteuer)</b> wird kleiner – Produkte werden günstiger. Die Haushalte können sich mit dem gleichen Einkommen mehr leisten → mehr Konsumausgaben (H → U) → mehr Umsatz und Produktion → mehr Arbeitsplätze und Löhne. <b>Nachteil:</b> Dem Staat fehlen Einnahmen; eventuell muss er kürzen oder Schulden machen. Ein Teil der Ersparnis wird zudem gespart oder für Importe ausgegeben.</p></div></details></div>
+
+    <div class="ex" data-lvl="2"><div class="ex-head"><h4>B2</h4><span class="lvl lvl2">Level 2</span></div>
+      <p>Der Kanton erhöht die Stipendien für Lernende. Beschreiben Sie die Wirkungskette in drei Schritten.</p>
+      <details><summary>Lösung</summary><div class="sol"><p>① Grösserer Geldstrom <b>Staat → Haushalte (Transferzahlung Stipendium)</b>. ② Die Haushalte haben mehr verfügbares Einkommen und können die Ausbildung finanzieren → mehr Konsum (H → U). ③ Langfristig: besser ausgebildete Arbeitskräfte → besserer Produktionsfaktor Arbeit → höhere Produktivität und später höhere Steuereinnahmen. <b>Nachteil:</b> kostet den Kanton Geld (Opportunitätskosten: andere Projekte).</p></div></details></div>
+
+    <div class="ex" data-lvl="3"><div class="ex-head"><h4>B3</h4><span class="lvl lvl3">Level 3</span></div>
+      <p>Der Staat subventioniert Solaranlagen für Unternehmen. Nennen Sie den Strom, die Wirkungskette und je ein Pro- und Contra-Argument.</p>
+      <details><summary>Lösung</summary><div class="sol"><p><b>Strom:</b> Geld <b>Staat → Unternehmen (Subvention)</b>, ohne direkte Gegenleistung. <b>Kette:</b> Investitionen werden günstiger → Unternehmen investieren → Aufträge für Solarfirmen → Löhne → Konsum. <b>Pro:</b> fördert Investitionen und schont die Umwelt (ökologisches Prinzip). <b>Contra:</b> Mitnahmeeffekte – Firmen, die ohnehin investiert hätten, kassieren mit; zudem Wettbewerbsverzerrung und Kosten für den Staat.</p></div></details></div>
+
+    <div class="ex" data-lvl="3"><div class="ex-head"><h4>B4</h4><span class="lvl lvl3">Level 3</span></div>
+      <p>Die Regierung erhöht die Gewinnsteuer für Unternehmen deutlich. Beurteilen Sie.</p>
+      <details><summary>Lösung</summary><div class="sol"><p>Grösserer Geldstrom <b>Unternehmen → Staat</b>. Den Unternehmen bleibt weniger Gewinn → weniger Investitionen (weniger Kredite bei den Banken) und weniger Spielraum für Löhne → weniger Einkommen und Konsum der Haushalte. <b>Pro:</b> Mehr Staatseinnahmen für öffentliche Leistungen oder Schuldenabbau, gerechtere Lastenverteilung. <b>Contra:</b> Der Standort wird unattraktiver, Firmen könnten abwandern → langfristig sogar tiefere Steuereinnahmen.</p></div></details></div>
+
+    <div class="ex" data-lvl="3"><div class="ex-head"><h4>B5</h4><span class="lvl lvl3">Level 3</span></div>
+      <p>Warum wirkt eine Steuersenkung oft schwächer, als die Politik verspricht? Nennen Sie drei Gründe mit Bezug auf den Kreislauf.</p>
+      <details><summary>Lösung</summary><div class="sol"><p>① Ein Teil des zusätzlichen Einkommens wird <b>gespart</b> → fliesst zu den Banken statt in den Konsum. ② Ein Teil wird für <b>importierte Güter</b> oder Einkaufstouren ausgegeben → Geld fliesst ins <b>Ausland</b>, nicht zu inländischen Unternehmen. ③ Dem Staat fehlen Einnahmen → er kürzt Ausgaben (S → U und S → H werden kleiner), was die positive Wirkung teilweise aufhebt. Zusätzlich wirken Massnahmen meist mit Verzögerung.</p></div></details></div>
+
+    <div class="ex" data-lvl="4"><div class="ex-head"><h4>B6</h4><span class="lvl lvl4">Level 4</span></div>
+      <p>Zwei Vorschläge gegen steigende Arbeitslosigkeit: (A) Der Staat senkt die Einkommenssteuer. (B) Der Staat vergibt zusätzliche Bauaufträge. Vergleichen Sie beide Massnahmen und empfehlen Sie eine.</p>
+      <details><summary>Lösung</summary><div class="sol">
+        <p><b>A Steuersenkung:</b> Strom H → S kleiner → mehr Kaufkraft für alle Haushalte → breite, aber gestreute Wirkung; ein Teil wird gespart oder für Importe ausgegeben.</p>
+        <p><b>B Bauaufträge:</b> Strom S → U grösser, mit Gegenleistung (Bauleistung) → wirkt <b>gezielt</b> in einer Branche mit vielen Arbeitsplätzen; dafür profitieren andere Branchen kaum, und die Planung dauert.</p>
+        <p><b>Empfehlung (Beispiel):</b> Wenn die Arbeitslosigkeit vor allem im Baugewerbe steigt, wirkt B gezielter und schneller pro eingesetztem Franken. Ist die Nachfrage generell schwach, ist A breiter wirksam. Beide kosten den Staat Geld – die Frage ist immer, worauf er dafür verzichtet (Opportunitätskosten).</p>
+      </div></details></div>
+
+    <div class="ex" data-lvl="4"><div class="ex-head"><h4>B7</h4><span class="lvl lvl4">Level 4</span></div>
+      <p>Ein Politiker sagt: «Sparen ist immer gut – auch in einer Rezession.» Nehmen Sie mit dem Kreislaufmodell Stellung.</p>
+      <details><summary>Lösung</summary><div class="sol"><p>Die Aussage ist <b>zu absolut</b>. Spart der Staat, werden die Ströme <b>Staat → Unternehmen</b> (Aufträge, Subventionen) und <b>Staat → Haushalte</b> (Transfers) kleiner. In einer Rezession ist die Nachfrage ohnehin schwach: Die Unternehmen setzen noch weniger um, entlassen Personal, die Haushalte konsumieren weniger – und die Steuereinnahmen sinken zusätzlich. Das Sparziel wird dadurch teilweise verfehlt. <b>Richtig ist:</b> Der Staat soll über den Konjunkturzyklus im Gleichgewicht bleiben – in guten Zeiten Überschüsse erzielen, in schlechten Zeiten Defizite zulassen (Prinzip der Schuldenbremse des Bundes).</p></div></details></div>
+
+    <div class="ex" data-lvl="5"><div class="ex-head"><h4>B8</h4><span class="lvl lvl5">Level 5</span></div>
+      <p>Die Preise für importiertes Öl und Getreide steigen stark. Der Bundesrat prüft: (1) Verbilligung der Krankenkassenprämien für tiefe Einkommen, (2) Subventionen an die Landwirtschaft, (3) höhere Mehrwertsteuer zur Finanzierung. a) Zeigen Sie für jede Massnahme den betroffenen Strom. b) Beschreiben Sie die Gesamtwirkung des Pakets. c) Nennen Sie einen Zielkonflikt.</p>
+      <details><summary>Lösung</summary><div class="sol">
+        <p><b>a)</b> (1) Geld <b>Staat → Haushalte</b> (Transferzahlung) · (2) Geld <b>Staat → Unternehmen</b> (Subvention) · (3) Geld <b>Haushalte → Staat</b> (Mehrwertsteuer) wird grösser. Ausserdem im Hintergrund: höhere <b>Zahlungen für Importe</b> (U/H → Ausland) wegen der teuren Rohstoffe.</p>
+        <p><b>b)</b> (1) und (2) stützen Haushalte und Landwirtschaft: Einkommen bleibt, Lebensmittelpreise steigen weniger stark → Konsum bleibt stabiler. (3) entzieht den Haushalten aber wieder Kaufkraft → der Konsum sinkt. Netto hängt die Wirkung davon ab, wer zahlt und wer profitiert: Haushalte mit tiefem Einkommen gewinnen, alle anderen verlieren etwas.</p>
+        <p><b>c) Zielkonflikt:</b> Der Staat will gleichzeitig die Kaufkraft stützen <b>und</b> den Haushalt ausgleichen. Beides zusammen geht nur begrenzt – mehr Unterstützung bedeutet mehr Ausgaben, die über Steuern (weniger Konsum) oder Schulden (Belastung der Zukunft) finanziert werden müssen. Ebenso: Subventionen für die Landwirtschaft verzerren den Wettbewerb und verteuern den Strukturwandel.</p>
+      </div></details></div>
+  </div>
+</section>
+
 <!-- ================= ÜBUNGEN ================= -->
 <div class="practice-banner" id="uebungsteil">
   <div class="ghost">✎</div>
   <div class="kicker" style="color:#fff;opacity:.85">Übungsteil</div>
   <h2>Üben wie an der Prüfung</h2>
-  <p>28 Aufgaben auf fünf Niveaus, das gelöste Arbeitsheft, Lernkarten, ein Quiz mit Sofort-Feedback und eine Prüfungssimulation mit Timer. Erst selbst lösen – dann Lösung aufklappen.</p>
+  <p>48 Aufgaben auf fünf Niveaus (inkl. Werkstatt), das gelöste Arbeitsheft, Lernkarten, ein Quiz mit Sofort-Feedback und eine Prüfungssimulation mit Timer. Erst selbst lösen – dann Lösung aufklappen.</p>
 </div>
 
 <section id="uebungen">
