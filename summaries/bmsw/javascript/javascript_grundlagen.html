@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JavaScript Grundlagen (LU01–LU05b) · Prüfungsvorbereitung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1320;
+  --surface:#161c2e;
+  --surface2:#1d2438;
+  --border:#2b3350;
+  --border-soft:#242c46;
+  --text:#dfe4f5;
+  --muted:#8a92b2;
+  --accent:#5fd0ff;
+  --accent-soft:rgba(95,208,255,.12);
+  --accent2:#8b7bff;
+  --accent2-soft:rgba(139,123,255,.14);
+  --ok:#4ade80;
+  --ok-soft:rgba(74,222,128,.12);
+  --warn:#fbbf24;
+  --warn-soft:rgba(251,191,36,.12);
+  --danger:#f87171;
+  --danger-soft:rgba(248,113,113,.12);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --head:'Space Grotesk',Inter,sans-serif;
+  --radius:16px;
+  --shadow:0 18px 40px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 12% 0%,rgba(95,208,255,.10),transparent 40%),
+    radial-gradient(circle at 90% 10%,rgba(139,123,255,.12),transparent 38%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.65;
+  overflow-wrap:break-word;
+  overflow-x:clip;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{font-family:var(--head);letter-spacing:-.01em;color:#fff;}
+a{color:var(--accent);}
+code{font-family:var(--mono);}
+
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh;}
+aside.sidebar{position:sticky;top:0;height:100vh;overflow:auto;padding:24px 18px;
+  background:rgba(20,25,42,.9);backdrop-filter:blur(14px);border-right:1px solid var(--border);}
+.sidebar .logo{display:flex;gap:11px;align-items:center;margin-bottom:20px;}
+.sidebar .mark{flex:none;width:42px;height:42px;border-radius:13px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:var(--shadow);}
+.sidebar .logo strong{display:block;font-size:1rem;font-family:var(--head);color:#fff;}
+.sidebar .logo span{font-size:.8rem;color:var(--muted);}
+nav.toc{margin-top:6px;}
+nav.toc p.grp{margin:16px 0 4px;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;}
+nav.toc ul{list-style:none;margin:0;padding:0;}
+nav.toc a{display:block;text-decoration:none;padding:7px 11px;margin:2px 0;border-radius:10px;
+  color:var(--muted);font-weight:600;font-size:.87rem;}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--accent-soft);color:var(--accent);}
+.sidebar-note{margin-top:18px;font-size:12.5px;color:var(--muted);}
+.content{min-width:0;}
+main{max-width:1080px;margin:0 auto;padding:10px 24px 90px;}
+header{max-width:1080px;margin:0 auto;padding:40px 24px 16px;}
+
+.hero{background:linear-gradient(135deg,var(--surface) 0%,#1a2140 60%,#221c3c 100%);
+  border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);
+  padding:32px;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;width:280px;height:280px;border-radius:999px;
+  background:rgba(95,208,255,.10);right:-100px;top:-120px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+h1{margin:16px 0 12px;max-width:820px;font-size:clamp(28px,4.6vw,44px);line-height:1.08;}
+.lead{max-width:800px;color:var(--muted);font-size:16.5px;margin:0;position:relative;}
+.hero-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px;position:relative;}
+.kpi{background:rgba(255,255,255,.03);border:1px solid var(--border-soft);border-radius:14px;padding:14px;}
+.kpi strong{display:block;font-size:20px;color:var(--accent);margin-bottom:2px;font-family:var(--head);}
+.kpi span{font-size:12.5px;color:var(--muted);}
+
+section{margin-top:46px;scroll-margin-top:24px;}
+section>h2{font-size:clamp(22px,3vw,30px);margin:0 0 6px;}
+.section-sub{color:var(--muted);margin:0 0 20px;max-width:820px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px;box-shadow:0 8px 22px rgba(0,0,0,.22);margin-bottom:16px;}
+.card h3{margin:0 0 10px;font-size:20px;color:#fff;}
+.card h4{margin:18px 0 6px;font-size:16px;color:#fff;}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;
+  background:var(--accent2-soft);color:var(--accent2);margin-right:6px;}
+.tag.lz{background:var(--accent-soft);color:var(--accent);}
+.tag.easy{background:var(--ok-soft);color:var(--ok);}
+.tag.medium{background:var(--warn-soft);color:var(--warn);}
+.tag.hard{background:var(--danger-soft);color:var(--danger);}
+
+.callout{border-left:4px solid var(--accent);background:rgba(95,208,255,.06);border-radius:0 14px 14px 0;
+  padding:14px 16px;margin:14px 0;}
+.callout strong{display:block;margin-bottom:4px;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);}
+.callout.warn{border-left-color:var(--warn);background:var(--warn-soft);}
+.callout.warn strong{color:var(--warn);}
+.callout.tip{border-left-color:var(--ok);background:var(--ok-soft);}
+.callout.tip strong{color:var(--ok);}
+.callout.danger{border-left-color:var(--danger);background:var(--danger-soft);}
+.callout.danger strong{color:var(--danger);}
+
+.codeblock{background:#0a0d18;border:1px solid var(--border);border-radius:12px;
+  padding:15px 18px;font-family:var(--mono);font-size:13.5px;line-height:1.7;overflow-x:auto;margin:12px 0;}
+.codeblock .cm{color:#5c6786;font-style:italic;}
+.codeblock .kw{color:#c98bff;}
+.codeblock .str{color:#8ef2b8;}
+.codeblock .nm{color:#ffcf86;}
+.codeblock .fn{color:#5fd0ff;}
+.codeblock .op{color:#ff8b8b;}
+.code-label{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:-6px;text-transform:uppercase;letter-spacing:.06em;}
+
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border-radius:14px;border:1px solid var(--border);}
+table{border-collapse:collapse;width:100%;min-width:480px;background:var(--surface);font-size:14.5px;}
+th,td{padding:10px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border);}
+thead th{background:var(--surface2);color:var(--accent);font-weight:700;position:sticky;top:0;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even){background:rgba(255,255,255,.015);}
+td.term{font-weight:700;color:var(--accent);white-space:nowrap;}
+.ok-mark{color:var(--ok);}
+.no-mark{color:var(--danger);}
+
+ul.clean{margin:8px 0;padding-left:20px;}
+ul.clean li{margin-bottom:5px;}
+
+.ex{border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px;background:var(--surface);}
+.ex-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;}
+.ex-head h4{margin:0;font-size:17px;flex:1 1 220px;color:#fff;}
+details{border:1px solid var(--border);border-radius:12px;background:var(--surface2);padding:0 14px;margin-top:12px;}
+details[open]{padding-bottom:12px;}
+summary{cursor:pointer;font-weight:700;padding:11px 0;color:var(--accent);list-style:none;font-size:14.5px;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:"▸ ";display:inline-block;transition:transform .15s;}
+details[open] summary::before{content:"▾ ";}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
+
+.quiz-q{border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:12px;background:var(--surface);}
+.quiz-q p.q{font-weight:700;margin:0 0 10px;color:#fff;}
+.opts{display:grid;gap:8px;}
+.opt{text-align:left;font:inherit;font-size:14.5px;cursor:pointer;padding:10px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--surface2);color:var(--text);transition:.12s;}
+.opt:hover{border-color:var(--accent);}
+.opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.opt.correct{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:700;}
+.opt.wrong{background:var(--danger-soft);border-color:var(--danger);color:var(--danger);}
+.fb{margin:10px 0 0;font-size:13.5px;color:var(--muted);min-height:1.2em;}
+.scorebar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));color:#0f1320;border-radius:14px;padding:12px 18px;margin-bottom:16px;font-weight:700;}
+.scorebar button{font:inherit;font-weight:700;cursor:pointer;border:1px solid rgba(15,19,32,.35);
+  background:rgba(15,19,32,.14);color:#0f1320;padding:7px 14px;border-radius:999px;}
+
+.checklist{list-style:none;padding:0;margin:0;}
+.checklist li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--border);}
+.checklist li:last-child{border-bottom:none;}
+.checklist input{margin-top:5px;width:17px;height:17px;accent-color:var(--accent);flex-shrink:0;}
+
+.cov{display:grid;gap:8px;}
+.cov-row{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center;
+  border:1px solid var(--border);border-radius:10px;padding:9px 12px;background:var(--surface2);}
+.cov-row .n{font-weight:700;color:var(--accent);font-family:var(--mono);font-size:13px;}
+.cov-row .status{font-size:12px;font-weight:700;color:var(--ok);}
+
+footer{max-width:1080px;margin:0 auto;padding:26px 24px 60px;color:var(--muted);font-size:13.5px;
+  border-top:1px solid var(--border);}
+.backlink{display:inline-block;margin-top:8px;font-weight:700;}
+
+@media(max-width:980px){
+  .layout{display:block;}
+  aside.sidebar{position:sticky;top:0;z-index:30;height:auto;overflow:visible;
+    padding:10px 0 8px;border-right:0;border-bottom:1px solid var(--border);
+    background:rgba(15,19,32,.96);}
+  .sidebar .logo{margin:0 14px 8px;gap:10px;}
+  .sidebar .mark{width:32px;height:32px;border-radius:10px;}
+  .sidebar .logo strong{font-size:.9rem;}
+  .sidebar .logo span{font-size:.74rem;}
+  nav.toc p.grp{display:none;}
+  nav.toc ul{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 14px;}
+  nav.toc ul::-webkit-scrollbar{display:none;}
+  nav.toc li{flex:none;}
+  nav.toc a{margin:0;white-space:nowrap;padding:8px 13px;font-size:.85rem;
+    border:1px solid var(--border);background:var(--surface);}
+  .sidebar-note{display:none;}
+  section{scroll-margin-top:104px;}
+  thead th{position:static;}
+}
+@media(max-width:880px){
+  .grid2,.grid3,.hero-grid{grid-template-columns:1fr;}
+  .hero{padding:22px 18px;border-radius:20px;}
+  header{padding:20px 14px 12px;}
+  main{padding:8px 14px 70px;}
+  .card{padding:16px;border-radius:14px;}
+  .lead{font-size:15.5px;}
+  section{margin-top:34px;}
+  .ex{padding:14px;}
+  table{min-width:420px;font-size:14px;}
+}
+@media(max-width:640px){
+  .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .kpi{padding:11px;}
+  .kpi strong{font-size:17px;}
+  .opt{padding:12px 14px;min-height:46px;}
+  summary{padding:13px 0;}
+  details{padding:0 12px;}
+  .cov-row{grid-template-columns:40px 1fr;gap:8px;}
+  .cov-row .status{grid-column:2;}
+  .scorebar{padding:11px 14px;}
+  footer{padding:22px 14px 48px;}
+}
+@media print{
+  .layout{display:block;}
+  aside.sidebar{display:none;}
+  details{page-break-inside:avoid;}
+  details>summary{display:none;}
+  details{padding-bottom:12px;}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="logo">
+    <div class="mark"></div>
+    <div><strong>JavaScript Grundlagen</strong><span>BMSW · LU01–LU05b</span></div>
+  </div>
+  <nav class="toc" aria-label="Seitennavigation">
+    <p class="grp">Überblick</p>
+    <ul>
+      <li><a href="#fokus">Prüfungsfokus</a></li>
+    </ul>
+    <p class="grp">Theorie</p>
+    <ul>
+      <li><a href="#lu01">LU01 · Einführung</a></li>
+      <li><a href="#lu02">LU02 · Erstes Programm</a></li>
+      <li><a href="#lu03">LU03 · Variablen &amp; Datentypen</a></li>
+      <li><a href="#lu04">LU04 · Programmfluss</a></li>
+      <li><a href="#lu05a">LU05a · Arrays</a></li>
+      <li><a href="#lu05b">LU05b · Schleifen</a></li>
+    </ul>
+    <p class="grp">Vertiefung</p>
+    <ul>
+      <li><a href="#fehler">Typische Fehler</a></li>
+      <li><a href="#uebungen">Übungen</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#simulation">Prüfungssimulation</a></li>
+      <li><a href="#lastminute">Last-Minute</a></li>
+    </ul>
+  </nav>
+  <p class="sidebar-note">Tipp: Öffne die Browserkonsole (F12 → «Console») und tippe die Beispiele selbst ab — Programmieren lernt man durch Tippen, nicht durch Lesen.</p>
+</aside>
+<div class="content">
+<header>
+  <div class="hero">
+    <span class="eyebrow">BMSW · Informatik · JavaScript</span>
+    <h1>JavaScript Grundlagen: von null auf Prüfungsreife</h1>
+    <p class="lead">Vollständige Vorbereitung auf LU01 bis LU05b. Diese Seite ist für den Einstieg gedacht —
+    du brauchst <strong>keine</strong> Vorkenntnisse in JavaScript. Jedes Thema wird Schritt für Schritt
+    aufgebaut: erst die Idee in einfachen Worten, dann ein durchgerechnetes Beispiel, dann eine Übung dazu.
+    Am Ende jedes Kapitels kannst du mit den Übungen prüfen, ob du es wirklich verstanden hast — nicht nur
+    gelesen.</p>
+    <div class="hero-grid">
+      <div class="kpi"><strong>24</strong><span>Lernziele abgedeckt</span></div>
+      <div class="kpi"><strong>6</strong><span>Lerneinheiten LU01–LU05b</span></div>
+      <div class="kpi"><strong>30+</strong><span>Übungen, Level 1–5</span></div>
+      <div class="kpi"><strong>1</strong><span>Prüfungssimulation</span></div>
+    </div>
+  </div>
+</header>
+<main>
+
+<section id="fokus">
+  <h2>Prüfungsfokus</h2>
+  <p class="section-sub">Was du an der Prüfung wirklich können musst — geordnet danach, wie wichtig es ist.</p>
+  <div class="grid3">
+    <div class="card">
+      <h3>Unbedingt können</h3>
+      <ul class="clean">
+        <li><code>let</code>, <code>const</code> korrekt einsetzen</li>
+        <li>Datentypen erkennen und mit <code>typeof</code> prüfen</li>
+        <li><code>if...else</code> und <code>switch</code> syntaktisch fehlerfrei schreiben</li>
+        <li>Arrays erzeugen, lesen, verändern (<code>push</code>, <code>pop</code>, Index)</li>
+        <li><code>for</code>- und <code>while</code>-Schleifen korrekt aufbauen</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Verstehen (nicht nur auswendig)</h3>
+      <ul class="clean">
+        <li>Warum JavaScript im Browser läuft und wozu es HTML/CSS ergänzt</li>
+        <li>Unterschied <code>let</code>/<code>var</code>/<code>const</code></li>
+        <li>Unterschied <code>=</code>, <code>==</code>, <code>===</code></li>
+        <li>Wann <code>for</code> statt <code>while</code> sinnvoller ist</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Häufige Prüfungsfallen</h3>
+      <ul class="clean">
+        <li>Fehlendes Semikolon oder fehlende Klammer</li>
+        <li><code>=</code> statt <code>==</code>/<code>===</code> in einer Bedingung</li>
+        <li><code>const</code> für eine Variable verwenden, die sich später ändert</li>
+        <li>Array-Index verwechselt (Arrays beginnen bei <strong>0</strong>)</li>
+        <li>Endlosschleife durch fehlende oder falsche Zähler-Änderung</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="lu01">
+  <h2>LU01 — Einführung in JavaScript</h2>
+  <p class="section-sub">Bevor du eine Zeile Code schreibst: was ist JavaScript überhaupt, und wo passiert es?</p>
+
+  <div class="card">
+    <h3 id="l1">Was ist JavaScript und wozu dient es? <span class="tag lz">L1</span></h3>
+    <p><strong>HTML</strong> baut die Struktur einer Webseite (Überschriften, Absätze, Buttons — das «Was» ist da).
+    <strong>CSS</strong> gestaltet diese Struktur (Farben, Abstände, Schriften — das «Wie sieht es aus»).
+    Beide sind aber <em>statisch</em>: einmal geladen, passiert von selbst nichts mehr.</p>
+    <p><strong>JavaScript (JS)</strong> ist eine <strong>Programmiersprache</strong>, die eine Webseite
+    <em>lebendig</em> macht: Sie reagiert auf Klicks, rechnet Werte aus, prüft Formulareingaben, lädt neue
+    Daten nach, ohne dass die Seite neu geladen werden muss. Kurz: HTML = Inhalt, CSS = Aussehen,
+    JS = Verhalten und Interaktion.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Sprache</th><th>Zweck</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td class="term">HTML</td><td>Struktur / Inhalt</td><td>Ein Button existiert auf der Seite</td></tr>
+          <tr><td class="term">CSS</td><td>Gestaltung / Layout</td><td>Der Button ist blau und abgerundet</td></tr>
+          <tr><td class="term">JavaScript</td><td>Verhalten / Logik</td><td>Beim Klick auf den Button passiert etwas</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip"><strong>Prüfungstipp</strong>Wenn gefragt wird «wozu JS im Vergleich zu HTML/CSS»: die Antwort ist immer <em>Interaktivität / Logik / Dynamik</em>, nicht Struktur oder Design.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l2">Fakten über JavaScript <span class="tag lz">L2</span></h3>
+    <ul class="clean">
+      <li>JavaScript wurde <strong>1995</strong> von Brendan Eich entwickelt (ursprünglich in 10 Tagen, für den Netscape-Browser).</li>
+      <li>Der offizielle Sprachstandard heisst <strong>ECMAScript (ES)</strong> — «JavaScript» ist die bekannteste Umsetzung davon.</li>
+      <li>JavaScript ist trotz des Namens <strong>nicht</strong> mit der Programmiersprache Java verwandt. Der Name war ein Marketing-Entscheid der 1990er-Jahre.</li>
+      <li>JavaScript ist eine <strong>Skriptsprache</strong>: der Code wird nicht vorab kompiliert, sondern direkt vom Browser (bzw. von Node.js) ausgeführt / interpretiert.</li>
+      <li>JavaScript ist <strong>dynamisch typisiert</strong>: eine Variable hat keinen festen Datentyp und kann im Verlauf des Programms den Typ wechseln.</li>
+      <li>JavaScript ist heute die einzige Programmiersprache, die <strong>direkt in jedem Webbrowser</strong> läuft — ohne zusätzliche Installation.</li>
+      <li>Neben Webseiten wird JavaScript auch für Server (Node.js), Apps und sogar Desktop-Programme eingesetzt.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 id="l3">Client-Server-Modell: wo läuft JavaScript? <span class="tag lz">L3</span></h3>
+    <p>Wenn du eine Webseite öffnest, sind mindestens zwei Rechner beteiligt:</p>
+    <div class="grid2">
+      <div>
+        <h4>Server</h4>
+        <p>Speichert die Webseite (HTML-, CSS-, JS-Dateien) und schickt sie auf Anfrage an deinen Browser.
+        Der Server ist irgendwo im Internet, oft weit weg.</p>
+      </div>
+      <div>
+        <h4>Client</h4>
+        <p>Das ist <strong>dein Gerät</strong> mit dem Browser (z. B. Chrome, Firefox). Der Browser empfängt
+        die Dateien vom Server und <strong>führt JavaScript lokal auf deinem Gerät aus</strong>.</p>
+      </div>
+    </div>
+    <div class="codeblock">
+<span class="cm">// Ablauf, wenn du eine Webseite besuchst:</span>
+1. Client (Browser) fordert die Seite beim Server an
+2. Server schickt HTML, CSS und JavaScript zurück
+3. Browser baut die Seite auf (HTML + CSS)
+4. Browser fuehrt das JavaScript <span class="kw">lokal</span> aus, direkt bei dir
+    </div>
+    <div class="callout"><strong>Merke</strong>«Client-seitiges» JavaScript läuft <strong>im Browser des Nutzers</strong>, nicht auf dem Server. Das ist der Standardfall, den wir in diesem Kurs behandeln. (Node.js wäre der Sonderfall, bei dem JS auf dem Server läuft — das ist hier nicht Thema.)</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l4">Verwendete Versionen im Unterricht <span class="tag lz">L4</span></h3>
+    <p>JavaScript entwickelt sich laufend weiter. Die grösste Zäsur war <strong>ES6</strong>
+    (auch <strong>ECMAScript 2015</strong> genannt), die moderne Schreibweisen wie <code>let</code> und
+    <code>const</code> einführte. Im Unterricht wird <strong>modernes JavaScript (ES6 und neuer)</strong>
+    verwendet — das heisst konkret:</p>
+    <ul class="clean">
+      <li><code>let</code> und <code>const</code> statt (nur) <code>var</code> für Variablen</li>
+      <li>der strikte Vergleich <code>===</code> wird bevorzugt gegenüber <code>==</code></li>
+      <li>Code wird im <code>&lt;script&gt;</code>-Tag oder in einer externen <code>.js</code>-Datei geschrieben</li>
+    </ul>
+    <div class="callout warn"><strong>Achtung</strong>Ältere Tutorials im Internet nutzen oft noch <code>var</code> und <code>==</code>. Für diesen Kurs und die Prüfung gilt die moderne Schreibweise mit <code>let</code>/<code>const</code> und <code>===</code>, ausser <code>var</code> wird explizit verlangt.</div>
+  </div>
+</section>
+
+<section id="lu02">
+  <h2>LU02 — Erstes JavaScript-Programm</h2>
+  <p class="section-sub">Wie schreibst du die ersten Zeilen Code, wie bindest du sie ein, und wie liest du Fehler?</p>
+
+  <div class="card">
+    <h3 id="l5">Text ausgeben: <code>console.log</code> und <code>alert</code> <span class="tag lz">L5</span></h3>
+    <p>Um zu sehen, was dein Programm tut, brauchst du eine <strong>Ausgabe</strong>. Es gibt zwei
+    Standardwege:</p>
+    <div class="grid2">
+      <div>
+        <h4><code>console.log()</code></h4>
+        <p>Schreibt Text in die <strong>Entwicklerkonsole</strong> des Browsers (F12 → Tab «Console»).
+        Für den Nutzer der Seite unsichtbar — nur für dich als Programmierer/in zum Testen und Debuggen.</p>
+      </div>
+      <div>
+        <h4><code>alert()</code></h4>
+        <p>Öffnet ein <strong>Popup-Fenster</strong> im Browser, sichtbar für den Nutzer. Blockiert die Seite,
+        bis das Fenster mit «OK» geschlossen wird.</p>
+      </div>
+    </div>
+    <div class="code-label">script.js</div>
+    <div class="codeblock">
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Hallo Welt"</span>); <span class="cm">// erscheint in der Konsole</span>
+<span class="fn">alert</span>(<span class="str">"Hallo Welt"</span>);     <span class="cm">// erscheint als Popup fuer den Nutzer</span>
+    </div>
+    <div class="callout tip"><strong>Faustregel</strong>Zum Testen/Debuggen während der Entwicklung: <code>console.log()</code>. Für eine Meldung, die der Nutzer wirklich sehen soll: <code>alert()</code> — aber sparsam, da es die Seite blockiert.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l6">JavaScript in eine Webseite einbinden <span class="tag lz">L6</span></h3>
+    <p>Es gibt mehrere Wege, JS mit einer HTML-Seite zu verbinden. Für die Prüfung reichen diese zwei:</p>
+    <div class="grid2">
+      <div>
+        <h4>1. Intern (im <code>&lt;script&gt;</code>-Tag)</h4>
+        <p>Der JS-Code steht direkt zwischen <code>&lt;script&gt;</code>-Tags in der HTML-Datei.</p>
+        <div class="codeblock">
+&lt;<span class="kw">script</span>&gt;
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Hallo"</span>);
+&lt;/<span class="kw">script</span>&gt;
+        </div>
+      </div>
+      <div>
+        <h4>2. Extern (eigene <code>.js</code>-Datei)</h4>
+        <p>Der Code liegt in einer eigenen Datei (z. B. <code>script.js</code>) und wird eingebunden.</p>
+        <div class="codeblock">
+&lt;<span class="kw">script</span> <span class="nm">src</span>=<span class="str">"script.js"</span>&gt;&lt;/<span class="kw">script</span>&gt;
+        </div>
+      </div>
+    </div>
+    <p>Es gibt zusätzlich <strong>inline JavaScript</strong> direkt in einem HTML-Attribut
+    (z. B. <code>&lt;button onclick="alert('Hi')"&gt;</code>) — das erfüllt technisch auch «JS einbinden»,
+    gilt aber als schlechter Stil und wird in modernem Code vermieden.</p>
+    <div class="callout"><strong>Wo im HTML?</strong>Externe Scripts stehen meist am Ende von <code>&lt;body&gt;</code>, damit die Seite zuerst aufgebaut ist, bevor das JS läuft. Mit dem Attribut <code>defer</code> im <code>&lt;head&gt;</code> erreicht man dasselbe.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l7">Einfache Fehlermeldungen analysieren <span class="tag lz">L7</span></h3>
+    <p>Wenn im Code ein Fehler steckt, bricht JavaScript ab und zeigt in der Konsole eine
+    <strong>Fehlermeldung</strong>. Sie besteht meist aus drei Teilen: dem <strong>Fehlertyp</strong>, einer
+    <strong>Beschreibung</strong> und der <strong>Zeilennummer</strong>, wo der Fehler auftrat.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Fehlertyp</th><th>Bedeutet</th><th>Typisches Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td class="term">SyntaxError</td><td>Der Code verstösst gegen die Grammatik von JS (Tippfehler, fehlende Klammer)</td><td><code>console.log("Hi"</code> (Klammer fehlt)</td></tr>
+          <tr><td class="term">ReferenceError</td><td>Eine Variable/Funktion wird benutzt, die es (noch) nicht gibt</td><td><code>console.log(name)</code>, obwohl <code>name</code> nie definiert wurde</td></tr>
+          <tr><td class="term">TypeError</td><td>Eine Operation passt nicht zum Datentyp</td><td><code>let x = 5; x.push(1);</code> — Zahlen haben kein <code>push</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-label">Konsole</div>
+    <div class="codeblock">
+Uncaught ReferenceError: alter is not defined
+    at script.js:3
+    </div>
+    <p>So liest du das: <strong>ReferenceError</strong> (Typ) — <strong>«alter is not defined»</strong>
+    (die Variable <code>alter</code> wurde benutzt, aber nie erstellt) — <strong>Zeile 3</strong>
+    (dort im Code nachsehen).</p>
+    <div class="callout tip"><strong>Vorgehen bei einer Fehlermeldung</strong>1) Fehlertyp lesen. 2) Zeilennummer öffnen. 3) Zeile davor/danach prüfen (oft liegt die eigentliche Ursache eine Zeile vor der gemeldeten). 4) Häufigste Ursachen zuerst ausschliessen: Tippfehler im Namen, fehlende Klammer/Anführungszeichen, Gross-/Kleinschreibung.</div>
+  </div>
+</section>
+
+<section id="lu03">
+  <h2>LU03 — Variablen und Datentypen in JavaScript</h2>
+  <p class="section-sub">Wie speichert man Werte, und welche Arten von Werten gibt es?</p>
+
+  <div class="card">
+    <h3 id="l8">Unterschied zwischen <code>let</code>, <code>var</code> und <code>const</code> <span class="tag lz">L8</span></h3>
+    <p>Alle drei erstellen eine Variable — sie unterscheiden sich darin, <strong>ob der Wert später geändert
+    werden darf</strong> und <strong>wo im Code sie gültig sind</strong>.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Schlüsselwort</th><th>Wert änderbar?</th><th>Gültigkeitsbereich</th><th>Wann verwenden</th></tr></thead>
+        <tbody>
+          <tr><td class="term">let</td><td><span class="ok-mark">✓ ja</span></td><td>Block (<code>{ }</code>, z. B. innerhalb einer Schleife/if)</td><td>Standard, wenn sich der Wert ändern wird</td></tr>
+          <tr><td class="term">const</td><td><span class="no-mark">✗ nein</span></td><td>Block</td><td>Standard, wenn der Wert fix bleibt (Empfehlung: immer zuerst <code>const</code> probieren)</td></tr>
+          <tr><td class="term">var</td><td><span class="ok-mark">✓ ja</span></td><td>ganze Funktion (nicht Block) — veraltet</td><td>Nur in altem Code; in neuem Code vermeiden</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="codeblock">
+<span class="kw">let</span> alter = <span class="nm">16</span>;
+alter = <span class="nm">17</span>;      <span class="cm">// OK, let darf ueberschrieben werden</span>
+
+<span class="kw">const</span> name = <span class="str">"Alex"</span>;
+name = <span class="str">"Bea"</span>;    <span class="cm">// TypeError! const darf nicht neu zugewiesen werden</span>
+    </div>
+    <div class="callout warn"><strong>Prüfungsfalle</strong>Eine typische Prüfungsaufgabe zeigt Code, der eine <code>const</code>-Variable später überschreibt — das ist ein Fehler und muss als solcher erkannt werden (→ <code>TypeError: Assignment to constant variable</code>).</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l9">Werte zuweisen <span class="tag lz">L9</span></h3>
+    <p>Eine Zuweisung geschieht mit dem <strong>Gleichheitszeichen <code>=</code></strong>. Links steht immer
+    der Name der Variable/Konstante, rechts der Wert.</p>
+    <div class="codeblock">
+<span class="kw">let</span> punkte;        <span class="cm">// Variable deklarieren, noch ohne Wert (= undefined)</span>
+punkte = <span class="nm">42</span>;     <span class="cm">// Wert zuweisen</span>
+
+<span class="kw">let</span> level = <span class="nm">1</span>;   <span class="cm">// Deklaration + Zuweisung in einer Zeile (ueblich)</span>
+level = level + <span class="nm">1</span>; <span class="cm">// neuer Wert = alter Wert + 1 -&gt; level ist jetzt 2</span>
+    </div>
+    <div class="callout"><strong>Merke</strong><code>const</code> <strong>muss</strong> bei der Deklaration sofort einen Wert bekommen — im Gegensatz zu <code>let</code>, das auch ohne Startwert deklariert werden darf.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l10">Datentypen: String, Number, Boolean, undefined, null <span class="tag lz">L10</span></h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Typ</th><th>Was er speichert</th><th>Beispiel</th><th>Wann verwenden</th></tr></thead>
+        <tbody>
+          <tr><td class="term">String</td><td>Text / Zeichenketten, in Anführungszeichen</td><td><code>"Hallo"</code>, <code>'Mediamatik'</code></td><td>Namen, Texte, Nachrichten</td></tr>
+          <tr><td class="term">Number</td><td>Zahlen (ganz und mit Komma, ein einziger Typ für beides)</td><td><code>16</code>, <code>3.5</code>, <code>-2</code></td><td>Alter, Preise, Berechnungen</td></tr>
+          <tr><td class="term">Boolean</td><td>Wahrheitswert</td><td><code>true</code>, <code>false</code></td><td>Ja/Nein-Zustände, Bedingungen</td></tr>
+          <tr><td class="term">undefined</td><td>Variable existiert, hat aber (noch) keinen Wert</td><td><code>let x;</code> → <code>x</code> ist <code>undefined</code></td><td>Entsteht automatisch, wird selten selbst zugewiesen</td></tr>
+          <tr><td class="term">null</td><td>bewusst «kein Wert» — <strong>absichtlich</strong> leer gesetzt</td><td><code>let auswahl = null;</code></td><td>Zeigt: «hier fehlt aktuell etwas», bewusst so gesetzt</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="codeblock">
+<span class="kw">let</span> name = <span class="str">"Mia"</span>;        <span class="cm">// String</span>
+<span class="kw">let</span> alter = <span class="nm">16</span>;          <span class="cm">// Number</span>
+<span class="kw">let</span> istSchueler = <span class="kw">true</span>;  <span class="cm">// Boolean</span>
+<span class="kw">let</span> spitzname;            <span class="cm">// undefined (noch kein Wert zugewiesen)</span>
+<span class="kw">let</span> zweitname = <span class="kw">null</span>;   <span class="cm">// null (bewusst "kein Wert")</span>
+    </div>
+    <div class="callout tip"><strong>undefined vs. null — der Unterschied, der oft geprüft wird</strong><code>undefined</code> passiert von selbst (Variable wurde nie gefüllt). <code>null</code> setzt man <strong>absichtlich</strong>, um «kein Wert» auszudrücken. Beide sind «leer», aber mit anderer Bedeutung.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l11">Vergleichsoperatoren korrekt anwenden <span class="tag lz">L11</span></h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Operator</th><th>Bedeutung</th><th>Beispiel</th><th>Ergebnis</th></tr></thead>
+        <tbody>
+          <tr><td class="term">===</td><td>gleich (Wert <strong>und</strong> Typ) — bevorzugte Schreibweise</td><td><code>5 === "5"</code></td><td><code>false</code> (Number ≠ String)</td></tr>
+          <tr><td class="term">==</td><td>gleich (nur Wert, Typ wird umgewandelt) — vermeiden</td><td><code>5 == "5"</code></td><td><code>true</code></td></tr>
+          <tr><td class="term">!==</td><td>ungleich (Wert und Typ)</td><td><code>5 !== "5"</code></td><td><code>true</code></td></tr>
+          <tr><td class="term">&gt; / &lt;</td><td>grösser / kleiner</td><td><code>7 &gt; 3</code></td><td><code>true</code></td></tr>
+          <tr><td class="term">&gt;= / &lt;=</td><td>grösser-gleich / kleiner-gleich</td><td><code>3 &gt;= 3</code></td><td><code>true</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout danger"><strong>Der klassische Anfängerfehler</strong>Ein einzelnes <code>=</code> ist eine <strong>Zuweisung</strong>, kein Vergleich! <code>if (alter = 18)</code> weist 18 zu (Fehler), statt zu vergleichen. Für Vergleiche immer <code>===</code> (zwei/drei Gleichheitszeichen) verwenden.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l12">Der Operator <code>typeof</code> <span class="tag lz">L12</span></h3>
+    <p><code>typeof</code> gibt dir den Datentyp eines Wertes als String zurück — nützlich, um zu prüfen,
+    womit du gerade arbeitest.</p>
+    <div class="codeblock">
+<span class="fn">typeof</span> <span class="str">"Hallo"</span>;     <span class="cm">// "string"</span>
+<span class="fn">typeof</span> <span class="nm">16</span>;          <span class="cm">// "number"</span>
+<span class="fn">typeof</span> <span class="kw">true</span>;        <span class="cm">// "boolean"</span>
+<span class="fn">typeof</span> spitzname;   <span class="cm">// "undefined" (nie zugewiesen)</span>
+<span class="fn">typeof</span> <span class="kw">null</span>;        <span class="cm">// "object" -- historischer Bug in JS, gilt als bekannte Ausnahme!</span>
+    </div>
+    <div class="callout warn"><strong>Prüfungswissen</strong><code>typeof null</code> ergibt <code>"object"</code>, nicht <code>"null"</code>. Das ist seit den Anfängen von JavaScript ein bekannter Design-Fehler, der aus Kompatibilitätsgründen nie behoben wurde — als Ausnahme merken.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l13">Syntax- und semantische Fehler selbstständig erkennen <span class="tag lz">L13</span></h3>
+    <p>Es gibt zwei Fehlerarten, die du unterscheiden können musst:</p>
+    <div class="grid2">
+      <div>
+        <h4>Syntaktischer Fehler (Aufbau)</h4>
+        <p>Der Code verstösst gegen die <strong>Grammatik</strong> von JavaScript. Das Programm startet
+        gar nicht erst — sofortiger <code>SyntaxError</code>.</p>
+        <div class="codeblock">
+<span class="kw">let</span> x = <span class="nm">5</span>   <span class="cm">// fehlendes Semikolon -&gt; oft noch ok</span>
+<span class="fn">console</span>.<span class="fn">log</span>(x <span class="cm">// fehlende schliessende Klammer -&gt; SyntaxError</span>
+        </div>
+      </div>
+      <div>
+        <h4>Semantischer Fehler (Bedeutung)</h4>
+        <p>Der Code ist grammatikalisch korrekt und läuft — liefert aber ein
+        <strong>falsches Ergebnis</strong>, weil die Logik nicht stimmt.</p>
+        <div class="codeblock">
+<span class="kw">let</span> summe = <span class="nm">5</span> - <span class="nm">3</span>; <span class="cm">// laeuft fehlerfrei,</span>
+                     <span class="cm">// aber "summe" sollte wohl 5 + 3 sein</span>
+        </div>
+      </div>
+    </div>
+    <div class="callout tip"><strong>Vorgehen</strong>Bricht der Code sofort ab und die Konsole zeigt einen Fehler → syntaktisch. Der Code läuft durch, aber das Ergebnis stimmt nicht mit der Erwartung überein → semantisch. Semantische Fehler findet man nur, indem man den Code Zeile für Zeile «im Kopf durchspielt» und mit dem erwarteten Ergebnis vergleicht.</div>
+  </div>
+</section>
+
+<section id="lu04">
+  <h2>LU04 — Programmfluss steuern</h2>
+  <p class="section-sub">Wie lässt du dein Programm Entscheidungen treffen?</p>
+
+  <div class="card">
+    <h3 id="l14">Kontrollstrukturen: <code>if...else</code> <span class="tag lz">L14</span></h3>
+    <p>Mit <code>if...else</code> lässt du das Programm je nach Bedingung unterschiedlichen Code ausführen.
+    Die Bedingung in <code>( )</code> muss zu <code>true</code> oder <code>false</code> auswertbar sein.</p>
+    <div class="codeblock">
+<span class="kw">let</span> alter = <span class="nm">16</span>;
+
+<span class="kw">if</span> (alter &gt;= <span class="nm">18</span>) {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"volljaehrig"</span>);
+} <span class="kw">else</span> {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"minderjaehrig"</span>);   <span class="cm">// dieser Zweig laeuft</span>
+}
+    </div>
+    <p>Aufbau (Syntax): <code>if (Bedingung) { Anweisungen } else { Anweisungen }</code>. Die geschweiften
+    Klammern <code>{ }</code> markieren, welcher Code zu welchem Zweig gehört. Der <code>else</code>-Teil ist
+    optional.</p>
+  </div>
+
+  <div class="card">
+    <h3 id="l15">if-else mit logischen Operatoren <span class="tag lz">L15</span></h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Operator</th><th>Bedeutung</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td class="term">&amp;&amp;</td><td>UND — beide Bedingungen müssen wahr sein</td><td><code>alter &gt;= 16 &amp;&amp; hatAusweis</code></td></tr>
+          <tr><td class="term">||</td><td>ODER — mindestens eine Bedingung muss wahr sein</td><td><code>istFeiertag || istWochenende</code></td></tr>
+          <tr><td class="term">!</td><td>NICHT — kehrt den Wahrheitswert um</td><td><code>!istGesperrt</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="codeblock">
+<span class="kw">let</span> alter = <span class="nm">17</span>;
+<span class="kw">let</span> hatErlaubnis = <span class="kw">true</span>;
+
+<span class="kw">if</span> (alter &gt;= <span class="nm">16</span> &amp;&amp; hatErlaubnis) {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Eintritt erlaubt"</span>);  <span class="cm">// laeuft, da BEIDE Bedingungen wahr sind</span>
+} <span class="kw">else</span> {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"kein Eintritt"</span>);
+}
+    </div>
+    <div class="callout warn"><strong>Falle</strong><code>&amp;&amp;</code> ist strenger als <code>||</code>: bei <code>&amp;&amp;</code> reicht <strong>eine</strong> falsche Bedingung, damit das ganze Ergebnis <code>false</code> ist. Bei <code>||</code> reicht <strong>eine</strong> wahre Bedingung für ein <code>true</code>-Ergebnis.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l16">if-else mit Verschachtelungen <span class="tag lz">L16</span></h3>
+    <p>Eine <code>if</code>-Struktur kann eine weitere <code>if</code>-Struktur enthalten — das nennt man
+    <strong>Verschachtelung</strong>. Damit lassen sich mehrere Stufen von Entscheidungen abbilden.
+    Häufig praktischer: <code>else if</code>, um mehrere Fälle nacheinander zu prüfen.</p>
+    <div class="codeblock">
+<span class="kw">let</span> note = <span class="nm">5.2</span>;
+
+<span class="kw">if</span> (note &gt;= <span class="nm">5.5</span>) {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"sehr gut"</span>);
+} <span class="kw">else if</span> (note &gt;= <span class="nm">4.5</span>) {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"genuegend"</span>);   <span class="cm">// laeuft: 5.2 &gt;= 4.5, aber &lt; 5.5</span>
+} <span class="kw">else</span> {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"nicht genuegend"</span>);
+}
+    </div>
+    <p>Echte Verschachtelung (ein <code>if</code> im <code>if</code>):</p>
+    <div class="codeblock">
+<span class="kw">if</span> (istEingeloggt) {
+  <span class="kw">if</span> (istAdmin) {
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Admin-Bereich"</span>);
+  } <span class="kw">else</span> {
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Nutzer-Bereich"</span>);
+  }
+} <span class="kw">else</span> {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"bitte einloggen"</span>);
+}
+    </div>
+    <div class="callout tip"><strong>Wann verschachteln, wann else if?</strong>Prüfst du <strong>eine Grösse</strong> gegen mehrere Bereiche (z. B. Notenskala) → <code>else if</code>-Kette. Hängt die zweite Bedingung <strong>von der ersten ab</strong> (erst wenn eingeloggt, dann Rolle prüfen) → Verschachtelung.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l17"><code>switch-case</code> <span class="tag lz">L17</span></h3>
+    <p><code>switch</code> vergleicht einen Wert mit mehreren möglichen Fällen — praktisch, wenn eine einzelne
+    Variable viele feste Werte annehmen kann (Alternative zu einer langen <code>else if</code>-Kette).</p>
+    <div class="codeblock">
+<span class="kw">let</span> tag = <span class="str">"Mittwoch"</span>;
+
+<span class="kw">switch</span> (tag) {
+  <span class="kw">case</span> <span class="str">"Montag"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Wochenstart"</span>);
+    <span class="kw">break</span>;
+  <span class="kw">case</span> <span class="str">"Mittwoch"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Wochenmitte"</span>);  <span class="cm">// dieser Fall trifft zu</span>
+    <span class="kw">break</span>;
+  <span class="kw">case</span> <span class="str">"Freitag"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"fast Wochenende"</span>);
+    <span class="kw">break</span>;
+  <span class="kw">default</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"normaler Tag"</span>);
+}
+    </div>
+    <p>Aufbau: <code>switch (Wert) { case Möglichkeit1: ...; break; case Möglichkeit2: ...; break; default: ... }</code>.
+    <code>default</code> greift, wenn kein <code>case</code> passt (wie ein <code>else</code>).</p>
+    <div class="callout danger"><strong>Die wichtigste switch-Falle: <code>break</code> vergessen</strong>Ohne <code>break</code> läuft das Programm in den <strong>nächsten</strong> <code>case</code> weiter («Fallthrough»), auch wenn dieser eigentlich nicht zutrifft. Jeder <code>case</code>-Block braucht (fast immer) ein eigenes <code>break</code>.</div>
+  </div>
+</section>
+
+<section id="lu05a">
+  <h2>LU05a — Arrays in JavaScript</h2>
+  <p class="section-sub">Wie speicherst du mehrere Werte zusammen in einer Variable?</p>
+
+  <div class="card">
+    <h3 id="l18">Was ist ein Array, und wozu dient es? <span class="tag lz">L18</span></h3>
+    <p>Ein <strong>Array</strong> ist eine <strong>geordnete Liste von Werten</strong>, gespeichert unter einem
+    einzigen Namen. Statt für jeden Schüler eine eigene Variable zu erstellen
+    (<code>schueler1</code>, <code>schueler2</code>, …), speicherst du sie alle in <strong>einem</strong>
+    Array: <code>schueler</code>. Jeder Wert im Array hat eine feste Position, den <strong>Index</strong>,
+    beginnend bei <strong>0</strong>.</p>
+    <div class="codeblock">
+<span class="kw">const</span> namen = [<span class="str">"Mia"</span>, <span class="str">"Leon"</span>, <span class="str">"Sara"</span>];
+<span class="cm">//              Index 0    Index 1    Index 2</span>
+    </div>
+    <div class="callout tip"><strong>Merke</strong>Ein Array wird meist mit <code>const</code> deklariert — nicht weil sich der Inhalt nicht ändern darf (Elemente hinzufügen/entfernen ist erlaubt!), sondern weil sich der <strong>Name</strong> nicht auf ein anderes Array umbiegen soll.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l19">Arrays mit verschiedenen Datentypen erzeugen <span class="tag lz">L19</span></h3>
+    <p>Ein Array kann Werte von <strong>beliebigen Datentypen</strong> enthalten — sogar gemischt.</p>
+    <div class="codeblock">
+<span class="kw">const</span> zahlen  = [<span class="nm">4</span>, <span class="nm">8</span>, <span class="nm">15</span>, <span class="nm">16</span>];              <span class="cm">// nur Numbers</span>
+<span class="kw">const</span> namen   = [<span class="str">"Mia"</span>, <span class="str">"Leon"</span>];              <span class="cm">// nur Strings</span>
+<span class="kw">const</span> flags   = [<span class="kw">true</span>, <span class="kw">false</span>, <span class="kw">true</span>];          <span class="cm">// nur Booleans</span>
+<span class="kw">const</span> gemischt = [<span class="str">"Mia"</span>, <span class="nm">16</span>, <span class="kw">true</span>, <span class="kw">null</span>];  <span class="cm">// gemischte Typen -- erlaubt</span>
+<span class="kw">const</span> leer    = [];                          <span class="cm">// leeres Array, 0 Elemente</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 id="l20">Elemente per Index lesen, hinzufügen, entfernen <span class="tag lz">L20</span></h3>
+    <div class="codeblock">
+<span class="kw">const</span> obst = [<span class="str">"Apfel"</span>, <span class="str">"Birne"</span>, <span class="str">"Kiwi"</span>];
+
+<span class="fn">console</span>.<span class="fn">log</span>(obst[<span class="nm">0</span>]);   <span class="cm">// "Apfel" -- erstes Element, Index 0</span>
+<span class="fn">console</span>.<span class="fn">log</span>(obst[<span class="nm">2</span>]);   <span class="cm">// "Kiwi"  -- drittes Element, Index 2</span>
+
+obst[<span class="nm">1</span>] = <span class="str">"Traube"</span>;   <span class="cm">// Element an Index 1 ueberschreiben ("Birne" -&gt; "Traube")</span>
+
+<span class="cm">// Einfuegen an einer bestimmten Stelle: splice(startIndex, anzahlZuLoeschen, neuesElement)</span>
+obst.splice(<span class="nm">1</span>, <span class="nm">0</span>, <span class="str">"Mango"</span>);  <span class="cm">// fuegt "Mango" an Index 1 ein, loescht nichts</span>
+
+<span class="cm">// Entfernen an einer bestimmten Stelle:</span>
+obst.splice(<span class="nm">0</span>, <span class="nm">1</span>);          <span class="cm">// loescht 1 Element ab Index 0</span>
+    </div>
+    <div class="callout warn"><strong>Häufiger Fehler</strong>Der Index des letzten Elements ist <strong>nicht</strong> die Länge des Arrays, sondern <code>length - 1</code>. Ein Array mit 3 Elementen hat die Indizes 0, 1, 2 — <code>obst[3]</code> existiert nicht und ergibt <code>undefined</code>.</div>
+  </div>
+
+  <div class="card">
+    <h3 id="l21">Die Länge eines Arrays mit <code>length</code> ermitteln <span class="tag lz">L21</span></h3>
+    <div class="codeblock">
+<span class="kw">const</span> farben = [<span class="str">"rot"</span>, <span class="str">"gruen"</span>, <span class="str">"blau"</span>];
+<span class="fn">console</span>.<span class="fn">log</span>(farben.length);  <span class="cm">// 3</span>
+
+<span class="cm">// Praktisch: letztes Element ueber length ansprechen</span>
+<span class="fn">console</span>.<span class="fn">log</span>(farben[farben.length - <span class="nm">1</span>]);  <span class="cm">// "blau"</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 id="l22">Die Array-Methoden <code>push</code> und <code>pop</code> <span class="tag lz">L22</span></h3>
+    <div class="grid2">
+      <div>
+        <h4><code>push()</code></h4>
+        <p>Fügt <strong>ein oder mehrere Elemente am Ende</strong> des Arrays hinzu. Gibt die neue Länge
+        zurück.</p>
+        <div class="codeblock">
+<span class="kw">const</span> liste = [<span class="str">"a"</span>, <span class="str">"b"</span>];
+liste.push(<span class="str">"c"</span>);
+<span class="cm">// liste ist jetzt ["a", "b", "c"]</span>
+        </div>
+      </div>
+      <div>
+        <h4><code>pop()</code></h4>
+        <p>Entfernt das <strong>letzte</strong> Element des Arrays und gibt genau dieses Element zurück.</p>
+        <div class="codeblock">
+<span class="kw">const</span> liste = [<span class="str">"a"</span>, <span class="str">"b"</span>, <span class="str">"c"</span>];
+<span class="kw">const</span> entfernt = liste.pop();
+<span class="cm">// entfernt = "c", liste ist jetzt ["a", "b"]</span>
+        </div>
+      </div>
+    </div>
+    <div class="callout tip"><strong>Merkhilfe</strong><code>push</code> = «hinten reinschieben», <code>pop</code> = «hinten rausnehmen». Beide arbeiten nur am <strong>Ende</strong> des Arrays.</div>
+  </div>
+</section>
+
+<section id="lu05b">
+  <h2>LU05b — Schleifen (Loops)</h2>
+  <p class="section-sub">Wie wiederholst du Code, ohne ihn mehrfach abzutippen?</p>
+
+  <div class="card">
+    <h3 id="l23">Unterschied zwischen <code>for</code> und <code>while</code> <span class="tag lz">L23</span></h3>
+    <p>Beide wiederholen einen Codeblock, solange eine Bedingung wahr ist — der Unterschied liegt darin,
+    wie klar von Anfang an feststeht, <strong>wie oft</strong> wiederholt wird.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th></th><th><code>for</code></th><th><code>while</code></th></tr></thead>
+        <tbody>
+          <tr><td class="term">Einsatz</td><td>Anzahl Durchläufe ist im Voraus bekannt</td><td>Anzahl Durchläufe hängt von einer Bedingung ab, die sich zur Laufzeit ändert</td></tr>
+          <tr><td class="term">Aufbau</td><td>Start, Bedingung, Schritt in einer Zeile</td><td>nur die Bedingung; Start und Schritt stehen ausserhalb/im Block</td></tr>
+          <tr><td class="term">Beispiel</td><td>«Zähle von 1 bis 10»</td><td>«Wiederhole, bis der Nutzer das richtige Passwort eingibt»</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 id="l24">Schleifen korrekt anwenden/programmieren <span class="tag lz">L24</span></h3>
+    <h4><code>for</code>-Schleife — Aufbau</h4>
+    <div class="codeblock">
+<span class="kw">for</span> (<span class="kw">let</span> i = <span class="nm">0</span>; i &lt; <span class="nm">5</span>; i++) {
+  <span class="fn">console</span>.<span class="fn">log</span>(i);   <span class="cm">// gibt 0, 1, 2, 3, 4 aus</span>
+}
+<span class="cm">// Start:      let i = 0        (Zaehler bei 0 beginnen)</span>
+<span class="cm">// Bedingung:  i &lt; 5            (weitermachen, solange i kleiner als 5 ist)</span>
+<span class="cm">// Schritt:    i++              (nach jedem Durchlauf i um 1 erhoehen)</span>
+    </div>
+    <p>Typischer Einsatz: alle Elemente eines Arrays durchgehen.</p>
+    <div class="codeblock">
+<span class="kw">const</span> namen = [<span class="str">"Mia"</span>, <span class="str">"Leon"</span>, <span class="str">"Sara"</span>];
+
+<span class="kw">for</span> (<span class="kw">let</span> i = <span class="nm">0</span>; i &lt; namen.length; i++) {
+  <span class="fn">console</span>.<span class="fn">log</span>(namen[i]);
+}
+<span class="cm">// Ausgabe: Mia / Leon / Sara</span>
+    </div>
+    <h4><code>while</code>-Schleife — Aufbau</h4>
+    <div class="codeblock">
+<span class="kw">let</span> i = <span class="nm">0</span>;             <span class="cm">// Start: ausserhalb der Schleife</span>
+
+<span class="kw">while</span> (i &lt; <span class="nm">5</span>) {       <span class="cm">// Bedingung</span>
+  <span class="fn">console</span>.<span class="fn">log</span>(i);
+  i++;               <span class="cm">// Schritt: muss im Block selbst passieren!</span>
+}
+    </div>
+    <div class="callout danger"><strong>Endlosschleife — der gefährlichste Fehler</strong>Vergisst man bei <code>while</code> den Schritt (<code>i++</code>), bleibt die Bedingung für immer wahr, und das Programm hängt sich auf. Bei <code>for</code> passiert das seltener, weil Start/Bedingung/Schritt direkt sichtbar zusammenstehen.</div>
+  </div>
+</section>
+
+<section id="fehler">
+  <h2>Typische Fehler und Fallen — Zusammenfassung</h2>
+  <p class="section-sub">Die Fehler, die in Prüfungen am häufigsten vorkommen, an einem Ort.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Fehler</th><th>Beispiel</th><th>Richtig</th></tr></thead>
+      <tbody>
+        <tr><td class="term">= statt ===</td><td><code>if (alter = 18)</code></td><td><code>if (alter === 18)</code></td></tr>
+        <tr><td class="term">const überschreiben</td><td><code>const x = 1; x = 2;</code></td><td><code>let x = 1; x = 2;</code></td></tr>
+        <tr><td class="term">Array-Index verwechselt</td><td>letztes Element von 3 mit <code>arr[3]</code></td><td><code>arr[2]</code> bzw. <code>arr[arr.length - 1]</code></td></tr>
+        <tr><td class="term"><code>break</code> im switch vergessen</td><td>case ohne <code>break</code></td><td>jeden <code>case</code> mit <code>break</code> abschliessen</td></tr>
+        <tr><td class="term">while ohne Schritt</td><td><code>while (i &lt; 5) { console.log(i); }</code></td><td><code>i++</code> im Schleifenkörper nicht vergessen</td></tr>
+        <tr><td class="term">Fehlende Klammer/Anführungszeichen</td><td><code>console.log("Hi)</code></td><td><code>console.log("Hi")</code></td></tr>
+        <tr><td class="term">typeof null</td><td>erwartet <code>"null"</code></td><td>tatsächlich <code>"object"</code> (Ausnahme merken)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="uebungen">
+  <h2>Übungen</h2>
+  <p class="section-sub">Für jedes Lernziel mindestens eine Aufgabe. Erst selbst lösen, dann Lösung aufklappen.
+  Die Level werden schwieriger: 1 = Grundlagen, 5 = Prüfungsniveau.</p>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü1 — HTML/CSS/JS unterscheiden</h4><span class="tag easy">Level 1</span><span class="tag lz">L1</span></div>
+    <p>Ordne zu: Welche der drei Sprachen ist zuständig für a) die Farbe eines Buttons, b) dass sich beim
+    Klick ein Menü öffnet, c) dass der Button überhaupt existiert?</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Aufgabenteilung HTML/CSS/JS.</p>
+      <p>a) CSS (Gestaltung) — b) JavaScript (Verhalten/Interaktivität) — c) HTML (Struktur).</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü2 — console.log vs. alert</h4><span class="tag easy">Level 1</span><span class="tag lz">L5</span></div>
+    <p>Du willst beim Programmieren eine Zwischenrechnung kontrollieren, ohne dass der Nutzer der Seite
+    etwas davon merkt. Welchen Befehl verwendest du, und warum nicht den anderen?</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Unterschied Debug-Ausgabe vs. Nutzer-Popup.</p>
+      <p><code>console.log()</code>, weil sie nur in der Entwicklerkonsole erscheint und den Nutzer nicht stört
+      oder die Seite blockiert. <code>alert()</code> wäre falsch, da es ein sichtbares Popup öffnet, das erst
+      weggeklickt werden muss.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü3 — Fehlermeldung lesen</h4><span class="tag medium">Level 2</span><span class="tag lz">L7</span></div>
+    <p>Die Konsole zeigt: <code>Uncaught TypeError: preis.toFixed is not a function at script.js:5</code>.
+    In Zeile 4 steht <code>let preis = "19.90";</code>. Was ist die wahrscheinliche Ursache?</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Fehlertyp und Ursache verbinden.</p>
+      <p><code>preis</code> wurde als <strong>String</strong> (in Anführungszeichen) statt als <strong>Number</strong>
+      definiert. <code>toFixed()</code> ist eine Methode für Zahlen und existiert bei Strings nicht — daher
+      <code>TypeError</code>. Fix: <code>let preis = 19.90;</code> ohne Anführungszeichen.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü4 — let, const oder var?</h4><span class="tag easy">Level 1</span><span class="tag lz">L8</span></div>
+    <p>Welches Schlüsselwort verwendest du: a) für den Namen eines Nutzers, der sich nicht mehr ändert,
+    b) für einen Punktestand, der während des Spiels wächst?</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> const = unveränderlich, let = veränderlich.</p>
+      <p>a) <code>const</code>, da der Wert fix bleibt. b) <code>let</code>, da sich der Punktestand ändert.
+      <code>var</code> wird in modernem Code nicht mehr neu verwendet.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü5 — Fehler finden: const</h4><span class="tag medium">Level 2</span><span class="tag lz">L8, L13</span></div>
+    <p>Finde und korrigiere den Fehler:</p>
+    <div class="codeblock">
+<span class="kw">const</span> punkte = <span class="nm">0</span>;
+punkte = punkte + <span class="nm">10</span>;
+    </div>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> semantischer/logischer Fehler durch falsches Schlüsselwort erkennen — das Programm bricht mit <code>TypeError: Assignment to constant variable.</code> ab.</p>
+      <p><strong>Fix:</strong> <code>let punkte = 0;</code> verwenden, da sich <code>punkte</code> ändern soll.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü6 — Datentypen bestimmen</h4><span class="tag easy">Level 1</span><span class="tag lz">L10, L12</span></div>
+    <p>Welchen Datentyp gibt <code>typeof</code> für jede Zeile zurück?</p>
+    <div class="codeblock">
+<span class="kw">let</span> a = <span class="str">"12"</span>;
+<span class="kw">let</span> b = <span class="nm">12</span>;
+<span class="kw">let</span> c = <span class="kw">false</span>;
+<span class="kw">let</span> d;
+<span class="kw">let</span> e = <span class="kw">null</span>;
+    </div>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Datentypen an der Schreibweise erkennen.</p>
+      <p><code>a</code> → "string" (Anführungszeichen) · <code>b</code> → "number" · <code>c</code> → "boolean"
+      · <code>d</code> → "undefined" (nie zugewiesen) · <code>e</code> → "object" (Sonderfall von <code>null</code>).</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü7 — eigene Beispiele bauen</h4><span class="tag medium">Level 2</span><span class="tag lz">L10</span></div>
+    <p>Schreibe für jeden Datentyp (String, Number, Boolean, undefined, null) eine eigene, sinnvolle
+    Variable aus dem Alltag einer Mediamatikerin/eines Mediamatikers (z. B. für eine Kundendatenbank).</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Anwendung der Datentypen auf einen realistischen Kontext — es gibt keine
+      einzige richtige Lösung, wichtig ist die korrekte Zuordnung.</p>
+      <p>Beispiel:</p>
+      <div class="codeblock">
+<span class="kw">let</span> kundenname = <span class="str">"Sara Meier"</span>;  <span class="cm">// String</span>
+<span class="kw">let</span> rechnungsbetrag = <span class="nm">249.90</span>; <span class="cm">// Number</span>
+<span class="kw">let</span> hatBezahlt = <span class="kw">false</span>;      <span class="cm">// Boolean</span>
+<span class="kw">let</span> telefonnummer;             <span class="cm">// undefined, noch nicht erfasst</span>
+<span class="kw">let</span> zweiteAdresse = <span class="kw">null</span>;   <span class="cm">// null, bewusst: es gibt keine zweite Adresse</span>
+      </div>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü8 — Vergleichsoperatoren</h4><span class="tag medium">Level 2</span><span class="tag lz">L11</span></div>
+    <p>Was geben diese Ausdrücke zurück?</p>
+    <div class="codeblock">
+<span class="nm">7</span> === <span class="str">"7"</span>
+<span class="nm">7</span> == <span class="str">"7"</span>
+<span class="nm">7</span> !== <span class="nm">8</span>
+<span class="nm">3</span> &gt;= <span class="nm">3</span>
+    </div>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> strikter vs. loser Vergleich.</p>
+      <p><code>7 === "7"</code> → <code>false</code> (unterschiedlicher Typ) · <code>7 == "7"</code> → <code>true</code>
+      (Typ wird ignoriert) · <code>7 !== 8</code> → <code>true</code> · <code>3 &gt;= 3</code> → <code>true</code>.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü9 — if...else schreiben</h4><span class="tag medium">Level 2</span><span class="tag lz">L14</span></div>
+    <p>Schreibe ein Programm, das prüft, ob eine Zahl <code>zahl</code> gerade oder ungerade ist
+    (Tipp: der Restwert-Operator <code>%</code> gibt den Rest einer Division zurück, z. B. <code>10 % 2</code>
+    ergibt <code>0</code>).</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Bedingung mit Restwert-Operator formulieren.</p>
+      <div class="codeblock">
+<span class="kw">let</span> zahl = <span class="nm">7</span>;
+
+<span class="kw">if</span> (zahl % <span class="nm">2</span> === <span class="nm">0</span>) {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"gerade"</span>);
+} <span class="kw">else</span> {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"ungerade"</span>);  <span class="cm">// laeuft: 7 % 2 = 1, nicht 0</span>
+}
+      </div>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü10 — logische Operatoren kombinieren</h4><span class="tag hard">Level 3</span><span class="tag lz">L15</span></div>
+    <p>Ein Lernpaket ist gratis, wenn der Nutzer entweder Student ist <strong>oder</strong> mindestens
+    5 Kurse gekauft hat. Schreibe die passende Bedingung.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Wahl zwischen <code>&amp;&amp;</code> und <code>||</code> — «entweder … oder» = ODER, keine Kombinationspflicht.</p>
+      <div class="codeblock">
+<span class="kw">let</span> istStudent = <span class="kw">false</span>;
+<span class="kw">let</span> gekaufteKurse = <span class="nm">6</span>;
+
+<span class="kw">if</span> (istStudent || gekaufteKurse &gt;= <span class="nm">5</span>) {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Paket ist gratis"</span>);  <span class="cm">// laeuft, da gekaufteKurse &gt;= 5</span>
+}
+      </div>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü11 — verschachtelte Bedingungen</h4><span class="tag hard">Level 3</span><span class="tag lz">L16</span></div>
+    <p>Schreibe ein Programm: Ist <code>istMitglied</code> falsch, gib «kein Zugang» aus. Ist
+    <code>istMitglied</code> wahr, prüfe zusätzlich, ob <code>alter &gt;= 16</code> ist: falls ja, gib
+    «voller Zugang» aus, sonst «eingeschränkter Zugang».</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> zweite Bedingung ist nur relevant, wenn die erste zutrifft → Verschachtelung, nicht <code>else if</code>.</p>
+      <div class="codeblock">
+<span class="kw">let</span> istMitglied = <span class="kw">true</span>;
+<span class="kw">let</span> alter = <span class="nm">15</span>;
+
+<span class="kw">if</span> (istMitglied) {
+  <span class="kw">if</span> (alter &gt;= <span class="nm">16</span>) {
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"voller Zugang"</span>);
+  } <span class="kw">else</span> {
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"eingeschraenkter Zugang"</span>);  <span class="cm">// laeuft</span>
+  }
+} <span class="kw">else</span> {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"kein Zugang"</span>);
+}
+      </div>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü12 — switch-case bauen</h4><span class="tag medium">Level 2</span><span class="tag lz">L17</span></div>
+    <p>Schreibe ein <code>switch</code>, das je nach Variable <code>note</code> (<code>"A"</code>,
+    <code>"B"</code>, <code>"C"</code>) eine passende Meldung ausgibt, und für alle anderen Werte
+    «unbekannte Note».</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> switch-Syntax mit default-Fall.</p>
+      <div class="codeblock">
+<span class="kw">let</span> note = <span class="str">"B"</span>;
+
+<span class="kw">switch</span> (note) {
+  <span class="kw">case</span> <span class="str">"A"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"ausgezeichnet"</span>);
+    <span class="kw">break</span>;
+  <span class="kw">case</span> <span class="str">"B"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"gut"</span>);   <span class="cm">// laeuft</span>
+    <span class="kw">break</span>;
+  <span class="kw">case</span> <span class="str">"C"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"genuegend"</span>);
+    <span class="kw">break</span>;
+  <span class="kw">default</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"unbekannte Note"</span>);
+}
+      </div>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü13 — switch-Fehler finden</h4><span class="tag hard">Level 3</span><span class="tag lz">L17, L13</span></div>
+    <p>Was gibt dieser Code aus, wenn <code>tag = "Montag"</code>? Erkläre, warum.</p>
+    <div class="codeblock">
+<span class="kw">switch</span> (tag) {
+  <span class="kw">case</span> <span class="str">"Montag"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Start"</span>);
+  <span class="kw">case</span> <span class="str">"Dienstag"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Fortsetzung"</span>);
+    <span class="kw">break</span>;
+  <span class="kw">default</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Sonst"</span>);
+}
+    </div>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Fallthrough durch fehlendes <code>break</code>.</p>
+      <p>Ausgabe: <code>"Start"</code> <strong>und</strong> <code>"Fortsetzung"</code>. Nach dem passenden
+      <code>case "Montag"</code> fehlt das <code>break</code>, daher läuft der Code in den nächsten
+      <code>case</code> weiter, bis ein <code>break</code> kommt.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü14 — Array erzeugen und lesen</h4><span class="tag easy">Level 1</span><span class="tag lz">L18, L19, L20</span></div>
+    <p>Erzeuge ein Array <code>farben</code> mit den drei Werten <code>"rot"</code>, <code>"gelb"</code>,
+    <code>"blau"</code>. Gib das zweite Element aus.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Array-Deklaration und Index-Zugriff.</p>
+      <div class="codeblock">
+<span class="kw">const</span> farben = [<span class="str">"rot"</span>, <span class="str">"gelb"</span>, <span class="str">"blau"</span>];
+<span class="fn">console</span>.<span class="fn">log</span>(farben[<span class="nm">1</span>]);  <span class="cm">// "gelb" -- zweites Element = Index 1</span>
+      </div>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü15 — push, pop, length kombinieren</h4><span class="tag medium">Level 2</span><span class="tag lz">L20, L21, L22</span></div>
+    <p>Ein Array <code>warenkorb</code> enthält <code>["Buch", "Stift"]</code>. Füge <code>"Heft"</code>
+    hinzu, entferne danach das letzte Element wieder, und gib am Ende die Länge des Arrays aus.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Zusammenspiel von <code>push</code>, <code>pop</code> und <code>length</code>.</p>
+      <div class="codeblock">
+<span class="kw">const</span> warenkorb = [<span class="str">"Buch"</span>, <span class="str">"Stift"</span>];
+warenkorb.push(<span class="str">"Heft"</span>);   <span class="cm">// ["Buch", "Stift", "Heft"]</span>
+warenkorb.pop();             <span class="cm">// entfernt "Heft" -&gt; ["Buch", "Stift"]</span>
+<span class="fn">console</span>.<span class="fn">log</span>(warenkorb.length);  <span class="cm">// 2</span>
+      </div>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü16 — Array-Fehler finden</h4><span class="tag hard">Level 3</span><span class="tag lz">L20, L13</span></div>
+    <p>Ein Array <code>liste</code> hat 4 Elemente. Jemand schreibt <code>liste[4]</code>, um das letzte
+    Element zu lesen. Was passiert, und wie muss es richtig heissen?</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Indexierung beginnt bei 0 — häufigster Array-Fehler.</p>
+      <p>Bei 4 Elementen sind die gültigen Indizes 0–3. <code>liste[4]</code> existiert nicht und ergibt
+      <code>undefined</code> — kein Absturz, aber ein semantischer Fehler. Richtig: <code>liste[3]</code>
+      oder besser <code>liste[liste.length - 1]</code>.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü17 — for-Schleife: Array durchgehen</h4><span class="tag medium">Level 2</span><span class="tag lz">L23, L24</span></div>
+    <p>Schreibe eine <code>for</code>-Schleife, die jedes Element des Arrays
+    <code>["a", "b", "c", "d"]</code> in der Konsole ausgibt.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Standardmuster «Array mit for durchlaufen».</p>
+      <div class="codeblock">
+<span class="kw">const</span> buchstaben = [<span class="str">"a"</span>, <span class="str">"b"</span>, <span class="str">"c"</span>, <span class="str">"d"</span>];
+
+<span class="kw">for</span> (<span class="kw">let</span> i = <span class="nm">0</span>; i &lt; buchstaben.length; i++) {
+  <span class="fn">console</span>.<span class="fn">log</span>(buchstaben[i]);
+}
+      </div>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü18 — while-Schleife anwenden</h4><span class="tag medium">Level 2</span><span class="tag lz">L23, L24</span></div>
+    <p>Schreibe eine <code>while</code>-Schleife, die von 10 abwärts bis 1 zählt und jeden Wert ausgibt.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> while-Aufbau mit absteigendem Zähler.</p>
+      <div class="codeblock">
+<span class="kw">let</span> i = <span class="nm">10</span>;
+
+<span class="kw">while</span> (i &gt;= <span class="nm">1</span>) {
+  <span class="fn">console</span>.<span class="fn">log</span>(i);
+  i--;   <span class="cm">// Schritt nicht vergessen, sonst Endlosschleife</span>
+}
+      </div>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü19 — Schleifenfehler finden (Endlosschleife)</h4><span class="tag hard">Level 3</span><span class="tag lz">L23, L24, L13</span></div>
+    <p>Dieser Code hängt sich beim Ausführen auf. Finde den Fehler.</p>
+    <div class="codeblock">
+<span class="kw">let</span> i = <span class="nm">0</span>;
+<span class="kw">while</span> (i &lt; <span class="nm">5</span>) {
+  <span class="fn">console</span>.<span class="fn">log</span>(i);
+}
+    </div>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Endlosschleife durch fehlenden Schritt erkennen.</p>
+      <p><code>i</code> wird im Schleifenkörper nie verändert, die Bedingung <code>i &lt; 5</code> bleibt
+      also für immer wahr. Fix: <code>i++;</code> am Ende des Blocks ergänzen.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü20 — Transferaufgabe: for oder while wählen</h4><span class="tag hard">Level 4</span><span class="tag lz">L23</span></div>
+    <p>Begründe für jede Situation, ob eher <code>for</code> oder <code>while</code> passt:
+    a) alle 30 Fragen eines Quiz durchgehen, b) so lange raten, bis die richtige Zahl getroffen wurde.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Transfer — Wahl der passenden Schleifenart begründen, nicht nur anwenden.</p>
+      <p>a) <code>for</code>, weil die Anzahl (30) von Anfang an feststeht. b) <code>while</code>, weil im
+      Voraus nicht bekannt ist, wie viele Versuche nötig sind — die Wiederholung hängt von einer Bedingung
+      ab, die sich erst während der Ausführung entscheidet.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü21 — Kombinierte Transferaufgabe</h4><span class="tag hard">Level 4</span><span class="tag lz">L18, L20, L22, L24</span></div>
+    <p>Ein Array <code>eintritte = [16, 15, 19, 12, 20]</code> enthält Altersangaben an einer Kasse. Schreibe
+    ein Programm, das mit einer Schleife zählt, wie viele Personen <strong>mindestens 16 Jahre</strong> alt
+    sind, und das Ergebnis ausgibt.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Konzept:</strong> Array, Schleife und if-Bedingung kombinieren — typische Prüfungsaufgabe.</p>
+      <div class="codeblock">
+<span class="kw">const</span> eintritte = [<span class="nm">16</span>, <span class="nm">15</span>, <span class="nm">19</span>, <span class="nm">12</span>, <span class="nm">20</span>];
+<span class="kw">let</span> anzahlErlaubt = <span class="nm">0</span>;
+
+<span class="kw">for</span> (<span class="kw">let</span> i = <span class="nm">0</span>; i &lt; eintritte.length; i++) {
+  <span class="kw">if</span> (eintritte[i] &gt;= <span class="nm">16</span>) {
+    anzahlErlaubt = anzahlErlaubt + <span class="nm">1</span>;
+  }
+}
+
+<span class="fn">console</span>.<span class="fn">log</span>(anzahlErlaubt);  <span class="cm">// 3 (16, 19, 20 erfuellen die Bedingung)</span>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz — schnelle Verständniskontrolle</h2>
+  <p class="section-sub">10 kurze Fragen für den letzten Check vor der Prüfung.</p>
+  <div class="scorebar">
+    <span id="quiz-score">0 / 10 richtig</span>
+    <button type="button" id="quiz-reset">Quiz zurücksetzen</button>
+  </div>
+  <div id="quiz-list">
+
+    <div class="quiz-q" data-answer="1">
+      <p class="q">1. Wofür ist JavaScript im Vergleich zu HTML und CSS zuständig?</p>
+      <div class="opts">
+        <button class="opt" data-correct="false">Für die Struktur der Seite</button>
+        <button class="opt" data-correct="true">Für Interaktivität und Verhalten</button>
+        <button class="opt" data-correct="false">Nur für Farben und Schriften</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="q">2. Wo läuft client-seitiges JavaScript aus?</p>
+      <div class="opts">
+        <button class="opt" data-correct="false">Immer auf dem Server</button>
+        <button class="opt" data-correct="true">Im Browser des Nutzers (Client)</button>
+        <button class="opt" data-correct="false">In der Cloud, unabhängig vom Gerät</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="q">3. Welches Schlüsselwort passt für eine Variable, die sich niemals ändert?</p>
+      <div class="opts">
+        <button class="opt" data-correct="false">let</button>
+        <button class="opt" data-correct="true">const</button>
+        <button class="opt" data-correct="false">var</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+
+    <div class="quiz-q" data-answer="4">
+      <p class="q">4. Was ist der Unterschied zwischen <code>undefined</code> und <code>null</code>?</p>
+      <div class="opts">
+        <button class="opt" data-correct="false">Es gibt keinen Unterschied</button>
+        <button class="opt" data-correct="true"><code>undefined</code> entsteht automatisch, <code>null</code> wird bewusst gesetzt</button>
+        <button class="opt" data-correct="false"><code>null</code> ist nur bei Arrays möglich</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+
+    <div class="quiz-q" data-answer="5">
+      <p class="q">5. Was gibt <code>typeof null</code> zurück?</p>
+      <div class="opts">
+        <button class="opt" data-correct="false">"null"</button>
+        <button class="opt" data-correct="true">"object"</button>
+        <button class="opt" data-correct="false">"undefined"</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+
+    <div class="quiz-q" data-answer="6">
+      <p class="q">6. Was passiert bei <code>5 == "5"</code>?</p>
+      <div class="opts">
+        <button class="opt" data-correct="false">false, da unterschiedliche Typen</button>
+        <button class="opt" data-correct="true">true, da nur der Wert verglichen wird</button>
+        <button class="opt" data-correct="false">SyntaxError</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+
+    <div class="quiz-q" data-answer="7">
+      <p class="q">7. Wozu dient <code>break</code> in einem <code>switch</code>?</p>
+      <div class="opts">
+        <button class="opt" data-correct="false">Es beendet das ganze Programm</button>
+        <button class="opt" data-correct="true">Es verhindert, dass der Code in den nächsten case weiterläuft</button>
+        <button class="opt" data-correct="false">Es ist nur Dekoration und hat keine Wirkung</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+
+    <div class="quiz-q" data-answer="8">
+      <p class="q">8. Ein Array hat 5 Elemente. Welcher Index ist das letzte Element?</p>
+      <div class="opts">
+        <button class="opt" data-correct="false">5</button>
+        <button class="opt" data-correct="true">4</button>
+        <button class="opt" data-correct="false">6</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+
+    <div class="quiz-q" data-answer="9">
+      <p class="q">9. Was macht <code>push()</code> bei einem Array?</p>
+      <div class="opts">
+        <button class="opt" data-correct="false">Entfernt das letzte Element</button>
+        <button class="opt" data-correct="true">Fügt ein Element am Ende hinzu</button>
+        <button class="opt" data-correct="false">Sortiert das Array</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+
+    <div class="quiz-q" data-answer="10">
+      <p class="q">10. Wann ist eine <code>for</code>-Schleife die bessere Wahl als <code>while</code>?</p>
+      <div class="opts">
+        <button class="opt" data-correct="true">Wenn die Anzahl Durchläufe von Anfang an bekannt ist</button>
+        <button class="opt" data-correct="false">Immer, while wird nie verwendet</button>
+        <button class="opt" data-correct="false">Nur bei Arrays mit Strings</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+
+  </div>
+</section>
+
+<section id="simulation">
+  <h2>Prüfungssimulation</h2>
+  <p class="section-sub">Realistische Mini-Prüfung, kombiniert mehrere Lernziele. Ca. 20 Minuten, ohne die
+  Lösungen unten zu schauen. Notiere deine Antworten, bevor du kontrollierst.</p>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe 1 (8 Punkte) — Fehler finden und korrigieren</h4><span class="tag hard">Prüfung</span></div>
+    <p>Der folgende Code soll prüfen, ob ein Kunde ein Treuerabatt-Set (mind. 3 Käufe UND Mitglied) erhält,
+    tut das aber nicht korrekt. Finde <strong>alle</strong> Fehler (es sind 3) und schreibe den korrigierten
+    Code auf.</p>
+    <div class="codeblock">
+<span class="kw">const</span> kaeufe = <span class="nm">3</span>;
+<span class="kw">let</span> istMitglied = <span class="kw">true</span>
+
+<span class="kw">if</span> (kaeufe &gt;= <span class="nm">3</span> || istMitglied = <span class="kw">false</span>) {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Rabatt erhalten"</span>);
+} <span class="kw">else</span>
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"kein Rabatt"</span>);
+}
+    </div>
+    <details><summary>Musterlösung anzeigen</summary>
+      <p><strong>Fehler 1:</strong> fehlendes Semikolon nach <code>let istMitglied = true</code> (schlechter
+      Stil, in diesem Fall aber nicht fatal — sauberer Code ergänzt es).</p>
+      <p><strong>Fehler 2 (inhaltlich am wichtigsten):</strong> <code>istMitglied = false</code> ist eine
+      <strong>Zuweisung</strong> (ein <code>=</code>), kein Vergleich, und die Bedingung soll ausserdem
+      <code>&amp;&amp;</code> statt <code>||</code> sein, weil laut Aufgabe <strong>beide</strong>
+      Bedingungen gelten müssen. Richtig: <code>kaeufe &gt;= 3 &amp;&amp; istMitglied === true</code>
+      (oder kurz <code>istMitglied</code>).</p>
+      <p><strong>Fehler 3:</strong> Die schliessende geschweifte Klammer des <code>if</code>-Blocks fehlt vor
+      dem <code>else</code>. Korrigierter Code:</p>
+      <div class="codeblock">
+<span class="kw">const</span> kaeufe = <span class="nm">3</span>;
+<span class="kw">let</span> istMitglied = <span class="kw">true</span>;
+
+<span class="kw">if</span> (kaeufe &gt;= <span class="nm">3</span> &amp;&amp; istMitglied) {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Rabatt erhalten"</span>);
+} <span class="kw">else</span> {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"kein Rabatt"</span>);
+}
+      </div>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe 2 (6 Punkte) — Array mit Schleife auswerten</h4><span class="tag hard">Prüfung</span></div>
+    <p>Gegeben ist das Array <code>preise = [12, 45, 8, 30, 5]</code>. Schreibe ein vollständiges
+    JavaScript-Programm, das a) die Summe aller Preise berechnet und ausgibt, und b) zählt, wie viele
+    Preise unter 10 liegen.</p>
+    <details><summary>Musterlösung anzeigen</summary>
+      <div class="codeblock">
+<span class="kw">const</span> preise = [<span class="nm">12</span>, <span class="nm">45</span>, <span class="nm">8</span>, <span class="nm">30</span>, <span class="nm">5</span>];
+<span class="kw">let</span> summe = <span class="nm">0</span>;
+<span class="kw">let</span> anzahlGuenstig = <span class="nm">0</span>;
+
+<span class="kw">for</span> (<span class="kw">let</span> i = <span class="nm">0</span>; i &lt; preise.length; i++) {
+  summe = summe + preise[i];
+  <span class="kw">if</span> (preise[i] &lt; <span class="nm">10</span>) {
+    anzahlGuenstig = anzahlGuenstig + <span class="nm">1</span>;
+  }
+}
+
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Summe: "</span> + summe);            <span class="cm">// 100</span>
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"unter 10: "</span> + anzahlGuenstig); <span class="cm">// 2 (8 und 5)</span>
+      </div>
+      <p><strong>Bewertung:</strong> je 1 Punkt für korrekte Deklaration der Variablen, 2 Punkte für die
+      Schleife, 2 Punkte für die Summenberechnung, 1 Punkt für den korrekten Zähler-Vergleich.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe 3 (4 Punkte) — switch aus Beschreibung bauen</h4><span class="tag hard">Prüfung</span></div>
+    <p>Eine Variable <code>stufe</code> kann die Werte <code>1</code>, <code>2</code> oder <code>3</code>
+    annehmen. Schreibe ein <code>switch</code>, das ausgibt: bei 1 «Anfänger», bei 2 «Fortgeschritten»,
+    bei 3 «Profi», sonst «ungültige Stufe».</p>
+    <details><summary>Musterlösung anzeigen</summary>
+      <div class="codeblock">
+<span class="kw">let</span> stufe = <span class="nm">2</span>;
+
+<span class="kw">switch</span> (stufe) {
+  <span class="kw">case</span> <span class="nm">1</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Anfaenger"</span>);
+    <span class="kw">break</span>;
+  <span class="kw">case</span> <span class="nm">2</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Fortgeschritten"</span>);
+    <span class="kw">break</span>;
+  <span class="kw">case</span> <span class="nm">3</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Profi"</span>);
+    <span class="kw">break</span>;
+  <span class="kw">default</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"ungueltige Stufe"</span>);
+}
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="lastminute">
+  <h2>Last-Minute-Repetition</h2>
+  <p class="section-sub">Kompakte Schlusscheckliste — ersetzt nicht das Verstehen, hilft aber kurz vor der
+  Prüfung, Lücken zu finden.</p>
+  <div class="card">
+    <ul class="checklist">
+      <li><input type="checkbox" id="c1"><label for="c1">Ich kann in eigenen Worten erklären, wofür JavaScript im Vergleich zu HTML/CSS da ist.</label></li>
+      <li><input type="checkbox" id="c2"><label for="c2">Ich weiss, dass client-seitiges JS im Browser des Nutzers läuft, nicht auf dem Server.</label></li>
+      <li><input type="checkbox" id="c3"><label for="c3">Ich kenne <code>console.log</code> und <code>alert</code> und weiss, wann ich welches nehme.</label></li>
+      <li><input type="checkbox" id="c4"><label for="c4">Ich kann JS intern (<code>&lt;script&gt;</code>) und extern (<code>src="…"</code>) einbinden.</label></li>
+      <li><input type="checkbox" id="c5"><label for="c5">Ich kann eine Fehlermeldung lesen: Fehlertyp, Beschreibung, Zeilennummer.</label></li>
+      <li><input type="checkbox" id="c6"><label for="c6">Ich weiss, wann ich <code>let</code> und wann <code>const</code> nehme (nie mehr <code>var</code> in neuem Code).</label></li>
+      <li><input type="checkbox" id="c7"><label for="c7">Ich kenne alle 5 Datentypen (String, Number, Boolean, undefined, null) und den Unterschied undefined/null.</label></li>
+      <li><input type="checkbox" id="c8"><label for="c8">Ich verwechsle <code>=</code>, <code>==</code> und <code>===</code> nicht mehr.</label></li>
+      <li><input type="checkbox" id="c9"><label for="c9">Ich weiss, dass <code>typeof null</code> "object" ergibt.</label></li>
+      <li><input type="checkbox" id="c10"><label for="c10">Ich kann syntaktische von semantischen Fehlern unterscheiden.</label></li>
+      <li><input type="checkbox" id="c11"><label for="c11">Ich kann if...else mit &amp;&amp;, || und Verschachtelungen korrekt schreiben.</label></li>
+      <li><input type="checkbox" id="c12"><label for="c12">Ich schreibe bei switch-case nie mehr ein <code>break</code> vergessen.</label></li>
+      <li><input type="checkbox" id="c13"><label for="c13">Ich weiss, dass Arrays bei Index 0 beginnen.</label></li>
+      <li><input type="checkbox" id="c14"><label for="c14">Ich kann <code>push</code>, <code>pop</code> und <code>length</code> sicher anwenden.</label></li>
+      <li><input type="checkbox" id="c15"><label for="c15">Ich weiss, wann ich <code>for</code> und wann <code>while</code> nehme, und vergesse nie den Schritt (<code>i++</code>) bei while.</label></li>
+      <li><input type="checkbox" id="c16"><label for="c16">Ich kann eine <code>for</code>-Schleife schreiben, die ein Array mit <code>.length</code> durchläuft.</label></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<footer>
+  <p>JavaScript Grundlagen · BMSW · LU01–LU05b</p>
+  <a class="backlink" href="../../../index.html">← zurück zu StudyHub</a>
+</footer>
+</div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // Quiz: Klick auf eine Option wertet sie aus und sperrt die Frage.
+  var score = 0;
+  var total = 0;
+  var scoreLabel = document.getElementById("quiz-score");
+  var resetBtn = document.getElementById("quiz-reset");
+  var questions = document.querySelectorAll(".quiz-q");
+  total = questions.length;
+
+  function updateScore() {
+    scoreLabel.textContent = score + " / " + total + " richtig";
+  }
+
+  questions.forEach(function (q) {
+    var opts = q.querySelectorAll(".opt");
+    var fb = q.querySelector(".fb");
+    opts.forEach(function (opt) {
+      opt.addEventListener("click", function () {
+        if (q.dataset.answered === "true") return;
+        q.dataset.answered = "true";
+        var correct = opt.getAttribute("data-correct") === "true";
+        opt.classList.add(correct ? "correct" : "wrong");
+        opts.forEach(function (o) {
+          if (o.getAttribute("data-correct") === "true") {
+            o.classList.add("correct");
+          }
+        });
+        fb.textContent = correct ? "Richtig!" : "Nicht ganz — die richtige Antwort ist grün markiert.";
+        if (correct) {
+          score++;
+          updateScore();
+        }
+      });
+    });
+  });
+
+  resetBtn.addEventListener("click", function () {
+    score = 0;
+    updateScore();
+    questions.forEach(function (q) {
+      q.dataset.answered = "false";
+      q.querySelectorAll(".opt").forEach(function (o) {
+        o.classList.remove("correct", "wrong");
+      });
+      q.querySelector(".fb").textContent = "";
+    });
+  });
+
+  updateScore();
+})();
+</script>
+</body>
+</html>
