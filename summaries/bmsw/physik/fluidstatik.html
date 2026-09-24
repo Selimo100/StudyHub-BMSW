@@ -1006,11 +1006,12 @@
     <div class="wrap">
       <header class="hero">
         <div>
-          <div class="eyebrow">Physik TALS · Kapitel 02 · Lernziele LZ02</div>
+          <div class="eyebrow">Physik TALS · Kapitel 01 + 02 · Lernziele LZ01 und LZ02</div>
           <h1>Fluidstatik-Coach</h1>
           <p>
-            Alles für den Test: Druck, Pascal, Schweredruck, Luftdruck und Auftrieb. Von null erklärt, mit einem festen
-            Lösungsrezept, allen Übungen vorgerechnet und dem TI-Nspire CX II CAS als Werkzeug.
+            Alles für den Test: die Grundlagen (Einheiten, Rechnen, Dichte, Genauigkeit) und die Fluidstatik (Druck,
+            Pascal, Schweredruck, Luftdruck, Auftrieb). Von null erklärt, mit einem festen Lösungsrezept, allen Übungen
+            vorgerechnet und dem TI-Nspire CX II CAS als Werkzeug.
           </p>
         </div>
         <svg
@@ -1039,12 +1040,16 @@
       <nav class="tabbar" aria-label="Kapitel">
         <div class="tabs" role="tablist" id="tabs">
           <button role="tab" data-tab="start" aria-selected="true">Start &amp; Rezept</button>
-          <button role="tab" data-tab="basis"><span class="num">0</span>Grundlagen-Update</button>
-          <button role="tab" data-tab="druck"><span class="num">1</span>Druck</button>
-          <button role="tab" data-tab="pascal"><span class="num">2</span>Pascal</button>
-          <button role="tab" data-tab="schwere"><span class="num">3</span>Schweredruck</button>
-          <button role="tab" data-tab="luft"><span class="num">4</span>Luftdruck</button>
-          <button role="tab" data-tab="auftrieb"><span class="num">5</span>Auftrieb</button>
+          <button role="tab" data-tab="gmeth"><span class="num">G1</span>Physik &amp; Methode</button>
+          <button role="tab" data-tab="geinh"><span class="num">G2</span>Einheiten</button>
+          <button role="tab" data-tab="grech"><span class="num">G3</span>Rechnen &amp; Dichte</button>
+          <button role="tab" data-tab="ggen"><span class="num">G4</span>Genauigkeit</button>
+          <button role="tab" data-tab="basis"><span class="num">F0</span>Kraft &amp; Flächen</button>
+          <button role="tab" data-tab="druck"><span class="num">F1</span>Druck</button>
+          <button role="tab" data-tab="pascal"><span class="num">F2</span>Pascal</button>
+          <button role="tab" data-tab="schwere"><span class="num">F3</span>Schweredruck</button>
+          <button role="tab" data-tab="luft"><span class="num">F4</span>Luftdruck</button>
+          <button role="tab" data-tab="auftrieb"><span class="num">F5</span>Auftrieb</button>
           <button role="tab" data-tab="ref">BMP-Niveau</button>
           <button role="tab" data-tab="nspire">TI-Nspire</button>
           <button role="tab" data-tab="quiz">Quiz</button>
@@ -1056,6 +1061,28 @@
       <!-- ============ START ============ -->
       <section class="panel" id="start" role="tabpanel">
         <h2>So gehst du vor</h2>
+        <div class="grid2">
+          <div class="box">
+            <span class="pill">Teil G · Kapitel 01</span>
+            <h4>Grundlagen</h4>
+            <p class="small">
+              Physik und ihre Methode, Zehnerpotenzen, Einheiten und Präfixe, Formeln umstellen, Dichte, signifikante
+              Stellen, Fehlerrechnung, Abschätzen. Das ist das Werkzeug für alles Weitere.
+            </p>
+          </div>
+          <div class="box">
+            <span class="pill">Teil F · Kapitel 02</span>
+            <h4>Fluidstatik</h4>
+            <p class="small">
+              Druck, Pascal, Schweredruck, Luftdruck, Auftrieb. Baut direkt auf den Grundlagen auf: Ohne Einheiten
+              umrechnen geht hier nichts.
+            </p>
+          </div>
+        </div>
+        <p class="muted small">
+          Empfohlene Reihenfolge: G2 → G3 → G4 → F0 bis F5 → BMP-Niveau → Quiz → Probetest. G1 (Theorie) kannst du
+          zwischendurch lernen.
+        </p>
         <p class="lead">
           Fluidstatik klingt kompliziert, besteht aber aus nur <b>drei Formeln</b> und <b>einer Denkweise</b>. Wenn du
           die drei Formeln verstehst und bei jeder Aufgabe dasselbe Rezept durchgehst, kannst du praktisch jede
@@ -1179,10 +1206,10 @@
 
       <!-- ============ BASIS ============ -->
       <section class="panel" id="basis" role="tabpanel" hidden>
-        <h2>Grundlagen-Update</h2>
+        <h2>F0 · Kraft &amp; Flächen</h2>
         <p class="lead">
-          Was du aus Kapitel 01 für die Fluidstatik brauchst, plus <b>eine neue Sache: die Kraft</b>. Wenn hier etwas
-          wackelt, zuerst das lesen.
+          Die Brücke von den Grundlagen zur Fluidstatik: <b>eine neue Sache, die Kraft</b>, dazu Flächen, Volumen und
+          die Umrechnungen, die du hier ständig brauchst. Alles Weitere zu Einheiten und Dichte steht in G2 und G3.
         </p>
 
         <h3>Neu: Kraft und Gewichtskraft</h3>
@@ -1370,9 +1397,1234 @@
         </p>
       </section>
 
+      <!-- ============ G1 PHYSIK & METHODE ============ -->
+      <section class="panel" id="gmeth" role="tabpanel" hidden>
+        <h2>G1 · Physik und ihre Methode</h2>
+        <div class="oneline">
+          <b>In einem Satz:</b> Physik sucht die Gesetzmässigkeiten der Natur, um Erscheinungen zu erklären und
+          vorherzusagen. Dazu beobachtet, misst und experimentiert sie und fasst das Ergebnis in Formeln.
+        </div>
+
+        <h3>Was ist Physik? (Lernziel 1.1)</h3>
+        <div class="prose">
+          <p>
+            Die Physik will in der Natur <b>Zusammenhänge und Gesetze erkennen</b> und damit Erscheinungen
+            <b>erklären oder vorhersagen</b>. «Natur» umfasst auch den Mikrokosmos (Atome) und das Universum, die man
+            nicht direkt beobachten kann. Dafür braucht es aufwändige Experimente im Labor oder spezielle
+            Beobachtungsmethoden.
+          </p>
+          <p>
+            Die Begründer der neuzeitlichen Physik sind <b>Galileo Galilei</b> (1564–1642) und
+            <b>Isaac Newton</b> (1643–1727).
+          </p>
+          <p>
+            Physik ist eine <b>quantitative</b> Wissenschaft: Sie beschreibt die Natur mit Zahlen, Messungen und
+            Gleichungen. Kennt man die Gesetze, kann man die Natur nicht nur verstehen, sondern auch gezielt
+            beeinflussen. Deshalb ist die Physik die Grundlage aller Technik.
+          </p>
+        </div>
+
+        <h3>Teilgebiete der Physik (Lernziel 1.3: mindestens 5 kennen)</h3>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Teilgebiet</th>
+              <th>Worum geht es?</th>
+            </tr>
+            <tr>
+              <td><b>Mechanik</b></td>
+              <td>Bewegungen und Kräfte. Unterteilt in:</td>
+            </tr>
+            <tr>
+              <td>&nbsp;&nbsp;Kinematik</td>
+              <td>
+                Bewegungen beschreiben (Weg, Zeit, Geschwindigkeit, Beschleunigung), ohne nach der Ursache zu fragen
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;&nbsp;Dynamik</td>
+              <td>Kräfte als Ursache von Bewegungen (Newton)</td>
+            </tr>
+            <tr>
+              <td>&nbsp;&nbsp;Energetik</td>
+              <td>Energie, Arbeit, Leistung, Energieerhaltung</td>
+            </tr>
+            <tr>
+              <td>&nbsp;&nbsp;Fluidstatik</td>
+              <td>ruhende Flüssigkeiten und Gase: Druck, Auftrieb (Kapitel 02)</td>
+            </tr>
+            <tr>
+              <td><b>Wärmelehre</b></td>
+              <td>Temperatur, Wärme, Ausdehnung, Aggregatzustände</td>
+            </tr>
+            <tr>
+              <td><b>Optik</b></td>
+              <td>Licht: Spiegelung, Brechung, Linsen, Farben</td>
+            </tr>
+            <tr>
+              <td><b>Elektrizitätslehre</b></td>
+              <td>Ladung, Strom, Spannung, Magnetismus</td>
+            </tr>
+            <tr>
+              <td><b>Atom- und Kernphysik</b></td>
+              <td>Aufbau der Atome, Radioaktivität, Kernenergie</td>
+            </tr>
+            <tr>
+              <td><b>Festkörperphysik</b></td>
+              <td>Eigenschaften fester Stoffe (Kristalle, Halbleiter)</td>
+            </tr>
+            <tr>
+              <td><b>Astronomie / Astrophysik</b></td>
+              <td>Sterne, Planeten, Universum</td>
+            </tr>
+          </table>
+        </div>
+
+        <details class="ex">
+          <summary>
+            <span class="id">AB 01.01</span><span class="q">«The Map of Physics» (Video): Antworten</span
+            ><span class="ans">aufklappen</span>
+          </summary>
+          <div class="body">
+            <p class="small muted">
+              Die Antworten folgen dem Inhalt des Videos von Dominic Walliman. Vergleiche sie mit deinen Notizen aus dem
+              Unterricht.
+            </p>
+            <div class="tscroll">
+              <table class="t">
+                <tr>
+                  <td>1</td>
+                  <td>Drei Hauptgebiete: A klassische Physik, B Relativitätstheorie, C Quantenphysik</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>
+                    Teilbereiche der klassischen Physik: klassische Mechanik, Thermodynamik (Wärmelehre),
+                    Elektromagnetismus, Optik, Strömungslehre (Fluide), Akustik/Wellen, Astronomie
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Wichtige Person: Isaac Newton (auch James Clerk Maxwell)</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>In allen Teilgebieten zentral: die <b>Energie</b></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>
+                    Nicht klassisch erklärbar: z. B. die immer gleiche Lichtgeschwindigkeit, die Strahlung heisser
+                    Körper (Schwarzkörperstrahlung), der Photoeffekt
+                  </td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Ab etwa 1900 (Anfang 20. Jahrhundert)</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>(Allgemeine) Relativitätstheorie</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Albert Einstein</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Quantenmechanik / Quantenphysik</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>
+                    z. B. Teilchenphysik (Standardmodell), Quantenfeldtheorie, Quantenchemie, Festkörperphysik,
+                    Quanteninformatik
+                  </td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>
+                    Dunkle Materie und dunkle Energie, Vereinigung von Relativitätstheorie und Quantenphysik («Theorie
+                    von allem», Quantengravitation), warum es mehr Materie als Antimaterie gibt
+                  </td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>
+                    z. B. Was ist Wirklichkeit? Ist die Zukunft vorherbestimmt? Warum gibt es überhaupt etwas? Gibt es
+                    Paralleluniversen?
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </details>
+
+        <h3>Die Arbeitsmethode der Physik (Lernziel 1.2)</h3>
+        <figure class="fig">
+          <svg
+            viewBox="0 0 460 250"
+            role="img"
+            aria-label="Kreislauf: Beobachtung führt zu Hypothese, Experiment bestätigt oder widerlegt, Gesetze und Modelle werden zu einer Theorie zusammengefasst"
+          >
+            <rect x="170" y="10" width="120" height="34" rx="8" class="solid" />
+            <text x="187" y="32">Beobachtung</text>
+            <rect x="290" y="95" width="140" height="34" rx="8" class="solid" />
+            <text x="325" y="117">Hypothese</text>
+            <rect x="30" y="95" width="140" height="34" rx="8" class="solid" />
+            <text x="58" y="117">Experiment</text>
+            <rect x="60" y="170" width="120" height="34" rx="8" class="solid" />
+            <text x="100" y="192">Modell</text>
+            <rect x="280" y="170" width="120" height="34" rx="8" class="solid" />
+            <text x="318" y="192">Gesetz</text>
+            <rect x="170" y="212" width="120" height="34" rx="8" class="solid" style="fill: var(--accent-soft)" />
+            <text x="203" y="234">Theorie</text>
+            <line x1="270" y1="44" x2="340" y2="92" class="aink" marker-end="url(#hink)" />
+            <text x="310" y="62" class="s">führt zu</text>
+            <line x1="290" y1="106" x2="174" y2="106" class="aink" marker-end="url(#hink)" />
+            <text x="200" y="100" class="s">wird geprüft</text>
+            <line x1="174" y1="120" x2="286" y2="120" class="aink" marker-end="url(#hink)" />
+            <text x="180" y="138" class="s">bestätigt / widerlegt</text>
+            <line x1="340" y1="129" x2="340" y2="166" class="aink" marker-end="url(#hink)" />
+            <line x1="100" y1="129" x2="110" y2="166" class="aink" marker-end="url(#hink)" />
+            <line x1="180" y1="200" x2="205" y2="212" class="aink" marker-end="url(#hink)" />
+            <line x1="280" y1="200" x2="258" y2="212" class="aink" marker-end="url(#hink)" />
+          </svg>
+          <figcaption>
+            Nach dem Schema im Skript (S. 3). Gesetze und Modelle werden widerspruchsfrei zu einer Theorie
+            zusammengefasst.
+          </figcaption>
+        </figure>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Begriff</th>
+              <th>Bedeutung (Skript + AB 01.02)</th>
+            </tr>
+            <tr>
+              <td><b>Beobachtung</b></td>
+              <td>
+                Am Anfang jeder Erkenntnis steht die Beobachtung eines Phänomens (z. B. Mondphasen, ein fallender
+                Apfel). Für Gesetze braucht es <b>Messungen</b>: Physik ist quantitativ.
+              </td>
+            </tr>
+            <tr>
+              <td><b>Hypothese</b></td>
+              <td>
+                Eine wissenschaftlich begründete Vermutung, meist als Gleichung formuliert (z. B. Fallstrecke s ~ t²).
+                Sie muss die bisherigen Messungen erklären und <b>überprüfbare Voraussagen</b> machen.
+              </td>
+            </tr>
+            <tr>
+              <td><b>Experiment</b></td>
+              <td>
+                Eine kontrollierte, <b>wiederholbare</b> Beobachtung. Es <b>isoliert</b> ein Phänomen (Apfel im Vakuum
+                fallen lassen, damit der Luftwiderstand nicht stört). Es bestätigt oder widerlegt eine Hypothese.
+              </td>
+            </tr>
+            <tr>
+              <td><b>Gesetz</b></td>
+              <td>
+                Wenn sich Zusammenhänge in der Natur immer wieder einstellen, spricht man von Gesetzmässigkeiten, meist
+                mathematisch formuliert. Das Gesetz dient zur Erklärung von Erscheinungen.
+              </td>
+            </tr>
+            <tr>
+              <td><b>Modell</b></td>
+              <td>
+                Eine vereinfachende Vorstellungshilfe, die in einigen Eigenschaften mit dem Original übereinstimmt (z.
+                B. Apfel als Kugel, Teilchenmodell).
+              </td>
+            </tr>
+            <tr>
+              <td><b>Theorie</b></td>
+              <td>
+                Ein System von widerspruchsfreien Modellen und Gesetzen in einem Teilbereich der Wissenschaft (z. B.
+                Einsteins Relativitätstheorie).
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="merk">
+          <span class="tag">Wichtig für die Prüfung</span>
+          <p>
+            Messungen können eine Hypothese <b>bestätigen</b>, aber nie endgültig <b>beweisen</b>. Ein einziges
+            Experiment, das der Voraussage widerspricht, kann sie aber <b>widerlegen</b>. Dann muss sie verworfen oder
+            angepasst werden.
+          </p>
+        </div>
+
+        <details class="ex">
+          <summary>
+            <span class="id">Muster</span
+            ><span class="q">Die Arbeitsweise der Physik in vollständigen Sätzen erklären</span
+            ><span class="ans">Beispielantwort</span>
+          </summary>
+          <div class="body">
+            <p>
+              Am Anfang steht eine <b>Beobachtung</b>: Ein Apfel fällt vom Baum, und aus grösserer Höhe braucht er
+              länger. Daraus stellt man eine <b>Hypothese</b> auf, eine begründete Vermutung, die man mathematisch
+              formuliert, zum Beispiel «die Fallstrecke ist proportional zum Quadrat der Fallzeit». Diese Hypothese wird
+              in einem <b>Experiment</b> überprüft, also in einer kontrollierten und wiederholbaren Beobachtung, bei der
+              man störende Einflüsse wie den Luftwiderstand ausschaltet. Bestätigen die Messungen die Voraussagen immer
+              wieder, spricht man von einem <b>Gesetz</b>. Um die komplizierte Natur rechnen zu können, verwendet man
+              ein vereinfachtes <b>Modell</b>, zum Beispiel den Apfel als Kugel. Mehrere Gesetze und Modelle, die sich
+              nicht widersprechen, werden schliesslich zu einer <b>Theorie</b> zusammengefasst.
+            </p>
+          </div>
+        </details>
+
+        <h3>Gedankenexperiment (Skript 3.2)</h3>
+        <div class="prose">
+          <p>
+            Ein «Was wäre, wenn»-Experiment im Kopf, um Modelle zu entwickeln oder zu widerlegen.
+            <b>Galileis fallende Körper:</b> Aristoteles behauptete, schwere Körper fallen schneller als leichte.
+            Galilei überlegte: Binde ich einen schweren und einen leichten Stein zusammen, müsste der leichte den
+            schweren bremsen, das Paket also langsamer fallen. Das Paket ist aber schwerer als der schwere Stein allein,
+            müsste also schneller fallen. Beides zugleich geht nicht. Also ist die Annahme falsch:
+            <b>Ohne Luftwiderstand fallen alle Körper gleich schnell.</b>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ G2 EINHEITEN ============ -->
+      <section class="panel" id="geinh" role="tabpanel" hidden>
+        <h2>G2 · Zehnerpotenzen und Einheiten</h2>
+        <div class="oneline">
+          <b>In einem Satz:</b> Ein Präfix wie «k» oder «µ» ist nur eine Abkürzung für eine Zehnerpotenz. Wer das
+          verstanden hat, kann jede Einheit umrechnen.
+        </div>
+
+        <h3>Zehnerpotenzen von null an</h3>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Schreibweise</th>
+              <th>Zahl</th>
+              <th>Merkhilfe</th>
+            </tr>
+            <tr>
+              <td>10³</td>
+              <td>1000</td>
+              <td>1 mit 3 Nullen</td>
+            </tr>
+            <tr>
+              <td>10⁰</td>
+              <td>1</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>10⁻¹</td>
+              <td>0.1</td>
+              <td>die 1 an der 1. Stelle nach dem Komma</td>
+            </tr>
+            <tr>
+              <td>10⁻³</td>
+              <td>0.001</td>
+              <td>die 1 an der 3. Stelle nach dem Komma</td>
+            </tr>
+            <tr>
+              <td>10⁻⁶</td>
+              <td>0.000 001</td>
+              <td>10⁻ⁿ = 1/10ⁿ, eine kleine <b>positive</b> Zahl</td>
+            </tr>
+          </table>
+        </div>
+        <div class="prose">
+          <p>
+            <b>Komma verschieben:</b> 3.4·10⁵ → Komma 5 Stellen nach rechts = 340 000. &nbsp;4.7·10⁻⁷ → Komma 7 Stellen
+            nach links = 0.000 000 47.
+          </p>
+          <p>
+            <b>Wissenschaftliche Schreibweise:</b> eine Ziffer vor dem Komma mal Zehnerpotenz: 250 000 = 2.5·10⁵,
+            0.00042 = 4.2·10⁻⁴.
+          </p>
+        </div>
+        <div class="fcard">
+          <div class="big"><span>Rechenregeln</span></div>
+          <table>
+            <tr>
+              <th>Rechnung</th>
+              <th>Regel</th>
+              <th>Beispiel</th>
+            </tr>
+            <tr>
+              <td>mal</td>
+              <td>Exponenten addieren</td>
+              <td>2.5·10⁵ · 5·10⁻² = 12.5·10³</td>
+            </tr>
+            <tr>
+              <td>geteilt</td>
+              <td>Exponenten subtrahieren</td>
+              <td>10³ / 10⁻⁶ = 10⁹</td>
+            </tr>
+            <tr>
+              <td>hoch n</td>
+              <td>Exponenten mal n</td>
+              <td>(10⁻²)³ = 10⁻⁶</td>
+            </tr>
+            <tr>
+              <td>plus / minus</td>
+              <td>keine Abkürzung: ausschreiben</td>
+              <td>2.5·10⁵ + 5·10⁻² = 250 000.05</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Grössen und SI-Basiseinheiten (Lernziel 2.1)</h3>
+        <div class="prose">
+          <p>
+            Eine physikalische Grösse = <b>Zahlenwert · Einheit</b>, z. B. s = 5 m. Die Einheit gehört zur Zahl und wird
+            immer mitgeschrieben und mitgerechnet.
+          </p>
+        </div>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Grösse</th>
+              <th>Symbol</th>
+              <th>Einheit</th>
+            </tr>
+            <tr>
+              <td>Länge / Strecke</td>
+              <td>l, s, d, h</td>
+              <td>Meter m (Basiseinheit)</td>
+            </tr>
+            <tr>
+              <td>Zeit</td>
+              <td>t</td>
+              <td>Sekunde s (Basiseinheit)</td>
+            </tr>
+            <tr>
+              <td>Masse</td>
+              <td>m</td>
+              <td>Kilogramm kg (Basiseinheit)</td>
+            </tr>
+            <tr>
+              <td>Geschwindigkeit</td>
+              <td>v</td>
+              <td>m/s (zusammengesetzt, v = s/t)</td>
+            </tr>
+            <tr>
+              <td>Dichte</td>
+              <td>ρ (rho)</td>
+              <td>kg/m³ (zusammengesetzt, ρ = m/V)</td>
+            </tr>
+          </table>
+        </div>
+        <p class="small muted">
+          Weitere SI-Basiseinheiten: Ampere A (Stromstärke I), Kelvin K (Temperatur T), Mol mol (Stoffmenge n), Candela
+          cd (Lichtstärke Iᵥ). «In Basiseinheiten ausdrücken» heisst: nur kg, m, s kommen vor.
+        </p>
+
+        <h3>Präfixe (Lernziel 2.4: auswendig!)</h3>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Präfix</th>
+              <th>Zeichen</th>
+              <th>Faktor</th>
+              <th>Präfix</th>
+              <th>Zeichen</th>
+              <th>Faktor</th>
+            </tr>
+            <tr>
+              <td>tera</td>
+              <td>T</td>
+              <td>10¹²</td>
+              <td>dezi</td>
+              <td>d</td>
+              <td>10⁻¹</td>
+            </tr>
+            <tr>
+              <td>giga</td>
+              <td>G</td>
+              <td>10⁹</td>
+              <td>centi</td>
+              <td>c</td>
+              <td>10⁻²</td>
+            </tr>
+            <tr>
+              <td>mega</td>
+              <td>M</td>
+              <td>10⁶</td>
+              <td>milli</td>
+              <td>m</td>
+              <td>10⁻³</td>
+            </tr>
+            <tr>
+              <td>kilo</td>
+              <td>k</td>
+              <td>10³</td>
+              <td>mikro</td>
+              <td>µ</td>
+              <td>10⁻⁶</td>
+            </tr>
+            <tr>
+              <td>hekto</td>
+              <td>h</td>
+              <td>10²</td>
+              <td>nano</td>
+              <td>n</td>
+              <td>10⁻⁹</td>
+            </tr>
+            <tr>
+              <td>deka</td>
+              <td>da</td>
+              <td>10¹</td>
+              <td>piko</td>
+              <td>p</td>
+              <td>10⁻¹²</td>
+            </tr>
+          </table>
+        </div>
+        <p class="small muted">
+          Merkhilfe: k · M · G · T = 3 · 6 · 9 · 12 und m · µ · n · p = −3 · −6 · −9 · −12. Sonderfall Masse: Basis ist
+          kg, also 1 g = 10⁻³ kg und 1 mg = 10⁻⁶ kg.
+        </p>
+
+        <h3>Umrechnen: die «Mal-1-Methode» (Lernziel 2.5)</h3>
+        <ol class="steps">
+          <li><div>Wert mit Einheit als Bruch hinschreiben.</div></li>
+          <li>
+            <div>
+              Für jede Einheit, die weg soll, mit einem Bruch multiplizieren, der gleich 1 ist (z. B. 1 m / 100 cm). Die
+              alte Einheit steht dabei <b>auf der Gegenseite</b>, damit sie sich wegkürzt.
+            </div>
+          </li>
+          <li>
+            <div>
+              Steht eine Einheit im Quadrat oder hoch 3, muss auch der Umrechnungsbruch ins Quadrat bzw. hoch 3.
+            </div>
+          </li>
+          <li>
+            <div>
+              Einheiten kürzen, Zahlen rechnen, prüfen: Bleibt genau die gewünschte Einheit übrig? Ist die
+              Grössenordnung plausibel?
+            </div>
+          </li>
+        </ol>
+        <div class="eq">
+          F = 58.0 mg·cm/min² · (1 kg / 10⁶ mg) · (1 m / 100 cm) · (1 min / 60 s)² = 58.0 / (10⁶ · 100 · 3600) kg·m/s² =
+          1.61·10⁻¹⁰ kg·m/s²
+        </div>
+        <div class="trap">
+          <span class="tag">Die häufigste Falle</span>
+          <p>
+            Flächen und Volumen: 1 m = 100 cm, aber <b>1 m² = 10⁴ cm²</b> und <b>1 m³ = 10⁶ cm³</b>. Ebenso 1 m³ = 1000
+            dm³ = 1000 L. Und 5 mi² sind 5·1.6² km², nicht 5·1.6.
+          </p>
+        </div>
+        <p class="small muted">
+          Nützlich: km/h → m/s: ÷ 3.6 · 1 h = 3600 s · 1 Tag = 86 400 s · 1 Jahr ≈ 3.156·10⁷ s · 1 L = 1 dm³ · 1 mL = 1
+          cm³.
+        </p>
+
+        <h3>Vorgerechnet: Skript S. 6 und Übungsblatt M01</h3>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Sk S.6</span
+              ><span class="q">Grösser: 13 nm oder 1.4·10⁻⁷ m? Länger: 25 min oder 2.6·10⁵ ms?</span
+              ><span class="ans">1.4·10⁻⁷ m · 25 min</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                13 nm = 1.3·10⁻⁸ m &lt; 1.4·10⁻⁷ m (Exponent −8 ist kleiner als −7) 25 min = 1500 s &gt; 2.6·10⁵ ms =
+                260 s
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">M01 A1</span
+              ><span class="q">Mikrometer: µm in 1 km? 1.0 µm als Bruchteil von 1 cm? µm in 1.0 yd (0.9144 m)?</span
+              ><span class="ans">10⁹ µm · 1/10 000 cm · 914 400 µm</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) 1 km = 10³ m = 10³ · 10⁶ µm = 10⁹ µm b) 1 µm = 10⁻⁶ m, 1 cm = 10⁻² m → 10⁻⁶/10⁻² = 10⁻⁴ cm = 1/10 000
+                cm c) 0.9144 m · 10⁶ µm/m = 914 400 µm
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">M01 A2</span><span class="q">Lichtgeschwindigkeit 2.9979·10⁸ m/s in mm/ps</span
+              ><span class="ans">0.30 mm/ps</span>
+            </summary>
+            <div class="body">
+              <div class="eq">2.9979·10⁸ m/s · (10³ mm / 1 m) · (1 s / 10¹² ps) = 2.9979·10⁸⁺³⁻¹² = 0.30 mm/ps</div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">M01 A3</span
+              ><span class="q">1 foot = 12 inch, 1 m = 39.37 inch. a) 1 ft in m? b) Yacht 42.5 ft?</span
+              ><span class="ans">0.305 m · 12.95 m</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) 1 ft · (12 in / 1 ft) · (1 m / 39.37 in) = 0.3048 m b) 42.5 · 0.3048 = 12.95 m (Zwischenresultat
+                nicht auf 0.3 runden!)
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">M01 A4</span
+              ><span class="q">Dichte Eisen 0.2853 lbs/inch³ in kg/m³ (1 lbs = 0.4545 kg, 1 m = 39.37 in)</span
+              ><span class="ans">7913 kg/m³</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                0.2853 lbs/in³ · (0.4545 kg / 1 lbs) · (39.37 in / 1 m)³ = 0.2853 · 0.4545 · 61 023 = 7913 kg/m³
+              </div>
+              <p class="small muted">Das inch steht unten hoch 3, also muss auch der Umrechnungsbruch hoch 3.</p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">M01 A5</span><span class="q">Zehnerpotenzen ohne Taschenrechner</span
+              ><span class="ans">10⁻⁴ · 340 000 · 250 000.05 · 12 500</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) 0.0001 = 10⁻⁴, 100 000 = 10⁵ b) 3.4·10⁵ = 340 000, 4.7·10⁻⁷ = 0.000 000 47 c) 2.5·10⁵ + 5·10⁻² = 250
+                000.05 (plus → ausschreiben) d) 2.5·10⁵ · 5·10⁻² = 12.5·10³ = 12 500 (mal → Exponenten addieren)
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">M01 A6</span><span class="q">Flächen und Volumen umrechnen</span
+              ><span class="ans">0.48 dm² · 4800 mm² · 0.36 m³ · …</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) 0.0048 m² = 0.48 dm² = 4800 mm² (·10², ·10⁶) b) 360 000 cm³ = 360 dm³ = 0.36 m³ (÷10³, ÷10⁶) c) 7.6
+                dm³ = 7.6·10⁶ mm³ ((100 mm/dm)³ = 10⁶) d) 5 mi² = 5 · 1.6² km² = 12.8 km²
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">M01 A7</span><span class="q">Stoffbahn 0.50 m breit, 8.0 g pro cm Länge. kg pro m²?</span
+              ><span class="ans">1.6 kg/m²</span>
+            </summary>
+            <div class="body">
+              <p>
+                1 m Länge wiegt 100 · 8.0 g = 800 g und hat die Fläche 1 m · 0.50 m = 0.50 m². Also 800 g / 0.50 m² =
+                1600 g/m² = <b>1.6 kg/m²</b>.
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">M01 A8</span
+              ><span class="q"
+                >Alles in Basiseinheiten: Lichtjahre, km², nm³, lbs/in³, cm/ms², L/Tag, g·cm/min², GW·h</span
+              ><span class="ans">8 Werte</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                4.2421 LJ = 4.2421 · 9.461·10¹⁵ m = 4.0133·10¹⁶ m 41 285 km² = 41 285 · (10³)² m² = 4.1285·10¹⁰ m²
+                0.00419 nm³ = 4.19·10⁻³ · (10⁻⁹)³ m³ = 4.19·10⁻³⁰ m³ 0.6975 lbs/in³ · (1 kg/2.20462 lbs) · (39.3701
+                in/m)³ = 1.931·10⁴ kg/m³ 5.5·10⁻⁴ cm/ms² = 5.5·10⁻⁴ · 10⁻² m / (10⁻³ s)² = 5.5 m/s² 4.32·10¹⁰ L/Tag =
+                4.32·10¹⁰ · 10⁻³ m³ / 86 400 s = 500 m³/s 1.06·10⁶ g·cm/min² = 1.06·10⁶ · 10⁻³ kg · 10⁻² m / (60 s)² =
+                2.94·10⁻³ N 62 861 GW·h = 62 861 · 10⁹ W · 3600 s = 2.263·10¹⁷ J
+              </div>
+              <p class="small muted">
+                1 Lichtjahr = Strecke, die Licht in einem Jahr zurücklegt: 2.9979·10⁸ m/s · 3.156·10⁷ s. 1 N = 1
+                kg·m/s², 1 J = 1 W·s.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <h3>BMP-Niveau (Referenzaufgaben 1.1, 1.2, 1.5)</h3>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Ref 1</span
+              ><span class="q">Fingernagel wächst 5 mm in 4 Wochen. Geschwindigkeit in m/s?</span
+              ><span class="ans">2·10⁻⁹ m/s</span>
+            </summary>
+            <div class="body">
+              <div class="eq">t = 4 · 7 · 24 · 3600 s = 2.42·10⁶ s v = 5·10⁻³ m / 2.42·10⁶ s = 2·10⁻⁹ m/s</div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Ref 2</span><span class="q">Haar wächst 15 cm pro Jahr. Geschwindigkeit in nm/s?</span
+              ><span class="ans">4.8 nm/s</span>
+            </summary>
+            <div class="body"><div class="eq">v = 0.15 m / 3.156·10⁷ s = 4.75·10⁻⁹ m/s = 4.8 nm/s</div></div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Ref 5</span
+              ><span class="q">1 Gigatonne CO₂ als Würfel mit 10 km Kante. Welche Gasdichte?</span
+              ><span class="ans">1 kg/m³</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                m = 1 Gt = 10⁹ t = 10¹² kg V = (10 km)³ = (10⁴ m)³ = 10¹² m³ ρ = m/V = 10¹² / 10¹² = 1 kg/m³
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============ G3 RECHNEN & DICHTE ============ -->
+      <section class="panel" id="grech" role="tabpanel" hidden>
+        <h2>G3 · Rechnen mit Grössen und Dichte</h2>
+        <div class="oneline">
+          <b>In einem Satz:</b> Erst mit Buchstaben rechnen, alle Einheiten angleichen, am Schluss sinnvoll runden. Dann
+          klappt jede Formel.
+        </div>
+
+        <h3>Die drei Grundsätze (Skript Kap. 4)</h3>
+        <div class="grid2">
+          <div class="box">
+            <span class="pill">Grundsatz 1</span>
+            <h4>Erst Symbole, dann Zahlen</h4>
+            <p class="small">
+              Geg./Ges. notieren, Formel nach der gesuchten Grösse auflösen, erst am Schluss Zahlen mit Einheiten
+              einsetzen. Weniger Schreibarbeit, weniger Fehler, und du siehst, ob die Umformung stimmt.
+            </p>
+          </div>
+          <div class="box">
+            <span class="pill">Grundsatz 2</span>
+            <h4>Zuerst gleiche Einheiten</h4>
+            <p class="small">
+              Alle gegebenen Werte am Anfang in dieselben Einheiten umrechnen, am sichersten in kg, m, s.
+            </p>
+          </div>
+          <div class="box">
+            <span class="pill">Grundsatz 3</span>
+            <h4>Genau rechnen, sinnvoll runden</h4>
+            <p class="small">
+              Zwischenresultate nicht runden. Das Endresultat mit so vielen signifikanten Stellen wie die ungenaueste
+              Eingangsgrösse.
+            </p>
+          </div>
+        </div>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Sk S.4</span><span class="q">Schnecke: v = 0.5 mm/s, s = 2.1 m. Zeit? (Grundsatz 1)</span
+              ><span class="ans">4200 s</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                s = v·t → t = s/v t = 2.1 m / (0.5·10⁻³ m/s) = 4200 s = 70 min Einheitencheck: m / (m/s) = s ✓
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Sk S.4</span
+              ><span class="q">Kegel d = 5 mm, h = 3.1 m. Was ist falsch an «20.3 m³»? (Grundsatz 2)</span
+              ><span class="ans">2.0·10⁻⁵ m³</span>
+            </summary>
+            <div class="body">
+              <p>
+                Es wurden mm und m gemischt: 2.5 mm · 2.5 mm · 3.1 m ergibt nicht m³. Sicher: zuerst r = 2.5·10⁻³ m.
+              </p>
+              <div class="eq">V = ⅓·π·r²·h = ⅓·π·(2.5·10⁻³ m)²·3.1 m = 2.0·10⁻⁵ m³ (≈ 20 cm³)</div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Sk S.4</span
+              ><span class="q">Gotthard-Basistunnel 57.1 km, v = 153 km/h. Minuten? (Grundsatz 3)</span
+              ><span class="ans">22.4 min</span>
+            </summary>
+            <div class="body">
+              <div class="eq">t = s/v = 57.1/153 h = 0.37320 h = 22.392 min → 22.4 min (3 sig. Stellen)</div>
+            </div>
+          </details>
+        </div>
+
+        <h3>Formeln umstellen (Lernziel 2.2)</h3>
+        <div class="prose">
+          <p>
+            Eine Gleichung ist eine Waage: Was du links machst, machst du auch rechts. Ziel: die gesuchte Grösse allein
+            auf eine Seite.
+          </p>
+        </div>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Steht die Grösse …</th>
+              <th>dann …</th>
+              <th>Beispiel</th>
+            </tr>
+            <tr>
+              <td>mal etwas</td>
+              <td>durch dieses Etwas teilen</td>
+              <td>s = v·t → t = s/v</td>
+            </tr>
+            <tr>
+              <td>geteilt durch etwas</td>
+              <td>mit dem Etwas multiplizieren</td>
+              <td>ρ = m/V → m = ρ·V</td>
+            </tr>
+            <tr>
+              <td>unten im Bruch</td>
+              <td>zuerst hochholen (mal), dann teilen</td>
+              <td>ρ = m/V → ρ·V = m → V = m/ρ</td>
+            </tr>
+            <tr>
+              <td>im Quadrat</td>
+              <td>am Schluss Wurzel ziehen</td>
+              <td>F = m·v²/r → v = √(F·r/m)</td>
+            </tr>
+            <tr>
+              <td>unter einer Wurzel</td>
+              <td>beide Seiten quadrieren</td>
+              <td>t = 2π√(l/g) → l = g·t²/(4π²)</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Einheit aus der Formel erschliessen (Lernziel 2.3)</h3>
+        <div class="prose">
+          <p>
+            Beide Seiten einer Gleichung haben immer dieselbe Einheit. Setze für jede Grösse ihre Einheit in eckigen
+            Klammern ein und löse nach der unbekannten Einheit auf. Zahlen wie ½ oder 2 haben keine Einheit.
+          </p>
+        </div>
+        <div class="eq">s = ½·a·t² → [a] = [s]/[t]² = m/s² F = m·v²/r → [F] = kg·(m/s)²/m = kg·m/s² = N</div>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Ref 3</span
+              ><span class="q">Stimmt es? a) 1 kg·m²/s² = 1 J b) 1 kg·m²/s³ = 1 W c) 1 kg/(m·s²) = 1 Pa</span
+              ><span class="ans">alle richtig</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) J = N·m = (kg·m/s²)·m = kg·m²/s² ✓ b) W = J/s = kg·m²/s³ ✓ c) Pa = N/m² = (kg·m/s²)/m² = kg/(m·s²) ✓
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Ref 4</span><span class="q">Einheiten von A und B: a) s = A·t + B b) v² = 2·A·s</span
+              ><span class="ans">m/s, m · m/s²</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) Jeder Summand hat die Einheit von s: [B] = m, [A]·s = m → [A] = m/s b) m²/s² = [A]·m → [A] = m/s²
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">LZ 2.7</span><span class="q">x = 5.34·10⁻⁴ g / (7.86·10³ kg/m³) + 0.263·10⁻⁹ mm³</span
+              ><span class="ans">6.79·10⁻¹¹ m³</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                5.34·10⁻⁴ g = 5.34·10⁻⁷ kg → 5.34·10⁻⁷ / 7.86·10³ = 6.794·10⁻¹¹ m³ 0.263·10⁻⁹ mm³ = 0.263·10⁻⁹ · 10⁻⁹ m³
+                = 2.63·10⁻¹⁹ m³ (winzig) x = 6.79·10⁻¹¹ m³
+              </div>
+              <p class="small muted">Addieren darf man nur gleiche Einheiten. Deshalb beide Summanden zuerst in m³.</p>
+            </div>
+          </details>
+        </div>
+
+        <h3>Skript-Aufgaben S. 5</h3>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Sk A1</span
+              ><span class="q">Pendel t = 2π√(l/g): a) l = 785 mm b) Länge für t = 1 min</span
+              ><span class="ans">1.78 s · 895 m</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) t = 2π·√(0.785 m / 9.81 m/s²) = 1.78 s b) l = g·t²/(4π²) = 9.81 · 60² / (4π²) = 895 m
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Sk A2</span><span class="q">Druck am Flügel p = p₀ − ½·ρ·v², v = 500 km/h</span
+              ><span class="ans">889 hPa</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                v = 500/3.6 = 138.9 m/s p = 101 300 − ½·1.29·138.9² = 101 300 − 12 442 = 88 858 Pa = 889 hPa
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Sk A3</span
+              ><span class="q">Alu-Zylinder m = 21.49 kg, r = 19 cm, h = 7.02·10⁻² m. Dichte?</span
+              ><span class="ans">2.7·10³ kg/m³</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                ρ = m/(π·r²·h) = 21.49 / (π · 0.19² · 0.0702) = 2699 kg/m³ → 2.7·10³ kg/m³ (r hat 2 Stellen)
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <h3>Masse und Dichte (Skript Kap. 6)</h3>
+        <div class="prose">
+          <p>
+            Blei ist nicht «schwerer» als Aluminium, sondern <b>dichter</b>: Gleiches Volumen hat mehr Masse. Die Dichte
+            sagt, wie viel Masse in einem Kubikmeter eines Materials steckt. Die Masse ist proportional zum Volumen.
+          </p>
+        </div>
+        <div class="fcard">
+          <div class="big"><span>ρ = m / V</span></div>
+          <table>
+            <tr>
+              <th>umgestellt</th>
+              <th>Einheit</th>
+            </tr>
+            <tr>
+              <td>m = ρ·V &nbsp;·&nbsp; V = m/ρ</td>
+              <td>kg/m³ · 1 g/cm³ = 1000 kg/m³</td>
+            </tr>
+            <tr>
+              <td>Wasser (4 °C)</td>
+              <td>1000 kg/m³ = 1 g/cm³ (1 dm³ = 1 kg)</td>
+            </tr>
+          </table>
+        </div>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">6.2 A1</span
+              ><span class="q"
+                >Kugeln aus Holz und Eisen (A, B, C): Was ist jeweils gleich? Welche Farbe ist Eisen?</span
+              ><span class="ans">V · m · ρ</span>
+            </summary>
+            <div class="body">
+              <p>
+                A: zwei gleich grosse Kugeln aus verschiedenem Material → gleiches <b>Volumen</b>. B: kleine weisse und
+                grosse graue Kugel → gleiche <b>Masse</b> (das dichtere Material braucht weniger Volumen). C: zwei graue
+                Kugeln → gleiches Material, also gleiche <b>Dichte</b>. Da in B die weisse Kugel bei gleicher Masse
+                kleiner ist, ist <b>weiss = Eisen</b>.
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">6.2 A2–A5</span
+              ><span class="q">Blei 2.000 m³ · Alu 5.00 g · Bleiwürfel 1.000 cm · Bleiwürfel 1.000 kg</span
+              ><span class="ans">22.68 t · 1.85 cm³ · 11.34 g · 88.2 cm³</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                A2: m = 11 340 · 2.000 = 22 680 kg = 22.68 t A3: V = 5.00·10⁻³ kg / 2700 = 1.85·10⁻⁶ m³ = 1.85 cm³ A4: m
+                = 11.34 g/cm³ · 1.000 cm³ = 11.34 g A5: V = 1.000 / 11 340 = 8.82·10⁻⁵ m³ = 88.2 cm³
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">6.2 A6</span
+              ><span class="q">Eisquader 400 g, a = 4.00 cm, b = 5.00 cm, ρ = 917 kg/m³. Kante c?</span
+              ><span class="ans">21.8 cm</span>
+            </summary>
+            <div class="body">
+              <div class="eq">a·b·c = m/ρ → c = m/(ρ·a·b) = 400 g / (0.917 g/cm³ · 4.00 · 5.00 cm²) = 21.8 cm</div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">6.2 A7</span><span class="q">Flüssigkeit 5.00 kg, 3.96 dm³. Welche?</span
+              ><span class="ans">Glycerin</span>
+            </summary>
+            <div class="body"><div class="eq">ρ = 5.00 / 3.96·10⁻³ = 1263 kg/m³ → Glycerin (1260 kg/m³)</div></div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">6.2 A8</span><span class="q">Masse einer Kuh schätzen</span
+              ><span class="ans">≈ 700 kg</span>
+            </summary>
+            <div class="body">
+              <p>
+                Volumen: Rumpf etwa 1.5 m × 0.6 m × 0.8 m ≈ 0.7 m³. Dichte: Lebewesen bestehen vor allem aus Wasser, ≈
+                1000 kg/m³. m ≈ 0.7 · 1000 ≈ 700 kg.
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">6.2 A9</span
+              ><span class="q">Urkilogramm: Zylinder mit h = d, Pt-Ir (≈ 21 500 kg/m³). Grösse?</span
+              ><span class="ans">39 mm</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                V = 1/21 500 = 4.65·10⁻⁵ m³ V = π·r²·h mit h = 2r → V = 2π·r³ → r = ∛(V/2π) = 0.0195 m h = d = 39 mm
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">6.2 A10</span
+              ><span class="q">1.00 kg Wasser + 1.00 kg Ethanol (789 kg/m³). Dichte der Mischung?</span
+              ><span class="ans">882 kg/m³</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                V = 1.00/1000 + 1.00/789 = 2.267·10⁻³ m³ ρ = 2.00 / 2.267·10⁻³ = 882 kg/m³ (nicht den Mittelwert 894.5
+                nehmen!)
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">6.2 A11</span
+              ><span class="q">Messing 8470: wie viel Zinn (7290) zu 1 kg Kupfer (8920)?</span
+              ><span class="ans">0.312 kg</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                8470 = (1 + x) / (1/8920 + x/7290) CAS: solve(8470=(1+x)/(1/8920+x/7290), x) → x = 0.312 kg
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============ G4 GENAUIGKEIT ============ -->
+      <section class="panel" id="ggen" role="tabpanel" hidden>
+        <h2>G4 · Genauigkeit und Abschätzen</h2>
+        <div class="oneline">
+          <b>In einem Satz:</b> Jede Messung ist ungenau. Man schreibt eine Zahl so, dass man ihr die Genauigkeit
+          ansieht, und rundet Resultate nie genauer als die Messwerte.
+        </div>
+
+        <h3>Signifikante Stellen (Lernziele 3.1–3.2)</h3>
+        <div class="prose">
+          <p>
+            Die letzte geschriebene Ziffer ist gerade noch verlässlich. <b>3.5 m</b> heisst «auf etwa 1 dm genau»,
+            <b>3.50 m</b> heisst «auf etwa 1 cm genau». Das ist nicht dasselbe!
+          </p>
+          <ul>
+            <li>Führende Nullen zählen nicht: 0.0456 s → 3 Stellen.</li>
+            <li>Nullen zwischen Ziffern zählen: 4.0030 m → 5 Stellen.</li>
+            <li>Nullen am Ende hinter dem Komma zählen: 0.0020 m → 2 Stellen, 40.000 g → 5 Stellen.</li>
+            <li>
+              Nullen am Ende ohne Komma sind unklar: 300 000 m → im Skript 1 Stelle. Besser 3.0·10⁵ m (2 Stellen).
+            </li>
+          </ul>
+        </div>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Wert</th>
+              <th>sig. Stellen</th>
+              <th>Wert</th>
+              <th>sig. Stellen</th>
+            </tr>
+            <tr>
+              <td>300 000 m</td>
+              <td>1</td>
+              <td>0.0052 m</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>5.2 m</td>
+              <td>2</td>
+              <td>40 kg</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>3.0·10⁻² m</td>
+              <td>2</td>
+              <td>40.000 g</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>10.244 m</td>
+              <td>5</td>
+              <td>30.103 m</td>
+              <td>5</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Richtig runden (Lernziel 3.3)</h3>
+        <div class="grid2">
+          <div class="box">
+            <span class="pill">mal / geteilt</span>
+            <p>Resultat mit so vielen <b>signifikanten Stellen</b> wie die ungenaueste Grösse.</p>
+            <p class="small muted">Läuferin: s = 0.10 km (2 Stellen), t = 13.42 s → v = 7.4515… → <b>7.5 m/s</b></p>
+          </div>
+          <div class="box">
+            <span class="pill">plus / minus</span>
+            <p>Resultat mit so vielen <b>Dezimalstellen</b> wie die ungenaueste Grösse.</p>
+            <p class="small muted">Kartoffeln: 7.56 − 6.052 + 13.7 = 15.208 → <b>15.2 kg</b></p>
+          </div>
+        </div>
+        <p class="small muted">
+          Praktisch: Im Rechner immer mit allen Stellen weiterrechnen, nur das Endresultat runden.
+        </p>
+
+        <h3>Fehlerrechnung (Lernziel 3.4)</h3>
+        <ol class="steps">
+          <li>
+            <div><b>Toleranz</b> jedes Messwerts: die halbe letzte Stelle. 5.2 cm → ±0.05 cm, 34.9 g → ±0.05 g.</div>
+          </li>
+          <li>
+            <div>
+              Resultat dreimal rechnen: mit den Messwerten (x̄), so dass es <b>maximal</b> wird (x<sub>max</sub>) und so
+              dass es <b>minimal</b> wird (x<sub>min</sub>). Bei Brüchen über Kreuz: gross oben und klein unten gibt das
+              Maximum.
+            </div>
+          </li>
+          <li>
+            <div>
+              <b>Absoluter Fehler</b> Δx = x<sub>max</sub> − x̄ oder x̄ − x<sub>min</sub>, der grössere Wert ist
+              massgebend. Auf 1 signifikante Stelle runden.
+            </div>
+          </li>
+          <li>
+            <div><b>Relativer Fehler</b> Δx / x̄ in Prozent.</div>
+          </li>
+          <li><div>Schreibweise: x = (x̄ ± Δx) Einheit oder x = x̄ Einheit (± Prozent).</div></li>
+        </ol>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Sk S.12</span
+              ><span class="q">Platte l = 5.2 cm, b = 3.4 cm, d = 2.3 mm, m = 34.9 g: Dichte mit Fehler, Material?</span
+              ><span class="ans">(8.6 ± 0.4)·10³ kg/m³</span>
+            </summary>
+            <div class="body">
+              <p class="small muted">Nach der Musterlösung deines Lehrers.</p>
+              <div class="tscroll">
+                <table class="t">
+                  <tr>
+                    <th></th>
+                    <th>x̄</th>
+                    <th>x_max</th>
+                    <th>x_min</th>
+                  </tr>
+                  <tr>
+                    <td>l</td>
+                    <td>5.2 cm</td>
+                    <td>5.25 cm</td>
+                    <td>5.15 cm</td>
+                  </tr>
+                  <tr>
+                    <td>b</td>
+                    <td>3.4 cm</td>
+                    <td>3.45 cm</td>
+                    <td>3.35 cm</td>
+                  </tr>
+                  <tr>
+                    <td>d</td>
+                    <td>2.3 mm</td>
+                    <td>2.35 mm</td>
+                    <td>2.25 mm</td>
+                  </tr>
+                  <tr>
+                    <td>m</td>
+                    <td>34.9 g</td>
+                    <td>34.95 g</td>
+                    <td>34.85 g</td>
+                  </tr>
+                  <tr>
+                    <td>V</td>
+                    <td>4.0664 cm³</td>
+                    <td>4.256 cm³</td>
+                    <td>3.882 cm³</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="eq">
+                ρ̄ = 34.9/4.0664 = 8583 kg/m³ ρ_max = m_max/V_min = 34.95/3.882 = 9004 kg/m³ ρ_min = m_min/V_max =
+                34.85/4.256 = 8188 kg/m³ Δρ = 9004 − 8583 = 421 kg/m³ (grösser als 8583 − 8188 = 395) ρ = (8.6 ±
+                0.4)·10³ kg/m³, relativ 421/8583 = 4.9 %
+              </div>
+              <p>
+                Messing (8.5), Kupfer (8.96) und Nickel (8.91·10³ kg/m³) liegen alle im Bereich: Das Material ist
+                <b>nicht eindeutig bestimmbar</b>. Die ungenaueste Grösse hat 2 signifikante Stellen, darum 8.6·10³.
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Ref 6</span
+              ><span class="q">Wanderung: 15.6 km in 4 h 13 min 25 s. Mittlere Geschwindigkeit, richtig gerundet?</span
+              ><span class="ans">1.03 m/s</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                t = 4·3600 + 13·60 + 25 = 15 205 s v = 15 600 m / 15 205 s = 1.026 m/s → 1.03 m/s (15.6 km hat 3
+                Stellen) = 3.69 km/h
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <h3>Abschätzungen (Lernziel 4.1)</h3>
+        <div class="prose">
+          <p>
+            Manchmal reicht die <b>Grössenordnung</b> (10³ oder 10⁻⁴?). Strategie (Fermi-Problem): das Problem in kleine
+            Schritte zerlegen, für jeden Schritt eine vernünftige Annahme treffen, mit Zehnerpotenzen rechnen. Die
+            Annahmen aufschreiben: Sie geben Punkte, auch wenn das Resultat nicht genau stimmt.
+          </p>
+        </div>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Sk</span><span class="q">Höhe des Sulzer-Hochhauses (Winterthur)</span
+              ><span class="ans">≈ 90 m</span>
+            </summary>
+            <div class="body">
+              <p>
+                Stockwerke zählen (rund 25), ein Stockwerk ≈ 3.5 m (etwa zwei Menschen übereinander). 25 · 3.5 m ≈ 90 m.
+                Tatsächlich ist es rund 92 m hoch.
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü1</span><span class="q">Anzahl Kieselsteine und Sandkörner in einem Eimer</span
+              ><span class="ans">≈ 10³ · ≈ 10⁸</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                Eimer ≈ 10 L = 10⁴ cm³, davon ≈ 60 % gefüllt mit Material (Lücken!) Kiesel Ø ≈ 2 cm → V ≈ 4 cm³ →
+                0.6·10⁴ / 4 ≈ 1.5·10³ Kiesel Sandkorn Ø ≈ 0.5 mm → V ≈ 0.07 mm³ = 7·10⁻⁵ cm³ → 0.6·10⁴ / 7·10⁻⁵ ≈ 10⁸
+                Körner
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü2 / Ref 7</span
+              ><span class="q">Wie viele Atomlagen verliert ein Autoreifen pro Umdrehung?</span
+              ><span class="ans">≈ 1–3 Atomlagen</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                Annahmen: Reifen Ø ≈ 0.6 m, Profilabrieb über die Lebensdauer ≈ 5 mm Umfang = π·0.6 m ≈ 1.9 m
+                Umdrehungen = 4·10⁷ m / 1.9 m ≈ 2·10⁷ (Skript: 3·10⁷ m → 1.6·10⁷) Atomlagen total = 5·10⁻³ m / 10⁻¹⁰ m =
+                5·10⁷ pro Umdrehung ≈ 5·10⁷ / 2·10⁷ ≈ 2–3 Atomlagen
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
       <!-- ============ DRUCK ============ -->
       <section class="panel" id="druck" role="tabpanel" hidden>
-        <h2>1 · Druck</h2>
+        <h2>F1 · Druck</h2>
         <div class="oneline">
           <b>In einem Satz:</b> Druck sagt, wie stark eine Kraft auf <i>jeden Quadratmeter</i> einer Fläche drückt.
           Gleiche Kraft auf kleiner Fläche = grosser Druck.
@@ -1733,7 +2985,7 @@
 
       <!-- ============ PASCAL ============ -->
       <section class="panel" id="pascal" role="tabpanel" hidden>
-        <h2>2 · Prinzip von Pascal</h2>
+        <h2>F2 · Prinzip von Pascal</h2>
         <div class="oneline">
           <b>In einem Satz:</b> Drückst du irgendwo auf eine eingeschlossene Flüssigkeit, steigt der Druck
           <i>überall</i> in der Flüssigkeit um genau gleich viel.
@@ -1967,7 +3219,7 @@
 
       <!-- ============ SCHWEREDRUCK ============ -->
       <section class="panel" id="schwere" role="tabpanel" hidden>
-        <h2>3 · Schweredruck (hydrostatischer Druck)</h2>
+        <h2>F3 · Schweredruck (hydrostatischer Druck)</h2>
         <div class="oneline">
           <b>In einem Satz:</b> Das Wasser über dir hat ein Gewicht und drückt auf dich. Je tiefer du tauchst, desto
           mehr Wasser liegt über dir, desto grösser der Druck.
@@ -2292,7 +3544,7 @@
 
       <!-- ============ LUFTDRUCK ============ -->
       <section class="panel" id="luft" role="tabpanel" hidden>
-        <h2>4 · Luftdruck &amp; Luftdichte</h2>
+        <h2>F4 · Luftdruck &amp; Luftdichte</h2>
         <div class="oneline">
           <b>In einem Satz:</b> Wir leben am Grund eines «Luftozeans». Die ganze Luft über uns hat ein Gewicht und
           drückt mit rund 1 bar auf alles.
@@ -2526,7 +3778,7 @@
 
       <!-- ============ AUFTRIEB ============ -->
       <section class="panel" id="auftrieb" role="tabpanel" hidden>
-        <h2>5 · Auftrieb</h2>
+        <h2>F5 · Auftrieb</h2>
         <div class="oneline">
           <b>In einem Satz:</b> Ein Körper im Wasser wird mit genau so viel Kraft nach oben gedrückt, wie das Wasser
           wiegt, das er zur Seite drängt (Archimedes).
@@ -3358,6 +4610,33 @@
           und Gleichungssysteme lösen. Im Test musst du den Lösungsweg trotzdem aufschreiben.
         </p>
 
+        <h3>0 · Grundlagen: Zehnerpotenzen und Einheiten</h3>
+        <div class="prose">
+          <p>
+            Für ·10ⁿ immer die Taste <kbd>EE</kbd> verwenden, nicht «×10^». Das Vorzeichen minus ist die Taste
+            <kbd>(−)</kbd>, nicht die Rechen-Minus-Taste. Auf dem Bildschirm erscheint <span class="f">E</span>:
+            <span class="f">7.913E3</span> heisst 7.913·10³.
+          </p>
+        </div>
+        <div class="nsp">
+          2.5E5*5E−2 <span class="r">12500.</span>
+          <span class="c">Einheiten umrechnen: Wert_alt ▸ _neu</span>
+          42.5_ft▸_m <span class="r">12.954_m</span> 1_km▸_µm <span class="r">1.E9_µm</span> 0.0048_m^2▸_mm^2
+          <span class="r">4800._mm^2</span> 500_km/_hr▸_m/_s
+          <span class="r">138.889_m/_s</span> 5_gm/(2700_kg/_m^3)▸_cm^3 <span class="r">1.85185_cm^3</span>
+          <span class="c">Formel mit Einheiten = gratis Einheitencheck</span>
+          2*π*√(785_mm/(9.81_m/_s^2))▸_s <span class="r">1.77738_s</span>
+        </div>
+        <div class="trap">
+          <span class="tag">Achtung</span>
+          <p>
+            Der Rechner rechnet mit exakten Umrechnungsfaktoren (1 lb = 0.45359 kg). Gibt die Aufgabe einen eigenen
+            Faktor vor (z. B. 0.4545 kg), zählt der Wert aus der Aufgabe: dann die Umrechnungsbrüche selbst eintippen.
+            Stunde heisst <span class="f">_hr</span>, Jahr <span class="f">_yr</span>, Gramm <span class="f">_gm</span>.
+            Lass die Anzeige auf «Fliess 6» und runde selbst auf die richtige Anzahl signifikanter Stellen.
+          </p>
+        </div>
+
         <h3>1 · Vorbereitung vor dem Test: ein Fluidstatik-Dokument</h3>
         <div class="prose">
           <p>
@@ -3500,13 +4779,101 @@
       <section class="panel" id="test" role="tabpanel" hidden>
         <h2>Probetest</h2>
         <p class="lead">
-          Neue Aufgaben im Stil des Tests, gemischt über alle Lernziele. Nimm dir 45 Minuten, löse auf Papier, erst dann
-          aufklappen.
+          Neue Aufgaben im Stil des Tests über beide Kapitel. Nimm dir für jeden Teil etwa 45 Minuten, löse auf Papier,
+          erst dann aufklappen.
         </p>
         <div class="numrow">
           <button class="btn" id="timerBtn" type="button">45-Minuten-Timer starten</button
           ><span class="score" id="timerOut">45:00</span>
         </div>
+
+        <h3>Teil G · Grundlagen</h3>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">G1 · 3 P</span
+              ><span class="q"
+                >Erkläre den Unterschied zwischen Hypothese, Gesetz und Theorie in vollständigen Sätzen.</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <p>
+                Eine Hypothese ist eine wissenschaftlich begründete Vermutung über einen Zusammenhang, die überprüfbare
+                Voraussagen macht. Wird sie durch wiederholbare Experimente immer wieder bestätigt, spricht man von
+                einem Gesetz, das meist als Formel geschrieben wird. Eine Theorie fasst mehrere Gesetze und Modelle
+                eines Teilgebiets widerspruchsfrei zusammen.
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">G2 · 4 P</span
+              ><span class="q"
+                >Rechne in Basiseinheiten um: a) 72 km/h b) 3.5 g/cm³ c) 250 mL d) 4.8·10⁴ mg·cm/min²</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) 72/3.6 = 20 m/s b) 3.5 · 1000 = 3.5·10³ kg/m³ c) 250 cm³ = 250·10⁻⁶ m³ = 2.5·10⁻⁴ m³ d) 4.8·10⁴ ·
+                10⁻⁶ kg · 10⁻² m / (60 s)² = 1.3·10⁻⁷ kg·m/s²
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">G3 · 3 P</span
+              ><span class="q"
+                >Löse nach der gesuchten Grösse auf: a) ρ = m/V nach V b) E = ½·m·v² nach v c) Welche Einheit hat k in F
+                = k·x, wenn F in N und x in m?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body"><div class="eq">a) V = m/ρ b) v = √(2E/m) c) [k] = N/m = kg/s²</div></div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">G4 · 3 P</span
+              ><span class="q"
+                >Ein Goldring hat die Masse 7.72 g und das Volumen 0.40 cm³. Dichte in kg/m³, richtig gerundet? Echtes
+                Gold (19 300 kg/m³)?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">ρ = 7.72 g / 0.40 cm³ = 19.3 g/cm³ → 1.9·10⁴ kg/m³ (0.40 hat 2 Stellen)</div>
+              <p>
+                Passt zu Gold, aber mit nur 2 signifikanten Stellen nicht sicher von anderen dichten Metallen zu
+                unterscheiden.
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">G5 · 4 P</span
+              ><span class="q"
+                >Ein Würfel hat die Kante a = 2.0 cm (±0.05 cm) und die Masse m = 21.6 g (±0.05 g). Dichte mit absolutem
+                und relativem Fehler?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                ρ̄ = 21.6 / 2.0³ = 2.70 g/cm³ ρ_max = 21.65 / 1.95³ = 2.92 g/cm³, ρ_min = 21.55 / 2.05³ = 2.50 g/cm³ Δρ =
+                2.92 − 2.70 = 0.22 → 0.2 g/cm³, relativ 0.22/2.70 = 8 % ρ = (2.7 ± 0.2)·10³ kg/m³ (Aluminium?)
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">G6 · 3 P</span
+              ><span class="q"
+                >Schätze ab: Wie viele Liter Wasser fliessen in deinem Leben (80 Jahre) durch deinen Körper, wenn du
+                täglich 2 L trinkst? Grössenordnung in m³?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">2 L/Tag · 365 · 80 ≈ 5.8·10⁴ L ≈ 60 m³ (etwa ein kleines Schwimmbecken)</div>
+            </div>
+          </details>
+        </div>
+        <h3>Teil F · Fluidstatik</h3>
         <div class="exlist">
           <details class="ex">
             <summary>
@@ -3652,10 +5019,35 @@
       <section class="panel" id="spick" role="tabpanel" hidden>
         <h2>A4-Spick</h2>
         <p class="lead">
-          Ein Vorschlag für deine eine A4-Seite. Schreib ihn von Hand ab: Das Abschreiben ist selbst schon Lernen.
-          Ergänze deine persönlichen Fehlerquellen.
+          Ein Vorschlag für deine eine A4-Seite (Vorder- und Rückseite, falls erlaubt; sonst klein schreiben oder die
+          G-Blöcke kürzen, die du schon sicher kannst). Schreib ihn von Hand ab: Das Abschreiben ist selbst schon
+          Lernen. Ergänze deine persönlichen Fehlerquellen.
         </p>
         <div class="spick">
+          <div class="blk">
+            <h4>G · Präfixe &amp; Potenzen</h4>
+            <code>T 12 · G 9 · M 6 · k 3 · h 2 · da 1</code><code>d −1 · c −2 · m −3 · µ −6 · n −9 · p −12</code>
+            <code>mal: Exp. + · geteilt: Exp. −</code><code>hoch n: Exp. · n · plus: ausschreiben</code
+            ><code>m² → Faktor², m³ → Faktor³</code><code>km/h ÷ 3.6 = m/s · 1 L = 1 dm³</code>
+          </div>
+          <div class="blk">
+            <h4>G · Rechnen &amp; Dichte</h4>
+            <code>Symbole → gleiche Einheiten → runden</code><code>Mal-1-Brüche: alte Einheit Gegenseite</code
+            ><code>[a] aus Formel: beide Seiten gleich</code> <code>ρ = m/V · m = ρV · V = m/ρ</code
+            ><code>Mischung: ρ = m_ges/(V₁+V₂)</code><code>Basis: kg, m, s · N = kg·m/s²</code>
+          </div>
+          <div class="blk">
+            <h4>G · Genauigkeit</h4>
+            <code>führende 0 zählen nicht, End-0 nach Komma ja</code
+            ><code>·/÷: sig. Stellen · +/−: Dezimalstellen</code> <code>Toleranz = halbe letzte Stelle</code
+            ><code>Δx = x_max − x̄ (grösserer Wert)</code><code>rel = Δx/x̄ · (x̄ ± Δx)</code>
+          </div>
+          <div class="blk">
+            <h4>G · Methode</h4>
+            <code>Beobachtung → Hypothese → Experiment</code><code>→ Gesetz / Modell → Theorie</code
+            ><code>Experiment: kontrolliert, wiederholbar</code><code>bestätigen ≠ beweisen</code
+            ><code>Teilgebiete: Mechanik, Wärme, Optik,</code><code>Elektrizität, Atom/Kern, Astronomie</code>
+          </div>
           <div class="blk">
             <h4>Druck</h4>
             <code>p = F/A [Pa = N/m²]</code><code>F = Δp·A (Druckdifferenz!)</code>
@@ -3708,9 +5100,9 @@
       </section>
 
       <p class="footer">
-        Grundlage: Skript Sk02 Fluidstatik, Lernziele LZ02, Übungen UeP02.C1 und C2 (M. Mohr) sowie Referenzaufgaben
-        Physik TALS Kanton Zürich, Kap. 7. Werte für ρ<sub>Hg</sub> und g können je nach Formelsammlung leicht
-        abweichen.
+        Grundlage: Skripte Sk01 Grundlagen und Sk02 Fluidstatik, Lernziele LZ01 und LZ02, Übungsblatt Ue_P01.M01, AB
+        01.01 und 01.02, Übungen UeP02.C1 und C2 (M. Mohr) sowie Referenzaufgaben Physik TALS Kanton Zürich, Kap. 1 und
+        7. Werte für ρ<sub>Hg</sub> und g können je nach Formelsammlung leicht abweichen.
       </p>
     </div>
 
@@ -3768,7 +5160,42 @@
         /* ---------- Checklist ---------- */
         var LZ = [
           [
-            "1 · Grundbegriffe",
+            "G · Physik und Methode (LZ01)",
+            [
+              ["G1.1", "Wesen und Inhalt der Physik umschreiben", "gmeth"],
+              [
+                "G1.2",
+                "Arbeitsweise mit Beobachtung, Experiment, Hypothese, Modell, Gesetz, Theorie in Sätzen erklären",
+                "gmeth",
+              ],
+              ["G1.3", "Mindestens 5 Teilgebiete kennen und beschreiben", "gmeth"],
+            ],
+          ],
+          [
+            "G · Grössen und Einheiten (LZ01)",
+            [
+              ["G2.1", "Länge, Zeit, Masse, Geschwindigkeit, Dichte mit Symbol und Einheit", "geinh"],
+              ["G2.2", "Formeln nach jeder Grösse auflösen", "grech"],
+              ["G2.3", "Einheit einer Grösse aus einer Formel erschliessen", "grech"],
+              ["G2.4", "Präfixe 10⁻¹² bis 10¹² auswendig und umrechnen", "geinh"],
+              ["G2.5", "Beliebige Einheiten in Basiseinheiten (kg, m, s) umformen", "geinh"],
+              ["G2.6", "Mit Zehnerpotenzen rechnen", "geinh"],
+              ["G2.7", "Wert und Einheit von Termen berechnen", "grech"],
+              ["G2.8", "Dichte ρ = m/V anwenden (Skript Kap. 6)", "grech"],
+            ],
+          ],
+          [
+            "G · Genauigkeit und Abschätzen (LZ01)",
+            [
+              ["G3.1", "Unterschied 3.5 und 3.50 erklären", "ggen"],
+              ["G3.2", "Anzahl signifikanter Stellen angeben", "ggen"],
+              ["G3.3", "Resultate richtig runden", "ggen"],
+              ["G3.4", "Absoluten und relativen Fehler berechnen", "ggen"],
+              ["G4.1", "Abschätzungen mit vernünftigen Annahmen machen", "ggen"],
+            ],
+          ],
+          [
+            "F · 1 Grundbegriffe (LZ02)",
             [
               ["1.1", "Gemeinsamkeiten und Unterschiede fest / flüssig / gasförmig beschreiben", "druck"],
               ["1.2", "Definition Druck p = F/A kennen und anwenden", "druck"],
@@ -3777,7 +5204,7 @@
             ],
           ],
           [
-            "2 · Pascal",
+            "F · 2 Pascal",
             [
               ["2.1", "Funktionsweise von Druck- und Kraftübersetzer erklären", "pascal"],
               ["2.2", "Kraft, Druck, Hubweg an hydraulischen Pressen berechnen (mit Reibung)", "pascal"],
@@ -3787,7 +5214,7 @@
             ],
           ],
           [
-            "3 · Schweredruck",
+            "F · 3 Schweredruck",
             [
               ["3.1", "Hydrostatisches Paradoxon erklären", "schwere"],
               ["3.2", "Schweredruck und Kraft auf Flächen berechnen", "schwere"],
@@ -3795,7 +5222,7 @@
             ],
           ],
           [
-            "4 · Luftdruck",
+            "F · 4 Luftdruck",
             [
               ["4.1", "Auswirkungen des Luftdrucks im Alltag erklären", "luft"],
               ["4.2", "Experiment zur Bestimmung der Luftdichte beschreiben", "luft"],
@@ -3807,7 +5234,7 @@
             ],
           ],
           [
-            "5 · Auftrieb",
+            "F · 5 Auftrieb",
             [
               ["5.1", "Auftriebsgesetz mit dem Schweredruck herleiten", "auftrieb"],
               ["5.2", "m, V, ρ mit Kräftegleichgewicht F_A, F_G, F_H berechnen", "auftrieb"],
@@ -3830,7 +5257,7 @@
             var lab = document.createElement("label");
             var cb = document.createElement("input");
             cb.type = "checkbox";
-            cb.id = "lz" + it[0].replace(".", "_");
+            cb.id = "lz" + it[0].replace(/\./g, "_");
             cb.checked = !!done[it[0]];
             cb.addEventListener("change", function () {
               done[it[0]] = cb.checked;
@@ -3865,6 +5292,150 @@
 
         /* ---------- Quiz ---------- */
         var Q = [
+          {
+            t: "gmeth",
+            q: "Was ist ein Experiment im Sinne der Physik?",
+            o: [
+              "Eine zufällige Beobachtung",
+              "Eine kontrollierte, wiederholbare Beobachtung",
+              "Eine begründete Vermutung",
+              "Ein System von Gesetzen",
+            ],
+            a: 1,
+            e: "Ein Experiment ist kontrolliert (störende Einflüsse werden ausgeschaltet) und wiederholbar. Eine begründete Vermutung ist eine Hypothese, ein System von Gesetzen eine Theorie.",
+          },
+          {
+            t: "gmeth",
+            q: "Was können Messungen mit einer Hypothese machen?",
+            o: [
+              "Sie endgültig beweisen",
+              "Sie bestätigen oder widerlegen",
+              "Sie nur widerlegen",
+              "Nichts, Hypothesen sind nicht messbar",
+            ],
+            a: 1,
+            e: "Messungen können eine Hypothese bestätigen (das Vertrauen wächst), aber nie endgültig beweisen. Ein widersprechendes Experiment kann sie widerlegen.",
+          },
+          {
+            t: "gmeth",
+            q: "Man ersetzt einen fallenden Apfel in der Rechnung durch eine Kugel. Das ist ein …",
+            o: ["Gesetz", "Modell", "Experiment", "Theorie"],
+            a: 1,
+            e: "Ein Modell ist eine vereinfachende Vorstellungshilfe, die in einigen Eigenschaften mit dem Original übereinstimmt.",
+          },
+          {
+            t: "gmeth",
+            q: "Welches Teilgebiet der Mechanik beschreibt Bewegungen, ohne nach ihrer Ursache zu fragen?",
+            o: ["Dynamik", "Kinematik", "Energetik", "Fluidstatik"],
+            a: 1,
+            e: "Kinematik = Bewegungsbeschreibung. Die Dynamik fragt nach den Kräften als Ursache.",
+          },
+          {
+            t: "geinh",
+            q: "Wie viel ist 3.4·10⁵ als Dezimalzahl?",
+            n: 340000,
+            u: "",
+            e: "Komma 5 Stellen nach rechts: 340 000.",
+          },
+          { t: "geinh", q: "2.5·10⁵ · 4·10⁻³ = ?", n: 1000, u: "", e: "(2.5·4)·10⁵⁻³ = 10·10² = 1000." },
+          {
+            t: "geinh",
+            q: "Wofür steht das Präfix «n» (nano)?",
+            o: ["10⁻⁶", "10⁻⁹", "10⁻¹²", "10⁹"],
+            a: 1,
+            e: "nano = 10⁻⁹. mikro = 10⁻⁶, piko = 10⁻¹², giga = 10⁹.",
+          },
+          {
+            t: "geinh",
+            q: "Wie viele cm² sind 1 m²?",
+            n: 10000,
+            u: "cm²",
+            e: "1 m = 100 cm, also 1 m² = 100² cm² = 10⁴ cm².",
+          },
+          { t: "geinh", q: "0.36 m³ in Liter?", n: 360, u: "L", e: "1 m³ = 1000 dm³ = 1000 L → 360 L." },
+          { t: "geinh", q: "108 km/h in m/s?", n: 30, u: "m/s", e: "km/h durch 3.6: 108/3.6 = 30 m/s." },
+          {
+            t: "geinh",
+            q: "Wie viele µm hat 1 mm?",
+            n: 1000,
+            u: "µm",
+            e: "1 mm = 10⁻³ m, 1 µm = 10⁻⁶ m → 10⁻³/10⁻⁶ = 10³.",
+          },
+          {
+            t: "grech",
+            q: "s = ½·a·t². Welche Einheit hat a?",
+            o: ["m/s", "m·s²", "m/s²", "s²/m"],
+            a: 2,
+            e: "a = 2s/t² → [a] = m/s². Die Zahl ½ hat keine Einheit.",
+          },
+          {
+            t: "grech",
+            q: "F = m·v²/r nach v aufgelöst ergibt …",
+            o: ["v = F·r/m", "v = √(F·r/m)", "v = √(F·m/r)", "v = (F/m·r)²"],
+            a: 1,
+            e: "Mal r: F·r = m·v². Durch m: v² = F·r/m. Wurzel: v = √(F·r/m).",
+          },
+          {
+            t: "grech",
+            q: "Welche Masse in kg hat 2.0 L Olivenöl (ρ = 910 kg/m³)?",
+            n: 1.82,
+            u: "kg",
+            e: "V = 2.0·10⁻³ m³ → m = ρ·V = 910 · 2.0·10⁻³ = 1.82 kg.",
+          },
+          {
+            t: "grech",
+            q: "Ein Stein hat m = 540 g und V = 200 cm³. Dichte in kg/m³?",
+            n: 2700,
+            u: "kg/m³",
+            e: "540/200 = 2.7 g/cm³ = 2700 kg/m³.",
+          },
+          {
+            t: "grech",
+            q: "1 kg Wasser + 1 kg Ethanol gemischt. Die Dichte der Mischung ist …",
+            o: [
+              "der Mittelwert der Dichten",
+              "Gesamtmasse / Gesamtvolumen",
+              "die Dichte von Wasser",
+              "die Summe der Dichten",
+            ],
+            a: 1,
+            e: "Immer ρ = m_ges/V_ges. Den einfachen Mittelwert darf man nur bei gleichen Volumen nehmen.",
+          },
+          {
+            t: "ggen",
+            q: "Wie viele signifikante Stellen hat 0.00520 m?",
+            n: 3,
+            u: "Stellen",
+            e: "Führende Nullen zählen nicht, die Endnull hinter dem Komma schon: 5, 2, 0 → 3.",
+          },
+          {
+            t: "ggen",
+            q: "Wie viele signifikante Stellen hat 4.0030 m?",
+            n: 5,
+            u: "Stellen",
+            e: "Nullen zwischen Ziffern und am Ende nach dem Komma zählen: 5 Stellen.",
+          },
+          {
+            t: "ggen",
+            q: "v = 57.1 km / 0.373 h. Wie genau gibst du das Resultat an?",
+            o: ["153.083 km/h", "153 km/h", "150 km/h", "153.1 km/h"],
+            a: 1,
+            e: "Mal/geteilt: so viele signifikante Stellen wie die ungenaueste Grösse, hier 3.",
+          },
+          {
+            t: "ggen",
+            q: "12.36 m + 4.1 m = ? (richtig gerundet, in m)",
+            n: 16.5,
+            u: "m",
+            e: "Plus/minus: so viele Dezimalstellen wie die ungenaueste Grösse (4.1 hat 1). 16.46 → 16.5 m.",
+          },
+          {
+            t: "ggen",
+            q: "Messwert 7.45 m/s, Maximalwert 7.83 m/s. Relativer Fehler in %?",
+            n: 5.1,
+            u: "%",
+            e: "Δv = 7.83 − 7.45 = 0.38 → 0.38/7.45 = 5.1 %.",
+          },
           {
             t: "druck",
             q: "Du stehst einmal mit Turnschuhen und einmal mit Stöckelschuhen auf dem Boden. Was ändert sich?",
@@ -4097,6 +5668,10 @@
         ];
         var TOP = {
           all: "Alle",
+          gmeth: "G Methode",
+          geinh: "G Einheiten",
+          grech: "G Rechnen & Dichte",
+          ggen: "G Genauigkeit",
           druck: "Druck",
           pascal: "Pascal",
           schwere: "Schweredruck",
