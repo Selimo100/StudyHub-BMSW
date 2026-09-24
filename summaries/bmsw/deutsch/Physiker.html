@@ -1,0 +1,3115 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Physiker-Dossier</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap"
+    />
+    <style>
+      :root {
+        --bg: #f1f2ef;
+        --bg2: #ffffff;
+        --bg3: #e4e6e1;
+        --ink: #191b19;
+        --ink2: #585d59;
+        --line: #cdd1ca;
+        --accent: #9c2b2b;
+        --accent-soft: #f7e8e7;
+        --teal: #2c6560;
+        --teal-soft: #dfedeb;
+        --amber: #9a6c12;
+        --amber-soft: #f7eedc;
+        --west: #2f5c8a;
+        --west-soft: #e0e9f2;
+        --ost: #8a3a6b;
+        --ost-soft: #f2e3ee;
+        --shadow: 0 1px 2px rgba(20, 25, 20, 0.05), 0 8px 26px rgba(20, 25, 20, 0.07);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #14171a;
+          --bg2: #1c2024;
+          --bg3: #272c31;
+          --ink: #e9ebe7;
+          --ink2: #a3a9a4;
+          --line: #343a3e;
+          --accent: #e2706b;
+          --accent-soft: #33211f;
+          --teal: #5fbdb2;
+          --teal-soft: #16302d;
+          --amber: #d8a74e;
+          --amber-soft: #332913;
+          --west: #7faedc;
+          --west-soft: #182636;
+          --ost: #d083b6;
+          --ost-soft: #2e1b27;
+          --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 8px 26px rgba(0, 0, 0, 0.4);
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #14171a;
+        --bg2: #1c2024;
+        --bg3: #272c31;
+        --ink: #e9ebe7;
+        --ink2: #a3a9a4;
+        --line: #343a3e;
+        --accent: #e2706b;
+        --accent-soft: #33211f;
+        --teal: #5fbdb2;
+        --teal-soft: #16302d;
+        --amber: #d8a74e;
+        --amber-soft: #332913;
+        --west: #7faedc;
+        --west-soft: #182636;
+        --ost: #d083b6;
+        --ost-soft: #2e1b27;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 8px 26px rgba(0, 0, 0, 0.4);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+        font-size: 17px;
+        line-height: 1.55;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Zilla Slab", Georgia, serif;
+        line-height: 1.15;
+        margin: 0;
+        text-wrap: balance;
+      }
+      h1 {
+        font-size: 2.3rem;
+        font-weight: 700;
+      }
+      h2 {
+        font-size: 1.7rem;
+        font-weight: 700;
+        margin: 0 0 0.35em;
+      }
+      h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 1.5em 0 0.4em;
+      }
+      h4 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin: 0 0 0.3em;
+      }
+      p {
+        margin: 0.4em 0 0.85em;
+        max-width: 72ch;
+      }
+      ul,
+      ol {
+        max-width: 72ch;
+        padding-left: 1.25em;
+        margin: 0.3em 0 0.9em;
+      }
+      li {
+        margin: 0.25em 0;
+      }
+      a {
+        color: var(--accent);
+      }
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 20px 90px;
+      }
+      header.top {
+        padding: 32px 0 16px;
+        border-bottom: 1px solid var(--line);
+      }
+      .eyebrow {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink2);
+      }
+      .sub {
+        font-family: "Zilla Slab", serif;
+        font-size: 1.05rem;
+        color: var(--accent);
+        font-weight: 700;
+        margin-top: 2px;
+      }
+      nav.tabs {
+        position: sticky;
+        top: 0;
+        background: var(--bg);
+        z-index: 20;
+        display: flex;
+        gap: 3px;
+        overflow-x: auto;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--line);
+        scrollbar-width: thin;
+      }
+      nav.tabs button {
+        flex: 0 0 auto;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--ink2);
+        font:
+          600 0.9rem "IBM Plex Sans",
+          sans-serif;
+        padding: 7px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      nav.tabs button:hover {
+        background: var(--bg3);
+        color: var(--ink);
+      }
+      nav.tabs button.on {
+        background: var(--ink);
+        color: var(--bg);
+      }
+      button:focus-visible,
+      input:focus-visible,
+      summary:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      section.tab {
+        display: none;
+        padding-top: 26px;
+      }
+      section.tab.on {
+        display: block;
+      }
+      .lead {
+        font-size: 1.1rem;
+        color: var(--ink2);
+        max-width: 68ch;
+      }
+      .mono {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+      }
+      .box {
+        background: var(--bg2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 16px 18px;
+        margin: 14px 0;
+        box-shadow: var(--shadow);
+      }
+      .box .lab {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink2);
+        display: block;
+        margin-bottom: 8px;
+      }
+      .box.key {
+        border-left: 4px solid var(--accent);
+      }
+      .box.key .lab {
+        color: var(--accent);
+      }
+      .box.warn {
+        border-left: 4px solid var(--amber);
+        background: var(--amber-soft);
+      }
+      .box.warn .lab {
+        color: var(--amber);
+      }
+      .box.tl {
+        border-left: 4px solid var(--teal);
+        background: var(--teal-soft);
+      }
+      .box.tl .lab {
+        color: var(--teal);
+      }
+      .grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        margin: 14px 0;
+      }
+      .two {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 1fr 1fr;
+        margin: 14px 0;
+      }
+      .three {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(3, 1fr);
+        margin: 14px 0;
+      }
+      @media (max-width: 820px) {
+        .two,
+        .three {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        background: var(--bg2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 15px 17px;
+      }
+      .card.west {
+        border-top: 4px solid var(--west);
+      }
+      .card.ost {
+        border-top: 4px solid var(--ost);
+      }
+      .card.mob {
+        border-top: 4px solid var(--teal);
+      }
+      .card.zahnd {
+        border-top: 4px solid var(--accent);
+      }
+      .card p {
+        margin: 0.25em 0;
+        font-size: 0.97rem;
+      }
+      .tag {
+        display: inline-block;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: var(--bg3);
+        color: var(--ink2);
+        font-weight: 500;
+      }
+      .tag.w {
+        background: var(--west-soft);
+        color: var(--west);
+      }
+      .tag.o {
+        background: var(--ost-soft);
+        color: var(--ost);
+      }
+      .tag.t {
+        background: var(--teal-soft);
+        color: var(--teal);
+      }
+      .tag.a {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .tblwrap {
+        overflow-x: auto;
+        margin: 12px 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.95rem;
+        background: var(--bg2);
+      }
+      th,
+      td {
+        border: 1px solid var(--line);
+        padding: 9px 11px;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: var(--bg3);
+        font-weight: 600;
+      }
+      details {
+        background: var(--bg2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        margin: 9px 0;
+        max-width: 860px;
+      }
+      summary {
+        cursor: pointer;
+        padding: 13px 16px;
+        font-family: "Zilla Slab", serif;
+        font-weight: 700;
+        font-size: 1.06rem;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary::after {
+        content: "+";
+        color: var(--accent);
+        font-size: 1.3rem;
+        line-height: 1;
+      }
+      details[open] summary::after {
+        content: "\2013";
+      }
+      details .bd {
+        padding: 0 16px 14px;
+        border-top: 1px solid var(--line);
+      }
+      details .bd p {
+        margin-top: 0.8em;
+      }
+      .btn {
+        border: 1px solid var(--line);
+        background: var(--bg2);
+        color: var(--ink);
+        padding: 9px 15px;
+        border-radius: 7px;
+        font:
+          600 0.93rem "IBM Plex Sans",
+          sans-serif;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: var(--bg3);
+      }
+      .btn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .btn.sm {
+        padding: 6px 11px;
+        font-size: 0.85rem;
+      }
+      .row {
+        display: flex;
+        gap: 9px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 12px 0;
+      }
+      .chip {
+        border: 1px solid var(--line);
+        background: var(--bg2);
+        color: var(--ink2);
+        border-radius: 999px;
+        padding: 5px 12px;
+        font:
+          600 0.84rem "IBM Plex Sans",
+          sans-serif;
+        cursor: pointer;
+      }
+      .chip.on {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .small {
+        font-size: 0.9rem;
+        color: var(--ink2);
+      }
+      .qbox {
+        background: var(--bg2);
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        padding: 18px 20px;
+        max-width: 780px;
+        margin: 12px 0;
+        box-shadow: var(--shadow);
+      }
+      .qn {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink2);
+      }
+      .qt {
+        font-size: 1.12rem;
+        margin: 7px 0 13px;
+      }
+      .qt.quote {
+        font-family: "Zilla Slab", serif;
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.35;
+      }
+      .opts {
+        display: grid;
+        gap: 8px;
+      }
+      .opt {
+        text-align: left;
+        border: 1px solid var(--line);
+        background: var(--bg);
+        color: var(--ink);
+        padding: 10px 14px;
+        border-radius: 7px;
+        font: inherit;
+        cursor: pointer;
+      }
+      .opt:hover {
+        border-color: var(--ink2);
+      }
+      .opt.right {
+        border-color: var(--teal);
+        background: var(--teal-soft);
+      }
+      .opt.wrong {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+      }
+      .fb {
+        margin-top: 13px;
+        padding: 11px 13px;
+        border-radius: 7px;
+        background: var(--bg3);
+        font-size: 0.96rem;
+      }
+      .fb.good {
+        background: var(--teal-soft);
+        color: var(--teal);
+      }
+      .fb.bad {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .fb b {
+        color: var(--ink);
+      }
+      .gap {
+        display: inline-block;
+        min-width: 140px;
+        border: 0;
+        border-bottom: 2px solid var(--accent);
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        padding: 2px 6px;
+        margin: 0 3px;
+      }
+      .gap.right {
+        border-bottom-color: var(--teal);
+        color: var(--teal);
+        font-weight: 600;
+      }
+      .gap.wrong {
+        border-bottom-color: var(--accent);
+        color: var(--accent);
+      }
+      .gaptext {
+        font-size: 1.06rem;
+        line-height: 2.15;
+        max-width: 74ch;
+      }
+      .prog {
+        height: 7px;
+        background: var(--bg3);
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 6px 0 14px;
+        max-width: 660px;
+      }
+      .prog i {
+        display: block;
+        height: 100%;
+        background: var(--accent);
+        width: 0;
+        transition: width 0.3s;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .prog i {
+          transition: none;
+        }
+      }
+      .score {
+        font-family: "Zilla Slab", serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+      .scene {
+        border-left: 3px solid var(--line);
+        padding-left: 16px;
+        margin: 0 0 6px;
+      }
+      .scene.on {
+        border-left-color: var(--accent);
+      }
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 6px;
+        margin: 16px 0 22px;
+      }
+      .timeline a {
+        display: block;
+        text-decoration: none;
+        color: var(--ink);
+        background: var(--bg2);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 9px 10px;
+        font-size: 0.85rem;
+      }
+      .timeline a:hover {
+        border-color: var(--accent);
+      }
+      .timeline a .m {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--accent);
+        display: block;
+      }
+      .timeline a .p {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--ink2);
+        display: block;
+        margin-top: 3px;
+      }
+      @media (max-width: 820px) {
+        .timeline {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .svgwrap {
+        overflow-x: auto;
+        background: var(--bg2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 10px;
+        margin: 14px 0;
+      }
+      svg.diagram {
+        display: block;
+        width: 100%;
+        min-width: 720px;
+        height: auto;
+      }
+      .dg-box {
+        fill: var(--bg2);
+        stroke: var(--ink);
+        stroke-width: 2;
+      }
+      .dg-t {
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        fill: var(--ink);
+      }
+      .dg-s {
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 12.5px;
+        fill: var(--ink2);
+      }
+      .dg-l {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        fill: var(--ink2);
+        letter-spacing: 0.05em;
+      }
+      .dg-ln {
+        stroke: var(--ink2);
+        stroke-width: 1.8;
+        fill: none;
+      }
+      .dg-red {
+        stroke: var(--accent);
+        stroke-width: 2.2;
+        fill: none;
+      }
+      .dg-dash {
+        stroke-dasharray: 7 5;
+      }
+      .zitat {
+        border-left: 3px solid var(--accent);
+        padding: 2px 0 2px 16px;
+        margin: 14px 0;
+        font-family: "Zilla Slab", serif;
+        font-size: 1.15rem;
+        font-weight: 500;
+        max-width: 60ch;
+      }
+      .zitat .src {
+        display: block;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: var(--ink2);
+        margin-top: 6px;
+        letter-spacing: 0.04em;
+      }
+      .check {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--line);
+        max-width: 800px;
+      }
+      .check input {
+        margin-top: 6px;
+        width: 18px;
+        height: 18px;
+        accent-color: var(--accent);
+      }
+      .check label {
+        cursor: pointer;
+      }
+      .check.done label {
+        color: var(--ink2);
+        text-decoration: line-through;
+      }
+      .hide .ans {
+        filter: blur(6px);
+        cursor: pointer;
+        user-select: none;
+      }
+      .hide .ans.show {
+        filter: none;
+      }
+      .ans {
+        transition: filter 0.2s;
+        border-radius: 3px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ans {
+          transition: none;
+        }
+      }
+      .bar {
+        height: 8px;
+        background: var(--bg3);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 6px;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: var(--accent);
+      }
+      .hdgrid {
+        display: flex;
+        gap: 22px;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <div class="hdgrid">
+          <div>
+            <div class="eyebrow">BMS Winterthur · Deutsch · Lektüreprüfung</div>
+            <h1>Physiker-Dossier</h1>
+            <div class="sub">Friedrich Dürrenmatt, «Die Physiker» — Prüfung Donnerstag, 1. Oktober 2026</div>
+          </div>
+          <div style="min-width: 230px">
+            <span class="small" id="progtxt">Lernfortschritt</span>
+            <div class="bar"><i id="progbar"></i></div>
+          </div>
+        </div>
+      </header>
+
+      <nav class="tabs" id="tabs">
+        <button data-t="start" class="on">Start</button>
+        <button data-t="inhalt">Inhalt &amp; Szenen</button>
+        <button data-t="figuren">Figuren</button>
+        <button data-t="konst">Konstellation</button>
+        <button data-t="institut">Die drei Instanzen</button>
+        <button data-t="verantw">Verantwortung</button>
+        <button data-t="autor">Dürrenmatt</button>
+        <button data-t="theorie">Theatertheorie</button>
+        <button data-t="p21">21 Punkte</button>
+        <button data-t="kontext">Historischer Kontext</button>
+        <button data-t="zitate">Zitate</button>
+        <button data-t="einordnen">Einordnen</button>
+        <button data-t="quiz">Quiz</button>
+        <button data-t="lueck">Lückentexte</button>
+        <button data-t="offen">Offene Fragen</button>
+      </nav>
+
+      <!-- ================= START ================= -->
+      <section class="tab on" id="t-start">
+        <h2>Was die Prüfung verlangt</h2>
+        <p class="lead">
+          Die Lernziele fordern drei Dinge: Du kennst den <strong>Inhalt</strong> und kannst jede beliebige Textstelle
+          einordnen und analysieren. Du kannst den <strong>Autor</strong> vorstellen. Und du kannst
+          <strong>Dürrenmatts Theatertheorie</strong> samt der 21 Punkte auf das Stück anwenden.
+        </p>
+
+        <div class="box key">
+          <span class="lab">Die vier Prüfungsformate, auf die du dich einstellen musst</span>
+          <ol>
+            <li>
+              <strong>Textausschnitt analysieren:</strong> Ein Zitat oder eine Szene wird vorgelegt. Du sagst: Welcher
+              Akt, welche Szene? Was ist davor passiert, was danach? Was bedeutet der Dialog für das Stück? → Tabs
+              «Inhalt &amp; Szenen» und «Einordnen».
+            </li>
+            <li>
+              <strong>Figuren charakterisieren und Personenkonstellation zeichnen</strong> → Tabs «Figuren» und
+              «Konstellation».
+            </li>
+            <li>
+              <strong>Zentrale Fragen erläutern und Stellung nehmen:</strong> Verantwortung der Wissenschaft, Wahnsinn
+              und Normalität, Gerechtigkeit → Tabs «Verantwortung» und «Offene Fragen».
+            </li>
+            <li>
+              <strong>Theorie anwenden:</strong> Funktion von Tragödie und Komödie bei Dürrenmatt, Tragikomödie,
+              «grotesk», die Mausefalle, die 21 Punkte → Tabs «Theatertheorie» und «21 Punkte».
+            </li>
+          </ol>
+        </div>
+
+        <h3>Lernziele – hake ab, was sitzt</h3>
+        <div id="ziele"></div>
+
+        <div class="box warn">
+          <span class="lab">Noch zu ergänzen</span>
+          <p>
+            Die Lernziele nennen als Unterlage auch
+            <strong>Sachtexte und Videos zur Verantwortung in der Wissenschaft</strong> sowie eure
+            <strong>Gruppenarbeiten</strong> (Bühnenbild, Schauspiel, Newton/Einstein/König Salomo). Die liegen mir
+            nicht vor. Der Tab «Historischer Kontext» deckt die üblichen Themen ab – wenn eure Sachtexte andere sind,
+            sag Bescheid.
+          </p>
+        </div>
+
+        <h3>Lernplan für die Woche</h3>
+        <ol>
+          <li>
+            <strong>Tag 1–2:</strong> «Inhalt &amp; Szenen» lesen, dann «Einordnen» üben, bis du jede Textstelle
+            zuordnen kannst.
+          </li>
+          <li>
+            <strong>Tag 3:</strong> «Figuren» und «Konstellation» – die Konstellation einmal von Hand auf ein Blatt
+            zeichnen.
+          </li>
+          <li><strong>Tag 4:</strong> «Verantwortung», «Die drei Instanzen» und «Dürrenmatt».</li>
+          <li>
+            <strong>Tag 5:</strong> «Theatertheorie» und «21 Punkte» – die vier wichtigen Punkte (3, 8/9, 17/18, 21)
+            auswendig.
+          </li>
+          <li><strong>Vorabend:</strong> Quiz und Lückentexte durchspielen, die offenen Fragen laut beantworten.</li>
+        </ol>
+      </section>
+
+      <!-- ================= INHALT ================= -->
+      <section class="tab" id="t-inhalt">
+        <h2>Inhalt &amp; Szenen</h2>
+        <p class="lead">
+          Ein Ort, ein Tag, eine Handlung: ein geschlossenes Drama. Klicke eine Szene an, um Inhalt, Vorgeschichte,
+          Fortsetzung und Merkpunkte zu sehen.
+        </p>
+
+        <div class="box">
+          <span class="lab">Die Ausgangslage in fünf Sätzen</span>
+          <p>
+            Im Privatsanatorium «Les Cerisiers» von Fräulein Doktor Mathilde von Zahnd leben drei Patienten, die sich
+            für Physiker halten: «Newton», «Einstein» und Johann Wilhelm Möbius. Alle drei haben eine Krankenschwester
+            erdrosselt. In Wahrheit ist keiner von ihnen verrückt: Möbius spielt den Wahnsinn seit fünfzehn Jahren, weil
+            er das System aller möglichen Erfindungen gefunden hat und die Menschheit davor schützen will; die beiden
+            anderen sind Geheimagenten aus Ost und West, die hinter seiner Formel her sind. Möbius überzeugt sie,
+            freiwillig für immer in der Anstalt zu bleiben. Dann stellt sich heraus, dass die Chefärztin die
+            Aufzeichnungen längst kopiert hat und mit ihnen die Weltherrschaft anstrebt.
+          </p>
+        </div>
+
+        <div class="timeline" id="timeline"></div>
+        <div id="szenen"></div>
+
+        <h3>Die beiden Aktanfänge im Vergleich</h3>
+        <div class="tblwrap">
+          <table>
+            <tr>
+              <th style="width: 170px"></th>
+              <th>1. Akt (S. 15–29)</th>
+              <th>2. Akt (S. 54–61)</th>
+            </tr>
+            <tr>
+              <td>Raum</td>
+              <td colspan="2" style="text-align: center">derselbe Salon, dieselbe Anstalt</td>
+            </tr>
+            <tr>
+              <td>Anlass</td>
+              <td colspan="2" style="text-align: center">
+                eine erdrosselte Krankenschwester, dieselbe Tatbestandsaufnahme
+              </td>
+            </tr>
+            <tr>
+              <td>Personal</td>
+              <td colspan="2" style="text-align: center">
+                Inspektor Voss mit Team, die Chefärztin – am Ende jeweils keine Verhaftung
+              </td>
+            </tr>
+            <tr>
+              <td>Inspektor</td>
+              <td>schwitzt, ist überfordert, lehnt Kognak ab, spricht von Mördern, tritt resigniert ab</td>
+              <td>raucht, lässt sich Kognak einschenken, ist gelassen, spricht nur noch von «Tätern»</td>
+            </tr>
+            <tr>
+              <td>Chefärztin</td>
+              <td>ruhig, souverän, mütterlich</td>
+              <td>nervös, gereizt, unter Spannung</td>
+            </tr>
+            <tr>
+              <td>Personal der Anstalt</td>
+              <td>Krankenschwestern</td>
+              <td>Pfleger – später bewaffnet und uniformiert</td>
+            </tr>
+            <tr>
+              <td>Grund</td>
+              <td colspan="2">
+                Der Inspektor hat begriffen, dass hier keine Gerechtigkeit durchzusetzen ist, und arrangiert sich damit.
+                Die Chefärztin steht kurz vor dem Ziel ihres Plans.
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p class="small">
+          Prüfungstipp: Wird dir eine Stelle vom Aktanfang vorgelegt, erkennst du am Verhalten des Inspektors sofort,
+          welcher Akt es ist.
+        </p>
+      </section>
+
+      <!-- ================= FIGUREN ================= -->
+      <section class="tab" id="t-figuren">
+        <h2>Figuren charakterisieren</h2>
+        <p class="lead">
+          Nach dem Schema aus dem Dossier: Daten zur Person – Verhalten – Ansichten und Haltung – Entwicklung. Genau in
+          dieser Reihenfolge schreibst du auch in der Prüfung.
+        </p>
+        <div id="figuren"></div>
+
+        <div class="box key">
+          <span class="lab">Die Namen, die man verwechselt</span>
+          <div class="tblwrap">
+            <table>
+              <tr>
+                <th>Rolle, die er spielt</th>
+                <th>Name in der Anstalt</th>
+                <th>Wirklicher Name</th>
+                <th>Auftrag</th>
+                <th>Sein Opfer</th>
+              </tr>
+              <tr>
+                <td>Sir Isaac Newton<br /><span class="small">behauptet, in Wahrheit Einstein zu sein</span></td>
+                <td>Herbert Georg Beutler</td>
+                <td>Alec Jasper Kilton<br /><span class="small">Begründer der Entsprechungslehre</span></td>
+                <td><span class="tag w">Westen</span></td>
+                <td>Schwester Dorothea Moser</td>
+              </tr>
+              <tr>
+                <td>Albert Einstein<br /><span class="small">spielt Geige</span></td>
+                <td>Ernst Heinrich Ernesti</td>
+                <td>Joseph Eisler<br /><span class="small">Entdecker des Eisler-Effekts</span></td>
+                <td><span class="tag o">Osten</span></td>
+                <td>Schwester Irene Straub</td>
+              </tr>
+              <tr>
+                <td>König Salomo erscheint ihm</td>
+                <td>Johann Wilhelm Möbius</td>
+                <td>Johann Wilhelm Möbius<br /><span class="small">spielt nur den Wahnsinn</span></td>
+                <td><span class="tag t">niemand</span></td>
+                <td>Schwester Monika Stettler</td>
+              </tr>
+              <tr>
+                <td>— <span class="small">spielt nicht</span></td>
+                <td>Fräulein Dr. Mathilde von Zahnd</td>
+                <td>dieselbe</td>
+                <td><span class="tag a">sich selbst</span></td>
+                <td>lässt alle drei Morde geschehen</td>
+              </tr>
+            </table>
+          </div>
+          <p class="small">
+            Merksatz: <strong>N</strong>ewton = <strong>K</strong>ilton = <strong>W</strong>esten ·
+            <strong>E</strong>instein = <strong>E</strong>isler = <strong>O</strong>sten (beide mit E). Und: Die
+            Einzige, die nicht spielt, ist die Einzige, die wirklich wahnsinnig ist.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= KONSTELLATION ================= -->
+      <section class="tab" id="t-konst">
+        <h2>Personenkonstellation</h2>
+        <p class="lead">
+          Ein Lernziel verlangt ausdrücklich, dass du die Personenkonstellation <em>aufzeichnen</em> kannst. Zeichne sie
+          einmal von Hand ab – so bleibt sie hängen.
+        </p>
+        <div class="svgwrap">
+          <svg
+            class="diagram"
+            viewBox="0 0 1000 706"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Personenkonstellation Die Physiker"
+          >
+            <defs>
+              <marker
+                id="ar"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="7"
+                markerHeight="7"
+                orient="auto-start-reverse"
+              >
+                <path d="M0 0L10 5L0 10z" fill="currentColor" />
+              </marker>
+            </defs>
+
+            <!-- von Zahnd -->
+            <g color="var(--accent)">
+              <rect class="dg-box" x="360" y="22" width="280" height="76" rx="7" style="stroke: var(--accent)" />
+              <text class="dg-t" x="500" y="48" text-anchor="middle">Fräulein Dr. Mathilde von Zahnd</text>
+              <text class="dg-s" x="500" y="68" text-anchor="middle">Chefärztin · Antagonistin</text>
+              <text class="dg-s" x="500" y="86" text-anchor="middle" style="fill: var(--accent)">
+                die einzig wirklich Wahnsinnige
+              </text>
+              <path class="dg-red" d="M420 100 L300 196" marker-end="url(#ar)" />
+              <path class="dg-red" d="M500 100 L500 196" marker-end="url(#ar)" />
+              <path class="dg-red" d="M580 100 L700 196" marker-end="url(#ar)" />
+              <rect x="330" y="138" width="340" height="22" rx="4" style="fill: var(--bg2); stroke: none" />
+              <text class="dg-l" x="500" y="153" text-anchor="middle" style="fill: var(--accent)">
+                beobachtet · kopiert · beherrscht alle drei
+              </text>
+            </g>
+
+            <!-- Physiker -->
+            <rect class="dg-box" x="150" y="200" width="230" height="96" rx="7" style="stroke: var(--west)" />
+            <text class="dg-t" x="265" y="226" text-anchor="middle">«Newton»</text>
+            <text class="dg-s" x="265" y="246" text-anchor="middle">Herbert Georg Beutler</text>
+            <text class="dg-s" x="265" y="264" text-anchor="middle" style="fill: var(--west)">
+              = Alec Jasper Kilton
+            </text>
+            <text class="dg-l" x="265" y="285" text-anchor="middle" style="fill: var(--west)">Agent · Westen</text>
+
+            <rect class="dg-box" x="385" y="200" width="230" height="96" rx="7" style="stroke: var(--teal)" />
+            <text class="dg-t" x="500" y="226" text-anchor="middle">Johann Wilhelm Möbius</text>
+            <text class="dg-s" x="500" y="246" text-anchor="middle">Protagonist · spielt Salomo</text>
+            <text class="dg-s" x="500" y="264" text-anchor="middle" style="fill: var(--teal)">hat die Weltformel</text>
+            <text class="dg-l" x="500" y="285" text-anchor="middle" style="fill: var(--teal)">Wissen · niemandem</text>
+
+            <rect class="dg-box" x="620" y="200" width="230" height="96" rx="7" style="stroke: var(--ost)" />
+            <text class="dg-t" x="735" y="226" text-anchor="middle">«Einstein»</text>
+            <text class="dg-s" x="735" y="246" text-anchor="middle">Ernst Heinrich Ernesti</text>
+            <text class="dg-s" x="735" y="264" text-anchor="middle" style="fill: var(--ost)">= Joseph Eisler</text>
+            <text class="dg-l" x="735" y="285" text-anchor="middle" style="fill: var(--ost)">Agent · Osten</text>
+
+            <path class="dg-ln" d="M300 302 Q382 348 452 304" marker-end="url(#ar)" style="stroke: var(--west)" />
+            <path class="dg-ln" d="M700 302 Q618 348 548 304" marker-end="url(#ar)" style="stroke: var(--ost)" />
+            <text class="dg-l" x="368" y="344" text-anchor="middle" style="fill: var(--west)">wirbt um</text>
+            <text class="dg-l" x="632" y="344" text-anchor="middle" style="fill: var(--ost)">wirbt um</text>
+
+            <!-- Tote Schwestern -->
+            <rect class="dg-box" x="165" y="372" width="200" height="54" rx="7" style="stroke-dasharray: 6 4" />
+            <text class="dg-t" x="265" y="394" text-anchor="middle" style="font-size: 13.5px">
+              † Schwester D. Moser
+            </text>
+            <text class="dg-l" x="265" y="413" text-anchor="middle">erdrosselt</text>
+            <rect class="dg-box" x="400" y="372" width="200" height="54" rx="7" style="stroke-dasharray: 6 4" />
+            <text class="dg-t" x="500" y="394" text-anchor="middle" style="font-size: 13.5px">
+              † Schwester M. Stettler
+            </text>
+            <text class="dg-l" x="500" y="413" text-anchor="middle">liebt Möbius · erdrosselt</text>
+            <rect class="dg-box" x="635" y="372" width="200" height="54" rx="7" style="stroke-dasharray: 6 4" />
+            <text class="dg-t" x="735" y="394" text-anchor="middle" style="font-size: 13.5px">
+              † Schwester I. Straub
+            </text>
+            <text class="dg-l" x="735" y="413" text-anchor="middle">erdrosselt</text>
+            <g color="var(--accent)">
+              <path class="dg-red" d="M265 300 L265 370" marker-end="url(#ar)" />
+              <path class="dg-red" d="M500 300 L500 370" marker-end="url(#ar)" />
+              <path class="dg-red" d="M735 300 L735 370" marker-end="url(#ar)" />
+            </g>
+
+            <!-- Institutionen -->
+            <text class="dg-l" x="500" y="466" text-anchor="middle">1. AKT — DIE DREI INSTANZEN, DIE VERSAGEN</text>
+            <rect class="dg-box" x="88" y="484" width="240" height="98" rx="7" />
+            <text class="dg-t" x="210" y="508" text-anchor="middle">Inspektor Richard Voss</text>
+            <text class="dg-s" x="210" y="528" text-anchor="middle">Justiz · I,1 · S. 15–31</text>
+            <text class="dg-s" x="210" y="548" text-anchor="middle" style="fill: var(--ink2)">hilflos → tritt ab</text>
+            <rect class="dg-box" x="370" y="484" width="260" height="98" rx="7" />
+            <text class="dg-t" x="500" y="508" text-anchor="middle">Missionar Oskar Rose</text>
+            <text class="dg-s" x="500" y="528" text-anchor="middle">Kirche · I,2 · S. 31–43</text>
+            <text class="dg-s" x="500" y="548" text-anchor="middle" style="fill: var(--ink2)">
+              mit Lina Rose (Möbius' frühere Frau)
+            </text>
+            <text class="dg-s" x="500" y="566" text-anchor="middle" style="fill: var(--ink2)">
+              und den drei Söhnen → wandert aus
+            </text>
+            <rect class="dg-box" x="672" y="484" width="240" height="98" rx="7" />
+            <text class="dg-t" x="790" y="508" text-anchor="middle">Schwester Monika</text>
+            <text class="dg-s" x="790" y="528" text-anchor="middle">Liebe · I,3 · S. 43–53</text>
+            <text class="dg-s" x="790" y="548" text-anchor="middle" style="fill: var(--ink2)">
+              blind → wird getötet
+            </text>
+
+            <rect
+              x="88"
+              y="608"
+              width="824"
+              height="70"
+              rx="7"
+              style="fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5"
+            />
+            <text class="dg-t" x="500" y="636" text-anchor="middle" style="fill: var(--accent)">
+              Bedeutungslosigkeit allgemein anerkannter Wertvorstellungen
+            </text>
+            <text class="dg-s" x="500" y="660" text-anchor="middle">
+              Versagen der traditionellen gesellschaftlichen Institutionen — deshalb muss der Einzelne handeln … und
+              scheitert
+            </text>
+          </svg>
+        </div>
+
+        <div class="box">
+          <span class="lab">Wenn du sie von Hand zeichnest</span>
+          <ol>
+            <li>
+              Möbius in die Mitte, links Kilton (West), rechts Eisler (Ost), Pfeile von beiden auf Möbius: «wirbt um».
+            </li>
+            <li>Von Zahnd darüber, drei Pfeile nach unten auf alle drei: «beobachtet, kopiert, beherrscht».</li>
+            <li>Unter jeden Physiker seine ermordete Schwester.</li>
+            <li>Darunter die drei Instanzen des 1. Akts mit ihrem jeweiligen Scheitern.</li>
+            <li>Familie Rose seitlich an Möbius: «frühere Frau, endgültiger Abschied».</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ================= INSTITUTIONEN ================= -->
+      <section class="tab" id="t-institut">
+        <h2>Der Aufbau des 1. Akts: drei Instanzen versagen</h2>
+        <p class="lead">
+          Der 1. Akt ist streng dreigeteilt. Jede Szene lässt eine gesellschaftliche Instanz auftreten – und scheitern.
+          Das ist das Gerüst, das dein Dossier aufbaut.
+        </p>
+        <div class="three">
+          <div class="card">
+            <span class="tag">I,1 · S. 15–31</span>
+            <h4>Gerechtigkeit / Justiz</h4>
+            <p><strong>Vertreter:</strong> Inspektor Richard Voss</p>
+            <p>
+              <strong>Wie er dargestellt wird:</strong> verunsichert, desorientiert, hilflos. Er schwitzt, wird von den
+              Patienten vorgeführt, darf niemanden verhaften.
+            </p>
+            <p><strong>Ausgang:</strong> Er tritt schliesslich ab – im 2. Akt kehrt er zurück und hat resigniert.</p>
+          </div>
+          <div class="card">
+            <span class="tag">I,2 · S. 31–43</span>
+            <h4>Christlicher Glaube / Kirche</h4>
+            <p><strong>Vertreter:</strong> Missionar Oskar Rose</p>
+            <p>
+              <strong>Wie er dargestellt wird:</strong> scheinheilig, selbstzufrieden, weltfremd, funktionslos. Er
+              predigt salbungsvoll an der Realität vorbei.
+            </p>
+            <p><strong>Ausgang:</strong> Er zieht sich aus der Realität zurück – Auswanderung auf die Marianen.</p>
+          </div>
+          <div class="card">
+            <span class="tag">I,3 · S. 43–53</span>
+            <h4>Liebe</h4>
+            <p><strong>Vertreterin:</strong> Schwester Monika Stettler</p>
+            <p>
+              <strong>Wie sie dargestellt wird:</strong> «blind», realitätsfern, durch übertriebene Opferbereitschaft
+              ins Lächerliche gezogen.
+            </p>
+            <p><strong>Ausgang:</strong> Sie wird am Ende getötet.</p>
+          </div>
+        </div>
+        <div class="box key">
+          <span class="lab">Fazit des 1. Akts – auswendig</span>
+          <p>
+            → Die <strong>Bedeutungslosigkeit allgemein anerkannter Wertvorstellungen</strong><br />→ Das
+            <strong>Versagen traditioneller gesellschaftlicher Institutionen</strong>
+          </p>
+          <p>
+            Dramaturgische Funktion: Wenn Justiz, Kirche und Liebe nichts mehr ausrichten, bleibt nur der Einzelne, der
+            Verantwortung übernimmt. Genau das versucht Möbius im 2. Akt – und genau daran scheitert er (21 Punkte, Nr.
+            17/18). Der Aufbau des Stücks ist also selbst schon ein Argument.
+          </p>
+        </div>
+        <div class="box tl">
+          <span class="lab">Beachte die Steigerung</span>
+          <p>
+            Die drei Instanzen scheitern nicht gleich stark: Der Inspektor geht bloss weg, der Missionar wandert aus,
+            die Liebe wird <em>getötet</em>. Je näher die Instanz dem Menschen steht, desto brutaler ihr Ende. Das ist
+            kein Zufall, sondern Dramaturgie: Der Akt endet mit dem Mord, weil der Bruch total sein muss.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= VERANTWORTUNG ================= -->
+      <section class="tab" id="t-verantw">
+        <h2>Verantwortung der Wissenschaft</h2>
+        <p class="lead">
+          Die Kernszene ist das Abendessen der drei Physiker (II,2, S. 68–77). Drei Antworten auf eine Frage: Wem gehört
+          das Wissen, und wer trägt die Verantwortung für seine Folgen?
+        </p>
+        <div class="three">
+          <div class="card west">
+            <span class="tag w">Westen</span>
+            <h4>Kilton / «Newton»</h4>
+            <p>
+              <strong>Position:</strong> Die Wissenschaft muss frei sein. Der Forscher darf sich um die Folgen nicht
+              kümmern, sonst hört die Forschung auf.
+            </p>
+            <p><strong>Wem gehört das Wissen:</strong> dem Staat, der diese Freiheit garantiert.</p>
+            <p><strong>Absicht:</strong> Möbius für den Westen gewinnen.</p>
+            <p><strong>Folge:</strong> Die Verantwortung wird an die Politik delegiert – das Wissen wird zur Waffe.</p>
+          </div>
+          <div class="card ost">
+            <span class="tag o">Osten</span>
+            <h4>Eisler / «Einstein»</h4>
+            <p>
+              <strong>Position:</strong> Die Wissenschaft muss der Macht dienen, die eine gerechte Weltordnung
+              herstellt.
+            </p>
+            <p><strong>Wem gehört das Wissen:</strong> dem System, das es für die Menschheit einsetzt.</p>
+            <p><strong>Absicht:</strong> Möbius für den Osten gewinnen.</p>
+            <p><strong>Folge:</strong> Dieselbe Auslieferung, nur anders begründet.</p>
+          </div>
+          <div class="card mob">
+            <span class="tag t">Niemand</span>
+            <h4>Möbius</h4>
+            <p>
+              <strong>Position:</strong> Wissen, dessen Folgen die Menschheit nicht tragen kann, muss zurückgenommen
+              werden.
+            </p>
+            <p><strong>Wem gehört das Wissen:</strong> niemandem – es muss verschwinden.</p>
+            <p>
+              <strong>Absicht:</strong> die Menschheit schützen; er hat die Manuskripte verbrannt und sperrt sich selbst
+              ein.
+            </p>
+            <p>
+              <strong>Folge:</strong> Er übernimmt die Verantwortung persönlich – und scheitert, weil ein Einzelner
+              nicht lösen kann, was alle angeht.
+            </p>
+          </div>
+        </div>
+        <div class="zitat">
+          «Entweder bleiben wir im Irrenhaus, oder die Welt wird eines.»<span class="src">Möbius, 2. Akt</span>
+        </div>
+
+        <div class="box zahnd" style="border-left: 4px solid var(--accent)">
+          <span class="lab" style="color: var(--accent)">Die vierte Position: Fräulein Doktor von Zahnd</span>
+          <p>
+            <strong>Wozu dienen wissenschaftliche Erkenntnisse?</strong> Zum Machtgewinn – konkret zur Weltherrschaft.
+          </p>
+          <p><strong>Welche Funktion haben Erfindungen für sie?</strong> Sie befriedigen ihre eigenen Bedürfnisse.</p>
+          <p>
+            <strong>Was macht sie konkret?</strong> Sie hat Möbius' Aufzeichnungen jahrelang heimlich fotokopiert, einen
+            weltumspannenden Trust aufgebaut und lässt Fabriken bauen.
+          </p>
+          <p>
+            <strong>Ihr Ziel:</strong> das Ganze ökonomisch und militärisch ausnutzen und als Statthalterin König
+            Salomos die Welt beherrschen.
+          </p>
+          <p>
+            <strong>Folgen ihrer Überzeugung:</strong> Die Menschheit wird in einen Krieg gestürzt, womöglich
+            ausgelöscht – das ist ihr völlig gleichgültig. Zu Möbius' Wunsch, die Menschheit zu schützen, steht sie ohne
+            jedes Verständnis.
+          </p>
+        </div>
+
+        <div class="box key">
+          <span class="lab">Die Pointe, die du in der Prüfung bringen musst</span>
+          <p>
+            Alle drei Physiker diskutieren, welchem <em>Staat</em> das Wissen gehören soll – und die ganze Zeit gehört
+            es längst einer Privatperson, die wahnsinnig ist. Das ist die «schlimmstmögliche Wendung» (21 Punkte, Nr.
+            3): Nicht die schlechtere von zwei Grossmächten bekommt die Formel, sondern der blanke Wahnsinn. Damit sagt
+            Dürrenmatt: Die Frage «Ost oder West?» ist die falsche Frage.
+          </p>
+        </div>
+
+        <h3>Die drei Abschlussmonologe (S. 85–87)</h3>
+        <div class="tblwrap">
+          <table>
+            <tr>
+              <th style="width: 130px">Physiker</th>
+              <th>Steht für</th>
+              <th>Was er sagt und geleistet hat</th>
+              <th>Wie er die Wissenschaft beurteilt</th>
+            </tr>
+            <tr>
+              <td><strong>Newton</strong></td>
+              <td>die Vergangenheit</td>
+              <td>Klassische Physik: Gravitation, Mechanik, Optik – die Welt als berechenbares Uhrwerk.</td>
+              <td>Fortschritt, moralisch unbedenklich; die Wissenschaft ist noch unschuldig.</td>
+            </tr>
+            <tr>
+              <td><strong>Einstein</strong></td>
+              <td>die Gegenwart</td>
+              <td>
+                Relativitätstheorie, Kernspaltung – Erkenntnisse, die zur Atombombe führten; er rechtfertigt sich.
+              </td>
+              <td>Ambivalent: Die Wissenschaft ist nicht mehr unschuldig, aber unvermeidlich.</td>
+            </tr>
+            <tr>
+              <td><strong>Möbius</strong></td>
+              <td>die Zukunft</td>
+              <td>Das Wissen, das er zurückgenommen hat; er stellt sich als König Salomo vor, als «armer König».</td>
+              <td>Zerstörerisch: Weisheit hat nur Unheil gebracht.</td>
+            </tr>
+          </table>
+        </div>
+        <p class="small">
+          Wirkung: Die drei sprechen einzeln, ohne aufeinander zu reagieren – endgültig isoliert und in ihren Rollen
+          gefangen. Was als Spiel begann, ist Wirklichkeit geworden.
+        </p>
+      </section>
+
+      <!-- ================= AUTOR ================= -->
+      <section class="tab" id="t-autor">
+        <h2>Friedrich Dürrenmatt vorstellen</h2>
+        <p class="lead">
+          Das Lernziel verlangt, dass du über Leben und Denken berichten kannst – <em>insbesondere</em> über die Fakten,
+          die sich auf die Lektüre beziehen. Lerne also nicht nur Daten, sondern die Verbindungen zum Stück.
+        </p>
+        <div class="row">
+          <button class="btn" id="hidebtn2">Antworten verdecken (Selbsttest)</button
+          ><span class="small">Verdeckt: laut aufsagen, dann anklicken.</span>
+        </div>
+        <div id="autorbox">
+          <div class="box">
+            <span class="lab">Leben</span>
+            <ul>
+              <li>
+                Geboren am
+                <span class="ans"
+                  ><strong>5. Januar 1921 in Konolfingen</strong> im Kanton Bern, als Sohn eines protestantischen
+                  <strong>Pfarrers</strong></span
+                >.
+              </li>
+              <li>
+                1935 Umzug nach Bern; Studium der
+                <span class="ans"
+                  >Philosophie, Germanistik und Naturwissenschaften in Bern und Zürich – ohne Abschluss</span
+                >.
+              </li>
+              <li>
+                Ursprünglicher Berufswunsch:
+                <span class="ans"
+                  ><strong>Maler</strong>. Er hat sein Leben lang gezeichnet und gemalt, oft zu seinen eigenen
+                  Stoffen</span
+                >.
+              </li>
+              <li>
+                Ab 1947 freier Schriftsteller, zeitweise
+                <span class="ans">in grosser finanzieller Not; Durchbruch mit Hörspielen und Kriminalromanen</span>.
+              </li>
+              <li>
+                Ab 1952 lebte er in
+                <span class="ans">Neuchâtel (Neuenburg), wo er am <strong>14. Dezember 1990</strong> starb</span>.
+              </li>
+            </ul>
+          </div>
+          <div class="box">
+            <span class="lab">Werke, die du nennen können solltest</span>
+            <div class="tblwrap">
+              <table>
+                <tr>
+                  <th style="width: 120px">Jahr</th>
+                  <th>Werk</th>
+                  <th>Gattung</th>
+                </tr>
+                <tr>
+                  <td>1949</td>
+                  <td>Romulus der Grosse</td>
+                  <td>Komödie</td>
+                </tr>
+                <tr>
+                  <td>1950/51</td>
+                  <td>Der Richter und sein Henker</td>
+                  <td>Kriminalroman</td>
+                </tr>
+                <tr>
+                  <td>1952</td>
+                  <td>Die Ehe des Herrn Mississippi</td>
+                  <td>Komödie</td>
+                </tr>
+                <tr>
+                  <td>1955</td>
+                  <td><strong>Theaterprobleme</strong></td>
+                  <td>Essay – seine Theatertheorie</td>
+                </tr>
+                <tr>
+                  <td>1956</td>
+                  <td>Der Besuch der alten Dame</td>
+                  <td>Tragische Komödie</td>
+                </tr>
+                <tr>
+                  <td>1958</td>
+                  <td>Das Versprechen</td>
+                  <td>Kriminalroman</td>
+                </tr>
+                <tr>
+                  <td>1962</td>
+                  <td><strong>Die Physiker</strong> (inkl. 21 Punkte)</td>
+                  <td>Komödie in zwei Akten</td>
+                </tr>
+                <tr>
+                  <td>1966</td>
+                  <td>Der Meteor</td>
+                  <td>Komödie</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="box">
+            <span class="lab">Denken</span>
+            <ul>
+              <li>
+                <strong>Skepsis gegenüber Ideologien:</strong>
+                <span class="ans"
+                  >Er misstraut allen geschlossenen Weltanschauungen – weder Ost noch West hat recht. Im Stück sind
+                  Kilton und Eisler spiegelbildlich gleich.</span
+                >
+              </li>
+              <li>
+                <strong>Die Welt als Groteske und Paradox:</strong>
+                <span class="ans"
+                  >Die moderne Welt ist unüberschaubar geworden; nur verzerrte, paradoxe Formen können sie noch
+                  zeigen.</span
+                >
+              </li>
+              <li>
+                <strong>Der Zufall statt des Schicksals:</strong>
+                <span class="ans"
+                  >Nicht die Götter, sondern der blinde Zufall entscheidet – deshalb die Punkte 4, 5, 8 und 9.</span
+                >
+              </li>
+              <li>
+                <strong>Schuld und Gerechtigkeit:</strong>
+                <span class="ans"
+                  >Ein Lebensthema, auch in den Kriminalromanen: Gerechtigkeit lässt sich nicht herstellen, Schuld nicht
+                  sauber zurechnen.</span
+                >
+              </li>
+              <li>
+                <strong>Der mutige Mensch:</strong>
+                <span class="ans"
+                  >Trotz allem: «Es ist immer noch möglich, den mutigen Menschen zu zeigen.» Nicht Verzweiflung, sondern
+                  Bestehen ist die Antwort auf eine sinnlose Welt.</span
+                >
+              </li>
+              <li>
+                <strong>Kritik an der Schweiz:</strong>
+                <span class="ans"
+                  >Er warf seinem Land Selbstzufriedenheit und Geschäftemacherei vor – in «Die Physiker» ist die Anstalt
+                  ein gepflegtes, teures Schweizer Sanatorium, in dem die Katastrophe heranwächst.</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="box key">
+            <span class="lab">Die Verbindungen zur Lektüre – das will die Lehrperson hören</span>
+            <ol>
+              <li>
+                <strong>Naturwissenschaftliches Interesse:</strong>
+                <span class="ans"
+                  >Dürrenmatt studierte auch Naturwissenschaften und beschäftigte sich zeitlebens mit Astronomie und
+                  Physik – er besass ein Teleskop. Daher die Physikerthematik und der Weltraum-Psalm.</span
+                >
+              </li>
+              <li>
+                <strong>Pfarrerssohn:</strong>
+                <span class="ans"
+                  >Aus dem Pfarrhaus stammen seine Bibelkenntnis und seine Religionskritik – daher der Anti-Psalm, die
+                  Figur König Salomos und der lächerliche Missionar Rose.</span
+                >
+              </li>
+              <li>
+                <strong>Kalter Krieg:</strong>
+                <span class="ans"
+                  >Er schrieb 1961/62, zwischen Mauerbau und Kubakrise, unter dem Eindruck des Wettrüstens. Die beiden
+                  Agenten sind Ost und West.</span
+                >
+              </li>
+              <li>
+                <strong>Seine Theatertheorie:</strong>
+                <span class="ans"
+                  >«Theaterprobleme» (1955) liefert die Bauanleitung: Komödie statt Tragödie, der Einfall, die Groteske,
+                  die Mausefalle.</span
+                >
+              </li>
+              <li>
+                <strong>Sein Grundsatz:</strong>
+                <span class="ans"
+                  >Nicht von einer These, sondern von einer Geschichte ausgehen – Punkt 1 der 21 Punkte, die er dem
+                  Stück selbst angehängt hat.</span
+                >
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= THEORIE ================= -->
+      <section class="tab" id="t-theorie">
+        <h2>Dürrenmatts Theatertheorie</h2>
+        <p class="lead">
+          Grundlage ist der Essay «Theaterprobleme» (1955), der in euren Unterlagen abgedruckt ist. Vier Begriffe musst
+          du erklären können: <strong>Tragödie und Komödie</strong>, <strong>Tragikomödie</strong>,
+          <strong>grotesk</strong> und die <strong>Mausefalle</strong>.
+        </p>
+
+        <h3>1 · Tragödie und Komödie</h3>
+        <div class="tblwrap">
+          <table>
+            <tr>
+              <th style="width: 170px"></th>
+              <th>Tragödie</th>
+              <th>Komödie</th>
+            </tr>
+            <tr>
+              <td>Setzt voraus</td>
+              <td>eine <strong>gestaltete</strong> Welt: Schuld, Not, Mass, Übersicht, Verantwortung</td>
+              <td>
+                eine <strong>ungestaltete</strong> Welt, im Werden und Umsturz begriffen – «eine Welt, die am
+                Zusammenpacken ist wie die unsrige»
+              </td>
+            </tr>
+            <tr>
+              <td>Verhältnis zum Zuschauer</td>
+              <td><strong>überwindet</strong> die Distanz – Mitleiden, Identifikation</td>
+              <td><strong>schafft</strong> Distanz – der Zuschauer sieht von aussen</td>
+            </tr>
+            <tr>
+              <td>Mittel</td>
+              <td>ohne Einfall; nimmt ihre Stoffe aus dem Mythos</td>
+              <td>
+                der <strong>Einfall</strong>: eine erfundene Handlung, die in die Gegenwart einschlägt und sie ins
+                Komische und dadurch ins Sichtbare verwandelt
+              </td>
+            </tr>
+            <tr>
+              <td>Setzt beim Publikum voraus</td>
+              <td>eine <strong>Gemeinschaft</strong> mit gemeinsamen Werten</td>
+              <td>ein <strong>anonymes Publikum</strong>, eine Masse</td>
+            </tr>
+            <tr>
+              <td>Heute möglich?</td>
+              <td>nein – es gibt keine Schuldigen und Verantwortlichen mehr</td>
+              <td>ja – «Uns kommt nur noch die Komödie bei»</td>
+            </tr>
+          </table>
+        </div>
+        <div class="box key">
+          <span class="lab">Warum «uns kommt nur noch die Komödie bei» – der Gedankengang in vier Schritten</span>
+          <ol>
+            <li>Die Tragödie braucht <strong>zurechenbare Schuld</strong> und Verantwortung.</li>
+            <li>
+              In unserem Jahrhundert gibt es die nicht mehr: Alle sind kollektiv verstrickt, «alle können nichts dafür
+              und haben es nicht gewollt» – wir sind zu kollektiv schuldig. «Das ist unser Pech, nicht unsere Schuld.»
+            </li>
+            <li>Also ist die <strong>reine Tragödie unmöglich</strong> geworden.</li>
+            <li>
+              Aber: <strong>Das Tragische bleibt möglich.</strong> Man kann es «aus der Komödie heraus erzielen,
+              hervorbringen als einen schrecklichen Moment, als einen sich öffnenden Abgrund». Genau so ist «Die
+              Physiker» gebaut.
+            </li>
+          </ol>
+        </div>
+
+        <h3>2 · Die Tragikomödie</h3>
+        <p>
+          Für Dürrenmatt ist die Tragikomödie
+          <strong>die einzig mögliche dramatische Form, heute das Tragische auszusagen</strong>. Komische Mittel,
+          tragischer Kern: Das Publikum lacht über Irrenhaus, Verwechslungen und Pointen – und sitzt am Ende vor einer
+          Katastrophe. Deshalb trägt «Die Physiker» den Untertitel «Komödie» und endet trotzdem im Grauen.
+        </p>
+
+        <h3>3 · Das Groteske</h3>
+        <div class="zitat">
+          Das Groteske ist «ein sinnliches Paradox, die Gestalt nämlich einer Ungestalt, das Gesicht einer gesichtslosen
+          Welt».<span class="src">Theaterprobleme, 1955</span>
+        </div>
+        <div class="two">
+          <div class="card">
+            <h4>Was es bedeutet</h4>
+            <p>
+              <strong>Nomen:</strong> die Groteske – eine Darstellung, die Komisches und Schreckliches so verbindet,
+              dass beides zugleich wirkt.
+            </p>
+            <p>
+              <strong>Adjektiv:</strong> grotesk – verzerrt, absonderlich, gleichzeitig zum Lachen und zum Fürchten.
+            </p>
+            <p>
+              Wichtig: Grotesk ist <em>nicht</em> dasselbe wie absurd. Absurd heisst sinnlos; grotesk heisst verzerrt,
+              aber mit erkennbarer Logik (21 Punkte, Nr. 10).
+            </p>
+            <p>
+              «Unsere Welt hat ebenso zur Groteske geführt wie zur Atombombe.» Das Groteske ist bei Dürrenmatt kein
+              Spass, sondern die einzige Form, in der eine unfassbar gewordene Wirklichkeit noch darstellbar ist.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Wo es im Stück steckt</h4>
+            <ul>
+              <li>Das Irrenhaus als sicherster Ort der Welt</li>
+              <li>Drei Physiker, die sich verrückt stellen, um vernünftig zu sein</li>
+              <li>Eine Ärztin, die wahnsinnig ist und über den Wahnsinn anderer bestimmt</li>
+              <li>Ein Inspektor, der am Tatort Kognak trinkt und sich über unbestrafte Morde freut</li>
+              <li>Ein Missionar, der salbungsvoll predigt, während nebenan gemordet wird</li>
+              <li>Morde aus Menschenliebe</li>
+              <li>Ein Anti-Psalm im Bibelton über verreckende Astronauten</li>
+              <li>Krankenpfleger, die zu bewaffneten Wärtern werden</li>
+            </ul>
+            <p>
+              <strong>Zweck:</strong> Die Verzerrung schafft Distanz – und macht dadurch erst sichtbar, wie die
+              Wirklichkeit ist. Das Publikum lacht und merkt zu spät, dass es über die eigene Lage lacht.
+            </p>
+          </div>
+        </div>
+
+        <h3>4 · Das Publikum und die Mausefalle</h3>
+        <div class="box tl">
+          <span class="lab">Wie Dürrenmatt sein Publikum mitdenkt</span>
+          <p>
+            <strong>Welches Publikum hat er vor Augen?</strong> Das <strong>anonyme Publikum</strong> der Gegenwart –
+            keine Wertegemeinschaft, sondern eine zufällig zusammengewürfelte Menge, die unterhalten werden will. Er
+            weiss: Niemand geht freiwillig ins Theater, um sich über die Verantwortung der Wissenschaft belehren zu
+            lassen.
+          </p>
+          <p>
+            <strong>Was ist der «Einfall»?</strong> Die erfundene, überraschende Grundidee eines Stücks – hier: drei
+            Physiker in einer Irrenanstalt, von denen keiner verrückt ist. Der Einfall schlägt «wie ein Geschoss» in die
+            Gegenwart ein und macht sie sichtbar, indem er sie ins Komische verwandelt.
+          </p>
+          <p>
+            <strong>Wie ist die Mausefalle zu verstehen?</strong> Der Einfall verwandelt die Menge der Theaterbesucher
+            in eine Masse, die «angegriffen, verführt, überlistet» werden kann, sich Dinge anzuhören, die sie sonst
+            nicht so leicht anhören würde. <strong>Der Köder ist die Unterhaltung</strong> – Krimi, Irrenhaus, Pointen
+            –, <strong>die Falle schnappt mit der schlimmstmöglichen Wendung zu</strong>.
+          </p>
+          <p>
+            <strong>Bezug zum letzten der 21 Punkte:</strong> Die Dramatik kann den Zuschauer überlisten, sich der
+            Wirklichkeit auszusetzen – aber nicht zwingen, ihr standzuhalten oder sie gar zu bewältigen. Dürrenmatt
+            bleibt also skeptisch, ob die Falle überhaupt etwas bewirkt.
+          </p>
+          <p>
+            <strong>Und der Schluss der «Theaterprobleme»:</strong> «Im Lachen manifestiert sich die Freiheit des
+            Menschen.» Tyrannen fürchten weder Klagelieder noch Heldengesänge – nur eines fürchten sie: den
+            <strong>Spott</strong>.
+          </p>
+        </div>
+
+        <h3>5 · Weitere Begriffe aus dem Text</h3>
+        <div class="grid">
+          <div class="card">
+            <h4>Parodie</h4>
+            <p>
+              Der Künstler muss die vorgefundenen Gestalten «reduzieren» und parodieren – sie im bewussten Gegensatz zu
+              dem darstellen, was sie geworden sind. Dadurch gewinnt er seine Freiheit und seinen Stoff zurück: Die
+              Dramaturgie der vorhandenen Stoffe wird durch die der <strong>erfundenen</strong> abgelöst.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Verzweiflung oder Mut</h4>
+            <p>
+              Man könnte meinen, die Komödie sei Ausdruck der Verzweiflung. Dürrenmatt widerspricht: Verzweiflung ist
+              nicht die Folge der Welt, sondern <em>eine Antwort</em> auf sie. Eine andere Antwort ist der Entschluss,
+              die Welt zu bestehen – «wie Gulliver unter den Riesen».
+            </p>
+          </div>
+          <div class="card">
+            <h4>Aufgabe der Kunst</h4>
+            <p>
+              Gestalt und Konkretes schaffen. Das vermag heute vor allem die Komödie – sie gibt der gesichtslosen Welt
+              ein Gesicht.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 21 PUNKTE ================= -->
+      <section class="tab" id="t-p21">
+        <h2>Die 21 Punkte zu den «Physikern»</h2>
+        <p class="lead">
+          Dürrenmatt hat dem Stück 1962 einundzwanzig Thesen angehängt. Unten stehen sie
+          <strong>sinngemäss zusammengefasst</strong> – mit Erklärung und Anwendung auf das Stück. Für die Prüfung musst
+          du nicht alle 21 auswendig können, aber die vier markierten und den Gesamtaufbau.
+        </p>
+        <div class="box key">
+          <span class="lab">Der Aufbau der 21 Punkte</span>
+          <ul>
+            <li>
+              <strong>1–5 Die Methode:</strong> von einer Geschichte ausgehen, sie zu Ende denken – bis zur
+              schlimmstmöglichen Wendung, die der Zufall bringt.
+            </li>
+            <li>
+              <strong>6–9 Der Zufall:</strong> Menschen tragen die Handlung; je planmässiger sie vorgehen, desto härter
+              trifft sie der Zufall – am schlimmsten, wenn sie das Gegenteil ihres Ziels erreichen.
+            </li>
+            <li>
+              <strong>10–14 Grotesk und paradox:</strong> Eine solche Geschichte ist grotesk, aber nicht absurd; sie ist
+              paradox – wie die Logik und wie die Physik selbst.
+            </li>
+            <li>
+              <strong>15–18 Die Verantwortung:</strong> Das Stück zeigt nicht den Inhalt der Physik, sondern ihre
+              Auswirkung – und die geht alle an. Was alle angeht, können nur alle lösen.
+            </li>
+            <li>
+              <strong>19–21 Die Wirkung:</strong> Im Paradoxen erscheint die Wirklichkeit; das Theater kann den
+              Zuschauer ihr aussetzen, aber nicht zwingen, ihr standzuhalten.
+            </li>
+          </ul>
+        </div>
+        <div class="row">
+          <button class="chip on" data-p21="alle">Alle 21</button
+          ><button class="chip" data-p21="kern">Nur die 4 wichtigsten</button>
+        </div>
+        <div id="p21list"></div>
+      </section>
+
+      <!-- ================= KONTEXT ================= -->
+      <section class="tab" id="t-kontext">
+        <h2>Historischer Kontext</h2>
+        <p class="lead">
+          Ein Lernziel verlangt, die Begebenheiten im Werk historisch einzuordnen und Vergleiche zwischen den
+          Erkenntnissen des Dramas und den Sachtexten zu ziehen.
+        </p>
+
+        <div class="box">
+          <span class="lab">Entstehungszeit</span>
+          <p>
+            Uraufführung am <strong>21. Februar 1962 im Schauspielhaus Zürich</strong> – mitten im Kalten Krieg, ein
+            Jahr nach dem Bau der Berliner Mauer (1961) und im Jahr der Kubakrise (Oktober 1962), als die Welt einem
+            Atomkrieg so nahe war wie nie. Die Blockkonfrontation steckt unmittelbar im Stück: Kilton wirbt für den
+            Westen, Eisler für den Osten – mit derselben Logik und demselben Ergebnis.
+          </p>
+        </div>
+
+        <h3>Die Zeittafel, die du kennen solltest</h3>
+        <div class="tblwrap">
+          <table>
+            <tr>
+              <th style="width: 110px">Jahr</th>
+              <th>Ereignis</th>
+              <th>Bezug zum Stück</th>
+            </tr>
+            <tr>
+              <td>1938/39</td>
+              <td>Entdeckung der Kernspaltung (Hahn, Strassmann, Meitner)</td>
+              <td>
+                Der Moment, in dem physikalische Grundlagenforschung militärisch nutzbar wird – Möbius' Ausgangslage.
+              </td>
+            </tr>
+            <tr>
+              <td>1939</td>
+              <td>
+                <strong>Einsteins Brief an Roosevelt</strong> (mit Leó Szilárd): Warnung vor einer deutschen Atombombe,
+                Anstoss zum US-Programm
+              </td>
+              <td>
+                Einstein bereute den Brief später. Genau dieses Dilemma – warnen und damit erst ermöglichen – greift der
+                «Einstein» des Stücks in seinem Schlussmonolog auf.
+              </td>
+            </tr>
+            <tr>
+              <td>1942–45</td>
+              <td><strong>Manhattan-Projekt</strong> unter Robert Oppenheimer</td>
+              <td>Physiker bauen im Staatsauftrag eine Waffe – die Position Kiltons und Eislers.</td>
+            </tr>
+            <tr>
+              <td>6./9.8.1945</td>
+              <td><strong>Hiroshima und Nagasaki</strong></td>
+              <td>Der Beweis, dass Erkenntnis unumkehrbar Folgen hat. Möbius' Konsequenz: das Wissen zurücknehmen.</td>
+            </tr>
+            <tr>
+              <td>1949/1952</td>
+              <td>Sowjetische Atombombe; erste Wasserstoffbombe der USA</td>
+              <td>Das Wettrüsten beginnt – beide Blöcke jagen denselben Erkenntnissen nach.</td>
+            </tr>
+            <tr>
+              <td>1954</td>
+              <td>
+                <strong>Oppenheimer verliert seine Sicherheitsfreigabe</strong>, nachdem er sich gegen die
+                Wasserstoffbombe gestellt hat
+              </td>
+              <td>
+                Ein realer Physiker versucht, Verantwortung zu übernehmen – und wird kaltgestellt. Der stärkste
+                Vergleichsfall zu Möbius.
+              </td>
+            </tr>
+            <tr>
+              <td>1955</td>
+              <td>
+                <strong>Russell-Einstein-Manifest</strong>: elf Wissenschaftler warnen vor der Vernichtung der
+                Menschheit
+              </td>
+              <td>Der kollektive Weg, den Möbius nicht geht.</td>
+            </tr>
+            <tr>
+              <td>1957</td>
+              <td>
+                <strong>Göttinger Manifest</strong>: 18 deutsche Atomforscher weigern sich, an Atomwaffen mitzuwirken
+              </td>
+              <td>
+                Verantwortung als <em>Gruppe</em> – genau das, was die 21 Punkte fordern («Was alle angeht, können nur
+                alle lösen»).
+              </td>
+            </tr>
+            <tr>
+              <td>1957</td>
+              <td>Sputnik – Beginn des Wettlaufs ins All</td>
+              <td>Hintergrund des «Psalm Salomos» mit seinen Raumfahrern, die im Staub verrecken.</td>
+            </tr>
+            <tr>
+              <td>1961/62</td>
+              <td>Mauerbau, Kubakrise</td>
+              <td>Die unmittelbare Gegenwart der Uraufführung.</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="box key">
+          <span class="lab">Vergleich Drama ↔ Sachtext – so argumentierst du</span>
+          <p>
+            <strong>Gemeinsamkeit:</strong> Die realen Physiker standen vor exakt Möbius' Frage. Oppenheimer, Einstein
+            und die Göttinger Achtzehn haben erkannt, dass Erkenntnis Folgen hat, für die jemand einstehen muss.
+          </p>
+          <p>
+            <strong>Unterschied 1 – der Weg:</strong> In der Wirklichkeit wurde der Versuch
+            <em>kollektiv</em> unternommen: Manifeste, gemeinsame Verweigerung, später internationale Verträge zur
+            Rüstungskontrolle. Möbius versucht es <em>allein</em> und scheitert – das ist Dürrenmatts These (Punkt
+            17/18).
+          </p>
+          <p>
+            <strong>Unterschied 2 – der Gegner:</strong> Oppenheimers Gegner war ein Staat mit berechenbaren Interessen.
+            Möbius' Gegner ist der blinde Zufall in Gestalt einer Wahnsinnigen – unberechenbar und deshalb noch
+            bedrohlicher.
+          </p>
+          <p>
+            <strong>Unterschied 3 – der Ausgang:</strong> Die Realität kennt Teilerfolge (Atomteststoppvertrag 1963,
+            Atomwaffensperrvertrag 1968). Dürrenmatt gibt seinem Stück bewusst den denkbar schlechtesten Ausgang – nicht
+            weil er ihn für wahrscheinlich hält, sondern weil nur so die Geschichte «zu Ende gedacht» ist.
+          </p>
+          <p>
+            <strong>Deine Stellungnahme</strong> kann daran anknüpfen: Wissen lässt sich nicht zurücknehmen; was einer
+            nicht entdeckt, entdeckt ein anderer. Bleiben also nur gemeinsame Regeln – und dieselbe Frage stellt sich
+            heute bei künstlicher Intelligenz und Gentechnik neu.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= ZITATE ================= -->
+      <section class="tab" id="t-zitate">
+        <h2>Schlüsselzitate</h2>
+        <p class="lead">
+          Wenige, dafür sitzende Zitate wirken in einer Analyse stärker als viele ungenaue. Diese zwölf decken alle
+          Lernziele ab.
+        </p>
+        <div id="zitate"></div>
+      </section>
+
+      <!-- ================= EINORDNEN ================= -->
+      <section class="tab" id="t-einordnen">
+        <h2>Textstellen einordnen</h2>
+        <p class="lead">
+          Das wahrscheinlichste Prüfungsformat: Du bekommst eine Stelle und musst sagen, wo sie steht, was davor und
+          danach passiert und was sie bedeutet. Wähle die Szene – danach siehst du die vollständige Musterantwort.
+        </p>
+        <div class="row">
+          <span class="score" id="escore"></span><button class="btn" id="erestart">Neu mischen</button>
+        </div>
+        <div class="prog"><i id="eprog"></i></div>
+        <div id="earea"></div>
+      </section>
+
+      <!-- ================= QUIZ ================= -->
+      <section class="tab" id="t-quiz">
+        <h2>Quiz</h2>
+        <p class="lead">Inhalt, Figuren, Theorie – mit sofortiger Erklärung.</p>
+        <div class="row">
+          <span class="score" id="qscore"></span><button class="btn" id="qrestart">Neu starten</button>
+        </div>
+        <div class="prog"><i id="qprog"></i></div>
+        <div id="qarea"></div>
+      </section>
+
+      <!-- ================= LÜCKEN ================= -->
+      <section class="tab" id="t-lueck">
+        <h2>Lückentexte</h2>
+        <p class="lead">
+          Namen, Zahlen und Kernsätze eintippen. Gross-/Kleinschreibung und Umlaute sind egal; Enter prüft.
+        </p>
+        <div id="larea"></div>
+      </section>
+
+      <!-- ================= OFFENE FRAGEN ================= -->
+      <section class="tab" id="t-offen">
+        <h2>Offene Prüfungsfragen mit Musterlösung</h2>
+        <p class="lead">
+          Beantworte jede Frage zuerst laut oder schriftlich, dann klappe die Musterlösung auf und vergleiche. Das ist
+          die wirksamste Vorbereitung auf eine Lektüreprüfung.
+        </p>
+        <div id="oarea"></div>
+      </section>
+    </div>
+
+    <script>
+      /* ============ Die Physiker – Datenbasis ============ */
+
+      /* Szenen mit Seitenzahlen (nach den Angaben im Klassendossier, Diogenes-Taschenbuch) */
+      const SZENEN = [
+        {
+          id: "I1",
+          akt: 1,
+          nr: "I,1",
+          tit: "Inspektor Voss ermittelt",
+          s: "S. 15–31",
+          thema: "Justiz",
+          was: "Im Salon liegt die Leiche von Schwester Irene Straub. Kriminalinspektor Richard Voss nimmt den Tatbestand auf. Der Patient «Herbert Georg Beutler», der sich Newton nennt, kommt dazu, plaudert über Kognak und gesteht ganz nebenbei, er habe vor Monaten Schwester Dorothea Moser erdrosselt – aus Liebe: Sie habe ihn geliebt, aber er müsse seine Physik retten. Dann verrät er dem verwirrten Inspektor, er sei in Wahrheit Einstein und spiele nur Newton, um die Mitpatienten nicht zu verwirren. Fräulein Doktor Mathilde von Zahnd erscheint, verteidigt ihre Patienten («Für wen sich meine Patienten halten, bestimme ich») und kündigt an, die Schwestern durch Pfleger zu ersetzen. Der Inspektor darf niemanden verhaften und geht resigniert ab.",
+          davor:
+            "Schwester Irene Straub wurde soeben von Ernesti/«Einstein» erdrosselt; drei Monate zuvor hatte Beutler/«Newton» Schwester Dorothea Moser getötet.",
+          danach: "Familie Rose kommt zum Abschiedsbesuch bei Möbius (I,2).",
+          merk: [
+            "Exposition: Ort, Figuren, Vorgeschichte",
+            "Krimi-Erwartung wird aufgebaut und sofort gebrochen: Täter von Anfang an bekannt, Motive unklar",
+            "Der Inspektor – Vertreter der Justiz – wird lächerlich gemacht und scheitert",
+          ],
+        },
+        {
+          id: "I2",
+          akt: 1,
+          nr: "I,2",
+          tit: "Missionar Rose predigt",
+          s: "S. 31–43",
+          thema: "Kirche",
+          was: "Lina Rose, Möbius' frühere Frau, besucht ihn mit ihrem neuen Mann, dem Missionar Oskar Rose, und den drei Söhnen Adolf-Friedrich, Wilfried-Kaspar und Jörg-Lukas. Sie wandern auf die Marianen aus und wollen sich verabschieden; Rose hat 15 Jahre lang Möbius' Anstaltskosten mitgetragen bzw. Lina hat ihn finanziert. Die Söhne spielen auf Blockflöten, Rose predigt salbungsvoll. Möbius will sie loswerden, damit sie endgültig von ihm loskommen: Er spielt den Wahnsinnigen, behauptet, ihm erscheine König Salomo, und trägt den «Psalm Salomos» vor – einen grotesken Anti-Psalm über die Weltraumfahrt, in dem die Menschen in Staubwüsten verrecken. Die Familie flieht entsetzt, Oberschwester Marta Boll führt sie hinaus.",
+          davor: "Der Inspektor ist abgetreten (I,1).",
+          danach: "Schwester Monika bleibt allein mit Möbius zurück (I,3).",
+          merk: [
+            "Möbius' emotionaler Ausbruch: Anlass ist der Abschied, Grund ist sein Entschluss, alle Bindungen zu kappen",
+            "Der «Psalm Salomos» ist ein Anti-Psalm: Statt Gott zu loben, zeigt er einen sinnlosen, toten Kosmos",
+            "Missionar Rose – Vertreter der Kirche – ist scheinheilig, selbstzufrieden und weltfremd",
+          ],
+        },
+        {
+          id: "I3",
+          akt: 1,
+          nr: "I,3",
+          tit: "Schwester Monika stirbt",
+          s: "S. 43–53",
+          thema: "Liebe",
+          was: "Schwester Monika Stettler gesteht Möbius ihre Liebe. Sie sagt ihm, sie wisse, dass er nicht verrückt sei – sie habe es durchschaut und mit Fräulein von Zahnd gesprochen. Sie hat alles für die Flucht vorbereitet: eine Wohnung, eine Stelle, sogar Kontakte, damit er wieder als Physiker arbeiten kann. Möbius warnt sie mehrfach und deutlich, sie solle fliehen, sonst müsse er sie «wie einen Hund behandeln». Sie versteht die Warnungen nicht. Er bittet sie, die Vorhänge zu schliessen bzw. lenkt sie ab – und erdrosselt sie mit der Vorhangkordel. Der Akt endet mit seinem Schrei.",
+          davor: "Familie Rose ist geflohen (I,2).",
+          danach: "Unmittelbar danach beginnt der 2. Akt mit der polizeilichen Untersuchung dieses Mordes.",
+          merk: [
+            "Vorausdeutungen: Möbius freut sich nicht über ihre Liebe, warnt sie, rät ihr zu fliehen",
+            "Dramatische Ironie: Das Publikum ahnt den Mord voraus, Monika ist «blind vor Liebe»",
+            "Schwester Monika – Vertreterin der Liebe – wird getötet: auch die letzte Instanz versagt",
+          ],
+        },
+        {
+          id: "II1",
+          akt: 2,
+          nr: "II,1",
+          tit: "Der Inspektor kommt wieder",
+          s: "S. 54–61",
+          thema: "Parallelszene",
+          was: "Derselbe Salon, dieselbe Polizei, derselbe Inspektor – aber alles ist gekippt. Voss ist gelassen, raucht, lässt sich Kognak einschenken, spricht nicht mehr von «Mördern», sondern von «Tätern», und geniesst die Vorstellung von Verbrechen, die er nicht verfolgen muss. Die Chefärztin dagegen ist nervös und aufgebracht geworden. Möbius wird nicht verhaftet; Schwester Monikas Leiche wird weggetragen. Anschliessend übernehmen die neuen Pfleger den Dienst.",
+          davor: "Möbius hat Schwester Monika erdrosselt (I,3).",
+          danach: "Die drei Physiker essen gemeinsam zu Abend (II,2).",
+          merk: [
+            "Parallel gebaute Aktanfänge: gleicher Raum, gleiches Personal – umgekehrte Stimmung",
+            "Der Inspektor hat sich mit der Ungerechtigkeit arrangiert: die Justiz kapituliert endgültig",
+            "Die Chefärztin verliert die Fassung, weil ihr Plan in die entscheidende Phase geht",
+          ],
+        },
+        {
+          id: "II2",
+          akt: 2,
+          nr: "II,2",
+          tit: "Das Abendessen der drei Physiker",
+          s: "S. 68–77",
+          thema: "Verantwortung",
+          was: "Die drei Physiker essen zusammen und legen die Masken ab. «Newton» ist in Wahrheit Alec Jasper Kilton, Begründer der Entsprechungslehre, Agent eines westlichen Geheimdienstes. «Einstein» ist Joseph Eisler, Entdecker des Eisler-Effekts, Agent eines östlichen Geheimdienstes. Beide sind wegen Möbius freiwillig in die Anstalt gekommen, beide haben ihre Schwester getötet, um nicht enttarnt zu werden, beide wollen Möbius für ihre Macht gewinnen. Möbius hält dagegen: Er hat als Einziger die Manuskripte verbrannt. Sein Wissen – das System aller möglichen Erfindungen, die Weltformel – würde die Menschheit vernichten. «Entweder bleiben wir im Irrenhaus, oder die Welt wird eines.» Er überzeugt beide: Sie schwören, die Rolle der Wahnsinnigen für immer zu spielen, und nehmen die drei toten Schwestern als Opfer auf sich.",
+          davor: "Der Inspektor ist abgetreten, die Pfleger haben den Dienst übernommen (II,1).",
+          danach: "Fräulein Doktor von Zahnd tritt auf und enthüllt alles (II,3).",
+          merk: [
+            "Die Kernszene zum Lernziel «Verantwortung der Wissenschaft»",
+            "Drei Positionen: Wissen dem Westen / dem Osten / niemandem",
+            "Höhepunkt der Hoffnung – kurz bevor sie zerstört wird",
+          ],
+        },
+        {
+          id: "II3",
+          akt: 2,
+          nr: "II,3",
+          tit: "Die Enthüllung der Chefärztin",
+          s: "S. 78–87",
+          thema: "Katastrophe",
+          was: "Die Atmosphäre ist militärisch geworden: schwarz uniformierte Pfleger mit Pistolen, vergitterte Fenster, Scheinwerfer, harter Befehlston; im Raum hängt neu das Porträt eines Generals statt des Geheimrats. Fräulein Doktor Mathilde von Zahnd gibt sich zu erkennen: Ihr – nicht Möbius – erscheint König Salomo wirklich. Sie hat Möbius' Aufzeichnungen jahrelang heimlich fotokopiert, die Morde zugelassen und die Physiker dadurch in der Hand. Sie hat einen weltumspannenden Trust gegründet und baut Fabriken: Sie will Salomos Macht ökonomisch und militärisch ausnutzen und die Welt beherrschen. Möbius' Opfer war umsonst. Die drei bleiben als wirklich Gefangene zurück und stellen sich in drei Schlussmonologen endgültig als Newton, Einstein und Salomo vor.",
+          davor: "Die drei Physiker haben beschlossen, für immer in der Anstalt zu bleiben (II,2).",
+          danach: "Das Stück endet – die schlimmstmögliche Wendung ist eingetreten.",
+          merk: [
+            "Peripetie und Katastrophe zugleich: Das Opfer wird sinnlos",
+            "Die einzige wirklich Wahnsinnige leitet die Anstalt",
+            "Die drei Schlussmonologe stehen für Vergangenheit (Newton), Gegenwart (Einstein) und Zukunft (Möbius/Salomo)",
+          ],
+        },
+      ];
+
+      /* Figuren */
+      const FIGUREN = [
+        {
+          n: "Johann Wilhelm Möbius",
+          r: "Protagonist",
+          k: "physiker",
+          daten:
+            "Um 40, genialer Physiker, ehemaliger Privatdozent. Seit 15 Jahren Patient im Sanatorium «Les Cerisiers». Verheiratet gewesen mit Lina, drei Söhne. Erhielt als Student ein Stipendium, das ihm Lina finanzierte.",
+          verhalten:
+            "Simuliert Wahnsinn: Behauptet, ihm erscheine König Salomo und diktiere ihm seine Schriften. Spricht ruhig, sachlich, wird nur zweimal laut (Psalm, grosser Appell). Warnt Monika mehrfach, bevor er sie tötet.",
+          ansicht:
+            "Hat das «System aller möglichen Erfindungen» und das Problem der Gravitation gelöst – Wissen, das die Menschheit vernichten würde. Sein Grundsatz: Was alle angeht, kann nur die Menschheit gemeinsam verantworten; weil sie dazu nicht fähig ist, muss das Wissen zurückgenommen werden. Er hat alle Manuskripte verbrannt.",
+          entw: "Vom scheinbar harmlosen Verrückten zum Mörder aus Verantwortung, dann zum Überzeugungstäter, der zwei Kollegen gewinnt – und am Ende zum wirklich Gefangenen, der sich selbst als «armer König Salomo» aufgibt.",
+          zitat: "«Entweder bleiben wir im Irrenhaus, oder die Welt wird eines.»",
+        },
+        {
+          n: "«Newton» – Herbert Georg Beutler – Alec Jasper Kilton",
+          r: "Agent West",
+          k: "physiker",
+          daten:
+            "Gibt sich als Sir Isaac Newton aus, behauptet gegenüber dem Inspektor, in Wahrheit Einstein zu sein. Wirklich: Alec Jasper Kilton, Begründer der Entsprechungslehre, Agent eines westlichen Geheimdienstes.",
+          verhalten:
+            "Elegant, charmant, trinkt Kognak, zitiert Physik, spielt die Rolle genüsslich. Hat Schwester Dorothea Moser erdrosselt, weil sie seine Tarnung gefährdete.",
+          ansicht:
+            "Freiheit der Wissenschaft um jeden Preis: Die Forschung darf sich um Folgen nicht kümmern; wer forscht, dient der Erkenntnis. Das Wissen gehört dem Staat, der die Freiheit garantiert – also dem Westen.",
+          entw: "Vom scheinbaren Patienten zum enttarnten Agenten, dann zum freiwilligen Mitgefangenen – schliesslich wirklich eingesperrt.",
+          zitat: "Er ist bereit, seine Freiheit zu opfern – und verliert sie am Ende unfreiwillig.",
+        },
+        {
+          n: "«Einstein» – Ernst Heinrich Ernesti – Joseph Eisler",
+          r: "Agent Ost",
+          k: "physiker",
+          daten:
+            "Gibt sich als Albert Einstein aus, spielt Geige. Wirklich: Joseph Eisler, Entdecker des Eisler-Effekts, Agent eines östlichen Geheimdienstes.",
+          verhalten:
+            "Zurückhaltender, musikalisch, wirkt weicher als Kilton. Hat Schwester Irene Straub erdrosselt, ebenfalls zur Tarnung.",
+          ansicht:
+            "Die Wissenschaft muss der Macht dienen, die eine gerechte Weltordnung herstellt – der Partei, dem System. Das Wissen gehört dem Staat, der es für die Menschheit einsetzt, also dem Osten.",
+          entw: "Wie Kilton: enttarnt, überzeugt, mitgefangen.",
+          zitat:
+            "Sein Spiegelbild zu Kilton macht sichtbar: Die Blockgegner unterscheiden sich in der Begründung, nicht im Ziel.",
+        },
+        {
+          n: "Fräulein Doktor Mathilde von Zahnd",
+          r: "Antagonistin",
+          k: "zahnd",
+          daten:
+            "Ärztin, Psychiaterin, «Dr. h.c. med.», Leiterin des Sanatoriums. Buckelig, unverheiratet, letzte ihres Geschlechts – einer alten, mächtigen Familie. Betont ihre Verwandten (Generäle, Politiker, Industrielle).",
+          verhalten:
+            "Zuerst sachlich, souverän, mütterlich gegenüber ihren Patienten; im 2. Akt nervös, dann triumphierend und kalt. Am Ende befehlsgewohnt, umgeben von uniformierten Pflegern.",
+          ansicht:
+            "Ihr erscheint König Salomo wirklich – sie ist die einzige wahre Wahnsinnige des Stücks. Wissenschaftliche Erkenntnis ist für sie Mittel zum Machtgewinn: Sie hat Möbius' Aufzeichnungen kopiert, einen weltumspannenden Trust gegründet und baut Fabriken, um die Erfindungen ökonomisch und militärisch auszunutzen und als Salomos Statthalterin die Welt zu beherrschen.",
+          entw: "Von der scheinbar integren Ärztin zur Enthüllung als Drahtzieherin: Sie hat die Morde zugelassen, um die Physiker in der Hand zu haben.",
+          zitat: "«Für wen sich meine Patienten halten, bestimme ich.» (S. 25)",
+        },
+        {
+          n: "Schwester Monika Stettler",
+          r: "Die Liebe",
+          k: "opfer",
+          daten: "Krankenschwester, betreut Möbius. Waise, ohne Familie.",
+          verhalten:
+            "Aufopfernd, gläubig, bedingungslos verliebt. Hat Möbius durchschaut, glaubt aber, seine Genialität retten zu können. Hat Wohnung, Stelle und Fluchtweg vorbereitet.",
+          ansicht: "Liebe und Vertrauen können alles überwinden – deshalb versteht sie Möbius' Warnungen nicht.",
+          entw: "Wird von Möbius mit der Vorhangkordel erdrosselt, weil ihre Liebe sein Opfer gefährdet.",
+          zitat:
+            "Wie Lina Rose ist sie durch übertriebene Opferbereitschaft ins Lächerliche gezogen – deshalb empfindet man kaum Mitleid.",
+        },
+        {
+          n: "Inspektor Richard Voss",
+          r: "Die Justiz",
+          k: "institution",
+          daten: "Kriminalinspektor, ermittelt in beiden Akten. Begleitet von Blocher, Guhl und dem Gerichtsmediziner.",
+          verhalten:
+            "1. Akt: schwitzt, wird lächerlich gemacht, darf niemanden verhaften, tritt resigniert ab. 2. Akt: raucht, trinkt, ist gelassen und spricht nur noch von «Tätern».",
+          ansicht:
+            "Zu Beginn glaubt er an Gerechtigkeit; am Ende hat er sich damit abgefunden, dass sie hier nicht gilt – er geniesst die Straflosigkeit sogar.",
+          entw: "Verunsichert → desorientiert → hilflos → tritt ab. Symbol dafür, dass die Justiz versagt.",
+          zitat: "«Und mich macht man fertig.» (S. 17)",
+        },
+        {
+          n: "Missionar Oskar Rose",
+          r: "Die Kirche",
+          k: "institution",
+          daten:
+            "Missionar, hat Lina Rose geheiratet, Vater von sechs eigenen Kindern, wandert mit der ganzen Familie auf die Marianen aus.",
+          verhalten:
+            "Predigt salbungsvoll, redet in frommen Formeln, nimmt die Realität nicht wahr. Reagiert auf Möbius' Ausbruch mit religiöser Deutung statt mit Verständnis.",
+          ansicht: "Gottvertrauen löst alles – auch Möbius' «Krankheit» sei ein göttlicher Plan.",
+          entw: "Scheinheilig, selbstzufrieden, weltfremd, funktionslos → zieht sich aus der Realität zurück (Auswanderung).",
+          zitat: "Er steht für das Versagen der Kirche als moralische Instanz.",
+        },
+        {
+          n: "Lina Rose",
+          r: "Nebenfigur",
+          k: "neben",
+          daten:
+            "Möbius' frühere Frau, hat ihn 15 Jahre lang finanziert, inzwischen mit Missionar Rose verheiratet. Mutter der drei Söhne Adolf-Friedrich, Wilfried-Kaspar und Jörg-Lukas.",
+          verhalten: "Rührselig, opferbereit bis zur Lächerlichkeit, will das Beste und merkt nichts.",
+          ansicht: "Familie und Anstand vor allem.",
+          entw: "Flieht mit der Familie entsetzt vor Möbius' Psalm – genau das, was er erreichen wollte.",
+          zitat: "Ihre übertriebene Opferbereitschaft verbindet sie mit Schwester Monika.",
+        },
+        {
+          n: "Oberschwester Marta Boll · Pfleger Uwe Sievers",
+          r: "Anstaltspersonal",
+          k: "neben",
+          daten:
+            "Die Oberschwester führt streng Regie über die Anstalt; Uwe Sievers ist Oberpfleger, ehemaliger Boxer bzw. Ringer, mit McArthur und Murillo Teil der neuen Wachmannschaft.",
+          verhalten: "Korrekt, unbeirrbar, später offen militärisch: schwarze Uniformen, Pistolen, Befehlston.",
+          ansicht: "Gehorsam gegenüber der Chefärztin.",
+          entw: "Der Wechsel von Schwestern zu Pflegern markiert den Umschlag von Pflegeanstalt zu Gefängnis.",
+          zitat: "Das Personal macht die Machtübernahme sichtbar, bevor sie ausgesprochen wird.",
+        },
+      ];
+
+      /* Die 21 Punkte – sinngemäss zusammengefasst und erklärt (nicht der Originalwortlaut) */
+      const P21 = [
+        {
+          n: 1,
+          kurz: "Ausgangspunkt ist eine Geschichte, keine These.",
+          was: "Dürrenmatt will nicht eine Meinung bebildern, sondern eine Handlung erzählen, die sich selbst zu Ende bringt.",
+          stueck:
+            "Das Stück predigt nicht «Atomwaffen sind böse», sondern erzählt, was drei Physikern in einer Anstalt zustösst.",
+        },
+        {
+          n: 2,
+          kurz: "Wer von einer Geschichte ausgeht, muss sie zu Ende denken.",
+          was: "Man darf nicht abbrechen, wenn es unangenehm wird.",
+          stueck:
+            "Das Stück hört nicht beim schönen Entschluss der drei Physiker auf, sondern geht einen Schritt weiter.",
+        },
+        {
+          n: 3,
+          kurz: "Zu Ende gedacht ist eine Geschichte, wenn sie die schlimmstmögliche Wendung genommen hat.",
+          was: "Der Schluss muss der denkbar schlechteste sein – sonst hat der Autor gekniffen.",
+          stueck:
+            "Der Kernsatz für das ganze Stück: Möbius opfert alles, und die Weltformel landet trotzdem in den Händen einer Wahnsinnigen.",
+        },
+        {
+          n: 4,
+          kurz: "Die schlimmstmögliche Wendung ist nicht vorhersehbar; sie tritt durch Zufall ein.",
+          was: "Nicht Schicksal oder Logik, sondern der Zufall kippt die Geschichte.",
+          stueck: "Dass ausgerechnet die Ärztin wahnsinnig ist und mitliest, konnte niemand einplanen.",
+        },
+        {
+          n: 5,
+          kurz: "Die Kunst des Dramatikers ist es, den Zufall wirksam einzusetzen.",
+          was: "Der Zufall darf nicht willkürlich wirken, sondern muss an der empfindlichsten Stelle treffen.",
+          stueck: "Der Zufall trifft genau den Punkt, an dem Möbius' Plan hängt.",
+        },
+        {
+          n: 6,
+          kurz: "Träger der Handlung sind Menschen.",
+          was: "Keine Ideen oder Mächte handeln, sondern Figuren mit Absichten.",
+          stueck: "Nicht «die Wissenschaft» handelt, sondern Möbius, Kilton, Eisler und von Zahnd.",
+        },
+        {
+          n: 7,
+          kurz: "Der Zufall besteht darin, wann und wo wer wem begegnet.",
+          was: "Begegnungen sind die Schaltstellen der Handlung.",
+          stueck:
+            "Monika begegnet Möbius im falschen Moment; die drei Physiker treffen in derselben Anstalt aufeinander.",
+        },
+        {
+          n: 8,
+          kurz: "Je planmässiger Menschen vorgehen, desto härter trifft sie der Zufall.",
+          was: "Der perfekte Plan bietet dem Zufall die grösste Angriffsfläche.",
+          stueck: "Möbius plant 15 Jahre lang perfekt – und wird gerade dadurch vollständig getroffen.",
+        },
+        {
+          n: 9,
+          kurz: "Am schlimmsten trifft der Zufall, wenn Menschen durch ihn das Gegenteil ihres Ziels erreichen.",
+          was: "Sie bewirken genau das, was sie verhindern wollten – wie Ödipus.",
+          stueck:
+            "Möbius will die Menschheit schützen und liefert sein Wissen ausgerechnet einer machtgierigen Wahnsinnigen aus.",
+        },
+        {
+          n: 10,
+          kurz: "Eine solche Geschichte ist grotesk, aber nicht absurd.",
+          was: "Sie ist verzerrt und schrecklich-komisch, aber nicht sinnlos: Sie hat eine nachvollziehbare Logik.",
+          stueck:
+            "Ein Irrenhaus, in dem die Vernünftigen wohnen und die Ärztin wahnsinnig ist – grotesk, aber konsequent.",
+        },
+        {
+          n: 11,
+          kurz: "Sie ist paradox.",
+          was: "Sie enthält einen Widerspruch, der sich nicht auflösen lässt.",
+          stueck: "Nur im Irrenhaus kann Möbius vernünftig sein – und gerade dort verliert er alles.",
+        },
+        {
+          n: 12,
+          kurz: "Wie die Logiker können auch die Dramatiker das Paradoxe nicht vermeiden.",
+          was: "Wer die Wirklichkeit ernst nimmt, stösst zwangsläufig auf Widersprüche.",
+          stueck: "Das Stück löst den Widerspruch nicht auf, sondern hält ihn aus.",
+        },
+        {
+          n: 13,
+          kurz: "Ebenso wenig die Physiker.",
+          was: "Auch die moderne Physik ist voller Paradoxien.",
+          stueck: "Verbindet die Form des Stücks mit seinem Gegenstand.",
+        },
+        {
+          n: 14,
+          kurz: "Ein Drama über die Physiker muss deshalb paradox sein.",
+          was: "Form und Inhalt müssen zusammenpassen.",
+          stueck: "Begründet, warum «Die Physiker» eine Komödie mit tragischem Ausgang ist.",
+        },
+        {
+          n: 15,
+          kurz: "Es kann nicht den Inhalt der Physik liefern, sondern nur ihre Auswirkung.",
+          was: "Das Theater erklärt keine Formeln, es zeigt Folgen.",
+          stueck: "Die «Weltformel» wird nie erklärt – nur, was sie anrichten würde.",
+        },
+        {
+          n: 16,
+          kurz: "Der Inhalt der Physik geht die Physiker an, die Auswirkung alle Menschen.",
+          was: "Fachwissen ist Sache der Fachleute, die Folgen sind Sache aller.",
+          stueck: "Die Kernfrage der Abendessen-Szene.",
+        },
+        {
+          n: 17,
+          kurz: "Was alle angeht, können nur alle lösen.",
+          was: "Gemeinsame Probleme brauchen gemeinsame Verantwortung.",
+          stueck: "Möbius' Denkfehler: Er versucht es allein.",
+        },
+        {
+          n: 18,
+          kurz: "Jeder Versuch eines Einzelnen, für sich zu lösen, was alle angeht, muss scheitern.",
+          was: "Der direkte Grund für den Ausgang des Stücks.",
+          stueck:
+            "Möbius' Alleingang – verbrennen, sich einsperren, morden – scheitert vollständig. Das ist die Antwort auf die Frage, warum er verlieren muss.",
+        },
+        {
+          n: 19,
+          kurz: "Im Paradoxen erscheint die Wirklichkeit.",
+          was: "Gerade der Widerspruch zeigt, wie die Welt wirklich ist.",
+          stueck: "Das Irrenhaus als wahrheitsgetreues Bild der Welt.",
+        },
+        {
+          n: 20,
+          kurz: "Wer dem Paradoxen gegenübersteht, setzt sich der Wirklichkeit aus.",
+          was: "Das Paradox auszuhalten heisst, der Realität ins Auge zu sehen.",
+          stueck: "Was das Stück vom Publikum verlangt.",
+        },
+        {
+          n: 21,
+          kurz: "Die Dramatik kann den Zuschauer überlisten, sich der Wirklichkeit auszusetzen – aber nicht zwingen, ihr standzuhalten.",
+          was: "Das Theater kann eine Einsicht auslösen, aber niemanden zum Handeln zwingen.",
+          stueck:
+            "Direkte Verbindung zur «Mausefalle» aus den «Theaterproblemen»: Die Komödie lockt das Publikum hinein – was es daraus macht, ist seine Sache.",
+        },
+      ];
+
+      /* Schlüsselzitate */
+      const ZITATE = [
+        {
+          z: "«Entweder bleiben wir im Irrenhaus, oder die Welt wird eines.»",
+          w: "Möbius",
+          s: "2. Akt, Abendessen",
+          e: "Möbius' Kernargument: Nur die freiwillige Selbsteinsperrung der Physiker kann die Menschheit retten. Der Satz fasst sein ganzes Opfer zusammen.",
+        },
+        {
+          z: "«Für wen sich meine Patienten halten, bestimme ich. Ich kenne sie weitaus besser, als sie sich selbst kennen.»",
+          w: "Fräulein Doktor von Zahnd",
+          s: "I,1 (S. 25)",
+          e: "Klingt zuerst nach ärztlicher Souveränität – rückblickend ist es das Machtbekenntnis der eigentlichen Täterin. Klassische dramatische Ironie.",
+        },
+        {
+          z: "«Und mich macht man fertig.»",
+          w: "Inspektor Voss",
+          s: "I,1 (S. 17)",
+          e: "Der Kalauer zeigt in einem Satz, wie die Justiz hier behandelt wird: Sie wird nicht bekämpft, sondern lächerlich gemacht.",
+        },
+        {
+          z: "«Sind Sie nun vertrottelt, Herr Inspektor, oder tun Sie nur so?»",
+          w: "«Newton»",
+          s: "I,1 (S. 20)",
+          e: "Der Patient stellt den Ermittler bloss – die Rollen von Vernunft und Wahnsinn sind vertauscht.",
+        },
+        {
+          z: "«Ich hoffe nicht, noch einmal aufzutauchen.»",
+          w: "Inspektor Voss",
+          s: "I,1 (S. 29)",
+          e: "Abgang der Justiz aus dem 1. Akt – und eine Vorausdeutung, denn er kommt im 2. Akt wieder, dann aber resigniert.",
+        },
+        {
+          z: "«Das beunruhigt mich und nicht Ihr tobender Staatsanwalt.»",
+          w: "Fräulein Doktor von Zahnd",
+          s: "I,1 (S. 26)",
+          e: "Sie macht deutlich, dass staatliche Autorität in ihrer Anstalt nichts gilt.",
+        },
+        {
+          z: "«Was alle angeht, können nur alle lösen.»",
+          w: "Dürrenmatt, 21 Punkte (Nr. 17)",
+          s: "Anhang",
+          e: "Der meistzitierte der 21 Punkte – und der Satz, an dem Möbius scheitert, weil er es allein versucht.",
+        },
+        {
+          z: "«Eine Geschichte ist dann zu Ende gedacht, wenn sie ihre schlimmstmögliche Wendung genommen hat.»",
+          w: "Dürrenmatt, 21 Punkte (Nr. 3)",
+          s: "Anhang",
+          e: "Die Bauanleitung des Stücks: Der Schluss muss der denkbar schlechteste sein.",
+        },
+        {
+          z: "«Die Komödie ist eine Mausefalle, in die das Publikum immer wieder gerät.»",
+          w: "Dürrenmatt, «Theaterprobleme» (1955)",
+          s: "Sachtext",
+          e: "Der Einfall lockt die Zuschauer an; drin sitzen sie in einer Geschichte, deren Ernst sie sonst nicht ertragen hätten.",
+        },
+        {
+          z: "«Uns kommt nur noch die Komödie bei.»",
+          w: "Dürrenmatt, «Theaterprobleme» (1955)",
+          s: "Sachtext",
+          e: "Weil es in der modernen Welt keine Schuldigen und Verantwortlichen mehr gibt, ist die reine Tragödie unmöglich geworden.",
+        },
+        {
+          z: "«Das Groteske ist … die Gestalt einer Ungestalt, das Gesicht einer gesichtslosen Welt.»",
+          w: "Dürrenmatt, «Theaterprobleme» (1955)",
+          s: "Sachtext",
+          e: "Die Definition des Grotesken, die du für das Lernziel «Begriff grotesk» brauchst.",
+        },
+        {
+          z: "«Wir können das Tragische aus der Komödie heraus erzielen … als einen sich öffnenden Abgrund.»",
+          w: "Dürrenmatt, «Theaterprobleme» (1955)",
+          s: "Sachtext",
+          e: "Erklärt, warum «Die Physiker» als Komödie angekündigt ist und trotzdem tragisch endet.",
+        },
+      ];
+
+      /* ============ Abfragen ============ */
+
+      /* Textstellen einordnen: Zitat → welche Szene? */
+      const EINORDNEN = [
+        {
+          z: "«Stört es Sie, wenn ich ein Gläschen Kognak –?»",
+          loesung: "I1",
+          wer: "«Newton» zum Inspektor",
+          davor: "Schwester Irene Straub ist erdrosselt worden, die Polizei nimmt den Tatbestand auf.",
+          danach: "Newton gesteht den Mord an Dorothea Moser und behauptet, in Wahrheit Einstein zu sein.",
+          bed: "Die Höflichkeitsfloskel am Tatort zeigt die Verkehrung: Der Mörder benimmt sich wie ein Gastgeber, der Ermittler wie ein Störenfried.",
+        },
+        {
+          z: "«Für wen sich meine Patienten halten, bestimme ich.»",
+          loesung: "I1",
+          wer: "Fräulein Doktor von Zahnd",
+          davor: "Der Inspektor will wissen, wer die Patienten wirklich sind.",
+          danach: "Sie kündigt an, die Schwestern durch Pfleger zu ersetzen, und der Inspektor tritt ab.",
+          bed: "Machtanspruch über die Definition von Normalität – rückblickend die Ankündigung ihrer Herrschaft.",
+        },
+        {
+          z: "Möbius trägt den «Psalm Salomos» vor: das Weltall, die Wüsten des Mondes, Menschen, die im Staub versinken.",
+          loesung: "I2",
+          wer: "Möbius vor der Familie Rose",
+          davor: "Die Familie hat sich verabschiedet, die Söhne haben Blockflöte gespielt, Rose hat gepredigt.",
+          danach: "Die Familie flieht entsetzt; Schwester Monika bleibt allein mit Möbius zurück.",
+          bed: "Anti-Psalm: Statt Gotteslob ein sinnloser, toter Kosmos. Möbius zerstört bewusst die letzte familiäre Bindung.",
+        },
+        {
+          z: "«… sonst muss ich sie auch noch wie einen Hund behandeln.»",
+          loesung: "I3",
+          wer: "Möbius zu Schwester Monika",
+          davor: "Monika hat ihm ihre Liebe gestanden und die Flucht vorbereitet.",
+          danach: "Möbius erdrosselt sie mit der Vorhangkordel; der 1. Akt endet.",
+          bed: "Eine der deutlichsten Vorausdeutungen auf den Mord. Das Publikum versteht sie, Monika nicht – dramatische Ironie.",
+        },
+        {
+          z: "Der Inspektor raucht, lässt sich Kognak einschenken und spricht nur noch von «Tätern».",
+          loesung: "II1",
+          wer: "Inspektor Voss",
+          davor: "Möbius hat Schwester Monika getötet; die Polizei ist zum dritten Mal in der Anstalt.",
+          danach: "Die Leiche wird weggetragen, die neuen Pfleger übernehmen den Dienst.",
+          bed: "Spiegelszene zum Anfang des 1. Akts: gleicher Raum, umgekehrte Haltung. Die Justiz hat kapituliert.",
+        },
+        {
+          z: "«Ich bin Alec Jasper Kilton, Begründer der Entsprechungslehre.»",
+          loesung: "II2",
+          wer: "«Newton» beim Abendessen",
+          davor: "Die drei Physiker sind allein, die Masken fallen.",
+          danach: "Auch «Einstein» enttarnt sich als Joseph Eisler; beide werben um Möbius.",
+          bed: "Die Krimihandlung kippt in ein Agentenstück – und stellt die eigentliche Frage: Wem gehört das Wissen?",
+        },
+        {
+          z: "«Entweder bleiben wir im Irrenhaus, oder die Welt wird eines.»",
+          loesung: "II2",
+          wer: "Möbius",
+          davor: "Kilton und Eisler haben ihre Angebote gemacht (Freiheit der Forschung / Dienst am System).",
+          danach: "Beide lassen sich überzeugen und schwören, für immer zu bleiben.",
+          bed: "Möbius' Kernargument und der Höhepunkt der Hoffnung – unmittelbar bevor die Chefärztin alles zerstört.",
+        },
+        {
+          z: "Schwarz uniformierte Pfleger mit Pistolen, vergitterte Fenster, das Porträt eines Generals an der Wand.",
+          loesung: "II3",
+          wer: "Regieanweisung",
+          davor: "Die drei Physiker haben ihren Bund geschlossen.",
+          danach: "Fräulein Doktor von Zahnd enthüllt, dass sie alles kopiert hat.",
+          bed: "Das Bühnenbild sagt die Katastrophe voraus, bevor ein Wort fällt: aus dem Sanatorium ist ein Gefängnis geworden.",
+        },
+        {
+          z: "«Ich bin Salomo … ich bin der arme König Salomo.»",
+          loesung: "II3",
+          wer: "Möbius im Schlussmonolog",
+          davor: "Die Chefärztin hat ihren Trust und ihr Ziel der Weltherrschaft offengelegt.",
+          danach: "Das Stück endet.",
+          bed: "Die gespielte Rolle ist zur Wirklichkeit geworden: Möbius bleibt nur noch der Wahnsinn, den er erfunden hat.",
+        },
+      ];
+
+      /* Multiple Choice */
+      const MC = [
+        {
+          q: "Wo spielt «Die Physiker»?",
+          o: [
+            "Im Salon der Villa des Privatsanatoriums «Les Cerisiers»",
+            "In einem Physiklabor",
+            "In einem Gefängnis",
+            "In Möbius' Wohnung",
+          ],
+          a: 0,
+          e: "Ein einziger Schauplatz – Dürrenmatt hält die Einheit des Ortes streng ein.",
+        },
+        {
+          q: "Wie lautet der Untertitel des Stücks?",
+          o: ["Eine Komödie in zwei Akten", "Ein Trauerspiel", "Eine Tragikomödie in fünf Akten", "Ein Schauspiel"],
+          a: 0,
+          e: "Dürrenmatt nennt es Komödie – der Ausgang ist trotzdem katastrophal. Genau das meint er mit «das Tragische aus der Komödie heraus».",
+        },
+        {
+          q: "Wer ist «Newton» in Wahrheit?",
+          o: [
+            "Alec Jasper Kilton, Agent eines westlichen Geheimdienstes",
+            "Joseph Eisler, Agent des Ostens",
+            "Ein wirklich Geisteskranker",
+            "Ein Journalist",
+          ],
+          a: 0,
+          e: "Er heisst offiziell Herbert Georg Beutler, gibt sich als Newton aus, behauptet Einstein zu sein – und ist Kilton, Begründer der Entsprechungslehre.",
+        },
+        {
+          q: "Wer ist «Einstein» in Wahrheit?",
+          o: [
+            "Joseph Eisler, Agent eines östlichen Geheimdienstes",
+            "Alec Jasper Kilton",
+            "Möbius' Bruder",
+            "Ein Pfleger",
+          ],
+          a: 0,
+          e: "Offiziell Ernst Heinrich Ernesti, Entdecker des Eisler-Effekts, Agent des Ostblocks. Er spielt Geige.",
+        },
+        {
+          q: "Welche drei Krankenschwestern werden im Stück getötet?",
+          o: [
+            "Dorothea Moser, Irene Straub, Monika Stettler",
+            "Marta Boll, Lina Rose, Monika Stettler",
+            "Nur Monika Stettler",
+            "Irene Straub und Marta Boll",
+          ],
+          a: 0,
+          e: "Moser von «Newton», Straub von «Einstein», Stettler von Möbius – alle drei erdrosselt, alle drei aus demselben Grund: Sie hatten die Physiker durchschaut oder geliebt.",
+        },
+        {
+          q: "Womit erdrosselt Möbius Schwester Monika?",
+          o: ["Mit der Vorhangkordel", "Mit einem Seil", "Mit den Händen", "Mit einem Kabel"],
+          a: 0,
+          e: "Die Vorhangkordel – ein Requisit, das schon in der Ortsbeschreibung vorkommt.",
+        },
+        {
+          q: "Warum tötet Möbius Schwester Monika?",
+          o: [
+            "Weil ihre Liebe ihn aus der Anstalt holen und sein Wissen freisetzen würde",
+            "Aus Eifersucht",
+            "Weil sie ihn erpresst",
+            "Im Wahn",
+          ],
+          a: 0,
+          e: "Sie hat die Flucht vorbereitet. Er tötet sie, um sein Opfer – das Verschwinden seines Wissens – zu retten.",
+        },
+        {
+          q: "Was hat Möbius erfunden?",
+          o: [
+            "Das «System aller möglichen Erfindungen» und die Lösung des Gravitationsproblems",
+            "Die Atombombe",
+            "Eine Zeitmaschine",
+            "Ein Heilmittel",
+          ],
+          a: 0,
+          e: "Wissen, aus dem sich praktisch jede denkbare Technik ableiten liesse – deshalb ist es so gefährlich.",
+        },
+        {
+          q: "Wen sieht Möbius angeblich – und wer sieht ihn wirklich?",
+          o: [
+            "Möbius spielt König Salomo nur; Fräulein von Zahnd erscheint er wirklich",
+            "Beide spielen",
+            "Beide sehen ihn wirklich",
+            "Niemand sieht ihn",
+          ],
+          a: 0,
+          e: "Die zentrale Pointe: Die Ärztin ist die einzige wirklich Wahnsinnige des Stücks.",
+        },
+        {
+          q: "Was ist Fräulein von Zahnds Ziel?",
+          o: [
+            "Mit Möbius' Erfindungen einen Trust aufbauen und die Welt beherrschen",
+            "Ihre Patienten heilen",
+            "Ruhm als Ärztin",
+            "Rache an Möbius' Familie",
+          ],
+          a: 0,
+          e: "Sie hat die Aufzeichnungen kopiert, Fabriken gebaut und will Salomos Macht ökonomisch und militärisch ausnutzen.",
+        },
+        {
+          q: "Welche drei Institutionen versagen im 1. Akt?",
+          o: [
+            "Justiz (Voss), Kirche (Rose), Liebe (Monika)",
+            "Schule, Militär, Presse",
+            "Familie, Medizin, Politik",
+            "Wissenschaft, Kirche, Militär",
+          ],
+          a: 0,
+          e: "Genau die Dreiteilung des 1. Akts: S. 15–31 Justiz, S. 31–43 Kirche, S. 43–53 Liebe. Fazit: Bedeutungslosigkeit anerkannter Wertvorstellungen.",
+        },
+        {
+          q: "Was ändert sich zwischen dem Anfang des 1. und des 2. Akts?",
+          o: [
+            "Gleicher Raum und gleiches Personal, aber der Inspektor ist gelassen und die Chefärztin nervös",
+            "Der Schauplatz wechselt",
+            "Neue Hauptfiguren treten auf",
+            "Es vergehen Jahre",
+          ],
+          a: 0,
+          e: "Spiegelszene: Die Haltungen sind vertauscht. Der Inspektor hat resigniert, die Ärztin steht kurz vor ihrem Ziel.",
+        },
+        {
+          q: "Wofür stehen die drei Schlussmonologe nach einer verbreiteten Deutung?",
+          o: [
+            "Newton = Vergangenheit, Einstein = Gegenwart, Möbius = Zukunft der Naturwissenschaft",
+            "Für die drei toten Schwestern",
+            "Für Justiz, Kirche und Liebe",
+            "Für die drei Einheiten",
+          ],
+          a: 0,
+          e: "Drei Entwicklungsstufen naturwissenschaftlichen Denkens – und drei endgültig gefangene Männer.",
+        },
+        {
+          q: "Welcher der 21 Punkte erklärt am besten, warum Möbius scheitern muss?",
+          o: [
+            "Punkt 18: Jeder Versuch eines Einzelnen, für sich zu lösen, was alle angeht, muss scheitern",
+            "Punkt 1: Ausgangspunkt ist eine Geschichte",
+            "Punkt 6: Träger der Handlung sind Menschen",
+            "Punkt 13: Auch die Physiker kommen ohne das Paradoxe nicht aus",
+          ],
+          a: 0,
+          e: "Zusammen mit Punkt 17 («Was alle angeht, können nur alle lösen») die Erklärung für die Katastrophe.",
+        },
+        {
+          q: "Was meint Dürrenmatt mit der «schlimmstmöglichen Wendung»?",
+          o: [
+            "Eine Geschichte ist erst zu Ende gedacht, wenn der denkbar schlechteste Ausgang eingetreten ist",
+            "Dass jede Komödie tragisch endet",
+            "Dass der Held sterben muss",
+            "Dass der Zufall keine Rolle spielt",
+          ],
+          a: 0,
+          e: "Punkt 3 der 21 Punkte – und die Bauanleitung für den Schluss des Stücks.",
+        },
+        {
+          q: "Was ist nach Dürrenmatt die «Mausefalle»?",
+          o: [
+            "Die Komödie lockt das Publikum an und bringt es dazu, sich Dinge anzuhören, die es sonst nicht ertragen würde",
+            "Die Anstalt als Gefängnis",
+            "Die Weltformel",
+            "Der Plan der Chefärztin",
+          ],
+          a: 0,
+          e: "Aus den «Theaterproblemen»: Der Einfall verwandelt die Zuschauer in eine Masse, die «angegriffen, verführt, überlistet» werden kann.",
+        },
+        {
+          q: "Warum ist nach Dürrenmatt die reine Tragödie heute nicht mehr möglich?",
+          o: [
+            "Weil Schuld, Verantwortung und Übersicht fehlen – es gibt keine Schuldigen mehr, nur kollektive Schuld",
+            "Weil das Publikum nicht mehr weint",
+            "Weil es keine Könige mehr gibt",
+            "Weil Komödien mehr Geld bringen",
+          ],
+          a: 0,
+          e: "«Uns kommt nur noch die Komödie bei.» Die Tragödie setzt eine gestaltete Welt voraus, die Komödie passt zur ungestalteten.",
+        },
+        {
+          q: "Was bedeutet «grotesk» bei Dürrenmatt?",
+          o: [
+            "Ein sinnliches Paradox – die Gestalt einer Ungestalt, das Gesicht einer gesichtslosen Welt",
+            "Einfach lustig",
+            "Übertrieben traurig",
+            "Realistisch",
+          ],
+          a: 0,
+          e: "Das Groteske macht eine unfassbare Welt sichtbar. «Unsere Welt hat ebenso zur Groteske geführt wie zur Atombombe.»",
+        },
+        {
+          q: "Wann und wo wurde «Die Physiker» uraufgeführt?",
+          o: ["1962 im Schauspielhaus Zürich", "1956 in Bern", "1945 in Basel", "1970 in Berlin"],
+          a: 0,
+          e: "21. Februar 1962 – mitten im Kalten Krieg, im Jahr der Kubakrise.",
+        },
+        {
+          q: "Wo und wann wurde Friedrich Dürrenmatt geboren?",
+          o: [
+            "1921 in Konolfingen (Kanton Bern), als Pfarrerssohn",
+            "1900 in Zürich",
+            "1930 in Basel",
+            "1921 in Neuenburg",
+          ],
+          a: 0,
+          e: "5. Januar 1921; gestorben am 14. Dezember 1990 in Neuchâtel. Der Pfarrerhaushalt erklärt viel von seiner Religionskritik.",
+        },
+        {
+          q: "Welches Genre erwartet der Zuschauer zu Beginn – und warum wird es gebrochen?",
+          o: [
+            "Ein Kriminalstück; aber Täter und Tathergang sind von Anfang an bekannt, nur die Motive fehlen",
+            "Eine Liebesgeschichte; sie endet glücklich",
+            "Ein Historiendrama; es spielt in der Gegenwart",
+            "Ein Märchen; es wird realistisch",
+          ],
+          a: 0,
+          e: "Dürrenmatt spielt mit der Krimi-Erwartung: Der Tatort ist ein Irrenhaus, die Ermittlung führt ins Leere, die eigentliche Frage ist eine moralische.",
+        },
+        {
+          q: "Welche Einheiten hält Dürrenmatt im Stück ein?",
+          o: [
+            "Ort, Zeit und Handlung – es ist ein geschlossenes Drama",
+            "Nur die Einheit des Ortes",
+            "Keine",
+            "Nur die Einheit der Handlung",
+          ],
+          a: 0,
+          e: "Ein Salon, wenige Stunden, ein Handlungsstrang. Punkt 1 der 21 Punkte fordert entsprechend, von einer Geschichte auszugehen.",
+        },
+        {
+          q: "Wie reagiert Möbius auf Schwester Monikas Liebesgeständnis?",
+          o: [
+            "Er warnt sie mehrfach und rät ihr zu fliehen, bevor er sie tötet",
+            "Er erwidert ihre Liebe",
+            "Er lacht sie aus",
+            "Er ruft die Ärztin",
+          ],
+          a: 0,
+          e: "Die Warnungen sind die Vorausdeutungen auf den Mord – und der Grund, warum der Zuschauer die Tat kommen sieht.",
+        },
+        {
+          q: "Welche Rolle spielt der Zufall nach den 21 Punkten?",
+          o: [
+            "Er bringt die schlimmstmögliche Wendung und trifft planmässig vorgehende Menschen am härtesten",
+            "Er darf im Drama nicht vorkommen",
+            "Er sorgt für das Happy End",
+            "Er ersetzt die Figuren",
+          ],
+          a: 0,
+          e: "Punkte 4, 5, 8 und 9: Je perfekter der Plan, desto verheerender der Zufall.",
+        },
+      ];
+
+      /* Lückentexte */
+      const LUECK = [
+        {
+          t: "«Die Physiker» ist eine [Komödie] in zwei Akten von Friedrich [Dürrenmatt], uraufgeführt [1962] in Zürich. Das ganze Stück spielt im Salon des Sanatoriums «[Les Cerisiers]», geleitet von Fräulein Doktor Mathilde von [Zahnd].",
+        },
+        {
+          t: "Der Patient, der sich [Newton] nennt, heisst offiziell Herbert Georg Beutler und ist in Wahrheit [Kilton], Agent des Westens. Der Patient, der sich [Einstein] nennt, heisst Ernst Heinrich Ernesti und ist in Wahrheit [Eisler], Agent des Ostens.",
+        },
+        {
+          t: "Möbius hat das System aller möglichen [Erfindungen] gefunden und das Problem der [Gravitation] gelöst. Um die Menschheit zu schützen, hat er seine [Manuskripte] verbrannt und simuliert seit [15] Jahren den Wahnsinn: Ihm erscheine angeblich König [Salomo].",
+        },
+        {
+          t: "Im 1. Akt scheitern drei Institutionen: die [Justiz] in Gestalt von Inspektor Voss, die [Kirche] in Gestalt von Missionar Rose und die [Liebe] in Gestalt von Schwester [Monika]. Fazit: die Bedeutungslosigkeit allgemein anerkannter [Wertvorstellungen].",
+        },
+        {
+          t: "Die drei ermordeten Krankenschwestern heissen Dorothea [Moser], Irene [Straub] und Monika [Stettler]. Alle drei werden [erdrosselt] – Monika mit der [Vorhangkordel].",
+        },
+        {
+          t: "Beim Abendessen sagt Möbius: «Entweder bleiben wir im [Irrenhaus], oder die [Welt] wird eines.» Er überzeugt die beiden anderen, für immer zu bleiben – doch die Chefärztin hat seine Aufzeichnungen längst [fotokopiert] und einen weltumspannenden [Trust] gegründet.",
+        },
+        {
+          t: "Punkt 3 der 21 Punkte lautet sinngemäss: Eine Geschichte ist zu Ende gedacht, wenn sie ihre [schlimmstmögliche] Wendung genommen hat. Punkt 17: Was alle angeht, können nur [alle] lösen. Punkt 18: Jeder Versuch eines [Einzelnen], für sich zu lösen, was alle angeht, muss [scheitern].",
+        },
+        {
+          t: "In den «Theaterproblemen» (1955) schreibt Dürrenmatt, die [Tragödie] setze eine gestaltete Welt voraus, die [Komödie] dagegen eine ungestalte. Das Mittel, mit dem die Komödie Distanz schafft, ist der [Einfall]. Die Komödie sei eine [Mausefalle], in die das Publikum immer wieder gerät.",
+        },
+        {
+          t: "Das [Groteske] ist für Dürrenmatt ein sinnliches Paradox: die Gestalt einer [Ungestalt], das Gesicht einer gesichtslosen Welt. Die einzig mögliche dramatische Form, heute das Tragische auszusagen, ist für ihn die [Tragikomödie].",
+        },
+        {
+          t: "Zu Beginn des 2. Akts ist der Inspektor [gelassen] und die Chefärztin [nervös] – genau umgekehrt wie im 1. Akt. In der Enthüllungsszene tragen die Pfleger schwarze [Uniformen] und Pistolen, die Fenster sind [vergittert], und an der Wand hängt neu das Bild eines [Generals].",
+        },
+      ];
+
+      /* Offene Prüfungsfragen */
+      const OFFEN = [
+        {
+          q: "Warum ist «Die Physiker» ein Drama? Nenne die textsortenspezifischen Merkmale.",
+          a: "Kein Erzähler – alle Informationen kommen aus Figurenrede und Handlung. Der Text besteht aus Dialogen (Verhör Voss–Newton, Abendessen der Physiker) und Monologen (die drei Schlussmonologe) sowie kursiven Regieanweisungen (die ausführliche Salonbeschreibung zu Beginn, «dumpf», «wischt sich den Schweiss ab»). Die Handlung entsteht durch Rede und Gegenrede und über die Beziehungen der Figuren. Im Zentrum steht ein dramatischer Konflikt: äusserlich Möbius gegen Kilton, Eisler und von Zahnd, innerlich Möbius zwischen Liebe und Verantwortung. Der Text ist in zwei Akte gegliedert und für die Bühne geschrieben – Untertitel «Eine Komödie in zwei Akten».",
+        },
+        {
+          q: "Analysiere die einleitende Ortsbeschreibung. Worüber informiert sie, und wie wirkt sie?",
+          a: "Sie beantwortet die W-Fragen: WO (Salon der Villa des Sanatoriums «Les Cerisiers», Blick auf Stadt und Landschaft, drei Zimmertüren, Fenster, Möbel, Vorhänge), WANN (Nachmittag, kurz nach einem Mord), WER (die Anstalt, ihre Leiterin, die Patienten) und WAS (eine Leiche liegt im Raum, die Polizei ermittelt). Wirkung und Gestaltungsmerkmale: (1) Ironischer Unterton – die Beschreibung ist betont gepflegt und behaglich, obwohl gerade ein Mord geschehen ist; (2) Kontraste – schöne Aussicht und Naturidylle gegen Irrenhaus und Leiche, gepflegter Salon gegen Gewalt; (3) Spiel mit Erwartungen – der Leser erwartet nach der genauen Milieuzeichnung ein realistisches Stück oder einen Krimi; (4) Täuschungsmanöver – das Harmlose und Gepflegte verdeckt, dass hier die gefährlichste Konstellation der Welt sitzt und die Anstaltsleiterin die eigentliche Täterin ist. Die genaue Umgebungsbeschreibung suggeriert zudem Normalität und Realismus – und macht den Umschlag ins Groteske umso wirksamer.",
+        },
+        {
+          q: "Ist «Die Physiker» ein Kriminalstück? Nenne passende und unpassende Elemente und die Wirkung.",
+          a: "Passend: mysteriöse Mordfälle, eine Leiche auf der Bühne, Kriminalinspektor mit Team, Tatbestandsaufnahme, Gerichtsmediziner, Fotograf, Verhöre, Verdächtige, eine Enthüllung am Schluss. Unpassend/irritierend: Der Tatort ist ein Irrenhaus; die Täter sind von Anfang an bekannt und gestehen freiwillig; niemand wird verhaftet; der Inspektor wird lächerlich gemacht und trinkt am Tatort Kognak; die Motive bleiben offen; die eigentliche Täterin ist die Ermittlungsbehörde des Hauses selbst. Wirkung: Dürrenmatt spielt mit den Erwartungen des Publikums. Die Krimifragen «Wer?» und «Wie?» sind sofort beantwortet, offen bleibt nur das «Warum» – und damit verschiebt sich das Interesse von der Tat auf die moralische Frage: Wer diese Physiker sind, warum sie sich verrückt stellen, wem das Wissen gehört. Der Krimi ist die Mausefalle, die das Publikum in ein Stück über die Verantwortung der Wissenschaft lockt.",
+        },
+        {
+          q: "Stelle die Positionen der drei Physiker zur Verantwortung der Wissenschaft gegenüber.",
+          a: "KILTON («Newton», Westen): Die Wissenschaft muss frei sein. Der Forscher darf sich um die Folgen seiner Erkenntnis nicht kümmern, sonst gibt es keine Forschung mehr. Das Wissen gehört dem Staat, der diese Freiheit garantiert. Folge: Die Erkenntnis wird ausgeliefert, die Verantwortung an die Politik delegiert. – EISLER («Einstein», Osten): Die Wissenschaft muss der Macht dienen, die eine gerechte Weltordnung herstellt; der Physiker hat sich einer Sache unterzuordnen. Folge: Dieselbe Auslieferung, nur mit anderer Begründung; die Verantwortung wird an ein System delegiert. – MÖBIUS: Wissen, dessen Folgen die Menschheit nicht tragen kann, muss zurückgenommen werden. Er hat die Manuskripte verbrannt und sperrt sich selbst ein: «Entweder bleiben wir im Irrenhaus, oder die Welt wird eines.» Folge: Er übernimmt die Verantwortung persönlich – und scheitert, weil ein Einzelner nicht lösen kann, was alle angeht (21 Punkte, Nr. 17/18). Beachte: Alle drei haben getötet, um ihre Position zu sichern; keine der drei Haltungen bleibt moralisch sauber.",
+        },
+        {
+          q: "Welche Vorstellungen von wissenschaftlicher Forschung hat Fräulein Doktor von Zahnd?",
+          a: "Für sie sind Erkenntnisse reines Machtmittel. Wissenschaftliche Erkenntnisse dienen ihr nicht der Wahrheit oder dem Nutzen der Menschheit, sondern der Befriedigung eigener Bedürfnisse und dem Machtgewinn. Konkret hat sie Möbius' Aufzeichnungen jahrelang heimlich fotokopiert, einen weltumspannenden Trust gegründet und lässt Fabriken bauen, um die Erfindungen ökonomisch und militärisch auszunutzen. Ihr Ziel ist die Weltherrschaft – als Statthalterin König Salomos, der ihr wirklich erscheint. Zu Möbius' Wunsch, die Menschheit zu schützen, steht sie völlig gleichgültig: Dass die Welt in einen Krieg gestürzt oder ausgelöscht wird, ist ihr egal. Genau darin liegt die schlimmstmögliche Wendung – das Wissen landet nicht bei einer Grossmacht, sondern bei einer Wahnsinnigen.",
+        },
+        {
+          q: "Untersuche den Geisteszustand der Chefärztin: Welche Züge von Geisteskrankheit zeigt sie, was sind mögliche Ursachen und Folgen?",
+          a: "Züge: Sie hat eine fixe Wahnvorstellung – König Salomo erscheint ihr wirklich und erteilt ihr Aufträge. Dazu kommen Grössenwahn (Weltherrschaft als Salomos Statthalterin), Realitätsverlust bei gleichzeitig völlig intakter, sogar überlegener Planungsfähigkeit, absolute Gefühlskälte gegenüber den Toten und die Unfähigkeit, andere als Mittel zu sehen. Mögliche Ursachen im Text: die Herkunft aus einer alten, mächtigen Familie, deren Letzte sie ist, und der Ehrgeiz, deren Macht fortzusetzen; ihre körperliche Missbildung und die daraus folgende Isolation; die Rolle als einzige «Gesunde» unter lauter Patienten, die sie zur absoluten Definitionsmacht über Normalität führt («Für wen sich meine Patienten halten, bestimme ich»). Folgen: Sie missbraucht ihre ärztliche Stellung, lässt die Morde geschehen, macht die Physiker zu Gefangenen und liefert die Welt einem Wahn aus. Der eigentliche Skandal des Stücks: Die einzige wirklich Wahnsinnige ist nicht Patientin, sondern Ärztin – die Instanz, die über Wahnsinn entscheidet.",
+        },
+        {
+          q: "Erkläre den «Psalm Salomos»: Funktion eines Psalms, Analyse und Bedeutung im Drama.",
+          a: "Funktion eines Psalms normalerweise: Gebet, Lobpreis und Dank an Gott; er drückt Geborgenheit in einer sinnvollen Schöpfungsordnung aus. Möbius' Text kehrt das um – ein Anti-Psalm. Darstellung des Weltalls: Statt Schöpfung erscheinen Wüsten des Monds, Staub, Leere, tote Gestirne – ein sinnloser, lebensfeindlicher Kosmos ohne Gott. Handlungen der Menschen: Sie hauen ab, fliehen ins All, versinken im Staub und verrecken lautlos – ohne Sinn, ohne Erlösung, ohne dass jemand es bemerkt. Sprache: biblischer Tonfall und Psalmenform (Anreden, Parallelismen, feierlicher Rhythmus) im Kontrast zu brutalen, umgangssprachlichen Wörtern – genau dieser Widerspruch macht den Text grotesk. Bedeutung im Drama: (1) Auf der Handlungsebene ist der Psalm Möbius' Mittel, seine Familie endgültig zu vertreiben; (2) inhaltlich formuliert er Möbius' Weltbild – die Wissenschaft hat den Himmel entzaubert und einen toten Kosmos hinterlassen; (3) thematisch zeigt er die Folgen entfesselter Forschung; (4) formal ist er ein Musterbeispiel für Dürrenmatts Groteske.",
+        },
+        {
+          q: "Erkläre Dürrenmatts Theorie der Tragödie und der Komödie und den Satz «Uns kommt nur noch die Komödie bei».",
+          a: "Die TRAGÖDIE setzt nach Dürrenmatt eine gestaltete Welt voraus: Schuld, Not, Mass, Übersicht und Verantwortung müssen zurechenbar sein. Sie überwindet Distanz – der Zuschauer leidet mit. Sie braucht ausserdem eine Gemeinschaft, die man heute nicht mehr ohne Peinlichkeit voraussetzen kann. Die KOMÖDIE passt zu einer ungestalteten, im Umsturz begriffenen Welt. Sie schafft Distanz, und ihr Mittel dafür ist der EINFALL: eine erfundene Situation, die wie ein Geschoss in die Gegenwart einschlägt und sie ins Komische und damit ins Sichtbare verwandelt. Warum «uns kommt nur noch die Komödie bei»: In der modernen Welt gibt es keine Schuldigen und Verantwortlichen mehr – alle sind kollektiv verstrickt, niemand hat es gewollt. «Das ist unser Pech, nicht unsere Schuld.» Ohne zurechenbare Schuld ist die reine Tragödie unmöglich. Aber: Das Tragische bleibt möglich – man kann es «aus der Komödie heraus» hervorbringen, als schrecklichen Moment, als sich öffnenden Abgrund. Genau so ist «Die Physiker» gebaut: eine Komödie mit komischen Mitteln, aus der am Schluss der Abgrund aufreisst. Deshalb nennt Dürrenmatt die Tragikomödie die einzig mögliche Form, heute das Tragische auszusagen.",
+        },
+        {
+          q: "Was bedeutet «grotesk» bei Dürrenmatt, und wo zeigt es sich im Stück?",
+          a: "Definition: Das Groteske ist ein sinnliches Paradox – «die Gestalt einer Ungestalt, das Gesicht einer gesichtslosen Welt». Es verbindet Komisches und Schreckliches so, dass Lachen und Entsetzen zusammenfallen. Dürrenmatt: «Unsere Welt hat ebenso zur Groteske geführt wie zur Atombombe.» Das Groteske ist bei ihm kein Spass, sondern die einzige Form, in der eine unfassbar gewordene Wirklichkeit noch darstellbar ist – es verzerrt, um sichtbar zu machen. Im Stück: das Irrenhaus als sicherster Ort der Welt; drei Physiker, die sich verrückt stellen, um vernünftig zu sein; eine Ärztin, die wahnsinnig ist und über den Wahnsinn anderer bestimmt; ein Inspektor, der am Tatort Kognak trinkt und sich über unbestrafte Morde freut; ein Missionar, der salbungsvoll predigt, während ein Mord geschieht; Morde aus Menschenliebe; ein Anti-Psalm in biblischem Ton; Krankenpfleger, die zu bewaffneten Wärtern werden. Zweck: Das Publikum lacht – und merkt zu spät, dass es über die eigene Lage lacht. Die Verfremdung schafft Distanz und macht die Realität dadurch erst erkennbar (vgl. 21 Punkte, Nr. 19/20).",
+        },
+        {
+          q: "Welches Publikum hat Dürrenmatt vor Augen, und was meint er mit der «Mausefalle»?",
+          a: "Er schreibt für das anonyme Publikum der Gegenwart – nicht für eine feste Gemeinschaft mit gemeinsamen Werten (die die Tragödie voraussetzen würde), sondern für eine zufällig zusammengewürfelte Menge von Theaterbesuchern, die unterhalten werden will. Er denkt diesen «impliziten Zuschauer» beim Schreiben mit: Er weiss, dass niemand freiwillig ins Theater geht, um sich über die Verantwortung der Wissenschaft belehren zu lassen. Die MAUSEFALLE: Durch den Einfall verwandelt die Komödie die Menge in eine Masse, die «angegriffen, verführt, überlistet» werden kann, sich Dinge anzuhören, die sie sonst nicht so leicht anhören würde. Der Köder ist die Unterhaltung – Krimi, Irrenhaus, Verwechslungen, Pointen –, die Falle schnappt mit der schlimmstmöglichen Wendung zu. Bezug zu Punkt 21: Die Dramatik kann den Zuschauer überlisten, sich der Wirklichkeit auszusetzen, ihn aber nicht zwingen, ihr standzuhalten – Dürrenmatt bleibt skeptisch, ob die Falle etwas bewirkt. Deshalb auch der Schlusssatz der «Theaterprobleme»: Tyrannen fürchten nur eines – den Spott.",
+        },
+        {
+          q: "Erkläre die 21 Punkte in Bezug auf das Stück – welche sind am wichtigsten?",
+          a: "Die vier zentralen: PUNKT 3 – eine Geschichte ist erst zu Ende gedacht, wenn sie die schlimmstmögliche Wendung genommen hat. Im Stück: Möbius opfert Karriere, Familie, Freiheit und tötet sogar – und die Formel landet trotzdem bei einer Wahnsinnigen. Schlimmer geht es nicht. PUNKT 8/9 – je planmässiger jemand vorgeht, desto härter trifft ihn der Zufall, am schlimmsten dann, wenn er durch ihn das Gegenteil seines Ziels erreicht. Möbius plant 15 Jahre lang perfekt und bewirkt genau das, was er verhindern wollte. PUNKT 17/18 – was alle angeht, können nur alle lösen; jeder Alleingang muss scheitern. Das ist die eigentliche Botschaft: Nicht Möbius' Ziel war falsch, sondern die Annahme, er könne es allein erreichen. PUNKT 15/16 – das Stück liefert nicht den Inhalt der Physik, sondern ihre Auswirkung; der Inhalt geht die Physiker an, die Auswirkung alle. Deshalb erfährt man nie, was die Weltformel besagt. Und PUNKT 21 verbindet alles mit der Theaterheorie: Das Stück kann überlisten, aber nicht zwingen.",
+        },
+        {
+          q: "Ordne das Stück in den historischen Kontext ein und vergleiche mit den Sachtexten.",
+          a: "Entstehungszeit: Uraufführung 21. Februar 1962 im Schauspielhaus Zürich – mitten im Kalten Krieg, ein Jahr nach dem Mauerbau, im Jahr der Kubakrise. Die Blockkonfrontation steckt direkt im Stück: Kilton wirbt für den Westen, Eisler für den Osten, beide mit gleicher Logik. Historische Bezüge: das Manhattan-Projekt und Robert Oppenheimer, der die Bombe baute und danach gegen die Wasserstoffbombe auftrat und 1954 seine Sicherheitsfreigabe verlor; Einsteins Brief an Roosevelt (1939), der das amerikanische Atomprogramm anstiess und den er später bereute; Hiroshima und Nagasaki (6. und 9. August 1945); das Russell-Einstein-Manifest (1955) und das Göttinger Manifest (1957), in dem 18 deutsche Atomforscher die Mitarbeit an Atomwaffen verweigerten; das Wettrüsten mit Wasserstoffbomben und Interkontinentalraketen. Vergleich Drama ↔ Sachtext: Die Sachtexte zeigen reale Physiker in genau Möbius' Dilemma – Oppenheimer und die Göttinger Achtzehn versuchten tatsächlich, Verantwortung zu übernehmen. Der Unterschied: In der Wirklichkeit gab es kollektive Schritte (Manifeste, Verweigerung als Gruppe, später Rüstungskontrollverträge), im Stück versucht Möbius es allein und scheitert – genau die These von Punkt 17/18. Dürrenmatt ist zudem pessimistischer: Bei Oppenheimer war der Gegner ein Staat, bei Möbius der blinde Zufall in Gestalt einer Wahnsinnigen. Stellungnahme (Beispiel): Möbius' Radikallösung ist praktisch unmöglich – Wissen lässt sich nicht zurücknehmen, und was einer nicht entdeckt, entdeckt ein anderer. Realistisch bleiben nur gemeinsame Regeln: internationale Kontrolle, Ethikkommissionen, Forschungsverbote. Heute stellt sich dieselbe Frage bei künstlicher Intelligenz und Gentechnik.",
+        },
+        {
+          q: "Stelle Friedrich Dürrenmatt vor – Leben und Denken, besonders mit Bezug auf «Die Physiker».",
+          a: "Leben: Geboren am 5. Januar 1921 in Konolfingen im Kanton Bern als Sohn eines protestantischen Pfarrers; 1935 Umzug nach Bern. Studium der Philosophie, Germanistik und Naturwissenschaften in Zürich und Bern, ohne Abschluss – er wollte zuerst Maler werden und hat sein Leben lang gezeichnet und gemalt. Ab 1947 freier Schriftsteller, zeitweise in grosser finanzieller Not. Ab 1952 lebte er in Neuchâtel, wo er am 14. Dezember 1990 starb. Werke: Dramen «Romulus der Grosse» (1949), «Die Ehe des Herrn Mississippi» (1952), «Der Besuch der alten Dame» (1956), «Die Physiker» (1962), «Der Meteor» (1966); Kriminalromane «Der Richter und sein Henker» (1950/51), «Der Verdacht», «Das Versprechen» (1958); Essays «Theaterprobleme» (1955) und die «21 Punkte zu den Physikern» (1962); Hörspiele wie «Die Panne». Denken: Skepsis gegenüber allen Ideologien und Weltanschauungen; die Welt ist unüberschaubar geworden und lässt sich nur noch als Groteske und Paradox darstellen; Interesse an Schuld, Gerechtigkeit und Zufall; scharfe Kritik an der satten Schweiz; Religionskritik aus dem Pfarrhaus heraus. Bezüge zur Lektüre: (1) Sein starkes naturwissenschaftliches Interesse – er beschäftigte sich mit Astronomie und Physik und besass ein Teleskop – macht die Physikerthematik und den Weltraum-Psalm erklärbar; (2) das Pfarrhaus erklärt die Bibelparodie und die Figur König Salomos; (3) der Kalte Krieg und die Atombombe prägten seine Gegenwart; (4) seine Theatertheorie aus den «Theaterproblemen» (Komödie, Einfall, Groteske, Mausefalle) ist die Bauanleitung des Stücks; (5) sein Grundsatz, von einer Geschichte statt einer These auszugehen, steht als Punkt 1 im Anhang.",
+        },
+        {
+          q: "Was ändert sich zwischen den beiden Aktanfängen, und warum?",
+          a: "Gemeinsamkeiten: derselbe Salon, dieselbe Situation (eine erdrosselte Krankenschwester), derselbe Inspektor mit demselben Team, dieselbe Chefärztin, dieselbe Tatbestandsaufnahme, wieder ein Physiker als Täter, wieder keine Verhaftung. Unterschiede: Im 1. Akt schwitzt der Inspektor, ist überfordert und lehnt Kognak ab – im 2. Akt raucht er, lässt sich einschenken und ist gelassen. Im 1. Akt spricht er von Mördern, im 2. nur noch von «Tätern». Im 1. Akt ist die Chefärztin ruhig und souverän, im 2. nervös und gereizt. Die Schwestern sind durch Pfleger ersetzt. Gründe für die Veränderung des Inspektors: Er hat begriffen, dass in dieser Anstalt keine Gerechtigkeit durchzusetzen ist, und arrangiert sich damit – er geniesst sogar die Vorstellung von Verbrechen, die er nicht verfolgen muss. Das ist die endgültige Kapitulation der Justiz. Gründe für die Veränderung der Chefärztin: Ihr Plan geht in die entscheidende Phase, der dritte Mord bringt die Physiker vollends in ihre Gewalt – die Anspannung kurz vor dem Ziel. Dramaturgisch: Die Spiegelszene macht sichtbar, wie weit die Welt des Stücks in einem einzigen Tag gekippt ist.",
+        },
+        {
+          q: "Erkläre die drei Schlussmonologe.",
+          a: "Nach einem verbreiteten Interpretationsansatz stehen die drei Monologe für drei Entwicklungsstufen naturwissenschaftlichen Denkens. NEWTON = Vergangenheit: die klassische Physik, die die Welt als geordnetes, berechenbares Uhrwerk begreift; er verweist auf seine Leistungen (Gravitation, Mechanik, Optik) und sieht die Wissenschaft als reinen Fortschritt, moralisch unbedenklich. EINSTEIN = Gegenwart: die moderne Physik, Relativitätstheorie und Kernspaltung; er weiss um die Ambivalenz – seine Erkenntnisse führten zur Atombombe, er beruft sich auf seinen Brief an den Präsidenten und rechtfertigt sich; die Wissenschaft ist nicht mehr unschuldig. MÖBIUS = Zukunft: das Wissen, das noch nicht existiert bzw. zurückgenommen wurde; er stellt sich als Salomo vor, als der Weise, der zum «armen König» geworden ist – seine Weisheit hat nur Zerstörung gebracht. Wirkung: Die drei sprechen einzeln, ohne aufeinander zu reagieren – sie sind endgültig isoliert und in ihren Rollen gefangen. Was als Spiel begann, ist Wirklichkeit geworden: Sie sind jetzt tatsächlich die Wahnsinnigen, die sie vorgaben zu sein.",
+        },
+        {
+          q: "Die Bedeutungslosigkeit der Institutionen: Wie ist der 1. Akt gebaut?",
+          a: "Der 1. Akt ist in drei Szenen gegliedert, die je eine gesellschaftliche Instanz auftreten und scheitern lassen. I,1 (S. 15–31) GERECHTIGKEIT/JUSTIZ, Vertreter Inspektor Voss: verunsichert, desorientiert, hilflos – er tritt schliesslich ab. I,2 (S. 31–43) CHRISTLICHER GLAUBE/KIRCHE, Vertreter Missionar Rose: scheinheilig, selbstzufrieden, weltfremd, funktionslos – er zieht sich aus der Realität zurück (Auswanderung). I,3 (S. 43–53) LIEBE, Vertreterin Schwester Monika: «blind», realitätsfern, lächerlich gemacht – sie wird am Ende getötet. Fazit: die Bedeutungslosigkeit allgemein anerkannter Wertvorstellungen und das Versagen traditioneller gesellschaftlicher Institutionen. Keine dieser Instanzen kann die Katastrophe verhindern; deshalb steht am Ende die Frage, ob der einzelne Wissenschaftler sie verhindern kann – und der 2. Akt antwortet: nein.",
+        },
+        {
+          q: "Nimm Stellung: Hat Möbius richtig gehandelt?",
+          a: "Für ihn spricht: Er erkennt als Einziger die Tragweite seiner Entdeckung und zieht daraus eine radikale Konsequenz. Er verzichtet auf Ruhm, Karriere, Familie und Freiheit. Nach seiner Logik ist die Menschheit der Erkenntnis nicht gewachsen, und wer das weiss, darf sie nicht weitergeben. Gegen ihn spricht: Er tötet einen unschuldigen Menschen, der ihn liebt – ein Zweck heiligt nicht jedes Mittel, und ausgerechnet der Verantwortungsethiker wird zum Mörder. Zweitens ist sein Ansatz praktisch untauglich: Wissen lässt sich nicht zurücknehmen; was er nicht veröffentlicht, entdeckt irgendwann ein anderer. Drittens – Dürrenmatts eigenes Urteil in Punkt 18 – scheitert jeder Versuch eines Einzelnen, für sich zu lösen, was alle angeht. Sein Alleingang macht ihn sogar erpressbar und liefert das Wissen einer Wahnsinnigen aus. Eigene Position (Beispiel): Möbius' Motiv ist richtig, seine Methode falsch. Verantwortung in der Wissenschaft lässt sich nicht privat übernehmen, sondern nur gemeinsam organisieren – durch Transparenz, internationale Kontrolle und verbindliche Regeln. Das Stück ist deshalb keine Anleitung, sondern eine Warnung: Es zeigt, was passiert, wenn die Gesellschaft die Verantwortung Einzelnen überlässt.",
+        },
+      ];
+    </script>
+    <script>
+      const $ = (s) => document.querySelector(s);
+      const store = {
+        get(k, d) {
+          try {
+            const v = localStorage.getItem("phy_" + k);
+            return v ? JSON.parse(v) : d;
+          } catch (e) {
+            return d;
+          }
+        },
+        set(k, v) {
+          try {
+            localStorage.setItem("phy_" + k, JSON.stringify(v));
+          } catch (e) {}
+        },
+      };
+      const norm = (s) =>
+        s
+          .toLowerCase()
+          .replace(/ä/g, "ae")
+          .replace(/ö/g, "oe")
+          .replace(/ü/g, "ue")
+          .replace(/ß/g, "ss")
+          .replace(/[^a-z0-9 ]/g, "")
+          .replace(/\s+/g, " ")
+          .trim();
+      const shuffle = (a) => {
+        a = a.slice();
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      };
+      const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+      /* Tabs */
+      const tabs = $("#tabs");
+      function showTab(t) {
+        document.querySelectorAll("section.tab").forEach((s) => s.classList.toggle("on", s.id === "t-" + t));
+        tabs.querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.t === t));
+        store.set("tab", t);
+        window.scrollTo({ top: 0 });
+      }
+      tabs.addEventListener("click", (e) => {
+        const b = e.target.closest("button");
+        if (b) showTab(b.dataset.t);
+      });
+
+      /* Lernziele */
+      const ZIELE = [
+        "Ich kenne den Inhalt der Lektüre und kann ihn in eigenen Worten wiedergeben.",
+        "Ich kann einen beliebigen Textausschnitt im Werk einordnen: Akt, Szene, was davor und danach geschieht.",
+        "Ich kann eine beliebige Szene analysieren und den Inhalt eines Dialogs für das Stück deuten.",
+        "Ich kann die zentralen Figuren charakterisieren.",
+        "Ich kann die Personenkonstellation aus dem Kopf aufzeichnen.",
+        "Ich kann die Begebenheiten in den historischen Kontext einordnen und mit den Sachtexten vergleichen.",
+        "Ich kann die zentralen Fragen des Werks wiedergeben, erläutern und Stellung nehmen.",
+        "Ich kann Friedrich Dürrenmatt vorstellen – Leben, Denken und die Fakten mit Bezug zur Lektüre.",
+        "Ich kann Dürrenmatts Sicht auf die Funktion von Tragödie und Komödie erklären.",
+        "Ich kann die Tragikomödie und den Begriff «grotesk» erklären.",
+        "Ich weiss, wie Dürrenmatt sein Publikum beim Schreiben mitdenkt (Einfall, Mausefalle).",
+        "Ich verstehe die 21 Punkte und kann sie auf das Stück beziehen.",
+      ];
+      (function () {
+        const done = store.get("ziele", {});
+        const box = $("#ziele");
+        ZIELE.forEach((z, i) => {
+          const d = document.createElement("div");
+          d.className = "check" + (done[i] ? " done" : "");
+          d.innerHTML = `<input type="checkbox" id="z${i}" ${done[i] ? "checked" : ""}><label for="z${i}">${z}</label>`;
+          d.querySelector("input").addEventListener("change", (e) => {
+            done[i] = e.target.checked;
+            store.set("ziele", done);
+            d.classList.toggle("done", e.target.checked);
+            updateProg();
+          });
+          box.appendChild(d);
+        });
+      })();
+
+      /* Szenen */
+      (function () {
+        $("#timeline").innerHTML = SZENEN.map(
+          (s) =>
+            `<a href="#sz-${s.id}" data-id="${s.id}"><span class="m">${s.nr}</span>${s.tit}<span class="p">${s.s}</span></a>`,
+        ).join("");
+        $("#szenen").innerHTML = SZENEN.map(
+          (
+            s,
+          ) => `<details id="sz-${s.id}"><summary><span>${s.nr} · ${s.tit} <span class="mono" style="color:var(--ink2)">${s.s}</span></span></summary><div class="bd">
+  <p>${s.was}</p>
+  <div class="two">
+   <div class="card"><h4>Was davor geschieht</h4><p>${s.davor}</p></div>
+   <div class="card"><h4>Was danach geschieht</h4><p>${s.danach}</p></div>
+  </div>
+  <div class="box key"><span class="lab">Bedeutung für das Stück</span><ul>${s.merk.map((m) => `<li>${m}</li>`).join("")}</ul></div>
+ </div></details>`,
+        ).join("");
+        $("#timeline").addEventListener("click", (e) => {
+          const a = e.target.closest("a");
+          if (!a) return;
+          e.preventDefault();
+          const d = document.getElementById("sz-" + a.dataset.id);
+          d.open = true;
+          d.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      })();
+
+      /* Figuren */
+      (function () {
+        $("#figuren").innerHTML = FIGUREN.map(
+          (
+            f,
+          ) => `<details><summary><span>${f.n}</span><span class="tag ${f.k === "physiker" ? "t" : f.k === "zahnd" ? "a" : ""}" style="align-self:center">${f.r}</span></summary><div class="bd">
+ <h4>Daten zur Person</h4><p>${f.daten}</p>
+ <h4>Verhalten</h4><p>${f.verhalten}</p>
+ <h4>Ansichten und Haltung</h4><p>${f.ansicht}</p>
+ <h4>Entwicklung im Stück</h4><p>${f.entw}</p>
+ <div class="box tl"><span class="lab">Merksatz</span><p>${f.zitat}</p></div>
+</div></details>`,
+        ).join("");
+      })();
+
+      /* 21 Punkte */
+      (function () {
+        const KERN = [3, 8, 9, 17, 18, 21];
+        let modus = "alle";
+        function render() {
+          const list = modus === "alle" ? P21 : P21.filter((p) => KERN.includes(p.n));
+          $("#p21list").innerHTML = list
+            .map(
+              (
+                p,
+              ) => `<details${KERN.includes(p.n) ? ' class="key"' : ""}><summary><span><span class="mono" style="color:var(--accent)">Punkt ${p.n}</span> · ${p.kurz}</span></summary><div class="bd">
+   <p><strong>Was gemeint ist:</strong> ${p.was}</p><p><strong>Im Stück:</strong> ${p.stueck}</p></div></details>`,
+            )
+            .join("");
+        }
+        document.querySelectorAll("[data-p21]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              modus = b.dataset.p21;
+              document.querySelectorAll("[data-p21]").forEach((x) => x.classList.toggle("on", x === b));
+              render();
+            }),
+        );
+        render();
+      })();
+
+      /* Zitate */
+      (function () {
+        $("#zitate").innerHTML = ZITATE.map(
+          (z) =>
+            `<details><summary><span style="font-family:'Zilla Slab',serif">${z.z}</span></summary><div class="bd"><p><strong>Wer:</strong> ${z.w} · <strong>Wo:</strong> ${z.s}</p><p>${z.e}</p></div></details>`,
+        ).join("");
+      })();
+
+      /* Selbsttest Autor */
+      $("#hidebtn2").onclick = () => {
+        const k = $("#autorbox");
+        k.classList.toggle("hide");
+        k.querySelectorAll(".ans").forEach((a) => a.classList.remove("show"));
+        $("#hidebtn2").textContent = k.classList.contains("hide")
+          ? "Antworten anzeigen"
+          : "Antworten verdecken (Selbsttest)";
+      };
+      $("#autorbox").addEventListener("click", (e) => {
+        const a = e.target.closest(".ans");
+        if (a && $("#autorbox").classList.contains("hide")) a.classList.add("show");
+      });
+
+      /* Einordnen */
+      (function () {
+        let qs = [],
+          i = 0,
+          ok = 0;
+        const area = $("#earea");
+        function start() {
+          qs = shuffle(EINORDNEN.map((x, k) => k));
+          i = 0;
+          ok = 0;
+          show();
+        }
+        function head() {
+          $("#escore").textContent = `${Math.min(i + 1, qs.length)} / ${qs.length} · ${ok} richtig`;
+          $("#eprog").style.width = (i / qs.length) * 100 + "%";
+        }
+        function show() {
+          head();
+          if (i >= qs.length) {
+            area.innerHTML = `<div class="qbox"><div class="qt">Durch: ${ok} von ${qs.length} richtig eingeordnet.</div><button class="btn primary" id="eagain">Nochmals</button></div>`;
+            $("#eagain").onclick = start;
+            $("#eprog").style.width = "100%";
+            const d = store.get("estat", {});
+            d.best = Math.max(d.best || 0, ok);
+            d.tot = qs.length;
+            store.set("estat", d);
+            updateProg();
+            return;
+          }
+          const e = EINORDNEN[qs[i]];
+          area.innerHTML = `<div class="qbox"><div class="qn">Textstelle ${i + 1}</div><div class="qt quote">${e.z}</div>
+   <p class="small">Wer spricht: ${e.wer}</p>
+   <div class="opts">${SZENEN.map((s) => `<button class="opt" data-id="${s.id}">${s.nr} · ${s.tit} <span class="mono" style="color:var(--ink2)">${s.s}</span></button>`).join("")}</div><div id="efb"></div></div>`;
+          area.querySelectorAll(".opt").forEach(
+            (b) =>
+              (b.onclick = () => {
+                if (area.querySelector(".opt.right")) return;
+                area.querySelectorAll(".opt").forEach((x) => {
+                  if (x.dataset.id === e.loesung) x.classList.add("right");
+                });
+                const r = b.dataset.id === e.loesung;
+                if (r) ok++;
+                else b.classList.add("wrong");
+                const s = SZENEN.find((s) => s.id === e.loesung);
+                $("#efb").innerHTML =
+                  `<div class="fb ${r ? "good" : "bad"}">${r ? "Richtig" : "Nein – richtig ist " + s.nr}</div>
+    <div class="box"><span class="lab">Musterantwort</span>
+     <p><strong>Einordnung:</strong> ${s.nr} · ${s.tit} (${s.s})</p>
+     <p><strong>Davor:</strong> ${e.davor}</p>
+     <p><strong>Danach:</strong> ${e.danach}</p>
+     <p><strong>Bedeutung:</strong> ${e.bed}</p></div>
+    <div class="row"><button class="btn primary" id="enext">Weiter</button></div>`;
+                $("#enext").onclick = () => {
+                  i++;
+                  show();
+                };
+                head();
+              }),
+          );
+        }
+        $("#erestart").onclick = start;
+        start();
+      })();
+
+      /* Quiz */
+      (function () {
+        let qs = [],
+          i = 0,
+          sc = 0;
+        const area = $("#qarea");
+        function start() {
+          qs = shuffle(MC);
+          i = 0;
+          sc = 0;
+          show();
+        }
+        function head() {
+          $("#qscore").textContent = `${Math.min(i + 1, qs.length)} / ${qs.length} · ${sc} richtig`;
+          $("#qprog").style.width = (i / qs.length) * 100 + "%";
+        }
+        function show() {
+          head();
+          if (i >= qs.length) {
+            area.innerHTML = `<div class="qbox"><div class="qt">Fertig: ${sc} von ${qs.length} richtig (${Math.round((sc / qs.length) * 100)} %)</div><p>${sc === qs.length ? "Perfekt." : sc >= qs.length * 0.8 ? "Sehr gut – schau dir die Fehler nochmals an." : "Geh die Theorie-Tabs nochmals durch."}</p><button class="btn primary" id="qagain">Nochmals</button></div>`;
+            $("#qagain").onclick = start;
+            $("#qprog").style.width = "100%";
+            const b = store.get("qbest", 0);
+            if (sc > b) store.set("qbest", sc);
+            store.set("qtot", qs.length);
+            updateProg();
+            return;
+          }
+          const q = qs[i];
+          const opts = shuffle(q.o.map((o, k) => ({ o, k })));
+          area.innerHTML = `<div class="qbox"><div class="qn">Frage ${i + 1}</div><div class="qt">${q.q}</div><div class="opts">${opts.map((x) => `<button class="opt" data-k="${x.k}">${x.o}</button>`).join("")}</div><div id="qfb"></div></div>`;
+          area.querySelectorAll(".opt").forEach(
+            (b) =>
+              (b.onclick = () => {
+                if (area.querySelector(".opt.right")) return;
+                const k = +b.dataset.k;
+                area.querySelectorAll(".opt").forEach((x) => {
+                  if (+x.dataset.k === q.a) x.classList.add("right");
+                });
+                if (k === q.a) {
+                  sc++;
+                  $("#qfb").innerHTML = `<div class="fb good">Richtig. <b>${q.e}</b></div>`;
+                } else {
+                  b.classList.add("wrong");
+                  $("#qfb").innerHTML = `<div class="fb bad">Leider nein. <b>${q.e}</b></div>`;
+                }
+                $("#qfb").insertAdjacentHTML(
+                  "beforeend",
+                  '<div class="row"><button class="btn primary" id="qnext">Weiter</button></div>',
+                );
+                $("#qnext").onclick = () => {
+                  i++;
+                  show();
+                };
+                head();
+              }),
+          );
+        }
+        $("#qrestart").onclick = start;
+        start();
+      })();
+
+      /* Lückentexte */
+      (function () {
+        const area = $("#larea");
+        const done = store.get("lk", {});
+        LUECK.forEach((L, n) => {
+          const html = L.t.replace(
+            /\[([^\]]+)\]/g,
+            (m, a) => `<input class="gap" data-a="${esc(a)}" autocomplete="off" spellcheck="false" aria-label="Lücke">`,
+          );
+          const box = document.createElement("div");
+          box.className = "qbox";
+          box.style.maxWidth = "880px";
+          box.innerHTML = `<div class="qn">Lückentext ${n + 1}${done[n] ? " · gelöst" : ""}</div><div class="gaptext">${html}</div><div class="row"><button class="btn primary">Prüfen</button><button class="btn">Lösung</button><button class="btn">Leeren</button><span class="small res"></span></div>`;
+          const [chk, sol, clr] = box.querySelectorAll(".btn");
+          const gaps = [...box.querySelectorAll(".gap")];
+          chk.onclick = () => {
+            let ok = 0;
+            gaps.forEach((g) => {
+              const r = norm(g.value) === norm(g.dataset.a);
+              g.classList.toggle("right", r);
+              g.classList.toggle("wrong", !r);
+              if (r) ok++;
+            });
+            box.querySelector(".res").textContent = `${ok} / ${gaps.length} richtig`;
+            if (ok === gaps.length) {
+              done[n] = true;
+              store.set("lk", done);
+              box.querySelector(".qn").textContent = `Lückentext ${n + 1} · gelöst`;
+              updateProg();
+            }
+          };
+          sol.onclick = () =>
+            gaps.forEach((g) => {
+              g.value = g.dataset.a;
+              g.classList.remove("wrong");
+              g.classList.add("right");
+            });
+          clr.onclick = () =>
+            gaps.forEach((g) => {
+              g.value = "";
+              g.classList.remove("right", "wrong");
+            });
+          gaps.forEach((g) =>
+            g.addEventListener("keydown", (e) => {
+              if (e.key === "Enter") chk.click();
+            }),
+          );
+          area.appendChild(box);
+        });
+      })();
+
+      /* Offene Fragen */
+      (function () {
+        $("#oarea").innerHTML = OFFEN.map(
+          (o, n) =>
+            `<details><summary><span>${n + 1}. ${o.q}</span></summary><div class="bd"><p>${o.a}</p></div></details>`,
+        ).join("");
+      })();
+
+      /* Fortschritt */
+      function updateProg() {
+        const z = Object.values(store.get("ziele", {})).filter(Boolean).length / ZIELE.length;
+        const l = Object.values(store.get("lk", {})).filter(Boolean).length / LUECK.length;
+        const q = (store.get("qbest", 0) || 0) / (store.get("qtot", MC.length) || MC.length);
+        const es = store.get("estat", {});
+        const e = (es.best || 0) / (es.tot || EINORDNEN.length);
+        const p = Math.round(((z + l + q + e) / 4) * 100);
+        $("#progbar").style.width = p + "%";
+        $("#progtxt").textContent =
+          `Lernfortschritt ${p} % · Lernziele ${Math.round(z * 100)} % · Quiz ${Math.round(q * 100)} % · Einordnen ${Math.round(e * 100)} % · Lücken ${Math.round(l * 100)} %`;
+      }
+      showTab(store.get("tab", "start"));
+      updateProg();
+    </script>
+  </body>
+</html>
