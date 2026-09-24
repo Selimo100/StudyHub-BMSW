@@ -1,0 +1,4280 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Fluidstatik-Coach</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap"
+    />
+    <style>
+      :root {
+        --bg: #f2f6f7;
+        --surface: #ffffff;
+        --surface-2: #e6eef0;
+        --ink: #13242b;
+        --ink-2: #4a5f68;
+        --line: #c9d7dc;
+        --accent: #0b6e78;
+        --accent-ink: #ffffff;
+        --accent-soft: #d8eef0;
+        --warm: #a9520f;
+        --warm-bg: #fcefe2;
+        --warm-line: #ebc49e;
+        --water: #cfe7ec;
+        --water-2: #98ccd8;
+        --water-3: #6fb3c4;
+        --hg: #8e9aa3;
+        --oil: #e9c46a;
+        --good: #2c7a4b;
+        --good-bg: #e2f3e8;
+        --bad: #b0342d;
+        --bad-bg: #fbe5e3;
+        --fg: #c0392b;
+        --fa: #1f6fb2;
+        --fh: #2c7a4b;
+        --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+        --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+        --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+        color-scheme: light;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #0c1518;
+          --surface: #132126;
+          --surface-2: #1a2c33;
+          --ink: #dce7ea;
+          --ink-2: #9db2b9;
+          --line: #2b4149;
+          --accent: #58c3cd;
+          --accent-ink: #062629;
+          --accent-soft: #163a40;
+          --warm: #f0a45f;
+          --warm-bg: #2a1d11;
+          --warm-line: #5a3c1f;
+          --water: #173c46;
+          --water-2: #1f5664;
+          --water-3: #2d7486;
+          --hg: #6c7780;
+          --oil: #9c7e2e;
+          --good: #62c78f;
+          --good-bg: #12291c;
+          --bad: #f0827a;
+          --bad-bg: #2e1513;
+          --fg: #f07b6e;
+          --fa: #72b6f3;
+          --fh: #6bd49a;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #0c1518;
+        --surface: #132126;
+        --surface-2: #1a2c33;
+        --ink: #dce7ea;
+        --ink-2: #9db2b9;
+        --line: #2b4149;
+        --accent: #58c3cd;
+        --accent-ink: #062629;
+        --accent-soft: #163a40;
+        --warm: #f0a45f;
+        --warm-bg: #2a1d11;
+        --warm-line: #5a3c1f;
+        --water: #173c46;
+        --water-2: #1f5664;
+        --water-3: #2d7486;
+        --hg: #6c7780;
+        --oil: #9c7e2e;
+        --good: #62c78f;
+        --good-bg: #12291c;
+        --bad: #f0827a;
+        --bad-bg: #2e1513;
+        --fg: #f07b6e;
+        --fa: #72b6f3;
+        --fh: #6bd49a;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 17px;
+        line-height: 1.6;
+        margin: 0;
+      }
+      .wrap {
+        max-width: 820px;
+        margin: 0 auto;
+        padding-inline: 16px;
+        padding-block: 0 64px;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--display);
+        line-height: 1.2;
+        text-wrap: balance;
+        margin: 0;
+      }
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+      }
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-top: 6px;
+      }
+      h4 {
+        font-size: 1.05rem;
+        font-weight: 700;
+      }
+      p {
+        margin: 0;
+      }
+      a {
+        color: var(--accent);
+      }
+      sub,
+      sup {
+        font-size: 0.72em;
+        line-height: 0;
+      }
+      .muted {
+        color: var(--ink-2);
+      }
+      .small {
+        font-size: 0.9rem;
+      }
+
+      /* Header */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: end;
+        padding-block: 28px 18px;
+      }
+      .hero .eyebrow {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 6vw, 3.1rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-top: 4px;
+      }
+      .hero p {
+        max-width: 52ch;
+        margin-top: 8px;
+        color: var(--ink-2);
+      }
+      .tank {
+        width: 150px;
+        max-width: 100%;
+      }
+      .tank text {
+        font-family: var(--mono);
+        font-size: 9px;
+        fill: var(--ink-2);
+      }
+      @media (max-width: 560px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .tank {
+          display: none;
+        }
+      }
+
+      /* Tabs */
+      .tabbar {
+        position: sticky;
+        top: env(safe-area-inset-top, 0px);
+        z-index: 5;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+        margin-inline: -16px;
+        padding-inline: 16px;
+      }
+      .tabs {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        padding-block: 8px;
+      }
+      .tabs button {
+        flex: 0 0 auto;
+        font: 600 0.92rem var(--body);
+        color: var(--ink-2);
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        padding: 6px 13px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .tabs button:hover {
+        color: var(--ink);
+        background: var(--surface-2);
+      }
+      .tabs button[aria-selected="true"] {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      .tabs button:focus-visible,
+      button:focus-visible,
+      summary:focus-visible,
+      input:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .tabs .num {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        opacity: 0.75;
+        margin-right: 4px;
+      }
+
+      section.panel {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        padding-top: 26px;
+        scroll-margin-top: 64px;
+      }
+      .lead {
+        font-size: 1.1rem;
+        color: var(--ink-2);
+        max-width: 62ch;
+      }
+      .prose {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 66ch;
+      }
+      .prose ul,
+      .prose ol {
+        margin: 0;
+        padding-left: 1.3em;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      /* Boxes */
+      .box {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .oneline {
+        background: var(--accent-soft);
+        border-radius: 10px;
+        padding: 14px 18px;
+        font-size: 1.08rem;
+      }
+      .oneline b {
+        color: var(--accent);
+      }
+      .merk {
+        background: var(--warm-bg);
+        border: 1px solid var(--warm-line);
+        border-radius: 10px;
+        padding: 14px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .merk .tag,
+      .trap .tag,
+      .calc .tag {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .merk .tag {
+        color: var(--warm);
+      }
+      .trap {
+        border-left: 4px solid var(--bad);
+        background: var(--surface);
+        border-radius: 0 10px 10px 0;
+        padding: 12px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .trap .tag {
+        color: var(--bad);
+      }
+      .calc {
+        background: var(--surface-2);
+        border-radius: 10px;
+        padding: 14px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .calc .tag {
+        color: var(--accent);
+      }
+
+      /* Formula card */
+      .fcard {
+        display: grid;
+        grid-template-columns: minmax(150px, auto) 1fr;
+        gap: 0;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        overflow: hidden;
+        background: var(--surface);
+      }
+      .fcard .big {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        background: var(--accent-soft);
+        font-family: var(--mono);
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--ink);
+        text-align: center;
+      }
+      .fcard table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.95rem;
+      }
+      .fcard td,
+      .fcard th {
+        padding: 6px 12px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+      }
+      .fcard th {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink-2);
+        font-weight: 600;
+      }
+      .fcard tr:last-child td {
+        border-bottom: 0;
+      }
+      @media (max-width: 560px) {
+        .fcard {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .f {
+        font-family: var(--mono);
+        font-size: 0.93em;
+        background: var(--surface-2);
+        padding: 1px 6px;
+        border-radius: 5px;
+        white-space: nowrap;
+      }
+      .eq {
+        font-family: var(--mono);
+        font-size: 1rem;
+        background: var(--surface-2);
+        border-radius: 8px;
+        padding: 10px 14px;
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.7;
+      }
+      kbd {
+        font-family: var(--mono);
+        font-size: 0.8em;
+        border: 1px solid var(--line);
+        border-bottom-width: 3px;
+        background: var(--surface);
+        border-radius: 6px;
+        padding: 0 6px;
+        white-space: nowrap;
+      }
+      .nsp {
+        font-family: var(--mono);
+        font-size: 0.92rem;
+        background: #1e2a30;
+        color: #e6f1f3;
+        border-radius: 8px;
+        padding: 12px 14px;
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.65;
+      }
+      .nsp .r {
+        color: #8fd8c6;
+      }
+      .nsp .c {
+        color: #8a9ba2;
+      }
+
+      /* Tables */
+      .tscroll {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--surface);
+      }
+      table.t {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 0.95rem;
+        font-variant-numeric: tabular-nums;
+      }
+      table.t th,
+      table.t td {
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+      table.t th {
+        background: var(--surface-2);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-2);
+      }
+      table.t tr:last-child td {
+        border-bottom: 0;
+      }
+
+      /* Steps */
+      ol.steps {
+        list-style: none;
+        counter-reset: s;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      ol.steps > li {
+        counter-increment: s;
+        display: grid;
+        grid-template-columns: 34px 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+      ol.steps > li::before {
+        content: counter(s);
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: 1rem;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: var(--accent-ink);
+        display: grid;
+        place-items: center;
+      }
+
+      /* Worked examples */
+      details.ex {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+      }
+      details.ex > summary {
+        cursor: pointer;
+        padding: 12px 16px;
+        list-style: none;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 12px;
+        align-items: baseline;
+      }
+      details.ex > summary::-webkit-details-marker {
+        display: none;
+      }
+      details.ex > summary .id {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--accent);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      details.ex > summary .q {
+        font-weight: 600;
+      }
+      details.ex > summary .ans {
+        font-family: var(--mono);
+        font-size: 0.82rem;
+        color: var(--ink-2);
+        white-space: nowrap;
+      }
+      details.ex > summary::after {
+        content: "+";
+        grid-column: 3;
+        font-family: var(--mono);
+        color: var(--accent);
+      }
+      details.ex[open] > summary::after {
+        content: "–";
+      }
+      details.ex > summary .ans {
+        grid-column: 2;
+        grid-row: 2;
+      }
+      details.ex .body {
+        padding: 4px 16px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-top: 1px dashed var(--line);
+      }
+      details.ex .body .lbl {
+        font-family: var(--mono);
+        font-size: 0.74rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--ink-2);
+        margin-top: 6px;
+      }
+      .result {
+        font-weight: 700;
+        color: var(--accent);
+      }
+      .exlist {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      /* diagrams */
+      .fig {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: center;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 14px;
+      }
+      .fig svg {
+        width: 100%;
+        max-width: 460px;
+        height: auto;
+      }
+      .fig figcaption {
+        font-size: 0.88rem;
+        color: var(--ink-2);
+        text-align: center;
+        max-width: 60ch;
+      }
+      svg .ln {
+        stroke: var(--ink);
+        fill: none;
+        stroke-width: 1.6;
+      }
+      svg .ln2 {
+        stroke: var(--ink-2);
+        fill: none;
+        stroke-width: 1;
+        stroke-dasharray: 4 3;
+      }
+      svg .w1 {
+        fill: var(--water);
+      }
+      svg .w2 {
+        fill: var(--water-2);
+      }
+      svg .w3 {
+        fill: var(--water-3);
+      }
+      svg .hg {
+        fill: var(--hg);
+      }
+      svg .oil {
+        fill: var(--oil);
+      }
+      svg .solid {
+        fill: var(--surface-2);
+        stroke: var(--ink);
+        stroke-width: 1.4;
+      }
+      svg .piston {
+        fill: var(--ink-2);
+      }
+      svg text {
+        font-family: var(--mono);
+        font-size: 12px;
+        fill: var(--ink);
+      }
+      svg text.s {
+        font-size: 10.5px;
+        fill: var(--ink-2);
+      }
+      svg .afg {
+        stroke: var(--fg);
+        stroke-width: 2.6;
+        fill: none;
+      }
+      svg .tfg {
+        fill: var(--fg);
+        font-weight: 600;
+      }
+      svg .afa {
+        stroke: var(--fa);
+        stroke-width: 2.6;
+        fill: none;
+      }
+      svg .tfa {
+        fill: var(--fa);
+        font-weight: 600;
+      }
+      svg .afh {
+        stroke: var(--fh);
+        stroke-width: 2.6;
+        fill: none;
+      }
+      svg .tfh {
+        fill: var(--fh);
+        font-weight: 600;
+      }
+      svg .mfg {
+        fill: var(--fg);
+      }
+      svg .mfa {
+        fill: var(--fa);
+      }
+      svg .mfh {
+        fill: var(--fh);
+      }
+      svg .mink {
+        fill: var(--ink);
+      }
+      svg .aink {
+        stroke: var(--ink);
+        stroke-width: 1.6;
+        fill: none;
+      }
+
+      .grid2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 14px;
+      }
+
+      /* Checklist */
+      .check {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .check label {
+        display: grid;
+        grid-template-columns: 22px 1fr auto;
+        gap: 10px;
+        align-items: start;
+        padding: 7px 8px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .check label:hover {
+        background: var(--surface-2);
+      }
+      .check input {
+        width: 18px;
+        height: 18px;
+        margin-top: 3px;
+        accent-color: var(--accent);
+      }
+      .check .go {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--accent);
+        white-space: nowrap;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        padding: 2px 4px;
+      }
+      .check h4 {
+        margin-top: 10px;
+        padding-left: 8px;
+        color: var(--accent);
+        font-size: 0.95rem;
+      }
+      .prog {
+        height: 8px;
+        border-radius: 99px;
+        background: var(--surface-2);
+        overflow: hidden;
+      }
+      .prog > span {
+        display: block;
+        height: 100%;
+        background: var(--accent);
+        width: 0;
+        transition: width 0.3s;
+      }
+
+      /* Decision tree */
+      .tree {
+        display: grid;
+        gap: 8px;
+      }
+      .tree .row {
+        display: grid;
+        grid-template-columns: 1fr 26px 1.1fr;
+        gap: 10px;
+        align-items: center;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 14px;
+      }
+      .tree .row .arr {
+        color: var(--accent);
+        font-family: var(--mono);
+        text-align: center;
+      }
+      .tree .row .to {
+        font-family: var(--mono);
+        font-size: 0.92rem;
+      }
+      @media (max-width: 560px) {
+        .tree .row {
+          grid-template-columns: 1fr;
+        }
+        .tree .row .arr {
+          display: none;
+        }
+      }
+
+      /* Quiz */
+      .qcard {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .qmeta {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--ink-2);
+        flex-wrap: wrap;
+      }
+      .qtext {
+        font-size: 1.08rem;
+        font-weight: 600;
+      }
+      .opts {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .opts button {
+        text-align: left;
+        font: inherit;
+        color: var(--ink);
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        padding: 10px 14px;
+        cursor: pointer;
+      }
+      .opts button:hover:not(:disabled) {
+        border-color: var(--accent);
+      }
+      .opts button.ok {
+        background: var(--good-bg);
+        border-color: var(--good);
+      }
+      .opts button.no {
+        background: var(--bad-bg);
+        border-color: var(--bad);
+      }
+      .numrow {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .numrow input {
+        font: inherit;
+        font-family: var(--mono);
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--bg);
+        color: var(--ink);
+        width: 160px;
+      }
+      .btn {
+        font: 600 0.95rem var(--body);
+        background: var(--accent);
+        color: var(--accent-ink);
+        border: 0;
+        border-radius: 8px;
+        padding: 9px 16px;
+        cursor: pointer;
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+      }
+      .fb {
+        border-radius: 9px;
+        padding: 10px 14px;
+        font-size: 0.97rem;
+      }
+      .fb.ok {
+        background: var(--good-bg);
+        color: var(--ink);
+        border-left: 4px solid var(--good);
+      }
+      .fb.no {
+        background: var(--bad-bg);
+        color: var(--ink);
+        border-left: 4px solid var(--bad);
+      }
+      .qnav {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .score {
+        font-family: var(--mono);
+        font-size: 0.9rem;
+      }
+      .filters {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .filters button {
+        font: 600 0.85rem var(--body);
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--ink-2);
+        border-radius: 999px;
+        padding: 4px 12px;
+        cursor: pointer;
+      }
+      .filters button[aria-pressed="true"] {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-soft);
+      }
+
+      /* Spick */
+      .spick {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 18px;
+        font-size: 0.8rem;
+        line-height: 1.4;
+      }
+      .spick h4 {
+        font-size: 0.85rem;
+        color: var(--accent);
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 2px;
+        margin-bottom: 4px;
+      }
+      .spick .blk {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .spick code {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+      }
+      @media (max-width: 620px) {
+        .spick {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .pill {
+        display: inline-block;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        padding: 1px 8px;
+        border-radius: 99px;
+        background: var(--surface-2);
+        color: var(--ink-2);
+        vertical-align: middle;
+      }
+      .footer {
+        margin-top: 40px;
+        font-size: 0.85rem;
+        color: var(--ink-2);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <marker
+          id="hfg"
+          viewBox="0 0 10 10"
+          refX="8"
+          refY="5"
+          markerWidth="7"
+          markerHeight="7"
+          orient="auto-start-reverse"
+        >
+          <path d="M0,0 L10,5 L0,10 z" class="mfg" />
+        </marker>
+        <marker
+          id="hfa"
+          viewBox="0 0 10 10"
+          refX="8"
+          refY="5"
+          markerWidth="7"
+          markerHeight="7"
+          orient="auto-start-reverse"
+        >
+          <path d="M0,0 L10,5 L0,10 z" class="mfa" />
+        </marker>
+        <marker
+          id="hfh"
+          viewBox="0 0 10 10"
+          refX="8"
+          refY="5"
+          markerWidth="7"
+          markerHeight="7"
+          orient="auto-start-reverse"
+        >
+          <path d="M0,0 L10,5 L0,10 z" class="mfh" />
+        </marker>
+        <marker
+          id="hink"
+          viewBox="0 0 10 10"
+          refX="8"
+          refY="5"
+          markerWidth="6"
+          markerHeight="6"
+          orient="auto-start-reverse"
+        >
+          <path d="M0,0 L10,5 L0,10 z" class="mink" />
+        </marker>
+      </defs>
+    </svg>
+
+    <div class="wrap">
+      <header class="hero">
+        <div>
+          <div class="eyebrow">Physik TALS · Kapitel 02 · Lernziele LZ02</div>
+          <h1>Fluidstatik-Coach</h1>
+          <p>
+            Alles für den Test: Druck, Pascal, Schweredruck, Luftdruck und Auftrieb. Von null erklärt, mit einem festen
+            Lösungsrezept, allen Übungen vorgerechnet und dem TI-Nspire CX II CAS als Werkzeug.
+          </p>
+        </div>
+        <svg
+          class="tank"
+          viewBox="0 0 150 180"
+          role="img"
+          aria-label="Wassertank: alle 10 m Tiefe steigt der Druck um etwa 1 bar"
+        >
+          <rect x="30" y="20" width="60" height="150" class="w1" />
+          <rect x="30" y="95" width="60" height="75" class="w2" />
+          <rect x="30" y="140" width="60" height="30" class="w3" />
+          <path d="M30,10 V170 H90 V10" class="ln" />
+          <line x1="24" y1="20" x2="96" y2="20" class="ln2" />
+          <text x="0" y="23">0 m</text>
+          <text x="0" y="98">5 m</text>
+          <text x="0" y="170">10 m</text>
+          <text x="96" y="23">1.0 bar</text>
+          <text x="96" y="98">1.5 bar</text>
+          <text x="96" y="170">2.0 bar</text>
+          <line x1="88" y1="20" x2="92" y2="20" class="aink" />
+          <line x1="88" y1="95" x2="92" y2="95" class="aink" />
+          <line x1="88" y1="167" x2="92" y2="167" class="aink" />
+        </svg>
+      </header>
+
+      <nav class="tabbar" aria-label="Kapitel">
+        <div class="tabs" role="tablist" id="tabs">
+          <button role="tab" data-tab="start" aria-selected="true">Start &amp; Rezept</button>
+          <button role="tab" data-tab="basis"><span class="num">0</span>Grundlagen-Update</button>
+          <button role="tab" data-tab="druck"><span class="num">1</span>Druck</button>
+          <button role="tab" data-tab="pascal"><span class="num">2</span>Pascal</button>
+          <button role="tab" data-tab="schwere"><span class="num">3</span>Schweredruck</button>
+          <button role="tab" data-tab="luft"><span class="num">4</span>Luftdruck</button>
+          <button role="tab" data-tab="auftrieb"><span class="num">5</span>Auftrieb</button>
+          <button role="tab" data-tab="ref">BMP-Niveau</button>
+          <button role="tab" data-tab="nspire">TI-Nspire</button>
+          <button role="tab" data-tab="quiz">Quiz</button>
+          <button role="tab" data-tab="test">Probetest</button>
+          <button role="tab" data-tab="spick">A4-Spick</button>
+        </div>
+      </nav>
+
+      <!-- ============ START ============ -->
+      <section class="panel" id="start" role="tabpanel">
+        <h2>So gehst du vor</h2>
+        <p class="lead">
+          Fluidstatik klingt kompliziert, besteht aber aus nur <b>drei Formeln</b> und <b>einer Denkweise</b>. Wenn du
+          die drei Formeln verstehst und bei jeder Aufgabe dasselbe Rezept durchgehst, kannst du praktisch jede
+          Testaufgabe lösen.
+        </p>
+
+        <div class="grid2">
+          <div class="box">
+            <span class="pill">Formel 1 · Druck</span>
+            <div class="eq" style="font-size: 1.25rem">p = F / A</div>
+            <p class="small">Wie stark wird auf eine Fläche gedrückt? Kraft geteilt durch Fläche.</p>
+          </div>
+          <div class="box">
+            <span class="pill">Formel 2 · Schweredruck</span>
+            <div class="eq" style="font-size: 1.25rem">p = ρ · g · h</div>
+            <p class="small">Wie viel Druck macht eine Flüssigkeit in der Tiefe h? Je tiefer, desto mehr.</p>
+          </div>
+          <div class="box">
+            <span class="pill">Formel 3 · Auftrieb</span>
+            <div class="eq" style="font-size: 1.25rem">F<sub>A</sub> = ρ<sub>Fl</sub> · g · V</div>
+            <p class="small">Wie stark drückt eine Flüssigkeit einen eingetauchten Körper nach oben?</p>
+          </div>
+        </div>
+        <p class="muted small">
+          Pascal (hydraulische Presse) ist nur Formel 1 zweimal: gleicher Druck auf beiden Kolben. Luftdruck ist Formel
+          2 für Luft. Alles andere baut auf diesen drei Formeln auf.
+        </p>
+
+        <h3>Das Lösungsrezept für jede Rechenaufgabe</h3>
+        <ol class="steps">
+          <li>
+            <div>
+              <b>Skizze machen.</b> Auch wenn sie hässlich ist. Zeichne Gefäss, Flüssigkeit, Körper, und bei Kräften die
+              Pfeile (nach unten: Gewicht F<sub>G</sub>, nach oben: Auftrieb F<sub>A</sub>, Haltekraft F<sub>H</sub>).
+            </div>
+          </li>
+          <li>
+            <div>
+              <b>Geg. / Ges. aufschreiben und sofort in SI umrechnen:</b> m, kg, s, m², m³, Pa, N. Besonders aufpassen
+              bei cm² → m² (× 10<sup>−4</sup>), cm³ → m³ (× 10<sup>−6</sup>), hPa → Pa (× 100), bar → Pa (×
+              10<sup>5</sup>), g → kg.
+            </div>
+          </li>
+          <li>
+            <div><b>Aufgabentyp erkennen</b> (siehe Entscheidungsbaum unten). Welche der drei Formeln steckt drin?</div>
+          </li>
+          <li>
+            <div>
+              <b>Gleichung mit Buchstaben aufstellen.</b> Bei Kräften: Kräftegleichgewicht «alles nach oben = alles nach
+              unten». Bei Pascal: «Druck links = Druck rechts».
+            </div>
+          </li>
+          <li>
+            <div>
+              <b>Nach der gesuchten Grösse auflösen</b>, von Hand. Mit dem CAS kontrollieren:
+              <span class="f">solve(Gleichung, x)</span>.
+            </div>
+          </li>
+          <li>
+            <div>
+              <b>Zahlen einsetzen, ausrechnen, prüfen:</b> Einheit richtig? Grössenordnung plausibel? Richtig gerundet
+              (so viele signifikante Stellen wie die ungenaueste Angabe)?
+            </div>
+          </li>
+        </ol>
+
+        <h3>Entscheidungsbaum: Welche Formel brauche ich?</h3>
+        <div class="tree">
+          <div class="row">
+            <span>Eine Kraft drückt auf eine Fläche (Schuh, Stempel, Deckel, Fenster)</span><span class="arr">→</span
+            ><span class="to">p = F / A &nbsp;bzw.&nbsp; F = p · A</span>
+          </div>
+          <div class="row">
+            <span>Innen und aussen herrscht verschiedener Druck (Fenster, Rahmdöschen, Magdeburger Kugeln)</span
+            ><span class="arr">→</span><span class="to">F = Δp · A</span>
+          </div>
+          <div class="row">
+            <span>Zwei Kolben, die durch Öl/Flüssigkeit verbunden sind (Presse, Wagenheber, Bremse)</span
+            ><span class="arr">→</span><span class="to">F₁/A₁ = F₂/A₂ &nbsp;und&nbsp; s₁·A₁ = s₂·A₂</span>
+          </div>
+          <div class="row">
+            <span>Tiefe in einer Flüssigkeit, Taucher, Staumauer, Aquarium, Manometer, Barometer</span
+            ><span class="arr">→</span><span class="to">p = p<sub>L</sub> + ρ · g · h</span>
+          </div>
+          <div class="row">
+            <span>Zwei Flüssigkeiten im U-Rohr</span><span class="arr">→</span
+            ><span class="to">Druck auf gleicher Höhe gleich setzen</span>
+          </div>
+          <div class="row">
+            <span>Luftdruck in einer bestimmten Höhe über Meer</span><span class="arr">→</span
+            ><span class="to">p = p₀ · e<sup>−h/8005 m</sup></span>
+          </div>
+          <div class="row">
+            <span>Körper im Wasser: eingetaucht, schwimmt, schwebt, am Kraftmesser, Ballon</span
+            ><span class="arr">→</span
+            ><span class="to">F<sub>A</sub> = ρ<sub>Fl</sub>·g·V<sub>ein</sub> &nbsp;+&nbsp; Kräftegleichgewicht</span>
+          </div>
+          <div class="row">
+            <span>Volumen wird durch Druck kleiner</span><span class="arr">→</span
+            ><span class="to">k = (ΔV/V) / Δp</span>
+          </div>
+        </div>
+
+        <h3>Deine Lernziel-Checkliste <span class="pill" id="progText">0 / 0</span></h3>
+        <div class="prog" aria-hidden="true"><span id="progBar"></span></div>
+        <p class="muted small">
+          Hake ab, was du erklären und rechnen kannst. Dein Stand bleibt in diesem Browser gespeichert. Der Pfeil
+          springt zum passenden Kapitel.
+        </p>
+        <div class="box check" id="checklist"></div>
+
+        <div class="merk">
+          <span class="tag">Hilfsmittel im Test</span>
+          <p>
+            Du darfst <b>Taschenrechner, Formelsammlung und eine A4-Seite Spick</b> mitnehmen. Das heisst: Formeln
+            auswendig lernen ist nicht das Wichtigste. Wichtig ist, dass du <b>erkennst, welche Formel passt</b>, und
+            die <b>Einheiten</b> richtig umrechnest. Der Tab «A4-Spick» ist ein fertiger Vorschlag für deine Seite.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ BASIS ============ -->
+      <section class="panel" id="basis" role="tabpanel" hidden>
+        <h2>Grundlagen-Update</h2>
+        <p class="lead">
+          Was du aus Kapitel 01 für die Fluidstatik brauchst, plus <b>eine neue Sache: die Kraft</b>. Wenn hier etwas
+          wackelt, zuerst das lesen.
+        </p>
+
+        <h3>Neu: Kraft und Gewichtskraft</h3>
+        <div class="prose">
+          <p>
+            Eine <b>Kraft</b> ist ein Stoss oder Zug. Man misst sie in <b>Newton (N)</b>. Ein Gefühl dafür: Eine Tafel
+            Schokolade (100 g) drückt mit etwa 1 N auf deine Hand.
+          </p>
+          <p>
+            Die Erde zieht jede Masse nach unten. Diese Kraft heisst <b>Gewichtskraft F<sub>G</sub></b
+            >:
+          </p>
+        </div>
+        <div class="fcard">
+          <div class="big">
+            <span>F<sub>G</sub> = m · g</span>
+          </div>
+          <table>
+            <tr>
+              <th>Symbol</th>
+              <th>Grösse</th>
+              <th>Einheit</th>
+            </tr>
+            <tr>
+              <td>F<sub>G</sub></td>
+              <td>Gewichtskraft</td>
+              <td>N (Newton) = kg·m/s²</td>
+            </tr>
+            <tr>
+              <td>m</td>
+              <td>Masse</td>
+              <td>kg</td>
+            </tr>
+            <tr>
+              <td>g</td>
+              <td>Ortsfaktor (Erde)</td>
+              <td>9.81 N/kg = 9.81 m/s²</td>
+            </tr>
+          </table>
+        </div>
+        <div class="trap">
+          <span class="tag">Falle</span>
+          <p>
+            <b>Masse ≠ Gewichtskraft.</b> Im Alltag sagt man «ich wiege 60 kg». In der Physik ist 60 kg die
+            <i>Masse</i>. Die <i>Kraft</i>, mit der du auf den Boden drückst, ist 60 kg · 9.81 N/kg = <b>589 N</b>. In
+            fast jeder Fluidstatik-Aufgabe musst du Masse zuerst mit g multiplizieren.
+          </p>
+        </div>
+
+        <h3>Flächen und Volumen, die immer wieder vorkommen</h3>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Form</th>
+              <th>Fläche / Volumen</th>
+              <th>Tipp</th>
+            </tr>
+            <tr>
+              <td>Rechteck</td>
+              <td>A = a · b</td>
+              <td>Schuhsohle, Ski, Fenster</td>
+            </tr>
+            <tr>
+              <td>Kreis (Kolben, Deckel)</td>
+              <td>A = π · r² = π · d² / 4</td>
+              <td>Achtung: oft ist der <b>Durchmesser d</b> gegeben, r = d/2</td>
+            </tr>
+            <tr>
+              <td>Quader</td>
+              <td>V = a · b · c</td>
+              <td>Balken, Eisscholle (V = A · Dicke)</td>
+            </tr>
+            <tr>
+              <td>Zylinder</td>
+              <td>V = π · r² · h</td>
+              <td>Gasometer, Messzylinder</td>
+            </tr>
+            <tr>
+              <td>Kugel</td>
+              <td>V = 4/3 · π · r³</td>
+              <td>Galilei-Thermometer, Magdeburger Kugeln</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Umrechnungen, die du im Schlaf können musst</h3>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>von</th>
+              <th>nach</th>
+              <th>Faktor</th>
+              <th>Warum</th>
+            </tr>
+            <tr>
+              <td>1 cm²</td>
+              <td>m²</td>
+              <td>10<sup>−4</sup> m²</td>
+              <td>(10<sup>−2</sup>)² = 10<sup>−4</sup></td>
+            </tr>
+            <tr>
+              <td>1 mm²</td>
+              <td>m²</td>
+              <td>10<sup>−6</sup> m²</td>
+              <td>(10<sup>−3</sup>)² = 10<sup>−6</sup></td>
+            </tr>
+            <tr>
+              <td>1 dm²</td>
+              <td>m²</td>
+              <td>10<sup>−2</sup> m²</td>
+              <td>(10<sup>−1</sup>)² = 10<sup>−2</sup></td>
+            </tr>
+            <tr>
+              <td>1 cm³</td>
+              <td>m³</td>
+              <td>10<sup>−6</sup> m³</td>
+              <td>(10<sup>−2</sup>)³</td>
+            </tr>
+            <tr>
+              <td>1 Liter = 1 dm³</td>
+              <td>m³</td>
+              <td>10<sup>−3</sup> m³</td>
+              <td>(10<sup>−1</sup>)³</td>
+            </tr>
+            <tr>
+              <td>1 g/cm³</td>
+              <td>kg/m³</td>
+              <td>× 1000</td>
+              <td>Wasser: 1 g/cm³ = 1000 kg/m³</td>
+            </tr>
+            <tr>
+              <td>1 t</td>
+              <td>kg</td>
+              <td>10³ kg</td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Dichte (aus Kapitel 01)</h3>
+        <div class="fcard">
+          <div class="big"><span>ρ = m / V</span></div>
+          <table>
+            <tr>
+              <th>umgestellt</th>
+              <th>wann</th>
+            </tr>
+            <tr>
+              <td>m = ρ · V</td>
+              <td>Masse gesucht (z. B. um F<sub>G</sub> zu berechnen)</td>
+            </tr>
+            <tr>
+              <td>V = m / ρ</td>
+              <td>Volumen gesucht (z. B. für den Auftrieb)</td>
+            </tr>
+          </table>
+        </div>
+        <div class="merk">
+          <span class="tag">Auswendig (Lernziel 4.3)</span>
+          <p>
+            <b>Wasser: ρ = 1000 kg/m³</b> &nbsp;·&nbsp; <b>Luft: ρ = 1.29 kg/m³</b> (bei 0 °C und 1013 hPa). Luft ist
+            also rund 800-mal weniger dicht als Wasser.
+          </p>
+          <p class="small">
+            Weitere Werte stehen in der Formelsammlung: Quecksilber 13 546 kg/m³ (20 °C), Eis 917, Meerwasser ≈ 1025,
+            Aluminium 2700, Eisen 7870, Silber 10 500, Gold 19 300 kg/m³.
+          </p>
+        </div>
+
+        <h3>Mit Buchstaben rechnen (Grundsatz 1)</h3>
+        <div class="prose">
+          <p>
+            In der Fluidstatik kommen oft mehrere Formeln zusammen. Setze sie zuerst mit Buchstaben ineinander ein und
+            löse erst am Schluss mit Zahlen. Beispiel: Ein Stein hat die Masse m. Welche Auftriebskraft erfährt er im
+            Wasser?
+          </p>
+        </div>
+        <div class="eq">
+          V = m / ρ_Stein (Volumen aus der Dichte) F_A = ρ_Wasser · g · V (Auftrieb) → F_A = ρ_Wasser · g · m / ρ_Stein
+          (eingesetzt)
+        </div>
+        <p class="muted small">
+          Das Umstellen musst du von Hand können. Mit dem CAS kannst du es kontrollieren:
+          <span class="f">solve(fa=rw*g*m/rs, m)</span>. Mehr im Tab TI-Nspire.
+        </p>
+      </section>
+
+      <!-- ============ DRUCK ============ -->
+      <section class="panel" id="druck" role="tabpanel" hidden>
+        <h2>1 · Druck</h2>
+        <div class="oneline">
+          <b>In einem Satz:</b> Druck sagt, wie stark eine Kraft auf <i>jeden Quadratmeter</i> einer Fläche drückt.
+          Gleiche Kraft auf kleiner Fläche = grosser Druck.
+        </div>
+
+        <h3>Verstehen: Warum sinkt der Mensch im Schnee ein, der Pistenbully nicht?</h3>
+        <div class="prose">
+          <p>
+            Das Beispiel aus dem Skript (S. 2). Der Pistenbully ist 100-mal schwerer als der Mensch. Trotzdem sinkt der
+            Mensch ein. Der Grund: Der Pistenbully verteilt sein Gewicht auf eine riesige Fläche (Raupenketten).
+          </p>
+        </div>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th></th>
+              <th>Mensch</th>
+              <th>PistenBully Polar 300</th>
+            </tr>
+            <tr>
+              <td>Masse</td>
+              <td>70 kg</td>
+              <td>7.3 t = 7300 kg</td>
+            </tr>
+            <tr>
+              <td>Gewichtskraft F = m·g</td>
+              <td>70 · 9.81 = 687 N</td>
+              <td>7300 · 9.81 = 71 613 N</td>
+            </tr>
+            <tr>
+              <td>Fläche A</td>
+              <td>0.30 m · 2 · 0.10 m = 0.060 m²</td>
+              <td>4.90 m · 2 · 2.13 m = 20.9 m²</td>
+            </tr>
+            <tr>
+              <td>Druck p = F/A</td>
+              <td><b>11 400 Pa = 11 kPa</b></td>
+              <td><b>3 430 Pa = 3.4 kPa</b></td>
+            </tr>
+          </table>
+        </div>
+        <p class="muted small">
+          Der Mensch drückt also mehr als dreimal so stark auf den Schnee. Beim Käsemesser ist es umgekehrt: Die
+          Schneide hat eine winzige Fläche, deshalb wird der Druck riesig, und der Käse gibt nach.
+        </p>
+
+        <div class="fcard">
+          <div class="big"><span>p = F / A</span></div>
+          <table>
+            <tr>
+              <th>Symbol</th>
+              <th>Grösse</th>
+              <th>Einheit</th>
+            </tr>
+            <tr>
+              <td>p</td>
+              <td>Druck (pressure)</td>
+              <td>Pa (Pascal) = N/m²</td>
+            </tr>
+            <tr>
+              <td>F</td>
+              <td>Kraft, senkrecht auf die Fläche</td>
+              <td>N</td>
+            </tr>
+            <tr>
+              <td>A</td>
+              <td>Fläche (area)</td>
+              <td>m²</td>
+            </tr>
+          </table>
+        </div>
+        <p class="small muted">
+          Umgestellt: <span class="f">F = p · A</span> (Kraft gesucht) und <span class="f">A = F / p</span> (Fläche
+          gesucht).
+        </p>
+
+        <h3>Druckeinheiten umrechnen (Lernziel 1.3)</h3>
+        <div class="prose">
+          <p>
+            1 Pa ist ein winziger Druck (ein Blatt Papier auf dem Tisch). Deshalb gibt es grössere Einheiten. Die Basis
+            ist immer Pascal:
+          </p>
+        </div>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Einheit</th>
+              <th>in Pascal</th>
+              <th>Merkhilfe / wo</th>
+            </tr>
+            <tr>
+              <td>1 hPa (Hektopascal)</td>
+              <td>100 Pa</td>
+              <td>Wetterbericht, Luftdruck ≈ 1013 hPa</td>
+            </tr>
+            <tr>
+              <td>1 kPa</td>
+              <td>1 000 Pa</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>1 bar</td>
+              <td>100 000 Pa = 10<sup>5</sup> Pa</td>
+              <td>Veloreifen, Pneu. 1 bar = 1000 hPa</td>
+            </tr>
+            <tr>
+              <td>1 mbar (Millibar)</td>
+              <td>100 Pa</td>
+              <td><b>1 mbar = 1 hPa</b></td>
+            </tr>
+            <tr>
+              <td>1 Torr = 1 mmHg</td>
+              <td>133.3 Pa</td>
+              <td>Blutdruck, Barometer. 760 mmHg = 1013 hPa</td>
+            </tr>
+            <tr>
+              <td>1 psi (pound per square inch)</td>
+              <td>6 895 Pa</td>
+              <td>US-Reifendruck. 14.7 psi ≈ 1 atm</td>
+            </tr>
+            <tr>
+              <td>1 atm (physikalische Atmosphäre)</td>
+              <td>101 325 Pa</td>
+              <td>Normaldruck 1013.25 hPa</td>
+            </tr>
+            <tr>
+              <td>1 at (technische Atmosphäre)</td>
+              <td>98 066.5 Pa ≈ 0.981 bar</td>
+              <td>veraltet</td>
+            </tr>
+            <tr>
+              <td>atü (Atmosphären-Überdruck)</td>
+              <td>Überdruck in at</td>
+              <td>veraltet, bedeutet «so viel at <i>mehr</i> als der Luftdruck»</td>
+            </tr>
+          </table>
+        </div>
+        <div class="merk">
+          <span class="tag">Umrechnungs-Trick</span>
+          <p>
+            Immer über Pascal gehen: <b>zuerst in Pa, dann in die Zieleinheit.</b> Beispiel: 950 mbar → 950 · 100 Pa =
+            95 000 Pa → 95 000 / 10<sup>5</sup> = 0.95 bar.
+          </p>
+          <p>Oder mit dem Nspire: <span class="f">950_mbar▸_bar</span> (Details im Tab TI-Nspire).</p>
+        </div>
+
+        <h3>Absolutdruck, Überdruck, Unterdruck (Lernziel 1.4)</h3>
+        <div class="prose">
+          <p>
+            Um uns herum drückt immer die Luft mit etwa 1 bar. Manche Messgeräte (Reifenmanometer, Blutdruckgerät)
+            zeigen nur den Unterschied zu diesem Luftdruck an. Deshalb gibt es drei Begriffe:
+          </p>
+          <ul>
+            <li><b>Absolutdruck</b> p<sub>abs</sub>: der «echte» Druck, gemessen ab dem Vakuum (0 Pa).</li>
+            <li>
+              <b>Überdruck</b> (Relativdruck): wie viel <i>mehr</i> als der Luftdruck. p<sub>über</sub> = p<sub
+                >abs</sub
+              >
+              − p<sub>L</sub>
+            </li>
+            <li>
+              <b>Unterdruck</b>: wie viel <i>weniger</i> als der Luftdruck. p<sub>unter</sub> = p<sub>L</sub> − p<sub
+                >abs</sub
+              >
+            </li>
+          </ul>
+        </div>
+        <figure class="fig">
+          <svg viewBox="0 0 440 170" role="img" aria-label="Druckskala mit Vakuum, Luftdruck, Überdruck und Unterdruck">
+            <line x1="40" y1="150" x2="40" y2="15" class="aink" marker-end="url(#hink)" />
+            <line x1="34" y1="150" x2="420" y2="150" class="ln" />
+            <text x="48" y="146" class="s">0 Pa = Vakuum</text>
+            <line x1="34" y1="95" x2="420" y2="95" class="ln2" />
+            <text x="300" y="90">Luftdruck p_L ≈ 1 bar</text>
+            <line x1="120" y1="150" x2="120" y2="40" class="afa" marker-end="url(#hfa)" />
+            <text x="126" y="60" class="tfa">p_abs (Reifen)</text>
+            <line x1="200" y1="95" x2="200" y2="40" class="afh" marker-end="url(#hfh)" />
+            <text x="206" y="60" class="tfh">Überdruck</text>
+            <line x1="120" y1="40" x2="215" y2="40" class="ln2" />
+            <line x1="260" y1="95" x2="260" y2="125" class="afg" marker-end="url(#hfg)" />
+            <text x="266" y="118" class="tfg">Unterdruck</text>
+            <line x1="248" y1="125" x2="300" y2="125" class="ln2" />
+          </svg>
+          <figcaption>Ein Reifen mit «2 bar» hat 2 bar Überdruck, also etwa 3 bar Absolutdruck.</figcaption>
+        </figure>
+
+        <h3>Wichtig: Kraft bei Druckunterschied</h3>
+        <div class="prose">
+          <p>
+            Wenn auf beiden Seiten einer Fläche Luft drückt (Fenster, Deckel), heben sich die Kräfte fast auf. Es zählt
+            nur der <b>Unterschied</b>:
+          </p>
+        </div>
+        <div class="eq" style="font-size: 1.15rem">F = Δp · A = (p_innen − p_aussen) · A</div>
+
+        <h3>Aggregatzustände (Lernziel 1.1)</h3>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th></th>
+              <th>fest</th>
+              <th>flüssig</th>
+              <th>gasförmig</th>
+            </tr>
+            <tr>
+              <td>Form</td>
+              <td>fest</td>
+              <td>variabel</td>
+              <td>variabel</td>
+            </tr>
+            <tr>
+              <td>Volumen</td>
+              <td>fest</td>
+              <td>fest</td>
+              <td>variabel</td>
+            </tr>
+            <tr>
+              <td>Dichte</td>
+              <td>gross</td>
+              <td>gross</td>
+              <td>klein</td>
+            </tr>
+            <tr>
+              <td>Anordnung Teilchen</td>
+              <td>regelmässig</td>
+              <td>unregelmässig</td>
+              <td>unregelmässig</td>
+            </tr>
+            <tr>
+              <td>feste Nachbarteilchen</td>
+              <td>ja</td>
+              <td>nein</td>
+              <td>nein</td>
+            </tr>
+            <tr>
+              <td>Abstand der Teilchen</td>
+              <td>klein</td>
+              <td>klein</td>
+              <td>gross</td>
+            </tr>
+            <tr>
+              <td>Kräfte zwischen Teilchen</td>
+              <td>gross</td>
+              <td>mittel</td>
+              <td>sehr klein</td>
+            </tr>
+          </table>
+        </div>
+        <p class="small muted">
+          <b>Fluide</b> = Flüssigkeiten + Gase. Gemeinsam: Sie haben keine feste Form und fliessen. Unterschied:
+          Flüssigkeiten lassen sich kaum zusammendrücken, Gase sehr leicht (weil viel leerer Raum zwischen den Teilchen
+          ist).
+        </p>
+
+        <h3>Vorgerechnet</h3>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü1</span><span class="q">Fenster 3.0 m², Unterdruck innen 2.0 hPa. Kraft?</span
+              ><span class="ans">600 N</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Denkweg</span>
+              <p>
+                Der Luftdruck aussen (946 hPa) ist eine Ablenkung. Er drückt auch von innen, fast gleich stark. Es zählt
+                nur der Unterschied Δp = 2.0 hPa.
+              </p>
+              <span class="lbl">Rechnung</span>
+              <div class="eq">Δp = 2.0 hPa = 200 Pa F = Δp · A = 200 Pa · 3.0 m² = 600 N</div>
+              <p class="result">F = 6.0 · 10² N (entspricht dem Gewicht von 61 kg), nach innen gerichtet.</p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">366</span><span class="q">Druckeinheiten umrechnen a) bis f)</span
+              ><span class="ans">10 hPa · 1.02 bar · …</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) 1000 Pa = 10 hPa = 0.01 bar = 10 mbar b) 1020 hPa = 102 000 Pa = 1.02 bar = 1020 mbar c) 0.60 bar =
+                60 000 Pa = 600 hPa = 600 mbar d) 950 mbar = 95 000 Pa = 950 hPa = 0.95 bar e) 2.4 at = 2.4 · 0.981 bar
+                ≈ 2.4 bar f) 1.9 atü = Überdruck! absolut = 1.9 at + 1.03 at ≈ 2.9 at ≈ 2.9 bar
+              </div>
+              <p>Bei f) steckt die Falle: «ü» heisst Überdruck. Den Luftdruck (1 atm ≈ 1.03 at) musst du dazuzählen.</p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">367</span><span class="q">Blutdruck «80 zu 120»: Einheit und Wert in Pa?</span
+              ><span class="ans">11 kPa, 16 kPa</span>
+            </summary>
+            <div class="body">
+              <p>
+                Die Einheit ist <b>mmHg</b> (Millimeter Quecksilbersäule). Der Druck entspricht dem Schweredruck einer
+                Hg-Säule dieser Höhe (siehe Kapitel 3):
+              </p>
+              <div class="eq">
+                p = ρ_Hg · g · h = 13 546 · 9.81 · 0.080 m = 10.6 kPa ≈ 11 kPa p = 13 546 · 9.81 · 0.120 m = 15.9 kPa ≈
+                16 kPa
+              </div>
+              <p class="small muted">
+                Oder schneller: 1 mmHg = 133.3 Pa → 80 · 133.3 = 10 670 Pa. Das ist ein <b>Überdruck</b> gegenüber dem
+                Luftdruck.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">369</span><span class="q">Mittlerer Druck auf die Unterlage a) bis e)</span
+              ><span class="ans">59 kPa · 1.2·10⁵ Pa · 9.8 MPa · 2.5 kPa · 2·10⁸ Pa</span>
+            </summary>
+            <div class="body">
+              <p>Immer gleich: F = m · g ausrechnen, Fläche in m² umrechnen, p = F / A.</p>
+              <div class="eq">
+                a) Mann auf 1 Bein: F = 84·9.81 = 824 N, A = 1.4 dm² = 0.014 m² p = 824 / 0.014 = 5.9·10⁴ Pa = 59 kPa b)
+                Elefant 1.8 t: F = 17 658 N, A = 4 · 380 cm² = 0.152 m² p = 1.2·10⁵ Pa c) Stöckelabsatz: F = 50·9.81 =
+                490.5 N, A = 50 mm² = 50·10⁻⁶ m² p = 9.8·10⁶ Pa = 9.8 MPa (80-mal mehr als der Elefant!) d) Skifahrerin:
+                F = 588.6 N, A = 2 · 1.70 m · 0.070 m = 0.238 m² p = 2.5·10³ Pa = 2.5 kPa e) Stecknadel: p = 2 N /
+                (0.01·10⁻⁶ m²) = 2·10⁸ Pa
+              </div>
+              <div class="trap">
+                <span class="tag">Falle</span>
+                <p>
+                  Beim Elefanten sind es <b>vier</b> Füsse, bei den Ski <b>zwei</b> Ski. Die Fläche immer vollständig
+                  zusammenzählen.
+                </p>
+              </div>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">371 / Sk Ü8</span><span class="q">Gasometer: Grundfläche, Durchmesser, Überdruck</span
+              ><span class="ans">61.3 m · 4.01 kPa</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">a) Grundfläche</span>
+              <p>Der Gasometer ist ein Zylinder: V = A · h, also A = V / h.</p>
+              <div class="eq">A = 3.47·10⁵ m³ / 117.5 m = 2953 m² A = π·r² → r = √(A/π) = 30.66 m → d = 61.3 m</div>
+              <span class="lbl">b) Überdruck</span>
+              <p>
+                Der schwere Deckel liegt auf dem Gas und drückt es zusammen. Der Überdruck ist genau das Deckelgewicht
+                pro Fläche:
+              </p>
+              <div class="eq">
+                F = m·g = 1207·10³ kg · 9.81 = 1.184·10⁷ N p = F / A = 1.184·10⁷ / 2953 = 4.01·10³ Pa = 4.01 kPa
+              </div>
+              <p class="small muted">
+                Warum Überdruck? Auf den Deckel drückt von oben auch die Luft. Der Deckel sorgt nur für das «Extra».
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============ PASCAL ============ -->
+      <section class="panel" id="pascal" role="tabpanel" hidden>
+        <h2>2 · Prinzip von Pascal</h2>
+        <div class="oneline">
+          <b>In einem Satz:</b> Drückst du irgendwo auf eine eingeschlossene Flüssigkeit, steigt der Druck
+          <i>überall</i> in der Flüssigkeit um genau gleich viel.
+        </div>
+
+        <div class="prose">
+          <p>
+            Denk an eine Zahnpastatube: Du drückst mit dem Daumen an einer Stelle, und die Zahnpasta kommt vorne raus.
+            Der Druck hat sich in der ganzen Tube verteilt. Im Skript heisst das:
+          </p>
+        </div>
+        <div class="merk">
+          <span class="tag">Prinzip von Pascal</span>
+          <p>
+            In einer ruhenden Flüssigkeit oder einem ruhenden Gas ist der Druck auf gleicher Höhe überall gleich gross,
+            auch an den Begrenzungsflächen.
+          </p>
+        </div>
+
+        <h3>Die hydraulische Presse: kleine Kraft, grosse Wirkung</h3>
+        <figure class="fig">
+          <svg viewBox="0 0 440 210" role="img" aria-label="Hydraulische Presse mit kleinem und grossem Kolben">
+            <path d="M40,60 V180 H400 V40" class="ln" />
+            <path d="M90,60 V140 H300 V40" class="ln" />
+            <rect x="41" y="90" width="48" height="89" class="w2" />
+            <rect x="89" y="141" width="210" height="38" class="w2" />
+            <rect x="301" y="70" width="98" height="109" class="w2" />
+            <rect x="41" y="82" width="48" height="8" class="piston" />
+            <rect x="301" y="62" width="98" height="8" class="piston" />
+            <line x1="65" y1="20" x2="65" y2="78" class="afg" marker-end="url(#hfg)" />
+            <text x="75" y="35" class="tfg">F₁ klein</text>
+            <line x1="350" y1="58" x2="350" y2="10" class="afa" marker-end="url(#hfa)" />
+            <text x="360" y="28" class="tfa">F₂ gross</text>
+            <text x="44" y="200" class="s">A₁ klein</text>
+            <text x="330" y="200" class="s">A₂ gross</text>
+            <text x="170" y="166">p überall gleich</text>
+            <line x1="20" y1="82" x2="20" y2="62" class="aink" marker-start="url(#hink)" marker-end="url(#hink)" />
+            <text x="0" y="56" class="s">s₁ lang</text>
+            <line x1="420" y1="62" x2="420" y2="52" class="aink" />
+            <text x="405" y="48" class="s">s₂ kurz</text>
+          </svg>
+          <figcaption>
+            Links drückst du mit kleiner Kraft auf eine kleine Fläche. Der gleiche Druck wirkt rechts auf eine grosse
+            Fläche und erzeugt eine grosse Kraft. Dafür bewegt sich der grosse Kolben nur ein kleines Stück.
+          </figcaption>
+        </figure>
+
+        <div class="fcard">
+          <div class="big"><span>F₁ / A₁ = F₂ / A₂</span></div>
+          <table>
+            <tr>
+              <th>Idee</th>
+              <th>Formel</th>
+            </tr>
+            <tr>
+              <td>Gleicher Druck auf beiden Kolben</td>
+              <td>p = F₁/A₁ = F₂/A₂</td>
+            </tr>
+            <tr>
+              <td>Kraftübersetzung</td>
+              <td>F₂ = F₁ · A₂/A₁</td>
+            </tr>
+            <tr>
+              <td>Kreisförmige Kolben</td>
+              <td>A₂/A₁ = (d₂/d₁)²</td>
+            </tr>
+            <tr>
+              <td>Gleiches Volumen wird verschoben</td>
+              <td>s₁ · A₁ = s₂ · A₂</td>
+            </tr>
+            <tr>
+              <td>Arbeit ist auf beiden Seiten gleich (ideal)</td>
+              <td>W = F₁·s₁ = F₂·s₂</td>
+            </tr>
+          </table>
+        </div>
+
+        <h3>Warum gibt es keine «Energie aus dem Nichts»?</h3>
+        <div class="prose">
+          <p>
+            Die Presse vervielfacht die Kraft, aber nicht die Arbeit. <b>Arbeit W = Kraft · Weg</b> (Einheit Joule, J =
+            N·m). Was du an Kraft gewinnst, verlierst du an Weg: Wenn die Fläche 100-mal grösser ist, ist die Kraft
+            100-mal grösser, aber der grosse Kolben bewegt sich nur 1/100 so weit. Das nennt man die
+            <b>goldene Regel der Mechanik</b>.
+          </p>
+          <p>
+            Beweis (Aufgabe 372c): Gleicher Druck gibt F₁/A₁ = F₂/A₂. Die Flüssigkeit ist nicht zusammendrückbar, also
+            wird links genau so viel Volumen hineingedrückt, wie rechts herauskommt: s₁·A₁ = s₂·A₂. Multipliziert man
+            beide Gleichungen, kürzen sich die Flächen: <b>F₁·s₁ = F₂·s₂</b>.
+          </p>
+        </div>
+
+        <h3>Mit Reibung (Lernziel 2.2 und 2.4)</h3>
+        <div class="prose">
+          <p>
+            In echt reibt der Kolben an der Wand. Ein Teil deiner Kraft geht dafür verloren. Typische Formulierung: «10
+            % der Kraft werden zur Überwindung der Reibung gebraucht». Dann bleiben nur 90 % für die Presse übrig:
+          </p>
+        </div>
+        <div class="eq">F_nutz = 0.90 · F_Pumpe → F_Pumpe = F_ideal / 0.90 W_Pumpe = W_ideal / 0.90</div>
+        <div class="trap">
+          <span class="tag">Falle</span>
+          <p>
+            Mit Reibung musst du <b>mehr</b> Kraft bzw. Arbeit aufwenden, nie weniger. Prüfe am Schluss: Ist dein
+            Resultat grösser als ohne Reibung? Wenn die Aufgabe sagt «die Reibungskraft beträgt 20 N», dann einfach
+            addieren: F<sub>Pumpe</sub> = F<sub>ideal</sub> + 20 N.
+          </p>
+        </div>
+
+        <h3>Kompressibilität (Lernziel 2.5)</h3>
+        <div class="prose">
+          <p>
+            Bei Pascal rechnen wir mit einer <b>idealen</b> Flüssigkeit: Sie lässt sich gar nicht zusammendrücken
+            (inkompressibel). Echte Flüssigkeiten werden unter enormem Druck ein kleines bisschen kleiner. Wasser: 1000
+            bar machen es nur etwa 5 % kleiner. Die <b>Kompressibilität k</b> sagt, um welchen Bruchteil das Volumen pro
+            Pascal schrumpft:
+          </p>
+        </div>
+        <div class="fcard">
+          <div class="big"><span>k = (ΔV / V) / Δp</span></div>
+          <table>
+            <tr>
+              <th>Symbol</th>
+              <th>Grösse</th>
+              <th>Einheit</th>
+            </tr>
+            <tr>
+              <td>ΔV / V</td>
+              <td>relative Volumenänderung (z. B. 0.05 für 5 %)</td>
+              <td>ohne</td>
+            </tr>
+            <tr>
+              <td>Δp</td>
+              <td>Druckänderung</td>
+              <td>Pa</td>
+            </tr>
+            <tr>
+              <td>k</td>
+              <td>Kompressibilität</td>
+              <td>1/Pa</td>
+            </tr>
+          </table>
+        </div>
+        <div class="eq">
+          Wasser: k = 0.05 / (1000·10⁵ Pa) = 5·10⁻¹⁰ 1/Pa Umgestellt: ΔV = k · V · Δp Beispiel: 1.0 L Wasser, 100 bar
+          mehr Druck: ΔV = 5·10⁻¹⁰ · 1.0·10⁻³ m³ · 1.0·10⁷ Pa = 5·10⁻⁶ m³ = 5 mL
+        </div>
+        <p class="small muted">
+          Gase haben eine sehr grosse Kompressibilität, Flüssigkeiten und Festkörper eine sehr kleine. Deshalb braucht
+          man für Hydraulik Öl und keine Luft: Mit Luft im System würde der Kolben «schwammig» nachgeben (Bremsen
+          entlüften!).
+        </p>
+
+        <h3>Vorgerechnet</h3>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü3</span
+              ><span class="q"
+                >Hydraulische Bremse: 500 N auf Hauptzylinder (d = 0.500 cm), Radzylinder d = 2.50 cm. F₂?</span
+              ><span class="ans">1.25·10⁴ N</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Denkweg</span>
+              <p>
+                Der Hebel am Pedal macht aus 100 N schon 500 N (steht in der Aufgabe). Diese 500 N drücken auf den
+                kleinen Hauptzylinder. Pascal: gleicher Druck in allen Radzylindern.
+              </p>
+              <div class="eq">
+                F₂ = F₁ · A₂/A₁ = F₁ · (d₂/d₁)² F₂ = 500 N · (2.50 / 0.500)² = 500 N · 25 = 1.25·10⁴ N
+              </div>
+              <p class="small muted">
+                Das Verhältnis der Durchmesser darfst du direkt nehmen (cm/cm kürzt sich), musst es aber quadrieren.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü4</span><span class="q">Kolbenpresse A₁ = 2.00 cm², A₂ = 240 cm², Wagen 1200 kg</span
+              ><span class="ans">0.17 cm · 98.1 N · 12 kJ · 13 kJ</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">a) Hubweg des grossen Kolbens</span>
+              <div class="eq">s₁·A₁ = s₂·A₂ → s₂ = s₁ · A₁/A₂ = 20 cm · 2.00/240 = 0.17 cm</div>
+              <span class="lbl">b) Mindestkraft der Pumpe</span>
+              <div class="eq">F₂ = m·g = 1200 · 9.81 = 11 772 N F₁ = F₂ · A₁/A₂ = 11 772 · 2.00/240 = 98.1 N</div>
+              <span class="lbl">c) Arbeit ohne Reibung</span>
+              <div class="eq">W₂ = F₂ · s₂ = 11 772 N · 1.0 m = 1.2·10⁴ J = 12 kJ W₁ = W₂ = 12 kJ (goldene Regel)</div>
+              <span class="lbl">d) Arbeit mit 10 % Reibung</span>
+              <div class="eq">W₁ = 11 772 J / 0.90 = 13 080 J ≈ 13 kJ</div>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">372</span
+              ><span class="q">Hydraulischer Kran: d₁ = 1.6 cm, d₂ = 3.0 cm, F₂ = 4.0 kN, Weg 1.0 cm</span
+              ><span class="ans">1.1 kN · 40 J</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) F₁ = F₂ · (d₁/d₂)² = 4000 N · (1.6/3.0)² = 1138 N ≈ 1.1 kN b) W = F₂ · s₂ = 4000 N · 0.010 m = 40 J
+                c) siehe Beweis oben: F₁/A₁ = F₂/A₂ und s₁A₁ = s₂A₂ → F₁s₁ = F₂s₂
+              </div>
+              <div class="trap">
+                <span class="tag">Falle</span>
+                <p>
+                  Hier ist der Weg in cm gegeben. Für die Arbeit in Joule <b>muss</b> er in Meter: 1.0 cm = 0.010 m.
+                </p>
+              </div>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">Skript</span
+              ><span class="q">Pillenpresse (Abb. 2.3): A₁ = 52.8 cm², A₂ = 0.9 cm², Hebel 30 cm / 3 cm</span
+              ><span class="ans">Faktor ≈ 590</span>
+            </summary>
+            <div class="body">
+              <p>
+                Zwei Verstärkungen hintereinander: Der Hebel verstärkt 30 cm / 3 cm = 10-fach. Die Hydraulik verstärkt
+                52.8 / 0.9 = 58.7-fach. Zusammen: 10 · 58.7 ≈ 590-fach. Mit 50 N am Hebel entsteht also eine Presskraft
+                von etwa 29 kN.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============ SCHWEREDRUCK ============ -->
+      <section class="panel" id="schwere" role="tabpanel" hidden>
+        <h2>3 · Schweredruck (hydrostatischer Druck)</h2>
+        <div class="oneline">
+          <b>In einem Satz:</b> Das Wasser über dir hat ein Gewicht und drückt auf dich. Je tiefer du tauchst, desto
+          mehr Wasser liegt über dir, desto grösser der Druck.
+        </div>
+
+        <h3>Verstehen: Woher kommt p = ρ · g · h?</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <svg viewBox="0 0 220 220" role="img" aria-label="Wassersäule mit Grundfläche A und Höhe h">
+              <rect x="60" y="30" width="100" height="160" class="w1" />
+              <rect x="60" y="30" width="100" height="160" class="ln2" />
+              <ellipse cx="110" cy="190" rx="50" ry="8" class="w3" />
+              <line x1="40" y1="30" x2="40" y2="190" class="aink" marker-start="url(#hink)" marker-end="url(#hink)" />
+              <text x="22" y="115">h</text>
+              <line x1="110" y1="80" x2="110" y2="175" class="afg" marker-end="url(#hfg)" />
+              <text x="116" y="130" class="tfg">F_G</text>
+              <text x="150" y="212" class="s">Fläche A</text>
+              <text x="62" y="24" class="s">Wasseroberfläche</text>
+            </svg>
+            <figcaption>Eine gedachte Wassersäule mit Grundfläche A und Höhe h.</figcaption>
+          </figure>
+          <div class="prose">
+            <p>Stell dir über einer Fläche A eine Wassersäule der Höhe h vor.</p>
+            <ol>
+              <li>Volumen der Säule: V = A · h</li>
+              <li>Masse: m = ρ · V = ρ · A · h</li>
+              <li>Gewicht: F<sub>G</sub> = m · g = ρ · A · h · g</li>
+              <li>Druck: p = F<sub>G</sub> / A = ρ · g · h</li>
+            </ol>
+            <p>
+              Die Fläche A kürzt sich weg. Darum hängt der Schweredruck <b>nur von der Tiefe</b> ab, nicht von der Form
+              oder Grösse des Gefässes.
+            </p>
+          </div>
+        </div>
+
+        <div class="fcard">
+          <div class="big">
+            <span>p<sub>s</sub> = ρ · g · h</span>
+          </div>
+          <table>
+            <tr>
+              <th>Symbol</th>
+              <th>Grösse</th>
+              <th>Einheit</th>
+            </tr>
+            <tr>
+              <td>p<sub>s</sub></td>
+              <td>Schweredruck</td>
+              <td>Pa</td>
+            </tr>
+            <tr>
+              <td>ρ</td>
+              <td>Dichte der Flüssigkeit</td>
+              <td>kg/m³</td>
+            </tr>
+            <tr>
+              <td>g</td>
+              <td>Ortsfaktor</td>
+              <td>9.81 N/kg</td>
+            </tr>
+            <tr>
+              <td>h</td>
+              <td>Tiefe unter der Oberfläche</td>
+              <td>m</td>
+            </tr>
+          </table>
+        </div>
+        <div class="merk">
+          <span class="tag">Gesamtdruck in der Tiefe</span>
+          <div class="eq" style="font-size: 1.1rem; background: transparent; padding: 0">
+            p = p<sub>L</sub> + ρ · g · h
+          </div>
+          <p>
+            Auf die Wasseroberfläche drückt zusätzlich die Luft. Der <b>absolute</b> Druck in der Tiefe ist Luftdruck
+            plus Schweredruck. Faustregel für Wasser: <b>alle 10 m Tiefe kommt 1 bar dazu</b> (1000 · 9.81 · 10 = 98 100
+            Pa ≈ 1 bar).
+          </p>
+        </div>
+
+        <h3>Das hydrostatische Paradoxon (Lernziel 3.1)</h3>
+        <figure class="fig">
+          <svg
+            viewBox="0 0 440 170"
+            role="img"
+            aria-label="Drei unterschiedlich geformte Gefässe mit gleicher Füllhöhe und gleicher Bodenfläche"
+          >
+            <path d="M20,40 L60,140 H110 L150,40" class="ln" />
+            <path d="M26,55 L60,139 H110 L144,55 Z" class="w2" />
+            <path d="M195,40 V140 H245 V40" class="ln" />
+            <rect x="196" y="55" width="48" height="84" class="w2" />
+            <path d="M345,40 L330,140 H380 L365,40" class="ln" />
+            <path d="M331,139 H379 L367,55 H343 Z" class="w2" />
+            <line x1="10" y1="55" x2="430" y2="55" class="ln2" />
+            <text x="300" y="50" class="s">gleiche Höhe h</text>
+            <text x="60" y="158" class="s">p gleich</text>
+            <text x="195" y="158" class="s">p gleich</text>
+            <text x="330" y="158" class="s">p gleich</text>
+          </svg>
+          <figcaption>
+            Alle drei Gefässe haben die gleiche Füllhöhe und die gleiche Bodenfläche. Obwohl verschieden viel Wasser
+            drin ist, ist der Druck am Boden und damit die Kraft auf den Boden <b>überall gleich</b>.
+          </figcaption>
+        </figure>
+        <div class="prose">
+          <p>
+            <b>Erklärung:</b> Der Druck hängt nur von h ab. Beim breiten Gefäss trägt die schräge Wand einen Teil des
+            Wassergewichts. Beim sich nach oben verengenden Gefäss drückt die schräge Wand nach unten auf das Wasser.
+            Deshalb ist die Kraft auf den Boden nicht gleich dem Gewicht des Wassers.
+          </p>
+          <p>
+            <b>Staumauer (374):</b> Die Länge des Stausees ist egal. Für die Mauer zählt nur die Wassertiefe. Der
+            Luftdruck muss nicht berücksichtigt werden, weil er auf beiden Seiten der Mauer (fast) gleich stark drückt.
+          </p>
+        </div>
+
+        <h3>Kraft auf eine Wand (Lernziel 3.2)</h3>
+        <div class="prose">
+          <p>
+            An einer senkrechten Wand ist der Druck oben klein und unten gross. Weil er gleichmässig (linear) zunimmt,
+            darfst du mit dem <b>mittleren Druck</b> rechnen, also dem Druck in der <b>Mitte</b> der Fläche:
+          </p>
+        </div>
+        <div class="eq" style="font-size: 1.1rem">F = p_Mitte · A = ρ · g · h_Mitte · A</div>
+        <p class="small muted">
+          Druck wirkt immer senkrecht auf eine Fläche, egal wie sie orientiert ist (Boden, Wand, schräg). Den Luftdruck
+          lässt du weg, wenn er auch auf der anderen Seite der Wand wirkt.
+        </p>
+
+        <h3>Das U-Rohr (Lernziel 3.3)</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <svg
+              viewBox="0 0 220 230"
+              role="img"
+              aria-label="U-Rohr mit Wasser rechts und Öl links, Bezugslinie an der Grenzfläche"
+            >
+              <path d="M40,20 V170 A70,50 0 0 0 180,170 V20" class="ln" />
+              <path d="M80,20 V170 A30,20 0 0 0 140,170 V20" class="ln" />
+              <path d="M41,170 A69,49 0 0 0 179,170 V60 H141 V170 A31,21 0 0 1 79,170 V140 H41 Z" class="w2" />
+              <rect x="41" y="40" width="38" height="100" class="oil" />
+              <line x1="20" y1="140" x2="200" y2="140" class="ln2" />
+              <text x="130" y="135" class="s">Bezugslinie</text>
+              <line x1="30" y1="40" x2="30" y2="140" class="aink" marker-start="url(#hink)" marker-end="url(#hink)" />
+              <text x="4" y="95">h_Öl</text>
+              <line x1="192" y1="60" x2="192" y2="140" class="aink" marker-start="url(#hink)" marker-end="url(#hink)" />
+              <text x="196" y="104">h_W</text>
+              <text x="46" y="34" class="s">Öl</text>
+              <text x="146" y="54" class="s">Wasser</text>
+            </svg>
+            <figcaption>Das leichtere Öl steht höher als das Wasser.</figcaption>
+          </figure>
+          <div class="prose">
+            <p>
+              <b>Die Regel:</b> In einer <i>zusammenhängenden</i> Flüssigkeit ist der Druck auf gleicher Höhe gleich. Du
+              legst eine <b>Bezugslinie</b> genau an die tiefste Grenzfläche zwischen den beiden Flüssigkeiten.
+              Unterhalb davon ist links und rechts nur noch dieselbe Flüssigkeit, also gleicher Druck.
+            </p>
+            <p>
+              Links drückt auf die Linie die Ölsäule, rechts die Wassersäule (plus beidseitig der gleiche Luftdruck, der
+              sich wegkürzt):
+            </p>
+            <div class="eq">ρ_Öl · g · h_Öl = ρ_W · g · h_W → ρ_Öl = ρ_W · h_W / h_Öl</div>
+            <p class="small muted">
+              So bestimmt man die Dichte einer Flüssigkeit, die sich nicht mit Wasser mischt (hydrophob), Skript 4.4.
+            </p>
+          </div>
+        </div>
+
+        <h3>Barometer (Lernziel 4.6)</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <svg viewBox="0 0 200 220" role="img" aria-label="Quecksilberbarometer nach Torricelli">
+              <rect x="20" y="160" width="160" height="45" class="hg" />
+              <path d="M15,140 V205 H185 V140" class="ln" />
+              <path d="M85,20 V190 M115,20 V190 M85,20 H115" class="ln" />
+              <rect x="86" y="66" width="28" height="124" class="hg" />
+              <text x="90" y="45" class="s">Vakuum</text>
+              <line x1="140" y1="66" x2="140" y2="160" class="aink" marker-start="url(#hink)" marker-end="url(#hink)" />
+              <text x="146" y="115">h ≈ 760 mm</text>
+              <line x1="40" y1="120" x2="40" y2="158" class="afa" marker-end="url(#hfa)" />
+              <text x="20" y="112" class="tfa">p_L</text>
+            </svg>
+            <figcaption>Barometer nach Torricelli</figcaption>
+          </figure>
+          <div class="prose">
+            <p>
+              Ein oben geschlossenes Glasrohr wird mit Quecksilber (Hg) gefüllt und umgedreht in eine Schale gestellt.
+              Das Hg sinkt etwas ab, oben entsteht ein Vakuum (kein Druck). Die Luft drückt auf die Schale und hält die
+              Hg-Säule. Gleichgewicht: <b>Schweredruck der Säule = Luftdruck</b>.
+            </p>
+            <div class="eq">p_L = ρ_Hg · g · h → h = p_L / (ρ_Hg · g)</div>
+            <p>
+              Bei Normaldruck 1013 hPa ist h ≈ 760 mm. Daher die Einheit mmHg. Mit Wasser statt Hg wäre die Säule 10.3 m
+              hoch, viel zu unpraktisch.
+            </p>
+          </div>
+        </div>
+
+        <h3>Vorgerechnet</h3>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">375 / Sk Ü5</span
+              ><span class="q">Kraft auf 1.0 cm² einer Taucherin in 50 m Tiefe, Luftdruck 960 hPa</span
+              ><span class="ans">59 N</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Denkweg</span>
+              <p>Auf die Haut drückt Luft + Wasser. Absolutdruck ausrechnen, dann F = p · A.</p>
+              <div class="eq">
+                p = p_L + ρ·g·h = 96 000 Pa + 1000·9.81·50 Pa = 96 000 + 490 500 = 586 500 Pa A = 1.0 cm² = 1.0·10⁻⁴ m²
+                F = p · A = 586 500 · 1.0·10⁻⁴ = 58.7 N ≈ 0.059 kN
+              </div>
+              <p class="small muted">
+                Das ist so viel, wie wenn 6 kg auf jedem Quadratzentimeter stehen würden. Der Körper hält das aus, weil
+                innen der gleiche Druck herrscht.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">376</span
+              ><span class="q">U-Manometer: Wassersäule 220 mm, Luftdruck 966 hPa. Druck in der Gasleitung?</span
+              ><span class="ans">988 hPa</span>
+            </summary>
+            <div class="body">
+              <p>
+                Das Gas drückt das Wasser auf der einen Seite um 220 mm nach oben. Der Gasdruck ist also um den
+                Schweredruck dieser Säule grösser als der Luftdruck:
+              </p>
+              <div class="eq">p = p_L + ρ_W·g·h = 96 600 + 1000·9.81·0.220 = 96 600 + 2158 = 98 758 Pa ≈ 988 hPa</div>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü6</span><span class="q">Höhe der Hg-Säule bei 1023 hPa (ρ_Hg = 13 595.1 kg/m³)</span
+              ><span class="ans">767 mm</span>
+            </summary>
+            <div class="body">
+              <div class="eq">h = p / (ρ_Hg · g) = 102 300 / (13 595.1 · 9.81) = 0.767 m = 767 mm</div>
+              <p class="small muted">
+                Kontrolle: 1013 hPa gibt 759.7 mm (Angabe im Skript). Mehr Druck, höhere Säule. Passt.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">378 / Sk Ü7</span
+              ><span class="q">Aquariumscheibe 5.0 m × 1.6 m, Wasserspiegel 20 cm über dem Fensterrand. Kraft?</span
+              ><span class="ans">78 kN</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Skizze</span>
+              <p>
+                Wasseroberfläche → 0.20 m Wasser → Oberkante Scheibe → 1.6 m Scheibe → Unterkante. Die Mitte der Scheibe
+                liegt bei 0.20 + 0.80 = 1.00 m Tiefe.
+              </p>
+              <div class="eq">
+                p_Mitte = ρ·g·h_Mitte = 1000·9.81·1.00 = 9810 Pa A = 5.0 · 1.6 = 8.0 m² F = p_Mitte · A = 9810 · 8.0 =
+                78 480 N ≈ 78 kN
+              </div>
+              <div class="trap">
+                <span class="tag">Falle</span>
+                <p>
+                  Nicht mit der Tiefe der Unterkante (1.8 m) rechnen und nicht die 20 cm vergessen. Luftdruck weglassen:
+                  Er drückt auch von aussen auf die Scheibe.
+                </p>
+              </div>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">377</span
+              ><span class="q">U-Rohr mit Wasser, unbekannter Flüssigkeit und Quecksilber. Dichte der Flüssigkeit?</span
+              ><span class="ans">790 kg/m³</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Werte lesen</span>
+              <p>
+                Von oben nach unten: h₁ = 567.3 mm (Wasseroberfläche rechts), h₂ = 409.7 mm (Oberfläche Flüssigkeit
+                links), h₃ = 140.4 mm (Grenze Flüssigkeit/Hg links), h₄ = 123.4 mm (Grenze Wasser/Hg rechts).
+              </p>
+              <span class="lbl">Bezugslinie</span>
+              <p>
+                Die tiefste Grenzfläche ist h₄. Auf dieser Höhe ist links und rechts Quecksilber, also gleicher Druck.
+              </p>
+              <div class="eq">
+                rechts: ρ_W · g · (h₁ − h₄) links: ρ_x · g · (h₂ − h₃) + ρ_Hg · g · (h₃ − h₄) gleichsetzen, g kürzen:
+                ρ_x = [ρ_W·(h₁−h₄) − ρ_Hg·(h₃−h₄)] / (h₂−h₃) = [1000·443.9 − 13 595·17.0] / 269.3 ≈ 790 kg/m³
+              </div>
+              <p class="small muted">
+                Die mm kürzen sich (oben und unten Längen), du musst sie hier nicht einmal in m umrechnen. Das Resultat
+                passt zu Ethanol oder Benzin.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">374</span
+              ><span class="q">Staumauer Grande Dixence: Warum spielt die Länge des Sees keine Rolle? Luftdruck?</span
+              ><span class="ans">Verständnis</span>
+            </summary>
+            <div class="body">
+              <p>
+                a) Der Schweredruck hängt nur von Dichte und Tiefe ab (hydrostatisches Paradoxon), nicht von der
+                Wassermenge.
+              </p>
+              <p>
+                b) Nein. Der Luftdruck wirkt auf der Wasserseite (über das Wasser) und auf der Luftseite der Mauer
+                gleich stark. Er hebt sich auf.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============ LUFTDRUCK ============ -->
+      <section class="panel" id="luft" role="tabpanel" hidden>
+        <h2>4 · Luftdruck &amp; Luftdichte</h2>
+        <div class="oneline">
+          <b>In einem Satz:</b> Wir leben am Grund eines «Luftozeans». Die ganze Luft über uns hat ein Gewicht und
+          drückt mit rund 1 bar auf alles.
+        </div>
+
+        <div class="prose">
+          <p>
+            1013 hPa bedeutet: Auf jeden Quadratmeter drückt eine Kraft von 101 300 N, das Gewicht von über 10 Tonnen.
+            Wir spüren das nicht, weil der Druck von allen Seiten und auch von innen gleich stark wirkt. Man merkt ihn
+            erst, wenn auf einer Seite der Druck fehlt.
+          </p>
+        </div>
+
+        <h3>Magdeburger Halbkugeln</h3>
+        <div class="prose">
+          <p>
+            Otto von Guericke pumpte 1654 die Luft aus zwei aufeinander gelegten Halbkugeln. Nicht einmal 16 Pferde
+            konnten sie auseinanderziehen. Nicht ein «Sog» hält sie zusammen, sondern der
+            <b>äussere Luftdruck presst sie zusammen</b>, weil innen kaum Gegendruck ist.
+          </p>
+        </div>
+        <div class="eq">
+          F = Δp · A_Querschnitt = (p_L − p_innen) · π · r² Beispiel: d = 40 cm, Innendruck um 900 hPa gesenkt F = 90
+          000 Pa · π · (0.20 m)² = 11 300 N (Gewicht von 1.15 t)
+        </div>
+        <div class="trap">
+          <span class="tag">Falle</span>
+          <p>
+            Die wirksame Fläche ist die <b>Kreisfläche</b> π·r² (der Querschnitt), nicht die Kugeloberfläche. Im Test
+            stehen die fehlenden Zahlen aus dem Experiment in der Aufgabe.
+          </p>
+        </div>
+
+        <h3>Experiment: Dichte der Luft bestimmen (Lernziel 4.2)</h3>
+        <ol class="steps">
+          <li>
+            <div>Eine Glaskugel/Flasche mit bekanntem Volumen V mit Luft auf eine genaue Waage legen: Masse m₁.</div>
+          </li>
+          <li><div>Luft mit einer Vakuumpumpe absaugen, nochmals wägen: Masse m₂ (kleiner).</div></li>
+          <li>
+            <div>
+              Die fehlende Masse ist die Masse der Luft: m<sub>Luft</sub> = m₁ − m₂. Also ρ<sub>Luft</sub> = (m₁ − m₂) /
+              V.
+            </div>
+          </li>
+        </ol>
+        <div class="merk">
+          <span class="tag">Fehlerquelle (Frage im Skript)</span>
+          <p>
+            Die Pumpe schafft nie ein perfektes Vakuum, es bleibt etwas Luft drin. Dadurch ist m₁ − m₂ zu klein und die
+            Dichte wird <b>unterschätzt</b>. Man misst also einen <b>Minimalwert</b>. Ergebnis ungefähr 1.2 bis 1.3
+            kg/m³.
+          </p>
+        </div>
+
+        <h3>Abschätzung: Molekülabstand (Skript Ü2)</h3>
+        <div class="prose">
+          <p>
+            Wasser (flüssig): 1000 kg/m³. Wasserdampf: 1.0 kg/m³. Gleich viele Moleküle nehmen im Dampf 1000-mal mehr
+            Volumen ein. Das Volumen ist Abstand hoch 3, also ist der Abstand ∛1000 = <b>10-mal grösser</b>. Das
+            erklärt, warum Gase so leicht zusammendrückbar sind: fast nur leerer Raum.
+          </p>
+        </div>
+
+        <h3>Wie ändert sich der Druck mit der Höhe? (Lernziel 4.4)</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <svg
+              viewBox="0 0 240 190"
+              role="img"
+              aria-label="Diagramm: Druck im Wasser steigt linear mit der Tiefe, Luftdruck nimmt exponentiell mit der Höhe ab"
+            >
+              <line x1="40" y1="165" x2="225" y2="165" class="aink" marker-end="url(#hink)" />
+              <line x1="40" y1="165" x2="40" y2="15" class="aink" marker-end="url(#hink)" />
+              <text x="185" y="182" class="s">Höhe h</text>
+              <text x="4" y="14" class="s">Druck p</text>
+              <path d="M40,40 C80,95 120,125 220,150" fill="none" stroke="var(--fa)" stroke-width="2.4" />
+              <text x="120" y="100" class="tfa">Luft: exponentiell</text>
+              <text x="4" y="44" class="s">1013</text>
+            </svg>
+            <figcaption>Luftdruck: oben schnell, dann immer langsamer abnehmend.</figcaption>
+          </figure>
+          <div class="prose">
+            <p>
+              <b>Wasser</b> lässt sich (fast) nicht zusammendrücken, die Dichte ist überall gleich. Pro Meter Tiefe
+              kommt immer gleich viel Druck dazu: der Druck steigt <b>linear</b>.
+            </p>
+            <p>
+              <b>Luft</b> ist zusammendrückbar. Unten wird sie vom Gewicht der Luft darüber zusammengepresst und ist
+              dichter. Oben ist sie dünner. Darum nimmt der Luftdruck nach oben zuerst schnell, dann immer langsamer ab:
+              <b>exponentiell</b>. Alle ≈ 5.5 km halbiert er sich ungefähr.
+            </p>
+          </div>
+        </div>
+
+        <h3>Barometrische Höhenformel (Lernziel 4.5)</h3>
+        <div class="fcard">
+          <div class="big">
+            <span>p = p₀ · e<sup>−h/h₀</sup></span>
+          </div>
+          <table>
+            <tr>
+              <th>Symbol</th>
+              <th>Bedeutung</th>
+              <th>Wert</th>
+            </tr>
+            <tr>
+              <td>p₀</td>
+              <td>Luftdruck auf Meereshöhe</td>
+              <td>1013 hPa</td>
+            </tr>
+            <tr>
+              <td>h₀</td>
+              <td>Skalenhöhe = p₀ / (ρ₀ · g)</td>
+              <td>101 300 / (1.29 · 9.81) ≈ 8005 m</td>
+            </tr>
+            <tr>
+              <td>h</td>
+              <td>Höhe über Meer</td>
+              <td>m</td>
+            </tr>
+            <tr>
+              <td>e</td>
+              <td>Eulersche Zahl 2.718…</td>
+              <td>Taste <kbd>ctrl</kbd> <kbd>ln</kbd> → e^(</td>
+            </tr>
+          </table>
+        </div>
+        <p class="small muted">
+          In der Formelsammlung steht sie evtl. als <span class="f">p = p₀ · e^(−ρ₀·g·h / p₀)</span>. Das ist dieselbe
+          Formel. Sie gilt unter der Annahme, dass die Temperatur überall gleich ist, darum ist sie nur eine Näherung.
+        </p>
+        <div class="eq">
+          Säntis (2502 m): p = 1013 · e^(−2502/8005) = 741 hPa Jungfraujoch (3454 m): p = 1013 · e^(−3454/8005) = 658
+          hPa Umgekehrt: Wo ist p = 700 hPa? h = h₀ · ln(p₀/p) = 8005 · ln(1013/700) = 2958 m
+        </div>
+
+        <h3>Luftdruck im Alltag (Lernziel 4.1 / 4.7, Skript Ü10)</h3>
+        <p class="muted small">
+          Das Erklärmuster ist immer gleich:
+          <b>Wo ist der Druck kleiner? Die Luft mit dem grösseren Druck drückt in diese Richtung.</b> Es gibt keinen
+          «Sog», es wird immer gedrückt.
+        </p>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Phänomen</th>
+              <th>Physikalische Erklärung</th>
+            </tr>
+            <tr>
+              <td>Trinken mit Strohhalm</td>
+              <td>
+                Du vergrösserst den Mundraum, dort sinkt der Druck. Der äussere Luftdruck auf die Getränkeoberfläche
+                drückt das Getränk im Halm nach oben. (Maximal ≈ 10 m hoch möglich.)
+              </td>
+            </tr>
+            <tr>
+              <td>Spritzflasche</td>
+              <td>Zusammendrücken macht innen Überdruck. Dieser drückt die Flüssigkeit durch das Röhrchen hinaus.</td>
+            </tr>
+            <tr>
+              <td>Marmeladenglas erstmals öffnen</td>
+              <td>
+                Heiss abgefüllt, beim Abkühlen sinkt der Druck im Glas (Unterdruck). Der Luftdruck presst den Deckel
+                fest. Beim Öffnen strömt Luft ein: «Plopp».
+              </td>
+            </tr>
+            <tr>
+              <td>Dampfkochtopf nach dem Garen</td>
+              <td>
+                Heiss: Überdruck innen, Deckel darf nicht geöffnet werden (gefährlich). Abgekühlt: Dampf kondensiert,
+                Unterdruck, Deckel klemmt. Ventil öffnen = Druckausgleich.
+              </td>
+            </tr>
+            <tr>
+              <td>Spritze befüllen</td>
+              <td>
+                Kolben zurückziehen vergrössert das Volumen, innen sinkt der Druck. Der Luftdruck auf die Flüssigkeit
+                drückt sie in die Spritze.
+              </td>
+            </tr>
+            <tr>
+              <td>Saugnapf</td>
+              <td>
+                Beim Andrücken wird Luft herausgepresst. Unter dem Napf entsteht Unterdruck. Der äussere Luftdruck
+                presst den Napf an die Wand.
+              </td>
+            </tr>
+            <tr>
+              <td>Aquarium entleeren (Saugheber)</td>
+              <td>
+                Schlauch mit Wasser füllen, Ende tiefer als der Wasserspiegel. Am tieferen Ende ist der Druck grösser
+                (längere Wassersäule), das Wasser fliesst, solange das Ende unter dem Wasserspiegel liegt.
+              </td>
+            </tr>
+            <tr>
+              <td>Rahmdöschen in der Skihütte</td>
+              <td>
+                Im Unterland zugeschweisst (hoher Druck innen). Oben ist der Luftdruck kleiner, der innere Überdruck
+                wölbt den Deckel nach aussen.
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p class="small muted">
+          Wetterkarten zeigen <b>Isobaren</b>: Linien gleichen Luftdrucks. H = Hochdruckgebiet, T = Tiefdruckgebiet.
+          Wind weht vom Hoch zum Tief.
+        </p>
+
+        <h3>Vorgerechnet</h3>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü9</span
+              ><span class="q">Rahmdöschen: innen 1000 hPa, aussen 780 hPa, Deckel d = 32.0 mm. Kraft?</span
+              ><span class="ans">17.7 N</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                Δp = 1000 hPa − 780 hPa = 220 hPa = 22 000 Pa A = π · r² = π · (0.0160 m)² = 8.04·10⁻⁴ m² F = Δp · A =
+                22 000 · 8.04·10⁻⁴ = 17.7 N (nach aussen)
+              </div>
+              <div class="trap">
+                <span class="tag">Falle</span>
+                <p>d = 32.0 mm ist der Durchmesser. Radius = 16.0 mm = 0.0160 m.</p>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============ AUFTRIEB ============ -->
+      <section class="panel" id="auftrieb" role="tabpanel" hidden>
+        <h2>5 · Auftrieb</h2>
+        <div class="oneline">
+          <b>In einem Satz:</b> Ein Körper im Wasser wird mit genau so viel Kraft nach oben gedrückt, wie das Wasser
+          wiegt, das er zur Seite drängt (Archimedes).
+        </div>
+
+        <h3>Verstehen: Woher kommt der Auftrieb?</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <svg viewBox="0 0 250 220" role="img" aria-label="Würfel im Wasser: Druck unten grösser als oben">
+              <rect x="10" y="20" width="200" height="190" class="w1" />
+              <line x1="10" y1="20" x2="210" y2="20" class="ln" />
+              <rect x="70" y="80" width="80" height="80" class="solid" />
+              <line x1="110" y1="45" x2="110" y2="76" class="afg" marker-end="url(#hfg)" />
+              <text x="116" y="60" class="tfg">F_oben (klein)</text>
+              <line x1="110" y1="205" x2="110" y2="164" class="afa" marker-end="url(#hfa)" />
+              <text x="116" y="196" class="tfa">F_unten (gross)</text>
+              <line x1="40" y1="120" x2="66" y2="120" class="aink" marker-end="url(#hink)" />
+              <line x1="180" y1="120" x2="154" y2="120" class="aink" marker-end="url(#hink)" />
+              <line x1="25" y1="20" x2="25" y2="80" class="aink" marker-start="url(#hink)" marker-end="url(#hink)" />
+              <text x="28" y="54" class="s">h_oben</text>
+            </svg>
+            <figcaption>
+              Seitlich heben sich die Kräfte auf. Unten ist es tiefer, also drückt es dort stärker.
+            </figcaption>
+          </figure>
+          <div class="prose">
+            <p>Das ist die Herleitung aus Lernziel 5.1. Ein Würfel mit Deckfläche A steckt im Wasser.</p>
+            <ol>
+              <li>
+                Oben drückt das Wasser mit p = ρ·g·h<sub>oben</sub> nach unten: F<sub>oben</sub> =
+                ρ·g·h<sub>oben</sub>·A
+              </li>
+              <li>Unten ist es tiefer. Es drückt mit F<sub>unten</sub> = ρ·g·h<sub>unten</sub>·A nach oben.</li>
+              <li>Seitlich heben sich die Kräfte auf.</li>
+              <li>
+                Übrig bleibt eine Kraft nach oben: F<sub>A</sub> = F<sub>unten</sub> − F<sub>oben</sub> = ρ·g·(h<sub
+                  >unten</sub
+                >
+                − h<sub>oben</sub>)·A
+              </li>
+              <li>
+                (h<sub>unten</sub> − h<sub>oben</sub>)·A ist genau das Volumen V des Würfels. Also
+                <b>F<sub>A</sub> = ρ<sub>Fl</sub>·g·V</b>
+              </li>
+            </ol>
+            <p class="small muted">Der Luftdruck kürzt sich dabei weg, er wirkt oben und unten.</p>
+          </div>
+        </div>
+
+        <div class="fcard">
+          <div class="big">
+            <span>F<sub>A</sub> = ρ<sub>Fl</sub> · g · V<sub>ein</sub></span>
+          </div>
+          <table>
+            <tr>
+              <th>Symbol</th>
+              <th>Grösse</th>
+              <th>Einheit</th>
+            </tr>
+            <tr>
+              <td>F<sub>A</sub></td>
+              <td>Auftriebskraft</td>
+              <td>N</td>
+            </tr>
+            <tr>
+              <td>ρ<sub>Fl</sub></td>
+              <td>Dichte der <b>Flüssigkeit</b> (des Mediums), nicht des Körpers!</td>
+              <td>kg/m³</td>
+            </tr>
+            <tr>
+              <td>V<sub>ein</sub></td>
+              <td>eingetauchtes = verdrängtes Volumen</td>
+              <td>m³</td>
+            </tr>
+            <tr>
+              <td>g</td>
+              <td>Ortsfaktor</td>
+              <td>9.81 N/kg</td>
+            </tr>
+          </table>
+        </div>
+        <div class="merk">
+          <span class="tag">Die drei Kräfte</span>
+          <p>
+            <span style="color: var(--fg); font-weight: 700">F<sub>G</sub> = m·g = ρ<sub>K</sub>·g·V</span> zieht nach
+            unten (Gewicht des Körpers, mit der Dichte des <b>Körpers</b>).
+          </p>
+          <p>
+            <span style="color: var(--fa); font-weight: 700">F<sub>A</sub> = ρ<sub>Fl</sub>·g·V<sub>ein</sub></span>
+            drückt nach oben (mit der Dichte der <b>Flüssigkeit</b>).
+          </p>
+          <p>
+            <span style="color: var(--fh); font-weight: 700">F<sub>H</sub></span> ist die Haltekraft, z. B. was der
+            Kraftmesser anzeigt oder was du mit der Hand aufwenden musst.
+          </p>
+        </div>
+
+        <h3>Der Körper am Kraftmesser</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <svg
+              viewBox="0 0 220 230"
+              role="img"
+              aria-label="Körper am Kraftmesser, ganz im Wasser, mit Gewichtskraft, Auftriebskraft und Haltekraft"
+            >
+              <rect x="104" y="6" width="12" height="44" rx="3" class="solid" />
+              <line x1="110" y1="50" x2="110" y2="110" class="ln" />
+              <rect x="20" y="80" width="180" height="140" class="w1" />
+              <line x1="20" y1="80" x2="200" y2="80" class="ln" />
+              <rect x="85" y="110" width="50" height="50" class="solid" />
+              <line x1="75" y1="135" x2="75" y2="205" class="afg" marker-end="url(#hfg)" />
+              <text x="30" y="215" class="tfg">F_G</text>
+              <line x1="150" y1="170" x2="150" y2="125" class="afa" marker-end="url(#hfa)" />
+              <text x="156" y="160" class="tfa">F_A</text>
+              <line x1="128" y1="100" x2="128" y2="60" class="afh" marker-end="url(#hfh)" />
+              <text x="134" y="70" class="tfh">F_H</text>
+            </svg>
+            <figcaption>
+              Im Gleichgewicht: nach oben = nach unten → F<sub>H</sub> + F<sub>A</sub> = F<sub>G</sub>
+            </figcaption>
+          </figure>
+          <div class="prose">
+            <p>
+              Hängt der Körper ruhig am Kraftmesser, gilt:
+              <b>alles was nach oben zieht = alles was nach unten zieht.</b>
+            </p>
+            <div class="eq">F_H + F_A = F_G → F_H = F_G − F_A</div>
+            <p>
+              Der Kraftmesser zeigt im Wasser weniger an als in der Luft. Der Unterschied <b>ist</b> die Auftriebskraft:
+            </p>
+            <div class="eq">F_A = F_Luft − F_Wasser</div>
+            <p class="small muted">Das ist der wichtigste Trick für Aufgaben mit zwei Wägungen (Ü11, Ü12, 409, 410).</p>
+          </div>
+        </div>
+
+        <h3>Steigen, schweben, sinken, schwimmen</h3>
+        <div class="tscroll">
+          <table class="t">
+            <tr>
+              <th>Fall</th>
+              <th>Kräfte (ganz eingetaucht)</th>
+              <th>Dichten</th>
+              <th>Haltekraft in Ruhe</th>
+            </tr>
+            <tr>
+              <td><b>steigen</b></td>
+              <td>F<sub>G</sub> &lt; F<sub>A</sub></td>
+              <td>ρ<sub>K</sub> &lt; ρ<sub>Fl</sub></td>
+              <td>F<sub>H</sub> &lt; 0 (festhalten, nach unten)</td>
+            </tr>
+            <tr>
+              <td><b>schweben</b></td>
+              <td>F<sub>G</sub> = F<sub>A</sub></td>
+              <td>ρ<sub>K</sub> = ρ<sub>Fl</sub></td>
+              <td>F<sub>H</sub> = 0</td>
+            </tr>
+            <tr>
+              <td><b>sinken</b></td>
+              <td>F<sub>G</sub> &gt; F<sub>A</sub></td>
+              <td>ρ<sub>K</sub> &gt; ρ<sub>Fl</sub></td>
+              <td>F<sub>H</sub> &gt; 0 (nach oben halten)</td>
+            </tr>
+            <tr>
+              <td><b>schwimmen</b> (teilweise eingetaucht)</td>
+              <td>F<sub>G</sub> = F<sub>A</sub> mit nur V<sub>ein</sub></td>
+              <td>ρ<sub>K</sub> &lt; ρ<sub>Fl</sub></td>
+              <td>F<sub>H</sub> = 0</td>
+            </tr>
+          </table>
+        </div>
+        <p class="small muted">
+          Für zusammengesetzte Körper (Schiff, Fisch mit Schwimmblase, Käse mit Löchern) nimmst du die
+          <b>mittlere Dichte</b> = Gesamtmasse / Gesamtvolumen.
+        </p>
+
+        <h3>Schwimmende Körper: Eintauchtiefe (Lernziel 5.3)</h3>
+        <div class="grid2">
+          <figure class="fig">
+            <svg viewBox="0 0 220 170" role="img" aria-label="Schwimmender Balken, teilweise eingetaucht">
+              <rect x="10" y="70" width="200" height="95" class="w1" />
+              <line x1="10" y1="70" x2="210" y2="70" class="ln" />
+              <rect x="70" y="40" width="80" height="80" class="solid" />
+              <line x1="160" y1="70" x2="160" y2="120" class="aink" marker-start="url(#hink)" marker-end="url(#hink)" />
+              <text x="165" y="100">h_ein</text>
+              <line x1="55" y1="40" x2="55" y2="120" class="aink" marker-start="url(#hink)" marker-end="url(#hink)" />
+              <text x="32" y="84">h</text>
+              <text x="72" y="34" class="s">ragt heraus</text>
+            </svg>
+            <figcaption>Schwimmen heisst: F<sub>A</sub> = F<sub>G</sub></figcaption>
+          </figure>
+          <div class="prose">
+            <p>Der Körper sinkt genau so weit ein, bis der Auftrieb sein Gewicht trägt:</p>
+            <div class="eq">ρ_Fl · g · V_ein = ρ_K · g · V → V_ein / V = ρ_K / ρ_Fl</div>
+            <p>
+              Bei geraden Körpern (Balken, Quader) gilt dasselbe für die Höhe:
+              <b>h<sub>ein</sub> = h · ρ<sub>K</sub>/ρ<sub>Fl</sub></b
+              >.
+            </p>
+            <p class="small muted">
+              Beispiel Eisberg: 917/1025 = 89.5 % sind unter Wasser, nur etwa 10 % schauen heraus.
+            </p>
+          </div>
+        </div>
+
+        <h3>Auftrieb in Gasen: Ballone</h3>
+        <div class="prose">
+          <p>
+            Auftrieb gibt es in jedem Fluid, auch in Luft. Ein Ballon verdrängt Luft (ρ = 1.29 kg/m³). Ist das Füllgas
+            leichter, steigt er. Rechnung: Wie viel Masse kann ein Ballon mit Volumen V tragen?
+          </p>
+        </div>
+        <div class="eq">
+          F_A = F_G,Gas + F_G,Hülle + F_G,Last ρ_L·g·V = ρ_Gas·g·V + m_Hülle·g + m_Last·g (g kürzt sich) m_Last = (ρ_L −
+          ρ_Gas)·V − m_Hülle
+        </div>
+
+        <h3>Geräte (Lernziel 5.4)</h3>
+        <div class="grid2">
+          <div class="box">
+            <h4>Aräometer (Dichtemesser)</h4>
+            <p class="small">
+              Ein Glaskörper mit Bleigewicht unten und Skala oben schwimmt in der Flüssigkeit. Er taucht so tief ein,
+              bis F<sub>A</sub> = F<sub>G</sub>. In einer Flüssigkeit mit <b>kleiner</b> Dichte muss er mehr Volumen
+              verdrängen und taucht <b>tiefer</b> ein. An der Skala auf Höhe der Oberfläche liest man die Dichte ab
+              (unten stehen darum die grossen Werte).
+            </p>
+          </div>
+          <div class="box">
+            <h4>Kartesischer Taucher</h4>
+            <p class="small">
+              Ein kleiner Taucher mit einer Luftblase schwebt in einer geschlossenen Flasche. Drückt man die Flasche
+              zusammen, steigt der Druck überall (Pascal). Die Luftblase im Taucher wird kleiner, er verdrängt weniger
+              Wasser, F<sub>A</sub> sinkt unter F<sub>G</sub>: er <b>sinkt</b>. Loslassen: Blase wird grösser, er
+              steigt.
+            </p>
+          </div>
+          <div class="box">
+            <h4>Galilei-Thermometer</h4>
+            <p class="small">
+              Glaskugeln mit leicht verschiedener mittlerer Dichte in einer Flüssigkeit. Wird die Flüssigkeit wärmer,
+              dehnt sie sich aus und ihre Dichte sinkt, der Auftrieb wird kleiner. Immer mehr Kugeln sinken. Oben
+              schwimmen die Kugeln mit den <b>höchsten</b> Temperaturwerten (kleinste Dichte). Die schwebende Kugel
+              zeigt die Temperatur an (ρ<sub>Kugel</sub> = ρ<sub>Fl</sub>).
+            </p>
+          </div>
+          <div class="box">
+            <h4>Fisch mit Schwimmblase</h4>
+            <p class="small">
+              Mit der gasgefüllten Blase regelt der Fisch sein Volumen und damit seine mittlere Dichte. Das
+              Gleichgewicht ist instabil: Sinkt er, steigt der Druck, die Blase wird kleiner, der Auftrieb nimmt ab, er
+              sinkt weiter.
+            </p>
+          </div>
+        </div>
+
+        <h3>Verständnisfragen (Lernziel 5.5)</h3>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Denk 1</span
+              ><span class="q">Stein, Holz, Eimer Wasser aus dem Boot in den See: Wasserspiegel?</span
+              ><span class="ans">sinkt · gleich · gleich</span>
+            </summary>
+            <div class="body">
+              <p>
+                <b>Grundidee:</b> Ein schwimmendes Boot verdrängt so viel Wasser, wie es (samt Ladung) <i>wiegt</i>. Ein
+                gesunkener Gegenstand verdrängt nur so viel Wasser, wie er <i>Volumen</i> hat.
+              </p>
+              <p>
+                <b>(A) Stein:</b> Im Boot verdrängt er Wasser mit seinem Gewicht, also 2.5-mal sein Volumen (ρ<sub
+                  >Stein</sub
+                >
+                ≈ 2500). Im See nur noch sein eigenes Volumen. Weniger verdrängt: Der Spiegel <b>sinkt</b>.
+              </p>
+              <p>
+                <b>(B) Holz:</b> Schwimmt auch im See, verdrängt also weiterhin sein Gewicht an Wasser. Spiegel bleibt
+                <b>gleich</b>.
+              </p>
+              <p>
+                <b>(C) Eimer Wasser:</b> Im Boot verdrängt er sein Gewicht an Wasser, also genau sein Volumen. Im See
+                ist er selbst dieses Volumen. Spiegel bleibt <b>gleich</b>.
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">401 / Denk 2</span
+              ><span class="q">Randvolles Glas mit schwimmenden Eiswürfeln: läuft es beim Schmelzen über?</span
+              ><span class="ans">Nein</span>
+            </summary>
+            <div class="body">
+              <p>
+                Der schwimmende Eiswürfel verdrängt genau so viel Wasser, wie er wiegt. Wenn er schmilzt, wird er zu
+                Wasser mit genau dieser Masse, also genau diesem Volumen. Er füllt exakt das «Loch», das er vorher
+                verdrängt hat. Der Pegel bleibt gleich. (Beim Orangensaft minimal anders, weil Saft etwas dichter ist
+                als Wasser. Für den Test: bleibt gleich.)
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">Denk 3</span
+              ><span class="q">Finger ins Wasser auf der Waage halten, ohne das Gefäss zu berühren?</span
+              ><span class="ans">Anzeige steigt</span>
+            </summary>
+            <div class="body">
+              <p>
+                Das Wasser drückt den Finger mit F<sub>A</sub> nach oben. Nach dem Prinzip actio = reactio drückt der
+                Finger mit gleicher Kraft aufs Wasser nach unten. Die Waage zeigt um F<sub>A</sub> mehr an (so viel wie
+                das Gewicht des verdrängten Wassers).
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">409</span
+              ><span class="q">Archimedes und die Krone: Warum verdrängt sie mehr Wasser als der Goldbarren?</span
+              ><span class="ans">kleinere Dichte → grösseres V</span>
+            </summary>
+            <div class="body">
+              <p>
+                a) Krone und Barren sind gleich schwer. Silber hat eine kleinere Dichte als Gold. Die gemischte Krone
+                hat also eine kleinere mittlere Dichte und damit bei gleicher Masse ein <b>grösseres Volumen</b>. Sie
+                verdrängt mehr Wasser und erfährt mehr Auftrieb.
+              </p>
+              <p>
+                b) Zwei Wägungen: in Luft (F<sub>L</sub> = m·g → Masse) und in Wasser (F<sub>W</sub> = m·g −
+                ρ<sub>W</sub>·g·V → Volumen). Dann: m = m<sub>Au</sub> + m<sub>Ag</sub> und V = m<sub>Au</sub>/ρ<sub
+                  >Au</sub
+                >
+                + m<sub>Ag</sub>/ρ<sub>Ag</sub>. Zwei Gleichungen, zwei Unbekannte: mit dem CAS lösen (siehe TI-Nspire).
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">407</span><span class="q">Galilei-Thermometer a) bis d)</span
+              ><span class="ans">Verständnis</span>
+            </summary>
+            <div class="body">
+              <p>
+                a) Oben sind die Kugeln mit den höchsten Temperaturwerten. b) Wärmere Flüssigkeit hat kleinere Dichte,
+                darum weniger Auftrieb. c) Schweben: F<sub>A</sub> = F<sub>G</sub> der Kugel mit Bleigewicht. d)
+                Schwebend: ρ<sub>Kugel</sub> = ρ<sub>Fl</sub>. Oben: ρ<sub>Kugel</sub> &lt; ρ<sub>Fl</sub>. Unten: ρ<sub
+                  >Kugel</sub
+                >
+                &gt; ρ<sub>Fl</sub>.
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">405 a–c</span><span class="q">Schwimmblase des Fisches</span
+              ><span class="ans">Verständnis</span>
+            </summary>
+            <div class="body">
+              <p>
+                a) Liegt die Blase unten, würden Gewichtskraft (am Schwerpunkt) und Auftrieb (an der Blase) den Fisch
+                auf den Rücken drehen. b) Höherer äusserer Druck drückt die Blase zusammen, der Auftrieb sinkt, der
+                Fisch sinkt ab. c) Beim Sinken steigt der Druck, die Blase wird kleiner, noch weniger Auftrieb: Das
+                verstärkt sich selbst, darum instabil.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <h3>Arbeit: Körper unter Wasser drücken (Lernziel 5.6)</h3>
+        <div class="prose">
+          <p>
+            Ein schwimmender Holzwürfel (Kante 20 cm, ρ = 600 kg/m³) soll ganz unter Wasser und dann auf den Boden eines
+            2.0 m tiefen Beckens gedrückt werden. Die Arbeit hat zwei Teile:
+          </p>
+          <ol>
+            <li>
+              <b>Hinunterdrücken bis ganz eingetaucht.</b> Am Anfang braucht es 0 N, am Ende die volle Überschusskraft
+              F<sub>max</sub> = F<sub>A,voll</sub> − F<sub>G</sub>. Die Kraft wächst gleichmässig, darum rechnet man mit
+              der <b>mittleren Kraft</b> ½·F<sub>max</sub>. Weg = Teil, der herausragt.
+            </li>
+            <li><b>Weiter bis zum Boden.</b> Jetzt ist die Kraft konstant F<sub>max</sub>.</li>
+          </ol>
+        </div>
+        <div class="eq">
+          V = 0.20³ = 0.0080 m³ F_G = 600·9.81·0.0080 = 47.1 N, F_A,voll = 1000·9.81·0.0080 = 78.5 N F_max = 78.5 − 47.1
+          = 31.4 N ragt heraus: 20 cm · (1 − 600/1000) = 8.0 cm W₁ = ½ · 31.4 N · 0.080 m = 1.3 J W₂ = 31.4 N · (2.0 −
+          0.20) m = 56.5 J W = W₁ + W₂ ≈ 58 J (Anstieg des Wasserspiegels vernachlässigt)
+        </div>
+
+        <h3>Vorgerechnet</h3>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">Skript</span><span class="q">Eisenbarren 10 kg im Wasser: Auftriebskraft?</span
+              ><span class="ans">12.5 N</span>
+            </summary>
+            <div class="body">
+              <p>Für den Auftrieb brauchst du das <b>Volumen</b>. Das bekommst du über die Dichte von Eisen.</p>
+              <div class="eq">
+                V = m / ρ_Fe = 10 kg / 7870 kg/m³ = 1.27·10⁻³ m³ F_A = ρ_W · g · V = 1000 · 9.81 · 1.27·10⁻³ = 12.5 N
+              </div>
+              <p class="small muted">
+                Zum Vergleich: F<sub>G</sub> = 98.1 N. Der Barren «verliert» im Wasser nur etwa 13 % seines Gewichts.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">Skript</span
+              ><span class="q">Tannenbalken 20 cm × 20 cm, ρ = 600 kg/m³: wie viel ragt heraus?</span
+              ><span class="ans">8 cm</span>
+            </summary>
+            <div class="body">
+              <div class="eq">h_ein = h · ρ_K/ρ_W = 20 cm · 600/1000 = 12 cm ragt heraus: 20 − 12 = 8 cm</div>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü11</span
+              ><span class="q">Stein (2.50 g/cm³) im Wasser mit 100 N gehalten. Kraft ausserhalb?</span
+              ><span class="ans">167 N</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Denkweg</span>
+              <p>
+                Im Wasser: F<sub>H</sub> = F<sub>G</sub> − F<sub>A</sub> = ρ<sub>S</sub>·g·V − ρ<sub>W</sub>·g·V =
+                (ρ<sub>S</sub> − ρ<sub>W</sub>)·g·V. Daraus V, dann F<sub>G</sub>.
+              </p>
+              <div class="eq">
+                V = F_H / ((ρ_S − ρ_W)·g) = 100 / (1500 · 9.81) = 6.80·10⁻³ m³ F_G = ρ_S · g · V = 2500 · 9.81 ·
+                6.80·10⁻³ = 167 N
+              </div>
+              <p class="small muted">
+                Eleganter: F<sub>G</sub>/F<sub>H</sub> = ρ<sub>S</sub>/(ρ<sub>S</sub>−ρ<sub>W</sub>) = 2500/1500 → F<sub
+                  >G</sub
+                >
+                = 100 · 5/3 = 167 N.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü12</span
+              ><span class="q">2.00 kg, im Wasser 1.40 N, in anderer Flüssigkeit 5.93 N. Dichte?</span
+              ><span class="ans">750 kg/m³</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                F_G = 2.00 · 9.81 = 19.62 N Wasser: F_A1 = 19.62 − 1.40 = 18.22 N → V = F_A1/(ρ_W·g) = 18.22/(998·9.81)
+                = 1.861·10⁻³ m³ Flüssigkeit: F_A2 = 19.62 − 5.93 = 13.69 N ρ₂ = F_A2 / (g · V) = 13.69 / (9.81 ·
+                1.861·10⁻³) = 750 kg/m³
+              </div>
+              <p class="small muted">
+                Abkürzung: Gleiches Volumen, also verhalten sich die Auftriebe wie die Dichten: ρ₂ = ρ<sub>W</sub> ·
+                F<sub>A2</sub>/F<sub>A1</sub>.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü13</span
+              ><span class="q">Ballon 500 m³, Hülle + Gondel 150 kg: wie viele Personen mehr mit H₂ statt He?</span
+              ><span class="ans">1 Person</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                m_Last = (ρ_L − ρ_Gas)·V − m_Hülle Helium: (1.29 − 0.1785)·500 − 150 = 405.8 kg → 405.8/75 = 5.4 → 5
+                Personen Wasserstoff: (1.29 − 0.0899)·500 − 150 = 450.1 kg → 450.1/75 = 6.0 → 6 Personen
+              </div>
+              <p>Also <b>1 Person</b> mehr. Abrunden! 5.4 Personen heisst: die sechste passt nicht mehr.</p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">Sk Ü14 / 399</span
+              ><span class="q">Balken ragt 2.00 m × 0.20 m × 0.05 m heraus. Kann sich ein 30-kg-Kind draufsetzen?</span
+              ><span class="ans">Nein (196 N &lt; 294 N)</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Denkweg</span>
+              <p>
+                Der Balken schwimmt schon im Gleichgewicht. Wenn das Kind aufsitzt, kann er höchstens noch so viel
+                <b>zusätzlichen</b> Auftrieb liefern, wie der herausragende Teil verdrängen würde. Die Holzsorte spielt
+                keine Rolle.
+              </p>
+              <div class="eq">
+                ΔF_A,max = ρ_W · g · V_raus = 1000 · 9.81 · (2.00·0.20·0.050) = 196 N F_G,Kind = 30 · 9.81 = 294 N &gt;
+                196 N
+              </div>
+              <p class="result">Nein, der Balken geht unter und das Kind wird nass.</p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">400</span><span class="q">Eisbär 400 kg auf Eisscholle 30 cm dick. Mindestfläche?</span
+              ><span class="ans">13 m²</span>
+            </summary>
+            <div class="body">
+              <p>
+                Grenzfall: Die Scholle ist ganz eingetaucht, trägt aber den Bären gerade noch. Auftrieb der ganzen
+                Scholle = Gewicht Scholle + Gewicht Bär.
+              </p>
+              <div class="eq">
+                ρ_M·g·A·d = ρ_Eis·g·A·d + m·g (g kürzt sich) A·d·(ρ_M − ρ_Eis) = m A = m / (d·(ρ_M − ρ_Eis)) = 400 /
+                (0.30 · 100) = 13 m²
+              </div>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">405 d</span
+              ><span class="q">Schwimmblase = 10 % des Volumens, Fisch schwebt. Dichte des restlichen Fisches?</span
+              ><span class="ans">1.1·10³ kg/m³</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                Schweben: ρ_W · V_Fisch = ρ_Rest · 0.90 · V_Fisch (Gas in der Blase ≈ 0) ρ_Rest = 1000 / 0.90 = 1.1·10³
+                kg/m³
+              </div>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">406</span
+              ><span class="q">Emmentaler: ein Quader schwimmt halb eingetaucht, der andere schwebt</span
+              ><span class="ans">V/2 · (V+V₂′)/2</span>
+            </summary>
+            <div class="body">
+              <p>
+                a) Der schwebende Quader hat keine Löcher, also ρ<sub>Käse</sub> = ρ<sub>W</sub>. Der schwimmende ist
+                halb eingetaucht, also ist seine mittlere Dichte ρ<sub>W</sub>/2. Das heisst, nur halb so viel Käse ist
+                drin: V<sub>Löcher</sub> = V/2.
+              </p>
+              <p>
+                b) Mit Löchern V₂′ im schwebenden Quader: ρ<sub>W</sub>·V = ρ<sub>K</sub>·(V − V₂′) und
+                ρ<sub>W</sub>·V/2 = ρ<sub>K</sub>·(V − V₁′). Division der Gleichungen ergibt V₁′ = (V + V₂′)/2.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">408</span
+              ><span class="q">Galilei-Glastropfen d = 3.0 cm, ρ = 750, schwebt in 980 kg/m³. Bleigewicht?</span
+              ><span class="ans">3.6 g</span>
+            </summary>
+            <div class="body">
+              <p>
+                Die Kugel plus das Bleigewicht schweben zusammen. Das Blei hat auch ein Volumen, das Auftrieb bekommt!
+              </p>
+              <div class="eq">
+                (m_K + m_Pb)·g = ρ_Fl·g·(V_K + V_Pb), V_Pb = m_Pb/ρ_Pb m_Pb = ρ_Pb/(ρ_Pb − ρ_Fl) · (ρ_Fl − ρ_K) ·
+                4/3·π·r³ = 11340/10360 · 230 · 4/3·π·0.015³ = 3.6·10⁻³ kg = 3.6 g
+              </div>
+              <p class="small muted">
+                Ideal für das CAS: <span class="f">solve((mk+x)*9.81=980*9.81*(vk+x/11340),x)</span> mit vk und mk
+                vorher ausgerechnet.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">410</span
+              ><span class="q">Ohrringe: Luft 0.180 N, Wasser 0.163 N. Dichte? Anteil Gold?</span
+              ><span class="ans">1.06·10⁴ kg/m³ · 1.8 %</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                F_A = 0.180 − 0.163 = 0.017 N ρ = m/V = (F_L/g) / (F_A/(ρ_W·g)) = F_L·ρ_W / (F_L − F_W) ρ = 0.180 · 1000
+                / 0.017 = 1.06·10⁴ kg/m³
+              </div>
+              <p>
+                Gold hat 19 300, Silber 10 500 kg/m³. Die Ohrringe bestehen also <b>fast nur aus Silber</b>.
+                Massenanteil Gold:
+              </p>
+              <div class="eq">m_Au/m = ρ_Au/ρ · (ρ − ρ_Ag)/(ρ_Au − ρ_Ag) = 19300/10588 · 88/8800 ≈ 1.8 %</div>
+              <p class="small muted">
+                Die Messung hat nur 2 signifikante Stellen (0.017 N), das Resultat ist also sehr ungenau.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============ REFERENZAUFGABEN ============ -->
+      <section class="panel" id="ref" role="tabpanel" hidden>
+        <h2>BMP-Niveau: Referenzaufgaben</h2>
+        <p class="lead">
+          Die Fluidstatik-Aufgaben 7.1 bis 7.3 aus dem kantonalen Dossier «Referenzaufgaben für die Abschlussprüfung
+          Physik TALS». So schwer wird es an der BMP. Aufgaben mit <b>*</b> sind anspruchsvoll. Das Dossier hat keine
+          Lösungen, diese hier sind nachgerechnet.
+        </p>
+        <div class="merk">
+          <span class="tag">So übst du damit</span>
+          <p>
+            Zuerst die Aufgabe selbst versuchen (Rezept aus «Start»). Dann nur den <b>Denkweg</b> aufklappen und
+            weiterrechnen. Erst am Schluss die Rechnung vergleichen.
+          </p>
+        </div>
+
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">R1 · 7.1</span
+              ><span class="q"
+                >Das Fusspedal: Druckwandler (Ø 12 / Ø 36), Kolben Ø 24, Hebel 164 mm / 40 mm, p₁ = 1.5 MPa</span
+              ><span class="ans">167 kPa · 75 N · 18 N</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Aufgabe</span>
+              <p>
+                Mit der Kraft F₃ wird über ein Fusspedal in einem Zylinder der Druck p₂ erzeugt. Durch die reibungsfreie
+                Schubstange wird auf die Bremsflüssigkeit der Druck p₁ = 1.5 MPa ausgeübt. a) p₂? b) Kraft F₂ der
+                Schubstange auf den rechten Kolben (d = 24 mm)? c) F₃? (Masse in der Skizze: Ø 12 links, Ø 36 im
+                Druckwandler, Ø 24 rechts, Pedal 164 mm, Anlenkpunkt 40 mm unter dem Drehpunkt.)
+              </p>
+              <span class="lbl">Denkweg</span>
+              <p>
+                Der <b>Druckwandler</b> ist ein Stufenkolben: eine Seite klein (Ø 12, dort ist p₁), die andere gross (Ø
+                36, dort ist p₂). Er ist in Ruhe, also sind die Kräfte auf beiden Seiten gleich: p₁·A₁₂ = p₂·A₃₆.
+                Achtung: Hier ist nicht der Druck gleich, sondern die <b>Kraft</b>, weil es zwei getrennte
+                Flüssigkeitsräume sind.
+              </p>
+              <div class="eq">
+                a) p₂ = p₁ · A₁₂/A₃₆ = p₁ · (12/36)² = 1.5 MPa / 9 = 1.67·10⁵ Pa = 167 kPa b) F₂ = p₂ · A₂₄ = 1.667·10⁵
+                · π · (0.012 m)² = 75 N (mit Ersatzwert p₂ = 150 kPa: F₂ = 68 N) c) Hebelgesetz: F₃ · 164 mm = F₂ · 40
+                mm F₃ = 75.4 · 40/164 = 18 N (mit Ersatzwert F₂ = 100 N: F₃ = 24 N)
+              </div>
+              <p class="small muted">
+                <b>Hebelgesetz</b> (kommt in der Statik genauer): Beim Hebel gilt Kraft × Abstand zum Drehpunkt ist auf
+                beiden Seiten gleich. Langer Arm = kleine Kraft.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">R2 · 7.1</span
+              ><span class="q">Magdeburger Halbkugeln Ø 11.0 cm, Trennkraft 150 N, Luftdruck 100 kPa. Innendruck?</span
+              ><span class="ans">84 kPa</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Denkweg</span>
+              <p>
+                Die Kraft zum Trennen entspricht der Druckdifferenz mal Querschnittsfläche (Kreis, nicht
+                Kugeloberfläche). Also Δp ausrechnen und vom Luftdruck abziehen.
+              </p>
+              <div class="eq">
+                A = π · (0.055 m)² = 9.50·10⁻³ m² Δp = F / A = 150 / 9.50·10⁻³ = 15 800 Pa p_innen = p_L − Δp = 100 000
+                − 15 800 = 84 200 Pa ≈ 84 kPa
+              </div>
+              <p class="small muted">Das Vakuum war also sehr schlecht: Nur 16 % der Luft wurde abgepumpt.</p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">R3 · 7.1</span
+              ><span class="q"
+                >U-Rohr 2.2 cm² / 3.7 cm² mit Wasser, 20 cm³ bzw. 65 cm³ Petrol (0.83 g/cm³). Niveaudifferenz?</span
+              ><span class="ans">1.4 cm</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Denkweg</span>
+              <ol class="prose" style="padding-left: 1.2em">
+                <li>Höhe der Petrolsäulen aus Volumen/Querschnitt.</li>
+                <li>Bezugslinie an die tiefere Petrol/Wasser-Grenze (im breiten Rohr, dort ist mehr Petrol).</li>
+                <li>Drücke auf dieser Linie gleichsetzen: Rechts nur Petrol, links Petrol + etwas Wasser.</li>
+              </ol>
+              <div class="eq">
+                h₁ = 20 cm³ / 2.2 cm² = 9.09 cm (enges Rohr) h₂ = 65 cm³ / 3.7 cm² = 17.57 cm (breites Rohr)
+                Bezugslinie: Grenze im breiten Rohr. Im engen Rohr liegt die Grenze um x höher: ρ_P·g·h₂ = ρ_P·g·h₁ +
+                ρ_W·g·x x = ρ_P·(h₂ − h₁)/ρ_W = 0.83 · 8.48 = 7.04 cm Oberflächen: breit bei h₂ = 17.57 cm, eng bei x +
+                h₁ = 16.13 cm Δh = 17.57 − 16.13 = 1.4 cm (Petrol im breiten Rohr steht höher)
+              </div>
+              <p class="small muted">
+                Kurzform: Δh = (h₂ − h₁)·(1 − ρ<sub>P</sub>/ρ<sub>W</sub>) = 8.48 · 0.17 = 1.44 cm.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">R4 · 7.2</span
+              ><span class="q">Hydraulische Presse: Presskolben Ø 1.00 m, Druckkolben Ø 5.00 cm, F₂ = 106 kN</span
+              ><span class="ans">265 N · 1.35·10⁵ Pa</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) F₁ = F₂ · (d₁/d₂)² = 106 000 N · (0.0500/1.00)² = 265 N b) p = F₂ / A₂ = 106 000 / (π · 0.500²) =
+                1.35·10⁵ Pa = 1.35 bar
+              </div>
+              <p class="small muted">Kontrolle: p = F₁/A₁ = 265 / (π·0.025²) = 1.35·10⁵ Pa. Gleicher Druck, passt.</p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">R5 · 7.3</span
+              ><span class="q"
+                >Styroporquader 100 × 150 × 75 cm (80 kg/m³) mit angehängtem Kupfer 500 kg. Eintauchtiefe? Kupfer oben
+                drauf?</span
+              ><span class="ans">35.5 cm · tiefer</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Denkweg</span>
+              <p>
+                Quader und Kupferkugel sind <b>ein</b> Schwimmsystem. Beide verdrängen Wasser: der Quader bis zur Tiefe
+                s, die Kugel mit ihrem ganzen Volumen. Kräftegleichgewicht: gesamter Auftrieb = gesamtes Gewicht.
+              </p>
+              <div class="eq">
+                m_St = 80.0 · (1.00·1.50·0.750) = 90.0 kg V_Cu = 500 / 8800 = 0.0568 m³ ρ_W·g·(a·b·s + V_Cu) = (m_St +
+                m_Cu)·g (g kürzt sich) a·b·s = (m_St + m_Cu)/ρ_W − V_Cu = 0.590 − 0.0568 = 0.533 m³ s = 0.533 / 1.50 =
+                0.355 m = 35.5 cm
+              </div>
+              <p>
+                <b>b) tiefer.</b> Hängt das Kupfer im Wasser, verdrängt es selbst Wasser und bekommt Auftrieb. Liegt es
+                oben drauf, muss der Quader den ganzen Auftrieb allein liefern: s = 0.590/1.50 = 39.3 cm.
+              </p>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">R6 · 7.3 *</span
+              ><span class="q">Holzkiste 25 × 25 × 20 cm, Wand 2.0 cm, taucht 3.00 cm ein. Dichte? Maximale Last?</span
+              ><span class="ans">411 kg/m³ · 10.6 kg</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Denkweg</span>
+              <p>
+                Die Kiste ist oben offen. Ihr Holzvolumen = Aussenquader minus Innenraum. Die Masse bekommst du aus dem
+                Schwimmen: Masse = verdrängte Wassermasse.
+              </p>
+              <div class="eq">
+                V_Holz = 25·25·20 − 21·21·18 = 12 500 − 7 938 = 4 562 cm³ (innen: 25 − 2·2 = 21 cm breit, 20 − 2 = 18 cm
+                hoch, Boden nur einmal!) m = ρ_W · V_verdrängt = 1.000 g/cm³ · 25·25·3.00 cm³ = 1875 g a) ρ_Holz = 1875
+                g / 4562 cm³ = 0.411 g/cm³ = 411 kg/m³ b) Grenzfall: Kiste bis zum Rand (20 cm) eingetaucht m_max,total
+                = 1.000 · 25·25·20 = 12 500 g Last = 12 500 − 1 875 = 10 625 g ≈ 10.6 kg
+              </div>
+              <div class="trap">
+                <span class="tag">Achtung</span>
+                <p>
+                  In der Skizze des Dossiers steht eine Seite mit 35 cm, im Text 25 cm. Mit 35 × 25 cm erhält man ρ =
+                  454 kg/m³ und eine Last von 14.9 kg. Der Rechenweg ist derselbe.
+                </p>
+              </div>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">R7 · 7.3 *</span
+              ><span class="q"
+                >Kind (32.0 kg) in Fass (10.0 kg, h = 1.50 m, Ø 100 cm). Eintauchtiefe? Loch mit 2.00 L/s: wann geht es
+                unter?</span
+              ><span class="ans">5.35 cm · 568 s</span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                A = π · 0.500² = 0.785 m² a) ρ_W · A · t_ein = m_K + m_F t_ein = 42.0 / (1000 · 0.785) = 0.0535 m = 5.35
+                cm b) Das eingeströmte Wasser ist zusätzliche Masse im Fass. Untergang, wenn t_ein = 1.50 m: m_total =
+                1000 · 0.785 · 1.50 = 1178 kg m_Wasser = 1178 − 42.0 = 1136 kg = 1136 L t = 1136 L / 2.00 L/s = 568 s ≈
+                9.5 min
+              </div>
+              <p>
+                <b>Diagramm:</b> Die Eintauchtiefe steigt <b>linear</b> mit der Zeit: t<sub>ein</sub>(t) = (42.0 kg +
+                2.00 kg/s · t) / (1000 · 0.785) m. Gerade von 5.35 cm bei t = 0 bis 150 cm bei t = 568 s.
+              </p>
+              <figure class="fig">
+                <svg
+                  viewBox="0 0 300 160"
+                  role="img"
+                  aria-label="Eintauchtiefe steigt linear von 5 cm bis 150 cm in 568 s"
+                >
+                  <line x1="40" y1="135" x2="285" y2="135" class="aink" marker-end="url(#hink)" />
+                  <line x1="40" y1="135" x2="40" y2="10" class="aink" marker-end="url(#hink)" />
+                  <line x1="40" y1="130" x2="250" y2="25" stroke="var(--fa)" stroke-width="2.4" />
+                  <line x1="40" y1="25" x2="250" y2="25" class="ln2" />
+                  <line x1="250" y1="25" x2="250" y2="135" class="ln2" />
+                  <text x="4" y="29" class="s">150</text>
+                  <text x="10" y="134" class="s">5</text>
+                  <text x="238" y="150" class="s">568 s</text>
+                  <text x="250" y="130" class="s">t</text>
+                  <text x="46" y="18" class="s">t_ein in cm</text>
+                </svg>
+              </figure>
+            </div>
+          </details>
+
+          <details class="ex">
+            <summary>
+              <span class="id">R8 · 7.3</span
+              ><span class="q"
+                >Elefantenwaage: Floss 14.0 m², Meerwasser 1.03 g/cm³, Δ Eintauchtiefe (22 ± 1) cm, Mahout 48.0 kg</span
+              ><span class="ans">3.1 t · ±4.6 %</span>
+            </summary>
+            <div class="body">
+              <span class="lbl">Denkweg</span>
+              <p>
+                Das Floss sinkt um Δh tiefer ein. Das zusätzlich verdrängte Wasser wiegt genau so viel wie Elefant +
+                Mahout.
+              </p>
+              <div class="eq">
+                m_E + m_M = ρ_M · A · Δh = 1030 · 14.0 · 0.22 = 3172 kg a) m_E = 3172 − 48 = 3124 kg ≈ 3.1 t b) ±1 cm
+                entspricht Δm = 1030 · 14.0 · 0.01 = 144 kg relativer Fehler = 144 / 3124 = 4.6 % → m_E = (3.1 ± 0.1) t
+              </div>
+              <p class="small muted">
+                Das ist die Fehlerrechnung aus Kapitel 01 (absoluter und relativer Fehler). Weil Δh nur 2 signifikante
+                Stellen hat, gibst du 3.1 t an.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============ NSPIRE ============ -->
+      <section class="panel" id="nspire" role="tabpanel" hidden>
+        <h2>TI-Nspire CX II CAS</h2>
+        <p class="lead">
+          Der Rechner ersetzt nicht das Denken, aber er nimmt dir drei Dinge ab: Einheiten umrechnen, Formeln umstellen
+          und Gleichungssysteme lösen. Im Test musst du den Lösungsweg trotzdem aufschreiben.
+        </p>
+
+        <h3>1 · Vorbereitung vor dem Test: ein Fluidstatik-Dokument</h3>
+        <div class="prose">
+          <p>
+            Lege ein neues Dokument an (<kbd>doc</kbd> → Neu → Calculator) und speichere dort die Konstanten, die du
+            immer brauchst. <b>Wähle Namen, die in Formeln nicht vorkommen</b> (also nicht g, p oder h), sonst setzt das
+            CAS sie überall automatisch ein.
+          </p>
+        </div>
+        <div class="nsp">
+          <span class="c">Speichern: Wert, dann ctrl + var (→), Name, enter</span> 9.81 → gg 1000 → rw
+          <span class="c">Wasser</span> 1.29 → rl <span class="c">Luft</span> 13546 → rhg
+          <span class="c">Quecksilber</span> 101300 → p0 <span class="c">Normaldruck in Pa</span>
+        </div>
+        <p class="small muted">
+          Ob du ein vorbereitetes Dokument im Test benutzen darfst, entscheidet die Lehrperson. Wenn der Rechner
+          zurückgesetzt wird, tippst du die Zeilen am Anfang des Tests in 30 Sekunden neu.
+        </p>
+
+        <h3>2 · Druckeinheiten umrechnen</h3>
+        <div class="prose">
+          <p>
+            Einheiten findest du in der Katalog-Taste (Buchsymbol) im Register mit den Einheiten, Kategorie «Druck». Die
+            Einheit wird mit Unterstrich eingefügt. Der Umrechnungspfeil ▸ steht ganz oben in dieser Liste.
+          </p>
+        </div>
+        <div class="nsp">
+          950_mbar▸_bar <span class="r">0.95_bar</span> 2.5_bar▸_psi <span class="r">36.259_psi</span> 2.5_bar▸_mmHg
+          <span class="r">1875.16_mmHg</span> 120_mmHg▸_Pa <span class="r">15998.7_Pa</span> 1_atm▸_Pa
+          <span class="r">101325._Pa</span>
+        </div>
+        <div class="trap">
+          <span class="tag">Tipps</span>
+          <p>
+            Nimm die Einheit aus dem Katalog, statt sie zu tippen. Falls <span class="f">_hPa</span> nicht erkannt wird:
+            in Pa umrechnen und durch 100 teilen. <span class="f">_g</span> ist beim Nspire die Erdbeschleunigung, nicht
+            Gramm (Gramm heisst <span class="f">_gm</span>).
+          </p>
+        </div>
+
+        <h3>3 · Formeln umstellen mit solve()</h3>
+        <div class="prose">
+          <p>
+            <kbd>menu</kbd> → Algebra → Löse, oder <span class="f">solve(</span> tippen. Form:
+            <span class="f">solve(Gleichung, gesuchte Variable)</span>. Zum Kontrollieren deiner Handrechnung ideal.
+          </p>
+        </div>
+        <div class="nsp">
+          solve(p=r*g*h, h) <span class="r">h = p/(g·r)</span> solve(f1/a1=f2/a2, f1)
+          <span class="r">f1 = a1·f2/a2</span> solve(fh=m*g-r*g*v, v)
+          <span class="r">v = (g·m−fh)/(g·r)</span> solve(p=p0*e^(-x/8005), x) <span class="r">x = 8005·ln(p0/p)</span>
+        </div>
+        <p class="small muted">
+          e^( bekommst du mit <kbd>ctrl</kbd> <kbd>ln</kbd>. Variablennamen dürfen länger sein (z. B.
+          <span class="f">rfl</span>), aber zwischen zwei Buchstaben-Variablen immer ein
+          <span class="f">*</span> setzen: <span class="f">r*g*h</span>, nicht <span class="f">rgh</span> (das wäre eine
+          einzige Variable).
+        </p>
+
+        <h3>4 · Der «mit»-Operator |: Formel und Zahlen in einem Schritt</h3>
+        <div class="prose">
+          <p>
+            Der senkrechte Strich | heisst «wobei gilt». Damit setzt du Werte ein, ohne sie zu speichern. Du findest ihn
+            über <kbd>ctrl</kbd> <kbd>=</kbd> in der Liste der Vergleichszeichen.
+          </p>
+        </div>
+        <div class="nsp">
+          solve(fh=m*g-r*g*v, v) | fh=1.40 and m=2 and g=9.81 and r=998
+          <span class="r">v=0.001861</span>
+          p0+r*g*h | p0=96000 and r=1000 and g=9.81 and h=50 <span class="r">586500.</span>
+        </div>
+
+        <h3>5 · Gleichungssysteme: zwei Unbekannte auf einmal</h3>
+        <div class="prose">
+          <p>
+            Viele Auftriebsaufgaben haben zwei Unbekannte (z. B. Volumen und Dichte). Das CAS löst beide auf einmal.
+            Schreibe die Gleichungen mit <span class="f">and</span> verbunden und die Unbekannten in geschweifte
+            Klammern.
+          </p>
+        </div>
+        <div class="nsp">
+          <span class="c">Skript Ü12: Körper 2.00 kg, im Wasser 1.40 N, in Flüssigkeit 5.93 N</span>
+          solve(1.40=2*9.81-998*9.81*v and 5.93=2*9.81-r*9.81*v, {v,r})
+          <span class="r">v=0.001861 and r=749.87</span>
+
+          <span class="c">Aufgabe 377 U-Rohr (Werte in mm, kürzen sich)</span>
+          solve(1000*(567.3-123.4)=r*(409.7-140.4)+13595*(140.4-123.4), r)
+          <span class="r">r=790.14</span>
+
+          <span class="c">Referenz R5: Styropor + Kupfer</span>
+          solve(1000*(1.5*s+500/8800)=90+500, s) <span class="r">s=0.355455</span>
+        </div>
+        <p class="small muted">
+          Es gibt auch <span class="f">nSolve(</span>: rechnet nur mit Zahlen und findet eine Lösung, wenn solve() zu
+          kompliziert wird.
+        </p>
+
+        <h3>6 · Kreisflächen ohne Fehler</h3>
+        <div class="nsp">
+          <span class="c">Durchmesser gegeben? Immer durch 2!</span> π*(0.032/2)^2 <span class="r">8.04248E-4</span>
+          <span class="c">Kraftverhältnis direkt aus Durchmessern</span>
+          4000*(1.6/3.0)^2 <span class="r">1137.78</span>
+        </div>
+
+        <h3>7 · Zwischenresultate weiterverwenden</h3>
+        <div class="prose">
+          <ul>
+            <li><kbd>ctrl</kbd> <kbd>(−)</kbd> fügt <span class="f">ans</span> ein, das letzte Resultat.</li>
+            <li>
+              Mit den Pfeiltasten nach oben ein früheres Resultat markieren und <kbd>enter</kbd> drücken: Es wird in die
+              Eingabezeile kopiert.
+            </li>
+            <li>
+              Zwischenresultat speichern: <span class="f">π*0.0160^2 → a</span>, später <span class="f">22000*a</span>.
+            </li>
+            <li>Resultat als Dezimalzahl statt Bruch/π: <kbd>ctrl</kbd> <kbd>enter</kbd> (≈).</li>
+          </ul>
+        </div>
+        <div class="merk">
+          <span class="tag">Arbeitsablauf im Test</span>
+          <p>
+            1. Auf dem Blatt: Skizze, Geg./Ges. in SI, Gleichung mit Buchstaben. 2. Von Hand auflösen und hinschreiben.
+            3. Im Nspire mit solve() kontrollieren. 4. Zahlen einsetzen (am besten mit |). 5. Resultat mit Einheit und
+            sinnvoll gerundet hinschreiben.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ QUIZ ============ -->
+      <section class="panel" id="quiz" role="tabpanel" hidden>
+        <h2>Quiz</h2>
+        <p class="lead">
+          Verständnis- und Rechenfragen mit sofortiger Erklärung. Bei Rechenfragen reicht ein Resultat auf etwa 2 %
+          genau.
+        </p>
+        <div class="filters" id="qfilter" role="group" aria-label="Thema filtern"></div>
+        <div class="qcard" id="qcard" aria-live="polite"></div>
+      </section>
+
+      <!-- ============ PROBETEST ============ -->
+      <section class="panel" id="test" role="tabpanel" hidden>
+        <h2>Probetest</h2>
+        <p class="lead">
+          Neue Aufgaben im Stil des Tests, gemischt über alle Lernziele. Nimm dir 45 Minuten, löse auf Papier, erst dann
+          aufklappen.
+        </p>
+        <div class="numrow">
+          <button class="btn" id="timerBtn" type="button">45-Minuten-Timer starten</button
+          ><span class="score" id="timerOut">45:00</span>
+        </div>
+        <div class="exlist">
+          <details class="ex">
+            <summary>
+              <span class="id">T1 · 4 P</span
+              ><span class="q">Ein Reifendruck beträgt 2.5 bar. Gib ihn in hPa, kPa, psi und mmHg an.</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                2.5 bar = 2.5·10⁵ Pa = 2500 hPa = 250 kPa psi: 250 000 / 6895 = 36 psi mmHg: 250 000 / 133.3 = 1.9·10³
+                mmHg
+              </div>
+              <p class="small muted">Nspire: 2.5_bar▸_psi.</p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">T2 · 3 P</span
+              ><span class="q"
+                >Eine Frau (55 kg) steht auf einem Absatz mit 0.80 cm² Fläche. Welcher Druck? Vergleiche mit dem
+                Elefanten aus 369b (1.2·10⁵ Pa).</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                F = 55 · 9.81 = 540 N, A = 0.80·10⁻⁴ m² p = 540 / 0.80·10⁻⁴ = 6.7·10⁶ Pa = 6.7 MPa (≈ 56-mal der
+                Elefant)
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">T3 · 6 P</span
+              ><span class="q"
+                >Hebebühne: kleiner Kolben d = 2.0 cm, grosser Kolben d = 25 cm, Auto 1500 kg. a) Kraft am kleinen
+                Kolben? b) Wie weit muss der kleine Kolben insgesamt gedrückt werden, um das Auto 20 cm zu heben? c)
+                Kraft, wenn 15 % der Kraft für Reibung verloren gehen?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) F₁ = 1500·9.81·(2.0/25)² = 94 N b) s₁ = s₂·(d₂/d₁)² = 0.20 m · 156.25 = 31 m (in vielen Pumphüben) c)
+                F₁ = 94.2 / 0.85 = 1.1·10² N
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">T4 · 5 P</span
+              ><span class="q"
+                >Schwimmbecken 3.5 m tief, Luftdruck 950 hPa. a) Absolutdruck und Überdruck am Boden? b) Kraft des
+                Wassers auf einen runden Abflussdeckel (d = 30 cm)?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) p_s = 1000·9.81·3.5 = 34 300 Pa = 343 hPa (Überdruck) p_abs = 950 + 343 = 1293 hPa b) Von unten
+                drückt Luftdruck → nur Überdruck zählt: F = 34 335 Pa · π·(0.15 m)² = 2.4·10³ N
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">T5 · 3 P</span
+              ><span class="q"
+                >U-Rohr mit Wasser und Öl. Über der Grenzfläche steht die Ölsäule 12.0 cm hoch, die Wassersäule auf der
+                anderen Seite 10.2 cm. Dichte des Öls?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body"><div class="eq">ρ_Öl · h_Öl = ρ_W · h_W → ρ_Öl = 1000 · 10.2/12.0 = 850 kg/m³</div></div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">T6 · 4 P</span
+              ><span class="q"
+                >a) Luftdruck auf dem Jungfraujoch (3454 m) mit der barometrischen Höhenformel? b) In welcher Höhe
+                beträgt der Luftdruck 700 hPa?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">a) p = 1013 · e^(−3454/8005) = 658 hPa b) h = 8005 · ln(1013/700) = 2.96·10³ m</div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">T7 · 5 P</span
+              ><span class="q"
+                >Ein Aluminiumwürfel (Kante 5.0 cm, ρ = 2700 kg/m³) hängt am Kraftmesser. Was zeigt er a) in Luft, b)
+                ganz in Wasser, c) ganz in Öl (850 kg/m³)?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                V = 0.050³ = 1.25·10⁻⁴ m³ a) F_G = 2700·9.81·1.25·10⁻⁴ = 3.3 N b) F_A = 1000·9.81·1.25·10⁻⁴ = 1.23 N →
+                F_H = 3.31 − 1.23 = 2.1 N c) F_A = 850·9.81·1.25·10⁻⁴ = 1.04 N → F_H = 2.3 N
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">T8 · 5 P</span
+              ><span class="q"
+                >Ein Holzquader 40 cm × 30 cm × 10 cm (ρ = 650 kg/m³) schwimmt flach. a) Eintauchtiefe? b) Welche Masse
+                darf man darauf legen, bis er ganz untertaucht?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <div class="eq">
+                a) h_ein = 10 cm · 650/1000 = 6.5 cm b) Zusatzauftrieb bis ganz unter Wasser = Gewicht der Last: m =
+                (1000 − 650) · 0.40·0.30·0.10 = 4.2 kg
+              </div>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">T9 · 3 P</span
+              ><span class="q"
+                >Erkläre physikalisch, warum man mit einem Strohhalm höchstens etwa 10 m hoch trinken kann.</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body">
+              <p>
+                Nicht der Mund zieht, sondern der äussere Luftdruck drückt das Getränk hoch. Selbst mit perfektem Vakuum
+                im Mund kann der Luftdruck nur eine Säule tragen, deren Schweredruck gleich gross ist: h =
+                p<sub>L</sub>/(ρ·g) = 101 300/(1000·9.81) = 10.3 m.
+              </p>
+            </div>
+          </details>
+          <details class="ex">
+            <summary>
+              <span class="id">T10 · 3 P</span
+              ><span class="q"
+                >Ein Eisberg (917 kg/m³) schwimmt im Meer (1025 kg/m³). Welcher Anteil seines Volumens ragt aus dem
+                Wasser?</span
+              ><span class="ans"></span>
+            </summary>
+            <div class="body"><div class="eq">V_ein/V = 917/1025 = 0.895 → herausragend: 10.5 %</div></div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ============ SPICK ============ -->
+      <section class="panel" id="spick" role="tabpanel" hidden>
+        <h2>A4-Spick</h2>
+        <p class="lead">
+          Ein Vorschlag für deine eine A4-Seite. Schreib ihn von Hand ab: Das Abschreiben ist selbst schon Lernen.
+          Ergänze deine persönlichen Fehlerquellen.
+        </p>
+        <div class="spick">
+          <div class="blk">
+            <h4>Druck</h4>
+            <code>p = F/A [Pa = N/m²]</code><code>F = Δp·A (Druckdifferenz!)</code>
+            <code>1 bar = 10⁵ Pa = 1000 hPa</code><code>1 hPa = 1 mbar = 100 Pa</code>
+            <code>1 mmHg = 1 Torr = 133.3 Pa</code><code>1 psi = 6895 Pa · 1 atm = 101325 Pa</code
+            ><code>1 at = 0.981 bar · atü = Überdruck</code> <code>p_abs = p_L + p_über</code>
+          </div>
+          <div class="blk">
+            <h4>Umrechnen</h4>
+            <code>cm² → m²: ·10⁻⁴ mm² → m²: ·10⁻⁶</code><code>cm³ → m³: ·10⁻⁶ 1 L = 10⁻³ m³</code>
+            <code>1 g/cm³ = 1000 kg/m³</code><code>Kreis: A = π·r² = π·d²/4 (d/2!)</code><code>Kugel: V = 4/3·π·r³</code
+            ><code>F_G = m·g, g = 9.81 N/kg</code>
+          </div>
+          <div class="blk">
+            <h4>Pascal / Hydraulik</h4>
+            <code>F₁/A₁ = F₂/A₂</code><code>F₂ = F₁·(d₂/d₁)²</code><code>s₁·A₁ = s₂·A₂</code
+            ><code>W = F·s → F₁s₁ = F₂s₂</code> <code>Reibung x%: F = F_ideal/(1−x)</code
+            ><code>k = (ΔV/V)/Δp [1/Pa], Wasser 5·10⁻¹⁰</code><code>Stufenkolben: Kräfte gleich!</code>
+          </div>
+          <div class="blk">
+            <h4>Schweredruck</h4>
+            <code>p = p_L + ρ·g·h</code><code>Wasser: +1 bar pro 10 m</code><code>Wand: F = ρ·g·h_Mitte·A</code>
+            <code>U-Rohr: Bezugslinie tiefste Grenze,</code><code> ρ₁·h₁ = ρ₂·h₂ (+ weitere Säulen)</code
+            ><code>Barometer: h_Hg = p_L/(ρ_Hg·g) ≈ 760 mm</code>
+          </div>
+          <div class="blk">
+            <h4>Luft</h4>
+            <code>ρ_Luft = 1.29 kg/m³, ρ_W = 1000 kg/m³</code><code>p₀ = 1013 hPa</code
+            ><code>p = p₀·e^(−h/h₀), h₀ = p₀/(ρ₀g) ≈ 8005 m</code> <code>h = h₀·ln(p₀/p)</code
+            ><code>Wasser linear, Luft exponentiell</code><code>kein Sog: höherer Druck drückt</code>
+          </div>
+          <div class="blk">
+            <h4>Auftrieb</h4>
+            <code>F_A = ρ_Fl·g·V_ein</code><code>Kraftmesser: F_H = F_G − F_A</code><code>F_A = F_Luft − F_Wasser</code>
+            <code>schwimmen: F_A = F_G</code><code>V_ein/V = ρ_K/ρ_Fl</code><code>ρ = F_L·ρ_W/(F_L − F_W)</code
+            ><code>Ballon: m = (ρ_L−ρ_Gas)·V − m_Hülle</code><code>Last: Δm = ρ_W·V_raus</code>
+          </div>
+          <div class="blk">
+            <h4>Nspire</h4>
+            <code>950_mbar▸_bar</code><code>solve(Gl, x) | a=… and b=…</code><code>solve(Gl1 and Gl2, {x,y})</code
+            ><code>e^( = ctrl ln · ≈ = ctrl enter</code><code>Konstanten: gg, rw (nicht g, p!)</code>
+          </div>
+          <div class="blk">
+            <h4>Rezept</h4>
+            <code>1 Skizze + Kräftepfeile</code><code>2 Geg./Ges. in SI</code><code>3 Typ erkennen</code
+            ><code>4 Gleichung mit Buchstaben</code><code>5 auflösen, CAS-Kontrolle</code
+            ><code>6 Einheit, Runden, Plausibel?</code>
+          </div>
+        </div>
+      </section>
+
+      <p class="footer">
+        Grundlage: Skript Sk02 Fluidstatik, Lernziele LZ02, Übungen UeP02.C1 und C2 (M. Mohr) sowie Referenzaufgaben
+        Physik TALS Kanton Zürich, Kap. 7. Werte für ρ<sub>Hg</sub> und g können je nach Formelsammlung leicht
+        abweichen.
+      </p>
+    </div>
+
+    <script>
+      (function () {
+        var store = {
+          get: function (k, d) {
+            try {
+              var v = localStorage.getItem("fsc_" + k);
+              return v === null ? d : JSON.parse(v);
+            } catch (e) {
+              return d;
+            }
+          },
+          set: function (k, v) {
+            try {
+              localStorage.setItem("fsc_" + k, JSON.stringify(v));
+            } catch (e) {}
+          },
+        };
+
+        /* ---------- Tabs ---------- */
+        var tabs = Array.prototype.slice.call(document.querySelectorAll("#tabs button"));
+        var panels = Array.prototype.slice.call(document.querySelectorAll("section.panel"));
+        function show(id, scroll) {
+          if (!document.getElementById(id)) id = "start";
+          tabs.forEach(function (b) {
+            b.setAttribute("aria-selected", b.dataset.tab === id ? "true" : "false");
+          });
+          panels.forEach(function (p) {
+            p.hidden = p.id !== id;
+          });
+          store.set("tab", id);
+          var active = document.querySelector('#tabs button[data-tab="' + id + '"]');
+          if (active && active.scrollIntoView) {
+            try {
+              active.scrollIntoView({ block: "nearest", inline: "center" });
+            } catch (e) {}
+          }
+          if (scroll) {
+            window.scrollTo({ top: 0 });
+          }
+        }
+        tabs.forEach(function (b) {
+          b.addEventListener("click", function () {
+            show(b.dataset.tab, true);
+            try {
+              history.replaceState(null, "", "#" + b.dataset.tab);
+            } catch (e) {}
+          });
+        });
+        var initial = (location.hash || "").replace("#", "") || store.get("tab", "start");
+        show(initial, false);
+
+        /* ---------- Checklist ---------- */
+        var LZ = [
+          [
+            "1 · Grundbegriffe",
+            [
+              ["1.1", "Gemeinsamkeiten und Unterschiede fest / flüssig / gasförmig beschreiben", "druck"],
+              ["1.2", "Definition Druck p = F/A kennen und anwenden", "druck"],
+              ["1.3", "Druckeinheiten Pa, hPa, bar, Torr, psi umrechnen", "druck"],
+              ["1.4", "Absolut-, Über- und Unterdruck unterscheiden und berechnen", "druck"],
+            ],
+          ],
+          [
+            "2 · Pascal",
+            [
+              ["2.1", "Funktionsweise von Druck- und Kraftübersetzer erklären", "pascal"],
+              ["2.2", "Kraft, Druck, Hubweg an hydraulischen Pressen berechnen (mit Reibung)", "pascal"],
+              ["2.3", "Kraftübersetzung z. B. Wagenheber berechnen", "pascal"],
+              ["2.4", "Arbeit an hydraulischen Pressen berechnen (mit Reibung)", "pascal"],
+              ["2.5", "Kompressibilität erklären und k berechnen", "pascal"],
+            ],
+          ],
+          [
+            "3 · Schweredruck",
+            [
+              ["3.1", "Hydrostatisches Paradoxon erklären", "schwere"],
+              ["3.2", "Schweredruck und Kraft auf Flächen berechnen", "schwere"],
+              ["3.3", "Dichten / Füllhöhen im U-Rohr bestimmen", "schwere"],
+            ],
+          ],
+          [
+            "4 · Luftdruck",
+            [
+              ["4.1", "Auswirkungen des Luftdrucks im Alltag erklären", "luft"],
+              ["4.2", "Experiment zur Bestimmung der Luftdichte beschreiben", "luft"],
+              ["4.3", "Dichte von Luft (1.29) und Wasser (1000 kg/m³) auswendig", "basis"],
+              ["4.4", "Höhenabhängigkeit Wasser linear / Luft exponentiell erklären", "luft"],
+              ["4.5", "Barometrische Höhenformel anwenden", "luft"],
+              ["4.6", "Funktionsweise Barometer erklären", "schwere"],
+              ["4.7", "Strohhalm, Saugnapf, Pumpe usw. erklären", "luft"],
+            ],
+          ],
+          [
+            "5 · Auftrieb",
+            [
+              ["5.1", "Auftriebsgesetz mit dem Schweredruck herleiten", "auftrieb"],
+              ["5.2", "m, V, ρ mit Kräftegleichgewicht F_A, F_G, F_H berechnen", "auftrieb"],
+              ["5.3", "Eintauchtiefe schwimmender Körper berechnen", "auftrieb"],
+              ["5.4", "Aräometer, kartesischer Taucher erklären", "auftrieb"],
+              ["5.5", "Eiswürfel im Becher, Stein aus dem Boot usw. erklären", "auftrieb"],
+              ["5.6", "Arbeit zum Unter-Wasser-Drücken berechnen", "auftrieb"],
+            ],
+          ],
+        ];
+        var done = store.get("checks", {});
+        var cl = document.getElementById("checklist");
+        var total = 0;
+        LZ.forEach(function (group) {
+          var h = document.createElement("h4");
+          h.textContent = group[0];
+          cl.appendChild(h);
+          group[1].forEach(function (it) {
+            total++;
+            var lab = document.createElement("label");
+            var cb = document.createElement("input");
+            cb.type = "checkbox";
+            cb.id = "lz" + it[0].replace(".", "_");
+            cb.checked = !!done[it[0]];
+            cb.addEventListener("change", function () {
+              done[it[0]] = cb.checked;
+              store.set("checks", done);
+              prog();
+            });
+            var sp = document.createElement("span");
+            sp.innerHTML =
+              '<b style="font-family:var(--mono);font-size:.85em;color:var(--ink-2)">' + it[0] + "</b> " + it[1];
+            var go = document.createElement("button");
+            go.type = "button";
+            go.className = "go";
+            go.textContent = "→ lernen";
+            go.addEventListener("click", function (e) {
+              e.preventDefault();
+              show(it[2], true);
+            });
+            lab.appendChild(cb);
+            lab.appendChild(sp);
+            lab.appendChild(go);
+            cl.appendChild(lab);
+          });
+        });
+        function prog() {
+          var n = Object.keys(done).filter(function (k) {
+            return done[k];
+          }).length;
+          document.getElementById("progText").textContent = n + " / " + total;
+          document.getElementById("progBar").style.width = (100 * n) / total + "%";
+        }
+        prog();
+
+        /* ---------- Quiz ---------- */
+        var Q = [
+          {
+            t: "druck",
+            q: "Du stehst einmal mit Turnschuhen und einmal mit Stöckelschuhen auf dem Boden. Was ändert sich?",
+            o: ["Die Kraft auf den Boden", "Der Druck auf den Boden", "Beides", "Nichts"],
+            a: 1,
+            e: "Die Kraft ist dein Gewicht m·g, die bleibt gleich. Die Fläche wird kleiner, also wird der Druck p = F/A grösser.",
+          },
+          {
+            t: "druck",
+            q: "Wie viele Pascal sind 1013 hPa?",
+            n: 101300,
+            u: "Pa",
+            e: "1 hPa = 100 Pa, also 1013 · 100 = 101 300 Pa.",
+          },
+          { t: "druck", q: "0.75 bar in hPa?", n: 750, u: "hPa", e: "1 bar = 1000 hPa → 0.75 · 1000 = 750 hPa." },
+          {
+            t: "druck",
+            q: "Welche Aussage stimmt? 1 mbar ist gleich …",
+            o: ["1 Pa", "10 Pa", "1 hPa", "1 kPa"],
+            a: 2,
+            e: "1 mbar = 0.001 bar = 100 Pa = 1 hPa. Deshalb haben Wetterberichte früher mbar und heute hPa mit gleichen Zahlen verwendet.",
+          },
+          {
+            t: "druck",
+            q: "Ein Pneu zeigt auf dem Manometer 2.2 bar. Luftdruck 1.0 bar. Wie gross ist der Absolutdruck im Reifen in bar?",
+            n: 3.2,
+            u: "bar",
+            e: "Das Manometer zeigt Überdruck. Absolutdruck = Luftdruck + Überdruck = 1.0 + 2.2 = 3.2 bar.",
+          },
+          {
+            t: "druck",
+            q: "Ein Deckel (A = 50 cm²) hat innen 200 hPa weniger Druck als aussen. Mit welcher Kraft in N wird er angedrückt?",
+            n: 100,
+            u: "N",
+            e: "F = Δp · A = 20 000 Pa · 50·10⁻⁴ m² = 100 N.",
+          },
+          {
+            t: "druck",
+            q: "Welche Eigenschaft haben Flüssigkeiten, aber nicht Gase?",
+            o: ["keine feste Form", "festes Volumen", "Teilchen sind beweglich", "Sie fliessen"],
+            a: 1,
+            e: "Beide Fluide haben keine feste Form und fliessen. Flüssigkeiten haben aber ein (fast) festes Volumen, Gase füllen jeden Raum aus.",
+          },
+          {
+            t: "pascal",
+            q: "Hydraulik: kleiner Kolben d = 2 cm, grosser Kolben d = 10 cm. Um welchen Faktor wird die Kraft verstärkt?",
+            n: 25,
+            u: "-fach",
+            e: "Flächen verhalten sich wie die Durchmesser im Quadrat: (10/2)² = 25.",
+          },
+          {
+            t: "pascal",
+            q: "Der kleine Kolben wird 50 cm tief gedrückt (Faktor 25 wie vorher). Wie weit hebt sich der grosse Kolben in cm?",
+            n: 2,
+            u: "cm",
+            e: "Gleiches Volumen: s₂ = s₁ · A₁/A₂ = 50 cm / 25 = 2 cm. Kraft gewonnen, Weg verloren.",
+          },
+          {
+            t: "pascal",
+            q: "Was bleibt bei einer idealen hydraulischen Presse auf beiden Seiten gleich?",
+            o: ["Kraft und Druck", "Druck und Arbeit", "Kraft und Weg", "Weg und Arbeit"],
+            a: 1,
+            e: "Druck ist überall gleich (Pascal). Arbeit W = F·s ist gleich (goldene Regel), Kraft und Weg ändern sich gegenläufig.",
+          },
+          {
+            t: "pascal",
+            q: "Eine ideale Presse braucht 200 N. 20 % der Pumpkraft gehen für Reibung verloren. Welche Pumpkraft in N ist nötig?",
+            n: 250,
+            u: "N",
+            e: "Nur 80 % kommen an: F = 200 / 0.80 = 250 N.",
+          },
+          {
+            t: "pascal",
+            q: "Warum verwendet man für Hydraulik Öl und keine Luft?",
+            o: [
+              "Öl ist leichter",
+              "Öl ist fast nicht kompressibel",
+              "Luft leitet Druck nicht weiter",
+              "Öl hat mehr Auftrieb",
+            ],
+            a: 1,
+            e: "Luft lässt sich stark zusammendrücken (grosse Kompressibilität). Der Kolben würde nachgeben, statt die Kraft weiterzuleiten.",
+          },
+          {
+            t: "schwere",
+            q: "Wie gross ist der Schweredruck in 20 m Wassertiefe in kPa (ohne Luftdruck)?",
+            n: 196.2,
+            u: "kPa",
+            e: "p = ρ·g·h = 1000 · 9.81 · 20 = 196 200 Pa = 196 kPa ≈ 2 bar.",
+          },
+          {
+            t: "schwere",
+            q: "Drei Gefässe mit gleicher Bodenfläche und gleicher Füllhöhe, aber verschiedener Form. Wo ist die Kraft auf den Boden am grössten?",
+            o: [
+              "Im Gefäss mit dem meisten Wasser",
+              "Im schmalsten Gefäss",
+              "Überall gleich",
+              "Im Gefäss mit der grössten Öffnung",
+            ],
+            a: 2,
+            e: "Hydrostatisches Paradoxon: p = ρgh hängt nur von der Höhe ab. Gleicher Druck und gleiche Fläche ergeben gleiche Kraft.",
+          },
+          {
+            t: "schwere",
+            q: "Taucherin in 30 m Tiefe, Luftdruck 1000 hPa. Absolutdruck in hPa?",
+            n: 3943,
+            u: "hPa",
+            e: "p = 100 000 + 1000·9.81·30 = 394 300 Pa = 3943 hPa.",
+          },
+          {
+            t: "schwere",
+            q: "Wie hoch in mm stünde eine Hg-Säule (ρ = 13 546 kg/m³) bei 1000 hPa?",
+            n: 752.5,
+            u: "mm",
+            e: "h = p/(ρ·g) = 100 000 / (13 546 · 9.81) = 0.7525 m = 753 mm.",
+          },
+          {
+            t: "schwere",
+            q: "U-Rohr: Öl steht 15 cm über der Grenzfläche, Wasser auf der anderen Seite 12 cm. Dichte des Öls in kg/m³?",
+            n: 800,
+            u: "kg/m³",
+            e: "ρ_Öl · 15 = 1000 · 12 → ρ_Öl = 800 kg/m³.",
+          },
+          {
+            t: "schwere",
+            q: "Staumauer: Warum muss der Luftdruck nicht berücksichtigt werden?",
+            o: [
+              "Er ist zu klein",
+              "Er wirkt auf beiden Seiten der Mauer",
+              "Er wirkt nur auf das Wasser nach oben",
+              "Luft hat keine Dichte",
+            ],
+            a: 1,
+            e: "Der Luftdruck drückt über das Wasser auf die Mauer und von der Luftseite gleich stark zurück. Die Wirkungen heben sich auf.",
+          },
+          {
+            t: "luft",
+            q: "Luftdruck auf 1500 m mit p = p₀·e^(−h/8005 m), p₀ = 1013 hPa? (in hPa)",
+            n: 840,
+            u: "hPa",
+            e: "p = 1013 · e^(−1500/8005) = 1013 · 0.829 = 840 hPa.",
+          },
+          {
+            t: "luft",
+            q: "Warum steigt beim Trinken das Getränk im Strohhalm hoch?",
+            o: [
+              "Der Mund saugt das Getränk an",
+              "Der äussere Luftdruck drückt es hoch",
+              "Das Getränk hat Auftrieb",
+              "Wegen der Kapillarkraft",
+            ],
+            a: 1,
+            e: "Im Mund entsteht Unterdruck. Der grössere äussere Luftdruck auf die Getränkeoberfläche drückt die Flüssigkeit hoch. Einen «Sog» gibt es physikalisch nicht.",
+          },
+          {
+            t: "luft",
+            q: "Warum nimmt der Luftdruck mit der Höhe nicht linear ab wie der Wasserdruck mit der Tiefe?",
+            o: [
+              "Luft ist kompressibel, unten dichter",
+              "Die Temperatur ist oben tiefer",
+              "g wird kleiner",
+              "Luft hat keine Masse",
+            ],
+            a: 0,
+            e: "Luft wird unten vom Gewicht darüber zusammengedrückt und ist dichter. Deshalb nimmt der Druck unten schneller ab als oben: exponentiell.",
+          },
+          {
+            t: "luft",
+            q: "Dichte der Luft bei 0 °C und 1013 hPa in kg/m³?",
+            n: 1.29,
+            u: "kg/m³",
+            e: "1.29 kg/m³ (Lernziel 4.3, auswendig).",
+          },
+          {
+            t: "luft",
+            q: "Beim Luftdichte-Experiment bleibt Restluft in der Flasche. Die gemessene Dichte ist …",
+            o: ["zu gross", "zu klein", "richtig", "unbestimmbar"],
+            a: 1,
+            e: "Es wird weniger Luftmasse abgepumpt als eigentlich drin war. m₁ − m₂ ist zu klein, also ist die Dichte ein Minimalwert.",
+          },
+          {
+            t: "auftrieb",
+            q: "Von welcher Dichte hängt die Auftriebskraft ab?",
+            o: ["Dichte des Körpers", "Dichte der Flüssigkeit", "Beiden", "Keiner"],
+            a: 1,
+            e: "F_A = ρ_Fl·g·V. Die Dichte des Körpers bestimmt nur, ob er schwimmt oder sinkt (über F_G).",
+          },
+          {
+            t: "auftrieb",
+            q: "Ein Stein wiegt in Luft 30 N, in Wasser 18 N. Wie gross ist sein Volumen in cm³?",
+            n: 1223,
+            u: "cm³",
+            e: "F_A = 30 − 18 = 12 N. V = F_A/(ρ_W·g) = 12/9810 = 1.22·10⁻³ m³ = 1223 cm³.",
+          },
+          {
+            t: "auftrieb",
+            q: "Gleicher Stein (Luft 30 N, Wasser 18 N): Dichte in kg/m³?",
+            n: 2500,
+            u: "kg/m³",
+            e: "ρ = F_L·ρ_W/(F_L − F_W) = 30·1000/12 = 2500 kg/m³.",
+          },
+          {
+            t: "auftrieb",
+            q: "Ein Holzbalken (ρ = 700 kg/m³, Höhe 20 cm) schwimmt. Wie tief taucht er ein (cm)?",
+            n: 14,
+            u: "cm",
+            e: "h_ein = h·ρ_K/ρ_W = 20 · 0.7 = 14 cm.",
+          },
+          {
+            t: "auftrieb",
+            q: "Ein Stein wird aus einem schwimmenden Boot in den See geworfen. Der Seespiegel …",
+            o: ["steigt", "sinkt", "bleibt gleich"],
+            a: 1,
+            e: "Im Boot verdrängt der Stein Wasser mit seinem Gewicht (viel). Im See nur noch mit seinem Volumen (wenig). Weniger Verdrängung → Spiegel sinkt.",
+          },
+          {
+            t: "auftrieb",
+            q: "Beim kartesischen Taucher drückst du die Flasche zusammen. Der Taucher …",
+            o: ["steigt", "sinkt", "bleibt"],
+            a: 1,
+            e: "Der Druck steigt überall (Pascal), die Luftblase im Taucher wird kleiner, er verdrängt weniger Wasser, F_A < F_G → er sinkt.",
+          },
+          {
+            t: "auftrieb",
+            q: "Ein Ballon (V = 100 m³) mit Helium (0.18 kg/m³) in Luft (1.29 kg/m³). Welche Gesamtmasse (Hülle + Last) kann er tragen (kg)?",
+            n: 111,
+            u: "kg",
+            e: "m = (ρ_L − ρ_He)·V = 1.11 · 100 = 111 kg.",
+          },
+        ];
+        var TOP = {
+          all: "Alle",
+          druck: "Druck",
+          pascal: "Pascal",
+          schwere: "Schweredruck",
+          luft: "Luftdruck",
+          auftrieb: "Auftrieb",
+        };
+        var filter = "all",
+          idx = 0,
+          list = Q.slice(),
+          score = store.get("score", { ok: 0, tot: 0 }),
+          answered = false;
+        var fwrap = document.getElementById("qfilter");
+        Object.keys(TOP).forEach(function (k) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.textContent = TOP[k];
+          b.setAttribute("aria-pressed", k === "all" ? "true" : "false");
+          b.addEventListener("click", function () {
+            filter = k;
+            Array.prototype.forEach.call(fwrap.children, function (c) {
+              c.setAttribute("aria-pressed", "false");
+            });
+            b.setAttribute("aria-pressed", "true");
+            list = Q.filter(function (q) {
+              return k === "all" || q.t === k;
+            });
+            idx = 0;
+            render();
+          });
+          fwrap.appendChild(b);
+        });
+        var card = document.getElementById("qcard");
+        function esc(s) {
+          return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+        }
+        function mark(ok, q) {
+          answered = true;
+          score.tot++;
+          if (ok) score.ok++;
+          store.set("score", score);
+          var fb = document.createElement("div");
+          fb.className = "fb " + (ok ? "ok" : "no");
+          fb.innerHTML = "<b>" + (ok ? "Richtig. " : "Noch nicht. ") + "</b>" + esc(q.e);
+          card.insertBefore(fb, card.querySelector(".qnav"));
+          card.querySelector(".score").textContent = "Gesamt: " + score.ok + " / " + score.tot + " richtig";
+        }
+        function render() {
+          answered = false;
+          var q = list[idx];
+          card.innerHTML = "";
+          var meta = document.createElement("div");
+          meta.className = "qmeta";
+          meta.innerHTML = "<span>Frage " + (idx + 1) + " von " + list.length + "</span><span>" + TOP[q.t] + "</span>";
+          card.appendChild(meta);
+          var qt = document.createElement("div");
+          qt.className = "qtext";
+          qt.textContent = q.q;
+          card.appendChild(qt);
+          if (q.o) {
+            var opts = document.createElement("div");
+            opts.className = "opts";
+            q.o.forEach(function (o, i) {
+              var b = document.createElement("button");
+              b.type = "button";
+              b.textContent = o;
+              b.addEventListener("click", function () {
+                if (answered) return;
+                Array.prototype.forEach.call(opts.children, function (c, j) {
+                  c.disabled = true;
+                  if (j === q.a) c.classList.add("ok");
+                });
+                if (i !== q.a) b.classList.add("no");
+                mark(i === q.a, q);
+              });
+              opts.appendChild(b);
+            });
+            card.appendChild(opts);
+          } else {
+            var row = document.createElement("div");
+            row.className = "numrow";
+            var inp = document.createElement("input");
+            inp.type = "text";
+            inp.inputMode = "decimal";
+            inp.id = "qnum";
+            inp.setAttribute("aria-label", "Antwort in " + q.u);
+            inp.placeholder = "Zahl";
+            var un = document.createElement("span");
+            un.textContent = q.u;
+            var bt = document.createElement("button");
+            bt.type = "button";
+            bt.className = "btn";
+            bt.textContent = "Prüfen";
+            function check() {
+              if (answered) return;
+              var v = parseFloat(String(inp.value).replace(/'/g, "").replace(/\s/g, "").replace(",", "."));
+              if (isNaN(v)) {
+                inp.focus();
+                return;
+              }
+              var ok = Math.abs(v - q.n) <= Math.abs(q.n) * 0.02;
+              mark(ok, q);
+              if (!ok) {
+                var s = card.querySelector(".fb");
+                s.innerHTML += ' <span style="font-family:var(--mono)">Lösung: ' + q.n + " " + esc(q.u) + "</span>";
+              }
+              inp.disabled = true;
+            }
+            bt.addEventListener("click", check);
+            inp.addEventListener("keydown", function (e) {
+              if (e.key === "Enter") check();
+            });
+            row.appendChild(inp);
+            row.appendChild(un);
+            row.appendChild(bt);
+            card.appendChild(row);
+          }
+          var nav = document.createElement("div");
+          nav.className = "qnav";
+          var prev = document.createElement("button");
+          prev.type = "button";
+          prev.className = "btn ghost";
+          prev.textContent = "Zurück";
+          prev.disabled = idx === 0;
+          prev.addEventListener("click", function () {
+            if (idx > 0) {
+              idx--;
+              render();
+            }
+          });
+          var sc = document.createElement("span");
+          sc.className = "score";
+          sc.textContent = "Gesamt: " + score.ok + " / " + score.tot + " richtig";
+          var next = document.createElement("button");
+          next.type = "button";
+          next.className = "btn";
+          next.textContent = idx < list.length - 1 ? "Nächste Frage" : "Von vorne";
+          next.addEventListener("click", function () {
+            idx = idx < list.length - 1 ? idx + 1 : 0;
+            render();
+          });
+          nav.appendChild(prev);
+          nav.appendChild(sc);
+          nav.appendChild(next);
+          card.appendChild(nav);
+        }
+        render();
+
+        /* ---------- Timer ---------- */
+        var tBtn = document.getElementById("timerBtn"),
+          tOut = document.getElementById("timerOut"),
+          tInt = null,
+          left = 45 * 60;
+        function fmt(s) {
+          var m = Math.floor(s / 60),
+            r = s % 60;
+          return (m < 10 ? "0" : "") + m + ":" + (r < 10 ? "0" : "") + r;
+        }
+        tBtn.addEventListener("click", function () {
+          if (tInt) {
+            clearInterval(tInt);
+            tInt = null;
+            tBtn.textContent = "Timer fortsetzen";
+            return;
+          }
+          tBtn.textContent = "Pause";
+          tInt = setInterval(function () {
+            left--;
+            tOut.textContent = fmt(Math.max(left, 0));
+            if (left <= 0) {
+              clearInterval(tInt);
+              tInt = null;
+              tOut.textContent = "Zeit ist um";
+              tBtn.textContent = "Neu starten";
+              left = 45 * 60;
+            }
+          }, 1000);
+        });
+      })();
+    </script>
+  </body>
+</html>
