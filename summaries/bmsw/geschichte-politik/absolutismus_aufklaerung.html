@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Absolutismus und Aufklärung · Geschichte und Politik · Prüfungsvorbereitung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f1e7;
+  --surface:#fffefb;
+  --surface-soft:#f3ead9;
+  --text:#241c15;
+  --muted:#6b5c4a;
+  --border:#e2d2b5;
+  --border-strong:#cbb286;
+  --crown:#7a1f2b;
+  --crown-soft:#f6e3e2;
+  --reason:#1f3f5c;
+  --reason-soft:#e3ebf3;
+  --gold:#a3791c;
+  --gold-soft:#f7ecce;
+  --green:#e4f1e4;
+  --green-text:#1f5c31;
+  --red:#fbe3df;
+  --red-text:#9c2c1e;
+  --shadow:0 18px 45px rgba(36,28,21,.10);
+  --radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left,rgba(122,31,43,.10),transparent 34%),
+    radial-gradient(circle at 92% 6%,rgba(163,121,28,.12),transparent 32%),
+    linear-gradient(180deg,#fcf9f2 0%,var(--bg) 42%,#efe4cb 100%);
+  line-height:1.62;
+  overflow-wrap:break-word;
+  overflow-x:clip;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{font-family:Fraunces,Georgia,"Times New Roman",serif;letter-spacing:-.01em;color:var(--text)}
+a{color:var(--crown)}
+p{margin:0 0 14px}
+
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh}
+aside.sidebar{position:sticky;top:0;height:100vh;overflow:auto;padding:26px 20px;
+  background:rgba(255,254,251,.88);backdrop-filter:blur(14px);border-right:1px solid var(--border)}
+.sidebar .logo{display:flex;gap:12px;align-items:center;margin-bottom:20px}
+.sidebar .mark{flex:none;width:45px;height:45px;border-radius:15px;
+  background:linear-gradient(135deg,var(--crown),var(--gold));box-shadow:var(--shadow)}
+.sidebar .logo strong{display:block;font-size:1rem;font-family:Fraunces,Georgia,serif}
+.sidebar .logo span{font-size:.82rem;color:var(--muted)}
+nav.toc ul{list-style:none;margin:0;padding:0}
+nav.toc a{display:block;text-decoration:none;padding:9px 12px;margin:3px 0;border-radius:13px;
+  color:var(--muted);font-weight:650;font-size:.92rem}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--crown-soft);color:var(--crown)}
+.sidebar-note{margin-top:18px;font-size:13px;color:var(--muted)}
+.content{min-width:0}
+
+header{max-width:1160px;margin:0 auto;padding:44px 20px 22px}
+.hero{
+  background:linear-gradient(135deg,#ffffff 0%,#f8ece9 55%,#fdf3dd 100%);
+  border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow);
+  padding:32px;position:relative;overflow:hidden;
+}
+.hero::after{content:"";position:absolute;width:300px;height:300px;border-radius:999px;
+  background:rgba(122,31,43,.07);right:-100px;top:-130px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;
+  background:var(--crown-soft);color:var(--crown);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+h1{margin:16px 0 12px;max-width:900px;font-size:clamp(30px,5vw,52px);line-height:1.06}
+.lead{max-width:860px;color:var(--muted);font-size:18px;margin:0;position:relative}
+.hero-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:26px;position:relative}
+.kpi{background:rgba(255,255,255,.8);border:1px solid rgba(226,210,181,.9);border-radius:16px;padding:15px}
+.kpi strong{display:block;font-size:21px;color:var(--crown);margin-bottom:2px;font-family:Fraunces,serif}
+.kpi span{font-size:13px;color:var(--muted)}
+
+main{max-width:1160px;margin:0 auto;padding:12px 20px 90px}
+section{margin-top:44px;scroll-margin-top:20px}
+section>h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 6px}
+.section-sub{color:var(--muted);margin:0 0 20px;max-width:860px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px;box-shadow:0 8px 24px rgba(36,28,21,.06);margin-bottom:16px}
+.card h3{margin:0 0 10px;font-size:21px}
+.card h4{margin:18px 0 6px;font-size:17px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;
+  background:var(--gold-soft);color:var(--gold);margin-right:6px}
+.tag.lz{background:var(--reason-soft);color:var(--reason)}
+.tag.lvl{background:var(--crown-soft);color:var(--crown)}
+.callout{border-left:4px solid var(--crown);background:var(--surface-soft);border-radius:0 14px 14px 0;
+  padding:14px 16px;margin:14px 0}
+.callout.warn{border-left-color:#c0392b;background:var(--red)}
+.callout.warn strong{color:var(--red-text)}
+.callout.tip{border-left-color:var(--green-text);background:var(--green)}
+.callout.tip strong{color:var(--green-text)}
+.callout.quote{border-left-color:var(--gold);background:var(--gold-soft);font-style:italic}
+.callout.reason{border-left-color:var(--reason);background:var(--reason-soft)}
+.callout.reason strong{color:var(--reason)}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border-radius:14px;border:1px solid var(--border)}
+table{border-collapse:collapse;width:100%;min-width:560px;background:var(--surface);font-size:15px}
+th,td{padding:10px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+thead th{background:var(--crown);color:#fff;font-weight:600;position:sticky;top:0}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:var(--surface-soft)}
+td.term{font-weight:700;color:var(--crown);white-space:normal}
+ul.clean{margin:8px 0;padding-left:20px}
+ul.clean li{margin-bottom:5px}
+ul.check{list-style:none;padding:0;margin:8px 0}
+ul.check li{padding:4px 0 4px 26px;position:relative}
+ul.check li::before{content:"✓";position:absolute;left:0;color:var(--green-text);font-weight:800}
+ul.cross{list-style:none;padding:0;margin:8px 0}
+ul.cross li{padding:4px 0 4px 26px;position:relative}
+ul.cross li::before{content:"✕";position:absolute;left:0;color:var(--red-text);font-weight:800}
+.timeline{display:grid;gap:10px;margin:16px 0}
+.tl-row{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;
+  border:1px solid var(--border);border-radius:14px;padding:12px 14px;background:var(--surface-soft)}
+.tl-row .yr{font-family:Fraunces,serif;font-size:19px;font-weight:700;color:var(--gold);text-align:right}
+.tl-row b{color:var(--crown)}
+.person{border:1px solid var(--border);border-radius:16px;padding:16px 18px;background:var(--surface);margin-bottom:14px}
+.person .name{font-family:Fraunces,serif;font-size:19px;font-weight:700;color:var(--reason)}
+.person .dates{font-size:13px;color:var(--muted);margin-left:8px}
+.ex{border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px;background:var(--surface)}
+.ex-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.ex-head h4{margin:0;font-size:18px;flex:1 1 240px}
+details{border:1px solid var(--border);border-radius:12px;background:var(--surface-soft);padding:0 14px;margin-top:12px}
+details[open]{padding-bottom:12px}
+summary{cursor:pointer;font-weight:600;padding:11px 0;color:var(--crown);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";display:inline-block}
+details[open] summary::before{content:"▾ "}
+summary:focus-visible{outline:2px solid var(--crown);outline-offset:3px;border-radius:6px}
+.quiz-q{border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:12px;background:var(--surface)}
+.quiz-q p.q{font-weight:600;margin:0 0 10px}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;font:inherit;font-size:15px;cursor:pointer;padding:10px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--surface-soft);color:var(--text);transition:.12s}
+.opt:hover{border-color:var(--crown)}
+.opt:focus-visible{outline:2px solid var(--crown);outline-offset:2px}
+.opt.correct{background:var(--green);border-color:var(--green-text);color:var(--green-text);font-weight:600}
+.opt.wrong{background:var(--red);border-color:var(--red-text);color:var(--red-text)}
+.fb{margin:10px 0 0;font-size:14px;color:var(--muted);min-height:1.2em}
+.checklist{list-style:none;padding:0;margin:0}
+.checklist li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--border)}
+.checklist li:last-child{border-bottom:none}
+.checklist input{margin-top:5px;width:17px;height:17px;accent-color:var(--crown);flex-shrink:0}
+figure{margin:20px 0 0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:14px;background:#fff}
+figcaption{margin-top:9px;font-size:14px;color:var(--muted)}
+footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);font-size:14px;
+  border-top:1px solid var(--border)}
+.backlink{display:inline-block;margin-top:8px;font-weight:600}
+.quoteblock{font-family:Fraunces,serif;font-style:italic;font-size:17px;line-height:1.6;color:var(--text);
+  border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:0 14px 14px 0;padding:16px 20px;margin:16px 0}
+.quoteblock cite{display:block;margin-top:8px;font-family:Inter,sans-serif;font-style:normal;font-size:13px;color:var(--muted)}
+@media(max-width:980px){
+  .layout{display:block}
+  aside.sidebar{position:sticky;top:0;z-index:30;height:auto;overflow:visible;
+    padding:10px 0 8px;border-right:0;border-bottom:1px solid var(--border);
+    background:rgba(255,254,251,.95)}
+  .sidebar .logo{margin:0 14px 8px;gap:10px}
+  .sidebar .mark{width:34px;height:34px;border-radius:11px}
+  .sidebar .logo strong{font-size:.95rem}
+  .sidebar .logo span{font-size:.76rem}
+  nav.toc ul{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 14px}
+  nav.toc ul::-webkit-scrollbar{display:none}
+  nav.toc li{flex:none}
+  nav.toc a{margin:0;white-space:nowrap;padding:8px 13px;font-size:.88rem;
+    border:1px solid var(--border);background:var(--surface)}
+  .sidebar-note{display:none}
+  section{scroll-margin-top:110px}
+  thead th{position:static}
+}
+@media(max-width:880px){
+  .grid2,.grid3,.hero-grid{grid-template-columns:1fr}
+  .hero{padding:22px 18px;border-radius:22px}
+  header{padding:20px 14px 12px}
+  main{padding:10px 14px 70px}
+  .card{padding:16px;border-radius:16px}
+  .lead{font-size:16.5px}
+  section{margin-top:34px}
+  .ex{padding:15px}
+  table{min-width:440px;font-size:14.5px}
+  th,td{padding:9px 11px}
+  .tl-row{grid-template-columns:70px 1fr}
+}
+@media(max-width:640px){
+  .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi{padding:12px}
+  .kpi strong{font-size:18px}
+  .opt{padding:12px 14px;min-height:46px}
+  summary{padding:13px 0}
+  details{padding:0 12px}
+  footer{padding:22px 14px 48px}
+}
+@media print{
+  .layout{display:block}
+  aside.sidebar{display:none}
+  details{page-break-inside:avoid}
+  details>summary{display:none}
+  details{padding-bottom:12px}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="logo">
+    <div class="mark"></div>
+    <div><strong>Absolutismus &amp; Aufklärung</strong><span>Geschichte und Politik</span></div>
+  </div>
+  <nav class="toc" aria-label="Seitennavigation">
+    <ul>
+      <li><a href="#fokus">Prüfungsfokus</a></li>
+      <li><a href="#absolutismus">Absolutismus</a></li>
+      <li><a href="#staende">Ständegesellschaft</a></li>
+      <li><a href="#begriff">Was ist Aufklärung?</a></li>
+      <li><a href="#entwicklungen">Entwicklungen &amp; Forderungen</a></li>
+      <li><a href="#rat-emp">Rationalismus &amp; Empirismus</a></li>
+      <li><a href="#zusammenhang">Absolutismus ↔ Aufklärung</a></li>
+      <li><a href="#theorien">Locke, Montesquieu, Rousseau</a></li>
+      <li><a href="#moderne">Einfluss auf die Moderne</a></li>
+      <li><a href="#quellenanalyse">Quellenanalyse</a></li>
+      <li><a href="#fehler">Typische Fehler</a></li>
+      <li><a href="#glossar">Glossar A–Z</a></li>
+      <li><a href="#uebungen">Übungen</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#simulation">Prüfungssimulation</a></li>
+      <li><a href="#lastminute">Last Minute</a></li>
+    </ul>
+  </nav>
+  <p class="sidebar-note">Tipp: Mit der Browsersuche (⌘F) einzelne Begriffe blitzschnell nachschlagen.</p>
+</aside>
+<div class="content">
+<header>
+  <div class="hero">
+    <span class="eyebrow">Geschichte und Politik · BMSW</span>
+    <h1>Absolutismus und Aufklärung</h1>
+    <p class="lead">Vom Gottesgnadentum zur Gewaltenteilung: wie das Scheitern des absolutistischen Staates und das Denken von Locke, Montesquieu und Rousseau die moderne Demokratie begründet haben.</p>
+    <div class="hero-grid">
+      <div class="kpi"><strong>9</strong><span>Lernziele abgedeckt</span></div>
+      <div class="kpi"><strong>1648–1789</strong><span>Zeitlicher Rahmen</span></div>
+      <div class="kpi"><strong>3</strong><span>Staatstheorien im Vergleich</span></div>
+      <div class="kpi"><strong>CH</strong><span>Bezug zur Schweizer Verfassung</span></div>
+    </div>
+  </div>
+</header>
+<main>
+
+<section id="fokus">
+  <h2>Prüfungsfokus</h2>
+  <p class="section-sub">Was in dieser Prüfung wirklich zählt — geordnet nach den neun Lernzielen.</p>
+  <div class="card">
+    <h3>Die neun Lernziele dieser Prüfung</h3>
+    <table>
+      <thead><tr><th>ID</th><th>Lernziel</th><th>Abschnitt</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag lz">L1</span></td><td>Absolutismus als Herrschaftssystem in eigenen Worten erklären</td><td><a href="#absolutismus">Absolutismus</a></td></tr>
+        <tr><td><span class="tag lz">L2</span></td><td>Aufbau der Ständegesellschaft und Konsequenzen für die Bevölkerungsschichten</td><td><a href="#staende">Ständegesellschaft</a></td></tr>
+        <tr><td><span class="tag lz">L3</span></td><td>Begriff der Aufklärung in eigenen Worten definieren</td><td><a href="#begriff">Was ist Aufklärung?</a></td></tr>
+        <tr><td><span class="tag lz">L4</span></td><td>Gesellschaftliche Entwicklungen, Auswirkungen, Forderungen und Theorien der Aufklärung erläutern</td><td><a href="#entwicklungen">Entwicklungen &amp; Forderungen</a></td></tr>
+        <tr><td><span class="tag lz">L5</span></td><td>Rationalismus und Empirismus im Kontext der Aufklärung erklären</td><td><a href="#rat-emp">Rationalismus &amp; Empirismus</a></td></tr>
+        <tr><td><span class="tag lz">L6</span></td><td>Zusammenhang von Absolutismus und Aufklärung in Gesellschaft und Politik aufzeigen</td><td><a href="#zusammenhang">Absolutismus ↔ Aufklärung</a></td></tr>
+        <tr><td><span class="tag lz">L7</span></td><td>Merkmale der politischen Theorien von Locke, Montesquieu und Rousseau kennen und beurteilen</td><td><a href="#theorien">Locke, Montesquieu, Rousseau</a></td></tr>
+        <tr><td><span class="tag lz">L8</span></td><td>Einfluss der Aufklärung auf die Moderne erklären</td><td><a href="#moderne">Einfluss auf die Moderne</a></td></tr>
+        <tr><td><span class="tag lz">L9</span></td><td>Eine Quelle (Bild oder Text) analysieren</td><td><a href="#quellenanalyse">Quellenanalyse</a></td></tr>
+      </tbody>
+    </table>
+    <div class="callout tip"><strong>Unbedingt können:</strong> Kant-Definition der Aufklärung, Gewaltenteilung nach Montesquieu, die drei Stände und ihre Lasten, das Vorgehen bei einer Quellenanalyse.</div>
+    <div class="callout warn"><strong>Häufige Verwechslung:</strong> Locke und Montesquieu werden oft gleichgesetzt. Locke kennt nur <em>zwei</em> Gewalten (Legislative über Exekutive), Montesquieu fordert <em>drei gleichberechtigte</em> Gewalten. Rousseau argumentiert nochmals anders: mit der Volkssouveränität.</div>
+  </div>
+</section>
+
+<section id="absolutismus">
+  <h2>1 · Absolutismus als Herrschaftssystem</h2>
+  <p class="section-sub">L1 — Definition, Begründung und Funktionsweise der absoluten Monarchie.</p>
+  <div class="card">
+    <h3>Definition</h3>
+    <p><strong>Absolutismus</strong> (lat. <em>absolutus</em> = losgelöst) ist eine Regierungsform, bei der ein Monarch die <strong>uneingeschränkte Staatsgewalt</strong> in seiner Person vereinigt. Er steht über den Gesetzen: Legislative, Exekutive und Judikative liegen in einer Hand, ohne Kontrolle durch Parlament, Volk oder unabhängige Gerichte. Das bekannteste Beispiel ist Ludwig XIV. von Frankreich («Der Staat bin ich»), die Epoche dauert in weiten Teilen Europas von ca. 1648 (Ende Dreissigjähriger Krieg) bis zur Französischen Revolution 1789.</p>
+    <h4>Warum die absolute Macht entstand</h4>
+    <ul class="clean">
+      <li>Das 17. Jahrhundert war für die Bevölkerung eine entbehrungsreiche Zeit: Kriege (Dreissigjähriger Krieg), Pest, Hungersnöte.</li>
+      <li>Die Kirche war seit der Reformation (ab 1517) gespalten und konnte keine einheitliche Ordnung mehr garantieren.</li>
+      <li>Ein starker, zentralisierter Herrscher versprach Sicherheit, Stabilität und ein Ende der inneren Konflikte (Adelskriege, Religionskriege).</li>
+    </ul>
+    <h4>Die religiöse Legitimation: Gottesgnadentum</h4>
+    <p>Absolutistische Herrscher begründeten ihre Macht nicht mit Leistung, sondern mit göttlichem Recht. Der Bischof Jacques-Bénigne Bossuet lieferte dazu die klassische Rechtfertigung:</p>
+    <div class="quoteblock">
+      «Der Fürst ist niemandem Rechenschaft schuldig von dem, was er anordnet. […] Hat der Fürst gesprochen, so gibt es kein anderes Urteil. […] Denn er ist von Gott und sozusagen ein Stück der göttlichen Unabhängigkeit. […] Es gibt keine Gewaltausübung gegen den Fürsten.»
+      <cite>J. Bossuet, zeitgenössische Quelle zur Legitimation des Absolutismus</cite>
+    </div>
+    <p>Bossuets vier Kernsätze: (1) der Fürst muss niemandem Rechenschaft ablegen, (2) sein Urteil ist endgültig, (3) Widerstand gegen ihn ist nicht erlaubt, (4) er ist zwar formell dem Recht unterstellt, aber den Strafen der Gesetze nicht unterworfen. Diese Argumentation ist der direkte Gegenpol zu Locke, Montesquieu und Rousseau, die alle genau diese Unkontrollierbarkeit kritisieren (siehe <a href="#theorien">Abschnitt 7</a>).</p>
+    <h4>Merkantilismus — die Wirtschaftspolitik des Absolutismus</h4>
+    <p>Ludwig XIV. hatte trotz seiner Macht ein Grundproblem: ständige Geldnot durch Hof, Militär und Verwaltung. Finanzminister <strong>Jean-Baptiste Colbert</strong> entwickelte dafür den <strong>Merkantilismus</strong>: der Staat soll möglichst viel Geld im Land behalten und wenig ins Ausland abfliessen lassen.</p>
+    <ul class="check">
+      <li>Günstige Rohstoffe importieren (auch aus Kolonien), im Inland zu hochwertigen Fertigwaren verarbeiten</li>
+      <li>Fertigwaren teuer ins Ausland exportieren → Geld fliesst nach Frankreich</li>
+      <li>Hohe Zölle auf ausländische Importe, um die einheimische Produktion zu schützen</li>
+      <li>Aufbau von Manufakturen, Strassen und Kanälen als Infrastruktur, Anwerbung ausländischer Fachkräfte</li>
+      <li>Innerländische Zollgrenzen aufheben, Mass- und Währungseinheiten vereinheitlichen</li>
+    </ul>
+    <p>Für die Nachbarstaaten bedeutete das Nachteile (schlechterer Absatz ihrer Waren, abgeworbene Fachkräfte), für die Kolonien verstärkte Ausbeutung als reine Rohstofflieferanten.</p>
+    <h4>Der Staat ist pleite: die Finanzkrise als Auslöser</h4>
+    <p>1788 standen französischen Steuereinnahmen von 503 Mio. Livres Ausgaben von 629 Mio. Livres gegenüber — ein Defizit von 126 Mio. Livres. Grösster Kostenblock war die Tilgung alter Staatsschulden (286 Mio.), gefolgt von Militär/Aussenpolitik (165 Mio.) und der Hofhaltung des Königs (66 Mio., davon 36 Mio. allein für Schloss Versailles). Bildung und Fürsorge erhielten dagegen nur 12 Mio. Livres — weniger als ein Zehntel der zivilen Ausgaben.</p>
+    <div class="callout reason"><strong>Zum Vergleich:</strong> Im Bundeshaushalt der BRD 2020 flossen fast 40 % der Ausgaben in Soziales, nur ein Bruchteil in Militär. Das absolutistische Frankreich gab hingegen das Mehrfache für Militär, Hof und Schuldendienst aus wie für Bildung und soziale Unterstützung zusammen — ein zentraler Grund für die wachsende Unzufriedenheit.</div>
+  </div>
+</section>
+
+<section id="staende">
+  <h2>2 · Die Ständegesellschaft und ihre Konsequenzen</h2>
+  <p class="section-sub">L2 — Aufbau der drei Stände im absolutistischen Frankreich und die Folgen für jede Schicht.</p>
+  <div class="card">
+    <h3>Aufbau der drei Stände</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Stand</th><th>Zusammensetzung</th><th>Anteil Bevölkerung</th><th>Steuern &amp; Abgaben</th><th>Privilegien</th></tr></thead>
+        <tbody>
+          <tr><td class="term">1. Stand</td><td>Klerus (Geistliche)</td><td>ca. 0,5 % (130 000 Pers.)</td><td>befreit</td><td>besitzt ca. 10 % des Landbesitzes, hohe Pensionen</td></tr>
+          <tr><td class="term">2. Stand</td><td>Adel</td><td>ca. 1,5 % (350 000 Pers.)</td><td>befreit</td><td>besitzt ca. 30 % des Landbesitzes, staatliche Pensionen</td></tr>
+          <tr><td class="term">3. Stand</td><td>Bauern (86 %) und Bürger (12 %)</td><td>ca. 98 %</td><td>trägt die <strong>gesamte</strong> Steuerlast</td><td>keine; besitzt trotzdem nur ca. 60 % des Landes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Der Dritte Stand trug praktisch die gesamte finanzielle Last des Staates, obwohl er fast die gesamte Bevölkerung stellte und am wenigsten Landbesitz pro Kopf hatte. Diese Schieflage lässt sich an der berühmten Karikatur «Die Last des Dritten Standes» (1789) ablesen: Ein Bauer trägt gebeugt einen Geistlichen und einen Adligen auf dem Rücken, aus seiner Tasche hängen Zettel mit Steuern und Diensten, die Harke trägt die Inschrift «Von Tränen getränkt». Die beiden oberen Stände tragen hochwertige, bunte Kleidung — der Bauer ist in Lumpen gehüllt.</p>
+    <h4>Konkrete Lasten des Dritten Standes</h4>
+    <ul class="clean">
+      <li><strong>Salzsteuer (Gabelle):</strong> als besonders ungerecht empfunden, da jede Familie eine Mindestmenge teuren Salzes kaufen musste. Weigerung führte zu Eigentumsbeschlagnahmung, Gefängnis- oder Galeerenstrafen.</li>
+      <li><strong>Steuern auf Steuern (2×):</strong> Bauern zahlten bis zu 80 % ihres Einkommens an Steuern und Abgaben an Staat, Adel und Kirche.</li>
+      <li><strong>Missernten und Kriege</strong> verschärften die Lage zusätzlich — die Zahl der Bettler stieg stetig.</li>
+      <li><strong>Brotpreise:</strong> 1788 kostete ein Laib Brot fast die Hälfte des Tageseinkommens eines einfachen Arbeiters. Bei grossen Familien reichte der Lohn kaum zum Überleben — ein direkter Auslöser für Hungerunruhen vor 1789.</li>
+    </ul>
+    <h4>Wer forderte etwas vom Dritten Stand?</h4>
+    <p>Der Geistliche Emmanuel Joseph Sieyès brachte die Forderung des Dritten Standes 1789 auf den Punkt:</p>
+    <div class="quoteblock">
+      «Was ist der Dritte Stand? Alles. — Was ist er bis jetzt in der staatlichen Ordnung gewesen? Nichts. — Was verlangt er? Etwas darin zu werden.»
+      <cite>Emmanuel Joseph Sieyès, Flugschrift vor den Generalständen, Mai 1789</cite>
+    </div>
+    <p>Sieyès' Begründung: Der Dritte Stand leistet durch seine Arbeit (Handwerk, Landwirtschaft) den gesamten nützlichen Beitrag zur Nation — er verarbeitet die Gaben der Natur zu Produkten und steigert so ihren Wert. Die Privilegierten (Adel, Klerus) seien dagegen eine reine <em>Last</em> für die Nation: Ihre Vertreter werden nicht vom Volk gewählt und vertreten dessen Interessen nicht, sondern nur die eigenen.</p>
+    <div class="callout warn"><strong>Fallstrick:</strong> «Dritter Stand» bedeutet nicht nur arme Bauern — auch wohlhabende Bürger (Anwälte, Händler, Ärzte) gehörten dazu und waren von den Privilegien der ersten beiden Stände ausgeschlossen. Genau dieses gebildete Bürgertum wurde zum Träger der Aufklärung (siehe <a href="#entwicklungen">Abschnitt 4</a>).</div>
+  </div>
+</section>
+
+<section id="begriff">
+  <h2>3 · Was ist Aufklärung?</h2>
+  <p class="section-sub">L3 — Die zentrale Definition und ihr historischer Kontext.</p>
+  <div class="card">
+    <h3>Kants Definition (1783)</h3>
+    <div class="quoteblock">
+      «Aufklärung ist der Ausgang des Menschen aus seiner selbstverschuldeten Unmündigkeit. Unmündigkeit ist das Unvermögen, sich seines Verstandes ohne die Leitung eines anderen zu bedienen. Selbstverschuldet ist diese Unmündigkeit, wenn die Ursache derselben nicht am Mangel des Verstandes, sondern der Entschliessung und des Mutes liegt, sich seiner ohne Leitung eines anderen zu bedienen. <strong>Sapere aude! Habe Mut, dich deines eigenen Verstandes zu bedienen!</strong> ist also der Wahlspruch der Aufklärung.»
+      <cite>Immanuel Kant, «Beantwortung der Frage: Was ist Aufklärung?», 1783</cite>
+    </div>
+    <h4>Die Definition in eigenen Worten</h4>
+    <p>Die Aufklärung ist eine <strong>geistige Bewegung des 17./18. Jahrhunderts</strong>, die forderte, dass Menschen ihren <strong>eigenen Verstand</strong> nutzen, statt sich das Denken von Autoritäten (Kirche, Monarch, Tradition) vorschreiben zu lassen. Nach Kant sind die Menschen an ihrer Unmündigkeit selbst schuld: Nicht weil ihnen der Verstand fehlt, sondern weil ihnen der <em>Mut</em> fehlt, ihn eigenständig zu gebrauchen. Ziel war der selbstbewusste, kritisch denkende Bürger, der sich zu allen Lebensbereichen — auch zu Kirche und Staat — eine eigene, vernunftbasierte Meinung bildet.</p>
+    <h4>Historischer Rahmen und Voraussetzungen</h4>
+    <ul class="clean">
+      <li>Zeitlich meist auf ca. 1650–1800 angesetzt, mit Höhepunkt im 18. Jahrhundert.</li>
+      <li>Grundlage: die Renaissance («Wiedergeburt» antiken Denkens) und der Humanismus (Mensch als eigenständiges Individuum).</li>
+      <li>Vorausgegangen waren bahnbrechende naturwissenschaftliche Entdeckungen: Isaac Newton (Gravitationsgesetze) und Gottfried Wilhelm Leibniz (Infinitesimalrechnung) zeigten, dass die Natur nach rationalen, mathematischen Gesetzen funktioniert — nicht nach unvorhersehbarem göttlichem Eingreifen.</li>
+      <li>Die konfessionelle Spaltung Europas durch die Reformation hatte die uneingeschränkte Autorität der Kirche bereits untergraben.</li>
+      <li>Träger der Bewegung war das <strong>Bürgertum</strong> — die gesellschaftliche Schicht zwischen Adel und Bauernschaft (Händler, Anwälte, Ärzte, Handwerker), für die technischer Fortschritt und wissenschaftliche Bildung zentrale Anliegen waren.</li>
+    </ul>
+    <div class="callout tip"><strong>Prüfungstipp:</strong> Das Kant-Zitat wörtlich oder sinngemäss wiedergeben zu können, ist in praktisch jeder Prüfung zu diesem Thema gefragt. Besonders wichtig: die Unterscheidung zwischen <em>fehlendem Verstand</em> und <em>fehlendem Mut</em> — das ist Kants eigentliche Pointe.</div>
+  </div>
+</section>
+
+<section id="entwicklungen">
+  <h2>4 · Gesellschaftliche Entwicklungen, Auswirkungen und Forderungen</h2>
+  <p class="section-sub">L4 — In welchen Lebensbereichen die Aufklärung etwas veränderte und was sie konkret forderte.</p>
+  <div class="card">
+    <h3>Die Ideale der Aufklärer</h3>
+    <p>Fünf Leitideale trieben die Bewegung an: <strong>Vernunft</strong>, <strong>Mut zur Kritik</strong>, <strong>geistige Freiheit</strong>, <strong>religiöse Toleranz</strong> und <strong>Erziehung zur Humanität</strong>. Zentrale Rechtsprinzipien, die das aufklärerische Denken daraus ableitete:</p>
+    <ul class="check">
+      <li>Jeder Mensch ist frei geboren.</li>
+      <li>Herrschaft benötigt den Konsens der Beherrschten (Gesellschaftsvertrag).</li>
+      <li>Der Staat muss die angeborenen Menschenrechte schützen: Leben, Freiheit, Eigentum.</li>
+      <li>Macht darf nicht unkontrolliert in einer Hand liegen (Gewaltenteilung).</li>
+    </ul>
+    <h4>Veränderungen nach Lebensbereich</h4>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Bereich</th><th>Veränderung</th><th>Grund / Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Religion</td><td>Kirche verliert an Deutungsmacht</td><td>religiöse Glaubenssätze werden kritisch hinterfragt, Religion bleibt moralisch wichtig, aber nicht mehr Grundlage der Wissenschaft</td></tr>
+          <tr><td class="term">Wissenschaft</td><td>mehr Forschung und Experimente</td><td>die Welt soll rational und empirisch erklärbar sein, nicht durch göttliches Wirken</td></tr>
+          <tr><td class="term">Bildung</td><td>mehr Schulen, bessere Bildung</td><td>selbstständiges Denken braucht Lese- und Schreibfähigkeit; auch Mädchenbildung wird gefordert (z. B. durch François Fénelon, 1687)</td></tr>
+          <tr><td class="term">Medien</td><td>mehr Bücher, Zeitungen, Zeitschriften</td><td>Wissen verbreitet sich schneller; Buchbestand der Bibliothèque Royale wuchs von 6000 (1622) auf 40 000 (1661) Exemplare</td></tr>
+          <tr><td class="term">Gesellschaft</td><td>Gleichheit wird zum Leitwert</td><td>ständische Vorurteile und Privilegien werden kritisiert</td></tr>
+          <tr><td class="term">Frauen</td><td>mehr Forderungen nach Bildung</td><td>Frauen beteiligen sich stärker am geistigen Leben, verfassen Zeitschriftenbeiträge</td></tr>
+          <tr><td class="term">Wirtschaft</td><td>Liberalismus: freier Handel, freies Gewerbe</td><td>«Laissez faire, laissez passer» — Wettbewerb ohne staatliche Bevormundung soll Wohlstand für alle schaffen</td></tr>
+          <tr><td class="term">Politik</td><td>Forderung nach Gewaltenteilung und Volkssouveränität</td><td>grösste politische Sprengkraft der Aufklärung, führt direkt zu den Theorien von Locke, Montesquieu, Rousseau</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Zitate der Aufklärer nach Schlagwort</h4>
+    <ul class="clean">
+      <li><span class="term">Freiheit</span> — Diderot: «Die Freiheit ist ein Geschenk des Himmels, und jedes Individuum […] hat das Recht, sie zu geniessen, sobald es Vernunft besitzt.»</li>
+      <li><span class="term">Gewaltenteilung</span> — Montesquieu: «Alles wäre verloren, wenn derselbe Mensch oder die gleiche Körperschaft des Adels oder des Volkes diese drei Gewalten ausüben würde.»</li>
+      <li><span class="term">Glaubenskritik</span> — Voltaire: «Je weniger Aberglaube, desto weniger Fanatismus, und je weniger Fanatismus, desto weniger Unheil.»</li>
+      <li><span class="term">Freie Wirtschaft</span> — Adam Smith: «Es kann sicherlich eine Gesellschaft nicht blühend und glücklich sein, deren meiste Glieder arm und elend sind.»</li>
+      <li><span class="term">Gleichheit</span> — Friedrich II.: «Der geringste Bauer […] ist ebenso ein Mensch, wie Seine Majestät sind, und denen allen Justiz gewährt werden muss, indem vor der Justiz alle Leute gleich sind.»</li>
+    </ul>
+    <p>Als Forderungen gegenüber einem absolutistischen Herrscher hätten Aufklärer typischerweise verlangt: Gewaltenteilung statt Machtkonzentration, politische Mitbestimmung des Volkes, Gleichheit vor dem Gesetz, Religions- und Meinungsfreiheit, Bildung unabhängig von Herkunft, Abbau von Adels- und Kirchenprivilegien sowie eine gerechtere Steuerverteilung zulasten des 1. und 2. Standes.</p>
+  </div>
+</section>
+
+<section id="rat-emp">
+  <h2>5 · Rationalismus und Empirismus</h2>
+  <p class="section-sub">L5 — Zwei konkurrierende Erkenntnistheorien, die beide zur Aufklärung gehören.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>Rationalismus</h3>
+      <p><strong>Definition:</strong> Erkenntnistheorie, nach der sichere Erkenntnis primär durch <strong>Vernunft und logisches Denken</strong> gewonnen wird — nicht in erster Linie durch Sinneserfahrung. Die eigene Vernunft ist die zuverlässigste Basis für Wissen, Entscheidungen und das Hinterfragen von Autoritäten.</p>
+      <h4>Vertreter</h4>
+      <p>Gottfried Wilhelm Leibniz suchte zeitlebens eine rationale Verbindung zwischen Wissenschaft, Logik und Religion; er entwickelte unabhängig von Newton die Infinitesimalrechnung rein durch mathematisch-logisches Schliessen.</p>
+      <div class="callout reason"><strong>Merkhilfe:</strong> Rationalismus → <em>Ratio</em> = Vernunft. Wissen entsteht im Kopf, durch Nachdenken.</div>
+    </div>
+    <div class="card">
+      <h3>Empirismus</h3>
+      <p><strong>Definition:</strong> Erkenntnistheorie, nach der Wissen primär durch <strong>Erfahrung, Beobachtung und Experiment</strong> entsteht — nicht durch reines Nachdenken allein. Aussagen über die Welt müssen sich an der sinnlich erfahrbaren Wirklichkeit überprüfen lassen.</p>
+      <h4>Vertreter</h4>
+      <p>John Locke begründete den philosophischen Empirismus: Wissen entsteht durch Erfahrung, der Geist ist bei der Geburt eine «unbeschriebene Tafel» (<em>tabula rasa</em>). Isaac Newton bewies durch Beobachtung und Experiment, dass die Natur nach rationalen, mathematischen Gesetzen funktioniert.</p>
+      <div class="callout reason"><strong>Merkhilfe:</strong> Empirismus → <em>empeiría</em> (griech.) = Erfahrung. Wissen entsteht durch Beobachten und Ausprobieren.</div>
+    </div>
+  </div>
+  <div class="card">
+    <h4>Warum beide zur Aufklärung gehören</h4>
+    <p>Beide Strömungen eint die Abkehr von blinder Autoritätsgläubigkeit: Weder die kirchliche Lehre noch die Aussage eines Herrschers wird unhinterfragt akzeptiert. Stattdessen soll jede Aussage entweder <strong>logisch begründbar</strong> (Rationalismus) oder <strong>durch Erfahrung/Experiment überprüfbar</strong> (Empirismus) sein. In der Praxis ergänzten sich beide Ansätze: Die neuen Naturwissenschaften (Newton, Leibniz) kombinierten exaktes logisches Schliessen mit systematischer Beobachtung — genau das lieferte der Aufklärung ihre methodische Grundlage, um auch Gesellschaft und Staat «vernünftig» neu zu denken.</p>
+    <div class="callout warn"><strong>Fallstrick:</strong> Rationalismus und Empirismus sind <em>keine</em> Gegensätze von «Glaube vs. Wissenschaft», sondern zwei unterschiedliche Wege, wie innerhalb der Wissenschaft selbst Erkenntnis gewonnen wird — Vernunft/Logik versus Erfahrung/Beobachtung.</div>
+  </div>
+</section>
+
+<section id="zusammenhang">
+  <h2>6 · Der Zusammenhang von Absolutismus und Aufklärung</h2>
+  <p class="section-sub">L6 — Wie die Aufklärung den Absolutismus in Gesellschaft und Politik herausforderte.</p>
+  <div class="card">
+    <h3>Die Grundspannung</h3>
+    <p>Absolutismus und Aufklärung stehen sich diametral gegenüber: Wo die Aufklärer <strong>Vernunft, Freiheit und Mut zur Kritik</strong> predigten, lebten absolutistische Herrscher ihren Untertanen genau das Gegenteil vor — <strong>Unvernunft, Unfreiheit und Willkür</strong> (siehe Bossuets Rechtfertigung in <a href="#absolutismus">Abschnitt 1</a>). Die Aufklärung entstand nicht trotz, sondern <em>wegen</em> des Absolutismus: Die als unerträglich empfundenen Zustände — Steuerungerechtigkeit, fehlende Mitbestimmung, Ständeprivilegien, religiöse Bevormundung — waren der konkrete Anlass für die politischen und gesellschaftlichen Forderungen der Aufklärer.</p>
+    <h4>Gesellschaftliche Ebene</h4>
+    <p>Die Ständegesellschaft (<a href="#staende">Abschnitt 2</a>) war das gesellschaftliche Rückgrat des Absolutismus: Adel und Klerus stützten den König und wurden dafür mit Privilegien belohnt, der Dritte Stand trug die Last. Die Aufklärung griff genau dieses Prinzip an, indem sie <strong>Gleichheit</strong> statt Geburtsprivilegien forderte — am deutlichsten bei Sieyès («Was ist der Dritte Stand? Alles.»).</p>
+    <h4>Politische Ebene</h4>
+    <p>Politisch zielte die Kritik auf die <strong>Machtkonzentration</strong>: Solange Legislative, Exekutive und Judikative in einer Hand liegen, gibt es laut Montesquieu keine Freiheit und keinen Schutz vor Tyrannei. Die aufklärerischen Staatstheorien (<a href="#theorien">Abschnitt 7</a>) sind direkte Gegenentwürfe zum Absolutismus: Gewaltenteilung statt Machtkonzentration, Gesellschaftsvertrag statt Gottesgnadentum, Volkssouveränität statt alleiniger Herrscherwille.</p>
+    <h4>Der Reformabsolutismus — eine Zwischenlösung</h4>
+    <p>Manche absolutistische Herrscher versuchten, Ideen der Aufklärung zu übernehmen, <em>ohne</em> ihre Macht abzugeben: den sogenannten <strong>Reformabsolutismus</strong> (auch «aufgeklärter Absolutismus»). Bekanntestes Beispiel: Friedrich II. von Preussen, der sich selbst als «erster Diener seines Staates» verstand, die allgemeine Schulpflicht einführte und die Folter abschaffte — gleichzeitig aber die absolute Herrschaft nicht antastete. Das zeigt: Aufklärung und Absolutismus konnten sich teilweise überlagern, aber der grundsätzliche Widerspruch (unkontrollierte Macht vs. Gewaltenteilung und Volksrechte) blieb bestehen.</p>
+    <div class="callout tip"><strong>Prüfungstipp:</strong> Bei einer Argumentationsfrage zum «Zusammenhang» immer beide Ebenen ansprechen — gesellschaftlich (Ständeprivilegien vs. Gleichheit) <em>und</em> politisch (Machtkonzentration vs. Gewaltenteilung) — sowie die Zwischenform Reformabsolutismus erwähnen.</div>
+  </div>
+</section>
+
+<section id="theorien">
+  <h2>7 · Locke, Montesquieu und Rousseau im Vergleich</h2>
+  <p class="section-sub">L7 — Die drei zentralen politischen Theorien der Aufklärung: Merkmale, Unterschiede und Beurteilung.</p>
+
+  <div class="person">
+    <span class="name">John Locke</span><span class="dates">England, 1632–1704</span>
+    <p>Englischer Philosoph, Vordenker des <strong>Liberalismus</strong> und Begründer des philosophischen <strong>Empirismus</strong> (siehe <a href="#rat-emp">Abschnitt 5</a>).</p>
+    <ul class="clean">
+      <li><strong>Gewaltenteilung in zwei Gewalten:</strong> Legislative (gesetzgebend, höchste Kraft im Staat) und Exekutive (vollziehend, umfasst auch Aussenpolitik). Die Judikative ist für Locke Teil der Exekutive, keine eigenständige dritte Gewalt.</li>
+      <li><strong>Hierarchisches Verhältnis:</strong> Die Legislative — als Vertretung des Volkes — steht über der Exekutive.</li>
+      <li><strong>Naturrechte:</strong> Jeder Mensch hat von Natur aus ein Recht auf Leben, Freiheit und Eigentum. Eine Regierung muss diese Rechte schützen.</li>
+      <li><strong>Gesellschaftsvertrag und Widerstandsrecht:</strong> Verletzt eine Regierung die Rechte des Volkes, verliert sie dessen Pflicht zum Gehorsam — das Volk darf sich wehren.</li>
+    </ul>
+  </div>
+
+  <div class="person">
+    <span class="name">Charles de Montesquieu</span><span class="dates">Frankreich, 1689–1755</span>
+    <p>Französischer Schriftsteller und Staatsphilosoph, Hauptwerk «Vom Geist der Gesetze» (1748).</p>
+    <ul class="clean">
+      <li><strong>Klassische Dreiteilung (Trias):</strong> Legislative (gesetzgebende Gewalt), Exekutive (vollziehende Gewalt) und Judikative (richterliche Gewalt) als drei <em>getrennte</em>, eigenständige Gewalten.</li>
+      <li><strong>Gleichberechtigung und Checks and Balances:</strong> Anders als bei Locke sind die drei Gewalten gleichberechtigt und kontrollieren sich gegenseitig, damit keine zu mächtig wird.</li>
+      <li><strong>Begründung:</strong> «Wenn in derselben Person oder der gleichen Körperschaft die gesetzgebende Gewalt mit der vollziehenden vereinigt ist, gibt es keine Freiheit» — denn dann könnte dieselbe Instanz tyrannische Gesetze erlassen <em>und</em> durchsetzen. Ebenso braucht es eine unabhängige Judikative, sonst wäre «die Macht über Leben und Freiheit der Bürger willkürlich».</li>
+      <li><strong>Praktische Umsetzung:</strong> Legislative durch gewählte Volksvertreter, Exekutive durch einen Monarchen (mit Veto-Recht), Judikative durch unabhängige Richter, die laut Montesquieu nur «der Mund sind, der die Worte des Gesetzes spricht» — also keine eigene politische Gestaltungsmacht haben.</li>
+    </ul>
+  </div>
+
+  <div class="person">
+    <span class="name">Jean-Jacques Rousseau</span><span class="dates">Genf/Paris, 1712–1778</span>
+    <p>Genfer Philosoph, Schriftsteller und Pädagoge — die radikalste der drei Theorien.</p>
+    <ul class="clean">
+      <li><strong>Volkssouveränität:</strong> Alle Staatsgewalt liegt ursprünglich und dauerhaft beim Volk. Durch den Gesellschaftsvertrag überträgt das Volk der Regierung nur zeitweilig die Ausübung der Macht.</li>
+      <li><strong>Der Gesamtwille (volonté générale):</strong> Zentrale Unterscheidung — der Wille des Volkes ist nicht einfach die Summe aller Einzelmeinungen («Wille aller»), sondern der <strong>Gesamtwille</strong>, der auf das Gemeinwohl zielt. Dieser kann theoretisch auch von einer Minderheit getragen werden, wenn sie das Gemeinwohl im Blick hat.</li>
+      <li><strong>Exekutive der Legislative untergeordnet:</strong> Die ausführende Gewalt ist dem durch das Volk bestimmten Gesetzgeber unterstellt, nicht umgekehrt.</li>
+      <li><strong>Historische Wirkung:</strong> Rousseaus Ideen öffneten das Tor zur Französischen Revolution (1789) — teils radikale Gruppen beriefen sich auf den «Gesamtwillen», um ihr Handeln zu legitimieren, auch ohne Mehrheit der Bevölkerung hinter sich zu haben.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Die drei Theorien im direkten Vergleich</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Kriterium</th><th>Locke</th><th>Montesquieu</th><th>Rousseau</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Anzahl Gewalten</td><td>2 (Judikative Teil der Exekutive)</td><td>3, strikt getrennt</td><td>im Zentrum: Volkswille als Quelle aller Gewalt</td></tr>
+          <tr><td class="term">Verhältnis der Gewalten</td><td>hierarchisch: Legislative über Exekutive</td><td>gleichberechtigt, gegenseitige Kontrolle</td><td>Exekutive der Legislative (= Volk) untergeordnet</td></tr>
+          <tr><td class="term">Quelle der Macht</td><td>Naturrechte des Einzelnen, Gesellschaftsvertrag</td><td>Vernunft, Verfassung, Gewaltentrennung</td><td>Volkssouveränität, Gesamtwille</td></tr>
+          <tr><td class="term">Rolle des Volkes</td><td>wählt Legislative, hat Widerstandsrecht</td><td>wählt Repräsentanten, keine direkte Macht</td><td>ist die eigentliche Quelle aller Souveränität</td></tr>
+          <tr><td class="term">Grundwerk</td><td>«Two Treatises of Government» (1689)</td><td>«Vom Geist der Gesetze» (1748)</td><td>«Gesellschaftsvertrag» (1762)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Kurze Beurteilung der drei Ansätze</h4>
+    <ul class="clean">
+      <li><strong>Locke</strong> liefert mit den Naturrechten ein starkes ethisches Fundament, bleibt aber mit nur zwei Gewalten weniger ausbalanciert als Montesquieus Modell — die Exekutive bleibt relativ stark.</li>
+      <li><strong>Montesquieu</strong> liefert das heute am breitesten umgesetzte Modell (klassische Dreiteilung, «Checks and Balances») — sein Konzept bildet das Fundament fast jeder modernen Demokratie, ist aber in der Reinform (Monarch als Exekutive, zensusbasiertes Wahlrecht) stark an seine Zeit gebunden.</li>
+      <li><strong>Rousseau</strong> ist am konsequentesten demokratisch (Volk als einzige Quelle der Macht), birgt aber mit dem unscharfen Begriff des «Gesamtwillens» ein Missbrauchsrisiko: Wer entscheidet, was dem Gemeinwohl wirklich dient? Genau diese Unschärfe nutzten während der Französischen Revolution radikale Gruppen zur Rechtfertigung ihres Handelns.</li>
+    </ul>
+    <div class="callout warn"><strong>Fallstrick in Prüfungen:</strong> Nicht einfach «alle drei wollten Gewaltenteilung» schreiben — nur Montesquieu fordert die klassische <em>dreigeteilte</em>, gleichberechtigte Gewaltenteilung. Locke kennt nur zwei hierarchische Gewalten, Rousseau denkt primär von der Volkssouveränität her, nicht von einer Gewaltenstruktur.</div>
+  </div>
+
+  <div class="card">
+    <h3>Transferbeispiel: die Schweizer Bundesverfassung</h3>
+    <p>Die Schweiz zeigt gut, wie die drei Theorien in der Praxis gemischt und angepasst werden:</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Aspekt</th><th>Schweiz</th><th>Bezug zur Theorie</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Gewaltenteilung</td><td>Bundesversammlung (Legislative), Bundesrat (Exekutive), Bundesgericht (Judikative)</td><td>setzt Montesquieus klassische Dreiteilung vollständig um</td></tr>
+          <tr><td class="term">Verhältnis</td><td>Parlament formell «höchste Behörde», Bundesrat faktisch gleichberechtigt</td><td>Mischform zwischen Lockes Hierarchie und Montesquieus Gleichberechtigung</td></tr>
+          <tr><td class="term">Veto-Recht der Exekutive</td><td>existiert nicht</td><td>weder bei Locke noch bei Montesquieu in dieser Form vorgesehen</td></tr>
+          <tr><td class="term">Rolle des Volkes</td><td>Volk als «vierte Gewalt»: Initiativen und Referenden geben bei Sachfragen das letzte Wort</td><td>geht über Locke (nur Widerstandsrecht) und Montesquieu (nur Repräsentation) hinaus — nahe an Rousseaus Volkssouveränität</td></tr>
+          <tr><td class="term">Verfassungsgerichtsbarkeit</td><td>stark eingeschränkt: Bundesgericht darf Bundesgesetze laut Art. 190 BV nicht auf Verfassungsmässigkeit prüfen</td><td>Montesquieus «Richter als Mund des Gesetzes» noch radikaler umgesetzt als bei ihm selbst vorgesehen</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Die Schweizer <strong>direkte Demokratie</strong> durchbricht damit die starren Theorien von Locke und Montesquieu, weil das Volk jederzeit direkt in die Gesetzgebung eingreifen kann — ein Element, das näher bei Rousseau liegt, aber über dessen repräsentatives Modell noch hinausgeht.</p>
+  </div>
+</section>
+
+<section id="moderne">
+  <h2>8 · Der Einfluss der Aufklärung auf die Moderne</h2>
+  <p class="section-sub">L8 — Wie aufklärerisches Denken bis heute politische Systeme prägt.</p>
+  <div class="card">
+    <h3>Von der Theorie zur Revolution</h3>
+    <div class="timeline">
+      <div class="tl-row"><span class="yr">1776</span><div><b>Unabhängigkeitserklärung der USA</b> — die 13 britischen Kolonien spalten sich von Grossbritannien ab. Es ist der weltweit erste Versuch, einen Staat konsequent nach den aufklärerischen Prinzipien von Menschenrechten und Gewaltenteilung aufzubauen.</div></div>
+      <div class="tl-row"><span class="yr">1789</span><div><b>Französische Revolution</b> — der gewaltsame Umsturz der alten Ständeordnung in Frankreich, der das Ende des Absolutismus in Europa einläutet. Sie setzt vor allem die radikalen Ideen Rousseaus (Volkssouveränität, Gleichheit) in die Praxis um — mit grossem Fortschritt, aber im weiteren Verlauf auch grossem Terror.</div></div>
+    </div>
+    <h4>Wirkung in konkreten Lebensbereichen</h4>
+    <ul class="clean">
+      <li><strong>Staatsform:</strong> Gewaltenteilung ist heute Grundprinzip fast jeder demokratischen Verfassung (vgl. Schweiz, <a href="#theorien">Abschnitt 7</a>).</li>
+      <li><strong>Menschenrechte:</strong> Lockes Idee der angeborenen Rechte (Leben, Freiheit, Eigentum) findet sich direkt in modernen Grundrechtskatalogen und Menschenrechtserklärungen wieder.</li>
+      <li><strong>Wirtschaft:</strong> Der von der Aufklärung geforderte wirtschaftliche Liberalismus («laissez faire») prägt bis heute Diskussionen über Markt, Wettbewerb und Staatseingriffe.</li>
+      <li><strong>Bildung:</strong> Die Forderung nach allgemeiner, staatlich organisierter Schulbildung (unabhängig von Stand oder Geschlecht) ist Grundlage moderner Bildungssysteme.</li>
+      <li><strong>Wissenschaft:</strong> Rationalismus und Empirismus (<a href="#rat-emp">Abschnitt 5</a>) bilden bis heute das methodische Fundament wissenschaftlichen Arbeitens — Hypothesen müssen logisch schlüssig <em>und</em> empirisch überprüfbar sein.</li>
+      <li><strong>Politische Kultur:</strong> Meinungsfreiheit, Pressefreiheit und das Recht auf eine eigene, kritische Position gegenüber dem Staat sind direkte Erben der Aufklärung.</li>
+    </ul>
+    <div class="callout reason"><strong>Zusammenfassend:</strong> Die Aufklärung war der geistige Wegbereiter der modernen Revolutionen und wirkt sich bis heute auf praktisch alle Lebensbereiche aus — Pädagogik, Wirtschaft, Industrialisierung, Glaube, Politik. Die Ideen der Aufklärung sind, wie es die Quellen formulieren, «bis heute lebendig».</div>
+  </div>
+</section>
+
+<section id="quellenanalyse">
+  <h2>9 · Eine Quelle analysieren</h2>
+  <p class="section-sub">L9 — Methodisches Vorgehen bei Text- und Bildquellen, geübt an zwei Beispielen aus dem Thema.</p>
+  <div class="card">
+    <h3>Vorgehen bei einer Quellenanalyse</h3>
+    <ol class="clean" style="counter-reset:qa;list-style:none;padding-left:0">
+      <li style="counter-increment:qa;position:relative;padding-left:34px;margin-bottom:12px"><strong style="position:absolute;left:0">1.</strong><strong>Vorhandenes erfassen:</strong> genau lesen/betrachten, Notizen machen, Auffälligkeiten, Fragen und Unklarheiten festhalten. Bei Bildquellen: was ist dargestellt, wie (Haltung, Kleidung, Symbole, Beschriftung)?</li>
+      <li style="counter-increment:qa;position:relative;padding-left:34px;margin-bottom:12px"><strong style="position:absolute;left:0">2.</strong><strong>Einordnen (W-Fragen):</strong> Wer ist Autor/in oder Urheber/in? Von wann stammt die Quelle? In welchem historischen Zusammenhang entstand sie? Was ist die Aussageabsicht — objektiv oder subjektiv/parteiisch?</li>
+      <li style="counter-increment:qa;position:relative;padding-left:34px;margin-bottom:12px"><strong style="position:absolute;left:0">3.</strong><strong>Mit Vorwissen verknüpfen:</strong> die Quelle in den bekannten historischen Kontext einordnen, Zusammenhänge zu anderen Quellen/Ereignissen herstellen.</li>
+      <li style="counter-increment:qa;position:relative;padding-left:34px;margin-bottom:12px"><strong style="position:absolute;left:0">4.</strong><strong>Kritisch bewerten:</strong> Glaubwürdigkeit und Perspektive einschätzen — wessen Interessen vertritt die Quelle? Welche Informationen fehlen oder werden bewusst weggelassen?</li>
+      <li style="counter-increment:qa;position:relative;padding-left:34px"><strong style="position:absolute;left:0">5.</strong><strong>Fazit ziehen:</strong> die zentrale Aussage/Botschaft der Quelle zusammenfassen und ihre historische Bedeutung einordnen.</li>
+    </ol>
+    <h4>Musteranalyse 1 — Textquelle: Bossuet (vgl. <a href="#absolutismus">Abschnitt 1</a>)</h4>
+    <p><strong>Erfassen:</strong> Bossuet begründet die absolute, unkontrollierte Macht des Fürsten in vier Sätzen. <strong>Einordnen:</strong> Jacques-Bénigne Bossuet war Bischof und Erzieher am französischen Hof — die Quelle entstand im Kontext der Legitimation des Absolutismus, ist also eindeutig subjektiv und dient der Herrschaftsrechtfertigung. <strong>Verknüpfen:</strong> Die Argumentation mit dem Gottesgnadentum steht im direkten Widerspruch zu Locke, Montesquieu und Rousseau, die alle eine Kontrolle der Macht fordern. <strong>Bewerten:</strong> Die Quelle vertritt klar die Interessen des Herrschers, nicht der Untertanen; Kritikpunkte (etwa der enorme ökonomische Schaden absolutistischer Misswirtschaft, siehe <a href="#absolutismus">Finanzkrise 1788</a>) werden ausgeblendet. <strong>Fazit:</strong> Die Quelle zeigt exemplarisch, wie religiöse Argumente zur politischen Machtsicherung instrumentalisiert wurden — genau das, was die Aufklärer als «Unmündigkeit» und unreflektierte Autoritätsgläubigkeit kritisierten.</p>
+    <h4>Musteranalyse 2 — Bildquelle: «Die Last des Dritten Standes» (1789)</h4>
+    <p><strong>Erfassen:</strong> Karikatur zeigt einen gebeugten Bauern, der einen Geistlichen und einen Adligen trägt; Zettel mit Steuerlasten hängen aus seiner Tasche, die Harke trägt die Inschrift «Von Tränen getränkt», ein Schwert die Inschrift «Gerötet vom Blut»; Unterschrift «Hoffen wir, dass das Spiel bald ein Ende nimmt». <strong>Einordnen:</strong> anonyme politische Karikatur aus dem Revolutionsjahr 1789, klar parteiisch im Sinne des Dritten Standes. <strong>Verknüpfen:</strong> passt zu den Zahlen zur Ständegesellschaft (<a href="#staende">Abschnitt 2</a>): 98 % der Bevölkerung trugen die gesamte Steuerlast. <strong>Bewerten:</strong> die Darstellung ist bewusst überspitzt (Symbolik von Kleidung, Haltung, Inschriften), um Empörung zu erzeugen — typisches Mittel politischer Propaganda, aber mit einem realen gesellschaftlichen Kern. <strong>Fazit:</strong> Die Karikatur macht die abstrakte Ständeungleichheit emotional greifbar und zeigt, wie stark sich der Unmut des Dritten Standes kurz vor der Revolution bereits öffentlich artikulierte.</p>
+    <div class="callout tip"><strong>Prüfungstipp:</strong> Bei Bildquellen immer explizit auf <em>Gestaltungsmittel</em> eingehen (Haltung, Mimik, Kleidung, Grösse/Proportionen, Symbole, Bildunterschrift) — das wird in Prüfungen oft separat bewertet und nicht automatisch mitgedacht.</div>
+  </div>
+</section>
+
+<section id="fehler">
+  <h2>Typische Fehler und Fallen</h2>
+  <div class="card">
+    <ul class="cross">
+      <li>Locke und Montesquieu als «dasselbe Modell der Gewaltenteilung» behandeln — Locke kennt nur zwei, hierarchisch geordnete Gewalten, Montesquieu drei gleichberechtigte.</li>
+      <li>Rationalismus und Empirismus als Gegensatz «Vernunft vs. Wissenschaft» missverstehen — beide sind wissenschaftliche Methoden, keine Glaubensfragen.</li>
+      <li>«Dritter Stand» mit «arme Bauern» gleichsetzen — er umfasst auch das gebildete, teils wohlhabende Bürgertum, das die Aufklärung trug.</li>
+      <li>Reformabsolutismus mit echtem Verfassungsstaat verwechseln — reformierte Herrscher (z. B. Friedrich II.) übernahmen einzelne Ideen, gaben aber ihre absolute Macht nicht ab.</li>
+      <li>Rousseaus «Gesamtwille» mit «Mehrheitswille» gleichsetzen — Rousseau betont ausdrücklich, dass der Gesamtwille auch von einer Minderheit getragen werden kann, wenn sie das Gemeinwohl vertritt.</li>
+      <li>Bei der Quellenanalyse nur den Inhalt wiedergeben, ohne Autor, Entstehungskontext und Aussageabsicht einzuordnen — das ist der häufigste Punkteverlust.</li>
+      <li>Die Schweizer Gewaltenteilung unreflektiert als «reine Umsetzung von Montesquieu» bezeichnen — es ist eine Mischform mit eigenständigen Elementen (Volk als vierte Gewalt, eingeschränkte Verfassungsgerichtsbarkeit).</li>
+    </ul>
+  </div>
+</section>
+
+<section id="glossar">
+  <h2>Glossar A–Z</h2>
+  <div class="card">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Absolutismus</td><td>Herrschaftsform, bei der ein Monarch die uneingeschränkte Staatsgewalt in einer Person vereinigt und über dem Gesetz steht.</td></tr>
+          <tr><td class="term">Bürgertum</td><td>Gesellschaftliche Schicht zwischen Adel und Bauernschaft (Händler, Anwälte, Ärzte, Handwerker); Träger der Aufklärung.</td></tr>
+          <tr><td class="term">Dritter Stand</td><td>Bauern und Bürger, ca. 98 % der Bevölkerung Frankreichs, trugen die gesamte Steuerlast ohne Privilegien.</td></tr>
+          <tr><td class="term">Empirismus</td><td>Erkenntnistheorie: Wissen entsteht durch Erfahrung, Beobachtung und Experiment.</td></tr>
+          <tr><td class="term">Exekutive</td><td>Vollziehende Gewalt; setzt Gesetze um, regiert und verwaltet den Staat.</td></tr>
+          <tr><td class="term">Gesamtwille (volonté générale)</td><td>Rousseaus Begriff für den auf das Gemeinwohl zielenden Volkswillen — nicht identisch mit der Summe aller Einzelmeinungen.</td></tr>
+          <tr><td class="term">Gesellschaftsvertrag</td><td>Theoretische Vereinbarung, durch die Menschen Teile ihrer natürlichen Freiheit an einen Staat abtreten, der im Gegenzug ihre Rechte schützt.</td></tr>
+          <tr><td class="term">Gewaltenteilung</td><td>Aufteilung der Staatsmacht auf Legislative, Exekutive und Judikative, um Machtmissbrauch zu verhindern.</td></tr>
+          <tr><td class="term">Gottesgnadentum</td><td>Legitimation der Monarchenmacht als von Gott verliehen und daher unkontrollierbar (z. B. bei Bossuet).</td></tr>
+          <tr><td class="term">Judikative</td><td>Richterliche Gewalt; urteilt nach geltendem Recht.</td></tr>
+          <tr><td class="term">Legislative</td><td>Gesetzgebende Gewalt; erlässt und ändert Gesetze.</td></tr>
+          <tr><td class="term">Liberalismus</td><td>Politische Weltanschauung, die Freiheit des Einzelnen, Selbstbestimmung und Begrenzung staatlicher Macht fordert; entstand aus Lockes Ideen.</td></tr>
+          <tr><td class="term">Merkantilismus</td><td>Wirtschaftssystem absolutistischer Staaten: möglichst viel exportieren, wenig importieren, um Gold/Geld im Land zu behalten.</td></tr>
+          <tr><td class="term">Rationalismus</td><td>Erkenntnistheorie: sichere Erkenntnis entsteht primär durch Vernunft und logisches Denken.</td></tr>
+          <tr><td class="term">Reformabsolutismus</td><td>Herrschaftsform, bei der absolutistische Herrscher einzelne Ideen der Aufklärung übernehmen, ohne ihre Macht abzugeben (auch «aufgeklärter Absolutismus»).</td></tr>
+          <tr><td class="term">Sapere aude</td><td>Lateinisch «Habe Mut zu wissen» — Wahlspruch der Aufklärung nach Kant.</td></tr>
+          <tr><td class="term">Ständegesellschaft</td><td>Gesellschaftsordnung mit festen, rechtlich ungleichen Schichten (1. Klerus, 2. Adel, 3. Bauern/Bürger).</td></tr>
+          <tr><td class="term">Volkssouveränität</td><td>Prinzip, dass alle Staatsgewalt ursprünglich beim Volk liegt (zentral bei Rousseau).</td></tr>
+          <tr><td class="term">Widerstandsrecht</td><td>Nach Locke: Recht des Volkes, sich gegen eine die Naturrechte verletzende Regierung zu wehren.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="uebungen">
+  <h2>Übungen</h2>
+  <p class="section-sub">Von Grundlagen bis Prüfungsniveau — Lösungen zum Aufklappen.</p>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 1 · Grundlagen</span><h4>Begriffe definieren</h4></div>
+    <p>Definiere in eigenen Worten: a) Absolutismus, b) Aufklärung (nach Kant), c) Rationalismus, d) Empirismus.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>a)</strong> Herrschaftsform, bei der ein Monarch die gesamte Staatsgewalt unkontrolliert in einer Person vereinigt und über dem Gesetz steht. <strong>b)</strong> Nach Kant der «Ausgang des Menschen aus seiner selbstverschuldeten Unmündigkeit» — der Mut, den eigenen Verstand ohne fremde Leitung zu gebrauchen. <strong>c)</strong> Erkenntnistheorie, nach der sichere Erkenntnis vor allem durch Vernunft/logisches Denken entsteht. <strong>d)</strong> Erkenntnistheorie, nach der Wissen vor allem durch Erfahrung und Experiment entsteht.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 1 · Grundlagen</span><h4>Die drei Stände zuordnen</h4></div>
+    <p>Ordne zu: Klerus, Adel, Bauern/Bürger. Nenne für jeden Stand den ungefähren Bevölkerungsanteil und ob er Steuern zahlte.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p>1. Stand = Klerus (ca. 0,5 %, steuerbefreit). 2. Stand = Adel (ca. 1,5 %, steuerbefreit). 3. Stand = Bauern und Bürger (ca. 98 %, trägt die gesamte Steuerlast).</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 2 · Anwendung</span><h4>Gewalten zuordnen</h4></div>
+    <p>Ordne folgende Aufgaben den drei Gewalten zu: Gesetze erlassen, Budget vollziehen, Streitfälle entscheiden, Krieg führen, Urteile sprechen, höchste Macht im Staat (nach Montesquieus Modell).</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Legislative:</strong> Gesetze erlassen, höchste Macht im Staat (in diesem Modell theoretisch gleichberechtigt, aber ursprünglich oft als wichtigste Gewalt gesehen). <strong>Exekutive:</strong> Budget vollziehen, Krieg führen. <strong>Judikative:</strong> Streitfälle entscheiden, Urteile sprechen.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 2 · Anwendung</span><h4>Zitat einem Aufklärer zuordnen</h4></div>
+    <p>Welchem Aufklärer bzw. welcher Theorie entspricht folgende Aussage am ehesten: «Die staatliche Gewalt beruht auf dem Gemeinwillen des Volkes, das sie der Regierung nur auf Zeit überträgt»?</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p>Jean-Jacques Rousseau (Volkssouveränität / Gesamtwille). Begründung: Nur bei Rousseau liegt die Macht ursprünglich beim Volk selbst, das sie lediglich zeitweise an eine Regierung delegiert — bei Locke steht die Legislative über der Exekutive, bei Montesquieu sind die drei Gewalten gleichberechtigt getrennt.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 3 · Schwierige Anwendung</span><h4>Locke vs. Montesquieu vergleichen</h4></div>
+    <p>Nenne drei konkrete Unterschiede zwischen den Staatstheorien von Locke und Montesquieu.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p>1) Anzahl Gewalten: Locke zwei (Judikative ist Teil der Exekutive), Montesquieu drei getrennte Gewalten. 2) Verhältnis: bei Locke hierarchisch (Legislative über Exekutive), bei Montesquieu gleichberechtigt mit gegenseitiger Kontrolle. 3) Begründung: Locke argumentiert primär über Naturrechte und Widerstandsrecht des Volkes, Montesquieu primär über die Verhinderung von Machtmissbrauch durch strukturelle Gewaltentrennung («Checks and Balances»).</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 3 · Schwierige Anwendung</span><h4>Reformabsolutismus einordnen</h4></div>
+    <p>Erkläre, warum der Reformabsolutismus (z. B. unter Friedrich II.) kein Widerspruch zum Absolutismus ist, obwohl er aufklärerische Ideen übernimmt.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p>Reformabsolutistische Herrscher übernahmen einzelne <em>inhaltliche</em> Ideale der Aufklärung (z. B. Schulpflicht, Abschaffung der Folter, Selbstverständnis als «erster Diener des Staates»), behielten aber die <em>strukturelle</em> Grundlage des Absolutismus bei: Die gesamte Macht blieb unkontrolliert in der Hand des Monarchen, es gab weder Gewaltenteilung noch politische Mitbestimmung des Volkes. Der Kern des Absolutismus — unkontrollierte Machtkonzentration — wurde also nicht angetastet, nur einzelne Konsequenzen daraus abgemildert.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 4 · Transfer</span><h4>Fehlerhafte Aussage korrigieren</h4></div>
+    <p>Folgende Schüleraussage enthält einen Fehler: «Montesquieu und Rousseau forderten beide dieselbe Art von Gewaltenteilung, nur Rousseau ging noch einen Schritt weiter und gab dem Volk das Widerstandsrecht.» Finde und korrigiere den Fehler.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p>Zwei Fehler: Erstens denkt Rousseau nicht primär von einer Gewaltenteilungsstruktur aus, sondern von der Volkssouveränität (Gesamtwille) — eine «gleiche Art von Gewaltenteilung» wie bei Montesquieu ist bei ihm so nicht vorhanden. Zweitens ist das Widerstandsrecht ein Konzept von <strong>Locke</strong>, nicht von Rousseau. Korrekt: Montesquieu fordert die klassische dreigeteilte, gleichberechtigte Gewaltenteilung; Rousseau geht von der Volkssouveränität und dem Gesamtwillen aus; das Widerstandsrecht stammt von Locke.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 4 · Transfer</span><h4>Schweiz als Transferfall</h4></div>
+    <p>Die Schweizer Bundesverfassung kennt kein Veto-Recht der Exekutive und lässt das Volk über Initiativen und Referenden direkt mitentscheiden. Ordne diese zwei Merkmale den drei Theorien zu und begründe, wessen Modell damit am ehesten/am wenigsten gut abgebildet wird.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p>Das fehlende Veto-Recht weicht von Montesquieus Modell ab, der der Exekutive (dem Monarchen) ausdrücklich ein Veto gegen die Legislative zubilligt. Die direkte Mitbestimmung des Volkes über Initiativen/Referenden geht über Lockes blosses Widerstandsrecht und über Montesquieus reine Repräsentation hinaus und kommt Rousseaus Idee der Volkssouveränität am nächsten — ohne jedoch dessen Modell vollständig zu übernehmen, da die Schweiz zusätzlich ein repräsentatives Parlament behält. Insgesamt: am wenigsten gut passt Montesquieus Modell (wegen des fehlenden Vetos), am ehesten lässt sich die Volksrolle mit Rousseau verbinden.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><span class="tag lvl">Level 5 · Prüfungssimulation</span><h4>Quellenanalyse selbst durchführen</h4></div>
+    <p>Analysiere folgende Quelle nach dem 5-Schritte-Vorgehen aus <a href="#quellenanalyse">Abschnitt 9</a>: «Der Fürst ist niemandem Rechenschaft schuldig von dem, was er anordnet. […] Er ist von Gott und sozusagen ein Stück der göttlichen Unabhängigkeit.» (J. Bossuet). Gehe insbesondere auf die Aussageabsicht und mögliche Gegenpositionen der Aufklärer ein.</p>
+    <details><summary>Lösung anzeigen</summary>
+      <p><strong>Erfassen:</strong> Der Fürst wird als niemandem rechenschaftspflichtig und als gottgegebene Instanz dargestellt. <strong>Einordnen:</strong> Bossuet war Bischof am französischen Hof — die Quelle ist eindeutig subjektiv und dient der Rechtfertigung absoluter Herrschermacht, vermutlich an das Fürstenhaus selbst gerichtet oder zu dessen Erziehung verfasst. <strong>Verknüpfen:</strong> Sie passt zum zeitlichen und politischen Kontext des Absolutismus (ca. 1648–1789) und steht exemplarisch für das Gottesgnadentum. <strong>Bewerten:</strong> Die Quelle vertritt einseitig die Interessen des Herrschers; die realen negativen Folgen unkontrollierter Macht — z. B. die massive Finanzkrise von 1788 oder die Steuerlast des Dritten Standes — werden komplett ausgeblendet. Die Aufklärer (Locke, Montesquieu, Rousseau) widersprechen dieser Position fundamental: Für sie ist unkontrollierte Macht gerade die Ursache von Tyrannei, nicht ihre Verhinderung; sie fordern Gewaltenteilung, Gesellschaftsvertrag und Volksrechte als Gegenmodell. <strong>Fazit:</strong> Die Quelle zeigt, wie religiöse Rhetorik zur politischen Machtsicherung diente, und macht im direkten Kontrast deutlich, wie radikal der Bruch war, den die Aufklärung mit diesem Denken vollzog.</p>
+    </details>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz</h2>
+  <p class="section-sub">Schnellcheck mit sofortigem Feedback — kein Punktedruck, einfach zum Üben.</p>
+  <div class="card">
+    <div class="quiz-q" data-correct="1">
+      <p class="q">1. Wer formulierte die klassische Dreiteilung der Gewalten in Legislative, Exekutive und Judikative?</p>
+      <div class="opts">
+        <button class="opt" data-i="0">John Locke</button>
+        <button class="opt" data-i="1">Charles de Montesquieu</button>
+        <button class="opt" data-i="2">Jean-Jacques Rousseau</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+    <div class="quiz-q" data-correct="2">
+      <p class="q">2. Wie bezeichnet Rousseau den auf das Gemeinwohl zielenden Volkswillen?</p>
+      <div class="opts">
+        <button class="opt" data-i="0">Widerstandsrecht</button>
+        <button class="opt" data-i="1">Naturrecht</button>
+        <button class="opt" data-i="2">Gesamtwille</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+    <div class="quiz-q" data-correct="0">
+      <p class="q">3. Welcher Stand trug im absolutistischen Frankreich praktisch die gesamte Steuerlast?</p>
+      <div class="opts">
+        <button class="opt" data-i="0">Dritter Stand</button>
+        <button class="opt" data-i="1">Erster Stand (Klerus)</button>
+        <button class="opt" data-i="2">Zweiter Stand (Adel)</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+    <div class="quiz-q" data-correct="1">
+      <p class="q">4. Welche Erkenntnistheorie stützt sich primär auf Erfahrung und Experiment?</p>
+      <div class="opts">
+        <button class="opt" data-i="0">Rationalismus</button>
+        <button class="opt" data-i="1">Empirismus</button>
+        <button class="opt" data-i="2">Merkantilismus</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+    <div class="quiz-q" data-correct="2">
+      <p class="q">5. Wie nennt man eine absolutistische Herrschaft, die einzelne Ideen der Aufklärung übernimmt, ohne ihre Macht abzugeben?</p>
+      <div class="opts">
+        <button class="opt" data-i="0">Liberalismus</button>
+        <button class="opt" data-i="1">Volkssouveränität</button>
+        <button class="opt" data-i="2">Reformabsolutismus</button>
+      </div>
+      <p class="fb"></p>
+    </div>
+  </div>
+</section>
+
+<section id="simulation">
+  <h2>Prüfungssimulation</h2>
+  <p class="section-sub">Realistische Mini-Prüfung, ca. 35–40 Minuten, kombiniert mehrere Lernziele. Zeige vollständige Argumentationen, nicht nur Stichworte.</p>
+  <div class="card">
+    <h3>Aufgabe 1 (Begriffe, ca. 8 Punkte)</h3>
+    <p>Definiere «Absolutismus» und «Aufklärung» und erkläre in 3–4 Sätzen den grundsätzlichen Widerspruch zwischen beiden.</p>
+    <details><summary>Musterlösung</summary>
+      <p>Absolutismus: Herrschaftsform mit uneingeschränkter, unkontrollierter Macht eines Monarchen, der über dem Gesetz steht. Aufklärung: geistige Bewegung, die fordert, den eigenen Verstand ohne fremde Leitung zu nutzen (Kant: Ausgang aus selbstverschuldeter Unmündigkeit). Widerspruch: Der Absolutismus verlangt bedingungslosen Gehorsam gegenüber einem unkontrollierten Herrscher, die Aufklärung fordert dagegen kritisches, eigenständiges Denken und die Kontrolle jeder Macht durch Vernunft, Gesetz und Gewaltenteilung. Die Aufklärung richtet sich damit direkt gegen die Grundprinzipien des Absolutismus.</p>
+    </details>
+    <h3>Aufgabe 2 (Quellenarbeit, ca. 10 Punkte)</h3>
+    <p>«Was ist der Dritte Stand? Alles. — Was ist er bis jetzt in der staatlichen Ordnung gewesen? Nichts.» (Sieyès, 1789). Analysiere diese Quelle und ordne sie in den Zusammenhang von Ständegesellschaft und Aufklärung ein.</p>
+    <details><summary>Musterlösung</summary>
+      <p>Sieyès, ein Geistlicher, verfasste diese Flugschrift kurz vor den Generalständen 1789 — ein politisch bewusst zugespitztes Pamphlet im Interesse des Dritten Standes. Aussage: Der Dritte Stand leistet den gesamten produktiven Beitrag zur Nation (98 % der Bevölkerung, gesamte Steuerlast), hat aber politisch kein Gewicht. Die Quelle greift damit direkt die Ständeprivilegien von Adel und Klerus an, die zwar politisch alles bedeuten, wirtschaftlich aber der Nation nicht nützen. Sie verkörpert exemplarisch die aufklärerische Forderung nach Gleichheit und politischer Mitbestimmung und markiert den unmittelbaren Vorabend der Französischen Revolution.</p>
+    </details>
+    <h3>Aufgabe 3 (Theorienvergleich, ca. 12 Punkte)</h3>
+    <p>Vergleiche die Staatstheorien von Locke, Montesquieu und Rousseau hinsichtlich Anzahl und Verhältnis der Gewalten sowie der Rolle des Volkes. Beurteile abschliessend, welches Modell am ehesten der heutigen Schweizer Verfassung entspricht und warum.</p>
+    <details><summary>Musterlösung</summary>
+      <p>Locke: zwei Gewalten (Legislative über Exekutive), Volk hat Widerstandsrecht. Montesquieu: drei gleichberechtigte, sich gegenseitig kontrollierende Gewalten, Volk wählt nur Repräsentanten. Rousseau: Macht liegt ursprünglich beim Volk (Volkssouveränität/Gesamtwille), Exekutive der Legislative untergeordnet. Die Schweiz entspricht in der institutionellen Struktur am ehesten Montesquieu (klare Dreiteilung Legislative–Exekutive–Judikative), geht aber bei der Rolle des Volkes (direkte Demokratie mit Initiativen und Referenden) deutlich über ihn hinaus und nähert sich damit Rousseaus Idee der Volkssouveränität an. Insgesamt ist die Schweizer Verfassung eine Mischform, die keinem der drei Modelle in Reinform entspricht.</p>
+    </details>
+    <h3>Aufgabe 4 (Transfer, ca. 10 Punkte)</h3>
+    <p>Erkläre anhand von zwei konkreten Beispielen, wie die Aufklärung die Moderne bis heute beeinflusst.</p>
+    <details><summary>Musterlösung</summary>
+      <p>Beispiel 1 — Gewaltenteilung: das von Montesquieu geforderte Prinzip der Trennung von Legislative, Exekutive und Judikative ist heute Grundlage fast jeder demokratischen Verfassung, einschliesslich der Schweizer Bundesverfassung. Beispiel 2 — Menschenrechte: Lockes Idee angeborener Rechte auf Leben, Freiheit und Eigentum findet sich direkt in modernen Grundrechtskatalogen und internationalen Menschenrechtserklärungen wieder. Beide Beispiele zeigen, dass die politischen Theorien der Aufklärung nicht nur historische Reaktionen auf den Absolutismus waren, sondern bis heute das institutionelle Grundgerüst moderner Staaten prägen.</p>
+    </details>
+  </div>
+</section>
+
+<section id="lastminute">
+  <h2>Last-Minute-Repetition</h2>
+  <p class="section-sub">Kompakte Schlusscheckliste kurz vor der Prüfung — ersetzt nicht das Lernen der Abschnitte oben.</p>
+  <div class="card">
+    <ul class="checklist">
+      <li><input type="checkbox" id="c1"><label for="c1">Kant-Definition der Aufklärung («selbstverschuldete Unmündigkeit», «sapere aude») auswendig</label></li>
+      <li><input type="checkbox" id="c2"><label for="c2">Die drei Stände, ihre Anteile und wer welche Steuern zahlte</label></li>
+      <li><input type="checkbox" id="c3"><label for="c3">Bossuets Gottesgnadentum als Gegenpol zur Aufklärung erklären können</label></li>
+      <li><input type="checkbox" id="c4"><label for="c4">Rationalismus (Vernunft) vs. Empirismus (Erfahrung) klar trennen, je einen Vertreter nennen</label></li>
+      <li><input type="checkbox" id="c5"><label for="c5">Locke: 2 Gewalten, hierarchisch, Naturrechte, Widerstandsrecht</label></li>
+      <li><input type="checkbox" id="c6"><label for="c6">Montesquieu: 3 Gewalten, gleichberechtigt, Checks and Balances</label></li>
+      <li><input type="checkbox" id="c7"><label for="c7">Rousseau: Volkssouveränität, Gesamtwille (nicht gleich Mehrheitswille)</label></li>
+      <li><input type="checkbox" id="c8"><label for="c8">Reformabsolutismus von echter Gewaltenteilung unterscheiden können</label></li>
+      <li><input type="checkbox" id="c9"><label for="c9">USA 1776 und Französische Revolution 1789 als politische Umsetzung der Aufklärung</label></li>
+      <li><input type="checkbox" id="c10"><label for="c10">Schweizer Gewaltenteilung als Mischform aus Montesquieu und Rousseau erklären</label></li>
+      <li><input type="checkbox" id="c11"><label for="c11">5-Schritte-Vorgehen einer Quellenanalyse (erfassen – einordnen – verknüpfen – bewerten – Fazit)</label></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<footer>
+  <p>Geschichte und Politik · Absolutismus und Aufklärung</p>
+  <a class="backlink" href="../../../index.html">← zurück zu StudyHub</a>
+</footer>
+</div>
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('.quiz-q').forEach(function(q){
+    var correct = parseInt(q.dataset.correct, 10);
+    var fb = q.querySelector('.fb');
+    q.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = parseInt(btn.dataset.i, 10);
+        q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+        if(i === correct){
+          btn.classList.add('correct');
+          fb.textContent = 'Richtig.';
+        }else{
+          btn.classList.add('wrong');
+          q.querySelectorAll('.opt')[correct].classList.add('correct');
+          fb.textContent = 'Nicht ganz — richtig markiert.';
+        }
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
