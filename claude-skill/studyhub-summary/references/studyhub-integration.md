@@ -76,20 +76,22 @@ sind. Bei Unklarheit fragen: Update oder separate neue Seite?
 
 ## HTML-Konventionen der Seiten
 
-Die bestehenden Seiten sind **vollständig eigenständig**: eigenes `<style>` im
-`<head>`, eigene Farbpalette, eigenes JS inline. Es gibt bewusst kein gemeinsames
-Stylesheet und kein Template.
+**Neue und überarbeitete Seiten** werden mit dem gemeinsamen Design-System gebaut
+(`references/design-system.md`, `scripts/build-guide.mjs`). Ergebnis ist weiterhin
+eine **eigenständige** HTML-Datei ohne Abhängigkeiten – CSS und JS werden beim Bauen
+inline eingebettet, das Repo braucht keinen Build-Schritt.
 
-- `<!doctype html>`, `<html lang="de">` (Sprachseiten dürfen abweichen)
-- `<meta charset="UTF-8">` und `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
-- `<title>` im Repo-Stil: `Thema – Kontext · Prüfungsvorbereitung`
-- Theming über CSS Custom Properties in `:root`, Skalierung mit `clamp()`
-- Google Fonts per `<link>` ist im Repo etabliert und erlaubt; sonst **keine**
-  externen Abhängigkeiten, kein CDN-Framework, kein Build-Schritt
-- Sticky-Nav mit Sprungmarken bei langen Seiten (Muster vorhanden)
-- Inline-JS in einer IIFE, vanilla, ohne Bibliotheken
-- Assets liegen im Repo-Root (`logo-bmsw.png`, `logo-bbw.svg`, `favicon.svg`) —
-  von einer Seite aus relativ als `../../../<datei>` erreichbar
+- `<html lang="de" data-sh-guide="2" data-subject="…">`, Charset, Viewport,
+  Titel `Thema – Fach · Prüfungsvorbereitung` – alles vom Builder
+- Fachfarbe ausschliesslich aus `assets/subjects.json`
+- keine externen Skripte, keine Webfonts nötig (Systemschrift), MathML für Formeln
+- Links zur Übersicht/Favicon relativ (`../../../index.html`) – vom Builder berechnet,
+  wenn das Ziel unter `summaries/` liegt
+
+Ältere Seiten im Repo sind noch bespoke (eigenes CSS, eigene Palette). Sie werden
+**nicht** ungefragt migriert. Wird eine solche Seite im Rahmen eines Laufs
+aktualisiert, wird sie dabei auf das Design-System umgestellt: Inhalte übernehmen,
+in eine Inhaltsdatei überführen, neu bauen – gute Inhalte bleiben erhalten.
 
 ## Registrierung in index.html (manuell, Pflicht)
 
@@ -151,9 +153,41 @@ bash ~/.claude/skills/studyhub-summary/scripts/validate.sh "summaries/bmsw/<fach
 
 Geprüft werden: Existenz, `ß`, Doctype/Charset/Viewport/Title/`lang`,
 Tag-Balance, doppelte IDs, tote interne Anker, `href="#"`-Platzhalter,
-Platzhalter/TODO-Reste, geleakte lokale Pfade, Übungen/Lösungen vorhanden,
-Verlinkung in `index.html`, Ziel-Datei existiert für jeden Summary-Link im Index,
-optional `node --check` für das Inline-JS.
+Platzhalter/TODO-Reste, geleakte lokale Pfade, Design-System-Marker, Fach-Theme,
+Sidebar/Drawer, Legende, «Offline nutzbar»-Label, Inline-Hexfarben, SVG-`viewBox`,
+Übungen/Lösungen vorhanden, Verlinkung in `index.html`, Ziel-Datei existiert für
+jeden Summary-Link im Index, `node --check` für das Inline-JS.
+
+### Rendering-Gate (Pflicht, nicht optional)
+
+```bash
+node ~/.claude/skills/studyhub-summary/scripts/check-render.mjs "<absoluter Pfad zur Seite>" \
+     --screenshots "<scratchpad>/shots"
+```
+
+Rendert headless (Chrome/Edge/Chromium/Brave) in 320×720, 360×800, 375×812,
+390×844, 430×932, 768×1024, 1024×768, 1440×900 und prüft u. a.: kein horizontales
+Scrollen, Drawer zu/auf/Escape/Hintergrund/Kapitelwahl, Fokus-Rückgabe, aktiver
+Kapitel-Link, Sprungziel nicht unter der Kopfzeile, Touch-Ziele ≥ 44 px,
+Eingabeschrift ≥ 16 px, SVG-Grösse und Beschriftung, Original-Lernziele (eingeklappt,
+umbrechend, Häkchen, «Zum Kapitel»-Links), Legende (Taste L, «FG», «rho»),
+Zahlenprüfung (Komma, Punkt, e-Notation, ungültig, leer), Tipps, Lösungen, Quiz,
+Probeprüfung, reduzierte Bewegung, JS-Fehler. Screenshots ansehen.
+
+Sperrt eine Admin-Policy DevTools/Headless (Meldung «disallowed by the system admin»):
+
+```bash
+node …/check-render.mjs "<Seite>" --serve --open safari
+```
+
+Startet einen lokalen Server (127.0.0.1) und lässt Safari (WebKit, nahe an iOS)
+dieselben Checks in iframes je Viewport ausführen; das Ergebnis kommt ins Terminal.
+Mit `--host 0.0.0.0` lässt sich die URL (IP des Macs statt 127.0.0.1) auch auf einem
+echten iPhone/Android im selben WLAN öffnen.
+Geht beides nicht: im Bericht klar sagen, was nur statisch geprüft wurde.
+
+`check-render.mjs` meldet Fehler (✗) und Warnungen (!). Fehler beheben und erneut
+prüfen. Nie «mobil getestet» schreiben, wenn der Check nicht gelaufen ist.
 
 Das Repo hat kein `package.json`, keine Tests, keinen Linter und keinen Build —
 also keine Befehle erfinden. Zusätzlich sinnvoll:
@@ -161,14 +195,6 @@ also keine Befehle erfinden. Zusätzlich sinnvoll:
 ```bash
 node generate-manifest.js          # nur wenn PDFs dazukamen
 python3 -m http.server 8000        # lokale Vorschau
-```
-
-Optionaler visueller Check (Chrome ist auf dem Gerät vorhanden):
-
-```bash
-'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu \
-  --hide-scrollbars --window-size=390,1200 --virtual-time-budget=2000 \
-  --screenshot=/tmp/studyhub-mobile.png "file://<absoluter Pfad zur Seite>"
 ```
 
 Nach der Validierung zusätzlich manuell prüfen: Ziel und Dateiname korrekt,

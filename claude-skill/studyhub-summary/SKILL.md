@@ -1,6 +1,6 @@
 ---
 name: studyhub-summary
-description: Erstellt aus dem Schulmaterial im aktuellen Ordner eine umfassende deutsche HTML-Prüfungszusammenfassung mit Übungen und Lösungen und integriert sie vollständig ins StudyHub-Repository. Nur auf ausdrückliche Anfrage ausführen (/studyhub-summary) — der Workflow schreibt Dateien und committet.
+description: Erstellt aus dem Schulmaterial im aktuellen Ordner (Lernziele, Skripte, Übungsblätter, Lösungen, Formelsammlungen, Fotos) eine interaktive deutsche HTML-Lernseite im einheitlichen hellen StudyHub-Design (Sidebar, Fachfarbe, Formeln, Diagramme, Übungen mit Antwortprüfung, Quiz, Probeprüfung, Formelzeichen-Legende) und integriert sie vollständig ins StudyHub-Repository. Nur auf ausdrückliche Anfrage ausführen (/studyhub-summary) — der Workflow schreibt Dateien und committet.
 argument-hint: "[Lernziele und/oder Kontext, z. B. \"Prüfung am 14.09.\" oder direkt die Lernziel-Liste]"
 ---
 
@@ -46,10 +46,16 @@ bekommt eine ID L1…Ln und muss das Coverage-Gate in Phase 5 bestehen.
 
 | Datei | Wann lesen |
 |---|---|
-| `references/source-analysis.md` | Phase 2 — Material sichten und Prüfungsmodell bauen |
-| `references/summary-quality.md` | Phase 4 — Inhalt und Sprache der Seite |
-| `references/exercises.md` | Phase 4 — Übungen und Lösungen |
-| `references/studyhub-integration.md` | Phase 1, 5, 6 — Repo-Struktur, Einbindung, Validierung |
+| `references/source-analysis.md` | Phase 1 — Material sichten, Prüfungsmodell, Coverage-Matrix |
+| `references/summary-quality.md` | Phase 3–4 — Lernsequenz, Sprache, Notation, Quellen |
+| `references/design-system.md` | Phase 3–4 — **Pflicht**: Inhaltsdatei, Komponenten, Fachfarbe, Bauen |
+| `references/diagrams.md` | Phase 4 — SVG-Diagramme, Kräftebilder, Simulationen |
+| `references/exercises.md` | Phase 4 — Niveaus, Rechenweg, Tipps, Lösungen, Quiz, Probeprüfung |
+| `references/studyhub-integration.md` | Phase 1, 6 — Repo-Struktur, Einbindung, Validierung, Rendering-Gate |
+
+Vorlage für jede Seite: `assets/example/auftrieb.content.html` (vollständiges Beispiel
+aller Bausteine). Das Aussehen kommt **immer** aus dem Design-System – nie eigenes
+CSS, eigene Palette oder dunkles Layout.
 
 ---
 
@@ -77,13 +83,17 @@ Abbruchbedingungen (klar melden, dann stoppen):
 ## Phase 1 — Analyse
 
 1. Lernziele aus der höchstpriorisierten Quelle parsen (auch eine rohe Liste ohne
-   Template ist gültig). Jedes Lernziel bekommt eine interne ID L1, L2, …
-2. Quellmaterial rekursiv sichten → `references/source-analysis.md`.
+   Template ist gültig). **Wortlaut, Nummerierung, Reihenfolge und Überschrift exakt
+   übernehmen** (→ `source-analysis.md` 1b) – sie erscheinen später unverändert im
+   Sidebar-Block «Original-Lernziele». Unklarer Prüfungsumfang → «angrenzend».
+2. Quellmaterial rekursiv sichten → `references/source-analysis.md`. PDFs nicht nur
+   als Text: Seiten mit Diagrammen, Formeln, Tabellen und Annotationen ansehen.
 3. Fach, Schule (BMSW / BMSW-Abschlussprüfung / BBW), Modul, Thema, Prüfungsdatum
    bestimmen. Belege aus Dateien, nicht raten.
 4. Ziel im Repo bestimmen und prüfen, ob eine passende Zusammenfassung schon
    existiert → `references/studyhub-integration.md`.
-5. **Coverage-Map** aufbauen: pro Lernziel Quelle → Konzepte → Beispiele → Übungen.
+5. **Coverage-Matrix** aufbauen: Lernziel → Erklärung → Herleitung → Beispiel →
+   Übungen → Konzeptcheck, inkl. geforderter Tiefe und Prüfungsform.
 6. Lücken erkennen: Lernziele ohne ausreichende Quellenbasis **jetzt** melden,
    nicht später mit Platzhaltern füllen.
 
@@ -109,8 +119,12 @@ wird **nicht** gefragt. Bei „Update oder neue Seite?" mit unklarer Lage: frage
 
 ## Phase 3 — Aufbau planen
 
-Gliederung festlegen, fachspezifisch angepasst (`references/summary-quality.md`).
-Jedes Lernziel muss auf Theorie **und** mindestens eine Übung abgebildet sein.
+Gliederung festlegen, fachspezifisch angepasst (`references/summary-quality.md`):
+Kapitel = `<section data-nav>` (Grundlagen · Lernziele · Training · Nachschlagen).
+Pro schwierigem Lernziel die Lernsequenz (Intuition → Gesetz → Bild → Herleitung →
+Beispiel → geführte, selbständige, Transfer-Aufgabe). Diagramme, Simulationen
+(nur wenn sie Verständnis bringen), Glossar-Einträge und Probeprüfung planen.
+Fach prüfen: `node scripts/build-guide.mjs --resolve "<Fach>"`.
 
 ## Phase 4 — Seite schreiben
 
@@ -119,8 +133,16 @@ Jedes Lernziel muss auf Theorie **und** mindestens eine Übung abgebildet sein.
 - Fremdsprachliche Lerninhalte bleiben in ihrer Sprache, Erklärungen drumherum deutsch.
 - Umfang: lehrbuchtief, nicht Spickzettel. Wissen verdichten, nicht weglassen.
 - Übungen und Lösungen sind Pflicht → `references/exercises.md`.
-- HTML: eigenständige Datei, eigenes CSS, keine Frameworks, keine neuen
-  Abhängigkeiten. Konventionen aus `references/studyhub-integration.md`.
+- **Inhaltsdatei** nach `references/design-system.md` schreiben (Arbeitskopie im
+  Scratchpad, nicht im Repo), dann bauen:
+  ```bash
+  node ~/.claude/skills/studyhub-summary/scripts/build-guide.mjs <thema>.content.html \
+       --out "<REPO>/summaries/<schule>/<slug>/<name>.html"
+  ```
+  Bestehende v2-Seite aktualisieren: Inhalt zwischen `sh:content`-Markern ändern und
+  `build-guide.mjs <seite.html>` erneut ausführen.
+- **Jede Zahl nachrechnen** (`node -e`/`python3 -c`), auch gegen Lösungsblätter –
+  Abweichungen auf der Seite transparent vermerken.
 - Keine absoluten lokalen Pfade, keine OneDrive-Pfade, keine privaten Dateinamen,
   keine Platzhalter, keine TODOs auf der Seite.
 
@@ -129,8 +151,14 @@ Jedes Lernziel muss auf Theorie **und** mindestens eine Übung abgebildet sein.
 Vor dem Abschluss jedes Lernziel prüfen:
 
 ```
-L3  Theorie ✓  Beispiel ✓  Übung ✓  Lösung ✓  → PASS
+L3  Theorie ✓  Bild ✓  Beispiel ✓  Übung L1–L3 ✓  Lösung ✓  Konzeptcheck ✓  Rechnungen geprüft ✓  → PASS
 ```
+
+Zusätzlich für die **Original-Lernziele** (Abdeckungstabelle des Builders hilft):
+jedes Lernziel des Dokuments angezeigt · Wortlaut und Nummerierung identisch mit
+der Quelle (nochmals Zeichen für Zeichen vergleichen) · nichts weggelassen · jedes
+bestätigte Lernziel mit Abschnitt + Übung · alle «Zum Kapitel»-Links gültig ·
+Block eingeklappt. Fehlt Abdeckung: Inhalt ergänzen, nie den Lernziel-Text ändern.
 
 Alles muss PASS sein. Bei FAIL: nachbessern, nicht beschönigen. Niemals
 „alles abgedeckt" schreiben, ohne diese Tabelle tatsächlich durchgegangen zu sein.
@@ -140,11 +168,18 @@ Alles muss PASS sein. Bei FAIL: nachbessern, nicht beschönigen. Niemals
 1. Datei an den richtigen Ort schreiben.
 2. `index.html`: Link in die passende `.link-list` eintragen (Reihenfolge und
    Format der bestehenden Einträge übernehmen). Neues Fach ⇒ Karte + `pdfs/<slug>/.gitkeep`.
-3. Validieren:
+3. Statisch validieren:
    ```bash
    bash ~/.claude/skills/studyhub-summary/scripts/validate.sh "<relativer Pfad zur neuen Seite>"
    ```
-4. Nur eigene Fehler beheben. Fremde Baustellen im Repo nicht anfassen.
+4. **Rendering-Gate** (Pflicht) – 8 Viewports von 320 px bis 1440 px:
+   ```bash
+   node ~/.claude/skills/studyhub-summary/scripts/check-render.mjs "<absoluter Pfad>" --screenshots "<scratchpad>/shots"
+   ```
+   Screenshots (v. a. 320/390 px, Drawer offen) ansehen. Bei Admin-Policy-Sperre
+   Fallback `--serve --open safari` (siehe `studyhub-integration.md`). Läuft keines:
+   im Bericht offenlegen, was ungeprüft ist.
+5. Nur eigene Fehler beheben. Fremde Baustellen im Repo nicht anfassen.
 
 ## Phase 7 — Git
 
@@ -158,11 +193,13 @@ Knapp, kein Log:
 ```
 Erstellt/Aktualisiert: <Titel>
 StudyHub:              <Pfad>
-Abgedeckte Lernziele:  N/N
-Übungen:               N (Level 1–5)
+Abgedeckte Lernziele:  N/N (Original-Lernziele wörtlich in der Sidebar: ja/nein, angrenzend: N)
+Fach / Farbe:          <Fach> (<key>, <accent>)
+Übungen:               N (L1: a, L2: b, L3: c) · Quiz: N · Glossar: N Einträge
 Prüfungssimulation:    ja/nein
 Integration:           <was geändert wurde>
-Validierung:           <Checks + Ergebnis>
+Validierung:           <validate.sh-Ergebnis>
+Rendering:             <check-render: Modus, Browser, Fehler/Warnungen – oder „nicht geprüft, weil …“>
 Git:                   <Status / Commit>
 Route:                 https://studyhub-bmsw.netlify.app/<pfad>
 ```

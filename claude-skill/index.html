@@ -550,7 +550,7 @@
         </div>
         <div class="tile">
           <h4>Seite schreiben</h4>
-          <p>Theorie, durchgerechnete Beispiele, typische Fehler, Übungen auf fünf Niveaus, vollständige Lösungen, Prüfungssimulation.</p>
+          <p>Im einheitlichen StudyHub-Design: Theorie, Diagramme, durchgerechnete Beispiele, Übungen auf drei Niveaus mit Antwortprüfung, Quiz, Probeprüfung, Formelzeichen-Legende.</p>
         </div>
         <div class="tile">
           <h4>Einbinden</h4>
@@ -717,7 +717,7 @@ Prüfung am 14.09., 90 Minuten, Hilfsmittel: OR</code></pre>
           <span class="phase-tag">Phase 4</span>
           <span class="phase-body">
             <strong>Seite schreiben</strong>
-            <span>Eigenständige HTML-Seite mit eigenem CSS, ohne Frameworks. Deutsch (Schweiz), niemals <code>ß</code>. Wissen wird verdichtet, nicht weggelassen.</span>
+            <span>Inhaltsdatei im gemeinsamen Design-System, gebaut zu einer eigenständigen HTML-Seite ohne Frameworks. Deutsch (Schweiz), niemals <code>ß</code>. Wissen wird verdichtet, nicht weggelassen.</span>
           </span>
         </li>
         <li>
@@ -731,7 +731,7 @@ Prüfung am 14.09., 90 Minuten, Hilfsmittel: OR</code></pre>
           <span class="phase-tag">Phase 6</span>
           <span class="phase-body">
             <strong>Integration und Validierung</strong>
-            <span>Datei an den richtigen Ort, Link in die Fächerübersicht, anschliessend automatische Prüfung durch ein Validierungsskript.</span>
+            <span>Datei an den richtigen Ort, Link in die Fächerübersicht, anschliessend statische Validierung und ein Rendering-Check in acht Bildschirmgrössen von 320 bis 1440 px.</span>
           </span>
         </li>
         <li>
@@ -756,15 +756,36 @@ Prüfung am 14.09., 90 Minuten, Hilfsmittel: OR</code></pre>
 ├── LERNZIELE.md             Fallback-Datei für die Lernziele
 ├── LERNZIELE.template.md    Leervorlage (dient der Template-Erkennung)
 ├── README.md
+├── assets/                  Design-System, wird in jede Seite eingebettet
+│   ├── subjects.json            zentrale Fach→Farbe-Zuordnung
+│   ├── studyhub-guide.css       Tokens, Layout, Komponenten, Mobile, Druck
+│   ├── guide-shell.html         Sidebar/Drawer, Kopfbereich, Footer
+│   ├── sh-core.js / studyhub-guide.js   Antwortprüfung, Legende, Navigation
+│   └── example/                 Referenz-Inhalt mit allen Bausteinen
 ├── references/
-│   ├── source-analysis.md       Material sichten, Prüfungsmodell, Coverage-Map
-│   ├── summary-quality.md       Inhalt, Sprache, fachspezifische Didaktik
-│   ├── exercises.md             Übungen auf 5 Niveaus, Lösungen, Simulation
+│   ├── source-analysis.md       Material sichten, Prüfungsmodell, Coverage-Matrix
+│   ├── summary-quality.md       Lernsequenz, Sprache, Notation, Quellen
+│   ├── design-system.md         Inhaltsdatei, Komponenten, Fachfarben
+│   ├── diagrams.md              SVG-Diagramme, Kräftebilder, Simulationen
+│   ├── exercises.md             3 Niveaus, Rechenweg, Tipps, Quiz, Probeprüfung
 │   └── studyhub-integration.md  Repo-Konventionen, Einbindung, Validierung
-└── scripts/
-    ├── preflight.sh         Lernziele, Zugriff, Git-Zustand, Materialinventar
-    └── validate.sh          HTML, Anker, Sprache, Lecks, Index-Verlinkung</code></pre>
+├── scripts/
+│   ├── preflight.sh         Lernziele, Zugriff, Git-Zustand, Materialinventar
+│   ├── build-guide.mjs      Inhalt + Design-System → eigenständige Seite
+│   ├── validate.sh          HTML, Anker, Sprache, Lecks, Design-System, Index
+│   └── check-render.mjs     Rendering in 8 Viewports von 320 bis 1440 px
+└── tests/                   Unit-Tests ohne Abhängigkeiten</code></pre>
       </div>
+
+      <h3>Ein Design für alle Fächer</h3>
+      <p>
+        Jede Lernseite nutzt dasselbe helle Layout: linke Kapitel-Sidebar (auf dem Handy
+        ein Drawer), weisse Karten, Formelblöcke, Diagramme, Übungen mit Antwortprüfung,
+        Quiz, Probeprüfung und eine durchsuchbare Formelzeichen-Legende (Taste <kbd>L</kbd>). In der Sidebar stehen zudem die Original-Lernziele wörtlich – eingeklappt, mit Häkchen zur Selbsteinschätzung und Links zum passenden Kapitel.
+        Nur die Fachfarbe wechselt – sie steht zentral in <code>assets/subjects.json</code>
+        und wird automatisch auf WCAG-Kontrast geprüft. Die gebaute Seite ist trotzdem
+        eine einzelne HTML-Datei ohne Abhängigkeiten.
+      </p>
 
       <h3>Warum die Aufteilung in <code>references/</code></h3>
       <p>
@@ -812,6 +833,7 @@ Prüfung am 14.09., 90 Minuten, Hilfsmittel: OR</code></pre>
             <li>Übungen und Lösungen sind tatsächlich vorhanden</li>
             <li>Externe Abhängigkeiten — das Repo soll ohne Build und ohne Framework laufen</li>
             <li>Syntaxprüfung des Inline-JavaScripts</li>
+            <li>Mit dem Design-System gebaut, Fachfarbe gesetzt, Sidebar und Legende vorhanden, kein „Offline nutzbar“-Label</li>
             <li>Der Link in der Fächerübersicht existiert, und alle Links dort zeigen auf echte Dateien</li>
           </ul>
         </div>
@@ -830,7 +852,7 @@ Prüfung am 14.09., 90 Minuten, Hilfsmittel: OR</code></pre>
         auf die Prüfung vorbereitet?"</em>
       </p>
 
-      <h3>Übungen auf fünf Niveaus</h3>
+      <h3>Übungen auf drei Niveaus</h3>
       <p>Übungen sind Pflicht, keine Dekoration. Die Mehrheit darf ausdrücklich nicht blosses Abfragen sein.</p>
 
       <div class="table-scroll">
@@ -839,11 +861,10 @@ Prüfung am 14.09., 90 Minuten, Hilfsmittel: OR</code></pre>
             <tr><th>Level</th><th>Name</th><th>Was geprüft wird</th></tr>
           </thead>
           <tbody>
-            <tr><td>1</td><td>Grundlagen</td><td>Definitionen und Grundverfahren</td></tr>
-            <tr><td>2</td><td>Anwendung</td><td>Wissen auf normale Situationen anwenden</td></tr>
-            <tr><td>3</td><td>Schwierige Anwendung</td><td>Mehrere Konzepte kombinieren</td></tr>
-            <tr><td>4</td><td>Transfer</td><td>Wissen in neuer, ungewohnter Situation einsetzen</td></tr>
-            <tr><td>5</td><td>Prüfungssimulation</td><td>Realistisch schwer, Methode nicht offensichtlich</td></tr>
+            <tr><td>1</td><td>Grundlagen</td><td>Definitionen, einfache Formeln, Umrechnungen</td></tr>
+            <tr><td>2</td><td>Prüfungsniveau</td><td>Mehrschrittige Aufgaben, Formel selbst wählen, Resultat deuten</td></tr>
+            <tr><td>3</td><td>Transfer</td><td>Konzepte kombinieren, neue Situationen, Annahmen erkennen</td></tr>
+            <tr><td>–</td><td>Probeprüfung</td><td>Realistisch, mit Punkten und Musterlösung, Methode nicht verraten</td></tr>
           </tbody>
         </table>
       </div>

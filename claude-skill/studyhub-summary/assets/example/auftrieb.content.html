@@ -1,0 +1,357 @@
+<!--
+  StudyHub Guide – Referenz-Inhaltsdatei (Physik, Auftrieb).
+  Zeigt jedes Bauteil des Design-Systems in korrekter Verwendung und dient als
+  Test-Fixture (tests/, scripts/check-render.mjs). Bauen mit:
+    node scripts/build-guide.mjs assets/example/auftrieb.content.html --out /tmp/auftrieb.html
+  Quellenangaben (.sh-source) zeigen nur das Format.
+-->
+<script type="application/json" id="sh-meta">
+{
+  "subject": "Physik",
+  "topic": "Fluidstatik – Auftrieb",
+  "title": "Auftrieb verstehen und berechnen",
+  "shortTitle": "Auftrieb",
+  "school": "BMS",
+  "symbol": "ρ",
+  "lead": "Warum Körper in Flüssigkeiten leichter werden, wann sie schwimmen und wie du Auftrieb, Haltekraft und Eintauchtiefe prüfungssicher berechnest.",
+  "tags": ["2 Lernziele + 1 angrenzendes", "Simulation", "5 Rechenaufgaben", "Quiz", "Probeprüfung"],
+  "examInfo": "Prüfungsform: schriftlich, Taschenrechner und Formelsammlung erlaubt.",
+  "objectivesHeading": "5  Fluidstatik II: Auftrieb",
+  "objectivesSource": "Lernziele Fluidstatik II, Seite 1",
+  "objectives": [
+    { "id": "1", "text": "Sie können die Auftriebskraft eines ganz eingetauchten Körpers berechnen und die Haltekraft bestimmen, die nötig ist, um ihn im Gleichgewicht zu halten." },
+    { "id": "2", "text": "Sie können für einen schwimmenden, homogenen Quader die Eintauchtiefe berechnen und begründen, weshalb Auftriebskraft und Gewichtskraft gleich gross sind." },
+    { "id": "3", "text": "Sie können die Funktionsweise eines Aräometers erklären.", "scope": "adjacent" }
+  ]
+}
+</script>
+
+<section id="start" data-nav="Formeln &amp; Einheiten" data-nav-num="00" data-nav-group="Grundlagen">
+  <span class="sh-eyebrow">Grundlagen</span>
+  <h2>Die drei Formeln, die fast alles erklären</h2>
+  <p class="sh-section-intro">Jede Auftriebsaufgabe ist ein Kräftevergleich. Diese Beziehungen brauchst du immer.</p>
+  <div class="sh-grid">
+    <div class="sh-card">
+      <h3>Gewichtskraft</h3>
+      <div class="sh-formula"><math display="block"><msub><mi>F</mi><mi mathvariant="normal">G</mi></msub><mo>=</mo><mi>m</mi><mo>·</mo><mi>g</mi><mo>=</mo><msub><mi>ρ</mi><mi mathvariant="normal">K</mi></msub><mo>·</mo><msub><mi>V</mi><mi mathvariant="normal">K</mi></msub><mo>·</mo><mi>g</mi></math></div>
+      <p>Wirkt immer senkrecht nach unten, Angriffspunkt im Schwerpunkt.</p>
+    </div>
+    <div class="sh-card">
+      <h3>Auftriebskraft (Archimedes)</h3>
+      <div class="sh-formula"><math display="block"><msub><mi>F</mi><mi mathvariant="normal">A</mi></msub><mo>=</mo><msub><mi>ρ</mi><mi>Fl</mi></msub><mo>·</mo><msub><mi>V</mi><mtext>verdr</mtext></msub><mo>·</mo><mi>g</mi></math></div>
+      <p>Dichte der <strong>Flüssigkeit</strong> mal <strong>verdrängtes</strong> Volumen – nicht die Dichte des Körpers.</p>
+    </div>
+    <div class="sh-card">
+      <h3>Dichte</h3>
+      <div class="sh-formula"><math display="block"><mi>ρ</mi><mo>=</mo><mfrac><mi>m</mi><mi>V</mi></mfrac></math></div>
+      <p>Entscheidet im Vergleich <var>ρ</var><sub>K</sub> ↔ <var>ρ</var><sub>Fl</sub> über Schwimmen, Schweben, Sinken.</p>
+    </div>
+  </div>
+  <table>
+    <caption>Einheiten sicher umrechnen</caption>
+    <thead><tr><th scope="col">Grösse</th><th scope="col">SI-Einheit</th><th scope="col">Typische Umrechnung</th><th scope="col">Fehlerquelle</th></tr></thead>
+    <tbody>
+      <tr><td>Volumen <var>V</var></td><td>m³</td><td>1 L = 1 dm³ = 0,001 m³</td><td>Liter nicht umgerechnet → Faktor 1000</td></tr>
+      <tr><td>Dichte <var>ρ</var></td><td>kg/m³</td><td>1 g/cm³ = 1000 kg/m³</td><td>g/cm³ direkt eingesetzt</td></tr>
+      <tr><td>Länge <var>h</var></td><td>m</td><td>1 cm = 0,01 m</td><td>bei Verhältnissen egal, bei Volumen nicht</td></tr>
+      <tr><td>Kraft <var>F</var></td><td>N</td><td>1 kN = 1000 N</td><td>Masse (kg) mit Kraft (N) verwechselt</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="archimedes" data-nav="Auftrieb &amp; Haltekraft" data-nav-num="1" data-nav-group="Lernziele" data-objective="1">
+  <span class="sh-eyebrow">Lernziel 1</span>
+  <h2>Auftrieb und Haltekraft</h2>
+  <p class="sh-section-intro"><strong>Idee:</strong> Wasser drückt von allen Seiten. Unten ist der Körper tiefer, dort ist der Druck grösser – deshalb bleibt netto eine Kraft nach oben übrig: der Auftrieb. <span class="sh-source">Skript S. 12</span></p>
+
+  <div class="sh-figure-pair">
+    <figure class="sh-figure">
+      <span class="sh-figure-title">1 · Situation</span>
+      <svg viewBox="0 0 320 260" role="img" aria-labelledby="fig1-t fig1-d">
+        <title id="fig1-t">Stein hängt an einem Seil vollständig im Wasser</title>
+        <desc id="fig1-d">Ein Wasserbecken. Ein würfelförmiger Stein mit 2,0 Liter Volumen hängt an einem Seil von oben und ist vollständig unter der Wasseroberfläche.</desc>
+        <rect class="dg-fluid" x="22" y="90" width="276" height="148"/>
+        <line class="dg-fluid-line" x1="20" y1="90" x2="300" y2="90"/>
+        <path class="dg-wall" d="M20 50V240H300V50"/>
+        <line class="dg-wall" x1="80" y1="16" x2="180" y2="16"/>
+        <line class="dg-line" x1="130" y1="16" x2="130" y2="140"/>
+        <rect class="dg-body" x="100" y="140" width="60" height="60"/>
+        <text x="138" y="60">Seil</text>
+        <text class="dg-small" x="186" y="84">Wasseroberfläche</text>
+        <text x="172" y="156">Stein</text>
+        <text x="172" y="174">V = 2,0 L</text>
+        <text x="172" y="192">ρ<tspan dy="4" font-size="10">K</tspan><tspan dy="-4"> = 2600 kg/m³</tspan></text>
+        <text x="30" y="228">Wasser, ρ<tspan dy="4" font-size="10">Fl</tspan><tspan dy="-4"> = 1000 kg/m³</tspan></text>
+      </svg>
+      <figcaption>Der Stein ist vollständig eingetaucht: verdrängtes Volumen = Körpervolumen.</figcaption>
+    </figure>
+    <figure class="sh-figure">
+      <span class="sh-figure-title">2 · Kräftebild (massstäblich)</span>
+      <svg viewBox="0 0 300 260" role="img" aria-labelledby="fig2-t fig2-d">
+        <title id="fig2-t">Kräfte am Stein im Gleichgewicht</title>
+        <desc id="fig2-d">Nach unten wirkt die Gewichtskraft 51,0 N. Nach oben wirken die Auftriebskraft 19,6 N und die Seilkraft 31,4 N. Die Summe nach oben ist gleich der Kraft nach unten.</desc>
+        <rect class="dg-body" x="120" y="100" width="60" height="60"/>
+        <line class="dg-force-g" x1="150" y1="130" x2="150" y2="230"/>
+        <line class="dg-force-a" x1="136" y1="130" x2="136" y2="93"/>
+        <line class="dg-force-h" x1="150" y1="100" x2="150" y2="40"/>
+        <circle class="dg-point" cx="150" cy="130" r="3.5"/>
+        <circle class="dg-point" cx="136" cy="130" r="3"/>
+        <circle class="dg-point" cx="150" cy="100" r="3"/>
+        <text class="dg-label-g" x="160" y="222">F<tspan dy="4" font-size="10">G</tspan><tspan dy="-4"> = 51,0 N</tspan></text>
+        <text class="dg-label-a" x="128" y="90" text-anchor="end">F<tspan dy="4" font-size="10">A</tspan><tspan dy="-4"> = 19,6 N</tspan></text>
+        <text class="dg-label-h" x="160" y="52">F<tspan dy="4" font-size="10">H</tspan><tspan dy="-4"> = 31,4 N (Seil)</tspan></text>
+        <line class="dg-line" x1="20" y1="248" x2="40" y2="248"/>
+        <text class="dg-small" x="46" y="252">≙ 10 N</text>
+      </svg>
+      <figcaption>Durchgezogen: <var>F</var><sub>G</sub> (nach unten) und <var>F</var><sub>A</sub>; gestrichelt: Haltekraft <var>F</var><sub>H</sub>. <var>F</var><sub>A</sub> ist zur besseren Lesbarkeit leicht versetzt gezeichnet – beide greifen in der Körpermitte an.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Das Gesetz und wann es gilt</h3>
+  <div class="sh-formula"><span class="sh-formula-label">Gleichgewicht, Körper würde sinken (ρ<sub>K</sub> &gt; ρ<sub>Fl</sub>)</span><math display="block"><msub><mi>F</mi><mi mathvariant="normal">H</mi></msub><mo>=</mo><msub><mi>F</mi><mi mathvariant="normal">G</mi></msub><mo>−</mo><msub><mi>F</mi><mi mathvariant="normal">A</mi></msub><mo>=</mo><mo>(</mo><msub><mi>ρ</mi><mi mathvariant="normal">K</mi></msub><mo>−</mo><msub><mi>ρ</mi><mi>Fl</mi></msub><mo>)</mo><mo>·</mo><mi>V</mi><mo>·</mo><mi>g</mi></math><span class="sh-formula-note">Gilt für einen vollständig eingetauchten, starren Körper in einer ruhenden Flüssigkeit.</span></div>
+  <div class="sh-warn"><span class="sh-callout-title">Typischer Fehler</span><p>In <var>F</var><sub>A</sub> gehört die Dichte der <strong>Flüssigkeit</strong>. Wer <var>ρ</var><sub>K</sub> einsetzt, berechnet die Gewichtskraft ein zweites Mal.</p></div>
+  <div class="sh-extra"><span class="sh-callout-title">Zusatzerklärung – nicht aus dem Skript</span><p>Die seitlichen Druckkräfte heben sich paarweise auf, weil sie auf gleicher Höhe gleich gross und entgegengesetzt sind. Darum zählt nur der Unterschied zwischen Ober- und Unterseite.</p></div>
+
+  <h3>Durchgerechnetes Beispiel</h3>
+  <dl class="sh-calc">
+    <dt>Gegeben</dt><dd><var>V</var> = 2,0 L, <var>ρ</var><sub>K</sub> = 2600 kg/m³, <var>ρ</var><sub>Fl</sub> = 1000 kg/m³, <var>g</var> = 9,81 m/s²</dd>
+    <dt>Gesucht</dt><dd>Seilkraft (Haltekraft) <var>F</var><sub>H</sub> in N</dd>
+    <dt>Skizze / Kräftebild</dt><dd>Siehe Abbildung 2: <var>F</var><sub>G</sub> nach unten, <var>F</var><sub>A</sub> und <var>F</var><sub>H</sub> nach oben.</dd>
+    <dt>Ansatz</dt><dd>Der Stein ruht → Kräftegleichgewicht. Er ist dichter als Wasser, also muss das Seil nach oben halten: <var>F</var><sub>H</sub> + <var>F</var><sub>A</sub> = <var>F</var><sub>G</sub>.</dd>
+    <dt>Formel umstellen</dt><dd><div class="sh-formula"><math display="block"><msub><mi>F</mi><mi mathvariant="normal">H</mi></msub><mo>=</mo><mo>(</mo><msub><mi>ρ</mi><mi mathvariant="normal">K</mi></msub><mo>−</mo><msub><mi>ρ</mi><mi>Fl</mi></msub><mo>)</mo><mo>·</mo><mi>V</mi><mo>·</mo><mi>g</mi></math></div></dd>
+    <dt>SI-Werte einsetzen</dt><dd><var>V</var> = 2,0 L = 0,0020 m³ → <var>F</var><sub>H</sub> = (2600 − 1000) kg/m³ · 0,0020 m³ · 9,81 m/s²</dd>
+    <dt>Berechnen</dt><dd><var>F</var><sub>G</sub> = 51,01 N, <var>F</var><sub>A</sub> = 19,62 N → <var>F</var><sub>H</sub> = 31,39 N</dd>
+    <dt>Ergebnis &amp; Kontrolle</dt><dd><span class="sh-result"><var>F</var><sub>H</sub> ≈ 31,4 N</span>. Plausibel: Das Seil trägt 1 − 1000/2600 ≈ 62 % der Gewichtskraft – weniger als in Luft, aber mehr als die Hälfte, weil Stein deutlich dichter als Wasser ist.</dd>
+  </dl>
+</section>
+
+<section id="schwimmen" data-nav="Schwimmen &amp; Eintauchtiefe" data-nav-num="2" data-nav-group="Lernziele" data-objective="2">
+  <span class="sh-eyebrow">Lernziel 2</span>
+  <h2>Wie tief taucht ein schwimmender Körper ein?</h2>
+  <p class="sh-section-intro">Ein schwimmender Körper sinkt genau so weit ein, bis das verdrängte Wasser so schwer ist wie er selbst: <var>F</var><sub>A</sub> = <var>F</var><sub>G</sub>.</p>
+  <div class="sh-formula"><span class="sh-formula-label">Gerader, homogener Quader (Höhe H) schwimmt aufrecht</span><math display="block"><msub><mi>ρ</mi><mi>Fl</mi></msub><mo>·</mo><mi>A</mi><mo>·</mo><msub><mi>h</mi><mtext>unter</mtext></msub><mo>·</mo><mi>g</mi><mo>=</mo><msub><mi>ρ</mi><mi mathvariant="normal">K</mi></msub><mo>·</mo><mi>A</mi><mo>·</mo><mi>H</mi><mo>·</mo><mi>g</mi><mspace width="1em"/><mo stretchy="false">⇒</mo><mspace width="1em"/><msub><mi>h</mi><mtext>unter</mtext></msub><mo>=</mo><mi>H</mi><mo>·</mo><mfrac><msub><mi>ρ</mi><mi mathvariant="normal">K</mi></msub><msub><mi>ρ</mi><mi>Fl</mi></msub></mfrac></math></div>
+
+  <div class="sh-card">
+    <h3>Simulation: Eintauchtiefe</h3>
+    <div class="sh-sim">
+      <div class="sh-sim-controls">
+        <label for="sim-rk">Dichte des Körpers <output id="sim-rk-out" for="sim-rk">650 kg/m³</output></label>
+        <input id="sim-rk" type="range" min="100" max="2000" step="10" value="650">
+        <label for="sim-fl">Flüssigkeit</label>
+        <select id="sim-fl">
+          <option value="789">Ethanol (789 kg/m³)</option>
+          <option value="1000" selected>Wasser (1000 kg/m³)</option>
+          <option value="1025">Meerwasser (1025 kg/m³)</option>
+          <option value="1261">Glycerin (1261 kg/m³)</option>
+        </select>
+        <label for="sim-h">Höhe des Quaders <output id="sim-h-out" for="sim-h">20 cm</output></label>
+        <input id="sim-h" type="range" min="10" max="25" step="1" value="20">
+        <p class="sh-sim-readout" id="sim-readout" aria-live="polite"></p>
+        <p class="sh-sim-assumptions">Annahmen: homogener Quader, schwimmt aufrecht, Becken so gross, dass der Wasserspiegel praktisch gleich bleibt. Wassertiefe 30 cm. Tabellenwerte der Flüssigkeiten bei 20 °C.</p>
+      </div>
+      <figure class="sh-figure" data-no-expand>
+        <svg viewBox="0 0 320 240" role="img" aria-labelledby="sim-t" id="sim-svg">
+          <title id="sim-t">Quader im Becken, Lage entsprechend der gewählten Dichten</title>
+          <rect class="dg-fluid" x="22" y="100" width="276" height="120"/>
+          <line class="dg-fluid-line" x1="20" y1="100" x2="300" y2="100"/>
+          <path class="dg-wall" d="M20 60V222H300V60"/>
+          <rect class="dg-body" id="sim-block" x="120" y="60" width="80" height="80"/>
+          <rect class="dg-displaced" id="sim-displaced" x="120" y="100" width="80" height="40"/>
+          <text id="sim-status" x="210" y="88">schwimmt</text>
+        </svg>
+        <figcaption>Blau schraffiert: verdrängtes Volumen. Es ist beim Schwimmen kleiner als das Körpervolumen.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="sh-tip"><span class="sh-callout-title">Prüfungstipp</span><p>Steht in der Aufgabe «schwimmt», gilt sofort <var>F</var><sub>A</sub> = <var>F</var><sub>G</sub>. Du brauchst dann keine Haltekraft – aber das <strong>eingetauchte</strong> Volumen, nicht das ganze Körpervolumen.</p></div>
+</section>
+
+<section id="training" data-nav="Rechenaufgaben" data-nav-icon="✎" data-nav-group="Training">
+  <span class="sh-eyebrow">Training</span>
+  <h2>Rechenaufgaben mit Kontrolle</h2>
+  <p class="sh-section-intro">Rechne auf Papier, gib das Resultat ein. Komma oder Punkt sind beide erlaubt, ebenso 1,2e3.</p>
+  <div class="sh-exercises">
+    <article class="sh-ex" id="ue-1" data-level="1" data-objective="1">
+      <h3>1. Auftrieb aus verdrängtem Volumen</h3>
+      <p>Ein vollständig eingetauchter Körper verdrängt 2,5 L Wasser (<var>ρ</var><sub>Fl</sub> = 1000 kg/m³). Berechne die Auftriebskraft.</p>
+      <div class="sh-answer" data-answer="24.525" data-unit="N" data-alt-units="kN:1000" data-label="F_A =" data-mistakes='[{"value":24525,"msg":"Du hast 2,5 m³ statt 0,0025 m³ eingesetzt: 1 L = 0,001 m³."}]'></div>
+      <div class="sh-hint"><p>Welche Dichte gehört in die Auftriebsformel – die des Körpers oder die der Flüssigkeit?</p></div>
+      <div class="sh-hint"><p><var>F</var><sub>A</sub> = <var>ρ</var><sub>Fl</sub> · <var>V</var><sub>verdr</sub> · <var>g</var></p></div>
+      <div class="sh-hint"><p>2,5 L = 0,0025 m³ → <var>F</var><sub>A</sub> = 1000 · 0,0025 · 9,81</p></div>
+      <details class="sh-solution"><summary>Vollständiger Lösungsweg</summary>
+        <p>Gegeben: <var>V</var><sub>verdr</sub> = 2,5 L = 0,0025 m³. Gesucht: <var>F</var><sub>A</sub>.</p>
+        <p><var>F</var><sub>A</sub> = 1000 kg/m³ · 0,0025 m³ · 9,81 m/s² = <strong>24,5 N</strong> (genau 24,525 N).</p>
+      </details>
+    </article>
+
+    <article class="sh-ex" id="ue-2" data-level="2" data-objective="1">
+      <h3>2. Federwaage unter Wasser</h3>
+      <p>Ein Körper mit <var>m</var> = 5,0 kg und <var>V</var> = 2,0 L hängt vollständig eingetaucht in Wasser an einer Federwaage. Was zeigt die Waage an?</p>
+      <div class="sh-answer" data-answer="29.43" data-unit="N" data-label="F_H =" data-mistakes='[{"value":49.05,"msg":"Das ist nur F_G. Der Auftrieb entlastet die Federwaage."},{"value":19.62,"msg":"Das ist F_A. Gesucht ist die Anzeige der Waage: F_G − F_A."}]'></div>
+      <div class="sh-hint"><p>Zeichne die drei Kräfte. Welche zeigen nach oben?</p></div>
+      <div class="sh-hint"><p><var>F</var><sub>H</sub> + <var>F</var><sub>A</sub> = <var>F</var><sub>G</sub></p></div>
+      <div class="sh-hint"><p><var>F</var><sub>G</sub> = 5,0 · 9,81; <var>F</var><sub>A</sub> = 1000 · 0,0020 · 9,81</p></div>
+      <details class="sh-solution"><summary>Vollständiger Lösungsweg</summary>
+        <p><var>F</var><sub>G</sub> = 49,05 N, <var>F</var><sub>A</sub> = 19,62 N → <var>F</var><sub>H</sub> = 49,05 N − 19,62 N = <strong>29,4 N</strong>.</p>
+        <p>Kontrolle: Die Anzeige ist kleiner als in Luft, aber nicht null, weil <var>ρ</var><sub>K</sub> = 2500 kg/m³ &gt; <var>ρ</var><sub>Fl</sub>.</p>
+      </details>
+    </article>
+
+    <article class="sh-ex" id="ue-3" data-level="2" data-objective="2">
+      <h3>3. Schwimmender Balken</h3>
+      <p>Ein gerader Holzbalken (Höhe 40 cm, <var>ρ</var><sub>K</sub> = 600 kg/m³) schwimmt aufrecht in Wasser. Wie tief taucht er ein?</p>
+      <div class="sh-answer" data-answer="24" data-unit="cm" data-alt-units="m:100, mm:0.1" data-label="h_unter =" data-mistakes='[{"value":16,"msg":"Das ist der Teil über Wasser (H − h_unter)."}]'></div>
+      <div class="sh-hint"><p>Schwimmen heisst: <var>F</var><sub>A</sub> = <var>F</var><sub>G</sub>.</p></div>
+      <div class="sh-hint"><p><var>h</var><sub>unter</sub> = <var>H</var> · <var>ρ</var><sub>K</sub> / <var>ρ</var><sub>Fl</sub></p></div>
+      <div class="sh-hint"><p>Das Dichteverhältnis 600/1000 ist einheitenlos – du kannst direkt mit cm rechnen.</p></div>
+      <details class="sh-solution"><summary>Vollständiger Lösungsweg</summary>
+        <p><var>h</var><sub>unter</sub> = 40 cm · 600/1000 = <strong>24 cm</strong>; 16 cm ragen heraus.</p>
+      </details>
+    </article>
+
+    <article class="sh-ex" id="ue-4" data-level="3" data-objective="1">
+      <h3>4. Dichte mit der Federwaage bestimmen</h3>
+      <p>Ein Körper zeigt an der Federwaage in Luft 20 N und vollständig in Wasser 12 N. Bestimme seine Dichte (Luftauftrieb vernachlässigen).</p>
+      <div class="sh-answer" data-answer="2500" data-unit="kg/m³" data-alt-units="g/cm³:1000" data-tol="0.5%" data-label="ρ_K =" data-mistakes='[{"value":1666.67,"msg":"Du hast durch die Anzeige im Wasser (12 N) geteilt. Der Auftrieb ist die Differenz: 20 N − 12 N."}]'></div>
+      <div class="sh-hint"><p>Die Differenz der beiden Anzeigen ist der Auftrieb.</p></div>
+      <div class="sh-hint"><p>Aus <var>F</var><sub>A</sub> folgt <var>V</var> = <var>F</var><sub>A</sub> / (<var>ρ</var><sub>Fl</sub> · <var>g</var>), aus <var>F</var><sub>G</sub> folgt <var>m</var>.</p></div>
+      <div class="sh-hint"><p><var>ρ</var><sub>K</sub> = <var>ρ</var><sub>Fl</sub> · <var>F</var><sub>G</sub> / <var>F</var><sub>A</sub> – <var>g</var> kürzt sich weg.</p></div>
+      <details class="sh-solution"><summary>Vollständiger Lösungsweg</summary>
+        <p><var>F</var><sub>A</sub> = 20 N − 12 N = 8 N. <var>ρ</var><sub>K</sub> = <var>m</var>/<var>V</var> = (<var>F</var><sub>G</sub>/<var>g</var>) / (<var>F</var><sub>A</sub>/(<var>ρ</var><sub>Fl</sub><var>g</var>)) = 1000 · 20/8 = <strong>2500 kg/m³</strong>.</p>
+      </details>
+    </article>
+
+    <article class="sh-ex" id="ue-5" data-level="3" data-objective="2">
+      <h3>5. Tragfähigkeit einer Holzplattform</h3>
+      <p>Eine Holzplatte (<var>A</var> = 1,5 m², <var>H</var> = 0,20 m, <var>ρ</var> = 600 kg/m³) schwimmt in Wasser. Welche Zusatzmasse trägt sie höchstens, bis ihre Oberseite die Wasserlinie erreicht?</p>
+      <div class="sh-answer" data-answer="120" data-unit="kg" data-label="m_zus =" data-mistakes='[{"value":180,"msg":"Das ist die Masse der Platte selbst."},{"value":300,"msg":"Das ist die gesamte Tragfähigkeit inklusive Platte – zieh die Plattenmasse ab."}]'></div>
+      <div class="sh-hint"><p>Grenzfall: Die ganze Platte ist eingetaucht und schwimmt noch.</p></div>
+      <div class="sh-hint"><p><var>ρ</var><sub>Fl</sub> · <var>V</var> · <var>g</var> = (<var>m</var><sub>Platte</sub> + <var>m</var><sub>zus</sub>) · <var>g</var></p></div>
+      <div class="sh-hint"><p><var>m</var><sub>zus</sub> = (<var>ρ</var><sub>Fl</sub> − <var>ρ</var>) · <var>A</var> · <var>H</var></p></div>
+      <details class="sh-solution"><summary>Vollständiger Lösungsweg</summary>
+        <p><var>V</var> = 1,5 · 0,20 = 0,30 m³. Maximal verdrängte Masse: 1000 · 0,30 = 300 kg. Platte: 600 · 0,30 = 180 kg. <var>m</var><sub>zus</sub> = <strong>120 kg</strong>.</p>
+      </details>
+    </article>
+  </div>
+</section>
+
+<section id="quiz" data-nav="Konzept-Quiz" data-nav-icon="?" data-nav-group="Training">
+  <span class="sh-eyebrow">Verständnis</span>
+  <h2>Konzept-Quiz</h2>
+  <div class="sh-quiz">
+    <div class="sh-q" data-correct="c" data-objective="1">
+      <p class="sh-q-text">1. Ein vollständig eingetauchter Stein wird tiefer abgesenkt. Was passiert mit dem Auftrieb?</p>
+      <ol class="sh-choices">
+        <li data-key="a">Er wird grösser.<span class="sh-why">Der Druck steigt zwar oben und unten – der Unterschied zwischen Ober- und Unterseite bleibt aber gleich.</span></li>
+        <li data-key="b">Er wird kleiner.<span class="sh-why">Nichts in <var>F</var><sub>A</sub> = <var>ρ</var><sub>Fl</sub> · <var>V</var><sub>verdr</sub> · <var>g</var> nimmt mit der Tiefe ab.</span></li>
+        <li data-key="c">Er bleibt gleich.<span class="sh-why">Richtig: <var>ρ</var><sub>Fl</sub>, <var>V</var><sub>verdr</sub> und <var>g</var> ändern sich nicht (inkompressibles Wasser, starrer Körper).</span></li>
+      </ol>
+    </div>
+    <div class="sh-q" data-correct="b" data-objective="2">
+      <p class="sh-q-text">2. Ein Holzklotz schwimmt ruhig an der Oberfläche. Was gilt?</p>
+      <ol class="sh-choices">
+        <li data-key="a"><var>F</var><sub>A</sub> &gt; <var>F</var><sub>G</sub><span class="sh-why">Dann würde er nach oben beschleunigen – er ruht aber.</span></li>
+        <li data-key="b"><var>F</var><sub>A</sub> = <var>F</var><sub>G</sub><span class="sh-why">Richtig: Ruhe bedeutet Kräftegleichgewicht.</span></li>
+        <li data-key="c"><var>F</var><sub>A</sub> &lt; <var>F</var><sub>G</sub><span class="sh-why">Dann würde er sinken.</span></li>
+      </ol>
+    </div>
+    <div class="sh-q" data-correct="a" data-objective="2">
+      <p class="sh-q-text">3. Derselbe Klotz kommt von Süsswasser in Meerwasser. Wie verändert sich die Eintauchtiefe?</p>
+      <ol class="sh-choices">
+        <li data-key="a">Sie wird kleiner.<span class="sh-why">Richtig: <var>h</var><sub>unter</sub> = <var>H</var> · <var>ρ</var><sub>K</sub>/<var>ρ</var><sub>Fl</sub>, und <var>ρ</var><sub>Fl</sub> ist grösser.</span></li>
+        <li data-key="b">Sie wird grösser.<span class="sh-why">Eine dichtere Flüssigkeit liefert pro eingetauchtem Volumen mehr Auftrieb.</span></li>
+        <li data-key="c">Sie bleibt gleich.<span class="sh-why">Die Gewichtskraft bleibt gleich, aber das nötige verdrängte Volumen nicht.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="pruefung" data-nav="Probeprüfung" data-nav-icon="✓" data-nav-group="Training">
+  <span class="sh-eyebrow">Prüfungssimulation</span>
+  <h2>Probeprüfung · 20 Minuten</h2>
+  <p class="sh-exam-head"><span>Hilfsmittel: Taschenrechner, Formelsammlung</span><span>Total 11 Punkte</span></p>
+  <article class="sh-exam-task" id="pa" data-points="4" data-review="archimedes" data-objective="1">
+    <h3>Aufgabe A · Federwaage <span class="sh-points">4 P.</span></h3>
+    <p>Ein Metallkörper (<var>m</var> = 3,0 kg, <var>V</var> = 0,40 L) hängt vollständig in Wasser an einer Federwaage. Berechne die Anzeige und skizziere das Kräftebild.</p>
+    <div class="sh-answer" data-answer="25.506" data-unit="N" data-label="F_H ="></div>
+    <details class="sh-solution"><summary>Musterlösung und Bewertung</summary>
+      <p><var>F</var><sub>G</sub> = 29,43 N (1 P.), <var>F</var><sub>A</sub> = 1000 · 0,00040 · 9,81 = 3,92 N (1 P.), <var>F</var><sub>H</sub> = <strong>25,5 N</strong> (1 P.), korrektes Kräftebild mit drei Pfeilen (1 P.).</p>
+    </details>
+  </article>
+  <article class="sh-exam-task" id="pb" data-points="4" data-review="schwimmen" data-objective="2">
+    <h3>Aufgabe B · Eintauchtiefe <span class="sh-points">4 P.</span></h3>
+    <p>Ein Holzquader (<var>ρ</var> = 720 kg/m³, <var>H</var> = 25 cm) schwimmt in Meerwasser (1025 kg/m³). Wie tief taucht er ein?</p>
+    <div class="sh-answer" data-answer="17.561" data-unit="cm" data-alt-units="m:100" data-label="h_unter ="></div>
+    <details class="sh-solution"><summary>Musterlösung und Bewertung</summary>
+      <p>Ansatz <var>F</var><sub>A</sub> = <var>F</var><sub>G</sub> (2 P.), <var>h</var><sub>unter</sub> = 25 cm · 720/1025 = <strong>17,6 cm</strong> (2 P.).</p>
+    </details>
+  </article>
+  <article class="sh-exam-task" id="pc" data-points="3" data-review="schwimmen" data-objective="2">
+    <h3>Aufgabe C · Erklären <span class="sh-points">3 P.</span></h3>
+    <p>Erkläre mit dem Begriff «verdrängtes Volumen», weshalb ein Schiff aus Stahl schwimmen kann, obwohl Stahl dichter als Wasser ist.</p>
+    <details class="sh-solution"><summary>Bewertungsraster</summary>
+      <ul><li>Der hohle Rumpf verdrängt viel Wasser (1 P.).</li><li>Die mittlere Dichte von Stahl und Luft im Rumpf ist kleiner als die Wasserdichte (1 P.).</li><li>Das Schiff sinkt ein, bis <var>F</var><sub>A</sub> = <var>F</var><sub>G</sub> (1 P.).</li></ul>
+    </details>
+  </article>
+  <div id="sh-exam-summary" class="sh-exam-summary" aria-live="polite"></div>
+</section>
+
+<script type="application/json" id="sh-glossary">
+[
+  { "symbol": "F_G", "name": "Gewichtskraft", "unit": "N", "meaning": "Wirkt senkrecht nach unten.", "example": "F_G = m · g", "aliases": ["gewicht", "fg"] },
+  { "symbol": "F_A", "name": "Auftriebskraft", "unit": "N", "meaning": "Wirkt nach oben; gleich dem Gewicht der verdrängten Flüssigkeit.", "example": "F_A = ρ_Fl · V_verdr · g", "aliases": ["auftrieb", "archimedes"] },
+  { "symbol": "F_H", "name": "Haltekraft", "unit": "N", "meaning": "Äussere Kraft (Seil, Federwaage, Hand), die den Körper im Gleichgewicht hält. Richtung je nach Situation.", "example": "F_H = F_G − F_A", "aliases": ["seilkraft", "federwaage"] },
+  { "symbol": "ρ", "name": "Dichte", "unit": "kg/m³", "meaning": "Masse pro Volumen.", "example": "ρ = m / V", "aliases": ["rho", "dichte"] },
+  { "symbol": "ρ_K", "name": "Dichte des Körpers", "unit": "kg/m³", "meaning": "Steht in der Gewichtskraft, nicht im Auftrieb.", "example": "F_G = ρ_K · V_K · g", "aliases": ["koerperdichte"] },
+  { "symbol": "ρ_Fl", "name": "Dichte der Flüssigkeit", "unit": "kg/m³", "meaning": "Wasser: 1000 kg/m³. Steht im Auftrieb.", "example": "F_A = ρ_Fl · V_verdr · g", "aliases": ["fluessigkeitsdichte", "rhow", "wasserdichte"] },
+  { "symbol": "V_K", "name": "Körpervolumen", "unit": "m³", "meaning": "Gesamtes Volumen des Körpers.", "example": "1 L = 0,001 m³" },
+  { "symbol": "V_verdr", "name": "Verdrängtes Volumen", "unit": "m³", "meaning": "Volumen unter der Oberfläche. Beim Schwimmen kleiner als V_K, vollständig eingetaucht gleich V_K.", "example": "V_verdr = A · h_unter", "aliases": ["eingetaucht", "vunter"] },
+  { "symbol": "H", "name": "Gesamthöhe des Körpers", "unit": "m", "meaning": "Ganze Höhe des Quaders – nicht verwechseln mit h_unter." },
+  { "symbol": "h_unter", "name": "Eintauchtiefe", "unit": "m", "meaning": "Höhe des eingetauchten Teils eines schwimmenden Quaders.", "example": "h_unter = H · ρ_K / ρ_Fl", "aliases": ["eintauchtiefe"] },
+  { "symbol": "g", "name": "Ortsfaktor", "unit": "m/s²", "meaning": "In der Schweiz 9,81 m/s² = 9,81 N/kg.", "aliases": ["erdbeschleunigung", "fallbeschleunigung"] },
+  { "symbol": "m", "name": "Masse", "unit": "kg", "meaning": "Nicht mit der Gewichtskraft (in N) verwechseln.", "example": "m = ρ · V" },
+  { "symbol": "W", "name": "Mechanische Arbeit", "unit": "J", "meaning": "Kraft mal Weg in Kraftrichtung. Formelzeichen (kursiv).", "example": "W = F · s", "aliases": ["arbeit"] },
+  { "symbol": "W", "name": "Watt (Einheit der Leistung)", "unit": "J/s", "meaning": "Einheitenzeichen (aufrecht), nicht das Formelzeichen der Arbeit.", "example": "1 W = 1 J/s", "aliases": ["watt", "leistung"] },
+  { "symbol": "N", "name": "Newton (Einheit der Kraft)", "unit": "kg·m/s²", "meaning": "1 N ist ungefähr die Gewichtskraft von 102 g.", "aliases": ["newton"] }
+]
+</script>
+
+<script>
+(function () {
+  var rk = document.getElementById('sim-rk'), fl = document.getElementById('sim-fl'), hh = document.getElementById('sim-h');
+  if (!rk) return;
+  var block = document.getElementById('sim-block'), disp = document.getElementById('sim-displaced');
+  var status = document.getElementById('sim-status'), out = document.getElementById('sim-readout');
+  var f = window.SHCore.formatNumber;
+  var PX = 4, WATER = 100, FLOOR = 220; // 4 px pro cm, Wasserlinie y=100, Boden y=220 (30 cm Wassertiefe)
+  function update() {
+    var pk = Number(rk.value), pf = Number(fl.value), H = Number(hh.value);
+    document.getElementById('sim-rk-out').textContent = pk + ' kg/m³';
+    document.getElementById('sim-h-out').textContent = H + ' cm';
+    var ratio = pk / pf, top, sub, text;
+    if (ratio < 1) {
+      sub = H * ratio;
+      top = WATER + sub * PX - H * PX;
+      status.textContent = 'schwimmt';
+      text = 'Eintauchtiefe = H · ρK / ρFl = ' + H + ' cm · ' + pk + ' / ' + pf + ' = ' + f(sub, 3) + ' cm  ·  eingetaucht: ' + f(ratio * 100, 3) + ' %  ·  über Wasser: ' + f(H - sub, 3) + ' cm';
+    } else if (ratio === 1) {
+      sub = H; top = WATER + 20;
+      status.textContent = 'schwebt';
+      text = 'Körperdichte = Flüssigkeitsdichte: Der Körper ist vollständig eingetaucht und schwebt in jeder Tiefe (Auftrieb = Gewichtskraft).';
+    } else {
+      sub = H; top = FLOOR - H * PX;
+      status.textContent = 'sinkt';
+      text = 'Körperdichte > Flüssigkeitsdichte: Selbst vollständig eingetaucht ist der Auftrieb kleiner als die Gewichtskraft. Der Körper liegt am Boden; der Boden trägt ' + f((1 - 1 / ratio) * 100, 3) + ' % der Gewichtskraft.';
+    }
+    block.setAttribute('y', top);
+    block.setAttribute('height', H * PX);
+    var dTop = Math.max(top, WATER);
+    disp.setAttribute('y', dTop);
+    disp.setAttribute('height', Math.max(0, top + H * PX - dTop));
+    out.textContent = text;
+  }
+  [rk, fl, hh].forEach(function (n) { n.addEventListener('input', update); n.addEventListener('change', update); });
+  update();
+})();
+</script>

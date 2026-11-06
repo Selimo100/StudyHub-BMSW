@@ -1,0 +1,74 @@
+{
+  "$comment": "Zentrale Fach-Farbzuordnung fuer alle StudyHub-Lernseiten. EINZIGE Stelle fuer Fachfarben. Neues Fach = ein neuer Eintrag unter 'subjects'. 'accent' ist die Primaerfarbe; Hover-, Soft-, Text- und Kontrastvarianten werden von scripts/lib/subjects.mjs berechnet und WCAG-geprueft. 'aliases' werden normalisiert (Kleinschreibung, ohne Akzente, & -> und, Trennzeichen egal) und enthalten auch die Ordner-Slugs aus summaries/ und pdfs/.",
+  "fallback": "andere",
+  "patterns": [
+    { "regex": "^m\\d{3}$", "subject": "informatik", "$comment": "BBW-Module wie m165, m347" }
+  ],
+  "subjects": {
+    "physik": {
+      "label": "Physik",
+      "accent": "#1479B8",
+      "aliases": ["physik", "physics", "phy", "ph"]
+    },
+    "mathematik": {
+      "label": "Mathematik",
+      "accent": "#7047B6",
+      "aliases": ["mathematik", "mathe", "math", "maths", "mathematics", "ma", "mathe-sp", "mathe-glf", "mathematik-sp", "mathematik-glf"]
+    },
+    "deutsch": {
+      "label": "Deutsch",
+      "accent": "#BE4357",
+      "aliases": ["deutsch", "german", "de", "d"]
+    },
+    "englisch": {
+      "label": "Englisch",
+      "accent": "#0F766E",
+      "aliases": ["englisch", "english", "en", "e", "english-books"]
+    },
+    "franzoesisch": {
+      "label": "Französisch",
+      "accent": "#934A83",
+      "aliases": ["franzoesisch", "franzosisch", "french", "francais", "fr", "f", "franz"]
+    },
+    "italienisch": {
+      "label": "Italienisch",
+      "accent": "#B75A25",
+      "aliases": ["italienisch", "italian", "italiano", "it-sprache", "ital"]
+    },
+    "geschichte": {
+      "label": "Geschichte",
+      "accent": "#866018",
+      "aliases": ["geschichte", "history", "ge", "gesch", "geschichte-politik", "geschichte-und-politik", "gp"]
+    },
+    "wirtschaft": {
+      "label": "Wirtschaft und Recht",
+      "accent": "#28764B",
+      "aliases": ["wirtschaft", "wirtschaft-recht", "wirtschaft-und-recht", "economics", "w-und-r", "wr", "wur", "recht", "vwl", "bwl"]
+    },
+    "informatik": {
+      "label": "Informatik",
+      "accent": "#385C86",
+      "aliases": ["informatik", "computer-science", "cs", "it", "inf", "bbw", "javascript"]
+    },
+    "chemie": {
+      "label": "Chemie",
+      "accent": "#A94E29",
+      "aliases": ["chemie", "chemistry", "ch", "chem"]
+    },
+    "biologie": {
+      "label": "Biologie",
+      "accent": "#547A32",
+      "aliases": ["biologie", "biology", "bio", "bi"]
+    },
+    "geografie": {
+      "label": "Geografie",
+      "accent": "#236F8E",
+      "aliases": ["geografie", "geographie", "geography", "geo", "gg"]
+    },
+    "andere": {
+      "label": "Weitere Fächer",
+      "accent": "#5B6472",
+      "aliases": ["andere", "other", "unknown", "sonstige"]
+    }
+  }
+}

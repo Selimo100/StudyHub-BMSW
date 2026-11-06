@@ -11,6 +11,20 @@ werden bereits: `.git`, `node_modules`, `dist`, `build`, `target`, `.venv`,
 
 Bei vielen Dateien: erst Inventar bilden, dann priorisieren — nicht blind alles lesen.
 
+## 1b. Original-Lernziele wörtlich übernehmen
+
+- Lernziele **wörtlich** aus dem Lernziel-Dokument übernehmen: Nummerierung,
+  Reihenfolge, Überschrift, Zeichensetzung, Symbole. Nichts glätten oder kürzen.
+- Bei unsicherer Textextraktion (Formeln, Hochstellungen, Silbentrennung,
+  Spalten) die PDF-Seite bzw. das Bild **visuell** prüfen und den Wortlaut daran
+  abgleichen. Silbentrennungen am Zeilenende zusammenfügen, sonst nichts ändern.
+- Markierungen der Lehrperson zum Prüfungsumfang (Unterstreichungen, «nicht
+  prüfungsrelevant», Haken) beachten. Unklarer Umfang → `scope: "adjacent"` und im
+  Preflight-Bericht nennen.
+- Inline mitgegebene Lernziele gelten als offizielle Quelle (Wortlaut wie geliefert).
+- Kein offizielles Dokument → keine Lernziele erfinden; Gliederung trotzdem aus dem
+  Material, Block «Original-Lernziele» entfällt.
+
 ## 2. Priorisierung
 
 Zuerst lesen:
@@ -29,7 +43,12 @@ Nicht nur Dateinamen. Inhalte öffnen:
 - Markdown, Text, HTML, Quellcode, Konfigurationen, Datendateien → direkt lesen
 - PDF → mit dem Read-Tool über `pages` lesen (max. 20 Seiten pro Aufruf); bei
   langen PDFs die relevanten Bereiche gezielt durchgehen
-- Bilder/Screenshots → Read-Tool zeigt sie visuell; nur verwenden, wenn wirklich lesbar
+- Bilder/Screenshots/Fotos von Notizen → Read-Tool zeigt sie visuell; nur verwenden,
+  wenn wirklich lesbar
+- **PDF-Text allein reicht nicht.** Textextraktion verliert Abbildungen, Tabellen,
+  Formeln und handschriftliche Annotationen. Seiten mit Diagrammen, Formeln oder
+  Markierungen zusätzlich visuell ansehen (Read mit `pages` rendert die Seite) –
+  dort stehen oft Kraftrichtungen, Masse, Prüfungshinweise der Lehrperson.
 - `.docx`, `.pptx`, `.xlsx` sind ZIP-Container. Wenn kein Konverter da ist:
   `unzip -p datei.docx word/document.xml` bzw. `ppt/slides/slide*.xml` und
   Text extrahieren. Gelingt das nicht, die Datei als nicht lesbar melden statt
@@ -59,6 +78,11 @@ als Randnotiz kennzeichnen.
 
 ## 5. Prüfungsmodell
 
+Zuerst die Prüfungsform klären: rechenlastig (→ Skizze, Kräftebild, Formelwahl,
+symbolisches Umstellen, SI-Einheiten, Resultat deuten) oder argumentativ/sprachlich
+(→ Begriffe, Zusammenhänge, Quellenarbeit, Schreibaufgaben).
+
+
 Intern aufbauen (nicht als Gedankenprotokoll ausgeben):
 
 - Fach · Schule (BMSW / BMSW-Abschluss / BBW) · Modul · Thema · Prüfungsdatum
@@ -73,18 +97,27 @@ Intern aufbauen (nicht als Gedankenprotokoll ausgeben):
 - geforderte praktische Fertigkeiten
 - vorhandene Beispiele und Aufgaben samt Schwierigkeitsgrad
 
-## 6. Coverage-Map
+## 6. Coverage-Matrix
 
-Pro Lernziel:
+Pro Lernziel (intern, nicht auf die Seite):
 
 ```
-L2  „Arbeitsvertrag von Auftrag abgrenzen"
-    Quellen:   handout_kap12.pdf S. 3–7, uebung_4.docx
-    Konzepte:  Subordination, Weisungsgebundenheit, OR 319 vs. OR 394
-    Beispiele: 2 Fallbeispiele
-    Übungen:   Level 2 ×1, Level 3 ×1, Level 5 ×1
-    Status:    offen
+L2  „Haltekraft eines eingetauchten Körpers berechnen"     Tiefe: rechnen + begründen
+    Quellen:     Skript S. 12–14, Arbeitsblatt 5 Nr. 2–4 (+ Lösungsblatt)
+    Formeln:     F_A = ρ_Fl·V_verdr·g, F_H = F_G − F_A   Einheiten: N, kg/m³, m³
+    Erklärung:   Intuition Druckdifferenz → Gesetz + Annahmen
+    Herleitung:  ja (Druck oben/unten)
+    Beispiel:    Stein am Seil (Rechenweg 8 Schritte)
+    Diagramm:    Situation + Kräftebild
+    Übungen:     L1 ×1, L2 ×2, L3 ×1, Probeprüfung A
+    Konzeptcheck: Quiz 1, 2
+    Lösungsblatt geprüft: ja – Abweichung Nr. 3 (Rundung), auf Seite vermerkt
+    Status:      offen
 ```
+
+Auch schwierige Lernziele ohne fertige Beispiele werden abgedeckt – dann eigene,
+korrekte Beispiele bauen. Die geforderte **Tiefe** (nennen / erklären / berechnen /
+herleiten / beurteilen) aus der Formulierung des Lernziels und der Prüfungsform ableiten.
 
 Lernziele ohne tragfähige Quellenbasis **vor** dem Schreiben melden:
 konkret benennen, was fehlt, und um Material oder Klärung bitten. Niemals still

@@ -1,8 +1,9 @@
 # studyhub-summary
 
-Ein Claude-Code-Skill, das aus dem Material eines Fachordners eine umfassende
-deutsche Prüfungszusammenfassung als HTML-Seite baut und vollständig in StudyHub
-integriert — inklusive Übungen, Lösungen, Prüfungssimulation und Index-Eintrag.
+Ein Claude-Code-Skill, das aus dem Material eines Fachordners eine interaktive
+deutsche Lernseite im einheitlichen StudyHub-Design baut und vollständig in StudyHub
+integriert — inklusive Sidebar-Navigation, Fachfarbe, Formeln, Diagrammen, Übungen
+mit Antwortprüfung, Quiz, Probeprüfung, Formelzeichen-Legende und Index-Eintrag.
 
 ## Installation
 
@@ -37,21 +38,53 @@ studyhub-summary/
 ├── LERNZIELE.md             Fallback-Datei für die Lernziele
 ├── LERNZIELE.template.md    Leervorlage (nicht bearbeiten)
 ├── README.md
+├── assets/                  Design-System (wird in jede Seite eingebettet)
+│   ├── subjects.json            zentrale Fach→Farbe-Zuordnung + Aliase
+│   ├── studyhub-guide.css       Tokens, Layout, Komponenten, Mobile, Druck
+│   ├── guide-shell.html         Seitengerüst: Sidebar/Drawer, Kopf, Footer
+│   ├── sh-core.js               Zahlen lesen, Antworten prüfen, Glossarsuche
+│   ├── studyhub-guide.js        Drawer, Navigation, Legende, Übungen, Quiz, Prüfung
+│   └── example/auftrieb.content.html   Referenz-Inhalt mit allen Bausteinen
 ├── references/
-│   ├── source-analysis.md       Material sichten, Prüfungsmodell, Coverage-Map
-│   ├── summary-quality.md       Inhalt, Sprache, fachspezifische Didaktik
-│   ├── exercises.md             Übungen auf 5 Niveaus, Lösungen, Simulation
+│   ├── source-analysis.md       Material sichten, Prüfungsmodell, Coverage-Matrix
+│   ├── summary-quality.md       Lernsequenz, Sprache, Notation, Quellen
+│   ├── design-system.md         Inhaltsdatei, Komponenten, Fachfarben, Bauen
+│   ├── diagrams.md              SVG-Diagramme, Kräftebilder, Simulationen
+│   ├── exercises.md             3 Niveaus, Rechenweg, Tipps, Quiz, Probeprüfung
 │   └── studyhub-integration.md  Repo-Konventionen, Einbindung, Validierung
-└── scripts/
-    ├── preflight.sh         Lernziele, Zugriff, Git-Zustand, Materialinventar
-    └── validate.sh          HTML, Anker, Sprache, Lecks, Index-Verlinkung
+├── scripts/
+│   ├── preflight.sh         Lernziele, Zugriff, Git-Zustand, Materialinventar
+│   ├── build-guide.mjs      Inhaltsdatei + Design-System → eigenständige Seite
+│   ├── lib/subjects.mjs     Fach-Auflösung, Farbableitung, WCAG-Kontrast
+│   ├── validate.sh          HTML, Anker, Sprache, Lecks, Design-System, Index
+│   └── check-render.mjs     8 Viewports: Layout, Drawer, Legende, Übungen, Fehler
+└── tests/                   node --test tests/*.test.mjs
 ```
 
 `SKILL.md` bleibt bewusst kurz. Die langen Anweisungen stehen in `references/` und
 werden nur bei Bedarf gelesen — das hält den Kontext schlank.
 
 Die Skripte machen genau das, was ein Sprachmodell unzuverlässig macht und ein
-Skript deterministisch: zählen, prüfen, vergleichen.
+Skript deterministisch: zählen, prüfen, vergleichen, Farben berechnen, rendern.
+
+## Design-System
+
+Jede Seite sieht gleich aus – nur die Fachfarbe und die Inhalte ändern sich.
+Claude schreibt eine **Inhaltsdatei** (Meta + Kapitel-Sections + Glossar-JSON),
+`build-guide.mjs` setzt Rahmen, CSS, JavaScript und Fach-Theme ein. Die gebaute
+Seite bleibt eine einzelne HTML-Datei ohne Abhängigkeiten.
+
+```bash
+node scripts/build-guide.mjs assets/example/auftrieb.content.html --out /tmp/auftrieb.html
+node scripts/build-guide.mjs --themes                 # Fachfarben + WCAG-Kontraste
+node scripts/build-guide.mjs --resolve "W&R"          # Fach-Auflösung testen
+node scripts/build-guide.mjs summaries/…/seite.html   # bestehende v2-Seite neu bauen
+node --test tests/*.test.mjs                          # Unit-Tests (ohne Abhängigkeiten)
+node scripts/check-render.mjs /tmp/auftrieb.html      # Rendering in 8 Viewports
+```
+
+**Neues Fach:** Eintrag in `assets/subjects.json` (`label`, `accent`, `aliases`),
+dann `--themes` (alle «AA ✓») und die Tests laufen lassen.
 
 ## Lernziele
 
@@ -76,7 +109,9 @@ Kein Template nötig, eine rohe Liste reicht. Mehr Kontext (Fach, Datum,
 Prüfungsform, Hilfsmittel, Hinweise der Lehrperson) = präziseres Ergebnis.
 Niedrigere Quellen ergänzen die höhere, ersetzen sie aber nicht.
 
-Die Lernziele sind die **Quelle der Wahrheit** für den Umfang. Jedes wird erklärt,
+Die Lernziele sind die **Quelle der Wahrheit** für den Umfang. Sie erscheinen
+**wörtlich** (Originalnummerierung und -text) im eingeklappten Sidebar-Block
+«Original-Lernziele» mit Häkchen zur Selbsteinschätzung und «Zum Kapitel»-Links. Jedes wird erklärt,
 an einem Beispiel gezeigt, abgefragt und gelöst. Fehlt für ein Lernziel das
 Material, meldet das Skill dies **vor** dem Schreiben.
 
@@ -98,13 +133,15 @@ dann `/studyhub-summary` mit oder ohne Lernziele.
    bestimmen, Ziel im Repo festlegen, Coverage-Map Lernziel → Quelle → Übung.
 3. **Preflight-Bericht** — Übersicht des Erkannten. Rückfragen nur bei echten
    Blockern, nicht bei Ableitbarem.
-4. **Schreiben** — eigenständige HTML-Seite: Theorie, durchgerechnete Beispiele,
-   typische Fehler, Übungen auf 5 Schwierigkeitsstufen, vollständige Lösungen,
-   Prüfungssimulation, Last-Minute-Checkliste. Deutsch (Schweiz), niemals `ß`.
+4. **Schreiben** — Inhaltsdatei im Design-System, dann bauen: Theorie mit
+   Lernsequenz, SVG-Diagramme, durchgerechnete Beispiele (Gegeben → Plausibilität),
+   Übungen auf 3 Niveaus mit gestuften Tipps und Antwortprüfung, Quiz, Probeprüfung,
+   Formelzeichen-Legende. Deutsch (Schweiz), niemals `ß`.
 5. **Coverage-Gate** — jedes Lernziel muss auf PASS stehen, sonst wird nachgebessert.
 6. **Integration** — Datei nach `summaries/bmsw/<fach>/` bzw. `summaries/bbw/<modul>/`
    plus Eintrag in `index.html`. Die Live-Suche zieht neue Einträge automatisch.
-7. **Validierung** — `scripts/validate.sh`.
+7. **Validierung** — `scripts/validate.sh` (statisch) und `scripts/check-render.mjs`
+   (Rendering in 8 Viewports von 320 bis 1440 px).
 8. **Commit** — knappe Message, nur die eigenen Dateien.
 
 ## Bestehende Zusammenfassungen

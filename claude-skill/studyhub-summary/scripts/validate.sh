@@ -53,6 +53,10 @@ esac
 printf '%s' "$BASE" | LC_ALL=C grep -qE '^[a-z0-9_&.-]+\.html$' \
   || warn "Dateiname enthaelt Grossbuchstaben oder Sonderzeichen: $BASE"
 
+# Seiteninhalt ohne <script>/<style> (die eingebettete Runtime soll Sprach-Checks nicht verfaelschen)
+TXT=$(mktemp "${TMPDIR:-/tmp}/studyhub-txt-XXXX")
+perl -0777 -pe 's/<(script|style)\b.*?<\/\1>//gis' "$F" > "$TXT"
+
 hr "SPRACHE (Schweiz)"
 if grep -q 'ß' "$F"; then
   fail "'ß' gefunden — immer 'ss' verwenden:"
@@ -60,7 +64,7 @@ if grep -q 'ß' "$F"; then
 else
   ok "kein 'ß'."
 fi
-grep -qE '\b(fuer|ueber|koennen|muessen|waehrend|zaehlen|groesse)\b' "$F" \
+grep -qE '\b(fuer|ueber|koennen|muessen|waehrend|zaehlen|groesse)\b' "$TXT" \
   && warn "ae/oe/ue-Umschreibung im Fliesstext gefunden — Umlaute verwenden." \
   || ok "keine unnoetige Umlaut-Umschreibung."
 
@@ -78,7 +82,13 @@ for tag in html head body; do
   C=$(grep -oi "</$tag>" "$F" | wc -l | tr -d ' ')
   [ "$O" = "$C" ] && ok "<$tag> ausgeglichen" || fail "<$tag>: $O offen / $C geschlossen"
 done
-for tag in div section details script style; do
+for tag in div section details math; do
+  # ohne <script>/<style>, damit Tag-Namen in Code-Kommentaren nicht zaehlen
+  O=$(grep -oi "<$tag[ >]" "$TXT" | wc -l | tr -d ' ')
+  C=$(grep -oi "</$tag>" "$TXT" | wc -l | tr -d ' ')
+  [ "$O" = "$C" ] || fail "<$tag>: $O offen / $C geschlossen"
+done
+for tag in script style; do
   O=$(grep -oi "<$tag[ >]" "$F" | wc -l | tr -d ' ')
   C=$(grep -oi "</$tag>" "$F" | wc -l | tr -d ' ')
   [ "$O" = "$C" ] || fail "<$tag>: $O offen / $C geschlossen"
@@ -103,12 +113,41 @@ for r in $(grep -oE '(src|href)="\.\.[^"]*"' "$F" | sed 's/^[a-z]*="//;s/"$//' |
 done
 
 hr "PLATZHALTER UND LECKS"
-grep -inE 'TODO|FIXME|XXX+|Lorem ipsum|PLATZHALTER|\bTBD\b|hier einfuegen|hier einfügen' "$F" \
+grep -inE 'TODO|FIXME|XXX+|Lorem ipsum|PLATZHALTER|\bTBD\b|hier einfuegen|hier einfügen' "$TXT" \
   | head -10 | sed 's/^/    /' | grep -q . \
   && fail "Platzhalter-/TODO-Reste gefunden (siehe oben)" || ok "keine Platzhalter"
 LEAK=$(grep -nE '/Users/|CloudStorage|OneDrive|\.claude/|file:///' "$F" | head -10)
 [ -z "$LEAK" ] && ok "keine lokalen Pfade geleakt" \
   || { fail "lokale Pfade im HTML:"; printf '%s\n' "$LEAK" | sed 's/^/    /'; }
+
+hr "DESIGN-SYSTEM"
+if grep -q 'data-sh-guide=' "$F"; then
+  ok "mit build-guide.mjs gebaut (StudyHub Guide v$(grep -o 'data-sh-guide="[0-9]*"' "$F" | head -1 | tr -dc '0-9'))"
+  SUBJ=$(grep -o 'data-subject="[^"]*"' "$F" | head -1 | sed 's/data-subject="//;s/"//')
+  [ "$SUBJ" = "andere" ] && warn "Fach nicht erkannt (neutrale Farbe) – Fach in assets/subjects.json ergaenzen oder --subject setzen" \
+    || ok "Fachfarbe: $SUBJ"
+  grep -q -- '--subject-accent:#' "$F" && ok "Fach-Theme eingebettet" || fail "Fach-Theme (--subject-accent) fehlt"
+  grep -q 'id="sh-sidebar"' "$F" && grep -q 'id="sh-menu-btn"' "$F" && ok "Sidebar + mobiler Drawer vorhanden" || fail "Sidebar/Drawer fehlt"
+  if grep -q 'id="sh-lz"' "$F"; then
+    NLZ=$(grep -c 'class="sh-lz-item' "$F" | tr -d ' ')
+    ok "Original-Lernziele in der Sidebar ($NLZ Lernziele)"
+    grep -q '<details class="sh-lz"[^>]*open' "$F" && fail "Original-Lernziele sind standardmaessig aufgeklappt – muessen eingeklappt sein"
+  else
+    warn "keine Original-Lernziele (sh-meta.objectives) – Pflicht, sobald ein offizielles Lernziel-Dokument vorliegt"
+  fi
+  grep -q 'id="sh-glossary"' "$F" && ok "Formelzeichen-/Begriffslegende vorhanden" || warn "keine Legende (sh-glossary) – bei Formelzeichen/Fachbegriffen ergaenzen"
+else
+  fail "Seite nicht mit dem StudyHub-Design-System gebaut (data-sh-guide fehlt) – scripts/build-guide.mjs verwenden"
+fi
+if grep -qiE 'offline[[:space:]]*nutzbar|lokal im browser nutzbar' "$TXT"; then
+  fail "Redundantes Label „Offline nutzbar“ o. ae. gefunden – entfernen"
+else
+  ok "kein „Offline nutzbar“-Label"
+fi
+HEXSTYLE=$(grep -oiE 'style="[^"]*#[0-9a-f]{3,6}' "$TXT" | wc -l | tr -d ' ')
+[ "$HEXSTYLE" -eq 0 ] && ok "keine Inline-Hexfarben im Inhalt" || warn "$HEXSTYLE Inline-Hexfarben – Tokens/dg-Klassen verwenden"
+NOVB=$(grep -oE '<svg\b[^>]*>' "$TXT" | grep -v 'sh-defs' | grep -vc 'viewBox' || true)
+[ "$NOVB" -eq 0 ] && ok "alle SVGs mit viewBox" || fail "$NOVB SVG(s) ohne viewBox (nicht responsiv)"
 
 hr "LERNINHALT"
 EX=$(grep -ciE 'aufgabe|übung|uebung|exercise' "$F" || true)
@@ -126,8 +165,10 @@ EXT=$(grep -oE '(src|href)="https?://[^"]+"' "$F" | sed 's/^[a-z]*="//;s/"$//' \
 
 hr "INLINE-JS"
 if command -v node >/dev/null 2>&1 && grep -q '<script' "$F"; then
-  TMP=$(mktemp /tmp/studyhub-js-XXXX.js)
-  awk '/<script[^>]*>/{f=1;next} /<\/script>/{f=0;print ";"} f' "$F" > "$TMP"
+  TMP=$(mktemp "${TMPDIR:-/tmp}/studyhub-js-XXXXXX")
+  awk '/<script[^>]*>/ { if ($0 ~ /<\/script>/) next; if ($0 !~ /application\/(ld\+)?json/) f=1; next }
+       /<\/script>/ { if (f) print ";"; f=0; next }
+       f' "$F" > "$TMP"
   if [ -s "$TMP" ]; then
     node --check "$TMP" >/dev/null 2>&1 && ok "Inline-JS syntaktisch gueltig" \
       || warn "node --check meldet Probleme (kann bei mehreren Bloecken falsch anschlagen): $(node --check "$TMP" 2>&1 | head -3 | tr '\n' ' ')"
@@ -164,6 +205,13 @@ done
 
 hr "GIT"
 git -C "$REPO" status --porcelain | sed 's/^/  /'
+
+rm -f "$TXT"
+
+hr "RENDERING (separat)"
+echo "  Dieses Skript prueft statisch. Layout/Interaktion in 8 Viewports:"
+echo "    node \"$SKILL_DIR/scripts/check-render.mjs\" \"$F\""
+echo "    (Fallback ohne DevTools: ... --serve --open safari)"
 
 hr "ERGEBNIS"
 echo "  Fehler: $ERR   Warnungen: $WARN"

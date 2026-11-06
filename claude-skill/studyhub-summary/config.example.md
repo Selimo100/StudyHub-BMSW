@@ -74,6 +74,11 @@ Unabhängig vom Modus gilt immer:
 
 ## Design
 
-Bespoke pro Seite: jede Zusammenfassung ist eigenständig mit eigener Palette und
-eigenem CSS — so wie alle bestehenden Seiten im Repo. Kein gemeinsames Template,
-keine neuen Abhängigkeiten. Qualitätsmassstab sind die stärksten bestehenden Seiten.
+Alle neuen Seiten nutzen das gemeinsame helle StudyHub-Design-System
+(`references/design-system.md`). Die gebaute Seite bleibt eine eigenständige
+HTML-Datei ohne Abhängigkeiten. Fachfarben stehen zentral in `assets/subjects.json` –
+dort, nicht hier, wird ein neues Fach ergänzt.
+
+Voraussetzung: Node.js ≥ 22 (Builder, Tests, Rendering-Check) und für den
+Rendering-Check ein Chromium-Browser (Chrome, Edge, Chromium, Brave) oder Safari
+im `--serve`-Modus.
