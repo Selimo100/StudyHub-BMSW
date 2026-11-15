@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kap. 9 Marktwirtschaft und Staat – Prüfungscoach</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2433; --muted:#5d6678; --line:#e3e6ee;
+  --nach:#2563eb; --nachbg:#e8f0ff; --ang:#e0661a; --angbg:#fff1e6;
+  --markt:#0f9d6b; --marktbg:#e4f7ef; --plan:#b4235a; --planbg:#fde8f0;
+  --merk:#fff7cc; --merkline:#e8c100; --ok:#13a05f; --bad:#d23b3b; --accent:#5b3fd1;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header{background:linear-gradient(120deg,#2b2a6e,#5b3fd1);color:#fff;padding:18px 20px 12px}
+header h1{margin:0;font-size:1.35rem}
+header p{margin:4px 0 0;opacity:.85;font-size:.9rem}
+.prog{margin-top:10px;background:rgba(255,255,255,.25);border-radius:99px;height:8px;overflow:hidden}
+.prog>div{height:100%;background:#7ef0b8;width:0;transition:width .4s}
+.progtxt{font-size:.8rem;opacity:.9;margin-top:3px}
+nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);display:flex;overflow-x:auto;gap:2px;padding:6px 8px}
+nav button{flex:0 0 auto;border:0;background:transparent;padding:8px 12px;border-radius:8px;font-size:.88rem;cursor:pointer;color:var(--muted);font-weight:600}
+nav button.active{background:var(--accent);color:#fff}
+main{max-width:1000px;margin:0 auto;padding:18px 14px 60px}
+section.tab{display:none} section.tab.active{display:block}
+h2{font-size:1.3rem;margin:.2em 0 .6em}
+h3{font-size:1.08rem;margin:1.3em 0 .5em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.merk{background:var(--merk);border-left:6px solid var(--merkline);border-radius:10px;padding:12px 16px;margin:12px 0}
+.merk b.t{display:block;margin-bottom:4px}
+.warn{background:#ffecec;border-left:6px solid var(--bad);border-radius:10px;padding:12px 16px;margin:12px 0}
+.tip{background:#eef6ff;border-left:6px solid var(--nach);border-radius:10px;padding:12px 16px;margin:12px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr}}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
+th{background:#f1f2f7}
+td.m{background:var(--marktbg)} td.p{background:var(--planbg)}
+th.m{background:var(--markt);color:#fff} th.p{background:var(--plan);color:#fff}
+th.n{background:var(--nach);color:#fff} th.a{background:var(--ang);color:#fff}
+.tagN{color:var(--nach);font-weight:700}.tagA{color:var(--ang);font-weight:700}
+.pill{display:inline-block;padding:1px 9px;border-radius:99px;font-size:.8rem;font-weight:700}
+.pill.m{background:var(--marktbg);color:var(--markt)}.pill.p{background:var(--planbg);color:var(--plan)}
+.pill.n{background:var(--nachbg);color:var(--nach)}.pill.a{background:var(--angbg);color:var(--ang)}
+svg.mk{width:100%;max-width:360px;height:auto;display:block;margin:6px auto}
+.dia{text-align:center;font-size:.85rem;color:var(--muted)}
+.lern{transition:filter .2s}
+body.cover .lern{filter:blur(6px);cursor:pointer;user-select:none}
+body.cover .lern.shown{filter:none}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0 4px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 13px;cursor:pointer;font-weight:600;font-size:.88rem}
+.btn.pri{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn:hover{filter:brightness(.97)}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:720px){.four{grid-template-columns:1fr 1fr}}
+.four div{border-radius:12px;padding:12px;text-align:center;font-size:.88rem;background:#f1eefe}
+.four div .ico{font-size:1.8rem}
+.four div b{display:block}
+.eff{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:720px){.eff{grid-template-columns:1fr 1fr}}
+.eff>div{border:1px solid var(--line);border-radius:12px;padding:8px;background:#fff;text-align:center;font-size:.85rem}
+.big{font-size:1.15rem;font-weight:800}
+/* Übungen */
+.ex{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;background:#fff}
+.ex .q{font-weight:600;margin-bottom:8px}
+.ex .opts{display:flex;flex-wrap:wrap;gap:6px}
+.ex .opts button{border:1.5px solid var(--line);background:#fafbff;border-radius:9px;padding:7px 11px;cursor:pointer;font-size:.88rem}
+.ex .opts button.right{background:#dff6ea;border-color:var(--ok);color:#0c6a3e;font-weight:700}
+.ex .opts button.wrong{background:#fde4e4;border-color:var(--bad);color:#9a1f1f}
+.ex .fb{display:none;margin-top:8px;font-size:.9rem;background:#f6f7fb;border-radius:9px;padding:9px 11px}
+.ex.done .fb{display:block}
+.setscore{font-weight:700;color:var(--accent)}
+details.sol{margin-top:8px}
+.ans{display:none;margin-top:8px;background:#f0fbf5;border:1px solid #bfe8d2;border-radius:10px;padding:10px 12px;font-size:.92rem}
+.ans.show{display:block}
+.oq{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0;background:#fff}
+.oq .pts{float:right;font-size:.8rem;color:var(--muted)}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:9px;padding:8px;font:inherit;margin-top:6px}
+input[type=number]{width:80px;padding:6px;border:1px solid var(--line);border-radius:8px;font:inherit}
+/* Karteikarten */
+.fc-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.fc{width:100%;max-width:560px;min-height:220px;perspective:1000px;cursor:pointer}
+.fc-in{position:relative;width:100%;min-height:220px;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:22px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:1.05rem;border:1px solid var(--line)}
+.fc-f{background:#fff;font-weight:700;font-size:1.2rem}
+.fc-b{background:#f4f1ff;transform:rotateY(180deg)}
+.fc-meta{font-size:.85rem;color:var(--muted)}
+/* Labor */
+.lab{display:grid;grid-template-columns:1.1fr 1fr;gap:16px}
+@media(max-width:760px){.lab{grid-template-columns:1fr}}
+.lab label{display:block;font-size:.88rem;font-weight:600;margin-top:10px}
+.lab input[type=range]{width:100%}
+.res{font-size:1rem;background:#f6f7fb;border-radius:10px;padding:10px 12px;margin-top:10px}
+.scen{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.scen button{font-size:.8rem;padding:5px 9px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.scen button.n{border-color:#b7cdfb}.scen button.a{border-color:#f5c8a8}
+.chk label{display:flex;gap:9px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed var(--line);cursor:pointer}
+.chk input{margin-top:4px;transform:scale(1.2)}
+.steps{counter-reset:s;list-style:none;padding:0}
+.steps li{counter-increment:s;position:relative;padding:6px 0 6px 40px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:4px;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.small{font-size:.85rem;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:.8rem;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <h1>📈 Kapitel 9 · Marktwirtschaft und Staat – Prüfungscoach</h1>
+  <p>Wirtschaft und Recht · BMS Winterthur · Prüfung am Do 26.11.2026 · Lernziele 9.1 + 9.2</p>
+  <div class="prog"><div id="progbar"></div></div>
+  <div class="progtxt" id="progtxt">Fortschritt: 0 %</div>
+</header>
+<nav id="nav"></nav>
+<main>
+
+<!-- ============ ÜBERBLICK ============ -->
+<section class="tab" id="t-start" data-title="🗺️ Start">
+  <h2>So lernst du mit dieser Seite</h2>
+  <div class="card">
+    <ol class="steps">
+      <li><b>Theorie-Tabs 1–5 lesen</b> – die gelben <b>Merkboxen</b> sind das, was du auswendig können musst.</li>
+      <li><b>Abdeckmodus</b> einschalten (Knopf unten) → Merkboxen werden verschwommen. Erst selber sagen, dann draufklicken.</li>
+      <li><b>Diagramm-Labor</b>: Kurven selbst verschieben, bis du «siehst», was passiert.</li>
+      <li><b>Karteikarten</b> → Begriffe sitzen.</li>
+      <li><b>Übungen</b> (sofortiges Feedback mit Diagramm) → bis alle Sets grün sind.</li>
+      <li><b>Prüfungstraining</b>: Offene Fragen wie an der Prüfung, mit Musterlösung.</li>
+      <li><b>Checkliste</b> am Tag vor der Prüfung.</li>
+    </ol>
+    <div class="toolbar">
+      <button class="btn pri" onclick="toggleCover()">🙈 Abdeckmodus ein/aus</button>
+      <span class="small">Gilt für alle Merkboxen und Tabellen mit Lernstoff.</span>
+    </div>
+  </div>
+
+  <h3>Was kommt an die Prüfung? (Lernzielblatt)</h3>
+  <div class="card">
+    <table>
+      <tr><th>Nr.</th><th>Lernziel – «Sie können …»</th><th>Tab</th></tr>
+      <tr><td>9.1 a</td><td>Merkmale der <b>freien Marktwirtschaft</b> und der <b>zentralen Planwirtschaft</b> beschreiben und vergleichen</td><td>1</td></tr>
+      <tr><td>9.1 b</td><td><b>Vor- und Nachteile</b> von Markt- und Planwirtschaft aus <b>unterschiedlichen Perspektiven</b> beurteilen</td><td>1</td></tr>
+      <tr><td>9.1 c</td><td>erklären, weshalb die Schweiz eine <b>soziale Marktwirtschaft</b> ist</td><td>1</td></tr>
+      <tr><td>9.2</td><td>das Zusammenwirken von Anbietenden und Nachfragenden mit dem <b>Angebots- und Nachfragemodell</b> erklären und <b>darstellen</b> (zeichnen!)</td><td>3–5</td></tr>
+    </table>
+    <p class="small">Im Skript stehen auch die <b>Rolle des Preises</b> (unsichtbare Hand, 4 Funktionen) – das gehört zu 9.1 und ist drin. Das <b>Marktgleichgewicht</b> brauchst du, um das Modell zu «erklären und darzustellen» → ebenfalls drin.
+    <b>Nicht</b> auf dem Lernzielblatt und deshalb weggelassen: Preiselastizität, Aufgaben des Staates / externe Effekte / Umweltpolitik. Marktformen (Monopol, Oligopol …) gibt es kurz als Bonus.</p>
+  </div>
+
+  <h3>Das ganze Kapitel auf einen Blick</h3>
+  <div class="card">
+    <svg viewBox="0 0 760 250" style="width:100%;height:auto">
+      <defs><marker id="ar0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#5d6678"/></marker></defs>
+      <rect x="290" y="10" width="180" height="46" rx="12" fill="#5b3fd1"/><text x="380" y="39" text-anchor="middle" fill="#fff" font-weight="700" font-size="16">MARKT</text>
+      <rect x="20" y="90" width="220" height="60" rx="12" fill="#e4f7ef" stroke="#0f9d6b"/><text x="130" y="115" text-anchor="middle" font-weight="700" fill="#0f9d6b">Wirtschaftsordnungen</text><text x="130" y="135" text-anchor="middle" font-size="12">Markt- vs. Planwirtschaft · Schweiz</text>
+      <rect x="270" y="90" width="220" height="60" rx="12" fill="#f1eefe" stroke="#5b3fd1"/><text x="380" y="115" text-anchor="middle" font-weight="700" fill="#5b3fd1">Rolle des Preises</text><text x="380" y="135" text-anchor="middle" font-size="12">unsichtbare Hand · 4 Funktionen</text>
+      <rect x="520" y="90" width="220" height="60" rx="12" fill="#fff" stroke="#1d2433"/><text x="630" y="115" text-anchor="middle" font-weight="700">Preisbildung</text><text x="630" y="135" text-anchor="middle" font-size="12">Angebot × Nachfrage</text>
+      <rect x="480" y="185" width="120" height="50" rx="10" fill="#e8f0ff" stroke="#2563eb"/><text x="540" y="207" text-anchor="middle" font-weight="700" fill="#2563eb">Nachfrage</text><text x="540" y="224" text-anchor="middle" font-size="11">5 Faktoren</text>
+      <rect x="610" y="185" width="120" height="50" rx="10" fill="#fff1e6" stroke="#e0661a"/><text x="670" y="207" text-anchor="middle" font-weight="700" fill="#e0661a">Angebot</text><text x="670" y="224" text-anchor="middle" font-size="11">4 Faktoren</text>
+      <rect x="290" y="185" width="170" height="50" rx="10" fill="#fff7cc" stroke="#e8c100"/><text x="375" y="207" text-anchor="middle" font-weight="700">Gleichgewicht</text><text x="375" y="224" text-anchor="middle" font-size="11">Überhänge · Mindest-/Höchstpreis</text>
+      <line x1="340" y1="56" x2="150" y2="88" stroke="#5d6678" marker-end="url(#ar0)"/>
+      <line x1="380" y1="56" x2="380" y2="88" stroke="#5d6678" marker-end="url(#ar0)"/>
+      <line x1="420" y1="56" x2="620" y2="88" stroke="#5d6678" marker-end="url(#ar0)"/>
+      <line x1="600" y1="150" x2="545" y2="183" stroke="#5d6678" marker-end="url(#ar0)"/>
+      <line x1="660" y1="150" x2="668" y2="183" stroke="#5d6678" marker-end="url(#ar0)"/>
+      <line x1="560" y1="150" x2="430" y2="183" stroke="#5d6678" marker-end="url(#ar0)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ 1 WIRTSCHAFTSORDNUNGEN ============ -->
+<section class="tab" id="t-ordnung" data-title="1 Ordnungen">
+  <h2>1 · Markt und Wirtschaftsordnungen (9.1)</h2>
+
+  <div class="merk lern"><b class="t">🧠 Markt – Definition</b>
+  Ein <b>Markt</b> ist ein Ort (oft nicht physisch, sondern <b>abstrakt</b>, z. B. online), an dem <b>Angebot und Nachfrage</b> aufeinandertreffen. Dabei bildet sich der <b>Preis</b>.<br>
+  Es gibt Märkte für <b>Güter/Dienstleistungen</b> und für <b>Produktionsfaktoren</b> (z. B. Arbeitsmarkt → Preis = <b>Lohn</b>; Kapitalmarkt → Preis = Zins).</div>
+
+  <h3>Zwei Modelle (Idealtypen)</h3>
+  <p>Beide sind <b>Modelle</b>: Die freie Marktwirtschaft kommt aus dem <b>Liberalismus</b>, die zentrale Planwirtschaft aus dem <b>Sozialismus</b>. In Reinform gibt es beide in der Realität kaum.</p>
+
+  <div class="grid2">
+    <div class="card" style="border-top:6px solid var(--markt)">
+      <h3 style="margin-top:0;color:var(--markt)">🛒 Freie Marktwirtschaft</h3>
+      <p><b>Bild im Kopf:</b> Ein Wochenmarkt – jeder entscheidet selbst, was er kauft und verkauft. Der Preis regelt alles.</p>
+      <ul>
+        <li>Koordination über <b>Märkte</b> und den <b>Preismechanismus</b></li>
+        <li>Preise aus <b>Angebot und Nachfrage</b></li>
+        <li>Zuteilung nach <b>individueller Kaufkraft</b></li>
+        <li>Triebkraft: <b>individuelles Gewinnstreben</b></li>
+        <li><b>Privateigentum</b> an Produktionsfaktoren</li>
+        <li>Staat = <b>Nachtwächterstaat</b>: sichert nur Rahmen (Freiheitsrechte), greift nicht ein</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:6px solid var(--plan)">
+      <h3 style="margin-top:0;color:var(--plan)">🏛️ Zentrale Planwirtschaft</h3>
+      <p><b>Bild im Kopf:</b> Eine Behörde mit einem riesigen Plan – sie bestimmt, wer was produziert und wer was bekommt.</p>
+      <ul>
+        <li>Koordination durch einen <b>zentralen Plan</b> des Staates</li>
+        <li>Staat legt <b>Preise, Mengen, Löhne</b> und sogar <b>Berufe</b> fest</li>
+        <li>Zuteilung durch <b>Rationierung</b> (z. B. Lebensmittelmarken) oder <b>Einkommens- und Preispolitik</b></li>
+        <li>Triebkraft: <b>Planerfüllung</b>, kollektive Ziele</li>
+        <li><b>Staatseigentum</b> an Produktionsfaktoren</li>
+        <li>Freiheitsrechte <b>eingeschränkt</b> → keine eigene Firma möglich</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🧠 Vergleichstabelle (auswendig!)</h3>
+  <div class="card lern">
+    <table>
+      <tr><th>Kriterium</th><th class="m">Freie Marktwirtschaft</th><th class="p">Zentrale Planwirtschaft</th></tr>
+      <tr><td><b>1. Steuerung / Koordination</b></td><td class="m">Markt: Angebot & Nachfrage, Preismechanismus</td><td class="p">Zentraler Plan des Staates</td></tr>
+      <tr><td><b>2. Ziele</b></td><td class="m">Individuelles Gewinnstreben, Gewinnmaximierung</td><td class="p">Kollektive Ziele, Planerfüllung</td></tr>
+      <tr><td><b>3. Zuteilung der Güter</b></td><td class="m">Nach individueller Kaufkraft</td><td class="p">Durch den Staat: Rationierung, Einkommens- & Preispolitik</td></tr>
+      <tr><td><b>4. Rolle des Staates</b></td><td class="m">Nachtwächterstaat: setzt Rahmenbedingungen, greift sonst nicht ein</td><td class="p">Kontrolliert und bestimmt die ganze Wirtschaft</td></tr>
+      <tr><td><b>5. Eigentum an Produktionsfaktoren</b></td><td class="m">Privat</td><td class="p">Staat</td></tr>
+      <tr><td><b>(6.) Freiheitsrechte</b></td><td class="m">Gewährleistet: Handels- & Gewerbefreiheit, Niederlassungsfreiheit, Berufs- & Arbeitsplatzwahl</td><td class="p">Eingeschränkt</td></tr>
+    </table>
+  </div>
+  <div class="tip">💡 <b>Eselsbrücke «S-Z-Z-R-E»</b>: <b>S</b>teuerung · <b>Z</b>iele · <b>Z</b>uteilung · <b>R</b>olle Staat · <b>E</b>igentum → «<i>Sieben Zebras zählen rote Erdbeeren</i>».</div>
+  <div class="tip">💡 <b>Produktionsfaktoren</b> (aus Kap. 8): natürliche Ressourcen (Boden), Arbeit, Kapital, Technologie/Wissen.</div>
+
+  <h3>Vor- und Nachteile</h3>
+  <div class="grid2 lern">
+    <div class="card" style="border-top:6px solid var(--markt)">
+      <b style="color:var(--markt)">Marktwirtschaft</b>
+      <p>✅ grosse <b>Auswahl</b> (viele Anbieter)<br>✅ <b>Wettbewerb</b> → tiefere Preise, bessere Qualität<br>✅ <b>Innovation</b> (wer besser ist, verdient mehr)<br>✅ <b>Freiheit</b> (Beruf, Konsum, Firma gründen)<br>✅ Preise zeigen Knappheit an → effiziente Verwendung der Ressourcen</p>
+      <p>❌ Verteilung nach <b>Kaufkraft</b> → wer wenig Geld hat, bekommt wenig<br>❌ <b>Ungleichheit</b> der Einkommen und Vermögen<br>❌ <b>Umweltschäden</b> (Umwelt hat keinen Preis)<br>❌ <b>Marktmacht</b>/Monopole möglich<br>❌ keine soziale Absicherung (Alter, Krankheit, Arbeitslosigkeit)</p>
+    </div>
+    <div class="card" style="border-top:6px solid var(--plan)">
+      <b style="color:var(--plan)">Planwirtschaft</b>
+      <p>✅ <b>Grundversorgung</b> für alle gesichert<br>✅ <b>gleichmässigere Verteilung</b><br>✅ Staat kann <b>gemeinsame Ziele</b> (z. B. Umwelt) direkt steuern<br>✅ Arbeitsplatzsicherheit</p>
+      <p>❌ wenig <b>Auswahl</b> und <b>Innovation</b> (kein Anreiz)<br>❌ Plan hat <b>Fehlinformationen</b> → gleichzeitig <b>Mangel</b> (Schlangen) und <b>Überproduktion</b><br>❌ <b>keine Freiheit</b> (Beruf, Konsum, Firma)<br>❌ riesige Bürokratie, ineffizient</p>
+    </div>
+  </div>
+
+  <h3>Beurteilen aus Perspektiven (Rollenspiel aus dem Unterricht)</h3>
+  <div class="card lern">
+    <table>
+      <tr><th>Rolle</th><th>bevorzugt eher</th><th>Weil …</th></tr>
+      <tr><td>👩 Konsumierende</td><td><span class="pill m">Markt</span></td><td>grosse Auswahl, Wettbewerb → tiefe Preise, gute Qualität, Konsumfreiheit</td></tr>
+      <tr><td>👔 Unternehmende</td><td><span class="pill m">Markt</span></td><td>dürfen Gewinn erzielen, Privateigentum, Gewerbefreiheit, eigene Firma gründen</td></tr>
+      <tr><td>🌳 Umweltorganisation</td><td><span class="pill p">eher Plan / starker Staat</span></td><td>Markt berücksichtigt Umweltschäden nicht (Umwelt hat keinen Preis), Staat könnte Umweltziele direkt vorgeben</td></tr>
+      <tr><td>🪙 Menschen mit tiefem Einkommen</td><td><span class="pill p">eher Plan / starker Staat</span></td><td>Zuteilung nicht nach Kaufkraft, Grundversorgung gesichert, gleichmässigere Verteilung</td></tr>
+    </table>
+  </div>
+  <div class="merk lern"><b class="t">🧠 So baust du eine Beurteilung auf (gibt Punkte!)</b>
+  ① <b>Position</b> nennen («Aus Sicht der … ist die Marktwirtschaft eher vorteilhaft, weil …») →
+  ② <b>2–3 Argumente</b> mit «weil/deshalb» <b>begründen</b> →
+  ③ <b>Fachbegriffe</b> verwenden (Kaufkraft, Preismechanismus, Rationierung …) →
+  ④ ein <b>Gegenargument</b> nennen und entkräften →
+  ⑤ <b>Fazit</b>.<br>
+  ⚠️ Nur aufzählen = wenig Punkte. Immer <b>begründen</b>!</div>
+
+  <h3>Die Schweiz: soziale Marktwirtschaft (9.1 c)</h3>
+  <div class="card">
+    <svg viewBox="0 0 700 170" style="width:100%;height:auto">
+      <rect x="10" y="20" width="300" height="130" rx="14" fill="#e4f7ef" stroke="#0f9d6b"/>
+      <text x="160" y="45" text-anchor="middle" font-weight="700" fill="#0f9d6b">Marktwirtschaftlicher KERN</text>
+      <text x="25" y="72" font-size="13">• Preise aus Angebot & Nachfrage</text>
+      <text x="25" y="94" font-size="13">• Privateigentum, private Unternehmen</text>
+      <text x="25" y="116" font-size="13">• Wettbewerb (Migros vs. Coop)</text>
+      <text x="25" y="138" font-size="13">• Freie Berufswahl, Gewerbefreiheit</text>
+      <text x="350" y="92" text-anchor="middle" font-size="34" font-weight="800">+</text>
+      <rect x="390" y="20" width="300" height="130" rx="14" fill="#fde8f0" stroke="#b4235a"/>
+      <text x="540" y="45" text-anchor="middle" font-weight="700" fill="#b4235a">Staatliche KORREKTUR (sozial)</text>
+      <text x="405" y="72" font-size="13">• Sozialversicherungen: AHV, IV, EO</text>
+      <text x="405" y="94" font-size="13">• Obligatorische Krankenversicherung</text>
+      <text x="405" y="116" font-size="13">• Sozialhilfe</text>
+      <text x="405" y="138" font-size="13">• Umweltgesetze, Regeln, Wettbewerbsschutz</text>
+    </svg>
+  </div>
+  <div class="merk lern"><b class="t">🧠 Warum «soziale Marktwirtschaft»?</b>
+  Die Schweiz ist <b>grundsätzlich eine Marktwirtschaft</b> (Preise über Angebot & Nachfrage, Privateigentum, Wettbewerb, Wirtschafts- und Berufsfreiheit). Der Staat <b>korrigiert</b> aber unerwünschte Folgen des Marktes – v. a. die <b>soziale Ungleichheit</b> und <b>Umweltschäden</b> – mit Sozialversicherungen (AHV, IV, EO), obligatorischer Krankenversicherung, Sozialhilfe und Gesetzen.<br>
+  ➜ <b>Mehr als ein Nachtwächterstaat</b>, aber <b>keine zentrale Planung</b>. Eine <b>Mischform</b> mit marktwirtschaftlichem Kern.</div>
+  <div class="tip">💡 <b>Faustregel beim Zuordnen:</b> Entscheidet jemand <b>freiwillig aus Eigeninteresse</b>? → marktwirtschaftliches Element. Schreibt der Staat etwas <b>vor</b> oder <b>verteilt um</b>? → staatliches Element.</div>
+  <div class="warn">⚠️ Häufiger Fehler: «Die Schweiz ist eine freie Marktwirtschaft.» → <b>Falsch!</b> Sie ist eine <b>soziale</b> Marktwirtschaft.</div>
+</section>
+
+<!-- ============ 2 PREIS ============ -->
+<section class="tab" id="t-preis" data-title="2 Preis">
+  <h2>2 · Die Rolle des Preises (9.1)</h2>
+
+  <div class="merk lern"><b class="t">🧠 Die unsichtbare Hand (Adam Smith, 1776)</b>
+  Jeder handelt aus <b>Eigennutz</b> (Bäcker will Geld verdienen, Kunde will Brot). Ohne dass jemand plant, entsteht dadurch eine <b>funktionierende Versorgung für alle</b> – als würde eine «unsichtbare Hand» die Wirtschaft lenken. Diese Hand ist der <b>Preismechanismus</b>: Preise koordinieren Millionen von Entscheidungen.</div>
+  <div class="tip">🥖 <b>Beispiel:</b> Niemand befiehlt dem Bäcker, um 4 Uhr Brot zu backen. Er macht es, weil er damit Geld verdient – und am Morgen hat die ganze Stadt Brot.</div>
+
+  <h3>🧠 Die 4 Funktionen (Lenkungsfunktion) des Preises</h3>
+  <div class="four lern">
+    <div><span class="ico">📡</span><b>Informations- / Signalfunktion</b>Der Preis zeigt an, wie <b>knapp</b> ein Gut ist. Hoher Preis = knapp.</div>
+    <div><span class="ico">🚀</span><b>Anreiz- / Antriebsfunktion</b>Hoher Preis motiviert: Anbieter produzieren mehr / suchen neue Lösungen, Käufer sparen.</div>
+    <div><span class="ico">🧭</span><b>Lenkungs- / Allokationsfunktion</b>Produktionsfaktoren (Arbeit, Kapital) fliessen dorthin, wo sie am meisten bringen.</div>
+    <div><span class="ico">🎟️</span><b>Zuteilungs- / Verteilungsfunktion</b>Das Gut geht an jene, die bereit (und fähig) sind, den Preis zu bezahlen.</div>
+  </div>
+  <p class="small">Die Namen variieren je nach Buch. Vergleiche mit dem grünen Kasten im Lehrbuch (Brunetti, Kap. 9.1) und verwende an der Prüfung die Begriffe aus deinem Unterricht. Inhaltlich sind es diese vier Ideen.</p>
+
+  <h3>Beispiel Erdölkrise 1973 (grüne Box im Buch)</h3>
+  <div class="card">
+    <p><b>Ursache:</b> Die erdölexportierenden Länder (OPEC) haben 1973 (Jom-Kippur-Krieg) die Fördermenge <b>gedrosselt</b> bzw. ein Embargo verhängt → das <b>Angebot sank</b> → der Erdölpreis stieg massiv (rund das Vierfache).</p>
+    <table class="lern">
+      <tr><th>Funktion</th><th>Was passierte 1973</th></tr>
+      <tr><td>📡 Signal</td><td>Der hohe Preis zeigte allen: Öl ist plötzlich <b>knapp</b>.</td></tr>
+      <tr><td>🚀 Anreiz</td><td>Konsumenten <b>sparten</b> (kleinere Autos, Isolation; CH: autofreie Sonntage). Firmen suchten neue Ölquellen (z. B. Nordsee) und Alternativen.</td></tr>
+      <tr><td>🧭 Lenkung</td><td>Kapital und Arbeit flossen in <b>Exploration, Energieeffizienz, alternative Energien</b>.</td></tr>
+      <tr><td>🎟️ Zuteilung</td><td>Das knappe Öl ging an diejenigen, die am meisten <b>zahlen wollten/konnten</b> (wichtigste Verwendungen).</td></tr>
+    </table>
+    <p><b>Warum ist der Ölpreis so zentral?</b> Erdöl ist <b>Vorleistung</b> für fast alles: Transport, Heizen, Plastik, Chemie, Landwirtschaft. Steigt der Ölpreis, steigen die Produktionskosten sehr vieler Güter → viele Preise steigen, die ganze Wirtschaft ist betroffen.</p>
+  </div>
+</section>
+
+<!-- ============ 3 NACHFRAGE ============ -->
+<section class="tab" id="t-nachfrage" data-title="3 Nachfrage">
+  <h2>3 · Die Nachfrage (9.2)</h2>
+  <p>Bedürfnisse sind unbeschränkt, Ressourcen nicht. Wir vergleichen den <b>Nutzen</b> eines Gutes. Der Nutzen bestimmt die <b>Zahlungsbereitschaft</b> = der Höchstpreis, den ich zu zahlen bereit bin. Weil Vorlieben verschieden sind, ist sie bei jedem anders.</p>
+
+  <div class="grid2">
+    <div>
+      <div id="dia-nachfrage"></div>
+      <div class="dia">Nachfragekurve: fällt von links oben nach rechts unten</div>
+    </div>
+    <div>
+      <div class="merk lern"><b class="t">🧠 Gesetz der Nachfrage</b>
+      <b>Je höher der Preis, desto kleiner die nachgefragte Menge</b> (und umgekehrt).<br>➜ Die Nachfragekurve <b>fällt</b>.</div>
+      <div class="merk lern"><b class="t">🧠 Warum? Zwei Begründungen</b>
+      ① <b>Opportunitätskosten steigen:</b> Wenn ich mehr für das Gut zahle, muss ich auf mehr andere Dinge verzichten.<br>
+      ② <b>Substitutionseffekt:</b> Man weicht auf günstigere Alternativen aus.</div>
+    </div>
+  </div>
+  <div class="tip">🍝 <b>Mensa-Beispiel:</b> Kostet das Menü CHF 14 statt CHF 8, fehlen CHF 6 für etwas anderes (Kino, Snack) → Opportunitätskosten steigen. Manche nehmen Essen von zuhause mit oder gehen zur Bäckerei (Substitution). → Weniger Menüs werden gekauft.</div>
+
+  <h3>🧠 Die 5 Faktoren, die die Nachfragekurve VERSCHIEBEN</h3>
+  <p>Eselsbrücke: <b>«E-A-S-K-V»</b> → «<i>Elefanten Aus Sri Lanka Kauen Vanille</i>»</p>
+  <div class="card lern">
+    <table>
+      <tr><th>Faktor</th><th class="n">⬅️ Nachfrage sinkt (Linksverschiebung)</th><th class="n">➡️ Nachfrage steigt (Rechtsverschiebung)</th></tr>
+      <tr><td><b>E</b>inkommen der Käufer</td><td>Einkommen sinkt</td><td>Einkommen steigt</td></tr>
+      <tr><td><b>A</b>nzahl Nachfrager</td><td>weniger Nachfrager</td><td>mehr Nachfrager (z. B. Bevölkerung wächst)</td></tr>
+      <tr><td>Preis von <b>S</b>ubstitutionsgütern<br><span class="small">(Ersatz: wird <i>statt</i> dem Gut gekauft)</span></td><td>Substitut wird <b>billiger</b> → Leute wechseln zum Substitut</td><td>Substitut wird <b>teurer</b> → Leute wechseln zu unserem Gut</td></tr>
+      <tr><td>Preis von <b>K</b>omplementärgütern<br><span class="small">(Ergänzung: wird <i>zusammen</i> mit dem Gut gekauft)</span></td><td>Komplement wird <b>teurer</b> → Gesamtpaket unattraktiver</td><td>Komplement wird <b>billiger</b> → Gesamtpaket attraktiver</td></tr>
+      <tr><td><b>V</b>orlieben (Präferenzen)</td><td>Gut wird unbeliebter (Studie, schlechter Ruf)</td><td>Gut wird beliebter (Trend, gute Bewertungen)</td></tr>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="card"><b>🔁 Substitut = «Entweder-oder»</b><br>Butter ↔ Margarine · Kino ↔ Netflix · Velo ↔ ÖV · E-Auto ↔ Benziner · A-Post-Brief ↔ E-Mail<br><span class="small">Gleiche Richtung: Substitut teurer → unsere Nachfrage ➡️</span></div>
+    <div class="card"><b>🤝 Komplement = «Sowohl-als-auch»</b><br>Auto + Benzin · Kino + Popcorn · E-Auto + Strom · Drucker + Tinte · Brief + Papier/Couvert<br><span class="small">Gegenrichtung: Komplement teurer → unsere Nachfrage ⬅️</span></div>
+  </div>
+
+  <div class="grid2">
+    <div><div id="dia-nshift"></div><div class="dia">Rechtsverschiebung: N₁ → N₂ (zu jedem Preis wird mehr nachgefragt)</div></div>
+    <div><div id="dia-nmove"></div><div class="dia">Preisänderung: nur Bewegung AUF der Kurve (A → B)</div></div>
+  </div>
+
+  <div class="merk lern"><b class="t">🧠 DER Prüfungsklassiker: Bewegung oder Verschiebung?</b>
+  <b>Ändert sich der Preis des Gutes selbst</b> → <b>Bewegung auf der Kurve</b> → die <b>nachgefragte Menge</b> ändert sich.<br>
+  <b>Ändert sich irgendetwas anderes</b> (E-A-S-K-V) → <b>Verschiebung der ganzen Kurve</b> → die <b>Nachfrage</b> ändert sich.<br>
+  ➜ Der eigene Preis verschiebt die Kurve <b>NIE</b>!</div>
+
+  <h3>Beispiel A-Post-Brief (aus dem Skript)</h3>
+  <div class="card">
+    <ul>
+      <li><b>Hackerangriffe auf E-Mail-Server</b> → Vertrauen in E-Mail sinkt → Nutzen von Briefen steigt → <b>Nachfrage nach rechts</b> (zu 1.10 CHF ca. 600 statt 440 Mio. Briefe). Die Angebotskurve bleibt gleich!</li>
+      <li><b>Kampagne «Save Paper. Save Trees.»</b> → Vorlieben ändern sich → <b>Nachfrage nach links</b>.</li>
+      <li><b>Post erhöht Preis von 1.10 auf 1.20 CHF (2024)</b> → <b>keine Verschiebung der Nachfragekurve</b>, sondern Bewegung auf der Kurve nach oben → weniger Briefe.</li>
+      <li>Sonderfall: Die Post hat ein <b>Monopol</b> (Briefe bis 50 g) und legt den Preis fest → die Angebotskurve ist hier <b>waagrecht</b> bei 1.10 bzw. 1.20 CHF. Normalerweise steigt sie!</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 4 ANGEBOT ============ -->
+<section class="tab" id="t-angebot" data-title="4 Angebot">
+  <h2>4 · Das Angebot (9.2)</h2>
+  <div class="merk lern"><b class="t">🧠 Grundregel</b>
+  Ein Produkt wird angeboten, wenn der Preis die <b>Produktionskosten (inkl. Gewinn)</b> deckt. Deckt der Preis die Kosten nicht, wird es nicht (oder nur kurz) angeboten. <b>Langfristig</b> muss der Preis <b>mindestens die Kosten</b> decken.<br>
+  <b>Mindestpreis</b> (eines Anbieters) = der tiefste Preis, zu dem jemand gerade noch anbietet.</div>
+
+  <div class="grid2">
+    <div><div id="dia-angebot"></div><div class="dia">Angebotskurve: steigt von links unten nach rechts oben</div></div>
+    <div>
+      <div class="merk lern"><b class="t">🧠 Gesetz des Angebots</b>
+      <b>Je höher der Preis, desto grösser die angebotene Menge.</b><br>➜ Die Angebotskurve <b>steigt</b>.</div>
+      <div class="tip">🐕 Hunde ausführen für CHF 5? Kaum jemand. Für CHF 25? Viele! Bei höherem Preis lohnt es sich für mehr Leute → mehr Anbieter, mehr Menge. Auch Firmen mit höheren Kosten können nun mithalten.</div>
+    </div>
+  </div>
+
+  <h3>🧠 Die 4 Faktoren, die die Angebotskurve VERSCHIEBEN</h3>
+  <p>Eselsbrücke: <b>«V-P-S-A»</b> → «<i>Viele Pinguine Surfen Alleine</i>»</p>
+  <div class="card lern">
+    <table>
+      <tr><th>Faktor</th><th class="a">⬅️ Angebot sinkt (Linksverschiebung)</th><th class="a">➡️ Angebot steigt (Rechtsverschiebung)</th></tr>
+      <tr><td>Preise der <b>V</b>orleistungen<br><span class="small">(Rohstoffe, Material, Energie, Löhne)</span></td><td>Vorleistungen werden <b>teurer</b> (Kakao, Mehl, Öl)</td><td>Vorleistungen werden <b>günstiger</b></td></tr>
+      <tr><td><b>P</b>roduktivität / Technologie</td><td>Produktivität nimmt ab (Missernte, Maschine kaputt)</td><td>Produktivität steigt (neue Maschine, bessere Anbaumethode)</td></tr>
+      <tr><td>Preis von <b>S</b>ubstitutionsgütern <b>in der Produktion</b><br><span class="small">(Güter, die man stattdessen herstellen könnte)</span></td><td>Alternative wird <b>teurer</b> → Firmen stellen lieber die Alternative her</td><td>Alternative wird <b>billiger</b> → lohnt sich weniger, also lieber unser Gut</td></tr>
+      <tr><td><b>A</b>nzahl Anbieter</td><td>weniger Anbieter (Firma schliesst)</td><td>mehr Anbieter (neue Firmen)</td></tr>
+    </table>
+  </div>
+  <div class="grid2">
+    <div><div id="dia-ashift"></div><div class="dia">Linksverschiebung: A₁ → A₂ (z. B. Kakao teurer → weniger Schokolade zu jedem Preis)</div></div>
+    <div>
+      <div class="card"><b>🍫 Beispiel Schokolade</b><br>
+      Kakao teurer (schlechte Ernte) → <b>Vorleistung</b> teurer → Angebot ⬅️<br>
+      Neue Anbaumethoden → mehr Kakao, günstiger → Angebot ➡️<br>
+      Kakaobutter teurer → Bohnen gehen lieber in Kakaobutter (<b>Substitut in der Produktion</b>) → Angebot ⬅️<br>
+      Schokoladenpreis steigt → <b>keine</b> Verschiebung (Bewegung auf der Kurve)<br>
+      Neue Firmen → Angebot ➡️</div>
+      <div class="warn">⚠️ <b>Rohstoffe gehören zum ANGEBOT</b>, nicht zur Nachfrage! «Mehl wird teurer» verschiebt das <b>Angebot</b> an Pizza nach links – nicht die Nachfrage.</div>
+    </div>
+  </div>
+  <div class="tip">🛍️ <b>Temu-Beispiel:</b> Sinkt der Marktpreis unter die Kosten eines Schweizer Händlers → <b>Bewegung</b> auf seiner Angebotskurve nach unten (er bietet weniger an), langfristig steigt er aus. Chinesische Städte spezialisieren sich auf ein Produkt → <b>Produktivität</b> ↑ → Angebot ➡️ (günstigere Preise möglich).</div>
+</section>
+
+<!-- ============ 5 GLEICHGEWICHT ============ -->
+<section class="tab" id="t-gg" data-title="5 Gleichgewicht">
+  <h2>5 · Marktgleichgewicht, Überhänge, Mindest- & Höchstpreis</h2>
+  <div class="grid2">
+    <div><div id="dia-gg"></div><div class="dia">Schnittpunkt = Marktgleichgewicht (p*, q*)</div></div>
+    <div>
+      <div class="merk lern"><b class="t">🧠 Marktgleichgewicht</b>
+      Der <b>Schnittpunkt</b> von Angebots- und Nachfragekurve.<br>
+      Dort gilt: <b>angebotene Menge = nachgefragte Menge</b>.<br>
+      Der Preis dort heisst <b>Gleichgewichtspreis</b> oder <b>markträumender Preis</b>: Alles, was angeboten wird, wird verkauft – kein Überschuss, keine Knappheit. Der Markt wird «geräumt».</div>
+      <div class="tip">🥐 <b>Bäcker:</b> Ideal ist, wenn am Abend kein Gipfeli übrig bleibt und trotzdem niemand leer ausgeht. Den richtigen Preis findet er durch <b>Versuch und Irrtum</b>: Zu früh ausverkauft → Preis rauf (oder mehr backen). Bleibt er sitzen → Preis runter, Rabatte.</div>
+    </div>
+  </div>
+
+  <h3>Überhänge</h3>
+  <div class="grid2">
+    <div class="card">
+      <div id="dia-nue"></div>
+      <div class="merk lern" style="margin:6px 0 0"><b class="t">🧠 Nachfrageüberhang</b>
+      Preis <b>unter</b> dem Gleichgewicht → nachgefragte Menge <b>&gt;</b> angebotene Menge → Knappheit, Schlangen, ausverkauft.<br>➜ Preis <b>steigt</b> tendenziell.<br>🎤 Coldplay: 6 Tickets, 9 Interessierte bei CHF 50.</div>
+    </div>
+    <div class="card">
+      <div id="dia-aue"></div>
+      <div class="merk lern" style="margin:6px 0 0"><b class="t">🧠 Angebotsüberschuss (Angebotsüberhang)</b>
+      Preis <b>über</b> dem Gleichgewicht → angebotene Menge <b>&gt;</b> nachgefragte Menge → Ware bleibt liegen.<br>➜ Preis <b>sinkt</b> tendenziell.<br>🥐 Gipfeli für CHF 1.80 statt 1.50 → Bäcker bleibt sitzen.</div>
+    </div>
+  </div>
+  <div class="tip">💡 <b>Merktrick:</b> Der Überhang heisst nach der Seite, die <b>zu viel</b> will. Preis zu tief → Käufer wollen zu viel → <b>Nachfrage</b>überhang. Preis zu hoch → Verkäufer wollen zu viel loswerden → <b>Angebots</b>überschuss.</div>
+
+  <h3>Staatliche Preisvorschriften</h3>
+  <div class="grid2">
+    <div class="card">
+      <div id="dia-min"></div>
+      <div class="merk lern" style="margin:6px 0 0"><b class="t">🧠 Mindestpreis (z. B. Mindestlohn, Milchpreis)</b>
+      Wirkt nur, wenn er <b>über</b> dem Gleichgewicht liegt → <b>Angebotsüberschuss</b>.<br>
+      Mindestlohn: Mehr Menschen wollen arbeiten (Arbeitsangebot ↑), Firmen stellen weniger ein (Arbeitsnachfrage ↓) → <b>Arbeitslosigkeit</b>.<br>
+      Milch (ab 1951): Bauern produzieren mehr, Konsumenten kaufen weniger → <b>Milchüberschuss</b>. Der Staat muss den Überschuss <b>aufkaufen/lagern/verbilligt exportieren</b> (kostet Steuergeld) oder die Menge mit <b>Kontingenten</b> begrenzen (CH bis 2009).<br>
+      Wird der Mindestpreis abgeschafft → Preis sinkt aufs Gleichgewicht, angebotene Menge sinkt, nachgefragte Menge steigt, Überschuss verschwindet.</div>
+    </div>
+    <div class="card">
+      <div id="dia-max"></div>
+      <div class="merk lern" style="margin:6px 0 0"><b class="t">🧠 Höchstpreis (z. B. regulierte Mieten)</b>
+      Wirkt nur, wenn er <b>unter</b> dem Gleichgewicht liegt → <b>Nachfrageüberhang</b>.<br>
+      Mieten: Viele wollen günstige Wohnungen, aber es lohnt sich weniger zu bauen/vermieten → <b>Wohnungsknappheit</b>, Schlangen, evtl. schlechtere Qualität.<br>
+      Grund: Kein Unternehmer bietet lange unter seinen Kosten an.</div>
+    </div>
+  </div>
+  <div class="tip">💡 <b>Bild:</b> Mindestpreis = <b>Boden</b> (Preis darf nicht darunter) → muss oben liegen, um zu wirken. Höchstpreis = <b>Deckel</b> (Preis darf nicht darüber) → muss unten liegen, um zu wirken.</div>
+
+  <h3>🧠 Was passiert mit Preis und Menge? (4 Grundfälle)</h3>
+  <div class="eff lern" id="effgrid"></div>
+  <div class="tip">💡 <b>Trick:</b> Bei der <b>Nachfrage</b> laufen Preis und Menge <b>gleich</b> (beide ↑ oder beide ↓). Beim <b>Angebot</b> laufen sie <b>gegenläufig</b>.</div>
+  <div class="warn">⚠️ <b>Zwei Einflüsse gleichzeitig</b> (z. B. Velo: Einkommen ↑ ➡️ und ÖV billiger ⬅️): Die beiden Verschiebungen wirken gegeneinander → die Gesamtwirkung ist <b>nicht eindeutig</b>. Man kann nur sagen, welcher Einfluss in welche Richtung drückt – das Ergebnis hängt davon ab, welcher stärker ist.<br>
+  Wenn N und A sich beide verschieben (z. B. N ➡️ und A ➡️): Menge steigt sicher, Preis unklar.</div>
+
+  <h3>Voraussetzungen für einen funktionierenden Markt (Artikel FAZ)</h3>
+  <div class="card lern">
+    <ul>
+      <li><b>Freie Preisbildung</b>: Der Preis darf sich bewegen (keine staatlichen Preisgrenzen) → nur so findet man den markträumenden Preis.</li>
+      <li><b>Gute Informationen</b> (Markttransparenz): Anbieter kennen Kundenwünsche, Konkurrenzpreise, Kosten. Hauptproblem jedes Marktes = <b>mangelnde Information</b>.</li>
+      <li><b>Wettbewerb / keine Marktmacht</b>: viele Anbieter und Nachfrager. Bei einem <b>Monopol</b> diktiert der Anbieter den Preis (Monopolrendite), Kunden können nicht ausweichen.</li>
+      <li>Kunden müssen ausweichen können (Konkurrenz nebenan) und genug Einkommen haben.</li>
+    </ul>
+  </div>
+
+  <h3>⭐ Bonus: Marktformen</h3>
+  <div class="card">
+    <table>
+      <tr><th>Marktform</th><th>Anbieter</th><th>Beispiel</th></tr>
+      <tr><td><b>Polypol</b></td><td>viele, starke Konkurrenz</td><td>Wochenmarkt, Essensstände am Openair</td></tr>
+      <tr><td><b>Oligopol</b></td><td>wenige grosse</td><td>Swisscom/Sunrise/Salt; Migros/Coop/Aldi/Lidl</td></tr>
+      <tr><td><b>Monopol</b></td><td>einer</td><td>Post (Briefe bis 50 g), SBB auf vielen Strecken, Google (Suche, faktisch)</td></tr>
+      <tr><td><b>Kartell</b></td><td>Firmen sprechen Preise/Aufträge ab</td><td>Bündner Baukartell → WEKO schützt den Wettbewerb</td></tr>
+    </table>
+  </div>
+
+  <h3>✏️ So zeichnest du ein Diagramm an der Prüfung</h3>
+  <div class="card lern">
+    <ol class="steps">
+      <li><b>Achsen</b>: Preis (p) auf der <b>y-Achse</b>, Menge (q) auf der <b>x-Achse</b>.</li>
+      <li><b>Markt benennen</b> («Markt für Schokolade»).</li>
+      <li><b>N</b> fallend, <b>A</b> steigend einzeichnen und beschriften.</li>
+      <li><b>Gleichgewicht</b> markieren: p₁ und q₁ mit gestrichelten Linien zu den Achsen.</li>
+      <li><b>Veränderung</b>: Verschiebung = neue <b>parallele</b> Kurve (N₂/A₂) + Pfeil. Preisänderung = Pfeil <b>entlang</b> derselben Kurve.</li>
+      <li><b>Neues Gleichgewicht</b> p₂, q₂ ablesen.</li>
+      <li><b>In Worten</b>: Ursache → welcher Faktor → welche Kurve → Richtung → Folge für Preis und Menge.</li>
+    </ol>
+  </div>
+  <div class="tip">📝 <b>Mustersatz:</b> «Kakao wird teurer. Kakao ist eine <b>Vorleistung</b> für Schokolade, die Produktionskosten steigen. Zu jedem Preis wird deshalb <b>weniger Schokolade angeboten</b> → die <b>Angebotskurve verschiebt sich nach links</b> (A₁ → A₂). Im neuen Gleichgewicht ist der <b>Preis höher</b> und die <b>Menge kleiner</b>.»</div>
+</section>
+
+<!-- ============ LABOR ============ -->
+<section class="tab" id="t-lab" data-title="🎛️ Diagramm-Labor">
+  <h2>🎛️ Diagramm-Labor – schiebe die Kurven selbst</h2>
+  <div class="lab">
+    <div class="card">
+      <div id="labsvg"></div>
+      <div class="res" id="labres"></div>
+    </div>
+    <div class="card">
+      <label>Nachfragekurve <span class="tagN">N</span> verschieben: <span id="vD">0</span></label>
+      <input type="range" id="rD" min="-70" max="70" value="0" step="5">
+      <label>Angebotskurve <span class="tagA">A</span> verschieben: <span id="vS">0</span></label>
+      <input type="range" id="rS" min="-70" max="70" value="0" step="5">
+      <label><input type="checkbox" id="cP"> Staat legt einen Preis fest (Mindest-/Höchstpreis)</label>
+      <input type="range" id="rP" min="-60" max="60" value="25" step="5" disabled>
+      <div class="small">Regler rechts = Preis höher.</div>
+      <button class="btn" style="margin-top:10px" onclick="labSet(0,0,false)">↺ Zurücksetzen</button>
+      <h3>Szenarien zum Anklicken</h3>
+      <div class="scen" id="scen"></div>
+      <div class="res" id="scenexp" style="display:none"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KARTEIKARTEN ============ -->
+<section class="tab" id="t-fc" data-title="🃏 Karteikarten">
+  <h2>🃏 Karteikarten</h2>
+  <div class="fc-wrap">
+    <div class="toolbar">
+      <button class="btn" onclick="fcFilter('all')">Alle</button>
+      <button class="btn" onclick="fcFilter('open')">Nur «noch nicht gewusst»</button>
+      <button class="btn" onclick="fcShuffle()">🔀 Mischen</button>
+    </div>
+    <div class="fc" id="fc" onclick="this.classList.toggle('flip')">
+      <div class="fc-in"><div class="fc-f" id="fcF"></div><div class="fc-b" id="fcB"></div></div>
+    </div>
+    <div class="fc-meta" id="fcMeta"></div>
+    <div class="toolbar">
+      <button class="btn" onclick="fcMove(-1)">◀ Zurück</button>
+      <button class="btn" style="border-color:var(--bad)" onclick="fcMark(false)">✗ Noch nicht</button>
+      <button class="btn" style="border-color:var(--ok)" onclick="fcMark(true)">✓ Gewusst</button>
+      <button class="btn" onclick="fcMove(1)">Weiter ▶</button>
+    </div>
+    <div class="small">Klick auf die Karte = umdrehen</div>
+  </div>
+</section>
+
+<!-- ============ ÜBUNGEN ============ -->
+<section class="tab" id="t-ex" data-title="✏️ Übungen">
+  <h2>✏️ Übungen mit sofortigem Feedback</h2>
+  <p class="small">Klicke die Antwort an. Bei jeder Antwort siehst du die Erklärung – oft mit Diagramm. Ziel: jedes Set 100 %.</p>
+  <div class="toolbar"><button class="btn" onclick="resetEx()">↺ Alle Übungen zurücksetzen</button></div>
+  <div id="exsets"></div>
+
+  <h3>Set T · Tabelle lesen (Mini-Pitgame)</h3>
+  <div class="card">
+    <table style="max-width:420px">
+      <tr><th>Preis (CHF)</th><th class="n">Nachgefragte Menge</th><th class="a">Angebotene Menge</th></tr>
+      <tr><td>10</td><td>2</td><td>12</td></tr>
+      <tr><td>8</td><td>4</td><td>10</td></tr>
+      <tr><td>6</td><td>7</td><td>7</td></tr>
+      <tr><td>4</td><td>10</td><td>4</td></tr>
+      <tr><td>2</td><td>13</td><td>1</td></tr>
+    </table>
+    <p>a) Gleichgewichtspreis: CHF <input type="number" id="tq1"> &nbsp; Gleichgewichtsmenge: <input type="number" id="tq2"></p>
+    <p>b) Bei einem Preis von CHF 2: Wie gross ist der Überhang (Stück)? <input type="number" id="tq3">
+      &nbsp;Art: <select id="tq4"><option value="">–</option><option value="n">Nachfrageüberhang</option><option value="a">Angebotsüberschuss</option></select></p>
+    <p>c) Der Staat setzt einen Mindestpreis von CHF 8. Überhang (Stück)? <input type="number" id="tq5">
+      &nbsp;Art: <select id="tq6"><option value="">–</option><option value="n">Nachfrageüberhang</option><option value="a">Angebotsüberschuss</option></select></p>
+    <button class="btn pri" onclick="checkTable()">Prüfen</button>
+    <div class="res" id="tres" style="display:none"></div>
+  </div>
+</section>
+
+<!-- ============ PRÜFUNGSTRAINING ============ -->
+<section class="tab" id="t-pt" data-title="📝 Prüfungstraining">
+  <h2>📝 Prüfungstraining – offene Fragen</h2>
+  <p class="small">Schreibe deine Antwort zuerst selbst (im Feld oder auf Papier, Diagramme auf Papier zeichnen!). Dann Musterlösung aufdecken und abhaken, wenn du alle Punkte hattest.</p>
+  <div id="oqs"></div>
+</section>
+
+<!-- ============ CHECKLISTE ============ -->
+<section class="tab" id="t-chk" data-title="✅ Checkliste">
+  <h2>✅ Last-Minute-Checkliste</h2>
+  <div class="card chk" id="chklist"></div>
+  <h3>❌ Die häufigsten Fehler</h3>
+  <div class="card">
+    <ul>
+      <li>Preisänderung des Gutes selbst als <b>Verschiebung</b> zeichnen → es ist eine <b>Bewegung auf der Kurve</b>.</li>
+      <li>«Nachfrage» und «nachgefragte Menge» verwechseln (Nachfrage = ganze Kurve; nachgefragte Menge = ein Punkt).</li>
+      <li><b>Achsen vertauscht</b> → Preis immer auf die y-Achse!</li>
+      <li>Rohstoffpreise der Nachfrage zuordnen → sie gehören zum <b>Angebot</b> (Vorleistungen).</li>
+      <li>Substitut und Komplement verwechseln (Substitut teurer → N ➡️; Komplement teurer → N ⬅️).</li>
+      <li>Überhänge falsch benennen (Preis zu tief = <b>Nachfrage</b>überhang).</li>
+      <li>Mindestpreis unter das Gleichgewicht zeichnen (wirkt dann gar nicht).</li>
+      <li>Schweiz = «freie Marktwirtschaft» → <b>soziale</b> Marktwirtschaft!</li>
+      <li>Beurteilung nur aufzählen statt <b>begründen</b> (Position → Argumente mit «weil» → Gegenargument → Fazit).</li>
+      <li>Kurven ohne Beschriftung (N, A, N₂, p₁, q₁ …) → gibt Abzug.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<footer>Erstellt aus Skript «Marktwirtschaft und Staat» (J. Hofstetter), Arbeitsblatt 9.2–9.3 und Lernzielblatt vom 12.11.2026.</footer>
+
+<script>
+/* ---------- Speicher ---------- */
+const KEY='kap9_mws_v1';
+let ST={ex:{},fc:{},chk:{},oq:{},tab:'t-start'};
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s)ST=Object.assign(ST,s);}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST));}catch(e){} updateProg();}
+
+/* ---------- Tabs ---------- */
+const nav=document.getElementById('nav');
+document.querySelectorAll('section.tab').forEach(s=>{
+  const b=document.createElement('button');b.textContent=s.dataset.title;b.dataset.t=s.id;
+  b.onclick=()=>showTab(s.id);nav.appendChild(b);
+});
+function showTab(id){
+  document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('active',s.id===id));
+  nav.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.t===id));
+  ST.tab=id;save();window.scrollTo(0,0);
+}
+/* ---------- Abdeckmodus ---------- */
+function toggleCover(){document.body.classList.toggle('cover');document.querySelectorAll('.lern').forEach(e=>e.classList.remove('shown'));}
+document.addEventListener('click',e=>{const l=e.target.closest('.lern');if(l&&document.body.classList.contains('cover'))l.classList.add('shown');});
+
+/* ---------- Diagramm-Engine ---------- */
+const K=160/220, NC='#2563eb', AC='#e0661a';
+const dX=(d,y)=>60+d+(y-40)/K;      // x auf Nachfrage bei Höhe y
+const sX=(d,y)=>60+d+(200-y)/K;     // x auf Angebot bei Höhe y
+const eqP=(dD,dS)=>[170+(dD+dS)/2,120+K*(dS-dD)/2];
+let uid=0;
+function market(o){
+  o=Object.assign({N:[0],A:[0],eq:[],hline:null,move:null,arrows:[],title:''},o);
+  const id='c'+(uid++);
+  let s=`<svg class="mk" viewBox="0 0 330 260" xmlns="http://www.w3.org/2000/svg">
+  <defs><clipPath id="${id}"><rect x="41" y="12" width="280" height="212"/></clipPath>
+  <marker id="m${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#1d2433"/></marker></defs>`;
+  if(o.title)s+=`<text x="185" y="12" text-anchor="middle" font-size="12" font-weight="700" fill="#1d2433">${o.title}</text>`;
+  s+=`<line x1="40" y1="225" x2="318" y2="225" stroke="#1d2433" stroke-width="1.5" marker-end="url(#m${id})"/>
+  <line x1="40" y1="225" x2="40" y2="16" stroke="#1d2433" stroke-width="1.5" marker-end="url(#m${id})"/>
+  <text x="44" y="26" font-size="12" font-weight="700">Preis (p)</text><text x="316" y="242" text-anchor="end" font-size="12" font-weight="700">Menge (q)</text><g clip-path="url(#${id})">`;
+  if(o.hline){
+    const h=o.hline, y=h.y, qd=dX(o.N[o.N.length-1].d??o.N[o.N.length-1],y), qs=sX(o.A[o.A.length-1].d??o.A[o.A.length-1],y);
+    const lo=Math.min(qd,qs),hi=Math.max(qd,qs), nue=qd>qs;
+    s+=`<rect x="${lo}" y="${y-7}" width="${hi-lo}" height="14" fill="${nue?'#2563eb':'#e0661a'}" opacity=".18"/>`;
+    s+=`<line x1="40" y1="${y}" x2="320" y2="${y}" stroke="#b4235a" stroke-width="2"/>`;
+    s+=`<line x1="${qd}" y1="${y}" x2="${qd}" y2="225" stroke="${NC}" stroke-dasharray="3 3"/><line x1="${qs}" y1="${y}" x2="${qs}" y2="225" stroke="${AC}" stroke-dasharray="3 3"/>`;
+  }
+  const drawC=(arr,type)=>arr.forEach((c,i)=>{
+    const d=(typeof c==='object')?c.d:c, dash=(typeof c==='object'&&c.dash)||(i>0), col=type==='N'?NC:AC;
+    const lab=(typeof c==='object'&&c.l)||(arr.length>1?type+(i+1):type);
+    let x1,y1,x2,y2;
+    if(type==='N'){x1=60+d;y1=40;x2=280+d;y2=200;}else{x1=60+d;y1=200;x2=280+d;y2=40;}
+    const op=(typeof c==='object'&&c.faint)?.35:1;
+    s+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="3" opacity="${op}" ${dash?'stroke-dasharray="7 5"':''}/>`;
+    const lx=type==='N'?x2-4:x2-4, ly=type==='N'?y2-8:y2+16;
+    s+=`<text x="${Math.min(lx,312)}" y="${ly}" fill="${col}" font-weight="800" font-size="14" text-anchor="end" opacity="${op}">${lab}</text>`;
+  });
+  drawC(o.N,'N');drawC(o.A,'A');
+  o.arrows.forEach(a=>{
+    const y=a.y, x1=a.t==='N'?dX(a.from,y):sX(a.from,y), x2=a.t==='N'?dX(a.to,y):sX(a.to,y);
+    s+=`<line x1="${x1}" y1="${y}" x2="${x2+(x2>x1?-4:4)}" y2="${y}" stroke="#1d2433" stroke-width="2.2" marker-end="url(#m${id})"/>`;
+  });
+  if(o.move){const m=o.move;const xa=m.t==='N'?dX(0,m.y1):sX(0,m.y1),xb=m.t==='N'?dX(0,m.y2):sX(0,m.y2);
+    [[xa,m.y1,'A'],[xb,m.y2,'B']].forEach(([x,y,l])=>{s+=`<line x1="40" y1="${y}" x2="${x}" y2="${y}" stroke="#888" stroke-dasharray="3 3"/><line x1="${x}" y1="${y}" x2="${x}" y2="225" stroke="#888" stroke-dasharray="3 3"/><circle cx="${x}" cy="${y}" r="5" fill="#1d2433"/><text x="${x+8}" y="${y-6}" font-weight="700" font-size="13">${l}</text>`;});
+    s+=`<path d="M${xa+(xb>xa?6:-6)},${m.y1+(m.y2>m.y1?8:-8)} L${xb+(xb>xa?-6:6)},${m.y2+(m.y2>m.y1?-8:8)}" stroke="#5b3fd1" stroke-width="2.5" fill="none" marker-end="url(#m${id})" transform="translate(${m.t==='N'?12:-12},${m.t==='N'?-12:-12})"/>`;
+  }
+  o.eq.forEach((e,i)=>{const [x,y]=eqP(e[0],e[1]);const op=e[3]?.45:1;
+    s+=`<line x1="40" y1="${y}" x2="${x}" y2="${y}" stroke="#555" stroke-dasharray="3 3" opacity="${op}"/><line x1="${x}" y1="${y}" x2="${x}" y2="225" stroke="#555" stroke-dasharray="3 3" opacity="${op}"/><circle cx="${x}" cy="${y}" r="5.5" fill="#1d2433" opacity="${op}"/>`;});
+  s+='</g>';
+  o.eq.forEach((e,i)=>{const [x,y]=eqP(e[0],e[1]);const l=e[2]||'';const op=e[3]?.5:1;
+    if(l){s+=`<text x="34" y="${y+4}" text-anchor="end" font-size="12" font-weight="700" opacity="${op}">p${l}</text><text x="${x}" y="239" text-anchor="middle" font-size="12" font-weight="700" opacity="${op}">q${l}</text>`;}});
+  if(o.move){const m=o.move;const xa=m.t==='N'?dX(0,m.y1):sX(0,m.y1),xb=m.t==='N'?dX(0,m.y2):sX(0,m.y2);
+    s+=`<text x="34" y="${m.y1+4}" text-anchor="end" font-size="12" font-weight="700">p₁</text><text x="34" y="${m.y2+4}" text-anchor="end" font-size="12" font-weight="700">p₂</text><text x="${xa}" y="239" text-anchor="middle" font-size="12" font-weight="700">q₁</text><text x="${xb}" y="239" text-anchor="middle" font-size="12" font-weight="700">q₂</text>`;}
+  if(o.hline){const h=o.hline,y=h.y;const nl=o.N[o.N.length-1],al=o.A[o.A.length-1];const qd=dX(nl.d??nl,y),qs=sX(al.d??al,y);
+    s+=`<text x="34" y="${y+4}" text-anchor="end" font-size="11" font-weight="700" fill="#b4235a">${h.pl||'p'}</text>`;
+    s+=`<text x="${qd}" y="239" text-anchor="middle" font-size="11" font-weight="700" fill="${NC}">q<tspan font-size="9">N</tspan></text><text x="${qs}" y="252" text-anchor="middle" font-size="11" font-weight="700" fill="${AC}">q<tspan font-size="9">A</tspan></text>`;
+    s+=`<text x="${(qd+qs)/2}" y="${y+(y<120?-12:22)}" text-anchor="middle" font-size="11.5" font-weight="800" fill="${qd>qs?NC:AC}">${h.label||(qd>qs?'Nachfrageüberhang':'Angebotsüberschuss')}</text>`;}
+  return s+'</svg>';
+}
+function put(id,html){const e=document.getElementById(id);if(e)e.innerHTML=html;}
+put('dia-nachfrage',market({N:[0],A:[],move:{t:'N',y1:80,y2:160},title:'Nachfrage'}).replace(/<text[^>]*>[AB]<\/text>/g,''));
+put('dia-angebot',market({N:[],A:[0],move:{t:'A',y1:160,y2:80},title:'Angebot'}).replace(/<text[^>]*>[AB]<\/text>/g,''));
+put('dia-nshift',market({N:[{d:0,l:'N₁'},{d:55,l:'N₂',dash:1}],A:[],arrows:[{t:'N',from:0,to:55,y:90},{t:'N',from:0,to:55,y:160}],title:'Verschiebung der Nachfrage'}));
+put('dia-nmove',market({N:[0],A:[],move:{t:'N',y1:110,y2:70},title:'Preis steigt → Bewegung'}));
+put('dia-ashift',market({N:[],A:[{d:0,l:'A₁'},{d:-55,l:'A₂',dash:1}],arrows:[{t:'A',from:0,to:-55,y:90},{t:'A',from:0,to:-55,y:160}],title:'Angebot sinkt (Linksverschiebung)'}));
+put('dia-gg',market({eq:[[0,0,'*']],title:'Marktgleichgewicht'}));
+put('dia-nue',market({hline:{y:165,pl:'p'},eq:[[0,0,'*',1]],title:'Preis unter Gleichgewicht'}));
+put('dia-aue',market({hline:{y:75,pl:'p'},eq:[[0,0,'*',1]],title:'Preis über Gleichgewicht'}));
+put('dia-min',market({hline:{y:78,pl:'p_min',label:'Angebotsüberschuss'},eq:[[0,0,'*',1]],title:'Mindestpreis (Boden, oben)'}));
+put('dia-max',market({hline:{y:162,pl:'p_max',label:'Nachfrageüberhang'},eq:[[0,0,'*',1]],title:'Höchstpreis (Deckel, unten)'}));
+const EFF=[['Nachfrage steigt','N ➡️',{N:[{d:0,l:'N₁'},{d:50,l:'N₂',dash:1}],arrows:[{t:'N',from:0,to:50,y:80}],eq:[[0,0,'₁',1],[50,0,'₂']]},'Preis ↑ · Menge ↑'],
+ ['Nachfrage sinkt','N ⬅️',{N:[{d:0,l:'N₁'},{d:-50,l:'N₂',dash:1}],arrows:[{t:'N',from:0,to:-50,y:80}],eq:[[0,0,'₁',1],[-50,0,'₂']]},'Preis ↓ · Menge ↓'],
+ ['Angebot steigt','A ➡️',{A:[{d:0,l:'A₁'},{d:50,l:'A₂',dash:1}],arrows:[{t:'A',from:0,to:50,y:80}],eq:[[0,0,'₁',1],[0,50,'₂']]},'Preis ↓ · Menge ↑'],
+ ['Angebot sinkt','A ⬅️',{A:[{d:0,l:'A₁'},{d:-50,l:'A₂',dash:1}],arrows:[{t:'A',from:0,to:-50,y:80}],eq:[[0,0,'₁',1],[0,-50,'₂']]},'Preis ↑ · Menge ↓']];
+put('effgrid',EFF.map(e=>`<div><b>${e[0]}</b>${market(e[2])}<div class="big">${e[3]}</div></div>`).join(''));
+
+/* ---------- Labor ---------- */
+const rD=document.getElementById('rD'),rS=document.getElementById('rS'),rP=document.getElementById('rP'),cP=document.getElementById('cP');
+function arrow(v){return v>0.5?'⬆️ steigt':v<-0.5?'⬇️ sinkt':'➖ gleich';}
+function labDraw(){
+  const d=+rD.value,s=+rS.value;document.getElementById('vD').textContent=(d>0?'+':'')+d;document.getElementById('vS').textContent=(s>0?'+':'')+s;
+  rP.disabled=!cP.checked;
+  const o={N:[],A:[],eq:[]};
+  if(d!==0)o.N.push({d:0,l:'N₁',faint:1}); o.N.push({d:d,l:d!==0?'N₂':'N',dash:d!==0});
+  if(s!==0)o.A.push({d:0,l:'A₁',faint:1}); o.A.push({d:s,l:s!==0?'A₂':'A',dash:s!==0});
+  if(d!==0)o.arrows=(o.arrows||[]).concat([{t:'N',from:0,to:d,y:70}]);
+  if(s!==0)o.arrows=(o.arrows||[]).concat([{t:'A',from:0,to:s,y:70}]);
+  if(d!==0||s!==0)o.eq.push([0,0,'₁',1]);
+  o.eq.push([d,s,(d!==0||s!==0)?'₂':'*']);
+  let txt='';
+  const [x0,y0]=eqP(0,0),[x1,y1]=eqP(d,s);
+  if(cP.checked){
+    const py=y1-(+rP.value)*1.1; o.hline={y:py,pl:(+rP.value>0?'p_min':'p_max')};
+    const qd=dX(d,py),qs=sX(s,py);
+    if(Math.abs(qd-qs)<3)txt='Der festgelegte Preis entspricht etwa dem Gleichgewicht → kein Überhang.';
+    else if(qd>qs)txt=`<b>Preis unter dem Gleichgewicht</b> → nachgefragte Menge &gt; angebotene Menge → <b style="color:${NC}">Nachfrageüberhang</b>. Ein <b>Höchstpreis</b> hier verursacht Knappheit (z. B. Wohnungsnot bei Mietdeckel).`;
+    else txt=`<b>Preis über dem Gleichgewicht</b> → angebotene Menge &gt; nachgefragte Menge → <b style="color:${AC}">Angebotsüberschuss</b>. Ein <b>Mindestpreis</b> hier verursacht Überschuss (z. B. Arbeitslosigkeit beim Mindestlohn, Milchsee).`;
+  }else{
+    if(d===0&&s===0)txt='Ausgangslage: Marktgleichgewicht im Schnittpunkt. Verschiebe eine Kurve!';
+    else{txt=`Neues Gleichgewicht: <b>Preis ${arrow(y0-y1)}</b> · <b>Menge ${arrow(x1-x0)}</b>`;
+      if(d!==0&&s!==0)txt+='<br><span class="small">Beide Kurven verschoben: Je nach Stärke kann sich das Ergebnis umdrehen – ohne Zahlen ist eine Grösse oft nicht eindeutig!</span>';}
+  }
+  put('labsvg',market(o));put('labres',txt);
+}
+function labSet(d,s,p,pv){rD.value=d;rS.value=s;cP.checked=!!p;if(pv!==undefined)rP.value=pv;labDraw();document.getElementById('scenexp').style.display='none';}
+[rD,rS,rP,cP].forEach(e=>e.addEventListener('input',labDraw));
+const SCEN=[
+ ['n','Einkommen steigt',40,0,'Mehr Einkommen → man kann mehr ausgeben → Nachfrage ➡️ → Preis ↑, Menge ↑.'],
+ ['n','Bevölkerung wächst',40,0,'Anzahl Nachfrager ↑ → Nachfrage ➡️.'],
+ ['n','Substitut wird teurer',40,0,'Z. B. Benzin teurer → mehr Leute wollen E-Autos → Nachfrage nach E-Autos ➡️.'],
+ ['n','Komplement wird teurer',-40,0,'Z. B. Popcorn teurer → Kinobesuch als Paket teurer → Nachfrage nach Kinotickets ⬅️.'],
+ ['n','Gut wird unbeliebt (Studie)',-40,0,'Vorlieben ändern sich → Nachfrage ⬅️ → Preis ↓, Menge ↓.'],
+ ['a','Rohstoff wird teurer',0,-40,'Vorleistungen teurer → Kosten ↑ → Angebot ⬅️ → Preis ↑, Menge ↓.'],
+ ['a','Neue Maschine',0,40,'Produktivität ↑ → günstiger produzieren → Angebot ➡️ → Preis ↓, Menge ↑.'],
+ ['a','Neue Anbieter',0,40,'Anzahl Anbieter ↑ → Angebot ➡️.'],
+ ['a','Alternative Produktion lohnt mehr',0,-40,'Substitut in der Produktion teurer (z. B. Kakaobutter) → Firmen stellen lieber das her → Angebot ⬅️.'],
+ ['','Mindestlohn über Marktlohn',0,0,'Mindestpreis über Gleichgewicht → Angebotsüberschuss auf dem Arbeitsmarkt (Arbeitslosigkeit).',true,35],
+ ['','Mietdeckel unter Marktpreis',0,0,'Höchstpreis unter Gleichgewicht → Nachfrageüberhang (Wohnungsknappheit).',true,-35],
+];
+put('scen',SCEN.map((c,i)=>`<button class="${c[0]}" onclick="scen(${i})">${c[1]}</button>`).join(''));
+function scen(i){const c=SCEN[i];labSet(c[2],c[3],c[5],c[6]);const e=document.getElementById('scenexp');e.style.display='block';e.innerHTML='💬 '+c[4];}
+labDraw();
+
+/* ---------- Karteikarten ---------- */
+const FC=[
+['Markt','Ort (auch abstrakt), an dem Angebot und Nachfrage zusammentreffen und sich der Preis bildet.'],
+['Freie Marktwirtschaft – Steuerung','Über Märkte / Preismechanismus (Angebot & Nachfrage).'],
+['Zentrale Planwirtschaft – Steuerung','Zentraler Plan des Staates.'],
+['Ziel / Triebkraft Marktwirtschaft vs. Planwirtschaft','Markt: individuelles Gewinnstreben. Plan: Planerfüllung, kollektive Ziele.'],
+['Zuteilung der Güter in der Planwirtschaft','Durch den Staat: Rationierung (z. B. Lebensmittelmarken) oder Einkommens- und Preispolitik.'],
+['Zuteilung der Güter in der Marktwirtschaft','Nach individueller Kaufkraft.'],
+['Nachtwächterstaat','Rolle des Staates in der freien Marktwirtschaft: sichert nur Rahmenbedingungen (Freiheitsrechte, Eigentum), greift sonst nicht ein.'],
+['Eigentum an Produktionsfaktoren','Marktwirtschaft: privat. Planwirtschaft: Staat.'],
+['Welche Freiheitsrechte schränkt die Planwirtschaft ein?','Handels- und Gewerbefreiheit, Niederlassungsfreiheit, Berufs- und Arbeitsplatzwahlfreiheit.'],
+['Soziale Marktwirtschaft (Schweiz)','Marktwirtschaftlicher Kern (Preise, Privateigentum, Wettbewerb, Berufsfreiheit) + staatliche Korrekturen (AHV/IV/EO, obligatorische KV, Sozialhilfe, Umweltgesetze).'],
+['Unsichtbare Hand (Adam Smith)','Eigennutz vieler führt ohne zentrale Planung zu einer funktionierenden Versorgung – gesteuert durch Preise.'],
+['4 Funktionen des Preises','Information/Signal (Knappheit) · Anreiz/Antrieb · Lenkung/Allokation (Produktionsfaktoren) · Zuteilung/Verteilung.'],
+['Erdölkrise 1973 – Ursache','OPEC drosselt Angebot (Embargo) → Angebot ⬅️ → Ölpreis steigt massiv.'],
+['Zahlungsbereitschaft','Höchster Preis, den jemand für ein Gut zu zahlen bereit ist; hängt vom Nutzen ab.'],
+['Gesetz der Nachfrage','Je höher der Preis, desto kleiner die nachgefragte Menge → Kurve fällt.'],
+['Warum fällt die Nachfragekurve?','Opportunitätskosten steigen mit dem Preis + Substitutionseffekt (Ausweichen auf günstigere Güter).'],
+['5 Faktoren, die die Nachfrage verschieben','Einkommen, Anzahl Nachfrager, Preis von Substitutionsgütern, Preis von Komplementärgütern, Vorlieben (E-A-S-K-V).'],
+['Substitutionsgut','Ersatzgut, das STATT des Gutes gekauft wird (Butter ↔ Margarine).'],
+['Komplementärgut','Ergänzungsgut, das ZUSAMMEN mit dem Gut gekauft wird (Auto + Benzin).'],
+['Gesetz des Angebots','Je höher der Preis, desto grösser die angebotene Menge → Kurve steigt.'],
+['Wann wird ein Gut angeboten?','Wenn der Preis die Produktionskosten (inkl. Gewinn) deckt; langfristig mindestens die Kosten.'],
+['4 Faktoren, die das Angebot verschieben','Preise der Vorleistungen, Produktivität, Preis von Substitutionsgütern in der Produktion, Anzahl Anbieter (V-P-S-A).'],
+['Bewegung auf der Kurve','Nur durch Änderung des Preises des Gutes selbst. Die nachgefragte/angebotene MENGE ändert sich.'],
+['Verschiebung der Kurve','Durch alle anderen Faktoren. Die Nachfrage/das Angebot als Ganzes ändert sich.'],
+['Marktgleichgewicht','Schnittpunkt von A und N: angebotene = nachgefragte Menge. Preis = Gleichgewichtspreis/markträumender Preis.'],
+['Markträumender Preis','Preis, bei dem alles Angebotene verkauft wird und kein Nachfrager leer ausgeht.'],
+['Nachfrageüberhang','Preis unter Gleichgewicht → Nachfrage > Angebot → Knappheit, Preis steigt tendenziell.'],
+['Angebotsüberschuss','Preis über Gleichgewicht → Angebot > Nachfrage → Ware bleibt liegen, Preis sinkt tendenziell.'],
+['Mindestpreis – Folge','Wirkt nur über dem Gleichgewicht → Angebotsüberschuss (Mindestlohn → Arbeitslosigkeit; Milch → Überschuss).'],
+['Höchstpreis – Folge','Wirkt nur unter dem Gleichgewicht → Nachfrageüberhang (Mietdeckel → Wohnungsknappheit).'],
+['Nachfrage steigt → Preis? Menge?','Preis ↑, Menge ↑'],
+['Angebot steigt → Preis? Menge?','Preis ↓, Menge ↑'],
+['Angebot sinkt → Preis? Menge?','Preis ↑, Menge ↓'],
+['Voraussetzungen funktionierender Markt','Freie Preisbildung, gute Informationen, Wettbewerb ohne Marktmacht (kein Monopol).'],
+['Monopol / Oligopol / Polypol','Ein Anbieter / wenige grosse Anbieter / viele Anbieter.'],
+];
+let fcOrder=FC.map((_,i)=>i),fcI=0,fcMode='all';
+function fcList(){return fcMode==='open'?fcOrder.filter(i=>!ST.fc[i]):fcOrder;}
+function fcShow(){const L=fcList();const el=document.getElementById('fc');el.classList.remove('flip');
+  if(!L.length){put('fcF','🎉 Alle gewusst!');put('fcB','Wechsle auf «Alle», um nochmals zu üben.');put('fcMeta','');return;}
+  fcI=(fcI+L.length)%L.length;const c=FC[L[fcI]];setTimeout(()=>{put('fcF',c[0]);put('fcB',c[1]);},150);
+  const known=Object.values(ST.fc).filter(Boolean).length;
+  put('fcMeta',`Karte ${fcI+1} / ${L.length} · gewusst: ${known} / ${FC.length}`);}
+function fcMove(d){fcI+=d;fcShow();}
+function fcMark(k){const L=fcList();if(!L.length)return;ST.fc[L[fcI]]=k;save();if(!(fcMode==='open'&&k))fcI++;fcShow();}
+function fcFilter(m){fcMode=m;fcI=0;fcShow();}
+function fcShuffle(){fcOrder.sort(()=>Math.random()-.5);fcI=0;fcShow();}
+fcShow();
+
+/* ---------- Übungen ---------- */
+const O_MP=['Marktwirtschaft','Planwirtschaft'], O_CH=['Marktwirtschaftliches Element','Staatliches Element'];
+const O_SH=['⬅️ nach links','➡️ nach rechts','gar nicht (Bewegung auf der Kurve)'];
+const O_BV=['Bewegung auf der Kurve','Verschiebung der Kurve'];
+const O_FULL=['N ➡️ (P↑ Q↑)','N ⬅️ (P↓ Q↓)','A ➡️ (P↓ Q↑)','A ⬅️ (P↑ Q↓)','keine Verschiebung'];
+const O_UE=['Nachfrageüberhang','Angebotsüberschuss','Gleichgewicht'];
+const dN=(v)=>({N:[{d:0,l:'N₁'},{d:v,l:'N₂',dash:1}],arrows:[{t:'N',from:0,to:v,y:85}],eq:[[0,0,'₁',1],[v,0,'₂']]});
+const dA=(v)=>({A:[{d:0,l:'A₁'},{d:v,l:'A₂',dash:1}],arrows:[{t:'A',from:0,to:v,y:85}],eq:[[0,0,'₁',1],[0,v,'₂']]});
+const mvN=(up)=>({N:[0],A:[],move:{t:'N',y1:up?120:80,y2:up?80:120}});
+const mvA=(up)=>({N:[],A:[0],move:{t:'A',y1:up?120:80,y2:up?80:120}});
+const SETS=[
+ {id:'A',t:'Set A · Markt- oder Planwirtschaft?',o:O_MP,items:[
+  ['Die Regierung legt den Brotpreis fest.',1,'Staat setzt Preise → Planwirtschaft.'],
+  ['Zwei Unternehmen konkurrieren um Kunden.',0,'Wettbewerb → Marktwirtschaft.'],
+  ['Der Staat bestimmt die Produktionsmenge von Autos.',1,'Zentraler Plan bestimmt Mengen.'],
+  ['Eine Person gründet ein eigenes Unternehmen.',0,'Gewerbefreiheit + Privateigentum → Marktwirtschaft.'],
+  ['Güter werden über Lebensmittelmarken verteilt.',1,'Rationierung = Zuteilung durch den Staat.'],
+  ['Wer mehr Geld hat, kann mehr kaufen.',0,'Zuteilung nach Kaufkraft.'],
+  ['Die Behörde teilt dir nach der Schule einen Beruf zu.',1,'Keine Berufswahlfreiheit → Planwirtschaft.'],
+  ['Fabriken gehören dem Staat; Ziel ist die Erfüllung des Fünfjahresplans.',1,'Staatseigentum + Planerfüllung.'],
+  ['Weil Avocados plötzlich beliebt sind, steigt ihr Preis und Bauern pflanzen mehr.',0,'Preismechanismus koordiniert → Marktwirtschaft.'],
+ ]},
+ {id:'B',t:'Set B · Schweiz: marktwirtschaftliches oder staatliches Element?',o:O_CH,items:[
+  ['Freie Berufswahl',0,'Jeder entscheidet freiwillig.'],
+  ['AHV',1,'Obligatorische Sozialversicherung → staatliche Korrektur.'],
+  ['Wettbewerb zwischen Migros und Coop',0,'Konkurrenz = Markt.'],
+  ['Obligatorische Krankenversicherung',1,'Staat schreibt vor.'],
+  ['Private Unternehmen',0,'Privateigentum.'],
+  ['Umweltgesetze',1,'Staatliche Regeln korrigieren den Markt.'],
+  ['Sozialhilfe',1,'Umverteilung durch den Staat.'],
+  ['Handels- und Gewerbefreiheit',0,'Freiheitsrecht der Marktwirtschaft (der Staat garantiert sie nur).'],
+  ['Preise im Supermarkt bilden sich durch Angebot und Nachfrage',0,'Preismechanismus.'],
+  ['Invalidenversicherung (IV)',1,'Sozialversicherung.'],
+ ]},
+ {id:'C',t:'Set C · Nachfragekurve für Elektroautos – wohin?',o:O_SH,items:[
+  ['Der Benzinpreis steigt stark an.',1,'Benzinauto ist das Substitut; Substitut teurer → Nachfrage nach E-Autos ➡️.',dN(50)],
+  ['Der Preis für Elektroautos steigt.',2,'Eigener Preis → nur Bewegung auf der Kurve (weniger E-Autos nachgefragt).',mvN(true)],
+  ['Eine Studie zeigt: Batterien altern viel schneller als gedacht.',0,'Vorlieben sinken → Nachfrage ⬅️.',dN(-50)],
+  ['Die staatlichen Förderungen für E-Autos werden abgeschafft.',0,'Das Gesamtpaket wird für Käufer unattraktiver → Nachfrage ⬅️.',dN(-50)],
+  ['Die Strompreise steigen.',0,'Strom ist ein Komplement; Komplement teurer → Nachfrage ⬅️.',dN(-50)],
+  ['Höhere CO₂-Steuern für Verbrenner + mehr Subventionen für E-Autos.',1,'Substitut wird teurer und E-Auto attraktiver → Nachfrage ➡️.',dN(50)],
+ ]},
+ {id:'D',t:'Set D · Angebotskurve für Schokolade – wohin?',o:O_SH,items:[
+  ['Der Preis für Kakaobohnen steigt.',0,'Vorleistung teurer → Angebot ⬅️.',dA(-50)],
+  ['Neue Anbaumethoden führen zu höheren Kakaoerträgen.',1,'Produktivität ↑ / Vorleistung billiger → Angebot ➡️.',dA(50)],
+  ['Der Preis für Kakaobutter steigt; Bohnen werden lieber dafür verwendet.',0,'Substitut in der Produktion teurer → Angebot an Schokolade ⬅️.',dA(-50)],
+  ['Der Preis für Schokolade steigt.',2,'Eigener Preis → Bewegung auf der Angebotskurve (mehr angeboten).',mvA(true)],
+  ['Neue Unternehmen steigen in den Schokoladenmarkt ein.',1,'Anzahl Anbieter ↑ → Angebot ➡️.',dA(50)],
+ ]},
+ {id:'E',t:'Set E · Schlagzeilen Nachfrage (Kino, Sneakers, Velos)',o:O_SH,items:[
+  ['Kinotickets: Netflix senkt seinen Abopreis stark.',0,'Netflix = Substitut; Substitut billiger → Nachfrage nach Kino ⬅️.',dN(-50)],
+  ['Kinotickets: Popcorn und Getränke im Kino werden massiv teurer.',0,'Komplement teurer → Nachfrage ⬅️.',dN(-50)],
+  ['Sneakers: Ein Social-Media-Trend macht ein Modell begehrt.',1,'Vorlieben ↑ → Nachfrage ➡️.',dN(50)],
+  ['Sneakers: Der Hersteller senkt den Preis um 20 %.',2,'Eigener Preis → Bewegung auf der Kurve (mehr nachgefragt).',mvN(false)],
+  ['Velos: Die ÖV-Preise steigen.',1,'ÖV = Substitut; teurer → Nachfrage nach Velos ➡️.',dN(50)],
+  ['Mensa: Die Lernenden bekommen mehr Taschengeld.',1,'Einkommen ↑ → Nachfrage ➡️.',dN(50)],
+  ['Mensa: Eine Bäckerei nebenan bietet günstige Mittagsmenüs an.',0,'Günstigeres Substitut → Nachfrage ⬅️.',dN(-50)],
+ ]},
+ {id:'F',t:'Set F · Schlagzeilen Angebot (Pizza)',o:O_SH,items:[
+  ['Der Preis für Mehl steigt stark.',0,'Vorleistung teurer → Angebot ⬅️. (Nicht die Nachfrage!)',dA(-50)],
+  ['Eine neue Ofentechnik erlaubt mehr Pizzen pro Stunde.',1,'Produktivität ↑ → Angebot ➡️.',dA(50)],
+  ['Zwei neue Pizzerien eröffnen im Quartier.',1,'Mehr Anbieter → Angebot ➡️.',dA(50)],
+  ['Der Pizzapreis steigt, die Pizzerien backen mehr.',2,'Eigener Preis → Bewegung auf der Angebotskurve.',mvA(true)],
+  ['Eine Pizzeria schliesst für immer.',0,'Weniger Anbieter → Angebot ⬅️.',dA(-50)],
+  ['Pasta wird teurer, Restaurants stellen mehr Pasta und weniger Pizza her.',0,'Substitut in der Produktion teurer → Angebot an Pizza ⬅️.',dA(-50)],
+ ]},
+ {id:'G',t:'Set G · Bewegung oder Verschiebung?',o:O_BV,items:[
+  ['Die Mensa erhöht den Preis von CHF 8 auf CHF 10.',0,'Eigener Preis.',mvN(true)],
+  ['Die Lernenden mögen das Essen plötzlich mehr.',1,'Vorlieben → N ➡️.',dN(50)],
+  ['Mehr Lernende besuchen die Schule.',1,'Anzahl Nachfrager → N ➡️.',dN(50)],
+  ['Die Mensa senkt den Preis.',0,'Eigener Preis.',mvN(false)],
+  ['Kakao wird wegen einer Missernte teurer (Markt Schokolade).',1,'Vorleistung → A ⬅️.',dA(-50)],
+  ['Eine neue Maschine produziert mehr Schokolade pro Stunde.',1,'Produktivität → A ➡️.',dA(50)],
+  ['Der Preis für Schokolade sinkt, ein Hersteller stellt weniger her.',0,'Eigener Preis → Bewegung auf A.',mvA(false)],
+  ['Die Post erhöht den A-Post-Preis von 1.10 auf 1.20 CHF (Nachfrage nach Briefen).',0,'Eigener Preis → Bewegung auf der Nachfragekurve; die Kurve selbst bleibt.',mvN(true)],
+ ]},
+ {id:'H',t:'Set H · Komplett-Analyse: Welche Kurve, wohin, Folge?',o:O_FULL,items:[
+  ['Kaffee: Eine Studie zeigt, dass Kaffee sehr gesund ist.',0,'Vorlieben ↑ → N ➡️ → Preis ↑, Menge ↑.',dN(50)],
+  ['Kaffee: Frost in Brasilien zerstört einen Teil der Ernte.',3,'Produktivität/Ernte ↓ → A ⬅️ → Preis ↑, Menge ↓.',dA(-50)],
+  ['Butter: Margarine wird viel billiger.',1,'Substitut billiger → N ⬅️ → Preis ↓, Menge ↓.',dN(-50)],
+  ['Velos: Eine Fabrik setzt neue Roboter ein.',2,'Produktivität ↑ → A ➡️ → Preis ↓, Menge ↑.',dA(50)],
+  ['Wohnungen in Winterthur: Die Bevölkerung wächst stark.',0,'Anzahl Nachfrager ↑ → N ➡️ → Mieten ↑.',dN(50)],
+  ['Smartphones: Chips werden deutlich günstiger.',2,'Vorleistungen billiger → A ➡️ → Preis ↓, Menge ↑.',dA(50)],
+  ['Erdöl 1973: Die OPEC drosselt die Fördermenge.',3,'Weniger Angebot → A ⬅️ → Preis ↑, Menge ↓.',dA(-50)],
+  ['Weizen: Raps wird teurer, Bauern pflanzen mehr Raps statt Weizen.',3,'Substitut in der Produktion teurer → A Weizen ⬅️.',dA(-50)],
+  ['Kinotickets: Das Kino senkt den Ticketpreis.',4,'Eigener Preis → keine Verschiebung, Bewegung auf N.',mvN(false)],
+  ['Hotelzimmer Zürich: Deutlich weniger Touristen kommen.',1,'Anzahl Nachfrager ↓ → N ⬅️ → Preis ↓, Menge ↓.',dN(-50)],
+  ['A-Post-Briefe: Weltweite Hackerangriffe auf E-Mail-Server.',0,'Vertrauen in E-Mail sinkt → Nutzen von Briefen ↑ → N ➡️.',dN(50)],
+ ]},
+ {id:'I',t:'Set I · Überhänge erkennen',o:O_UE,items:[
+  ['Das Coldplay-Konzert ist innert Minuten ausverkauft.',0,'Mehr wollen kaufen, als Tickets da sind → Preis zu tief → Nachfrageüberhang.',{hline:{y:165},eq:[[0,0,'*',1]]}],
+  ['Viele Fans gehen ohne Ticket nach Hause.',0,'Nachfrage > Angebot.',{hline:{y:165},eq:[[0,0,'*',1]]}],
+  ['Der Bäcker bleibt am Abend auf vielen Gipfeli sitzen.',1,'Angebot > Nachfrage → Preis zu hoch.',{hline:{y:75},eq:[[0,0,'*',1]]}],
+  ['Mindestlohn von CHF 25 bei Marktlohn CHF 22 (Arbeitsmarkt).',1,'Mindestpreis über Gleichgewicht → mehr wollen arbeiten, Firmen stellen weniger ein → Angebotsüberschuss an Arbeit = Arbeitslosigkeit.',{hline:{y:78,pl:'p_min'},eq:[[0,0,'*',1]]}],
+  ['Staatlich festgelegte Mieten unter dem Marktniveau.',0,'Höchstpreis unter Gleichgewicht → Wohnungsknappheit.',{hline:{y:162,pl:'p_max'},eq:[[0,0,'*',1]]}],
+  ['Garantierter Milchpreis über dem Marktpreis (ab 1951).',1,'Mindestpreis → Bauern produzieren mehr, Konsumenten kaufen weniger → Milchüberschuss.',{hline:{y:78,pl:'p_min'},eq:[[0,0,'*',1]]}],
+  ['Am Abend sind alle Brötchen verkauft, und kein Kunde ging leer aus.',2,'Markträumender Preis.',{eq:[[0,0,'*']]}],
+  ['Ein Höchstpreis wird ÜBER dem Gleichgewichtspreis festgelegt.',2,'Er wirkt gar nicht – der Markt pendelt sich trotzdem im Gleichgewicht ein (Deckel liegt höher als der Preis).',{eq:[[0,0,'*']]}],
+ ]},
+ {id:'J',t:'Set J · Gemischte Wissensfragen',o:null,items:[
+  ['Wie verläuft die Angebotskurve des A-Post-Briefs (Monopol, fixer Preis)?',['steigend','fallend','waagrecht','senkrecht'],2,'Die Post verlangt 1.10 CHF, egal wie viele Briefe → waagrecht. Sonderfall!'],
+  ['Was zeigt ein stark steigender Preis gemäss Signalfunktion?',['Das Gut ist knapp','Das Gut ist im Überfluss vorhanden','Der Staat greift ein','Die Qualität ist schlecht'],0,'Hoher Preis = Knappheitssignal.'],
+  ['Zwei Einflüsse: Einkommen steigt UND ÖV wird billiger. Nachfrage nach Velos?',['sicher nach rechts','sicher nach links','nicht eindeutig','bleibt sicher gleich'],2,'Einkommen ➡️, Substitut billiger ⬅️ → gegenläufig, Ergebnis hängt von der Stärke ab.'],
+  ['Mehl teurer UND neue Ofentechnik (Pizza). Angebot?',['sicher rechts','sicher links','nicht eindeutig','Nachfrage sinkt'],2,'Vorleistung ⬅️, Produktivität ➡️ → nicht eindeutig.'],
+  ['Wer vertrat die Idee der «unsichtbaren Hand»?',['Karl Marx','Adam Smith','John M. Keynes','Aymo Brunetti'],1,'Adam Smith, «Der Wohlstand der Nationen» (1776).'],
+  ['Was ist das Hauptproblem jedes Marktes laut FAZ-Artikel?',['Zu viele Anbieter','Mangelnde Informationen','Zu hohe Steuern','Zu viel Wettbewerb'],1,'Der Bäcker kennt Konkurrenzpreise und Kundenwünsche oft nur ungefähr.'],
+  ['Welche Gruppe bevorzugt am ehesten die Planwirtschaft?',['Unternehmende','Konsumierende mit hohem Einkommen','Menschen mit tiefem Einkommen','Aktionäre'],2,'Zuteilung nicht nach Kaufkraft, Grundversorgung gesichert.'],
+  ['«Nachfrage steigt» bedeutet im Diagramm …',['Bewegung nach rechts unten auf N','Verschiebung von N nach rechts','Verschiebung von N nach oben links','Verschiebung von A nach rechts'],1,'«Nachfrage» = ganze Kurve → Verschiebung nach rechts.'],
+  ['Was passiert, wenn ein Mindestpreis aufgehoben wird?',['Preis steigt','Angebotsüberschuss wächst','Preis sinkt auf Gleichgewicht, Überschuss verschwindet','Nachfrage verschiebt sich'],2,'Angebotene Menge ↓, nachgefragte Menge ↑, bis sie gleich sind.'],
+ ]},
+];
+function renderEx(){
+  const box=document.getElementById('exsets');let h='';
+  SETS.forEach(set=>{
+    h+=`<h3>${set.t} <span class="setscore" id="sc-${set.id}"></span></h3>`;
+    set.items.forEach((it,i)=>{
+      const k=set.id+i, opts=set.o||it[1], a=set.o?it[1]:it[2], ex=set.o?it[2]:it[3], dg=set.o?it[3]:null;
+      h+=`<div class="ex" id="ex-${k}"><div class="q">${i+1}. ${it[0]}</div><div class="opts">`+
+        opts.map((o,j)=>`<button onclick="answer('${set.id}',${i},${j})">${o}</button>`).join('')+
+        `</div><div class="fb" id="fb-${k}">${ex}${dg?market(dg):''}</div></div>`;
+    });
+  });
+  box.innerHTML=h;
+  Object.keys(ST.ex).forEach(k=>{const m=k.match(/^([A-Z])(\d+)$/);if(m)paint(m[1],+m[2],ST.ex[k].c,false);});
+  SETS.forEach(s=>score(s.id));
+}
+function answer(sid,i,j){const set=SETS.find(s=>s.id===sid),it=set.items[i],a=set.o?it[1]:it[2];
+  const k=sid+i; if(ST.ex[k]&&ST.ex[k].done)return;
+  ST.ex[k]={c:j,ok:j===a,done:true};save();paint(sid,i,j,true);score(sid);}
+function paint(sid,i,j){const set=SETS.find(s=>s.id===sid);if(!set)return;const it=set.items[i];if(!it)return;const a=set.o?it[1]:it[2];
+  const el=document.getElementById('ex-'+sid+i);if(!el)return;el.classList.add('done');
+  const bs=el.querySelectorAll('.opts button');bs.forEach((b,x)=>{if(x===a)b.classList.add('right');else if(x===j)b.classList.add('wrong');});
+  const fb=document.getElementById('fb-'+sid+i);fb.innerHTML=(j===a?'<b style="color:var(--ok)">✓ Richtig!</b> ':'<b style="color:var(--bad)">✗ Leider falsch.</b> ')+fb.innerHTML.replace(/^<b[^>]*>.*?<\/b> /,'');}
+function score(sid){const set=SETS.find(s=>s.id===sid);let ok=0,n=0;set.items.forEach((_,i)=>{const r=ST.ex[sid+i];if(r){n++;if(r.ok)ok++;}});
+  put('sc-'+sid,n?`${ok}/${set.items.length} richtig`:'');}
+function resetEx(){ST.ex={};save();renderEx();}
+renderEx();
+function checkTable(){
+  const v=id=>document.getElementById(id).value;const r=[];
+  r.push(+v('tq1')===6&&+v('tq2')===7?'✓ a) Gleichgewicht bei CHF 6 und 7 Stück (dort ist N = A).':'✗ a) Suche die Zeile, in der Nachfrage = Angebot: CHF 6, Menge 7.');
+  r.push(+v('tq3')===12&&v('tq4')==='n'?'✓ b) Bei CHF 2: N = 13, A = 1 → Nachfrageüberhang von 12.':'✗ b) Bei CHF 2: N = 13, A = 1 → 13 − 1 = 12, Preis unter Gleichgewicht → Nachfrageüberhang.');
+  r.push(+v('tq5')===6&&v('tq6')==='a'?'✓ c) Bei CHF 8: A = 10, N = 4 → Angebotsüberschuss von 6.':'✗ c) Bei CHF 8: A = 10, N = 4 → 10 − 4 = 6, Mindestpreis über Gleichgewicht → Angebotsüberschuss.');
+  const e=document.getElementById('tres');e.style.display='block';e.innerHTML=r.join('<br>');
+  ST.ex['T0']={ok:r.every(x=>x[0]==='✓'),done:true};save();
+}
+
+/* ---------- Offene Fragen ---------- */
+const OQ=[
+ ['Vergleichen Sie die freie Marktwirtschaft und die zentrale Planwirtschaft anhand von vier Kriterien.',4,
+  '<table><tr><th>Kriterium</th><th>Marktwirtschaft</th><th>Planwirtschaft</th></tr><tr><td>Steuerung</td><td>Markt/Preismechanismus</td><td>zentraler Plan</td></tr><tr><td>Ziel</td><td>indiv. Gewinnstreben</td><td>Planerfüllung, kollektive Ziele</td></tr><tr><td>Zuteilung</td><td>nach Kaufkraft</td><td>Rationierung, Einkommens-/Preispolitik</td></tr><tr><td>Staat</td><td>Nachtwächterstaat</td><td>bestimmt alles</td></tr><tr><td>Eigentum</td><td>privat</td><td>Staat</td></tr></table>Je Kriterium 1 Punkt, wenn <b>beide</b> Seiten genannt sind.'],
+ ['Beurteilen Sie die freie Marktwirtschaft aus Sicht einer Umweltorganisation. (Position, zwei Argumente, Gegenargument, Fazit)',4,
+  '<b>Position:</b> Eine Umweltorganisation sieht die freie Marktwirtschaft eher kritisch.<br><b>Argument 1:</b> Weil Unternehmen nach Gewinnmaximierung streben, berücksichtigen sie Umweltschäden nicht – die Umwelt hat keinen Preis, deshalb wird sie übernutzt.<br><b>Argument 2:</b> Der Nachtwächterstaat greift nicht ein, also fehlen Umweltgesetze, die z. B. Abgase begrenzen.<br><b>Gegenargument:</b> Der Wettbewerb fördert Innovation, z. B. effizientere, sauberere Technologien; steigende Rohstoffpreise geben einen Anreiz zum Sparen.<br><b>Fazit:</b> Aus Umweltsicht braucht es mindestens staatliche Korrekturen (Umweltgesetze) – wie in der sozialen Marktwirtschaft der Schweiz.'],
+ ['Beurteilen Sie die zentrale Planwirtschaft aus Sicht von Unternehmerinnen und Unternehmern.',3,
+  '<b>Position:</b> Eher negativ.<br>Weil alle Produktionsfaktoren dem Staat gehören, dürfen sie keine eigene Firma gründen (keine Handels- und Gewerbefreiheit). Weil Preise und Mengen vom Staat bestimmt werden, gibt es kein Gewinnstreben und keinen Anreiz für Innovation.<br><b>Gegenargument:</b> Staatsbetriebe hätten eine sichere Abnahme ihrer Produktion und keine Konkurrenz.<br><b>Fazit:</b> Für Unternehmende überwiegen klar die Nachteile.'],
+ ['Erklären Sie, weshalb die Schweiz als soziale Marktwirtschaft bezeichnet wird. Nennen Sie je zwei Beispiele.',4,
+  'Die Schweiz hat einen <b>marktwirtschaftlichen Kern</b>: Preise bilden sich über Angebot und Nachfrage, es gibt Privateigentum, Wettbewerb und Wirtschafts-/Berufsfreiheit (Bsp.: freie Berufswahl, Wettbewerb Migros–Coop, private Unternehmen). Der Staat <b>korrigiert</b> aber unerwünschte Marktergebnisse, v. a. soziale Ungleichheit und Umweltschäden (Bsp.: AHV/IV/EO, obligatorische Krankenversicherung, Sozialhilfe, Umweltgesetze). Sie ist also mehr als ein Nachtwächterstaat, aber keine Planwirtschaft.'],
+ ['Erläutern Sie die Metapher der «unsichtbaren Hand».',2,
+  'Adam Smith: Wenn jeder Einzelne seinen <b>Eigennutz</b> verfolgt (Bäcker will verdienen, Kundin will Brot), entsteht ohne zentrale Planung eine funktionierende Versorgung der Gesellschaft. Die «unsichtbare Hand» ist der <b>Preismechanismus</b>, der die Entscheidungen koordiniert.'],
+ ['Erklären Sie am Beispiel der Erdölkrise 1973, weshalb der Erdölpreis stieg, und beschreiben Sie die vier Funktionen des Preises.',5,
+  '<b>Ursache:</b> Die OPEC drosselte die Fördermenge → Angebot ⬅️ → Preis ↑ (ca. vervierfacht).<br><b>Signal:</b> Hoher Preis zeigt Knappheit an.<br><b>Anreiz:</b> Konsumenten sparen Öl, Firmen suchen neue Quellen und Alternativen.<br><b>Lenkung:</b> Kapital und Arbeit fliessen in Exploration, Effizienz, alternative Energien.<br><b>Zuteilung:</b> Das knappe Öl geht an jene mit der höchsten Zahlungsbereitschaft.'],
+ ['Formulieren Sie das Gesetz der Nachfrage und begründen Sie es mit den Begriffen Opportunitätskosten und Substitution (Beispiel Mensa: CHF 14 statt CHF 8).',3,
+  'Je höher der Preis, desto kleiner die nachgefragte Menge. Kostet das Menü CHF 14, muss man auf mehr andere Dinge verzichten (CHF 6 fehlen für Kino o. Ä.) → <b>Opportunitätskosten</b> steigen. Einige weichen auf günstigere Alternativen aus (Essen von zuhause, Bäckerei) → <b>Substitutionseffekt</b>. Im Durchschnitt werden weniger Menüs gekauft.'],
+ ['Markt für Schokolade: Kakao wird wegen schlechter Ernten teurer. Zeichnen Sie die Veränderung (auf Papier) und erklären Sie sie in Worten inkl. Folgen für Preis und Menge.',4,
+  market(dA(-50))+'Kakao ist eine <b>Vorleistung</b> → Produktionskosten ↑ → zu jedem Preis wird weniger Schokolade angeboten → <b>Angebotskurve verschiebt sich nach links</b> (A₁ → A₂). Neues Gleichgewicht: <b>Preis ↑ (p₂ > p₁), Menge ↓ (q₂ < q₁)</b>. Die Nachfragekurve bleibt gleich (Bewegung auf N).'],
+ ['Markt für Elektroautos: Verbrenner zahlen höhere CO₂-Steuern, E-Autos werden stärker subventioniert. Zeichnen und erklären Sie.',4,
+  market(dN(50))+'Das Substitut (Verbrenner) wird teurer und E-Autos werden attraktiver → zu jedem Preis wollen mehr Leute ein E-Auto → <b>Nachfragekurve ➡️</b>. Folge: Preis ↑, Menge ↑. Angebot bleibt gleich.'],
+ ['«Der Preis von Sneakers sinkt, also verschiebt sich die Nachfragekurve nach rechts.» Was ist falsch? Korrigieren Sie.',2,
+  market(mvN(false))+'Eine Änderung des <b>eigenen Preises</b> verschiebt die Kurve nie. Es gibt nur eine <b>Bewegung auf der Nachfragekurve</b> nach rechts unten: Die <b>nachgefragte Menge</b> steigt, die Nachfrage (Kurve) bleibt gleich.'],
+ ['Was ist der markträumende Preis? Erklären Sie mit dem Beispiel des Bäckers.',2,
+  'Der Preis, bei dem angebotene und nachgefragte Menge gleich sind (Marktgleichgewicht): Der Bäcker verkauft alle Brötchen, kein Kunde geht leer aus. Er findet ihn durch Versuch und Irrtum: zu früh ausverkauft → Preis rauf/mehr backen; bleibt sitzen → Preis runter/Rabatte.'],
+ ['Nennen und erläutern Sie drei Voraussetzungen für einen funktionierenden Markt.',3,
+  '① <b>Freie Preisbildung</b> – keine staatlichen Preisgrenzen, sonst entstehen Überhänge.<br>② <b>Gute Informationen</b> über Kundenwünsche, Konkurrenzpreise und Kosten – sonst falsche Preise und Mengen.<br>③ <b>Wettbewerb / keine Marktmacht</b> – bei einem Monopol diktiert der Anbieter den Preis (Monopolrendite), Kunden können nicht ausweichen.'],
+ ['Der Staat führt einen Mindestlohn von CHF 25 ein (Marktlohn CHF 22). Stellen Sie die Situation dar und erklären Sie die Folgen. Was geschieht, wenn der Mindestlohn abgeschafft wird?',5,
+  market({hline:{y:78,pl:'p_min',label:'Angebotsüberschuss'},eq:[[0,0,'*',1]]})+'Arbeitsmarkt: Preis = Lohn; Anbieter = Arbeitnehmende, Nachfrager = Unternehmen. Mindestlohn liegt <b>über</b> dem Gleichgewicht → mehr Menschen wollen arbeiten (Arbeitsangebot ↑), Firmen stellen weniger ein (Arbeitsnachfrage ↓) → <b>Angebotsüberschuss</b> = Arbeitslosigkeit (einige finden keine Stelle).<br><b>Abschaffung:</b> Lohn sinkt aufs Gleichgewicht, Arbeitsangebot ↓, Arbeitsnachfrage ↑, der Überschuss verschwindet.'],
+ ['Ab 1951 garantierte der Staat einen Milchpreis über dem Marktpreis. Worin liegt das Grundproblem? Beschreiben Sie eine Massnahme des Staates und ihre Folgen.',4,
+  'Mindestpreis über Gleichgewicht → Bauern produzieren mehr, Konsumierende kaufen weniger → <b>Angebotsüberschuss</b> (Milchschwemme). Der Preis kann nicht sinken.<br><b>Massnahme 1:</b> Staat <b>kauft den Überschuss auf</b> (Butter-/Milchpulverlager, verbilligter Export) → hohe Kosten für Steuerzahlende.<br><b>Massnahme 2:</b> <b>Milchkontingente</b> (Mengenbegrenzung, CH bis 2009) → kein Überschuss, aber Bauern dürfen nicht mehr produzieren, Konsumierende zahlen höhere Preise.'],
+ ['Erklären Sie, warum regulierte Mieten (Höchstpreis) zu Wohnungsknappheit führen können.',3,
+  market({hline:{y:162,pl:'p_max',label:'Nachfrageüberhang'},eq:[[0,0,'*',1]]})+'Der Höchstpreis liegt <b>unter</b> dem Gleichgewicht → viele wollen eine günstige Wohnung (nachgefragte Menge ↑), aber Bauen/Vermieten lohnt sich weniger (angebotene Menge ↓) → <b>Nachfrageüberhang</b>. Kein Anbieter bietet lange unter seinen Kosten an → Angebot verknappt, evtl. schlechtere Qualität.'],
+ ['Temu: Schweizer Händler werden zu starken Preissenkungen gedrängt. Was bedeutet das für sie kurz- und langfristig? Welcher Faktor erklärt die tiefen Preise der chinesischen Anbieter?',3,
+  'Sinkt der Preis, sinkt der Gewinn; es ist eine <b>Bewegung auf der Angebotskurve</b> nach unten (weniger angeboten). Deckt der Preis langfristig die Kosten nicht mehr, steigen die Händler aus dem Markt aus. Chinesische Städte spezialisieren sich → <b>Produktivität ↑</b> → Angebotskurve ➡️ → tiefere Preise möglich.'],
+];
+function renderOQ(){
+  put('oqs',OQ.map((q,i)=>`<div class="oq"><span class="pts">${q[1]} P.</span><b>${i+1}. ${q[0]}</b>
+  <textarea placeholder="Deine Antwort …" oninput="ST.oq['t${i}']=this.value;save()">${(ST.oq['t'+i]||'').replace(/</g,'&lt;')}</textarea>
+  <div class="toolbar"><button class="btn" onclick="this.parentNode.nextElementSibling.classList.toggle('show')">👀 Musterlösung</button>
+  <label class="small"><input type="checkbox" ${ST.oq['c'+i]?'checked':''} onchange="ST.oq['c${i}']=this.checked;save()"> konnte ich ✔</label></div>
+  <div class="ans">${q[2]}</div></div>`).join(''));
+}
+renderOQ();
+
+/* ---------- Checkliste ---------- */
+const CHK=['Ich kann Markt definieren (auch abstrakt, auch Faktormärkte).','Ich kann die Vergleichstabelle Markt-/Planwirtschaft (5 Kriterien) auswendig.','Ich kenne je 3 Vor- und Nachteile beider Ordnungen.','Ich kann aus Sicht von Konsumierenden, Unternehmenden, Umweltorganisation und Tiefverdienenden argumentieren.','Ich kann eine Beurteilung aufbauen: Position – Argumente – Gegenargument – Fazit.','Ich kann erklären, warum die Schweiz eine soziale Marktwirtschaft ist, mit Beispielen.','Ich kann die unsichtbare Hand und die 4 Preisfunktionen (Erdöl 1973) erklären.','Ich kann das Gesetz der Nachfrage mit Opportunitätskosten + Substitution begründen.','Ich kann die 5 Nachfrage-Faktoren (E-A-S-K-V) mit Richtung.','Ich kann Substitut und Komplement sicher unterscheiden.','Ich kann das Gesetz des Angebots und die 4 Angebots-Faktoren (V-P-S-A).','Ich unterscheide sicher Bewegung auf der Kurve vs. Verschiebung.','Ich kann ein Diagramm korrekt beschriften (p y-Achse, q x-Achse, N, A, p₁, q₁, N₂ …).','Ich kenne die 4 Grundfälle (N↑, N↓, A↑, A↓) mit Preis und Menge.','Ich kann Nachfrageüberhang und Angebotsüberschuss zeichnen und erklären.','Ich kann Mindest- und Höchstpreis inkl. Folgen erklären (Mindestlohn, Milch, Mieten).','Ich weiss, dass zwei gegenläufige Einflüsse kein eindeutiges Ergebnis haben.'];
+put('chklist',CHK.map((c,i)=>`<label><input type="checkbox" ${ST.chk[i]?'checked':''} onchange="ST.chk[${i}]=this.checked;save()"> ${c}</label>`).join(''));
+
+/* ---------- Fortschritt ---------- */
+function updateProg(){
+  const totEx=SETS.reduce((a,s)=>a+s.items.length,0)+1;
+  const okEx=Object.values(ST.ex).filter(r=>r&&r.ok).length;
+  const fcK=Object.values(ST.fc).filter(Boolean).length;
+  const ch=Object.values(ST.chk).filter(Boolean).length;
+  const oq=Object.keys(ST.oq).filter(k=>k[0]==='c'&&ST.oq[k]).length;
+  const p=Math.round(100*(okEx/totEx*.4+fcK/FC.length*.2+ch/CHK.length*.2+oq/OQ.length*.2));
+  document.getElementById('progbar').style.width=p+'%';
+  document.getElementById('progtxt').textContent=`Fortschritt: ${p} % · Übungen ${okEx}/${totEx} · Karten ${fcK}/${FC.length} · Prüfungsfragen ${oq}/${OQ.length} · Checkliste ${ch}/${CHK.length}`;
+}
+showTab(ST.tab&&document.getElementById(ST.tab)?ST.tab:'t-start');
+updateProg();
+</script>
+</body>
+</html>
