@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marktwirtschaft und Staat – VWL Kapitel 9.1 &amp; 9.2 · Prüfungsvorbereitung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f3f8;
+  --surface:#ffffff;
+  --surface-soft:#f3f5fa;
+  --text:#161f2e;
+  --muted:#5c687c;
+  --border:#dde2ec;
+  --border-strong:#c3cbda;
+  --indigo:#2c3a74;
+  --indigo-soft:#e6e9f6;
+  --gold:#9a6f0c;
+  --gold-soft:#f8efd7;
+  --nf:#b02a4c;            /* Nachfrage – rot, wie im Unterrichtsskript */
+  --nf-bg:#fbe7ec;
+  --ang:#0c6f8c;           /* Angebot – blau/türkis, wie im Unterrichtsskript */
+  --ang-bg:#ddeff5;
+  --mw:#1c7a52;            /* Marktwirtschaft */
+  --mw-bg:#e1f1ea;
+  --pw:#8a4a18;            /* Planwirtschaft */
+  --pw-bg:#f7ebdf;
+  --green:#e1f1ea; --green-text:#146646;
+  --red:#fbe7e4; --red-text:#a02e1e;
+  --blue:#e4ecf8; --blue-text:#1c4c85;
+  --shadow:0 16px 42px rgba(22,31,46,.09);
+  --radius:20px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left,rgba(44,58,116,.12),transparent 34%),
+    radial-gradient(circle at 92% 6%,rgba(176,42,76,.10),transparent 32%),
+    linear-gradient(180deg,#fbfcfe 0%,var(--bg) 44%,#e8ecf4 100%);
+  line-height:1.62;
+  overflow-wrap:break-word;
+  overflow-x:clip;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{font-family:Fraunces,Georgia,"Times New Roman",serif;letter-spacing:-.01em;}
+a{color:var(--indigo);}
+header{max-width:1160px;margin:0 auto;padding:44px 20px 22px;}
+.hero{
+  background:linear-gradient(135deg,#ffffff 0%,#eaedf8 55%,#fdf2e2 100%);
+  border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow);
+  padding:32px;position:relative;overflow:hidden;
+}
+.hero::after{content:"";position:absolute;width:300px;height:300px;border-radius:999px;
+  background:rgba(44,58,116,.07);right:-100px;top:-130px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;
+  background:var(--indigo-soft);color:var(--indigo);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+h1{margin:16px 0 12px;max-width:920px;font-size:clamp(29px,5vw,50px);line-height:1.07;}
+.lead{max-width:880px;color:var(--muted);font-size:17.5px;margin:0;position:relative;}
+.hero-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:26px;position:relative;}
+.kpi{background:rgba(255,255,255,.85);border:1px solid rgba(221,226,236,.9);border-radius:16px;padding:15px;}
+.kpi strong{display:block;font-size:21px;color:var(--indigo);margin-bottom:2px;font-family:Fraunces,serif;}
+.kpi span{font-size:13px;color:var(--muted);}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh;}
+aside.sidebar{position:sticky;top:0;height:100vh;overflow:auto;padding:26px 20px;
+  background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-right:1px solid var(--border);}
+.sidebar .logo{display:flex;gap:12px;align-items:center;margin-bottom:20px;}
+.sidebar .mark{flex:none;width:45px;height:45px;border-radius:15px;
+  background:linear-gradient(135deg,var(--indigo),var(--nf));box-shadow:var(--shadow);}
+.sidebar .logo strong{display:block;font-size:1rem;font-family:Fraunces,Georgia,serif;}
+.sidebar .logo span{font-size:.82rem;color:var(--muted);}
+nav.toc ul{list-style:none;margin:0;padding:0;}
+nav.toc a{display:block;text-decoration:none;padding:9px 12px;margin:3px 0;border-radius:13px;
+  color:var(--muted);font-weight:650;font-size:.92rem;}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--indigo-soft);color:var(--indigo);}
+.sidebar-note{margin-top:18px;font-size:13px;color:var(--muted);}
+.content{min-width:0;}
+main{max-width:1160px;margin:0 auto;padding:12px 20px 90px;}
+section{margin-top:46px;scroll-margin-top:70px;}
+section>h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 6px;}
+.section-sub{color:var(--muted);margin:0 0 20px;max-width:880px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px;box-shadow:0 8px 24px rgba(22,31,46,.05);margin-bottom:16px;}
+.card h3{margin:0 0 10px;font-size:21px;}
+.card h4{margin:18px 0 6px;font-size:17px;}
+.card h4:first-child{margin-top:0;}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;
+  background:var(--gold-soft);color:var(--gold);margin-right:6px;}
+.tag.lz{background:var(--blue);color:var(--blue-text);}
+.tag.lvl{background:var(--indigo-soft);color:var(--indigo);}
+.tag.nf{background:var(--nf-bg);color:var(--nf);}
+.tag.ang{background:var(--ang-bg);color:var(--ang);}
+.callout{border-left:4px solid var(--indigo);background:var(--surface-soft);border-radius:0 14px 14px 0;
+  padding:14px 16px;margin:14px 0;}
+.callout.warn{border-left-color:#b23423;background:var(--red);}
+.callout.warn strong{color:var(--red-text);}
+.callout.tip{border-left-color:var(--green-text);background:var(--green);}
+.callout.tip strong{color:var(--green-text);}
+.callout.def{border-left-color:var(--gold);background:var(--gold-soft);}
+.callout.def strong{color:var(--gold);}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border-radius:14px;border:1px solid var(--border);}
+table{border-collapse:collapse;width:100%;min-width:540px;background:var(--surface);font-size:15px;}
+th,td{padding:10px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border);}
+thead th{background:var(--indigo);color:#fff;font-weight:600;}
+thead th.pw{background:var(--pw);}
+thead th.mw{background:var(--mw);}
+thead th.nf{background:var(--nf);}
+thead th.ang{background:var(--ang);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even){background:var(--surface-soft);}
+td.term{font-weight:700;color:var(--indigo);}
+ul.clean{margin:8px 0;padding-left:20px;}
+ul.clean li{margin-bottom:5px;}
+.ex{border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px;background:var(--surface);}
+.ex-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;}
+.ex-head h4{margin:0;font-size:18px;flex:1 1 240px;}
+details{border:1px solid var(--border);border-radius:12px;background:var(--surface-soft);padding:0 14px;margin-top:12px;}
+details[open]{padding-bottom:12px;}
+summary{cursor:pointer;font-weight:600;padding:11px 0;color:var(--indigo);list-style:none;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:"\25B8  ";display:inline-block;}
+details[open] summary::before{content:"\25BE  ";}
+summary:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:6px;}
+figure{margin:18px 0 0;}
+figure svg{display:block;width:100%;height:auto;max-width:460px;margin:0 auto;
+  border:1px solid var(--border);border-radius:14px;background:#fff;}
+figcaption{margin-top:9px;font-size:14px;color:var(--muted);text-align:center;}
+.diagrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start;}
+svg text{font-family:Inter,sans-serif;font-size:13px;fill:#161f2e;}
+svg text.ax{fill:#5c687c;font-size:12px;}
+.quiz-q{border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:12px;background:var(--surface);}
+.quiz-q p.q{font-weight:600;margin:0 0 10px;}
+.opts{display:grid;gap:8px;}
+.opt{text-align:left;font:inherit;font-size:15px;cursor:pointer;padding:10px 13px;border-radius:11px;
+  border:1px solid var(--border);background:var(--surface-soft);color:var(--text);transition:.12s;}
+.opt:hover{border-color:var(--indigo);}
+.opt:focus-visible{outline:2px solid var(--indigo);outline-offset:2px;}
+.opt.correct{background:var(--green);border-color:var(--green-text);color:var(--green-text);font-weight:600;}
+.opt.wrong{background:var(--red);border-color:var(--red-text);color:var(--red-text);}
+.fb{margin:10px 0 0;font-size:14px;color:var(--muted);min-height:1.2em;}
+.scorebar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  background:var(--indigo);color:#fff;border-radius:14px;padding:12px 18px;margin-bottom:16px;}
+.scorebar strong{font-family:Fraunces,serif;font-size:20px;}
+.scorebar button{font:inherit;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.14);color:#fff;padding:7px 14px;border-radius:999px;}
+.checklist{list-style:none;padding:0;margin:0;}
+.checklist li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--border);}
+.checklist li:last-child{border-bottom:none;}
+.checklist input{margin-top:5px;width:17px;height:17px;accent-color:var(--indigo);flex-shrink:0;}
+.steps{display:grid;gap:8px;margin:14px 0;}
+.step{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;
+  border:1px solid var(--border);border-radius:14px;padding:11px 13px;background:var(--surface-soft);}
+.step .n{font-family:Fraunces,serif;font-size:24px;font-weight:700;color:var(--gold);text-align:center;line-height:1.2;}
+.pts{font-size:13px;color:var(--muted);font-weight:600;white-space:nowrap;}
+footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);font-size:14px;
+  border-top:1px solid var(--border);}
+.backlink{display:inline-block;margin-top:8px;font-weight:600;}
+@media(max-width:980px){
+  .layout{display:block;}
+  aside.sidebar{position:sticky;top:0;z-index:30;height:auto;overflow:visible;
+    padding:10px 0 8px;border-right:0;border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,.95);}
+  .sidebar .logo{margin:0 14px 8px;gap:10px;}
+  .sidebar .mark{width:34px;height:34px;border-radius:11px;}
+  .sidebar .logo strong{font-size:.95rem;}
+  .sidebar .logo span{font-size:.76rem;}
+  nav.toc ul{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 14px;}
+  nav.toc ul::-webkit-scrollbar{display:none;}
+  nav.toc li{flex:none;}
+  nav.toc a{margin:0;white-space:nowrap;padding:8px 13px;font-size:.88rem;
+    border:1px solid var(--border);background:var(--surface);}
+  .sidebar-note{display:none;}
+  section{scroll-margin-top:110px;}
+}
+@media(max-width:880px){
+  .grid2,.grid3,.hero-grid,.diagrid{grid-template-columns:1fr;}
+  .hero{padding:22px 18px;border-radius:22px;}
+  header{padding:20px 14px 12px;}
+  main{padding:10px 14px 70px;}
+  .card{padding:16px;border-radius:16px;}
+  .lead{font-size:16.5px;}
+  section{margin-top:34px;}
+  .ex{padding:15px;}
+  table{min-width:460px;font-size:14.5px;}
+  th,td{padding:9px 11px;}
+}
+@media(max-width:640px){
+  .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .kpi{padding:12px;}
+  .kpi strong{font-size:18px;}
+  .opt{padding:12px 14px;min-height:46px;}
+  summary{padding:13px 0;}
+  details{padding:0 12px;}
+  .step{grid-template-columns:36px 1fr;gap:9px;}
+  .step .n{font-size:20px;}
+  .callout{padding:12px 13px;}
+  ul.clean{padding-left:18px;}
+  footer{padding:22px 14px 48px;}
+}
+@media(max-width:400px){
+  .hero-grid{grid-template-columns:1fr;}
+  table{min-width:360px;font-size:14px;}
+  th,td{padding:8px 9px;}
+}
+@media print{
+  .layout{display:block;}
+  aside.sidebar{display:none;}
+  details{page-break-inside:avoid;padding-bottom:12px;}
+  details>summary{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="logo">
+    <div class="mark"></div>
+    <div><strong>Marktwirtschaft &amp; Staat</strong><span>W&amp;R · Prüfung 26.11.2026</span></div>
+  </div>
+  <nav class="toc" aria-label="Seitennavigation">
+    <ul>
+      <li><a href="#fokus">Prüfungsfokus</a></li>
+      <li><a href="#lernziele">Lernziel-Abdeckung</a></li>
+      <li><a href="#markt">Was ist ein Markt?</a></li>
+      <li><a href="#ordnungen">Markt- vs. Planwirtschaft</a></li>
+      <li><a href="#perspektiven">Beurteilen aus Perspektiven</a></li>
+      <li><a href="#schweiz">Soziale Marktwirtschaft CH</a></li>
+      <li><a href="#preis">Rolle des Preises</a></li>
+      <li><a href="#nachfrage">Die Nachfrage</a></li>
+      <li><a href="#angebot">Das Angebot</a></li>
+      <li><a href="#verschiebung">Bewegung vs. Verschiebung</a></li>
+      <li><a href="#gleichgewicht">Marktgleichgewicht</a></li>
+      <li><a href="#zeichnen">Diagramm zeichnen</a></li>
+      <li><a href="#fehler">Typische Fehler</a></li>
+      <li><a href="#uebungen">Übungen</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#simulation">Prüfungssimulation</a></li>
+      <li><a href="#lastminute">Last Minute</a></li>
+    </ul>
+  </nav>
+  <p class="sidebar-note">Tipp: Jede Übung hat eine ausklappbare Musterlösung — erst selbst lösen, dann aufklappen.</p>
+</aside>
+<div class="content">
+<header>
+  <div class="hero">
+    <span class="eyebrow">BMSW · Wirtschaft und Recht · Volkswirtschaftslehre</span>
+    <h1>Marktwirtschaft und Staat — Kapitel 9.1 und 9.2</h1>
+    <p class="lead">Vollständige Vorbereitung auf die Prüfung vom <strong>26. November 2026</strong>.
+    Geprüft werden die beiden Wirtschaftsordnungen (freie Marktwirtschaft und zentrale Planwirtschaft),
+    ihre Beurteilung aus verschiedenen Perspektiven, die Schweiz als soziale Marktwirtschaft sowie
+    das Zusammenwirken von Anbietenden und Nachfragenden im Angebots- und Nachfragemodell —
+    inklusive Zeichnen und Interpretieren des Preis-Mengen-Diagramms.</p>
+    <div class="hero-grid">
+      <div class="kpi"><strong>4</strong><span>Lernziele, alle abgedeckt</span></div>
+      <div class="kpi"><strong>18</strong><span>Übungen, Level 1–5</span></div>
+      <div class="kpi"><strong>12</strong><span>Diagramme zum Nachzeichnen</span></div>
+      <div class="kpi"><strong>14</strong><span>Quizfragen</span></div>
+    </div>
+  </div>
+</header>
+<main>
+
+<section id="fokus">
+  <h2>Prüfungsfokus</h2>
+  <p class="section-sub">Was du am 26. November wirklich können musst — sortiert nach Wichtigkeit.</p>
+  <div class="grid2">
+    <div class="card">
+      <h4>Unbedingt können (Kern der Prüfung)</h4>
+      <ul class="clean">
+        <li>Die <strong>fünf Vergleichsfragen</strong> zu Markt- und Planwirtschaft frei beantworten: Steuerung, Ziele, Zuteilung, Rolle des Staates, Eigentum an den Produktionsfaktoren.</li>
+        <li>Ein <strong>Preis-Mengen-Diagramm</strong> von Hand korrekt zeichnen: Preis auf die y-Achse, Menge auf die x-Achse, Nachfragekurve fallend, Angebotskurve steigend, Schnittpunkt beschriften.</li>
+        <li><strong>Bewegung auf der Kurve</strong> von <strong>Verschiebung der Kurve</strong> unterscheiden und begründen. Das ist laut Unterrichtsskript der häufigste Fehler in diesem Thema.</li>
+        <li>Die <strong>Verschiebungsfaktoren</strong> von Nachfrage (5) und Angebot (4) nennen und auf eine Schlagzeile anwenden.</li>
+        <li>Erklären, <strong>weshalb die Schweiz eine soziale Marktwirtschaft</strong> ist, mit je mindestens drei marktwirtschaftlichen und drei staatlichen Elementen.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Verstehen (wird in Begründungsaufgaben geprüft)</h4>
+      <ul class="clean">
+        <li>Weshalb die Nachfragekurve fällt: <strong>Zahlungsbereitschaft</strong>, <strong>Opportunitätskosten</strong>, <strong>Substitutionseffekt</strong>.</li>
+        <li>Weshalb die Angebotskurve steigt: <strong>Produktionskosten</strong> müssen langfristig gedeckt sein.</li>
+        <li>Wie ein <strong>markträumender Preis</strong> durch Versuch und Irrtum gefunden wird.</li>
+        <li>Wie man <strong>Vor- und Nachteile</strong> einer Wirtschaftsordnung aus einer <em>zugewiesenen Rolle</em> heraus argumentiert (Konsumentin, Unternehmer, Umweltorganisation, Person mit tiefem Einkommen).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h4>Begriffe, die sitzen müssen</h4>
+      <p>Freie Marktwirtschaft · zentrale Planwirtschaft · soziale Marktwirtschaft · Preismechanismus ·
+      Nachtwächterstaat · Planerfüllung · Rationierung · Einkommens- und Preispolitik · Privateigentum ·
+      Produktionsfaktoren · Zahlungsbereitschaft · Opportunitätskosten · Substitutionseffekt ·
+      Substitutionsgut · Komplementärgut · Vorleistung · Produktivität · Gesetz der Nachfrage ·
+      Gesetz des Angebots · Marktgleichgewicht · Gleichgewichtspreis · markträumender Preis ·
+      Nachfrageüberhang · Angebotsüberschuss (Angebotsüberhang) · Mindestpreis · Höchstpreis.</p>
+    </div>
+    <div class="card">
+      <h4>Wahrscheinliche Aufgabentypen</h4>
+      <ul class="clean">
+        <li>Vergleichstabelle Plan-/Marktwirtschaft ausfüllen.</li>
+        <li>Aussagen zuordnen («Die Regierung legt den Brotpreis fest» → welche Ordnung? Welcher Begriff?).</li>
+        <li>Schweizer Beispiele als marktwirtschaftliches oder staatliches Element einordnen.</li>
+        <li>Diagramm zeichnen und beschriften, Verschiebung einzeichnen und <em>in Worten</em> erklären.</li>
+        <li>Kreuzchentabelle «nach links / nach rechts / gar nicht» bzw. «Bewegung / Verschiebung».</li>
+        <li>Offene Begründungsfrage aus einer Rolle heraus (drei Argumente).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout warn">
+    <strong>Sprachfalle in der Prüfung:</strong> «Die Nachfrage sinkt» und «die nachgefragte Menge sinkt»
+    sind <em>nicht</em> dasselbe. Nachfrage (ganze Kurve) ↔ nachgefragte Menge (ein Punkt auf der Kurve).
+    Siehe Abschnitt <a href="#verschiebung">Bewegung vs. Verschiebung</a>.
+  </div>
+</section>
+
+<section id="lernziele">
+  <h2>Lernziel-Abdeckung</h2>
+  <p class="section-sub">Die vier Lernziele des Prüfungsblatts und wo sie auf dieser Seite behandelt und geübt werden.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>ID</th><th>Lernziel</th><th>Theorie</th><th>Übungen</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="term">L1</td>
+          <td>Die Merkmale der freien Marktwirtschaft und der zentralen Planwirtschaft beschreiben und miteinander vergleichen.</td>
+          <td><a href="#ordnungen">Markt- vs. Planwirtschaft</a></td>
+          <td>Ü1, Ü2, Ü3, Ü13, Ü17</td>
+        </tr>
+        <tr>
+          <td class="term">L2</td>
+          <td>Vor- und Nachteile von Markt- und Planwirtschaft aus unterschiedlichen Perspektiven beurteilen.</td>
+          <td><a href="#perspektiven">Beurteilen aus Perspektiven</a></td>
+          <td>Ü4, Ü5, Ü14, Ü17</td>
+        </tr>
+        <tr>
+          <td class="term">L3</td>
+          <td>Erklären, weshalb die Schweiz als soziale Marktwirtschaft bezeichnet wird.</td>
+          <td><a href="#schweiz">Soziale Marktwirtschaft CH</a></td>
+          <td>Ü6, Ü7, Ü15, Ü17</td>
+        </tr>
+        <tr>
+          <td class="term">L4</td>
+          <td>Das Zusammenwirken von Anbietenden und Nachfragenden auf den Märkten anhand des Angebots- und Nachfragemodells erklären und darstellen.</td>
+          <td><a href="#nachfrage">Nachfrage</a> · <a href="#angebot">Angebot</a> · <a href="#verschiebung">Bewegung/Verschiebung</a> · <a href="#gleichgewicht">Gleichgewicht</a> · <a href="#zeichnen">Zeichnen</a></td>
+          <td>Ü8–Ü12, Ü16, Ü18</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout tip">
+    <strong>Zum Umfang:</strong> Das Lernzielblatt nennt unter 9.2 nur das Angebots- und Nachfragemodell.
+    Das Marktgleichgewicht und die Überhänge sind genau der Punkt, an dem Anbietende und Nachfragende
+    <em>zusammenwirken</em> — deshalb sind sie hier als Teil von L4 enthalten. Marktformen (Polypol, Oligopol,
+    Monopol), Kartelle, Preiselastizität, Marktversagen, externe Kosten und Umweltpolitik gehören zu den
+    <em>späteren</em> Abschnitten von Kapitel 9 und stehen <strong>nicht</strong> auf diesem Lernzielblatt.
+  </div>
+</section>
+
+<section id="markt">
+  <h2>Was ist ein Markt?</h2>
+  <p class="section-sub">Die Grundlage, auf der alles Weitere aufbaut.</p>
+  <div class="card">
+    <div class="callout def">
+      <strong>Definition Markt:</strong> Ein Markt ist der Ort — nicht unbedingt physisch, oft auch abstrakt —,
+      an dem <strong>Angebot und Nachfrage aufeinandertreffen</strong>. Unternehmen bieten Güter und
+      Dienstleistungen an, Konsumentinnen und andere Unternehmen fragen sie nach. Der Preis eines Gutes
+      bildet sich durch dieses Zusammenspiel.
+    </div>
+    <h4>Zwei Seiten, zwei Fragen</h4>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Marktseite</th><th>Wer</th><th>Zentrale Frage</th><th>Woran orientiert man sich</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Nachfrage</td><td>Haushalte, Konsumentinnen und Konsumenten, auch Unternehmen als Käufer</td><td>«Wie viel ist mir das Gut wert?»</td><td>Nutzen und daraus folgend die <strong>Zahlungsbereitschaft</strong></td></tr>
+          <tr><td class="term">Angebot</td><td>Unternehmen, Anbietende, auch Privatpersonen (z. B. Nachhilfe)</td><td>«Lohnt sich die Produktion zu diesem Preis?»</td><td><strong>Produktionskosten</strong> inklusive Gewinn</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Nicht nur Gütermärkte</h4>
+    <p>Es gibt nicht nur Märkte für Güter und Dienstleistungen, sondern auch Märkte für
+    <strong>Produktionsfaktoren</strong> — vor allem für <strong>Arbeit</strong> und <strong>Kapital</strong>.
+    Auf dem Arbeitsmarkt ist der Preis der <strong>Lohn</strong>: Er entscheidet darüber, ob Angebot und
+    Nachfrage nach Beschäftigung zum Ausgleich kommen. Dasselbe Modell, andere Achsenbeschriftung.</p>
+    <div class="callout tip">
+      <strong>Prüfungstipp:</strong> Wenn in einer Aufgabe vom Arbeitsmarkt die Rede ist, drehe nicht durch —
+      es bleibt dasselbe Diagramm. Nur: <em>Angebot</em> = die Arbeitnehmenden, die arbeiten wollen,
+      <em>Nachfrage</em> = die Unternehmen, die einstellen wollen, <em>Preis</em> = Lohn.
+    </div>
+  </div>
+</section>
+
+<section id="ordnungen">
+  <h2>Freie Marktwirtschaft und zentrale Planwirtschaft <span class="tag lz">L1</span></h2>
+  <p class="section-sub">Zwei <strong>idealtypische</strong> Wirtschaftsordnungen — als Modelle entwickelt von den
+  ursprünglichen Vertretern des Liberalismus (Marktwirtschaft) und des Sozialismus (Planwirtschaft).
+  In der Realität existiert keine der beiden in Reinform.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3 style="color:var(--mw)">Freie Marktwirtschaft</h3>
+      <p>Eine Wirtschaftsordnung, in der die <strong>Tauschprozesse über Märkte mittels des
+      Preismechanismus koordiniert</strong> werden. Die Preise bilden sich auf den Märkten aufgrund von
+      Angebot und Nachfrage.</p>
+      <ul class="clean">
+        <li><strong>Zuteilung der Güter:</strong> nach der <strong>individuellen Kaufkraft</strong> — jede und jeder kauft im Rahmen der eigenen Möglichkeiten, was sie oder er will.</li>
+        <li><strong>Triebkraft:</strong> das <strong>individuelle Gewinnstreben</strong>. Jeder versucht, seinen Gewinn zu maximieren.</li>
+        <li><strong>Eigentum:</strong> Die Produktionsfaktoren (natürliche Ressourcen, Arbeit, Technologie, Kapital) liegen in den Händen <strong>Privater</strong> — <strong>Privateigentum</strong> ist garantiert.</li>
+        <li><strong>Rolle des Staates:</strong> <strong>Nachtwächterstaat</strong>. Er sorgt nur für ein reibungsloses Funktionieren der Wirtschaft und greift sonst nicht ein.</li>
+        <li><strong>Freiheitsrechte:</strong> Der Staat gewährleistet Handels- und Gewerbefreiheit, Niederlassungsfreiheit sowie Berufs- und Arbeitsplatzwahlfreiheit.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--pw)">Zentrale Planwirtschaft</h3>
+      <p>Eine Wirtschaftsordnung, bei der ein <strong>zentraler Plan</strong> die Produktion und die
+      Verteilung der Sachgüter sowie die Bereitstellung von Dienstleistungen lenkt.</p>
+      <ul class="clean">
+        <li><strong>Der Staat legt fest:</strong> welche Waren und Dienstleistungen angeboten werden, wer sie produziert, wer wie viel Produktionsfaktoren bekommt, wer welchen Job erlernt und wie viel ein Gut kostet.</li>
+        <li><strong>Triebkraft:</strong> nicht das Gewinnstreben, sondern das Bestreben nach <strong>Planerfüllung</strong>.</li>
+        <li><strong>Eigentum:</strong> Alle Produktionsfaktoren gehören dem <strong>Staat</strong>.</li>
+        <li><strong>Zuteilung der Güter:</strong> über den Staat — durch <strong>Rationierung</strong> (z. B. Lebensmittelmarken) oder über die <strong>Einkommens- und Preispolitik</strong> (Einkommen und Preise werden festgelegt).</li>
+        <li><strong>Freiheitsrechte:</strong> Der Staat <strong>beschränkt</strong> Handels- und Gewerbefreiheit, Niederlassungsfreiheit sowie Berufs- und Arbeitsplatzwahlfreiheit. Eine eigene Firma zu gründen ist nicht möglich.</li>
+        <li><strong>Menschenbild:</strong> Die <strong>kollektiven Ziele</strong> stehen im Zentrum; das Individuum besitzt nur insofern Wert, als ihm das Kollektiv Wert verleiht.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Die Vergleichstabelle — fünf Fragen, die du auswendig beantworten können musst</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Frage</th><th class="pw">Zentrale Planwirtschaft</th><th class="mw">Freie Marktwirtschaft</th></tr></thead>
+        <tbody>
+          <tr><td class="term">1. Wie funktioniert die Steuerung und Koordination der Wirtschaft?</td>
+              <td>Durch einen <strong>zentralen Plan des Staates</strong></td>
+              <td>Über den <strong>Markt</strong> durch Angebot und Nachfrage — <strong>Preismechanismus</strong></td></tr>
+          <tr><td class="term">2. Welche Ziele stehen im Mittelpunkt?</td>
+              <td><strong>Kollektive Ziele</strong>, Planerfüllung</td>
+              <td><strong>Individuelles Gewinnstreben</strong>, Gewinnmaximierung</td></tr>
+          <tr><td class="term">3. Wie funktioniert die Zuteilung der Güter und Dienstleistungen?</td>
+              <td>Durch den Staat, z. B. <strong>Rationierung</strong>, Einkommens- und Preispolitik</td>
+              <td>Nach der <strong>individuellen Kaufkraft</strong></td></tr>
+          <tr><td class="term">4. Welche Rolle hat der Staat?</td>
+              <td>Er <strong>kontrolliert und bestimmt</strong> die Wirtschaft</td>
+              <td><strong>Nachtwächterstaat</strong>: setzt Rahmenbedingungen, greift sonst nicht ein</td></tr>
+          <tr><td class="term">5. Wem gehören die Produktionsfaktoren?</td>
+              <td><strong>Dem Staat</strong></td>
+              <td><strong>Privaten</strong> (Privateigentum)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip">
+      <strong>Merkhilfe für die fünf Zeilen — «SZZRE»:</strong>
+      <strong>S</strong>teuerung · <strong>Z</strong>iele · <strong>Z</strong>uteilung · <strong>R</strong>olle des Staates · <strong>E</strong>igentum.
+      Wenn du diese fünf Stichworte hast, kannst du jede Vergleichstabelle von Grund auf selbst aufbauen —
+      auch wenn die Prüfung die Zeilen anders formuliert.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Aussagen richtig zuordnen — und richtig <em>benennen</em></h3>
+    <p>In der Prüfung reicht oft das Kreuzchen nicht: Du sollst den <strong>Fachbegriff</strong> dazu nennen.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Aussage</th><th>Ordnung</th><th>Fachbegriff dahinter</th></tr></thead>
+        <tbody>
+          <tr><td>Die Regierung legt den Brotpreis fest.</td><td>Planwirtschaft</td><td>Preispolitik (Einkommens- und Preispolitik)</td></tr>
+          <tr><td>Zwei Unternehmen konkurrieren um Kunden.</td><td>Marktwirtschaft</td><td>Wettbewerb / Konkurrenz</td></tr>
+          <tr><td>Der Staat bestimmt die Produktionsmenge von Autos.</td><td>Planwirtschaft</td><td>Zentraler Plan</td></tr>
+          <tr><td>Eine Person gründet ein eigenes Unternehmen.</td><td>Marktwirtschaft</td><td>Handels- und Gewerbefreiheit, freie Berufswahl</td></tr>
+          <tr><td>Güter werden über Lebensmittelmarken verteilt.</td><td>Planwirtschaft</td><td>Rationierung</td></tr>
+          <tr><td>Eine Fabrik gehört ihren Aktionärinnen und Aktionären.</td><td>Marktwirtschaft</td><td>Privateigentum an Produktionsfaktoren</td></tr>
+          <tr><td>Der Staat weist Schulabgängern ihre Lehrstelle zu.</td><td>Planwirtschaft</td><td>Beschränkung der Berufs- und Arbeitsplatzwahlfreiheit</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="perspektiven">
+  <h2>Vor- und Nachteile aus unterschiedlichen Perspektiven <span class="tag lz">L2</span></h2>
+  <p class="section-sub">Dieses Lernziel verlangt <strong>beurteilen</strong>, nicht aufzählen. Es gibt keine
+  «richtige» Wirtschaftsordnung — es kommt darauf an, <em>wessen</em> Interessen du vertrittst.</p>
+
+  <div class="card">
+    <h3>Die vier Rollen aus dem Unterricht</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Rolle</th><th>Bevorzugt eher …</th><th>Drei Argumente</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="term">A — Konsumentinnen und Konsumenten</td>
+            <td style="color:var(--mw);font-weight:700">Marktwirtschaft</td>
+            <td>1. Grosse Produktauswahl durch viele Anbieter.<br>2. Wettbewerb führt zu tieferen Preisen.<br>3. Unternehmen verbessern Qualität und Produkte wegen der Konkurrenz.</td>
+          </tr>
+          <tr>
+            <td class="term">B — Unternehmerinnen und Unternehmer</td>
+            <td style="color:var(--mw);font-weight:700">Marktwirtschaft</td>
+            <td>1. Freie Berufswahl und freie Unternehmensgründung.<br>2. Unternehmen können Preise und Produkte selbst bestimmen.<br>3. Möglichkeit, Gewinne zu erzielen und zu wachsen.</td>
+          </tr>
+          <tr>
+            <td class="term">C — Umweltorganisation</td>
+            <td style="color:var(--pw);font-weight:700">Planwirtschaft</td>
+            <td>1. Der Staat kann umweltschädliche Produktion direkt einschränken.<br>2. Ressourcen können gezielt und nachhaltig verteilt werden.<br>3. Umweltschutz kann Vorrang vor Gewinn haben.</td>
+          </tr>
+          <tr>
+            <td class="term">D — Menschen mit tiefem Einkommen</td>
+            <td style="color:var(--pw);font-weight:700">Planwirtschaft</td>
+            <td>1. Der Staat kann Grundversorgung und günstige Preise sicherstellen.<br>2. Gleichmässigere Verteilung von Gütern und Ressourcen.<br>3. Weniger Abhängigkeit von der eigenen Kaufkraft.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn">
+      <strong>Falle:</strong> «Umweltorganisation bevorzugt Planwirtschaft» ist die Argumentation aus der
+      <em>Rolle heraus</em> — nicht eine historische Tatsache. Real haben Planwirtschaften oft schwere
+      Umweltschäden verursacht, weil die Planerfüllung (Tonnen, Stückzahlen) wichtiger war als die Umwelt.
+      Wenn die Prüfung nach einer <em>Beurteilung</em> fragt, darfst du diesen Einwand als Gegenargument bringen —
+      das zeigt echtes Verständnis.
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h4 style="color:var(--mw)">Marktwirtschaft — Bilanz</h4>
+      <p><strong>Vorteile:</strong> grosse Auswahl an Produkten und Berufen; Konkurrenz erzeugt
+      Innovationsdruck und tiefe Preise; Leistung lohnt sich; Freiheit bei Beruf, Konsum und Gründung;
+      der Preismechanismus koordiniert Millionen Entscheide ohne zentrale Behörde.</p>
+      <p><strong>Nachteile:</strong> Zuteilung nach Kaufkraft — wer wenig Geld hat, bekommt wenig;
+      Ungleichheit kann wachsen; keine Rücksicht auf Umwelt, wenn sie sich nicht rechnet;
+      keine Garantie für eine Grundversorgung; Anbieter mit Marktmacht (Monopol) können Preise diktieren.</p>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--pw)">Planwirtschaft — Bilanz</h4>
+      <p><strong>Vorteile:</strong> Grundversorgung und stabile Preise lassen sich sichern; gleichmässigere
+      Verteilung; der Staat behält den Überblick über die Ressourcen; gemeinsame Ziele (z. B. Umweltschutz,
+      Vollbeschäftigung) können bewusst verfolgt werden.</p>
+      <p><strong>Nachteile:</strong> kaum Auswahl; wenig Anreiz für Qualität und Innovation, weil das
+      Gewinnstreben fehlt; der zentrale Plan kann die tatsächlichen Bedürfnisse nicht kennen — es entstehen
+      gleichzeitig Mangel und Überproduktion; massive Einschränkung persönlicher Freiheiten
+      (Beruf, Gründung, Niederlassung).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>So baust du eine Beurteilungsantwort auf</h3>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div><strong>Position nennen.</strong> «Als Umweltorganisation bevorzuge ich die zentrale Planwirtschaft.»</div></div>
+      <div class="step"><div class="n">2</div><div><strong>Drei Argumente, je mit Begründung.</strong> Nicht nur «günstiger», sondern «günstiger, <em>weil</em> der Staat die Preise festlegt und so auch Menschen mit tiefem Einkommen Grundnahrungsmittel kaufen können».</div></div>
+      <div class="step"><div class="n">3</div><div><strong>Fachbegriff einbauen.</strong> Rationierung, Preispolitik, Kaufkraft, Preismechanismus, Nachtwächterstaat — damit zeigst du, dass du das Kapitel kannst.</div></div>
+      <div class="step"><div class="n">4</div><div><strong>Ein Gegenargument entkräften.</strong> «Zwar fehlt der Innovationsdruck, dafür …» Das hebt die Antwort über das blosse Aufzählen.</div></div>
+      <div class="step"><div class="n">5</div><div><strong>Fazit in einem Satz.</strong> Bezug zurück auf die Rolle.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="schweiz">
+  <h2>Weshalb die Schweiz eine soziale Marktwirtschaft ist <span class="tag lz">L3</span></h2>
+  <p class="section-sub">Die Kurzantwort in einem Satz — und danach die Belege, die du in der Prüfung
+  dazu liefern musst.</p>
+
+  <div class="card">
+    <div class="callout def">
+      <strong>Die Antwort in einem Satz:</strong> Die Schweiz wird als <strong>soziale Marktwirtschaft</strong>
+      bezeichnet, weil sie <strong>Elemente beider Wirtschaftsordnungen kombiniert</strong>: Grundsätzlich
+      regeln Angebot und Nachfrage über den Preismechanismus das Wirtschaftsgeschehen (marktwirtschaftlicher
+      Kern), gleichzeitig greift der Staat aber gezielt ein, um eine soziale Absicherung, eine
+      Grundversorgung und den Schutz von Mensch und Umwelt zu gewährleisten (staatliche Korrektur).
+    </div>
+    <p>Wichtig für die Formulierung: Die Schweiz ist <strong>keine</strong> reine freie Marktwirtschaft und
+    schon gar keine Planwirtschaft. Der Staat ist <strong>mehr als ein Nachtwächterstaat</strong>, aber er
+    plant die Wirtschaft nicht zentral.</p>
+
+    <h4>Die Belege — beides musst du nennen können</h4>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Beispiel</th><th class="mw">Marktwirtschaftliches Element</th><th class="pw">Staatliches Element</th></tr></thead>
+        <tbody>
+          <tr><td>Freie Berufswahl</td><td>✔</td><td></td></tr>
+          <tr><td>AHV (Alters- und Hinterlassenenversicherung)</td><td></td><td>✔</td></tr>
+          <tr><td>Wettbewerb zwischen Migros und Coop</td><td>✔</td><td></td></tr>
+          <tr><td>Obligatorische Krankenversicherung</td><td></td><td>✔</td></tr>
+          <tr><td>Private Unternehmen</td><td>✔</td><td></td></tr>
+          <tr><td>Umweltgesetze</td><td></td><td>✔</td></tr>
+          <tr><td>Eigentumsgarantie</td><td>✔</td><td></td></tr>
+          <tr><td>Sozialhilfe, IV, EO</td><td></td><td>✔</td></tr>
+          <tr><td>Freie Preisbildung im Detailhandel</td><td>✔</td><td></td></tr>
+          <tr><td>Steuern und Lenkungsabgaben (z. B. im Umweltbereich)</td><td></td><td>✔</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Wie du das in einer offenen Frage ausformulierst</h4>
+    <p>«Die Schweiz ist eine soziale Marktwirtschaft. Marktwirtschaftlich ist sie, weil die Preise
+    grundsätzlich durch Angebot und Nachfrage entstehen, die Produktionsfaktoren mehrheitlich in privater
+    Hand sind und Handels- und Gewerbefreiheit sowie freie Berufswahl gelten — Migros und Coop konkurrieren
+    frei um Kundschaft. Sozial ist sie, weil der Staat die reinen Marktergebnisse korrigiert: Er sichert mit
+    AHV, IV, EO und Sozialhilfe die Existenz ab, erklärt die Krankenversicherung für obligatorisch und
+    schränkt mit Umweltgesetzen die Produktion dort ein, wo sie der Allgemeinheit schadet. Damit verbindet
+    sie die Leistungsanreize des Marktes mit der sozialen Sicherheit, die ein reiner Nachtwächterstaat nicht
+    bieten würde.»</p>
+
+    <div class="callout tip">
+      <strong>Faustregel zum Einordnen:</strong> Frage dich bei jedem Beispiel: <em>Entscheidet hier jemand
+      freiwillig aus Eigeninteresse (Markt) oder schreibt eine Regel von oben etwas vor beziehungsweise
+      verteilt um (Staat)?</em> «Obligatorisch», «Gesetz», «Versicherungspflicht», «Abgabe», «Subvention»
+      sind immer staatliche Signalwörter.
+    </div>
+  </div>
+</section>
+
+<section id="preis">
+  <h2>Die Rolle des Preises</h2>
+  <p class="section-sub">Weshalb in einer Marktwirtschaft niemand die Produktion planen muss — und es
+  trotzdem funktioniert.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Die «unsichtbare Hand» (Adam Smith)</h3>
+      <p>Die <strong>unsichtbare Hand</strong> ist eine <strong>Metapher</strong>: Wenn jeder Mensch auf dem
+      Markt seinen <em>eigenen</em> Vorteil verfolgt — die Bäckerin ihren Gewinn, du dein günstiges
+      Mittagessen —, dann entsteht daraus, ohne dass es jemand plant oder befiehlt, eine funktionierende
+      Versorgung der ganzen Gesellschaft. Gelenkt wird dieses Zusammenspiel allein durch die
+      <strong>Preise</strong>.</p>
+      <p>Kein Amt sagt der Bäckerei, wie viele Gipfeli sie backen soll. Bleiben Gipfeli liegen, senkt sie den
+      Preis oder backt weniger; ist sie um 10 Uhr ausverkauft, erhöht sie den Preis oder backt mehr.
+      Der Preis ist die Information, die sie dafür braucht.</p>
+    </div>
+    <div class="card">
+      <h3>Weshalb der Preis «lenkt»</h3>
+      <p>Der Preis erfüllt im Markt gleichzeitig mehrere Aufgaben. In der Fachsprache werden dafür typischerweise
+      <strong>vier Elemente der Lenkungsfunktion</strong> unterschieden:</p>
+      <ul class="clean">
+        <li><strong>Signal:</strong> Der Preis zeigt allen an, wie knapp ein Gut ist. Steigender Preis = knapper.</li>
+        <li><strong>Lenkung / Koordination:</strong> Ein hoher Preis zieht Produktionsfaktoren dorthin, wo das Gut gebraucht wird; ein tiefer Preis zieht sie ab.</li>
+        <li><strong>Antrieb / Innovation:</strong> Wer billiger oder besser produziert, verdient mehr. Das treibt Unternehmen zu Kostensenkungen und neuen Produkten.</li>
+        <li><strong>Verteilung / Ausgleich:</strong> Der Preis entscheidet, wer das knappe Gut bekommt — nämlich wer bereit und in der Lage ist, ihn zu zahlen (Kaufkraft).</li>
+      </ul>
+      <div class="callout tip"><strong>Hinweis:</strong> Prüfe die genauen Bezeichnungen dieser vier Elemente
+      nochmals im Lehrbuch (Kapitel 9.1) und verwende die Begriffe, die dort stehen — die Lehrperson
+      bewertet nach der Terminologie aus dem Buch.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Beispiel: die Erdölkrise 1973</h3>
+    <p>1973 drosselten die erdölfördernden Länder die Fördermenge. Das <strong>Angebot sank</strong>
+    (Linksverschiebung der Angebotskurve), während die Nachfrage ungefähr gleich blieb — der
+    <strong>Erdölpreis stieg sprunghaft</strong>. Am gleichen Beispiel sieht man alle vier Aufgaben des Preises:</p>
+    <ul class="clean">
+      <li><strong>Signal:</strong> Der hohe Preis machte weltweit sofort klar, dass Erdöl knapp geworden war.</li>
+      <li><strong>Lenkung:</strong> Kapital floss in die Erschliessung neuer Ölfelder und in alternative Energien.</li>
+      <li><strong>Antrieb:</strong> Es entstanden sparsamere Motoren, bessere Gebäudeisolation, neue Technologien.</li>
+      <li><strong>Verteilung:</strong> Wer den hohen Preis zahlen konnte, erhielt das Öl; andere sparten oder stiegen um (autofreie Sonntage).</li>
+    </ul>
+    <p>Der Erdölpreis ist deshalb so zentral, weil Erdöl eine <strong>Vorleistung für fast alles</strong> ist:
+    Transport, Heizung, Strom, Kunststoffe, Dünger. Steigt sein Preis, steigen die Produktionskosten in
+    sehr vielen Branchen gleichzeitig — die Angebotskurven verschieben sich breitflächig nach links.</p>
+  </div>
+</section>
+
+<section id="nachfrage">
+  <h2>Die Nachfrage <span class="tag lz">L4</span></h2>
+  <p class="section-sub">Die Marktseite der Käuferinnen und Käufer: Wer will zu welchem Preis wie viel haben?</p>
+
+  <div class="card">
+    <h3>Woher die Nachfrage kommt</h3>
+    <p>Bedürfnisse sind <strong>unbeschränkt</strong>, die Ressourcen sind es <strong>nicht</strong>. Deshalb
+    müssen wir entscheiden, welche Güter wir nachfragen und auf welche wir verzichten. Dafür beurteilen wir
+    den <strong>Nutzen</strong> eines Gutes. Weil wir unterschiedliche Vorlieben haben, ist dieser Nutzen von
+    Mensch zu Mensch verschieden — und der Nutzen bestimmt die
+    <strong>Zahlungsbereitschaft</strong>, also den höchsten Preis, den jemand noch zu zahlen bereit ist.</p>
+    <div class="callout def">
+      <strong>Gesetz der Nachfrage:</strong> Je <strong>höher</strong> der Preis, desto <strong>kleiner</strong>
+      die nachgefragte Menge. Je <strong>tiefer</strong> der Preis, desto <strong>grösser</strong> die
+      nachgefragte Menge. Deshalb <strong>fällt</strong> die Nachfragekurve von links oben nach rechts unten.
+    </div>
+
+    <h4>Weshalb gilt das? Zwei Begründungen, die du nennen können musst</h4>
+    <ul class="clean">
+      <li><strong>Opportunitätskosten:</strong> Steigt der Preis eines Gutes, steigen auch die
+      Opportunitätskosten seines Konsums — also das, worauf man für den Kauf verzichten muss. Der Verzicht
+      auf Alternativen wird im Verhältnis teurer, deshalb kaufen im Durchschnitt weniger Leute.</li>
+      <li><strong>Substitutionseffekt:</strong> Wird ein Gut teurer, weichen manche auf ein ähnliches,
+      günstigeres Gut aus (sie <em>substituieren</em>). Wer trotzdem beim teuren Gut bleibt, muss dafür auf
+      anderes verzichten.</li>
+    </ul>
+    <div class="callout tip">
+      <strong>Beispiel Streaming-Abo:</strong> Ein Dienst erhöht sein Abo von CHF 13 auf CHF 18 pro Monat.
+      Die zusätzlichen CHF 5 fehlen nun für etwas anderes — einen Kinobesuch, ein Mittagessen. Das Abo wird
+      im Verhältnis zu den Alternativen teurer, die Opportunitätskosten steigen. Manche kündigen, manche
+      teilen sich ein Abo, manche wechseln zu einem günstigeren Dienst (Substitutionseffekt). Im
+      Durchschnitt sinkt die nachgefragte Menge.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Von der Tabelle zur Kurve</h3>
+    <p>So ist die Kurve im Unterricht entstanden: Die Lehrperson sammelt, wie viele Personen bei welchem
+    Preis das Mensa-Menü noch kaufen würden. Jede Zeile der Tabelle wird zu einem Punkt im Diagramm.</p>
+    <div class="diagrid">
+      <div>
+        <div class="tablewrap">
+          <table style="min-width:260px">
+            <thead><tr><th class="nf">Preis (CHF)</th><th class="nf">Nachgefragte Menge</th></tr></thead>
+            <tbody>
+              <tr><td>5</td><td>19</td></tr>
+              <tr><td>7</td><td>19</td></tr>
+              <tr><td>9</td><td>19</td></tr>
+              <tr><td>11</td><td>16</td></tr>
+              <tr><td>13</td><td>8</td></tr>
+              <tr><td>15</td><td>2</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:14.5px;color:var(--muted)">Muster: Je höher der Preis, desto weniger Personen
+        sind bereit, das Gut zu kaufen. Genau das ist das Gesetz der Nachfrage.</p>
+      </div>
+      <figure>
+        <svg viewBox="0 0 440 310" role="img" aria-label="Fallende Nachfragekurve im Preis-Mengen-Diagramm">
+          <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+          <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+          <text class="ax" x="16" y="26">Preis</text>
+          <text class="ax" x="360" y="280">Menge</text>
+          <line x1="80" y1="55" x2="385" y2="245" stroke="#b02a4c" stroke-width="3"/>
+          <text x="392" y="250" fill="#b02a4c" font-weight="700">N</text>
+          <circle cx="130" cy="86" r="4" fill="#b02a4c"/>
+          <circle cx="232" cy="150" r="4" fill="#b02a4c"/>
+          <circle cx="330" cy="211" r="4" fill="#b02a4c"/>
+          <text class="ax" x="138" y="80">hoher Preis, kleine Menge</text>
+          <text class="ax" x="196" y="232">tiefer Preis, grosse Menge</text>
+        </svg>
+        <figcaption>Diagramm 1 — Die Nachfragekurve fällt. Preis immer auf die y-Achse, Menge auf die x-Achse.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Zwei Dinge, die der Preis <em>nicht</em> tut</h3>
+    <div class="diagrid">
+      <figure>
+        <svg viewBox="0 0 440 310" role="img" aria-label="Bewegung auf der Nachfragekurve bei einer Preisänderung">
+          <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+          <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+          <text class="ax" x="16" y="26">Preis</text>
+          <text class="ax" x="360" y="280">Menge</text>
+          <line x1="80" y1="55" x2="385" y2="245" stroke="#b02a4c" stroke-width="3"/>
+          <text x="392" y="250" fill="#b02a4c" font-weight="700">N</text>
+          <line x1="55" y1="196" x2="280" y2="196" stroke="#5c687c" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="280" y1="196" x2="280" y2="255" stroke="#5c687c" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="55" y1="118" x2="155" y2="118" stroke="#5c687c" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="155" y1="118" x2="155" y2="255" stroke="#5c687c" stroke-width="1" stroke-dasharray="4 4"/>
+          <circle cx="280" cy="196" r="5" fill="#b02a4c"/>
+          <circle cx="155" cy="118" r="5" fill="#b02a4c"/>
+          <path d="M272 189 L166 125" stroke="#2c3a74" stroke-width="2.5" fill="none"/>
+          <polygon points="158,120 172,122 167,133" fill="#2c3a74"/>
+          <text x="22" y="200" fill="#b02a4c">p1</text>
+          <text x="22" y="122" fill="#b02a4c">p2</text>
+          <text class="ax" x="268" y="272">q1</text>
+          <text class="ax" x="143" y="272">q2</text>
+        </svg>
+        <figcaption>Diagramm 2 — <strong>Bewegung auf</strong> der Kurve: Nur der Preis des Gutes selbst hat sich
+        geändert (CHF 8 → CHF 10). Die Kurve bleibt, wo sie ist.</figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 440 310" role="img" aria-label="Rechtsverschiebung der Nachfragekurve">
+          <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+          <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+          <text class="ax" x="16" y="26">Preis</text>
+          <text class="ax" x="360" y="280">Menge</text>
+          <line x1="70" y1="55" x2="330" y2="217" stroke="#b02a4c" stroke-width="3"/>
+          <text x="334" y="226" fill="#b02a4c" font-weight="700">N1</text>
+          <line x1="140" y1="55" x2="400" y2="217" stroke="#b02a4c" stroke-width="3" stroke-dasharray="7 5"/>
+          <text x="402" y="226" fill="#b02a4c" font-weight="700">N2</text>
+          <line x1="55" y1="140" x2="340" y2="140" stroke="#5c687c" stroke-width="1" stroke-dasharray="4 4"/>
+          <circle cx="206" cy="140" r="5" fill="#b02a4c"/>
+          <circle cx="276" cy="140" r="5" fill="#b02a4c"/>
+          <path d="M214 140 L266 140" stroke="#2c3a74" stroke-width="2.5"/>
+          <polygon points="272,140 260,135 260,145" fill="#2c3a74"/>
+          <text x="22" y="144" fill="#b02a4c">p</text>
+          <text class="ax" x="150" y="100">zu jedem Preis</text>
+          <text class="ax" x="150" y="116">mehr Nachfrage</text>
+        </svg>
+        <figcaption>Diagramm 3 — <strong>Verschiebung der</strong> Kurve nach rechts: Etwas <em>anderes</em> als der
+        Preis hat sich geändert. Zu jedem Preis wird nun mehr nachgefragt.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Die fünf Verschiebungsfaktoren der Nachfragekurve</h3>
+    <p>Diese fünf musst du auswendig können — sie sind der Kern der Kreuzchenaufgaben.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Faktor</th><th class="nf">Nachfrage sinkt — Linksverschiebung</th><th class="nf">Nachfrage steigt — Rechtsverschiebung</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Einkommen der Käufer</td>
+              <td>Das Einkommen sinkt, sie können weniger ausgeben.</td>
+              <td>Das Einkommen steigt, sie können mehr ausgeben.</td></tr>
+          <tr><td class="term">Anzahl Nachfrager</td>
+              <td>Die Zahl der Nachfrager sinkt; es gibt weniger Nachfrager.</td>
+              <td>Die Zahl der Nachfrager steigt; es gibt mehr Nachfrager.</td></tr>
+          <tr><td class="term">Preise von Substitutionsgütern<br><span style="font-weight:400;color:var(--muted)">(ähnliche Güter, die man stattdessen kauft)</span></td>
+              <td>Preise ähnlicher Güter <strong>sinken</strong>; es wird attraktiver zu substituieren.</td>
+              <td>Preise ähnlicher Güter <strong>steigen</strong>; Nachfrager wechseln zu unserem Gut.</td></tr>
+          <tr><td class="term">Preise von Komplementärgütern<br><span style="font-weight:400;color:var(--muted)">(ergänzende Güter, die man dazu braucht)</span></td>
+              <td>Preise ergänzender Güter <strong>steigen</strong>; das Gesamtpaket wird weniger attraktiv.</td>
+              <td>Preise ergänzender Güter <strong>sinken</strong>; das Gesamtpaket wird attraktiver.</td></tr>
+          <tr><td class="term">Vorlieben der Konsumenten</td>
+              <td>Die Präferenzen verändern sich zu Ungunsten des Gutes.</td>
+              <td>Die Präferenzen verändern sich zu Gunsten des Gutes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid2">
+      <div class="callout"><strong>Substitut erkennen:</strong> Zwei Güter, die <em>statt</em> einander
+      konsumiert werden. Brot ↔ Brötchen, Velo ↔ ÖV, Kinoticket ↔ Streaming-Abo, Butter ↔ Margarine.
+      Wird das eine teurer, steigt die Nachfrage nach dem anderen (Rechtsverschiebung).</div>
+      <div class="callout"><strong>Komplement erkennen:</strong> Zwei Güter, die <em>zusammen</em> konsumiert
+      werden. Auto ↔ Benzin, Kinoticket ↔ Popcorn, Drucker ↔ Patrone, Elektroauto ↔ Strom.
+      Wird das eine teurer, sinkt die Nachfrage nach dem anderen (Linksverschiebung).</div>
+    </div>
+    <div class="callout warn">
+      <strong>Nicht in dieser Liste:</strong> der <strong>Preis des Gutes selbst</strong>. Er verschiebt die
+      Kurve <em>nie</em> — er bewegt uns nur <em>auf</em> ihr entlang.
+    </div>
+
+    <h4>Durchgearbeitete Beispiele: Markt für Elektroautos</h4>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Wirkung auf die Nachfragekurve für Elektroautos</th><th>Begründung</th></tr></thead>
+        <tbody>
+          <tr><td>Der Benzinpreis steigt stark an.</td><td style="color:var(--nf);font-weight:700">nach rechts</td><td>Benzin ist das Komplement des <em>Verbrenners</em>, der Verbrenner ist das <strong>Substitut</strong> des Elektroautos. Autofahren mit Benzin wird teurer → mehr Leute wollen ein Elektroauto.</td></tr>
+          <tr><td>Der Preis für Elektroautos steigt.</td><td style="font-weight:700">gar nicht</td><td>Preis des Gutes selbst → nur <strong>Bewegung auf der Kurve</strong> nach links oben.</td></tr>
+          <tr><td>Eine Studie zeigt, dass Batterien schneller altern als gedacht.</td><td style="color:var(--nf);font-weight:700">nach links</td><td>Die <strong>Vorlieben</strong> verändern sich zu Ungunsten des Gutes; potenzielle Käufer werden abgeschreckt.</td></tr>
+          <tr><td>Die staatlichen Förderungen werden abgeschafft.</td><td style="color:var(--nf);font-weight:700">nach links</td><td>Der effektiv zu zahlende Betrag steigt für die Käufer, ohne dass der Listenpreis steigt — das Gut wird für sie unattraktiver (vergleichbar mit einem Kaufkraft-/Einkommenseffekt).</td></tr>
+          <tr><td>Die Strompreise steigen.</td><td style="color:var(--nf);font-weight:700">nach links</td><td>Strom ist ein <strong>Komplementärgut</strong>: Das Gesamtpaket «Elektroauto fahren» wird teurer.</td></tr>
+          <tr><td>Verbrenner müssen höhere CO₂-Steuern zahlen, Subventionen für Elektroautos werden ausgeweitet.</td><td style="color:var(--nf);font-weight:700">nach rechts</td><td>Das Substitut (Verbrenner) wird teurer und das eigene Gut günstiger: Zu jedem Preis gibt es mehr Nachfrager, weil es attraktiver geworden ist, ein Elektroauto zu fahren.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="angebot">
+  <h2>Das Angebot <span class="tag lz">L4</span></h2>
+  <p class="section-sub">Die Marktseite der Anbietenden: Zu welchem Preis lohnt sich die Produktion?</p>
+
+  <div class="card">
+    <h3>Die Grundregel: Der Preis muss die Kosten decken</h3>
+    <p>Die angebotene Menge eines Produktes hängt direkt von den <strong>Produktionskosten</strong> ab:</p>
+    <ul class="clean">
+      <li>Deckt der Verkaufspreis die Produktionskosten <strong>inklusive Gewinn</strong>, wird das Produkt angeboten.</li>
+      <li>Deckt der Preis die Kosten <strong>nicht</strong>, wird es nicht oder nur vorübergehend angeboten.</li>
+      <li>Damit ein Produkt <strong>langfristig</strong> auf dem Markt bleibt, muss der Preis mindestens die Kosten decken.</li>
+    </ul>
+    <div class="callout def">
+      <strong>Gesetz des Angebots:</strong> Je <strong>höher</strong> der Preis, desto <strong>grösser</strong>
+      die angebotene Menge — bei einem höheren Preis sind mehr Anbieter gewillt, das Gut zu produzieren
+      oder den Auftrag anzunehmen. Je <strong>tiefer</strong> der Preis, desto <strong>kleiner</strong> das
+      Angebot. Deshalb <strong>steigt</strong> die Angebotskurve von links unten nach rechts oben.
+    </div>
+    <p>Das funktioniert genauso für Dienstleistungen von Privatpersonen: Bei CHF 10 pro Nachhilfelektion
+    melden sich zwei Personen, bei CHF 25 schon 15, bei CHF 40 über 20. Wer seine Zeit hoch bewertet,
+    steigt erst bei einem hohen Preis ein — das ist der individuelle <strong>Mindestpreis</strong>, zu dem
+    jemand anzubieten bereit ist.</p>
+
+    <div class="diagrid">
+      <figure>
+        <svg viewBox="0 0 440 310" role="img" aria-label="Steigende Angebotskurve im Preis-Mengen-Diagramm">
+          <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+          <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+          <text class="ax" x="16" y="26">Preis</text>
+          <text class="ax" x="360" y="280">Menge</text>
+          <line x1="80" y1="245" x2="385" y2="55" stroke="#0c6f8c" stroke-width="3"/>
+          <text x="392" y="58" fill="#0c6f8c" font-weight="700">A</text>
+          <circle cx="130" cy="214" r="4" fill="#0c6f8c"/>
+          <circle cx="232" cy="150" r="4" fill="#0c6f8c"/>
+          <circle cx="330" cy="89" r="4" fill="#0c6f8c"/>
+          <text class="ax" x="138" y="232">tiefer Preis, kleines Angebot</text>
+          <text class="ax" x="196" y="80">hoher Preis, grosses Angebot</text>
+        </svg>
+        <figcaption>Diagramm 4 — Die Angebotskurve steigt.</figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 440 310" role="img" aria-label="Bewegung auf der Angebotskurve bei einer Preisänderung">
+          <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+          <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+          <text class="ax" x="16" y="26">Preis</text>
+          <text class="ax" x="360" y="280">Menge</text>
+          <line x1="80" y1="245" x2="385" y2="55" stroke="#0c6f8c" stroke-width="3"/>
+          <text x="392" y="58" fill="#0c6f8c" font-weight="700">A</text>
+          <line x1="55" y1="196" x2="160" y2="196" stroke="#5c687c" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="160" y1="196" x2="160" y2="255" stroke="#5c687c" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="55" y1="118" x2="285" y2="118" stroke="#5c687c" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="285" y1="118" x2="285" y2="255" stroke="#5c687c" stroke-width="1" stroke-dasharray="4 4"/>
+          <circle cx="160" cy="196" r="5" fill="#0c6f8c"/>
+          <circle cx="285" cy="118" r="5" fill="#0c6f8c"/>
+          <path d="M169 190 L274 126" stroke="#2c3a74" stroke-width="2.5" fill="none"/>
+          <polygon points="281,122 267,124 272,135" fill="#2c3a74"/>
+          <text x="22" y="200" fill="#0c6f8c">p1</text>
+          <text x="22" y="122" fill="#0c6f8c">p2</text>
+          <text class="ax" x="148" y="272">q1</text>
+          <text class="ax" x="273" y="272">q2</text>
+        </svg>
+        <figcaption>Diagramm 5 — Steigt die Bezahlung von CHF 15 auf CHF 25 pro Lektion, bewegen wir uns
+        <strong>auf</strong> der Angebotskurve nach rechts oben. Die Kurve selbst bleibt.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Die vier Verschiebungsfaktoren der Angebotskurve</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Faktor</th><th class="ang">Angebot sinkt — Linksverschiebung</th><th class="ang">Angebot steigt — Rechtsverschiebung</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Preise von Vorleistungen<br><span style="font-weight:400;color:var(--muted)">(Material, Rohstoffe, Energie, Löhne)</span></td>
+              <td>Vorleistungen werden <strong>teurer</strong>.</td>
+              <td>Vorleistungen werden <strong>günstiger</strong>.</td></tr>
+          <tr><td class="term">Produktivität</td>
+              <td>Die Produktivität nimmt <strong>ab</strong>.</td>
+              <td>Die Produktivität <strong>verbessert</strong> sich (z. B. neue Maschine, bessere Anbaumethode).</td></tr>
+          <tr><td class="term">Preis für Substitutionsgüter in der Produktion<br><span style="font-weight:400;color:var(--muted)">(was man mit denselben Mitteln stattdessen herstellen könnte)</span></td>
+              <td>Preis des anderen Gutes <strong>steigt</strong> → die Produktion wird dorthin verlagert, unser Gut wird weniger angeboten.</td>
+              <td>Preis des anderen Gutes <strong>sinkt</strong> → die Produktion kommt zu unserem Gut zurück.</td></tr>
+          <tr><td class="term">Anzahl Anbieter</td>
+              <td>Die Zahl der Unternehmen, die auf dem Markt anbieten, <strong>sinkt</strong>.</td>
+              <td>Die Zahl der Unternehmen auf dem Markt <strong>steigt</strong>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn">
+      <strong>Achtung bei «Substitutionsgut in der Produktion»:</strong> Hier geht es nicht um das, was
+      Kunden stattdessen <em>kaufen</em>, sondern um das, was das Unternehmen stattdessen <em>herstellen</em>
+      kann. Beispiel: Steigt der Preis für Kakaobutter, werden Kakaobohnen eher zu Kakaobutter statt zu
+      Schokolade verarbeitet → das Angebot an Schokolade sinkt, die Angebotskurve verschiebt sich nach links.
+    </div>
+
+    <div class="diagrid">
+      <figure>
+        <svg viewBox="0 0 440 310" role="img" aria-label="Linksverschiebung der Angebotskurve">
+          <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+          <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+          <text class="ax" x="16" y="26">Preis</text>
+          <text class="ax" x="360" y="280">Menge</text>
+          <line x1="140" y1="240" x2="400" y2="60" stroke="#0c6f8c" stroke-width="3"/>
+          <text x="402" y="58" fill="#0c6f8c" font-weight="700">A1</text>
+          <line x1="70" y1="240" x2="330" y2="60" stroke="#0c6f8c" stroke-width="3" stroke-dasharray="7 5"/>
+          <text x="300" y="52" fill="#0c6f8c" font-weight="700">A2</text>
+          <line x1="55" y1="150" x2="340" y2="150" stroke="#5c687c" stroke-width="1" stroke-dasharray="4 4"/>
+          <circle cx="270" cy="150" r="5" fill="#0c6f8c"/>
+          <circle cx="200" cy="150" r="5" fill="#0c6f8c"/>
+          <path d="M262 150 L210 150" stroke="#2c3a74" stroke-width="2.5"/>
+          <polygon points="204,150 216,145 216,155" fill="#2c3a74"/>
+          <text x="22" y="154" fill="#0c6f8c">p</text>
+          <text class="ax" x="120" y="100">zu jedem Preis</text>
+          <text class="ax" x="120" y="116">weniger Angebot</text>
+        </svg>
+        <figcaption>Diagramm 6 — Beispiel Schokolade: Der Kakaopreis (Vorleistung) steigt nach schlechten
+        Ernten → Linksverschiebung. Zu jedem Preis wird nun weniger angeboten.</figcaption>
+      </figure>
+      <div>
+        <h4>Beispiele Markt für Schokolade</h4>
+        <div class="tablewrap">
+          <table style="min-width:300px">
+            <thead><tr><th>Situation</th><th>Angebotskurve</th></tr></thead>
+            <tbody>
+              <tr><td>Der Preis für Kakaobohnen steigt.</td><td style="color:var(--ang);font-weight:700">nach links</td></tr>
+              <tr><td>Neue Anbaumethoden führen zu höheren Kakaoerträgen.</td><td style="color:var(--ang);font-weight:700">nach rechts</td></tr>
+              <tr><td>Der Preis für Schokolade steigt.</td><td style="font-weight:700">gar nicht<br><span style="font-weight:400">(Bewegung auf der Kurve)</span></td></tr>
+              <tr><td>Neue Unternehmen steigen in den Markt ein.</td><td style="color:var(--ang);font-weight:700">nach rechts</td></tr>
+              <tr><td>Der Preis für Kakaobutter steigt.</td><td style="color:var(--ang);font-weight:700">nach links</td></tr>
+              <tr><td>Eine Fabrik schliesst für immer.</td><td style="color:var(--ang);font-weight:700">nach links</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="verschiebung">
+  <h2>Bewegung auf der Kurve oder Verschiebung der Kurve? <span class="tag lz">L4</span></h2>
+  <p class="section-sub">Der häufigste Fehler in diesem Thema — und damit die wahrscheinlichste Punktequelle
+  in der Prüfung.</p>
+
+  <div class="card">
+    <div class="callout def">
+      <strong>Die eine Regel, die alles entscheidet:</strong><br>
+      Eine Preisänderung <strong>des Gutes selbst</strong> bewegt uns <strong>auf</strong> der Kurve entlang.<br>
+      <strong>Alle anderen</strong> Einflüsse — Einkommen, Vorlieben, Preise anderer Güter, Anzahl Marktteilnehmer,
+      Erwartungen, Produktionskosten, Produktivität — verschieben die <strong>ganze Kurve</strong>.
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>&nbsp;</th><th>Bewegung auf der Kurve</th><th>Verschiebung der Kurve</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Auslöser</td><td>nur der Preis des Gutes selbst</td><td>jeder andere Faktor</td></tr>
+          <tr><td class="term">Was passiert</td><td>Wir wandern von einem Punkt zu einem anderen auf <em>derselben</em> Kurve.</td><td>Die ganze Kurve wandert nach links oder rechts; es entsteht eine <em>neue</em> Kurve (N2 bzw. A2).</td></tr>
+          <tr><td class="term">Richtige Formulierung</td><td>«Die <strong>nachgefragte Menge</strong> sinkt.» / «Die <strong>angebotene Menge</strong> steigt.»</td><td>«Die <strong>Nachfrage</strong> steigt.» / «Das <strong>Angebot</strong> sinkt.»</td></tr>
+          <tr><td class="term">Zeichnung</td><td>eine Kurve, zwei markierte Punkte, Pfeil entlang der Kurve</td><td>zwei Kurven (alte und neue), Pfeil quer dazwischen</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Trainingstabelle — Markt für Mensa-Menüs und Sneakers</h4>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Bewegung / Verschiebung</th><th>Richtung</th></tr></thead>
+        <tbody>
+          <tr><td>Die Mensa erhöht den Preis von CHF 8 auf CHF 10.</td><td>Bewegung auf der Kurve</td><td>nach links oben</td></tr>
+          <tr><td>Die Lernenden mögen das Essen plötzlich mehr.</td><td>Verschiebung</td><td>nach rechts (mehr Nachfrage)</td></tr>
+          <tr><td>Mehr Lernende besuchen die Schule.</td><td>Verschiebung</td><td>nach rechts (Anzahl Nachfrager)</td></tr>
+          <tr><td>Die Mensa senkt den Preis.</td><td>Bewegung auf der Kurve</td><td>nach rechts unten</td></tr>
+          <tr><td>Die Lernenden erhalten ein höheres Taschengeld.</td><td>Verschiebung</td><td>nach rechts (Einkommen)</td></tr>
+          <tr><td>Eine nahe Bäckerei führt günstige Mittagsmenüs ein.</td><td>Verschiebung</td><td>nach links (günstigeres Substitut)</td></tr>
+          <tr><td>Markt für Kinotickets: Ein Streamingdienst senkt seinen Abopreis stark.</td><td>Verschiebung</td><td>nach links (Substitut wird günstiger)</td></tr>
+          <tr><td>Markt für Kinotickets: Popcorn und Getränke werden im Kino massiv teurer.</td><td>Verschiebung</td><td>nach links (Komplementärgut teurer)</td></tr>
+          <tr><td>Markt für Sneakers: Ein Trend in den sozialen Medien macht ein Modell begehrt.</td><td>Verschiebung</td><td>nach rechts (Vorlieben)</td></tr>
+          <tr><td>Markt für Sneakers: Der Hersteller senkt den Preis um 20 %.</td><td>Bewegung auf der Kurve</td><td>nach rechts unten</td></tr>
+          <tr><td>Markt für Velos: Die ÖV-Preise steigen.</td><td>Verschiebung</td><td>nach rechts (Substitut wird teurer)</td></tr>
+          <tr><td>Markt für Pizza: Der Preis für Mehl steigt stark.</td><td>Verschiebung der <em>Angebots</em>kurve</td><td>nach links (Vorleistung teurer)</td></tr>
+          <tr><td>Markt für Pizza: Eine neue Ofentechnik erlaubt mehr Pizzen pro Stunde.</td><td>Verschiebung der <em>Angebots</em>kurve</td><td>nach rechts (Produktivität)</td></tr>
+          <tr><td>Markt für Pizza: Der Pizzapreis steigt und die Pizzerien backen mehr.</td><td>Bewegung auf der Angebotskurve</td><td>nach rechts oben</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <strong>Zwei klassische Fehlersätze — erkenne sie sofort:</strong><br>
+      «Der Preis von Sneakers sinkt, also verschiebt sich die Nachfragekurve nach rechts.» →
+      <em>Falsch.</em> Der Preis des Gutes selbst verschiebt nie; es ist eine Bewegung nach rechts unten
+      <strong>auf</strong> der Kurve. Die <em>nachgefragte Menge</em> steigt, die <em>Nachfrage</em> bleibt gleich.<br><br>
+      «Weil Mehl teurer wird, verschiebt sich die <em>Nachfrage</em> nach Pizza nach links.» →
+      <em>Falsch.</em> Mehl ist eine <strong>Vorleistung</strong> der Produktion, betrifft also das
+      <strong>Angebot</strong>: Die <em>Angebotskurve</em> verschiebt sich nach links. Die Nachfragekurve
+      bleibt, wo sie ist — der Gleichgewichtspreis steigt und die gehandelte Menge sinkt.
+    </div>
+
+    <div class="callout tip">
+      <strong>Zwei Einflüsse gleichzeitig (Challenge-Niveau):</strong> Wirken zwei Faktoren in
+      <em>dieselbe</em> Richtung, verstärken sie sich. Wirken sie in <em>entgegengesetzte</em> Richtungen,
+      lässt sich die Richtung der Verschiebung <strong>nicht eindeutig bestimmen</strong> — das Ergebnis
+      hängt davon ab, welcher Effekt stärker ist. Diese Antwort («nicht eindeutig bestimmbar, weil …») ist
+      in der Prüfung die <em>richtige</em> Antwort und kein Ausweichen.
+    </div>
+  </div>
+</section>
+
+<section id="gleichgewicht">
+  <h2>Das Zusammenwirken: Marktgleichgewicht und Überhänge <span class="tag lz">L4</span></h2>
+  <p class="section-sub">Hier treffen die beiden Kurven aufeinander — das ist der Punkt, an dem Anbietende
+  und Nachfragende tatsächlich zusammenwirken.</p>
+
+  <div class="card">
+    <h3>Der markträumende Preis</h3>
+    <p>Die Suche nach dem richtigen Preis ist ein <strong>Prozess, getrieben von Versuch und Irrtum</strong>.
+    Ist das Angebot zu früh ausverkauft, nimmt der Händler das als Hinweis, den Preis hochzusetzen oder das
+    Angebot auszuweiten. Merkt er, dass er auf seinen Waren sitzenbleibt, versucht er die Nachfrage mit
+    Preissenkungen und Rabattaktionen anzuregen.</p>
+    <div class="callout def">
+      <strong>Markträumender Preis / Gleichgewichtspreis:</strong> der Preis, bei dem die <strong>angebotene
+      Menge genau der nachgefragten Menge entspricht</strong>. Der Markt wird «geräumt»: Es bleibt nichts
+      übrig und niemand geht leer aus, der zu diesem Preis kaufen wollte. Im Diagramm ist es der
+      <strong>Schnittpunkt</strong> von Angebots- und Nachfragekurve.
+    </div>
+    <p><strong>Beim Bäcker heisst das:</strong> Er hat den richtigen Preis gefunden, wenn er am Abend
+    praktisch alle Gipfeli verkauft hat, ohne dass er am Morgen schon um 10 Uhr ausverkauft war.</p>
+
+    <h4>Im Marktgleichgewicht gilt</h4>
+    <ul class="clean">
+      <li>Angebot = Nachfrage</li>
+      <li>keine Überschüsse</li>
+      <li>keine Knappheit</li>
+      <li>der Markt wird «geräumt»</li>
+      <li>Anbietende und Nachfragende sind bereit, zum <em>gleichen</em> Preis zu handeln</li>
+    </ul>
+
+    <figure>
+      <svg viewBox="0 0 440 310" role="img" aria-label="Marktgleichgewicht als Schnittpunkt von Angebot und Nachfrage">
+        <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+        <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+        <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+        <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+        <text class="ax" x="16" y="26">Preis</text>
+        <text class="ax" x="360" y="280">Menge</text>
+        <line x1="80" y1="55" x2="385" y2="245" stroke="#b02a4c" stroke-width="3"/>
+        <text x="392" y="250" fill="#b02a4c" font-weight="700">N</text>
+        <line x1="80" y1="245" x2="385" y2="55" stroke="#0c6f8c" stroke-width="3"/>
+        <text x="392" y="58" fill="#0c6f8c" font-weight="700">A</text>
+        <line x1="55" y1="150" x2="232" y2="150" stroke="#2c3a74" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <line x1="232" y1="150" x2="232" y2="255" stroke="#2c3a74" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <circle cx="232" cy="150" r="6" fill="#2c3a74"/>
+        <text x="24" y="154" fill="#2c3a74" font-weight="700">p*</text>
+        <text x="224" y="274" fill="#2c3a74" font-weight="700">q*</text>
+        <text class="ax" x="246" y="140">Marktgleichgewicht</text>
+      </svg>
+      <figcaption>Diagramm 7 — Der Schnittpunkt der beiden Kurven heisst <strong>Marktgleichgewicht</strong>.
+      Der zugehörige Preis p* ist der Gleichgewichts- oder markträumende Preis, die Menge q* die
+      tatsächlich gehandelte Menge.</figcaption>
+    </figure>
+  </div>
+
+  <div class="card">
+    <h3>Wenn der Preis nicht stimmt: die beiden Überhänge</h3>
+    <div class="diagrid">
+      <figure>
+        <svg viewBox="0 0 440 310" role="img" aria-label="Nachfrageüberhang bei einem Preis unter dem Gleichgewichtspreis">
+          <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+          <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+          <text class="ax" x="16" y="26">Preis</text>
+          <text class="ax" x="360" y="280">Menge</text>
+          <line x1="80" y1="55" x2="385" y2="245" stroke="#b02a4c" stroke-width="3"/>
+          <text x="392" y="250" fill="#b02a4c" font-weight="700">N</text>
+          <line x1="80" y1="245" x2="385" y2="55" stroke="#0c6f8c" stroke-width="3"/>
+          <text x="392" y="58" fill="#0c6f8c" font-weight="700">A</text>
+          <circle cx="232" cy="150" r="5" fill="#2c3a74"/>
+          <line x1="55" y1="150" x2="232" y2="150" stroke="#2c3a74" stroke-width="1" stroke-dasharray="4 4"/>
+          <text x="24" y="154" fill="#2c3a74" font-weight="700">p*</text>
+          <line x1="55" y1="200" x2="385" y2="200" stroke="#9a6f0c" stroke-width="2.5"/>
+          <text x="24" y="204" fill="#9a6f0c" font-weight="700">p1</text>
+          <rect x="152" y="193" width="160" height="14" fill="#b02a4c" opacity=".22"/>
+          <circle cx="152" cy="200" r="5" fill="#0c6f8c"/>
+          <circle cx="312" cy="200" r="5" fill="#b02a4c"/>
+          <line x1="152" y1="200" x2="152" y2="255" stroke="#0c6f8c" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="312" y1="200" x2="312" y2="255" stroke="#b02a4c" stroke-width="1" stroke-dasharray="4 4"/>
+          <text class="ax" x="128" y="274">angeboten</text>
+          <text class="ax" x="290" y="274">nachgefragt</text>
+          <text x="166" y="186" fill="#b02a4c" font-weight="700" font-size="12">Nachfrageüberhang</text>
+        </svg>
+        <figcaption>Diagramm 8 — <strong>Preis unter dem Gleichgewichtspreis</strong> → es wollen mehr Leute
+        kaufen, als angeboten wird → <strong>Nachfrageüberhang</strong> (Knappheit, Warteschlangen,
+        ausverkauft). Der Preis steigt tendenziell wieder Richtung Gleichgewicht.</figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 440 310" role="img" aria-label="Angebotsüberschuss bei einem Preis über dem Gleichgewichtspreis">
+          <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+          <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+          <text class="ax" x="16" y="26">Preis</text>
+          <text class="ax" x="360" y="280">Menge</text>
+          <line x1="80" y1="55" x2="385" y2="245" stroke="#b02a4c" stroke-width="3"/>
+          <text x="392" y="250" fill="#b02a4c" font-weight="700">N</text>
+          <line x1="80" y1="245" x2="385" y2="55" stroke="#0c6f8c" stroke-width="3"/>
+          <text x="392" y="58" fill="#0c6f8c" font-weight="700">A</text>
+          <circle cx="232" cy="150" r="5" fill="#2c3a74"/>
+          <line x1="55" y1="150" x2="232" y2="150" stroke="#2c3a74" stroke-width="1" stroke-dasharray="4 4"/>
+          <text x="24" y="154" fill="#2c3a74" font-weight="700">p*</text>
+          <line x1="55" y1="100" x2="385" y2="100" stroke="#9a6f0c" stroke-width="2.5"/>
+          <text x="24" y="104" fill="#9a6f0c" font-weight="700">p1</text>
+          <rect x="152" y="93" width="160" height="14" fill="#0c6f8c" opacity=".22"/>
+          <circle cx="152" cy="100" r="5" fill="#b02a4c"/>
+          <circle cx="312" cy="100" r="5" fill="#0c6f8c"/>
+          <line x1="152" y1="100" x2="152" y2="255" stroke="#b02a4c" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="312" y1="100" x2="312" y2="255" stroke="#0c6f8c" stroke-width="1" stroke-dasharray="4 4"/>
+          <text class="ax" x="124" y="274">nachgefragt</text>
+          <text class="ax" x="296" y="274">angeboten</text>
+          <text x="162" y="86" fill="#0c6f8c" font-weight="700" font-size="12">Angebotsüberschuss</text>
+        </svg>
+        <figcaption>Diagramm 9 — <strong>Preis über dem Gleichgewichtspreis</strong> → es wird mehr angeboten,
+        als gekauft wird → <strong>Angebotsüberschuss</strong> (Ladenhüter, Lager voll). Der Preis sinkt
+        tendenziell wieder Richtung Gleichgewicht.</figcaption>
+      </figure>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Folge</th><th>Beispiel aus dem Unterricht</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Preis <strong>unter</strong> dem Gleichgewichtspreis</td>
+              <td><strong>Nachfrageüberhang</strong>: nachgefragte Menge &gt; angebotene Menge. Der Preis steigt tendenziell.</td>
+              <td>6 Coldplay-Tickets, 9 Personen wollen zu CHF 50 kaufen → Konzert innert Minuten ausverkauft, viele Fans gehen leer aus.</td></tr>
+          <tr><td class="term">Preis <strong>über</strong> dem Gleichgewichtspreis</td>
+              <td><strong>Angebotsüberschuss</strong> (auch Angebotsüberhang): angebotene Menge &gt; nachgefragte Menge. Der Preis sinkt tendenziell.</td>
+              <td>Die Bäckerei erhöht den Gipfelipreis von CHF 1.50 auf CHF 1.80 → am Abend bleiben zahlreiche Gipfeli übrig.</td></tr>
+          <tr><td class="term">Angebot = Nachfrage</td>
+              <td><strong>Marktgleichgewicht</strong>: Der Markt ist geräumt, es gibt weder Überhang noch Knappheit.</td>
+              <td>Die meisten Gipfeli werden verkauft, ohne dass viele übrig bleiben.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip">
+      <strong>Merkhilfe:</strong> Der Überhang ist immer nach der Seite benannt, die <strong>zu gross</strong>
+      ist. Zu viele Käufer → Nachfrage<em>überhang</em>. Zu viele Waren → Angebots<em>überschuss</em>.
+      Und: ein <strong>tiefer</strong> Preis macht die <strong>Nachfrage</strong> gross — tiefer Preis gehört
+      also zum Nachfrageüberhang.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Wenn der Staat den Preis festsetzt: Mindest- und Höchstpreise</h3>
+    <p>Beide Eingriffe wirken nur dann, wenn sie den Markt vom Gleichgewicht wegzwingen — und beide
+    erzeugen genau einen der beiden Überhänge.</p>
+    <div class="diagrid">
+      <figure>
+        <svg viewBox="0 0 440 310" role="img" aria-label="Mindestpreis am Arbeitsmarkt erzeugt einen Angebotsüberschuss">
+          <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+          <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+          <text class="ax" x="16" y="26">Lohn</text>
+          <text class="ax" x="330" y="280">Menge Arbeit</text>
+          <line x1="80" y1="55" x2="385" y2="245" stroke="#b02a4c" stroke-width="3"/>
+          <text x="392" y="250" fill="#b02a4c" font-weight="700">N</text>
+          <line x1="80" y1="245" x2="385" y2="55" stroke="#0c6f8c" stroke-width="3"/>
+          <text x="392" y="58" fill="#0c6f8c" font-weight="700">A</text>
+          <circle cx="232" cy="150" r="5" fill="#2c3a74"/>
+          <line x1="55" y1="150" x2="232" y2="150" stroke="#2c3a74" stroke-width="1" stroke-dasharray="4 4"/>
+          <text x="10" y="154" fill="#2c3a74" font-weight="700">22.–</text>
+          <line x1="55" y1="100" x2="385" y2="100" stroke="#9a6f0c" stroke-width="3"/>
+          <text x="10" y="104" fill="#9a6f0c" font-weight="700">25.–</text>
+          <text x="300" y="92" fill="#9a6f0c" font-weight="700" font-size="12">Mindestlohn</text>
+          <rect x="152" y="93" width="160" height="14" fill="#0c6f8c" opacity=".22"/>
+          <circle cx="152" cy="100" r="5" fill="#b02a4c"/>
+          <circle cx="312" cy="100" r="5" fill="#0c6f8c"/>
+          <text class="ax" x="96" y="274">Arbeitsnachfrage</text>
+          <text class="ax" x="282" y="274">Arbeitsangebot</text>
+          <text x="156" y="86" fill="#0c6f8c" font-weight="700" font-size="12">Angebotsüberschuss</text>
+        </svg>
+        <figcaption>Diagramm 10 — <strong>Mindestpreis</strong> (hier: Mindestlohn CHF 25 statt Marktlohn
+        CHF 22). Er wirkt nur <strong>oberhalb</strong> des Gleichgewichts. Folge: Mehr Menschen möchten
+        arbeiten, Unternehmen möchten weniger einstellen → <strong>Angebotsüberschuss</strong>, einige
+        finden möglicherweise keine Arbeitsstelle.</figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 440 310" role="img" aria-label="Höchstpreis erzeugt einen Nachfrageüberhang">
+          <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+          <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+          <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+          <text class="ax" x="16" y="26">Miete</text>
+          <text class="ax" x="330" y="280">Menge Wohnungen</text>
+          <line x1="80" y1="55" x2="385" y2="245" stroke="#b02a4c" stroke-width="3"/>
+          <text x="392" y="250" fill="#b02a4c" font-weight="700">N</text>
+          <line x1="80" y1="245" x2="385" y2="55" stroke="#0c6f8c" stroke-width="3"/>
+          <text x="392" y="58" fill="#0c6f8c" font-weight="700">A</text>
+          <circle cx="232" cy="150" r="5" fill="#2c3a74"/>
+          <line x1="55" y1="150" x2="232" y2="150" stroke="#2c3a74" stroke-width="1" stroke-dasharray="4 4"/>
+          <text x="24" y="154" fill="#2c3a74" font-weight="700">p*</text>
+          <line x1="55" y1="200" x2="385" y2="200" stroke="#9a6f0c" stroke-width="3"/>
+          <text x="300" y="218" fill="#9a6f0c" font-weight="700" font-size="12">Höchstpreis</text>
+          <rect x="152" y="193" width="160" height="14" fill="#b02a4c" opacity=".22"/>
+          <circle cx="152" cy="200" r="5" fill="#0c6f8c"/>
+          <circle cx="312" cy="200" r="5" fill="#b02a4c"/>
+          <text class="ax" x="120" y="274">angeboten</text>
+          <text class="ax" x="290" y="274">nachgefragt</text>
+          <text x="170" y="186" fill="#b02a4c" font-weight="700" font-size="12">Nachfrageüberhang</text>
+        </svg>
+        <figcaption>Diagramm 11 — <strong>Höchstpreis</strong> (z. B. staatlich regulierte Mieten). Er wirkt
+        nur <strong>unterhalb</strong> des Gleichgewichts. Folge: <strong>Nachfrageüberhang</strong> — das
+        Wohnungsangebot verknappt sich, weil sich die Vermietung weniger lohnt, und es finden nicht alle
+        Suchenden eine Wohnung.</figcaption>
+      </figure>
+    </div>
+    <div class="callout warn">
+      <strong>Der Kerngedanke des FAZ-Artikels:</strong> «Kein Unternehmer bietet seine Waren längere Zeit zu
+      Preisen an, die seine Kosten nicht decken. Entweder sinkt das Angebot, oder seine Qualität
+      verschlechtert sich.» Deshalb können gut gemeinte Preisgrenzen den Nachfragenden schaden — regulierte
+      Mieten verknappen das Wohnungsangebot, und ein zu hoher Mindestlohn kann Arbeitslosigkeit mitverursachen
+      (im Artikel am Beispiel Frankreichs und der Jugendarbeitslosigkeit genannt).
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Was passiert mit dem Gleichgewicht, wenn sich eine Kurve verschiebt?</h3>
+    <p>Diese Frage kombiniert alles: Verschiebungsfaktor erkennen → Kurve verschieben → neuen Schnittpunkt
+    ablesen → Preis und Menge vergleichen.</p>
+    <figure>
+      <svg viewBox="0 0 440 310" role="img" aria-label="Rechtsverschiebung der Nachfrage führt zu höherem Preis und grösserer Menge">
+        <line x1="55" y1="255" x2="55" y2="28" stroke="#5c687c" stroke-width="2"/>
+        <polygon points="55,22 50,34 60,34" fill="#5c687c"/>
+        <line x1="55" y1="255" x2="410" y2="255" stroke="#5c687c" stroke-width="2"/>
+        <polygon points="416,255 404,250 404,260" fill="#5c687c"/>
+        <text class="ax" x="16" y="26">Preis</text>
+        <text class="ax" x="360" y="280">Menge</text>
+        <line x1="70" y1="55" x2="330" y2="217" stroke="#b02a4c" stroke-width="3"/>
+        <text x="320" y="232" fill="#b02a4c" font-weight="700">N1</text>
+        <line x1="140" y1="55" x2="400" y2="217" stroke="#b02a4c" stroke-width="3" stroke-dasharray="7 5"/>
+        <text x="392" y="232" fill="#b02a4c" font-weight="700">N2</text>
+        <line x1="80" y1="245" x2="385" y2="55" stroke="#0c6f8c" stroke-width="3"/>
+        <text x="392" y="58" fill="#0c6f8c" font-weight="700">A</text>
+        <circle cx="196" cy="173" r="5" fill="#2c3a74"/>
+        <circle cx="247" cy="141" r="5" fill="#2c3a74"/>
+        <line x1="55" y1="173" x2="196" y2="173" stroke="#2c3a74" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="196" y1="173" x2="196" y2="255" stroke="#2c3a74" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="55" y1="141" x2="247" y2="141" stroke="#2c3a74" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="247" y1="141" x2="247" y2="255" stroke="#2c3a74" stroke-width="1" stroke-dasharray="4 4"/>
+        <text x="22" y="177" fill="#2c3a74" font-weight="700">p1</text>
+        <text x="22" y="137" fill="#2c3a74" font-weight="700">p2</text>
+        <text class="ax" x="184" y="274">q1</text>
+        <text class="ax" x="240" y="274">q2</text>
+        <text class="ax" x="258" y="112">neues Gleichgewicht</text>
+      </svg>
+      <figcaption>Diagramm 12 — Die Nachfrage steigt (Rechtsverschiebung), das Angebot bleibt gleich:
+      <strong>Preis steigt, gehandelte Menge steigt.</strong></figcaption>
+    </figure>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Was verschiebt sich</th><th>Gleichgewichtspreis</th><th>Gehandelte Menge</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td class="term">Nachfrage nach rechts (steigt)</td><td>steigt</td><td>steigt</td><td>Ein Trend macht ein Sneaker-Modell begehrt.</td></tr>
+          <tr><td class="term">Nachfrage nach links (sinkt)</td><td>sinkt</td><td>sinkt</td><td>Eine Studie schreckt Käufer von Elektroautos ab.</td></tr>
+          <tr><td class="term">Angebot nach rechts (steigt)</td><td>sinkt</td><td>steigt</td><td>Neue Anbaumethoden erhöhen die Kakaoernte.</td></tr>
+          <tr><td class="term">Angebot nach links (sinkt)</td><td>steigt</td><td>sinkt</td><td>Erdölkrise 1973; teureres Mehl für Pizzerien.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip">
+      <strong>Merkhilfe:</strong> Bei einer <strong>Nachfrage</strong>verschiebung gehen Preis und Menge
+      <em>in dieselbe</em> Richtung. Bei einer <strong>Angebots</strong>verschiebung gehen sie
+      <em>auseinander</em>.
+    </div>
+  </div>
+</section>
+
+<section id="zeichnen">
+  <h2>Ein Preis-Mengen-Diagramm richtig zeichnen</h2>
+  <p class="section-sub">«Darstellen» steht wörtlich im Lernziel. Diese Reihenfolge bringt in der Prüfung
+  die Punkte — auch wenn die Begründung am Ende nicht perfekt ist.</p>
+  <div class="card">
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div><strong>Achsen zeichnen und beschriften.</strong> <strong>Preis</strong> (bzw. Lohn, Miete) auf die <strong>y-Achse</strong> (senkrecht), <strong>Menge</strong> auf die <strong>x-Achse</strong> (waagrecht). Ohne Achsenbeschriftung gibt es Abzug.</div></div>
+      <div class="step"><div class="n">2</div><div><strong>Markt benennen.</strong> «Markt für Elektroautos», «Arbeitsmarkt für einfache Tätigkeiten». Ein Diagramm ohne Markt ist nur ein Kreuz.</div></div>
+      <div class="step"><div class="n">3</div><div><strong>Nachfragekurve fallend</strong> einzeichnen und mit <strong>N</strong> beschriften; <strong>Angebotskurve steigend</strong> einzeichnen und mit <strong>A</strong> beschriften.</div></div>
+      <div class="step"><div class="n">4</div><div><strong>Ausgangsgleichgewicht markieren.</strong> Schnittpunkt punkten, gestrichelte Linien zu beiden Achsen, Beschriftung <strong>p1</strong> und <strong>q1</strong>.</div></div>
+      <div class="step"><div class="n">5</div><div><strong>Die Veränderung einzeichnen.</strong> Verschiebung: neue Kurve <strong>parallel</strong> daneben, mit <strong>N2</strong> bzw. <strong>A2</strong> beschriften und einem Pfeil die Richtung zeigen. Bewegung: nur einen zweiten Punkt auf derselben Kurve markieren.</div></div>
+      <div class="step"><div class="n">6</div><div><strong>Neues Gleichgewicht ablesen</strong> und als <strong>p2</strong>/<strong>q2</strong> beschriften.</div></div>
+      <div class="step"><div class="n">7</div><div><strong>In Worten erklären.</strong> Immer nach demselben Muster: <em>Ursache → welche Kurve → in welche Richtung → weshalb («zu jedem Preis …») → Folge für Preis und Menge.</em></div></div>
+    </div>
+    <div class="callout tip">
+      <strong>Mustersatz für die Erklärung:</strong> «Weil die CO₂-Steuern auf Verbrennern steigen und
+      Elektroautos subventioniert werden, verschiebt sich die <strong>Nachfragekurve</strong> für
+      Elektroautos <strong>nach rechts</strong>: Zu jedem Preis gibt es mehr Nachfrager, weil es attraktiver
+      geworden ist, ein Elektroauto zu fahren. Dadurch steigen im neuen Marktgleichgewicht sowohl der Preis
+      als auch die gehandelte Menge.»
+    </div>
+    <div class="callout warn">
+      <strong>Die fünf häufigsten Punkteverluste beim Zeichnen:</strong> Achsen vertauscht · Kurven nicht
+      beschriftet · Kurve «gedreht» statt parallel verschoben · Schnittpunkt nicht markiert ·
+      Überhang nicht als <em>waagrechte Strecke</em> zwischen den beiden Kurven eingezeichnet, sondern als Fläche irgendwo.
+    </div>
+  </div>
+</section>
+
+<section id="fehler">
+  <h2>Typische Fehler und Fallen</h2>
+  <p class="section-sub">Alles, was in diesem Kapitel erfahrungsgemäss schiefgeht — einmal durchlesen vor der Prüfung.</p>
+  <div class="card">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Falle</th><th>Richtig</th></tr></thead>
+        <tbody>
+          <tr><td>«Der Preis steigt, also verschiebt sich die Kurve.»</td><td>Der Preis des Gutes selbst verschiebt nie. Er bewegt uns <strong>auf</strong> der Kurve.</td></tr>
+          <tr><td>«Nachfrage» und «nachgefragte Menge» synonym verwenden.</td><td>Nachfrage = ganze Kurve. Nachgefragte Menge = ein Punkt bei einem bestimmten Preis.</td></tr>
+          <tr><td>Achsen vertauscht zeichnen.</td><td>Preis immer y, Menge immer x — auch beim Arbeitsmarkt (Lohn auf y).</td></tr>
+          <tr><td>Kakao/Mehl der <em>Nachfrage</em> zuordnen.</td><td>Rohstoffe und Material sind <strong>Vorleistungen</strong> → sie betreffen das <strong>Angebot</strong>.</td></tr>
+          <tr><td>Substitut und Komplement verwechseln.</td><td>Substitut = <em>statt</em> (Velo statt ÖV). Komplement = <em>zusammen mit</em> (Popcorn zum Kinoticket).</td></tr>
+          <tr><td>«Angebotsüberschuss» bei zu tiefem Preis.</td><td>Zu tiefer Preis → <strong>Nachfrage</strong>überhang. Zu hoher Preis → <strong>Angebots</strong>überschuss.</td></tr>
+          <tr><td>Marktwirtschaft = «der Staat macht gar nichts».</td><td>Auch in der freien Marktwirtschaft setzt der Staat Rahmenbedingungen und garantiert Freiheitsrechte und Eigentum — er greift nur nicht in den Markt ein (Nachtwächterstaat).</td></tr>
+          <tr><td>Die Schweiz als «freie Marktwirtschaft» bezeichnen.</td><td>Die Schweiz ist eine <strong>soziale</strong> Marktwirtschaft: marktwirtschaftlicher Kern <em>plus</em> staatliche soziale Absicherung und Regulierung.</td></tr>
+          <tr><td>Bei «Vor- und Nachteile beurteilen» nur aufzählen.</td><td>Position beziehen, aus der <strong>Rolle</strong> argumentieren, Fachbegriffe verwenden, Gegenargument entkräften.</td></tr>
+          <tr><td>Bei zwei gegenläufigen Einflüssen eine Richtung raten.</td><td>Korrekt ist: «nicht eindeutig bestimmbar — es hängt davon ab, welcher Effekt stärker ist».</td></tr>
+          <tr><td>Produktionsfaktoren unvollständig nennen.</td><td>Natürliche Ressourcen, Arbeit, Technologie und Kapital.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="uebungen">
+  <h2>Übungen</h2>
+  <p class="section-sub">18 Aufgaben auf fünf Niveaus. Level 1 = Grundlagen, Level 5 = Prüfungsniveau.
+  Erst selbst lösen, dann die Musterlösung aufklappen.</p>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü1 — Die fünf Vergleichsfragen</h4><span class="tag lvl">Level 1</span><span class="tag lz">L1</span></div>
+    <p>Beantworte für beide Wirtschaftsordnungen aus dem Kopf: (a) Steuerung und Koordination,
+    (b) Ziele, (c) Zuteilung der Güter, (d) Rolle des Staates, (e) Eigentum an den Produktionsfaktoren.</p>
+    <details><summary>Musterlösung</summary>
+      <p><strong>Geprüft wird:</strong> die Vergleichstabelle, das Kernstück von L1.</p>
+      <table style="min-width:420px"><tbody>
+        <tr><td class="term">a) Steuerung</td><td><em>Plan:</em> zentraler Plan des Staates</td><td><em>Markt:</em> Markt über Angebot und Nachfrage, Preismechanismus</td></tr>
+        <tr><td class="term">b) Ziele</td><td>kollektive Ziele, Planerfüllung</td><td>individuelles Gewinnstreben, Gewinnmaximierung</td></tr>
+        <tr><td class="term">c) Zuteilung</td><td>durch den Staat, z. B. Rationierung, Einkommens- und Preispolitik</td><td>nach individueller Kaufkraft</td></tr>
+        <tr><td class="term">d) Staat</td><td>kontrolliert und bestimmt die Wirtschaft</td><td>Nachtwächterstaat: setzt Rahmenbedingungen, greift sonst nicht ein</td></tr>
+        <tr><td class="term">e) Eigentum</td><td>dem Staat</td><td>Privaten (Privateigentum)</td></tr>
+      </tbody></table>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü2 — Begriffe definieren</h4><span class="tag lvl">Level 1</span><span class="tag lz">L1</span></div>
+    <p>Erkläre in je einem Satz: (a) Preismechanismus, (b) Nachtwächterstaat, (c) Rationierung,
+    (d) Planerfüllung, (e) Produktionsfaktoren.</p>
+    <details><summary>Musterlösung</summary>
+      <ul class="clean">
+        <li><strong>a) Preismechanismus:</strong> die Koordination von Angebot und Nachfrage über den Preis — der Preis bildet sich frei auf dem Markt und lenkt dadurch Produktion und Konsum.</li>
+        <li><strong>b) Nachtwächterstaat:</strong> die Rolle des Staates in der freien Marktwirtschaft — er sorgt lediglich für ein reibungsloses Funktionieren der Wirtschaft (Rechtssicherheit, Freiheitsrechte) und greift nicht in den Markt ein.</li>
+        <li><strong>c) Rationierung:</strong> staatliche Zuteilung knapper Güter in festgelegten Mengen, z. B. über Lebensmittelmarken, statt über den Preis.</li>
+        <li><strong>d) Planerfüllung:</strong> die treibende Kraft der zentralen Planwirtschaft — Betriebe produzieren nicht für Gewinn, sondern um die Vorgaben des zentralen Plans zu erreichen.</li>
+        <li><strong>e) Produktionsfaktoren:</strong> die Mittel, mit denen produziert wird — natürliche Ressourcen, Arbeit, Technologie und Kapital.</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü3 — Aussagen zuordnen und benennen</h4><span class="tag lvl">Level 2</span><span class="tag lz">L1</span></div>
+    <p>Ordne jeder Aussage die Wirtschaftsordnung zu und nenne den passenden Fachbegriff.</p>
+    <ol class="clean">
+      <li>Ein Ministerium legt fest, wie viele Traktoren im nächsten Jahr gebaut werden.</li>
+      <li>Eine Coiffeuse eröffnet ihren eigenen Salon.</li>
+      <li>Jede Familie erhält pro Monat Marken für zwei Kilo Fleisch.</li>
+      <li>Ein Hersteller senkt den Preis, weil die Konkurrenz günstiger ist.</li>
+      <li>Alle Fabriken gehören dem Staat.</li>
+      <li>Wer mehr verdient, kann sich ein grösseres Auto leisten.</li>
+    </ol>
+    <details><summary>Musterlösung</summary>
+      <ol class="clean">
+        <li><strong>Planwirtschaft</strong> — zentraler Plan (Produktionsmengen werden staatlich festgelegt).</li>
+        <li><strong>Marktwirtschaft</strong> — Handels- und Gewerbefreiheit / freie Berufswahl.</li>
+        <li><strong>Planwirtschaft</strong> — Rationierung.</li>
+        <li><strong>Marktwirtschaft</strong> — Wettbewerb und Preismechanismus.</li>
+        <li><strong>Planwirtschaft</strong> — Produktionsfaktoren gehören dem Staat.</li>
+        <li><strong>Marktwirtschaft</strong> — Zuteilung nach individueller Kaufkraft.</li>
+      </ol>
+      <p><strong>Typischer Irrweg:</strong> Nr. 6 wird oft als «ungerecht, also Planwirtschaft» eingeordnet.
+      Gefragt ist nicht die Bewertung, sondern das Zuteilungsprinzip — und «wer mehr verdient, bekommt mehr»
+      ist genau die Kaufkraft-Zuteilung der Marktwirtschaft.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü4 — Argumentieren aus einer Rolle</h4><span class="tag lvl">Level 2</span><span class="tag lz">L2</span></div>
+    <p>Du vertrittst eine <strong>Organisation für Menschen mit tiefem Einkommen</strong>. Welche
+    Wirtschaftsordnung bevorzugst du? Nenne drei Argumente, jedes mit Begründung und mindestens einem
+    Fachbegriff.</p>
+    <details><summary>Musterlösung</summary>
+      <p><strong>Position:</strong> Wir bevorzugen Elemente der <strong>zentralen Planwirtschaft</strong>.</p>
+      <ol class="clean">
+        <li><strong>Grundversorgung gesichert:</strong> Über die staatliche <strong>Preispolitik</strong> können Grundnahrungsmittel, Wohnen und Energie günstig gehalten werden; niemand fällt durch, wenn die Preise nicht frei steigen dürfen.</li>
+        <li><strong>Gleichmässigere Verteilung:</strong> Die Zuteilung erfolgt nicht nach <strong>Kaufkraft</strong>, sondern staatlich (z. B. <strong>Rationierung</strong>) — alle erhalten gleich viel, unabhängig vom Einkommen.</li>
+        <li><strong>Weniger Abhängigkeit vom eigenen Einkommen:</strong> In der freien Marktwirtschaft entscheidet allein die Kaufkraft darüber, was man bekommt. Wer wenig hat, ist dort strukturell im Nachteil.</li>
+      </ol>
+      <p><strong>Gegenargument entkräften:</strong> Zwar fehlt der Planwirtschaft der Innovationsdruck und
+      die Auswahl ist klein — für Menschen mit tiefem Einkommen zählt aber die gesicherte Versorgung mehr als
+      eine grosse Produktauswahl, die sie sich ohnehin nicht leisten können.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü5 — Dieselbe Massnahme, zwei Perspektiven</h4><span class="tag lvl">Level 3</span><span class="tag lz">L2</span></div>
+    <p>Ein Staat führt einen festen Höchstpreis für Grundnahrungsmittel ein. Beurteile diese Massnahme
+    (a) aus Sicht einer Konsumentin mit tiefem Einkommen und (b) aus Sicht eines Lebensmittelproduzenten.
+    (c) Wer könnte am Ende trotzdem verlieren?</p>
+    <details><summary>Musterlösung</summary>
+      <p><strong>Geprüft wird:</strong> L2 kombiniert mit dem Höchstpreis-Mechanismus aus L4 — genau die Art
+      von Aufgabe, die mehrere Kapitelteile verbindet.</p>
+      <p><strong>a) Konsumentin mit tiefem Einkommen:</strong> klarer Vorteil. Die Grundversorgung bleibt
+      bezahlbar, ihre Kaufkraft reicht weiter, sie ist nicht Preissprüngen ausgeliefert.</p>
+      <p><strong>b) Produzent:</strong> klarer Nachteil. Deckt der Höchstpreis seine
+      <strong>Produktionskosten</strong> nicht mehr, lohnt sich die Produktion nicht; er schränkt sie ein
+      oder stellt sie ein. Sein Gewinnstreben als Triebkraft wird ausgeschaltet.</p>
+      <p><strong>c) Am Ende verlieren möglicherweise die Konsumentinnen selbst:</strong> Liegt der Höchstpreis
+      unter dem Gleichgewichtspreis, entsteht ein <strong>Nachfrageüberhang</strong> — es wird weniger
+      angeboten, als nachgefragt wird. Folge: leere Regale, Warteschlangen, Qualitätsverlust oder Schwarzmarkt.
+      Ein günstiger Preis nützt nichts, wenn das Gut nicht mehr erhältlich ist.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü6 — Marktwirtschaftlich oder staatlich?</h4><span class="tag lvl">Level 1</span><span class="tag lz">L3</span></div>
+    <p>Ordne zu: (a) Mutterschaftsentschädigung, (b) Preiskampf zwischen Aldi und Lidl, (c) Arbeitslosenversicherung,
+    (d) Eigentumsgarantie, (e) Vorschriften zur Lebensmittelhygiene, (f) Gründung eines Start-ups,
+    (g) Prämienverbilligungen der Krankenkasse, (h) freie Wahl des Lehrbetriebs.</p>
+    <details><summary>Musterlösung</summary>
+      <p><strong>Marktwirtschaftliche Elemente:</strong> b (Wettbewerb), d (Privateigentum), f (Handels- und
+      Gewerbefreiheit), h (freie Berufs- und Arbeitsplatzwahl).</p>
+      <p><strong>Staatliche Elemente:</strong> a, c, g (soziale Absicherung über Sozialversicherungen und
+      Umverteilung), e (Regulierung zum Schutz der Allgemeinheit).</p>
+      <p><strong>Erkennungszeichen:</strong> «Versicherung», «obligatorisch», «Vorschrift», «Verbilligung»,
+      «Gesetz» → staatlich. «Freie Wahl», «Konkurrenz», «Gründung», «Eigentum» → marktwirtschaftlich.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü7 — Weshalb soziale Marktwirtschaft?</h4><span class="tag lvl">Level 3</span><span class="tag lz">L3</span></div>
+    <p>Eine Austauschschülerin fragt dich: «Ist die Schweiz kapitalistisch oder sozialistisch?»
+    Antworte in 5–8 Sätzen fachlich korrekt. Nenne mindestens drei marktwirtschaftliche und drei staatliche
+    Elemente und verwende die Begriffe <em>Preismechanismus</em>, <em>Kaufkraft</em> und <em>Nachtwächterstaat</em>.</p>
+    <details><summary>Musterlösung</summary>
+      <p>«Weder noch — die Schweiz ist eine <strong>soziale Marktwirtschaft</strong>, also eine Mischform.
+      Ihr Kern ist marktwirtschaftlich: Die Preise entstehen grundsätzlich über den
+      <strong>Preismechanismus</strong> aus Angebot und Nachfrage, die Produktionsfaktoren sind mehrheitlich
+      in privater Hand, und es gelten Handels- und Gewerbefreiheit sowie freie Berufswahl — Migros und Coop
+      konkurrieren frei um Kundschaft, und jede Person darf ein Unternehmen gründen.
+      Gleichzeitig ist der Staat aber deutlich mehr als ein <strong>Nachtwächterstaat</strong>: Mit AHV, IV
+      und Sozialhilfe sichert er die Existenz ab, die Krankenversicherung ist obligatorisch, und
+      Umweltgesetze schränken die Produktion dort ein, wo sie der Allgemeinheit schadet.
+      Damit korrigiert er genau die Schwäche des reinen Marktes, dass die Güter allein nach der
+      <strong>Kaufkraft</strong> zugeteilt werden und Menschen mit wenig Einkommen durchfallen könnten.
+      Eine zentrale Planwirtschaft ist die Schweiz aber nicht: Es gibt keinen zentralen Plan, der die
+      Produktion vorschreibt.»</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü8 — Die beiden Gesetze und ihre Begründung</h4><span class="tag lvl">Level 1</span><span class="tag lz">L4</span></div>
+    <p>(a) Formuliere das Gesetz der Nachfrage und das Gesetz des Angebots. (b) Begründe für beide, weshalb
+    die Kurve so verläuft. (c) Welche Achse trägt den Preis?</p>
+    <details><summary>Musterlösung</summary>
+      <p><strong>a) Gesetz der Nachfrage:</strong> Je höher der Preis, desto kleiner die nachgefragte Menge
+      (und umgekehrt) → fallende Kurve.<br>
+      <strong>Gesetz des Angebots:</strong> Je höher der Preis, desto grösser die angebotene Menge
+      (und umgekehrt) → steigende Kurve.</p>
+      <p><strong>b) Begründung Nachfrage:</strong> Bei höherem Preis steigen die
+      <strong>Opportunitätskosten</strong> des Konsums — man muss auf mehr Alternativen verzichten. Manche
+      weichen auf günstigere Güter aus (<strong>Substitutionseffekt</strong>). Zudem liegt der Preis dann
+      über der <strong>Zahlungsbereitschaft</strong> immer weiterer Personen.<br>
+      <strong>Begründung Angebot:</strong> Ein höherer Preis deckt bei mehr Anbietern die
+      <strong>Produktionskosten inklusive Gewinn</strong>. Auch wer teuer produziert oder seine Zeit hoch
+      bewertet, steigt nun ein.</p>
+      <p><strong>c)</strong> Der Preis gehört <strong>immer</strong> auf die y-Achse, die Menge auf die x-Achse.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü9 — Markt für Kaffee: links, rechts oder gar nicht?</h4><span class="tag lvl">Level 2</span><span class="tag lz">L4</span></div>
+    <p>Gib für jede Situation an: Welche Kurve (Angebot oder Nachfrage), in welche Richtung — und welcher
+    Verschiebungsfaktor ist es?</p>
+    <ol class="clean">
+      <li>Eine Dürre in Brasilien zerstört einen Teil der Kaffeeernte.</li>
+      <li>Der Preis für Tee sinkt deutlich.</li>
+      <li>Eine Studie berichtet, Kaffee sei gesünder als gedacht.</li>
+      <li>Der Kaffeepreis im Laden steigt um 20 Rappen.</li>
+      <li>Milch wird deutlich teurer (viele trinken Kaffee mit Milch).</li>
+      <li>Drei neue Röstereien eröffnen in der Region.</li>
+    </ol>
+    <details><summary>Musterlösung</summary>
+      <ol class="clean">
+        <li><strong>Angebot nach links.</strong> Faktor: Preise von Vorleistungen / verfügbare Rohstoffmenge — Kaffeebohnen werden knapp und teuer.</li>
+        <li><strong>Nachfrage nach links.</strong> Faktor: Preis eines <strong>Substitutionsgutes</strong> sinkt — Tee wird attraktiver, manche wechseln.</li>
+        <li><strong>Nachfrage nach rechts.</strong> Faktor: <strong>Vorlieben</strong> der Konsumenten verändern sich zu Gunsten des Gutes.</li>
+        <li><strong>Gar keine Verschiebung.</strong> Der Preis des Gutes selbst → <strong>Bewegung auf</strong> der Nachfragekurve nach links oben (nachgefragte Menge sinkt) und auf der Angebotskurve nach rechts oben.</li>
+        <li><strong>Nachfrage nach links.</strong> Faktor: Preis eines <strong>Komplementärgutes</strong> steigt — das Gesamtpaket «Milchkaffee» wird teurer.</li>
+        <li><strong>Angebot nach rechts.</strong> Faktor: <strong>Anzahl Anbieter</strong> steigt.</li>
+      </ol>
+      <p><strong>Falle in Nr. 4:</strong> Wer hier «Nachfrage nach links» ankreuzt, verwechselt Bewegung und
+      Verschiebung — der häufigste Fehler des ganzen Kapitels.</p>
+    </details>
+  </div>
+
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü10 — Bewegung oder Verschiebung?</h4><span class="tag lvl">Level 2</span><span class="tag lz">L4</span></div>
+    <p>Entscheide jeweils: Bewegung auf der Kurve oder Verschiebung der Kurve? Begründe mit einem Halbsatz.</p>
+    <ol class="clean">
+      <li>Markt für Velos: Die ÖV-Abos werden teurer.</li>
+      <li>Markt für Velos: Ein Hersteller senkt die Preise im Ausverkauf.</li>
+      <li>Markt für Pizza: Eine Pizzeria schliesst für immer.</li>
+      <li>Markt für Pizza: Der Pizzapreis steigt, die Pizzerien backen mehr.</li>
+      <li>Markt für Mensa-Menüs: Es sind mehr Lernende an der Schule.</li>
+    </ol>
+    <details><summary>Musterlösung</summary>
+      <ol class="clean">
+        <li><strong>Verschiebung</strong> der Nachfragekurve nach rechts — der Preis eines <em>Substitutionsgutes</em> (ÖV) steigt, nicht der Velopreis selbst.</li>
+        <li><strong>Bewegung</strong> auf der Nachfragekurve nach rechts unten — es ist der Preis des Gutes selbst.</li>
+        <li><strong>Verschiebung</strong> der Angebotskurve nach links — die <em>Anzahl Anbieter</em> sinkt.</li>
+        <li><strong>Bewegung</strong> auf der Angebotskurve nach rechts oben — Preis des Gutes selbst.</li>
+        <li><strong>Verschiebung</strong> der Nachfragekurve nach rechts — die <em>Anzahl Nachfrager</em> steigt.</li>
+      </ol>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü11 — Überhänge erkennen und darstellen</h4><span class="tag lvl">Level 3</span><span class="tag lz">L4</span></div>
+    <p>Für ein Konzert stehen <strong>6 Tickets</strong> zur Verfügung. Bei einem Preis von CHF 50 möchten
+    <strong>9 Personen</strong> ein Ticket kaufen.</p>
+    <ol class="clean">
+      <li>Wie gross sind nachgefragte und angebotene Menge?</li>
+      <li>Welcher Überhang entsteht, und wie gross ist er?</li>
+      <li>Liegt CHF 50 über oder unter dem Gleichgewichtspreis? Was passiert mit dem Preis tendenziell?</li>
+      <li>Skizziere die Situation im Preis-Mengen-Diagramm (beschrifte p*, den gesetzten Preis, beide Mengen und den Überhang).</li>
+      <li>Die Bäckerei erhöht den Gipfelipreis von CHF 1.50 auf CHF 1.80 und bleibt am Abend auf vielen Gipfeli sitzen. Welcher Überhang ist das — und was müsste sie tun?</li>
+    </ol>
+    <details><summary>Musterlösung</summary>
+      <ol class="clean">
+        <li>Nachgefragte Menge = 9, angebotene Menge = 6.</li>
+        <li>Die Nachfrage ist <strong>grösser</strong> als das Angebot → es entsteht ein <strong>Nachfrageüberhang</strong> von <strong>3 Tickets</strong>.</li>
+        <li>CHF 50 liegt <strong>unter</strong> dem Gleichgewichtspreis. Weil mehr Leute kaufen wollen, als Tickets da sind, steigt der Preis tendenziell Richtung Marktgleichgewicht (bzw. es entsteht ein Zweitmarkt mit höheren Preisen).</li>
+        <li>Zeichnung wie Diagramm 8: fallende N, steigende A, Schnittpunkt p*; waagrechte Linie bei p1 <em>unterhalb</em> von p*; links davon der Schnittpunkt mit A (angebotene Menge), rechts davon der Schnittpunkt mit N (nachgefragte Menge); die Strecke dazwischen ist der Nachfrageüberhang.</li>
+        <li>Das ist ein <strong>Angebotsüberschuss</strong>: Der Preis liegt nun <em>über</em> dem Gleichgewichtspreis, es wird mehr angeboten als nachgefragt. Die Bäckerei müsste den <strong>Preis senken</strong> (oder weniger produzieren), damit der Markt wieder geräumt wird.</li>
+      </ol>
+      <p><strong>Typischer Irrweg:</strong> «Nachfrageüberhang = zu viele Gipfeli». Nein — der Überhang ist
+      immer nach der <em>zu grossen</em> Seite benannt. Zu viele Waren = Angebotsüberschuss.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü12 — Mindestlohn im Diagramm</h4><span class="tag lvl">Level 3</span><span class="tag lz">L4</span></div>
+    <p>Der Marktlohn für eine einfache Tätigkeit beträgt CHF 22 pro Stunde. Der Staat beschliesst einen
+    Mindestlohn von CHF 25.</p>
+    <ol class="clean">
+      <li>Wie reagieren Arbeitnehmende, wie Unternehmen?</li>
+      <li>Welcher Überhang entsteht? Beschreibe ihn in Worten des Arbeitsmarktes.</li>
+      <li>Welche Folge hat das für einzelne Personen?</li>
+      <li>Was geschähe, wenn der Mindestlohn bei CHF 19 festgelegt würde?</li>
+      <li>Nenne je einen Vor- und einen Nachteil eines Mindestlohns.</li>
+    </ol>
+    <details><summary>Musterlösung</summary>
+      <ol class="clean">
+        <li><strong>Arbeitnehmende:</strong> Mehr Personen möchten arbeiten (Bewegung auf der Angebotskurve nach rechts oben — Arbeit lohnt sich mehr). <strong>Unternehmen:</strong> Sie möchten weniger Personen einstellen, weil die Arbeit teurer wird (Bewegung auf der Nachfragekurve nach links oben).</li>
+        <li>Das <strong>Arbeitsangebot ist grösser als die Arbeitsnachfrage</strong> → <strong>Angebotsüberschuss</strong>. Mehr Menschen möchten arbeiten, als Unternehmen einstellen wollen.</li>
+        <li>Einige Personen finden möglicherweise <strong>keine Arbeitsstelle</strong>. Wer eine behält, verdient mehr.</li>
+        <li><strong>Gar nichts.</strong> Ein Mindestpreis <em>unterhalb</em> des Gleichgewichts ist wirkungslos: Der Markt pendelt sich weiterhin bei CHF 22 ein, weil ohnehin niemand unter dem Gleichgewichtslohn anbieten muss. Ein Mindestpreis wirkt nur <strong>über</strong> dem Gleichgewichtspreis.</li>
+        <li><strong>Vorteil:</strong> Existenzsicherung, Schutz vor Tieflöhnen, weniger Working Poor.
+        <strong>Nachteil:</strong> möglicher Angebotsüberschuss am Arbeitsmarkt, also Arbeitslosigkeit — im FAZ-Artikel wird der französische Mindestlohn als eine Ursache hoher Jugendarbeitslosigkeit genannt.</li>
+      </ol>
+      <p><strong>Hier wird gern verloren:</strong> Teilaufgabe 4. Wer nicht gemerkt hat, dass ein Mindestpreis
+      unterhalb des Gleichgewichts keine Wirkung hat, hat den Mechanismus nicht verstanden.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü13 — Die Insel Phantasia</h4><span class="tag lvl">Level 4</span><span class="tag lz">L1</span></div>
+    <p>Du bist in der Regierung der Insel Phantasia (1 Mio. Einwohnende). Beantworte für <em>beide</em>
+    Wirtschaftsordnungen: (a) Wer entscheidet, welche Güter produziert werden? (b) Wer entscheidet über den
+    Beruf? (c) Wie werden die Güter verteilt? (d) Welche Rolle hat der Staat? (e) Wie entstehen die Preise?
+    (f) Nenne anschliessend <em>eine</em> konkrete Gefahr, die bei einer reinen Umsetzung jeder Ordnung droht.</p>
+    <details><summary>Musterlösung</summary>
+      <table style="min-width:420px"><tbody>
+        <tr><td class="term">a) Güter</td><td><em>Markt:</em> Unternehmen produzieren nach der Nachfrage der Bevölkerung.</td><td><em>Plan:</em> der Staat über den zentralen Plan.</td></tr>
+        <tr><td class="term">b) Beruf</td><td>jede Person entscheidet selbst (freie Berufswahl).</td><td>der Staat weist zu; die Berufswahlfreiheit ist eingeschränkt.</td></tr>
+        <tr><td class="term">c) Verteilung</td><td>über den Markt, nach Kaufkraft.</td><td>über den Staat: Rationierung oder Einkommens- und Preispolitik.</td></tr>
+        <tr><td class="term">d) Staat</td><td>Nachtwächterstaat: sichert Rahmen, Regeln und Freiheitsrechte.</td><td>kontrolliert und bestimmt die gesamte Wirtschaft.</td></tr>
+        <tr><td class="term">e) Preise</td><td>durch Angebot und Nachfrage (Preismechanismus).</td><td>werden staatlich festgelegt.</td></tr>
+      </tbody></table>
+      <p><strong>f) Gefahren.</strong> Reine Marktwirtschaft: Wer kein Einkommen hat, erhält auch keine
+      medizinische Versorgung oder Wohnung — die Zuteilung nach Kaufkraft kennt kein Existenzminimum.
+      Reine Planwirtschaft: Der zentrale Plan kann die tatsächlichen Bedürfnisse von einer Million Menschen
+      nicht kennen; es entstehen gleichzeitig Mangel bei dem einen und Überproduktion beim anderen Gut, und
+      ohne Gewinnstreben fehlt der Anreiz für Qualität und Innovation.</p>
+      <p><strong>Transfer:</strong> Genau deshalb wählen reale Staaten wie die Schweiz eine Mischform.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü14 — Perspektivwechsel unter Druck</h4><span class="tag lvl">Level 4</span><span class="tag lz">L2</span></div>
+    <p>Eine Umweltorganisation fordert: «Der Staat soll festlegen, wie viele Flüge pro Jahr angeboten werden
+    dürfen.» (a) Mit welchen zwei Argumenten begründet sie das aus ihrer Rolle? (b) Wie antwortet ein
+    Unternehmer der Luftfahrtbranche? (c) Welches marktwirtschaftliche Instrument könnte dasselbe Ziel
+    erreichen, ohne die Menge direkt vorzuschreiben? (d) Weshalb passt (c) besser zur Schweizer
+    Wirtschaftsordnung?</p>
+    <details><summary>Musterlösung</summary>
+      <p><strong>a) Umweltorganisation:</strong> (1) Der Staat kann umweltschädliche Produktion direkt
+      einschränken — das ist eine Stärke der Planwirtschaft. (2) Knappe Ressourcen (Luftqualität, CO₂-Budget)
+      werden gezielt und nachhaltig verteilt, statt dem Gewinnstreben überlassen.</p>
+      <p><strong>b) Unternehmer:</strong> Eine staatliche Mengenvorgabe greift in die Handels- und
+      Gewerbefreiheit ein, nimmt dem Unternehmen die Entscheidung über Produkte und Preise und verhindert
+      Wachstum. Ausserdem fehlt der Behörde die Information, wie viele Flüge tatsächlich nachgefragt werden.</p>
+      <p><strong>c) Marktwirtschaftliches Instrument:</strong> eine <strong>Lenkungsabgabe oder Steuer</strong>
+      auf Flüge. Sie erhöht die Produktionskosten → die <strong>Angebotskurve verschiebt sich nach links</strong>,
+      der Preis steigt, die nachgefragte Menge sinkt. Das Ziel (weniger Flüge) wird über den
+      <strong>Preismechanismus</strong> erreicht statt über eine Mengenvorschrift.</p>
+      <p><strong>d)</strong> Weil die Schweiz eine <strong>soziale Marktwirtschaft</strong> ist: Der Staat
+      korrigiert den Markt über Rahmenbedingungen, Abgaben und Gesetze, plant die Produktion aber nicht
+      zentral. Eine Abgabe lässt die Entscheidung bei den Unternehmen und Konsumenten — eine Mengenvorgabe
+      wäre ein planwirtschaftliches Element.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü15 — Neue Massnahme einordnen</h4><span class="tag lvl">Level 4</span><span class="tag lz">L3</span></div>
+    <p>Beurteile für jede Massnahme: eher marktwirtschaftliches oder eher staatliches Element — und begründe,
+    weshalb sie trotzdem zur sozialen Marktwirtschaft der Schweiz passt (oder nicht).</p>
+    <ol class="clean">
+      <li>Der Bund verbilligt Krankenkassenprämien für Haushalte mit tiefem Einkommen.</li>
+      <li>Zwei Telekomanbieter unterbieten sich gegenseitig mit Abo-Preisen.</li>
+      <li>Der Staat legt fest, wie viele Smartphones pro Jahr verkauft werden dürfen.</li>
+      <li>Eine Lenkungsabgabe verteuert fossile Brennstoffe; der Ertrag wird an die Bevölkerung zurückverteilt.</li>
+    </ol>
+    <details><summary>Musterlösung</summary>
+      <ol class="clean">
+        <li><strong>Staatlich</strong> (Umverteilung, soziale Absicherung). Passt: Genau solche Korrekturen machen die Marktwirtschaft «sozial» — die Zuteilung nach reiner Kaufkraft wird abgefedert.</li>
+        <li><strong>Marktwirtschaftlich</strong> (Wettbewerb, freie Preisbildung). Passt: Der marktwirtschaftliche Kern der Schweiz.</li>
+        <li><strong>Staatlich — und zwar planwirtschaftlich.</strong> Passt <em>nicht</em>: Eine staatlich festgelegte Produktions- oder Verkaufsmenge ist ein Merkmal der zentralen Planwirtschaft. Die Schweiz schreibt keine Mengen vor.</li>
+        <li><strong>Staatlich</strong>, aber mit marktwirtschaftlichem Mechanismus. Passt sehr gut: Der Staat setzt eine Rahmenbedingung, die Entscheidung bleibt über den Preis bei den Einzelnen — typisch soziale Marktwirtschaft.</li>
+      </ol>
+      <p><strong>Die Unterscheidung, auf die es ankommt:</strong> Der Staat darf <em>Rahmenbedingungen setzen
+      und umverteilen</em> (soziale Marktwirtschaft), aber nicht <em>Produktionsmengen und Preise direkt
+      festlegen</em> (Planwirtschaft).</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü16 — Fehler finden und korrigieren</h4><span class="tag lvl">Level 4</span><span class="tag lz">L4</span></div>
+    <p>Vier Aussagen aus einer Klassenarbeit. Finde jeweils den Fehler und korrigiere ihn fachlich.</p>
+    <ol class="clean">
+      <li>«Der Preis von Sneakers sinkt, also verschiebt sich die Nachfragekurve nach rechts.»</li>
+      <li>«Weil Mehl teurer wird, verschiebt sich die Nachfrage nach Pizza nach links.»</li>
+      <li>«Ein Höchstpreis über dem Gleichgewichtspreis senkt die Preise für die Konsumenten.»</li>
+      <li>«Im Marktgleichgewicht herrscht ein kleiner Angebotsüberschuss, damit niemand leer ausgeht.»</li>
+    </ol>
+    <details><summary>Musterlösung</summary>
+      <ol class="clean">
+        <li><strong>Fehler:</strong> Der Preis des Gutes selbst verschiebt die Kurve nie. <strong>Richtig:</strong> Es ist eine <em>Bewegung auf</em> der Nachfragekurve nach rechts unten; die <em>nachgefragte Menge</em> steigt, die <em>Nachfrage</em> bleibt unverändert.</li>
+        <li><strong>Fehler:</strong> Mehl ist eine <em>Vorleistung</em> der Produktion und betrifft damit das Angebot, nicht die Nachfrage. <strong>Richtig:</strong> Die <em>Angebotskurve</em> für Pizza verschiebt sich nach links; dadurch steigt der Gleichgewichtspreis und die gehandelte Menge sinkt.</li>
+        <li><strong>Fehler:</strong> Ein Höchstpreis <em>oberhalb</em> des Gleichgewichtspreises ist wirkungslos — der Markt pendelt sich ohnehin darunter ein. <strong>Richtig:</strong> Ein Höchstpreis wirkt nur <em>unterhalb</em> des Gleichgewichts und erzeugt dann einen Nachfrageüberhang.</li>
+        <li><strong>Fehler:</strong> Im Marktgleichgewicht gibt es definitionsgemäss <em>weder</em> Angebots- <em>noch</em> Nachfrageüberhang. <strong>Richtig:</strong> Angebot = Nachfrage, der Markt ist geräumt; genau deshalb heisst der Preis markträumend.</li>
+      </ol>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü17 — Grosse Verbundaufgabe: Wirtschaftsordnungen</h4><span class="tag lvl">Level 5</span><span class="tag lz">L1</span><span class="tag lz">L2</span><span class="tag lz">L3</span></div>
+    <p>Im Land <em>Nordia</em> gilt bisher: Der Staat besitzt alle Fabriken, legt Preise und Produktionsmengen
+    fest und verteilt Grundnahrungsmittel über Marken. Nun beschliesst die neue Regierung Reformen:
+    private Unternehmensgründungen werden erlaubt, Preise dürfen sich frei bilden, gleichzeitig werden eine
+    Arbeitslosenversicherung und ein Umweltschutzgesetz eingeführt.</p>
+    <ol class="clean">
+      <li>Benenne die bisherige Wirtschaftsordnung und belege sie mit drei Merkmalen aus dem Text.</li>
+      <li>Welche Wirtschaftsordnung entsteht durch die Reform? Begründe mit je zwei Elementen beider Ordnungen.</li>
+      <li>Beurteile die Reform aus Sicht (a) eines jungen Unternehmers und (b) einer Rentnerin mit kleiner Rente.</li>
+      <li>Nenne ein Risiko der Reform, das der Staat mit einer gezielten Massnahme auffangen könnte, und schlage diese Massnahme vor.</li>
+    </ol>
+    <details><summary>Musterlösung</summary>
+      <p><strong>1.</strong> <strong>Zentrale Planwirtschaft.</strong> Belege: (a) Die Produktionsfaktoren
+      gehören dem Staat («der Staat besitzt alle Fabriken»). (b) Der Staat legt Preise und Produktionsmengen
+      fest — zentraler Plan und Preispolitik. (c) Die Güterzuteilung erfolgt über
+      <strong>Rationierung</strong> (Marken) statt über die Kaufkraft.</p>
+      <p><strong>2.</strong> Es entsteht eine <strong>soziale Marktwirtschaft</strong>.
+      <em>Marktwirtschaftliche Elemente:</em> Handels- und Gewerbefreiheit (private Gründungen) und freie
+      Preisbildung über den Preismechanismus. <em>Staatliche Elemente:</em> Arbeitslosenversicherung
+      (soziale Absicherung) und Umweltschutzgesetz (Regulierung zum Schutz der Allgemeinheit). Der Staat ist
+      damit mehr als ein Nachtwächterstaat, plant die Wirtschaft aber nicht mehr zentral.</p>
+      <p><strong>3. a) Junger Unternehmer:</strong> überwiegend Vorteile — er darf gründen, Produkte und
+      Preise selbst bestimmen, Gewinne erzielen und wachsen; der Wettbewerb schafft Chancen für neue Ideen.
+      Nachteilig sind die neuen Auflagen (Umweltgesetz) und Lohnnebenkosten der Versicherung.<br>
+      <strong>b) Rentnerin:</strong> ambivalent — die freie Preisbildung kann Grundnahrungsmittel verteuern,
+      da die Rationierung wegfällt und die Zuteilung neu über die <strong>Kaufkraft</strong> läuft. Positiv:
+      grössere Auswahl und bessere Qualität durch Wettbewerb; die Sozialversicherung federt Härtefälle ab.</p>
+      <p><strong>4. Risiko:</strong> Nach dem Wegfall der Rationierung und der staatlichen Preise könnten
+      Grundnahrungsmittel für Menschen mit kleinem Einkommen unerschwinglich werden.
+      <strong>Massnahme:</strong> gezielte Unterstützung über Sozialleistungen oder Verbilligungen
+      (Umverteilung) statt eines Höchstpreises — ein Höchstpreis unter dem Gleichgewichtspreis würde einen
+      <strong>Nachfrageüberhang</strong> erzeugen und damit leere Regale statt bezahlbarer Güter.</p>
+      <p><strong>Was diese Aufgabe prüft:</strong> dass du die Merkmale <em>aus einem Text herauslesen</em>,
+      die Mischform korrekt benennen, aus zwei Rollen beurteilen und am Ende L4-Wissen (Höchstpreis,
+      Nachfrageüberhang) auf eine wirtschaftspolitische Entscheidung anwenden kannst.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Ü18 — Grosse Verbundaufgabe: Angebot und Nachfrage</h4><span class="tag lvl">Level 5</span><span class="tag lz">L4</span></div>
+    <p>Markt für Schweizer Erdbeeren. Ausgangslage: Gleichgewichtspreis CHF 8 pro Kilo, gehandelte Menge
+    100 Tonnen pro Woche. Dann passiert Folgendes:</p>
+    <ul class="clean">
+      <li>Eine Hitzewelle lässt einen Teil der Ernte verderben.</li>
+      <li>Gleichzeitig berichtet eine populäre Sendung über die Vorzüge regionaler Erdbeeren.</li>
+    </ul>
+    <ol class="clean">
+      <li>Welche Kurve verschiebt jedes Ereignis, in welche Richtung, und welcher Faktor ist es jeweils?</li>
+      <li>Was lässt sich über den <strong>Preis</strong> im neuen Gleichgewicht sagen? Begründe.</li>
+      <li>Was lässt sich über die <strong>Menge</strong> sagen? Begründe.</li>
+      <li>Der Kanton legt daraufhin einen Höchstpreis von CHF 7 fest. Zeichne und beschreibe die Folge.</li>
+      <li>Ein Produzent sagt: «Bei CHF 7 lohnt sich der Anbau für mich nicht mehr.» Erkläre mit der Angebotsregel, was er meint und was langfristig passiert.</li>
+    </ol>
+    <details><summary>Musterlösung</summary>
+      <p><strong>1.</strong> Hitzewelle → <strong>Angebotskurve nach links</strong> (Faktor: verfügbare
+      Erntemenge bzw. gestiegene Kosten der Vorleistungen — es kann weniger produziert werden).
+      TV-Bericht → <strong>Nachfragekurve nach rechts</strong> (Faktor: <strong>Vorlieben</strong> der
+      Konsumenten verändern sich zu Gunsten des Gutes).</p>
+      <p><strong>2. Preis:</strong> Er <strong>steigt eindeutig</strong>. Eine Linksverschiebung des Angebots
+      erhöht den Preis, eine Rechtsverschiebung der Nachfrage ebenfalls — beide Effekte wirken in dieselbe
+      Richtung und verstärken sich.</p>
+      <p><strong>3. Menge:</strong> <strong>Nicht eindeutig bestimmbar.</strong> Das sinkende Angebot zieht
+      die gehandelte Menge nach unten, die steigende Nachfrage nach oben. Welcher Effekt überwiegt, hängt
+      davon ab, wie stark sich die beiden Kurven verschieben. Diese Antwort ist die fachlich richtige — hier
+      darf man nicht raten.</p>
+      <p><strong>4. Höchstpreis CHF 7:</strong> Der neue Gleichgewichtspreis liegt nach den beiden
+      Verschiebungen <em>über</em> CHF 8, der Höchstpreis von CHF 7 also deutlich <strong>darunter</strong> —
+      er greift. Folge: Bei CHF 7 ist die nachgefragte Menge grösser als die angebotene →
+      <strong>Nachfrageüberhang</strong>. Zeichnung wie Diagramm 11: waagrechte Höchstpreislinie unter p*,
+      Schnittpunkt mit A links (angeboten), Schnittpunkt mit N rechts (nachgefragt), Strecke dazwischen
+      beschriften.</p>
+      <p><strong>5.</strong> Er meint, dass der Preis seine <strong>Produktionskosten inklusive Gewinn</strong>
+      nicht mehr deckt. Nach der Angebotsregel wird ein Produkt dann nicht oder nur vorübergehend angeboten.
+      Langfristig steigen solche Produzenten aus oder stellen auf eine andere Kultur um
+      (Substitutionsgut in der Produktion) → die <strong>Angebotskurve verschiebt sich weiter nach links</strong>,
+      die Knappheit verschärft sich. Gut gemeinte Preisgrenzen können den Nachfragenden also schaden.</p>
+    </details>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz</h2>
+  <p class="section-sub">14 Fragen quer durch alle vier Lernziele. Antwortreihenfolge wird bei jedem Durchgang neu gemischt.</p>
+  <div class="scorebar">
+    <span>Punktestand: <strong><span id="score">0</span></strong> von <span id="total">0</span></span>
+    <button type="button" id="reset">Neu starten</button>
+  </div>
+  <div id="quiz-list"></div>
+</section>
+
+<section id="simulation">
+  <h2>Prüfungssimulation</h2>
+  <p class="section-sub">Eine vollständige Mini-Prüfung über alle vier Lernziele. Richtwert: <strong>45 Minuten,
+  40 Punkte</strong>. Decke die Lösungen ab und schreibe die Antworten von Hand auf — inklusive Diagramme.</p>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe 1 — Wirtschaftsordnungen vergleichen</h4><span class="pts">8 Punkte</span></div>
+    <p>a) Vervollständige die Tabelle für beide Wirtschaftsordnungen: Steuerung, Ziele, Zuteilung der Güter,
+    Rolle des Staates, Eigentum an den Produktionsfaktoren. (5 P)<br>
+    b) Erkläre, was mit «Nachtwächterstaat» gemeint ist. (1 P)<br>
+    c) Nenne zwei Freiheitsrechte, die in der zentralen Planwirtschaft eingeschränkt werden. (2 P)</p>
+    <details><summary>Lösung</summary>
+      <p><strong>a)</strong> Siehe Vergleichstabelle im Abschnitt <a href="#ordnungen">Markt- vs. Planwirtschaft</a>:
+      zentraler Plan ↔ Markt/Preismechanismus · kollektive Ziele und Planerfüllung ↔ individuelles
+      Gewinnstreben · Rationierung bzw. Einkommens- und Preispolitik ↔ Zuteilung nach Kaufkraft ·
+      Staat kontrolliert und bestimmt ↔ Nachtwächterstaat · Produktionsfaktoren gehören dem Staat ↔ Privaten.</p>
+      <p><strong>b)</strong> Der Staat beschränkt sich darauf, das reibungslose Funktionieren der Wirtschaft
+      zu sichern (Rahmenbedingungen, Rechtssicherheit, Freiheitsrechte), und greift sonst nicht in den Markt ein.</p>
+      <p><strong>c)</strong> Zwei von: Handels- und Gewerbefreiheit, Niederlassungsfreiheit, Berufs- und
+      Arbeitsplatzwahlfreiheit. (Folge: Man kann sich nicht selbstständig machen und keine eigene Firma gründen.)</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe 2 — Beurteilen aus zwei Perspektiven</h4><span class="pts">8 Punkte</span></div>
+    <p>Eine Regierung erwägt, die Energieversorgung vollständig zu verstaatlichen und die Strompreise
+    festzulegen.<br>
+    a) Argumentiere aus Sicht einer Umweltorganisation mit zwei Argumenten <em>für</em> die Massnahme. (3 P)<br>
+    b) Argumentiere aus Sicht eines privaten Energieunternehmens mit zwei Argumenten <em>dagegen</em>. (3 P)<br>
+    c) Nimm begründet Stellung: Würdest du die Massnahme unterstützen? (2 P)</p>
+    <details><summary>Lösung</summary>
+      <p><strong>a)</strong> (1) Der Staat kann die Produktion direkt auf erneuerbare Energien ausrichten und
+      umweltschädliche Erzeugung einschränken — er ist nicht an Gewinn gebunden. (2) Die knappe Ressource
+      Energie kann gezielt und nachhaltig verteilt werden, Umweltschutz erhält Vorrang vor Gewinn.</p>
+      <p><strong>b)</strong> (1) Die Verstaatlichung hebt das <strong>Privateigentum an den
+      Produktionsfaktoren</strong> auf und verletzt die Handels- und Gewerbefreiheit. (2) Staatlich
+      festgelegte Preise decken unter Umständen die <strong>Produktionskosten</strong> nicht; ohne
+      Gewinnaussicht fehlt der Anreiz für Investitionen und Innovation, die Qualität der Versorgung sinkt
+      langfristig.</p>
+      <p><strong>c)</strong> Jede begründete Position gilt, solange Fachbegriffe verwendet werden und beide
+      Seiten gewürdigt sind. Starke Antwort z. B.: «Nein, aber mit Einschränkung — statt einer
+      Verstaatlichung (planwirtschaftliches Element) würde ich im Sinne der sozialen Marktwirtschaft mit
+      Lenkungsabgaben und Vorschriften arbeiten: Das Ziel wird über den Preismechanismus erreicht, ohne die
+      Eigentumsordnung aufzugeben.»</p>
+      <p><em>Bewertungsraster:</em> je 1 P pro fachlich korrektem Argument, 1 P für Fachbegriffe, 2 P für
+      eine begründete Stellungnahme mit Abwägung.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe 3 — Die Schweiz einordnen</h4><span class="pts">7 Punkte</span></div>
+    <p>a) Weshalb wird die Schweiz als soziale Marktwirtschaft bezeichnet? Antworte in 4–6 Sätzen. (4 P)<br>
+    b) Ordne zu — marktwirtschaftliches oder staatliches Element: Umweltgesetze, freie Berufswahl,
+    obligatorische Krankenversicherung, Wettbewerb zwischen Migros und Coop, AHV, private Unternehmen. (3 P)</p>
+    <details><summary>Lösung</summary>
+      <p><strong>a)</strong> Weil sie Elemente beider Wirtschaftsordnungen kombiniert: Der Kern ist
+      marktwirtschaftlich — Preise entstehen über den Preismechanismus aus Angebot und Nachfrage, die
+      Produktionsfaktoren sind privat, es gelten Handels- und Gewerbefreiheit sowie freie Berufswahl.
+      Gleichzeitig greift der Staat korrigierend ein: Er sichert über Sozialversicherungen (AHV, IV, EO,
+      Sozialhilfe) die Existenz, erklärt die Krankenversicherung für obligatorisch und reguliert mit
+      Gesetzen dort, wo der Markt der Allgemeinheit schadet (z. B. Umweltschutz). Damit ist der Staat mehr
+      als ein Nachtwächterstaat, plant die Wirtschaft aber nicht zentral.</p>
+      <p><strong>b)</strong> <em>Marktwirtschaftlich:</em> freie Berufswahl, Wettbewerb zwischen Migros und
+      Coop, private Unternehmen. <em>Staatlich:</em> Umweltgesetze, obligatorische Krankenversicherung, AHV.</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe 4 — Angebots- und Nachfragemodell</h4><span class="pts">12 Punkte</span></div>
+    <p>Markt für Velos.<br>
+    a) Zeichne ein beschriftetes Preis-Mengen-Diagramm mit Angebots- und Nachfragekurve und markiere das
+    Marktgleichgewicht (p1, q1). (3 P)<br>
+    b) Die ÖV-Preise steigen stark. Zeichne die Veränderung ein und erkläre sie in zwei bis drei Sätzen. (3 P)<br>
+    c) Was geschieht mit Preis und gehandelter Menge im neuen Gleichgewicht? (2 P)<br>
+    d) Kreuze an — Bewegung auf der Kurve oder Verschiebung der Kurve: (1) Der Velopreis sinkt im Ausverkauf.
+    (2) Stahl für Rahmen wird teurer. (3) Eine neue Velofabrik eröffnet. (4) Das Einkommen der Haushalte steigt. (4 P)</p>
+    <details><summary>Lösung</summary>
+      <p><strong>a)</strong> Preis auf y, Menge auf x, Markt benannt, N fallend und beschriftet, A steigend
+      und beschriftet, Schnittpunkt markiert, gestrichelte Linien zu p1 und q1.</p>
+      <p><strong>b)</strong> Der ÖV ist ein <strong>Substitutionsgut</strong> des Velos. Weil er teurer wird,
+      steigen manche aufs Velo um: Die <strong>Nachfragekurve verschiebt sich nach rechts</strong> (N1 → N2) —
+      zu jedem Preis gibt es nun mehr Nachfrager. Die Angebotskurve bleibt unverändert.</p>
+      <p><strong>c)</strong> Der Gleichgewichts<strong>preis steigt</strong> und die gehandelte
+      <strong>Menge steigt</strong>. (Bei einer Nachfrageverschiebung bewegen sich Preis und Menge in
+      dieselbe Richtung.)</p>
+      <p><strong>d)</strong> (1) <strong>Bewegung</strong> auf der Nachfragekurve (Preis des Gutes selbst).
+      (2) <strong>Verschiebung</strong> der Angebotskurve nach links (Vorleistung teurer).
+      (3) <strong>Verschiebung</strong> der Angebotskurve nach rechts (Anzahl Anbieter).
+      (4) <strong>Verschiebung</strong> der Nachfragekurve nach rechts (Einkommen).</p>
+    </details>
+  </div>
+
+  <div class="ex">
+    <div class="ex-head"><h4>Aufgabe 5 — Überhang und staatlicher Eingriff</h4><span class="pts">5 Punkte</span></div>
+    <p>In einer Stadt liegt die Gleichgewichtsmiete für eine Wohnung bei CHF 1600. Die Stadt führt einen
+    Höchstpreis von CHF 1200 ein.<br>
+    a) Welcher Überhang entsteht? Zeichne und beschrifte ihn. (2 P)<br>
+    b) Erkläre in zwei Sätzen, weshalb der Eingriff den Wohnungssuchenden schaden kann. (2 P)<br>
+    c) Was wäre die Wirkung, wenn der Höchstpreis bei CHF 1800 läge? (1 P)</p>
+    <details><summary>Lösung</summary>
+      <p><strong>a)</strong> Ein <strong>Nachfrageüberhang</strong>: Bei CHF 1200 ist die nachgefragte Menge
+      an Wohnungen grösser als die angebotene. Zeichnung: waagrechte Linie bei 1200 unter p*; links der
+      Schnittpunkt mit der Angebotskurve (angebotene Menge), rechts der Schnittpunkt mit der Nachfragekurve
+      (nachgefragte Menge); die Strecke dazwischen ist der Nachfrageüberhang.</p>
+      <p><strong>b)</strong> Deckt die Miete die Kosten der Vermietenden nicht mehr, sinkt das Angebot oder
+      die Qualität verschlechtert sich — das Wohnungsangebot verknappt sich. Eine günstige Miete nützt
+      nichts, wenn man keine Wohnung findet.</p>
+      <p><strong>c)</strong> <strong>Keine Wirkung.</strong> Ein Höchstpreis oberhalb des Gleichgewichtspreises
+      greift nicht; der Markt pendelt sich weiterhin bei CHF 1600 ein.</p>
+    </details>
+  </div>
+</section>
+
+<section id="lastminute">
+  <h2>Last-Minute-Repetition</h2>
+  <p class="section-sub">Am Vorabend durchgehen. Was du hier nicht abhaken kannst, nochmals im
+  entsprechenden Abschnitt nachlesen.</p>
+  <div class="grid2">
+    <div class="card">
+      <h4>Kann ich ohne Hilfe …</h4>
+      <ul class="checklist">
+        <li><input type="checkbox" aria-label="Haken 1"><span>… die fünf Vergleichsfragen für beide Wirtschaftsordnungen beantworten?</span></li>
+        <li><input type="checkbox" aria-label="Haken 2"><span>… Rationierung, Preispolitik, Nachtwächterstaat, Planerfüllung, Kaufkraft erklären?</span></li>
+        <li><input type="checkbox" aria-label="Haken 3"><span>… aus vier Rollen je drei Argumente nennen?</span></li>
+        <li><input type="checkbox" aria-label="Haken 4"><span>… in einem Satz sagen, weshalb die Schweiz eine soziale Marktwirtschaft ist — plus je drei Belege?</span></li>
+        <li><input type="checkbox" aria-label="Haken 5"><span>… ein beschriftetes Preis-Mengen-Diagramm aus dem Nichts zeichnen?</span></li>
+        <li><input type="checkbox" aria-label="Haken 6"><span>… die fünf Verschiebungsfaktoren der Nachfrage aufzählen?</span></li>
+        <li><input type="checkbox" aria-label="Haken 7"><span>… die vier Verschiebungsfaktoren des Angebots aufzählen?</span></li>
+        <li><input type="checkbox" aria-label="Haken 8"><span>… Bewegung und Verschiebung an einem Beispiel unterscheiden und begründen?</span></li>
+        <li><input type="checkbox" aria-label="Haken 9"><span>… Nachfrageüberhang und Angebotsüberschuss zeichnen und zuordnen?</span></li>
+        <li><input type="checkbox" aria-label="Haken 10"><span>… sagen, wann ein Mindest- bzw. Höchstpreis überhaupt wirkt?</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Die Sätze, die immer passen</h4>
+      <ul class="clean">
+        <li><strong>Zuteilung:</strong> Markt = nach Kaufkraft · Plan = durch den Staat (Rationierung).</li>
+        <li><strong>Triebkraft:</strong> Markt = individuelles Gewinnstreben · Plan = Planerfüllung.</li>
+        <li><strong>Schweiz:</strong> marktwirtschaftlicher Kern + staatliche soziale Korrektur = soziale Marktwirtschaft.</li>
+        <li><strong>Nachfrage:</strong> Preis ↑ → nachgefragte Menge ↓ (Opportunitätskosten, Substitutionseffekt).</li>
+        <li><strong>Angebot:</strong> Preis ↑ → angebotene Menge ↑ (Produktionskosten müssen gedeckt sein).</li>
+        <li><strong>Preis des Gutes selbst</strong> → Bewegung. <strong>Alles andere</strong> → Verschiebung.</li>
+        <li><strong>Verschiebung erklären:</strong> «Zu jedem Preis wird nun mehr/weniger nachgefragt bzw. angeboten, weil …»</li>
+        <li><strong>Gleichgewicht:</strong> Angebot = Nachfrage, kein Überhang, Markt geräumt.</li>
+        <li><strong>Preis zu tief</strong> → Nachfrageüberhang · <strong>Preis zu hoch</strong> → Angebotsüberschuss.</li>
+        <li><strong>Mindestpreis</strong> wirkt nur <em>über</em>, <strong>Höchstpreis</strong> nur <em>unter</em> dem Gleichgewicht.</li>
+        <li><strong>Nachfrage</strong>verschiebung: Preis und Menge in dieselbe Richtung. <strong>Angebots</strong>verschiebung: auseinander.</li>
+        <li><strong>Zwei gegenläufige Effekte</strong> → «nicht eindeutig bestimmbar».</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <p>Zusammenfassung für die Prüfung vom 26. November 2026 · Wirtschaft und Recht, Volkswirtschaftslehre ·
+  Kapitel 9.1 «Märkte und die Rolle der Preise» und 9.2 «Angebot und Nachfrage».</p>
+  <a class="backlink" href="../../../index.html">← zurück zu StudyHub</a>
+</footer>
+</div>
+</div>
+<script>
+(function () {
+  "use strict";
+  var QUESTIONS = [
+    { q: "Wie werden die Güter in der freien Marktwirtschaft zugeteilt?",
+      o: ["Nach der individuellen Kaufkraft", "Durch Rationierung", "Über einen zentralen Plan", "Nach Bedürftigkeit durch eine Behörde"], a: 0,
+      e: "Jeder kauft im Rahmen seiner Möglichkeiten, was er will. Rationierung und zentraler Plan gehören zur Planwirtschaft." },
+    { q: "Was ist die Triebkraft der zentralen Planwirtschaft?",
+      o: ["Das Bestreben nach Planerfüllung", "Das individuelle Gewinnstreben", "Der Wettbewerb zwischen Unternehmen", "Die Zahlungsbereitschaft der Kunden"], a: 0,
+      e: "Das individuelle Gewinnstreben spielt in der Planwirtschaft keine Rolle — es zählt die Erfüllung des Plans." },
+    { q: "Was beschreibt der Begriff «Nachtwächterstaat»?",
+      o: ["Die zurückhaltende Rolle des Staates in der freien Marktwirtschaft", "Einen Staat, der alle Produktionsfaktoren besitzt", "Die staatliche Preisfestsetzung bei Grundnahrungsmitteln", "Die soziale Absicherung durch Sozialversicherungen"], a: 0,
+      e: "Er sorgt nur für ein reibungsloses Funktionieren der Wirtschaft und greift sonst nicht in den Markt ein." },
+    { q: "Weshalb wird die Schweiz als soziale Marktwirtschaft bezeichnet?",
+      o: ["Weil sie marktwirtschaftliche und staatliche Elemente kombiniert", "Weil der Staat die Preise aller Güter festlegt", "Weil alle Produktionsfaktoren dem Staat gehören", "Weil der Staat sich vollständig aus der Wirtschaft heraushält"], a: 0,
+      e: "Marktwirtschaftlicher Kern (Preismechanismus, Privateigentum, freie Berufswahl) plus staatliche Absicherung und Regulierung." },
+    { q: "Welches ist ein staatliches Element der Schweizer Wirtschaftsordnung?",
+      o: ["Die obligatorische Krankenversicherung", "Der Wettbewerb zwischen Migros und Coop", "Die freie Berufswahl", "Private Unternehmen"], a: 0,
+      e: "«Obligatorisch», «Gesetz», «Versicherung», «Abgabe» sind immer staatliche Signalwörter." },
+    { q: "Was sagt das Gesetz der Nachfrage?",
+      o: ["Je höher der Preis, desto kleiner die nachgefragte Menge", "Je höher der Preis, desto grösser die nachgefragte Menge", "Die nachgefragte Menge ist vom Preis unabhängig", "Je höher der Preis, desto grösser die angebotene Menge"], a: 0,
+      e: "Deshalb fällt die Nachfragekurve. Die letzte Aussage beschreibt das Gesetz des Angebots." },
+    { q: "Die Strompreise steigen. Was passiert mit der Nachfragekurve für Elektroautos?",
+      o: ["Sie verschiebt sich nach links", "Sie verschiebt sich nach rechts", "Es gibt nur eine Bewegung auf der Kurve", "Sie verändert sich gar nicht"], a: 0,
+      e: "Strom ist ein Komplementärgut: Das Gesamtpaket «Elektroauto fahren» wird teurer, die Nachfrage sinkt." },
+    { q: "Der Preis von Sneakers sinkt. Was passiert?",
+      o: ["Bewegung auf der Nachfragekurve nach rechts unten", "Linksverschiebung der Nachfragekurve", "Rechtsverschiebung der Nachfragekurve", "Rechtsverschiebung der Angebotskurve"], a: 0,
+      e: "Der Preis des Gutes selbst verschiebt die Kurve nie — er bewegt uns auf ihr entlang. Das ist der häufigste Fehler im ganzen Kapitel." },
+    { q: "Welcher Faktor verschiebt die Angebotskurve nach rechts?",
+      o: ["Die Produktivität verbessert sich", "Die Vorleistungen werden teurer", "Die Anzahl der Anbieter sinkt", "Die Vorlieben der Konsumenten ändern sich"], a: 0,
+      e: "Vorlieben betreffen die Nachfrage. Teurere Vorleistungen und weniger Anbieter verschieben das Angebot nach links." },
+    { q: "Der Preis für Kakaobutter steigt, sodass Kakaobohnen eher dafür verwendet werden. Was passiert mit dem Angebot an Schokolade?",
+      o: ["Linksverschiebung — Substitutionsgut in der Produktion", "Rechtsverschiebung — höhere Produktivität", "Keine Veränderung — es ist nur eine Bewegung", "Linksverschiebung der Nachfragekurve"], a: 0,
+      e: "Mit denselben Mitteln wird etwas anderes hergestellt, deshalb wird zu jedem Preis weniger Schokolade angeboten." },
+    { q: "Was gilt im Marktgleichgewicht?",
+      o: ["Angebot = Nachfrage, der Markt ist geräumt", "Es herrscht ein kleiner Angebotsüberschuss", "Die Anbieter erzielen den höchstmöglichen Preis", "Der Staat hat den Preis festgelegt"], a: 0,
+      e: "Weder Angebots- noch Nachfrageüberhang, keine Knappheit, keine Überschüsse." },
+    { q: "Der Preis liegt unter dem Gleichgewichtspreis. Was entsteht?",
+      o: ["Ein Nachfrageüberhang", "Ein Angebotsüberschuss", "Ein neues Marktgleichgewicht", "Eine Verschiebung der Angebotskurve"], a: 0,
+      e: "Mehr Personen wollen kaufen, als angeboten wird — wie bei den 6 Konzerttickets für 9 Interessierte. Der Preis steigt tendenziell." },
+    { q: "Wann wirkt ein staatlicher Mindestpreis überhaupt?",
+      o: ["Nur wenn er über dem Gleichgewichtspreis liegt", "Nur wenn er unter dem Gleichgewichtspreis liegt", "Immer, unabhängig vom Gleichgewichtspreis", "Nur auf dem Arbeitsmarkt"], a: 0,
+      e: "Liegt er darunter, pendelt sich der Markt ohnehin höher ein und der Eingriff bleibt wirkungslos. Beim Höchstpreis ist es genau umgekehrt." },
+    { q: "Das Angebot sinkt und die Nachfrage steigt gleichzeitig. Was lässt sich sagen?",
+      o: ["Der Preis steigt; die Menge ist nicht eindeutig bestimmbar", "Preis und Menge steigen beide", "Preis und Menge sinken beide", "Der Preis sinkt; die Menge steigt"], a: 0,
+      e: "Beide Verschiebungen treiben den Preis nach oben. Bei der Menge wirken sie gegeneinander — welcher Effekt überwiegt, hängt von der Stärke der Verschiebungen ab." }
+  ];
+
+  var container = document.getElementById("quiz-list");
+  var scoreEl = document.getElementById("score");
+  var totalEl = document.getElementById("total");
+  if (!container) { return; }
+
+  var score = 0;
+
+  function build() {
+    container.innerHTML = "";
+    score = 0;
+    scoreEl.textContent = "0";
+    totalEl.textContent = String(QUESTIONS.length);
+
+    QUESTIONS.forEach(function (item, i) {
+      var box = document.createElement("div");
+      box.className = "quiz-q";
+
+      var q = document.createElement("p");
+      q.className = "q";
+      q.textContent = (i + 1) + ". " + item.q;
+      box.appendChild(q);
+
+      var opts = document.createElement("div");
+      opts.className = "opts";
+
+      var order = item.o.map(function (text, idx) { return { text: text, idx: idx }; });
+      for (var k = order.length - 1; k > 0; k--) {
+        var j = Math.floor(Math.random() * (k + 1));
+        var tmp = order[k]; order[k] = order[j]; order[j] = tmp;
+      }
+
+      var fb = document.createElement("p");
+      fb.className = "fb";
+
+      order.forEach(function (opt) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "opt";
+        btn.textContent = opt.text;
+        btn.addEventListener("click", function () {
+          if (box.dataset.done === "1") { return; }
+          box.dataset.done = "1";
+          var buttons = opts.querySelectorAll("button");
+          Array.prototype.forEach.call(buttons, function (b) { b.disabled = true; });
+          if (opt.idx === item.a) {
+            btn.classList.add("correct");
+            score++;
+            fb.textContent = "Richtig. " + item.e;
+          } else {
+            btn.classList.add("wrong");
+            Array.prototype.forEach.call(buttons, function (b) {
+              if (b.textContent === item.o[item.a]) { b.classList.add("correct"); }
+            });
+            fb.textContent = "Nicht ganz. " + item.e;
+          }
+          scoreEl.textContent = String(score);
+        });
+        opts.appendChild(btn);
+      });
+
+      box.appendChild(opts);
+      box.appendChild(fb);
+      container.appendChild(box);
+    });
+  }
+
+  document.getElementById("reset").addEventListener("click", build);
+  build();
+})();
+</script>
+</body>
+</html>
