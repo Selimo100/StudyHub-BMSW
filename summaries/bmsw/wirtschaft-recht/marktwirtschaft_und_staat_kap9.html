@@ -1322,10 +1322,10 @@ footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);
       <table>
         <thead><tr><th>Was verschiebt sich</th><th>Gleichgewichtspreis</th><th>Gehandelte Menge</th><th>Beispiel</th></tr></thead>
         <tbody>
-          <tr><td class="term">Nachfrage nach rechts (steigt)</td><td>steigt</td><td>steigt</td><td>Ein Trend macht ein Sneaker-Modell begehrt.</td></tr>
-          <tr><td class="term">Nachfrage nach links (sinkt)</td><td>sinkt</td><td>sinkt</td><td>Eine Studie schreckt Käufer von Elektroautos ab.</td></tr>
-          <tr><td class="term">Angebot nach rechts (steigt)</td><td>sinkt</td><td>steigt</td><td>Neue Anbaumethoden erhöhen die Kakaoernte.</td></tr>
-          <tr><td class="term">Angebot nach links (sinkt)</td><td>steigt</td><td>sinkt</td><td>Erdölkrise 1973; teureres Mehl für Pizzerien.</td></tr>
+          <tr><td class="term">Nachfrage nach rechts (steigt)</td><td>↑ steigt</td><td>↑ steigt</td><td>Ein Trend macht ein Sneaker-Modell begehrt.</td></tr>
+          <tr><td class="term">Nachfrage nach links (sinkt)</td><td>↓ sinkt</td><td>↓ sinkt</td><td>Eine Studie schreckt Käufer von Elektroautos ab.</td></tr>
+          <tr><td class="term">Angebot nach rechts (steigt)</td><td>↓ sinkt</td><td>↑ steigt</td><td>Neue Anbaumethoden erhöhen die Kakaoernte.</td></tr>
+          <tr><td class="term">Angebot nach links (sinkt)</td><td>↑ steigt</td><td>↓ sinkt</td><td>Erdölkrise 1973; teureres Mehl für Pizzerien.</td></tr>
         </tbody>
       </table>
     </div>
@@ -1333,6 +1333,27 @@ footer{max-width:1160px;margin:0 auto;padding:26px 20px 60px;color:var(--muted);
       <strong>Merkhilfe:</strong> Bei einer <strong>Nachfrage</strong>verschiebung gehen Preis und Menge
       <em>in dieselbe</em> Richtung. Bei einer <strong>Angebots</strong>verschiebung gehen sie
       <em>auseinander</em>.
+    </div>
+
+    <h4>Beide Kurven verschieben sich gleichzeitig</h4>
+    <p>Verschieben sich Nachfrage <em>und</em> Angebot, ist nur eine der beiden Grössen eindeutig.
+    Die andere hängt davon ab, welche Verschiebung stärker ist — sie ist <strong>unklar</strong>.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Nachfrage</th><th>Angebot</th><th>Gleichgewichtspreis</th><th>Gleichgewichtsmenge</th></tr></thead>
+        <tbody>
+          <tr><td class="term">steigt ↑</td><td class="term">steigt ↑</td><td>unklar</td><td>↑ steigt</td></tr>
+          <tr><td class="term">sinkt ↓</td><td class="term">sinkt ↓</td><td>unklar</td><td>↓ sinkt</td></tr>
+          <tr><td class="term">steigt ↑</td><td class="term">sinkt ↓</td><td>↑ steigt</td><td>unklar</td></tr>
+          <tr><td class="term">sinkt ↓</td><td class="term">steigt ↑</td><td>↓ sinkt</td><td>unklar</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.9em">↑ = steigt · ↓ = sinkt · unklar = kann steigen, sinken oder gleich bleiben</p>
+    <div class="callout tip">
+      <strong>Merkhilfe:</strong> Verschieben sich beide Kurven in <em>dieselbe</em> Richtung, ist die
+      <strong>Menge</strong> klar. Verschieben sie sich in <em>entgegengesetzte</em> Richtungen, ist der
+      <strong>Preis</strong> klar.
     </div>
   </div>
 </section>
